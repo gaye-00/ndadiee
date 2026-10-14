@@ -1,0 +1,50 @@
+spring:
+  application:
+    name: ndadiee
+  datasource:
+    url: ${SPRING_DATASOURCE_URL:jdbc:postgresql://localhost:5433/ndadiee}
+    username: ${SPRING_DATASOURCE_USERNAME:ndadiee}
+    password: ${SPRING_DATASOURCE_PASSWORD:ndadiee}
+  jpa:
+    hibernate:
+      # Le schéma appartient à Flyway (db/migration) : Hibernate se contente de le vérifier.
+      ddl-auto: ${SPRING_JPA_HIBERNATE_DDL_AUTO:validate}
+    open-in-view: false
+    show-sql: false
+    properties:
+      hibernate:
+        # Charge les relations LAZY par lots (évite le N+1 sur les listes)
+        default_batch_fetch_size: 50
+  flyway:
+    enabled: ${SPRING_FLYWAY_ENABLED:true}
+  data:
+    web:
+      pageable:
+        default-page-size: 20
+        max-page-size: 50
+
+server:
+  servlet:
+    context-path: /api
+  port: ${SERVER_PORT:8080}
+
+frontend:
+  url: ${FRONTEND_URL:http://localhost:5173}
+
+jwt:
+  # Valeur de développement uniquement : définir JWT_SECRET (Base64, 256 bits minimum) en production.
+  secret: ${JWT_SECRET:bGFrYS1kZXYtb25seS1zZWNyZXQtY2hhbmdlLW1lLWluLXByb2R1Y3Rpb24tMDEyMzQ1Njc4OQ==}
+  access-token-expiration: ${JWT_ACCESS_TOKEN_EXPIRATION:30m}
+  refresh-token-expiration: ${JWT_REFRESH_TOKEN_EXPIRATION:30d}
+
+ndadiee:
+  seed:
+    # Données de démonstration, créées au démarrage si la base est vide.
+    enabled: ${SEED_ENABLED:true}
+    # Mot de passe des comptes de démonstration : à changer avant toute mise en ligne.
+    admin-password: ${SEED_ADMIN_PASSWORD:Admin@Ndadiee2026}
+    demo-password: ${SEED_DEMO_PASSWORD:Ndadiee@2026}
+
+springdoc:
+  swagger-ui:
+    path: /swagger-ui.html

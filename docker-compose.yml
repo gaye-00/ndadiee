@@ -1,0 +1,31 @@
+services:
+  postgres:
+    image: postgres:17
+    container_name: postgres_ndadiee_container
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: ${DB_NAME:-ndadiee}
+      POSTGRES_USER: ${DB_USER:-ndadiee}
+      POSTGRES_PASSWORD: ${DB_PASSWORD:-ndadiee}
+    ports:
+      - "127.0.0.1:${DB_PORT:-5433}:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test:
+        [
+          "CMD-SHELL",
+          "pg_isready -U ${DB_USER:-ndadiee} -d ${DB_NAME:-ndadiee}",
+        ]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+    networks:
+      - ndadiee_network
+
+volumes:
+  postgres_data:
+
+networks:
+  ndadiee_network:
+    driver: bridge

@@ -1,0 +1,9 @@
+.env
+
+# Projets de référence (dépôts privés, hors du projet)
+refs/
+
+### IDE ###
+.idea/
+.vscode/
+*.iml
