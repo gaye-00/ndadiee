@@ -17,6 +17,17 @@ export interface RegisterRequest {
   preferredLanguage?: Language;
 }
 
+/** Un nom d'utilisateur est-il libre ? (UsernameAvailabilityResponse.java) */
+export interface UsernameAvailability {
+  /** Tel qu'il serait enregistré : en minuscules */
+  username: string;
+  available: boolean;
+  /** Pourquoi il n'est pas libre */
+  reason: 'INVALID' | 'RESERVED' | 'TAKEN' | null;
+  /** Variantes libres, quand il est réservé ou pris */
+  suggestions: string[];
+}
+
 export interface AuthResponse {
   accessToken: string;
   refreshToken: string;

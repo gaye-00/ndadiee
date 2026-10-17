@@ -1,13 +1,27 @@
-import { keepPreviousData, useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
+import { keepPreviousData, queryOptions, useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { projectService } from '@/services/project.service';
 import type { MemberDecisionRequest, ProjectFilters, ProjectRequest } from '@/types/project.types';
 
-export function useProjects(filters?: ProjectFilters) {
-  return useQuery({
+/** Requête d'une liste de projets : partagée par les hooks et le préchargement (LandingPage). */
+export const projectsQuery = (filters?: ProjectFilters) =>
+  queryOptions({
     queryKey: ['projects', filters],
     queryFn: () => projectService.getAll(filters),
-    placeholderData: keepPreviousData,
   });
+
+/**
+ * La vitrine de l'accueil : les six projets les plus étoilés. Deux rangées de trois sur grand écran ;
+ * tablette et téléphone en montrent quatre (landing/ShowcasePreview.tsx).
+ */
+export const SHOWCASE_FILTERS = { size: 6, sort: 'starsCount,desc' } as const satisfies ProjectFilters;
+
+export function useProjects(filters?: ProjectFilters) {
+  return useQuery({ ...projectsQuery(filters), placeholderData: keepPreviousData });
+}
+
+/** Les derniers projets qui recrutent, pour l'accroche de l'accueil : leurs porteurs et leur nombre. */
+export function useRecruitingProjects() {
+  return useProjects({ lookingForContributors: true, size: 4 });
 }
 
 export function useProject(slug: string | undefined) {

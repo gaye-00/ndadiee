@@ -16,6 +16,8 @@ public class InitializerNdadiee implements CommandLineRunner {
 
     private final BadgeService badgeService;
     private final DemoDataSeeder demoDataSeeder;
+    private final ShowcaseSeeder showcaseSeeder;
+    private final TestAccountsSeeder testAccountsSeeder;
 
     @Value("${ndadiee.seed.enabled}")
     private boolean seedEnabled;
@@ -26,7 +28,12 @@ public class InitializerNdadiee implements CommandLineRunner {
         badgeService.syncCatalog();
 
         if (seedEnabled) {
-            demoDataSeeder.seedIfEmpty();
+            // La communauté d'abord (comptes, questions, articles, opportunités), puis la vitrine,
+            // dont les équipes et les étoiles viennent de cette communauté
+            demoDataSeeder.seed();
+            showcaseSeeder.seed();
+            // Les deux comptes d'essai, à chaque démarrage, même dans une base déjà remplie
+            testAccountsSeeder.seed();
         } else {
             log.info("[Init] Données de démonstration désactivées (ndadiee.seed.enabled=false)");
         }

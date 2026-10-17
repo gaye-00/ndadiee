@@ -45,6 +45,10 @@ public class Project extends BaseEntity {
     @Column(nullable = false, unique = true)
     private String slug;
 
+    // Accroche d'une ligne, pour les cartes de la vitrine
+    @Column(length = 200)
+    private String tagline;
+
     @Column(columnDefinition = "TEXT")
     private String description;
 
@@ -56,6 +60,21 @@ public class Project extends BaseEntity {
 
     @Column(length = 500)
     private String logoUrl;
+
+    // Couverture (capture ou photo) et sa miniature. Adresse complète, ou chemin d'un média servi
+    // par l'API (« media/... ») : voir MediaUrls.
+    @Column(length = 500)
+    private String coverUrl;
+
+    @Column(length = 500)
+    private String coverThumbnailUrl;
+
+    // Crédit d'une photo empruntée (auteur et licence), et lien vers sa source
+    @Column(length = 200)
+    private String coverCredit;
+
+    @Column(length = 500)
+    private String coverSourceUrl;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @ToString.Exclude
@@ -84,4 +103,10 @@ public class Project extends BaseEntity {
     @ToString.Exclude
     @Builder.Default
     private List<ProjectMember> members = new ArrayList<>();
+
+    // Rôles recherchés, ouverts ou pourvus
+    @OneToMany(mappedBy = "project", cascade = CascadeType.ALL, orphanRemoval = true)
+    @ToString.Exclude
+    @Builder.Default
+    private List<ProjectOpening> openings = new ArrayList<>();
 }

@@ -31,4 +31,13 @@ public interface ProjectMemberRepository extends JpaRepository<ProjectMember, Lo
             @Param("status") MemberStatus status);
 
     List<ProjectMember> findByUserIdAndProjectIdIn(Long userId, Collection<Long> projectIds);
+
+    // Équipes de plusieurs projets en une requête, membres chargés, dans l'ordre d'arrivée (le porteur d'abord)
+    @Query("""
+            SELECT m FROM ProjectMember m JOIN FETCH m.user
+            WHERE m.project.id IN :projectIds AND m.status = :status
+            ORDER BY m.createdAt ASC, m.id ASC
+            """)
+    List<ProjectMember> findWithUserByProjectIdsAndStatus(@Param("projectIds") Collection<Long> projectIds,
+            @Param("status") MemberStatus status);
 }

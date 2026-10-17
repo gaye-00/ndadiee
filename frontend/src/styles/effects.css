@@ -1,0 +1,916 @@
+/* ─────────────────────────────────────────────────────────────────────────────
+   Effets du design « Kente Signal », en CSS pur (inspirations 21st.dev : bordure
+   dégradée animée, halos, marquee, skeleton à reflet…).
+   Coupés par prefers-reduced-motion (réglage du système) et par le mode économie
+   de données (attribut data-saver sur <html>, voir store/useDataSaverStore.ts).
+   ───────────────────────────────────────────────────────────────────────────── */
+
+@keyframes kente-float {
+  0%,
+  100% {
+    translate: 0 0;
+  }
+  50% {
+    translate: 40px -30px;
+  }
+}
+
+@keyframes kente-marquee {
+  to {
+    translate: -50% 0;
+  }
+}
+
+@keyframes kente-pulse {
+  0%,
+  100% {
+    opacity: 1;
+    scale: 1;
+  }
+  50% {
+    opacity: 0.4;
+    scale: 1.6;
+  }
+}
+
+@keyframes kente-blink {
+  50% {
+    opacity: 0;
+  }
+}
+
+@keyframes kente-shimmer {
+  to {
+    background-position: -200% 0;
+  }
+}
+
+@keyframes kente-rotate {
+  to {
+    rotate: 360deg;
+  }
+}
+
+/* Carte « en verre » : fond translucide et bordure fine */
+@utility glass {
+  background-color: var(--glass);
+  border: 1px solid var(--glass-border);
+}
+
+/* Dégradés de marque : or → rouge → vert, or → rouge (boutons principaux), conique (logo, avatars) */
+@utility bg-kente {
+  background-image: var(--gradient-kente);
+}
+
+@utility bg-kente-warm {
+  background-image: var(--gradient-warm);
+}
+
+@utility bg-kente-conic {
+  background-image: var(--gradient-conic);
+}
+
+/* Texte en dégradé (« Livre ton projet. », chiffres clés) */
+@utility text-kente {
+  background-image: var(--gradient-kente);
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+}
+
+@utility text-kente-warm {
+  background-image: var(--gradient-warm);
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+}
+
+/* Lettres taillées dans un kente (titre de l'accueil) : bandes de chaîne or, rouge et vert de largeurs
+   inégales, et fils de trame en travers. Couleurs lisibles dans les deux thèmes (--gold, --coral, --jade). */
+@utility text-kente-woven {
+  background-image:
+    repeating-linear-gradient(0deg, color-mix(in srgb, var(--background) 32%, transparent) 0 1.5px, transparent 1.5px 6px),
+    repeating-linear-gradient(
+      90deg,
+      var(--gold) 0 34px,
+      var(--coral) 34px 40px,
+      var(--gold) 40px 46px,
+      var(--jade) 46px 82px,
+      var(--gold) 82px 85px,
+      var(--coral) 85px 118px,
+      var(--jade) 118px 122px
+    );
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+}
+
+/* Bandes fines tissées par-dessus un aplat (bannière kente de l'accueil) */
+@utility kente-stripes {
+  background-image: repeating-linear-gradient(90deg, rgb(7 8 13 / 0.08) 0 2px, transparent 2px 18px);
+}
+
+/* Hachures en attendant une image (« capture du projet ») */
+@utility hatch {
+  background-image: repeating-linear-gradient(135deg, var(--hatch-a) 0 10px, var(--hatch-b) 10px 20px);
+}
+
+/* Libellé de section : mono, majuscules, espacé (« MES PROJETS ») */
+@utility eyebrow {
+  font-family: var(--typeface-mono);
+  font-size: 0.6875rem;
+  line-height: 1rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted-foreground);
+
+  /* L'écriture arabe est liée : espacer les lettres les détacherait */
+  &:lang(ar) {
+    letter-spacing: 0;
+  }
+}
+
+/* Halo lumineux flou en arrière-plan (accueil, profil). Couleur : halo-gold, halo-coral ou halo-jade.
+   Le flou coûte cher aux petits téléphones : masqué en mode économie de données. */
+@utility halo {
+  position: absolute;
+  pointer-events: none;
+  border-radius: 9999px;
+  background-image: radial-gradient(
+    circle,
+    color-mix(in srgb, var(--halo-color, var(--kente-gold)) var(--halo-alpha), transparent),
+    transparent 60%
+  );
+  filter: blur(30px);
+}
+
+@utility halo-gold {
+  --halo-color: var(--kente-gold);
+}
+
+@utility halo-coral {
+  --halo-color: var(--kente-coral);
+}
+
+@utility halo-jade {
+  --halo-color: var(--kente-jade);
+}
+
+/* Bordure dégradée qui tourne autour d'un bloc mis en avant (annonce compatible, hackathon).
+   Le bloc enfant porte son propre fond (bg-surface) et un rayon réduit de 1 px. */
+@utility border-kente-spin {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  padding: 1px;
+
+  &::before {
+    content: '';
+    position: absolute;
+    z-index: -1;
+    top: 50%;
+    left: 50%;
+    width: 250%;
+    aspect-ratio: 1;
+    translate: -50% -50%;
+    background-image: conic-gradient(
+      from 0deg,
+      transparent 0 60%,
+      var(--kente-jade) 75%,
+      var(--kente-gold) 85%,
+      transparent 100%
+    );
+    animation: kente-rotate 6s linear infinite;
+  }
+}
+
+/* Point « en direct » qui pulse (« 86 projets recrutent en ce moment ») */
+@utility live-dot {
+  display: inline-block;
+  width: 0.5rem;
+  height: 0.5rem;
+  border-radius: 9999px;
+  background-color: var(--kente-jade);
+  animation: kente-pulse 2s ease-in-out infinite;
+}
+
+/* Défilement continu : le contenu est répété deux fois, dans un parent en overflow-hidden */
+@utility marquee {
+  display: flex;
+  width: max-content;
+  animation: kente-marquee 40s linear infinite;
+
+  &:hover {
+    animation-play-state: paused;
+  }
+}
+
+/* Reflet des squelettes de chargement (design 3H). Pour un reflet sur du texte :
+   l'utilitaire `shimmer` de shadcn (shadcn/tailwind.css) */
+@utility skeleton-shimmer {
+  background-image: linear-gradient(90deg, var(--skeleton-a) 25%, var(--skeleton-b) 50%, var(--skeleton-a) 75%);
+  background-size: 200% 100%;
+  animation: kente-shimmer 1.6s linear infinite;
+}
+
+/* Blocs hors écran rendus seulement à l'approche (longues listes, bas de page) */
+@utility content-auto {
+  content-visibility: auto;
+  contain-intrinsic-size: auto 480px;
+}
+
+/* En arabe, le texte défile dans l'autre sens */
+[dir='rtl'] .marquee {
+  animation-direction: reverse;
+}
+
+/* ── Fondu entre deux pages : liens et navigate() avec l'option viewTransition (React Router) ── */
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation-duration: 180ms;
+  animation-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* ── Changement de thème par la corde : la nouvelle palette s'ouvre en cercle (lib/themeReveal.ts) ── */
+:root[data-theme-reveal]::view-transition-old(root),
+:root[data-theme-reveal]::view-transition-new(root) {
+  animation: none;
+  mix-blend-mode: normal;
+}
+
+/* Toute la page dans une seule image : les barres de navigation, qui ont sinon leur propre transition, comprises */
+:root[data-theme-reveal] * {
+  view-transition-name: none !important;
+}
+
+/* ── Corde du thème (components/layout/ThemePullCord.tsx, bibliothèque pullcord) ──
+   La boule prend le dégradé or et rouge du kente ; dans le noir, elle luit comme une tirette
+   phosphorescente. Dégradé et filtres : SVG caché du composant. */
+.theme-cord {
+  transition: translate 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Petit écran : la corde pend au-dessus du contenu. Dès qu'on descend dans la page, elle remonte au
+   plafond, pour ne pas recouvrir un bouton ; elle redescend en haut de la page. */
+@media (width < 64rem) {
+  .theme-cord--away {
+    translate: 0 -260px;
+  }
+}
+
+.theme-cord circle {
+  fill: url(#theme-cord-bead);
+  stroke: color-mix(in srgb, var(--kente-night) 20%, transparent);
+}
+
+.theme-cord g[filter] {
+  filter: url(#theme-cord-shadow);
+}
+
+.dark .theme-cord g[filter] {
+  filter: url(#theme-cord-glow);
+}
+
+.theme-cord .pullcord-knob:focus-visible {
+  outline-color: var(--ring);
+}
+
+/* ── Bande des rôles (landing/RolesMarquee.tsx) : une bande de kente ──
+   La chaîne court tout du long en rayures or, rouge et vert, faites de fils fins ; chaque rôle est un
+   bloc de trame, aux fils en travers, où flotte son motif (shared/WovenMotif.tsx). */
+.role-ribbon {
+  /* Lisières : deux fils d'or courent tout du long, au bord de la bande */
+  --selvedge: color-mix(in srgb, var(--gold) 55%, transparent);
+  background-color: color-mix(in srgb, var(--foreground) 4%, var(--background));
+  background-image: linear-gradient(
+    180deg,
+    transparent 0 5px,
+    var(--selvedge) 5px 6px,
+    transparent 6px calc(100% - 6px),
+    var(--selvedge) calc(100% - 6px) calc(100% - 5px),
+    transparent calc(100% - 5px)
+  );
+}
+
+/* La bande se tire : à l'horizontale, c'est elle qui suit le doigt ; à la verticale, la page défile */
+.role-ribbon[data-draggable] {
+  cursor: grab;
+  touch-action: pan-y;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+.role-ribbon[data-dragging],
+.role-ribbon[data-dragging] * {
+  cursor: grabbing;
+}
+
+/* Chaîne : rayures fines en long, l'or coupé de vert et de rouge, et les fils qui se devinent */
+.role-warp {
+  background-image:
+    repeating-linear-gradient(180deg, color-mix(in srgb, var(--background) 30%, transparent) 0 1px, transparent 1px 3px),
+    linear-gradient(
+      180deg,
+      transparent 0 11%,
+      var(--gold) 11% 14%,
+      transparent 14% 17%,
+      var(--coral) 17% 19%,
+      transparent 19% 22%,
+      var(--gold) 22% 33%,
+      var(--jade) 33% 36%,
+      var(--gold) 36% 46%,
+      var(--coral) 46% 54%,
+      var(--gold) 54% 64%,
+      var(--jade) 64% 67%,
+      var(--gold) 67% 78%,
+      transparent 78% 81%,
+      var(--coral) 81% 83%,
+      transparent 83% 86%,
+      var(--gold) 86% 89%,
+      transparent 89%
+    );
+}
+
+.role-weft {
+  background-image: repeating-linear-gradient(
+    90deg,
+    color-mix(in srgb, var(--foreground) 5%, transparent) 0 1px,
+    transparent 1px 4px
+  );
+}
+
+.role-weft .woven-motif {
+  transition:
+    translate 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+    filter 0.4s;
+}
+
+/* Survol à la souris seulement : sur un écran tactile, l'effet resterait collé après le toucher */
+@media (hover: hover) {
+  .role-weft:hover {
+    background-color: color-mix(in srgb, var(--foreground) 3%, transparent);
+  }
+
+  .role-weft:hover .woven-motif {
+    translate: 0 -2px;
+    filter: brightness(1.12) saturate(1.1);
+  }
+}
+
+/* ── Motifs tissés (shared/WovenMotif.tsx) : les fils tombent passe après passe, comme sous la
+   navette. `data-weave` sur un parent : « wait » les cache, « in » les tisse. ── */
+@keyframes woven-pass {
+  from {
+    transform: scaleY(0);
+  }
+}
+
+.woven-motif rect {
+  transform-box: fill-box;
+  transform-origin: 50% 0;
+}
+
+[data-weave='wait'] [data-weave-in] .woven-motif rect {
+  transform: scaleY(0);
+}
+
+[data-weave='in'] [data-weave-in] .woven-motif rect {
+  animation: woven-pass 0.5s cubic-bezier(0.16, 1, 0.3, 1) both;
+  animation-delay: calc(var(--motif-delay, 0ms) + var(--pass, 0) * 28ms);
+}
+
+/* En arabe, la navette passe de droite à gauche */
+[dir='rtl'] [data-weave='in'] [data-weave-in] .woven-motif rect {
+  animation-delay: calc(var(--motif-delay, 0ms) + (var(--passes, 0) - 1 - var(--pass, 0)) * 28ms);
+}
+
+/* ── Pied de page : le nom en creux dans un kente (layout/FooterLoom.tsx) ──
+   L'étoffe, tissée sur un canvas plus large que la bande d'une période, glisse d'une période puis
+   recommence : on ne voit jamais le raccord. */
+@keyframes loom-drift {
+  to {
+    translate: calc(-1 * var(--loom-period)) 0;
+  }
+}
+
+@keyframes loom-drift-rtl {
+  to {
+    translate: var(--loom-period) 0;
+  }
+}
+
+.footer-loom-cloth {
+  animation: loom-drift 50s linear infinite;
+}
+
+[dir='rtl'] .footer-loom-cloth {
+  animation-name: loom-drift-rtl;
+}
+
+/* La lampe : sous la souris, les fils gardent leur éclat ; plus loin, ils s'éteignent un peu */
+.footer-loom-field[data-lit] {
+  -webkit-mask-image: radial-gradient(circle 200px at var(--lamp-x) var(--lamp-y), #000 35%, rgb(0 0 0 / 0.28) 100%);
+  mask-image: radial-gradient(circle 200px at var(--lamp-x) var(--lamp-y), #000 35%, rgb(0 0 0 / 0.28) 100%);
+}
+
+/* Le nom monte en place quand la bande entre à l'écran (navigateurs qui lient une animation au défilement) */
+@keyframes loom-rise {
+  from {
+    translate: 0 30%;
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  @supports (animation-timeline: view()) {
+    :root:not([data-saver]) .footer-loom {
+      view-timeline: --footer-loom;
+    }
+
+    :root:not([data-saver]) .footer-loom-mark {
+      animation: loom-rise linear both;
+      animation-timeline: --footer-loom;
+      animation-range: entry 20% entry 100%;
+    }
+  }
+}
+
+/* ── Couture entre la page et le pied de page (shared/HolographicSeparator.tsx) ── */
+.seam-thread {
+  background-image: linear-gradient(
+    90deg,
+    transparent 0%,
+    var(--kente-gold) 22%,
+    var(--kente-coral) 45%,
+    var(--kente-jade) 66%,
+    color-mix(in srgb, var(--kente-gold) 70%, transparent) 82%,
+    transparent 100%
+  );
+  /* Les points de couture : 7 px de fil, 4 px d'écart */
+  -webkit-mask-image: repeating-linear-gradient(90deg, #000 0 7px, transparent 7px 11px);
+  mask-image: repeating-linear-gradient(90deg, #000 0 7px, transparent 7px 11px);
+  box-shadow:
+    0 0 10px color-mix(in srgb, var(--kente-gold) 40%, transparent),
+    0 0 24px color-mix(in srgb, var(--kente-coral) 15%, transparent);
+}
+
+.seam-glow {
+  background-image: linear-gradient(
+    90deg,
+    transparent 10%,
+    color-mix(in srgb, var(--kente-gold) 30%, transparent) 38%,
+    color-mix(in srgb, var(--kente-jade) 25%, transparent) 66%,
+    transparent 90%
+  );
+}
+
+/* En arabe, le fil part de l'autre bord : son dégradé aussi */
+[dir='rtl'] .seam-thread,
+[dir='rtl'] .seam-glow {
+  scale: -1 1;
+}
+
+/* Sur le papier du thème clair, une lueur plus discrète */
+:root:not(.dark) .seam-glow {
+  opacity: 0.25;
+}
+
+.seam-light {
+  background-image: linear-gradient(90deg, transparent, color-mix(in srgb, var(--kente-paper) 60%, transparent), transparent);
+}
+
+/* La lumière traverse tout le fil, d'un bord à l'autre ; en arabe, dans l'autre sens */
+.seam-shuttle {
+  animation: seam-sweep 3.5s linear infinite;
+}
+
+[dir='rtl'] .seam-shuttle {
+  animation-name: seam-sweep-rtl;
+}
+
+@keyframes seam-sweep {
+  from {
+    translate: -100% 0;
+  }
+  to {
+    translate: calc(0% + 5rem) 0;
+  }
+}
+
+@keyframes seam-sweep-rtl {
+  from {
+    translate: 100% 0;
+  }
+  to {
+    translate: calc(0% - 5rem) 0;
+  }
+}
+
+/* Les nœuds battent doucement, l'un après l'autre */
+.seam-knot {
+  animation: kente-pulse 2.5s ease-in-out infinite;
+  box-shadow: 0 0 8px color-mix(in srgb, currentColor 60%, transparent);
+}
+
+.seam-knot-end {
+  animation-delay: 1.2s;
+}
+
+/* ── Bannière finale (landing/CtaBanner.tsx) : du fil seul à l'étoffe ──
+   Fils de chaîne : or serré, coupé de rouge et de vert à intervalles plus larges, comme sur un kente. */
+.cta-warp {
+  background-image:
+    repeating-linear-gradient(90deg, color-mix(in srgb, var(--coral) 22%, transparent) 0 1px, transparent 1px 63px),
+    repeating-linear-gradient(90deg, color-mix(in srgb, var(--jade) 22%, transparent) 0 1px, transparent 1px 45px),
+    repeating-linear-gradient(90deg, color-mix(in srgb, var(--gold) 14%, transparent) 0 1px, transparent 1px 9px);
+  /* Ils se tendent un à un, de gauche à droite, au fil du défilement (--warp : de 0 à 1) */
+  -webkit-mask-image: linear-gradient(90deg, #000 calc(var(--warp) * 110% - 10%), transparent calc(var(--warp) * 110%));
+  mask-image: linear-gradient(90deg, #000 calc(var(--warp) * 110% - 10%), transparent calc(var(--warp) * 110%));
+}
+
+[dir='rtl'] .cta-warp {
+  -webkit-mask-image: linear-gradient(270deg, #000 calc(var(--warp) * 110% - 10%), transparent calc(var(--warp) * 110%));
+  mask-image: linear-gradient(270deg, #000 calc(var(--warp) * 110% - 10%), transparent calc(var(--warp) * 110%));
+}
+
+/* Le métier, sous la bannière : les fils pas encore tissés descendent jusqu'à l'ensouple */
+.cta-warp-threads {
+  background-image:
+    repeating-linear-gradient(90deg, color-mix(in srgb, var(--coral) 80%, transparent) 0 1.5px, transparent 1.5px 63px),
+    repeating-linear-gradient(90deg, color-mix(in srgb, var(--jade) 80%, transparent) 0 1.5px, transparent 1.5px 45px),
+    repeating-linear-gradient(90deg, color-mix(in srgb, var(--gold) 60%, transparent) 0 1.5px, transparent 1.5px 9px);
+  -webkit-mask-image: linear-gradient(to bottom, #000, rgb(0 0 0 / 0.45));
+  mask-image: linear-gradient(to bottom, #000, rgb(0 0 0 / 0.45));
+}
+
+.cta-beam {
+  background-image: linear-gradient(
+    180deg,
+    color-mix(in srgb, var(--foreground) 24%, var(--background)),
+    color-mix(in srgb, var(--foreground) 9%, var(--background))
+  );
+  box-shadow: inset 0 1px 0 color-mix(in srgb, var(--foreground) 22%, transparent);
+}
+
+/* La ligne de tissage, d'où sort la bannière, et la navette qui la parcourt */
+.cta-fell {
+  background-image: linear-gradient(90deg, transparent, var(--kente-gold) 12%, var(--kente-coral) 50%, var(--kente-jade) 88%, transparent);
+  box-shadow:
+    0 0 14px color-mix(in srgb, var(--kente-gold) 55%, transparent),
+    0 0 32px color-mix(in srgb, var(--kente-coral) 28%, transparent);
+}
+
+.cta-shuttle {
+  background-image: linear-gradient(90deg, var(--kente-gold), var(--kente-paper) 55%, var(--kente-gold));
+  box-shadow:
+    0 0 10px var(--kente-gold),
+    0 0 26px color-mix(in srgb, var(--kente-gold) 60%, transparent);
+}
+
+/* L'étoffe : le dégradé de la maquette, ses rayures, et des fils tissés ton sur ton par-dessus */
+.cta-cloth {
+  background-color: var(--kente-gold);
+  background-image:
+    repeating-linear-gradient(90deg, color-mix(in srgb, var(--kente-night) 8%, transparent) 0 2px, transparent 2px 18px),
+    linear-gradient(120deg, var(--kente-gold), var(--kente-coral) 50%, var(--kente-jade));
+}
+
+.cta-cloth::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-color: color-mix(in srgb, var(--kente-night) 11%, transparent);
+  -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='6' height='12'%3E%3Crect x='0.75' y='0.75' width='1.5' height='4.5' rx='0.75'/%3E%3Crect x='3.75' y='6.75' width='1.5' height='4.5' rx='0.75'/%3E%3C/svg%3E") 0 0 / 6px 12px repeat;
+  mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='6' height='12'%3E%3Crect x='0.75' y='0.75' width='1.5' height='4.5' rx='0.75'/%3E%3Crect x='3.75' y='6.75' width='1.5' height='4.5' rx='0.75'/%3E%3C/svg%3E") 0 0 / 6px 12px repeat;
+}
+
+/* L'étiquette cousue sur l'étoffe : points de couture tout autour, et une ombre portée sur le tissu */
+.cta-label {
+  outline: 1.5px dashed color-mix(in srgb, var(--kente-night) 30%, transparent);
+  outline-offset: -9px;
+  box-shadow:
+    0 24px 50px -22px color-mix(in srgb, var(--kente-night) 70%, transparent),
+    0 2px 0 color-mix(in srgb, var(--kente-night) 12%, transparent);
+}
+
+.cta-label:hover {
+  box-shadow:
+    0 32px 60px -22px color-mix(in srgb, var(--kente-night) 75%, transparent),
+    0 2px 0 color-mix(in srgb, var(--kente-night) 12%, transparent);
+}
+
+/* Une lumière de soie sur l'étoffe : en haut à droite au repos, elle suit la souris */
+.cta-cloth-sheen {
+  background-image: radial-gradient(
+    circle 340px at var(--sheen-x, 78%) var(--sheen-y, 16%),
+    color-mix(in srgb, var(--kente-paper) 45%, transparent),
+    transparent 70%
+  );
+  mix-blend-mode: soft-light;
+}
+
+/* ── Vitrine de l'accueil (landing/ShowcasePreview.tsx) : sur téléphone, le fil sous la rangée qui glisse.
+   Sa part tissée est la part de la rangée qu'on voit (--seen) ; elle avance avec le défilement
+   (--progress), vers la gauche en arabe. ── */
+.showcase-thread {
+  background-color: color-mix(in srgb, var(--foreground) 10%, transparent);
+}
+
+.showcase-thread > span {
+  width: calc(var(--seen, 1) * 100%);
+  margin-inline-start: calc(var(--progress, 0) * (1 - var(--seen, 1)) * 100%);
+}
+
+/* ── Usages de l'accueil (landing/FeatureBento.tsx) : cinq cartes teintées, une lampe qui les éclaire ──
+   Chaque carte a sa couleur (--card-tint, marque ; --card-ink, lisible). La lampe suit la souris sur la
+   grille (--lamp-x, --lamp-y, posées sur chaque carte) : le fond s'éclaire, et les bords aussi. */
+.bento-card {
+  background-color: var(--glass);
+  background-image: linear-gradient(
+    160deg,
+    color-mix(in srgb, var(--card-tint) 12%, transparent),
+    color-mix(in srgb, var(--foreground) 2%, transparent) 62%
+  );
+  border: 1px solid var(--glass-border);
+}
+
+.bento-lamp,
+.bento-rim {
+  opacity: 0;
+  transition: opacity 0.6s var(--ease-out-expo);
+}
+
+.bento-lamp {
+  background-image: radial-gradient(
+    520px circle at var(--lamp-x, 50%) var(--lamp-y, -30%),
+    color-mix(in srgb, var(--card-tint) 11%, transparent),
+    transparent 70%
+  );
+}
+
+/* Les bords : un dégradé de la couleur de la carte, découpé en un fil de 1 px */
+.bento-rim {
+  padding: 1px;
+  background-image: radial-gradient(
+    300px circle at var(--lamp-x, 50%) var(--lamp-y, -30%),
+    color-mix(in srgb, var(--card-tint) 80%, transparent),
+    transparent 72%
+  );
+  mask-image: linear-gradient(#000 0 0), linear-gradient(#000 0 0);
+  mask-clip: content-box, border-box;
+  mask-composite: exclude;
+}
+
+.bento[data-lamp] :is(.bento-lamp, .bento-rim) {
+  opacity: 1;
+}
+
+/* La navette des fils (01) : une perle de lumière */
+.bento-shuttle {
+  fill: var(--kente-paper);
+  filter: drop-shadow(0 0 4px var(--card-tint)) drop-shadow(0 0 10px var(--card-tint));
+}
+
+/* La ligne corrigée (02) s'allume un instant */
+@keyframes bento-line-flash {
+  from {
+    background-color: color-mix(in srgb, var(--jade) 32%, transparent);
+  }
+}
+
+.bento-line-flash {
+  animation: bento-line-flash 1.4s var(--ease-out-expo);
+}
+
+/* Le tampon « Approuvé » (02) : double filet, comme l'encre d'un tampon */
+.bento-stamp {
+  border: 2px solid currentColor;
+  outline: 1px solid color-mix(in srgb, currentColor 45%, transparent);
+  outline-offset: 2px;
+  background-color: color-mix(in srgb, var(--code-background) 82%, transparent);
+}
+
+/* Le téléphone de la démo (03) */
+.bento-phone {
+  background-image: linear-gradient(
+    150deg,
+    color-mix(in srgb, var(--foreground) 22%, transparent),
+    color-mix(in srgb, var(--foreground) 6%, transparent) 40%,
+    color-mix(in srgb, var(--foreground) 16%, transparent)
+  );
+  box-shadow:
+    0 24px 40px -26px var(--float-shadow),
+    inset 0 0 0 1px color-mix(in srgb, var(--foreground) 10%, transparent);
+}
+
+/* Chargement de la page arrêt (03, v0.7) : 120 ms aujourd'hui, 1,8 s avant */
+@keyframes bento-load {
+  from {
+    scale: 0 1;
+  }
+}
+
+.bento-load-now {
+  animation: bento-load 0.12s ease-out 0.35s both;
+}
+
+.bento-load-before {
+  animation: bento-load 1.8s linear 0.35s both;
+}
+
+/* La tâche faite (05) : un trait la raye, ligne après ligne, sur un texte en ligne */
+.bento-strike {
+  background-image: linear-gradient(currentColor, currentColor);
+  background-repeat: no-repeat;
+  background-position: 0 58%;
+  background-size: 0 1px;
+  transition:
+    background-size 0.6s var(--ease-out-expo),
+    color 0.3s;
+}
+
+.bento-strike[data-done] {
+  background-size: 100% 1px;
+}
+
+[dir='rtl'] .bento-strike {
+  background-position-x: 100%;
+}
+
+:root[data-saver] :is(.bento-lamp, .bento-rim) {
+  display: none;
+}
+
+/* ── Connexion et inscription (layout/AuthLayout.tsx, components/auth/) ──
+   Le métier : la ligne de tissage monte avec l'étoffe (--fell, posée à chaque image), une navette de
+   lumière la parcourt tant que l'étoffe avance (data-weaving). */
+.auth-fell {
+  top: var(--fell, 90%);
+}
+
+.auth-fell-line {
+  background-image: linear-gradient(
+    90deg,
+    transparent,
+    color-mix(in srgb, var(--kente-gold) 70%, transparent) 18%,
+    var(--kente-paper) 50%,
+    color-mix(in srgb, var(--kente-gold) 70%, transparent) 82%,
+    transparent
+  );
+  box-shadow: 0 0 22px 2px color-mix(in srgb, var(--kente-gold) 40%, transparent);
+  opacity: 0.45;
+  transition: opacity 0.6s var(--ease-out-expo);
+}
+
+.auth-shuttle {
+  background-image: linear-gradient(90deg, transparent, var(--kente-paper), transparent);
+  box-shadow: 0 0 16px 5px color-mix(in srgb, var(--kente-gold) 55%, transparent);
+  opacity: 0;
+  transition: opacity 0.4s;
+}
+
+@keyframes auth-shuttle {
+  from {
+    inset-inline-start: 0;
+  }
+  to {
+    inset-inline-start: calc(100% - 3rem);
+  }
+}
+
+.auth-loom[data-weaving] .auth-fell-line {
+  opacity: 1;
+}
+
+.auth-loom[data-weaving] .auth-shuttle {
+  opacity: 1;
+  animation: auth-shuttle 0.75s ease-in-out infinite alternate;
+}
+
+/* Le texte du métier reste lisible sur la chaîne et sur l'étoffe */
+.auth-loom-scrim {
+  background-image: linear-gradient(
+    180deg,
+    var(--kente-night) 0%,
+    color-mix(in srgb, var(--kente-night) 90%, transparent) 55%,
+    transparent 100%
+  );
+}
+
+/* Sous un champ, au focus : un fil kente se tisse d'un bord à l'autre (en arabe, de droite à gauche) */
+.auth-input-thread {
+  background-image: var(--gradient-kente);
+  scale: 0 1;
+  transform-origin: left;
+  transition: scale 0.6s var(--ease-out-expo);
+}
+
+[dir='rtl'] .auth-input-thread {
+  transform-origin: right;
+}
+
+.auth-input:focus-within .auth-input-thread {
+  scale: 1 1;
+}
+
+.auth-input[data-invalid] .auth-input-thread {
+  background-image: none;
+  background-color: var(--coral);
+}
+
+/* Le bouton d'envoi pendant la requête : un éclat fait l'aller-retour, comme une navette */
+@keyframes auth-submit-shuttle {
+  from {
+    inset-inline-start: -25%;
+  }
+  to {
+    inset-inline-start: 100%;
+  }
+}
+
+.auth-submit-shuttle {
+  background-image: linear-gradient(90deg, transparent, color-mix(in srgb, var(--kente-paper) 65%, transparent), transparent);
+  animation: auth-submit-shuttle 1.1s var(--ease-out-expo) infinite;
+}
+
+/* « ou avec ton e-mail » : deux fils qui viennent du bord et s'éclairent vers le milieu */
+.auth-divider {
+  background-image: linear-gradient(90deg, transparent, color-mix(in srgb, var(--gold) 55%, var(--border)));
+}
+
+[dir='rtl'] .auth-divider {
+  scale: -1 1;
+}
+
+/* Sur téléphone, le métier tient dans une bande : la chaîne en fond, l'étoffe qui avance */
+.auth-band {
+  background-image: repeating-linear-gradient(
+    90deg,
+    color-mix(in srgb, var(--gold) 22%, transparent) 0 2px,
+    transparent 2px 6px
+  );
+  background-color: color-mix(in srgb, var(--foreground) 5%, transparent);
+}
+
+.auth-band-cloth {
+  background-image:
+    repeating-linear-gradient(90deg, rgb(7 8 13 / 0.18) 0 1px, transparent 1px 5px),
+    linear-gradient(90deg, var(--kente-gold), var(--kente-coral) 55%, var(--kente-jade));
+  transition: width 0.8s var(--ease-out-expo);
+}
+
+/* La navette, au bout de l'étoffe */
+.auth-band-cloth::after {
+  content: '';
+  position: absolute;
+  inset-block: -2px;
+  inset-inline-end: -3px;
+  width: 6px;
+  border-radius: 9999px;
+  background-color: var(--kente-paper);
+  box-shadow: 0 0 10px 2px color-mix(in srgb, var(--kente-gold) 70%, transparent);
+}
+
+/* ── Changement de thème : transitions coupées le temps d'une image (voir store/useThemeStore.ts) ── */
+.theme-switching *,
+.theme-switching *::before,
+.theme-switching *::after {
+  transition: none !important;
+}
+
+/* ── Animations réduites, réglage du système ── */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  ::view-transition-group(*),
+  ::view-transition-old(*),
+  ::view-transition-new(*) {
+    animation: none !important;
+  }
+}
+
+/* ── Mode économie de données : effets arrêtés, halos et flous retirés ── */
+:root[data-saver] *,
+:root[data-saver] *::before,
+:root[data-saver] *::after {
+  animation-duration: 0.01ms !important;
+  animation-iteration-count: 1 !important;
+  backdrop-filter: none !important;
+}
+
+:root[data-saver] .halo {
+  display: none;
+}
+
+:root[data-saver]::view-transition-group(*),
+:root[data-saver]::view-transition-old(*),
+:root[data-saver]::view-transition-new(*) {
+  animation: none !important;
+}

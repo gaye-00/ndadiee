@@ -1,9 +1,33 @@
-const LOCALE = 'fr';
+import { currentLanguage } from '@/i18n';
 
-const relativeTime = new Intl.RelativeTimeFormat(LOCALE, { numeric: 'auto' });
-const fullDate = new Intl.DateTimeFormat(LOCALE, { day: 'numeric', month: 'long', year: 'numeric' });
-const compactNumber = new Intl.NumberFormat(LOCALE, { notation: 'compact', maximumFractionDigits: 1 });
-const regionNames = new Intl.DisplayNames([LOCALE], { type: 'region' });
+interface Formatters {
+  relativeTime: Intl.RelativeTimeFormat;
+  fullDate: Intl.DateTimeFormat;
+  day: Intl.DateTimeFormat;
+  compactNumber: Intl.NumberFormat;
+  regionNames: Intl.DisplayNames;
+}
+
+// Un jeu de formateurs par langue, créé à la première utilisation : Intl est coûteux à instancier
+const formattersByLanguage = new Map<string, Formatters>();
+
+/** Formateurs de la langue de l'interface (ou d'une langue proche si le navigateur ne la connaît pas). */
+function formatters(): Formatters {
+  const language = currentLanguage();
+  let entry = formattersByLanguage.get(language.code);
+  if (!entry) {
+    const locales = [...language.intl];
+    entry = {
+      relativeTime: new Intl.RelativeTimeFormat(locales, { numeric: 'auto' }),
+      fullDate: new Intl.DateTimeFormat(locales, { day: 'numeric', month: 'long', year: 'numeric' }),
+      day: new Intl.DateTimeFormat(locales, { weekday: 'long', day: 'numeric', month: 'long' }),
+      compactNumber: new Intl.NumberFormat(locales, { notation: 'compact', maximumFractionDigits: 1 }),
+      regionNames: new Intl.DisplayNames(locales, { type: 'region' }),
+    };
+    formattersByLanguage.set(language.code, entry);
+  }
+  return entry;
+}
 
 const RELATIVE_UNITS: Array<[Intl.RelativeTimeFormatUnit, number]> = [
   ['year', 365 * 24 * 3600],
@@ -14,34 +38,48 @@ const RELATIVE_UNITS: Array<[Intl.RelativeTimeFormatUnit, number]> = [
   ['minute', 60],
 ];
 
-/** « il y a 3 jours », « il y a 2 heures », « à l'instant ». Les dates de l'API sont en UTC. */
+/** « il y a 3 jours », « il y a 2 heures », « maintenant ». Les dates de l'API sont en UTC. */
 export function formatRelativeTime(isoDate: string): string {
+  const { relativeTime } = formatters();
   const seconds = Math.round((new Date(isoDate).getTime() - Date.now()) / 1000);
   for (const [unit, unitSeconds] of RELATIVE_UNITS) {
     if (Math.abs(seconds) >= unitSeconds) {
       return relativeTime.format(Math.round(seconds / unitSeconds), unit);
     }
   }
-  return "à l'instant";
+  return relativeTime.format(0, 'second');
 }
 
 /** « 14 octobre 2026 » */
 export function formatDate(isoDate: string): string {
-  return fullDate.format(new Date(isoDate));
+  return formatters().fullDate.format(new Date(isoDate));
+}
+
+/** « jeudi 16 octobre » : la date du jour, en tête d'un tableau de bord */
+export function formatDay(date: Date): string {
+  return formatters().day.format(date);
+}
+
+/**
+ * Isole un nom dans une phrase traduite (« Flutter · 6 annonces ») : en arabe, le chiffre qui le suit
+ * reste avec les mots de la phrase au lieu de se coller au nom latin. Caractères Unicode invisibles.
+ */
+export function isolate(text: string): string {
+  return `\u2068${text}\u2069`;
 }
 
 /** 1 240 → « 1,2 k » */
 export function formatCount(value: number): string {
-  return compactNumber.format(value);
+  return formatters().compactNumber.format(value);
 }
 
-/** Code ISO à 2 lettres → nom du pays en français (« SN » → « Sénégal »). */
+/** Code ISO à 2 lettres → nom du pays dans la langue de l'interface (« SN » → « Sénégal »). */
 export function countryName(code: string | null | undefined): string {
   if (!code) {
     return '';
   }
   try {
-    return regionNames.of(code.toUpperCase()) ?? code;
+    return formatters().regionNames.of(code.toUpperCase()) ?? code;
   } catch {
     return code;
   }
@@ -78,9 +116,4 @@ export function plainText(markdown: string | null | undefined): string {
     .replace(/[*_`~]/g, '')
     .replace(/\s+/g, ' ')
     .trim();
-}
-
-/** « 1 réponse », « 3 réponses ». En français, 0 et 1 prennent le singulier. */
-export function countLabel(count: number, singular: string, plural = `${singular}s`): string {
-  return `${formatCount(count)} ${count < 2 ? singular : plural}`;
 }

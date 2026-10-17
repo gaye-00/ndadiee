@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.hautetech.ndadiee.common.ApiResponse;
@@ -43,6 +44,13 @@ public class AuthenticationController extends BaseController {
     public ResponseEntity<ApiResponse<AuthenticationResponse>> refresh(@Valid @RequestBody RefreshTokenRequest request) {
         return ResponseEntity.ok(ApiResponse.success(
                 authenticationService.refreshToken(request), "Session renouvelée"));
+    }
+
+    @Operation(summary = "Ce nom d'utilisateur est-il libre ? Sinon, quelques variantes libres (inscription)")
+    @GetMapping("/username-availability")
+    public ResponseEntity<ApiResponse<UsernameAvailabilityResponse>> usernameAvailability(@RequestParam String username) {
+        return ResponseEntity.ok(ApiResponse.success(
+                authenticationService.checkUsername(username), "Disponibilité vérifiée"));
     }
 
     @Operation(summary = "Compte de l'utilisateur connecté")

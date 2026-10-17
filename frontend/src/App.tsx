@@ -1,22 +1,16 @@
-import { QueryClientProvider } from '@tanstack/react-query';
+import { Suspense } from 'react';
 import { RouterProvider } from 'react-router-dom';
-import { Toaster } from '@/components/ui/sonner';
-import { useSessionSync } from '@/hooks/useAuth';
-import { queryClient } from '@/lib/queryClient';
+import PageLoader from '@/components/feedback/PageLoader';
+import AppProviders from '@/providers/AppProviders';
 import router from '@/router';
-
-// Composant à part : useSessionSync a besoin du QueryClientProvider au-dessus de lui
-function SessionSync() {
-  useSessionSync();
-  return null;
-}
 
 export default function App() {
   return (
-    <QueryClientProvider client={queryClient}>
-      <SessionSync />
-      <RouterProvider router={router} />
-      <Toaster position="top-right" />
-    </QueryClientProvider>
+    // Le temps que les traductions de la langue choisie arrivent (le français est déjà dans le bundle)
+    <Suspense fallback={<PageLoader />}>
+      <AppProviders>
+        <RouterProvider router={router} />
+      </AppProviders>
+    </Suspense>
   );
 }

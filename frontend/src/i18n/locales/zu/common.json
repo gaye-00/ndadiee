@@ -1,0 +1,514 @@
+{
+  "app": {
+    "tagline": "Thola ithimba lakho. Qalisa iphrojekthi yakho.",
+    "description": "Inkundla yabathuthukisi bezwekazi: indawo yokukhombisa okwakhayo, izikhangiso zezindima amathimba azifunayo, nendawo yethimba ene-kanban nokubuyekezwa kwekhodi."
+  },
+  "nav": {
+    "showcase": "Umbukiso",
+    "openings": "Izikhangiso",
+    "hackathons": "Ama-hackathon",
+    "forum": "Izingxoxo",
+    "dashboard": "Indawo yokusebenza",
+    "projects": "Amaphrojekthi",
+    "reviews": "Ukubuyekeza",
+    "messages": "Imilayezo",
+    "notifications": "Izaziso",
+    "settings": "Izilungiselelo",
+    "profile": "Iphrofayela",
+    "create": "Dala"
+  },
+  "actions": {
+    "login": "Ngena",
+    "register": "Bhalisa",
+    "logout": "Phuma",
+    "getStarted": "Qala",
+    "joinWithGithub": "Joyina nge-GitHub",
+    "publishProject": "Shicilela iphrojekthi yami",
+    "newProject": "Iphrojekthi entsha",
+    "newTopic": "Isihloko esisha",
+    "newTask": "Umsebenzi omusha",
+    "publishRole": "Shicilela indima",
+    "apply": "Faka isicelo",
+    "joinTeam": "Joyina ithimba",
+    "review": "Buyekeza",
+    "approve": "Vuma",
+    "requestChanges": "Cela izinguquko",
+    "invite": "Mema",
+    "sendMessage": "Thumela umlayezo",
+    "reply": "Phendula",
+    "seeAll": "Bona konke",
+    "save": "Londoloza",
+    "cancel": "Khansela",
+    "close": "Vala",
+    "back": "Emuva",
+    "retry": "Zama futhi"
+  },
+  "search": {
+    "placeholder": "Sesha konke",
+    "shortcut": "Ctrl K",
+    "noResults": "Ayikho imiphumela ka-“{{query}}”",
+    "groups": {
+      "roles": "Izindima ezivulekile",
+      "projects": "Amaphrojekthi",
+      "people": "Abathuthukisi",
+      "topics": "Izingxoxo",
+      "actions": "Izenzo"
+    }
+  },
+  "kanban": {
+    "todo": "Okufanele kwenziwe",
+    "inProgress": "Kuyaqhubeka",
+    "inReview": "Kuyabuyekezwa",
+    "done": "Kuqediwe",
+    "dropHere": "Kubeke lapha"
+  },
+  "workspace": {
+    "board": "Ibhodi",
+    "reviews": "Ukubuyekeza",
+    "devlog": "Devlog",
+    "openRoles": "Izindima ezivulekile",
+    "settings": "Izilungiselelo",
+    "messagePlaceholder": "Umlayezo oya ethimbeni…"
+  },
+  "forum": {
+    "replies_one": "Impendulo engu-{{count}}",
+    "replies_other": "Izimpendulo ezingu-{{count}}",
+    "solved": "Kuxazululiwe",
+    "unanswered": "Akuphendulwanga"
+  },
+  "theme": {
+    "label": "Itimu",
+    "light": "Ukukhanya",
+    "dark": "Ubumnyama",
+    "system": "Njengedivayisi",
+    "lightTheme": "Itimu ekhanyayo",
+    "pullHint": "Donsa intambo",
+    "darkTheme": "Itimu emnyama"
+  },
+  "language": {
+    "label": "Ulimi"
+  },
+  "dataSaver": {
+    "label": "Ukonga idatha",
+    "description": "Ukunyakaza okuncane, akukho ukulayisha kusenesikhathi: kwenzelwe amaphakheji amancane edatha."
+  },
+  "states": {
+    "loading": "Iyalayisha…",
+    "empty": "Akukho okokubonisa okwamanje.",
+    "offline": "Awuxhunyiwe ku-inthanethi."
+  },
+  "errors": {
+    "generic": "Kukhona okungahambanga kahle.",
+    "network": "Ayikwazi ukufinyelela iseva. Hlola uxhumano lwakho.",
+    "notFound": "Leli khasi alikho noma lisusiwe."
+  },
+  "validation": {
+    "required": "Le nkambu iyadingeka.",
+    "email": "Ikheli le-imeyili alilungile.",
+    "username": "Izinhlamvu ezi-3 kuya kwezingu-30: izinhlamvu, izinombolo noma _.",
+    "minChars_one": "Okungenani uhlamvu olu-{{count}}.",
+    "minChars_other": "Okungenani izinhlamvu ezingu-{{count}}.",
+    "maxChars_one": "Okuningi uhlamvu olu-{{count}}.",
+    "maxChars_other": "Okuningi izinhlamvu ezingu-{{count}}.",
+    "minItems_one": "Engeza okungenani into eyi-{{count}}.",
+    "minItems_other": "Engeza okungenani izinto ezingu-{{count}}.",
+    "maxItems_one": "Okuningi into eyi-{{count}}.",
+    "maxItems_other": "Okuningi izinto ezingu-{{count}}."
+  },
+  "a11y": {
+    "skipToContent": "Yeqela kokuqukethwe",
+    "mainNavigation": "Ukuzulazula okuyinhloko",
+    "breadcrumb": "Indlela yekhasi",
+    "account": "I-akhawunti yami"
+  },
+  "pages": {
+    "landing": "Ikhaya",
+    "showcase": "Umbukiso",
+    "project": "Iphrojekthi",
+    "openings": "Izikhangiso",
+    "newOpening": "Shicilela isikhangiso",
+    "hackathons": "Ama-hackathon",
+    "hackathon": "I-hackathon",
+    "forum": "Izingxoxo",
+    "topic": "Isihloko",
+    "newTopic": "Isihloko esisha",
+    "profile": "Iphrofayela",
+    "search": "Usesho",
+    "dashboard": "Indawo yokusebenza",
+    "myProjects": "Amaphrojekthi ami",
+    "newProject": "Iphrojekthi entsha",
+    "workspaceBoard": "Ibhodi",
+    "workspaceReviews": "Ukubuyekeza kwethimba",
+    "workspaceDevlog": "Devlog",
+    "workspaceRoles": "Izindima ezivulekile",
+    "workspaceSettings": "Izilungiselelo zethimba",
+    "review": "Ukubuyekezwa kwekhodi",
+    "reviews": "Ukubuyekeza",
+    "messages": "Imilayezo",
+    "notifications": "Izaziso",
+    "settings": "Izilungiselelo",
+    "login": "Ngena",
+    "register": "Bhalisa",
+    "notFound": "Ikhasi alitholakali"
+  },
+  "enums": {
+    "experienceLevel": {
+      "STUDENT": "Umfundi",
+      "JUNIOR": "Osaqalayo",
+      "MID": "Ophakathi",
+      "SENIOR": "Onolwazi"
+    },
+    "role": {
+      "USER": "Ilungu",
+      "MODERATOR": "Umlawuli",
+      "ADMIN": "Umphathi"
+    },
+    "opportunityType": {
+      "JOB": "Umsebenzi",
+      "FREELANCE": "Umsebenzi ozimele",
+      "INTERNSHIP": "Ukuqeqeshwa emsebenzini",
+      "HACKATHON": "I-hackathon"
+    },
+    "workMode": {
+      "REMOTE": "Kude",
+      "ONSITE": "Endaweni",
+      "HYBRID": "Okuxubile"
+    },
+    "projectRole": {
+      "OWNER": "Umnikazi",
+      "MAINTAINER": "Umnakekeli",
+      "CONTRIBUTOR": "Umnikeli"
+    }
+  },
+  "hero": {
+    "titleTeam": "Thola ithimba lakho.",
+    "titleShip": "Qalisa iphrojekthi yakho.",
+    "lead": "Indawo yokukhombisa okwakhayo, izikhangiso zezindima amathimba azifunayo, nendawo yethimba ene-kanban nokubuyekezwa kwekhodi. Ngabathuthukisi bezwekazi.",
+    "recruiting_one": "Iphrojekthi engu-{{count}} ifuna amalungu manje",
+    "recruiting_other": "Amaphrojekthi angu-{{count}} afuna amalungu manje",
+    "firstTeams": "Amathimba okuqala akhiwa lapha. Qala elakho.",
+    "loom": {
+      "sample": "Unyaka oyisibonelo",
+      "username": "Igama lakho lomsebenzisi le-GitHub",
+      "placeholder": "igama-lakho",
+      "weave": "Luka unyaka wami",
+      "weaving": "Kuyalukwa…",
+      "reset": "Buyela onyakeni oyisibonelo",
+      "invalid": "Igama lomsebenzisi le-GitHub linezinhlamvu, izinombolo namahayifeni, izinhlamvu ezingeqi kwezingu-39.",
+      "notFound": "Ayikho i-akhawunti ye-GitHub enaleli gama.",
+      "unavailable": "I-GitHub ayiphenduli. Zama futhi ngemuva kwesikhashana.",
+      "viewLabel": "Ukubuka unyaka",
+      "viewCloth": "Indwangu: unyaka uvuliwe",
+      "viewCity": "Idolobha: unyaka ku-3D",
+      "less": "Okuncane",
+      "more": "Okuningi",
+      "level0": "Izinsuku ezingenayo iminikelo",
+      "level1": "Izinsuku ezithule",
+      "level2": "Izinsuku ezimatasa",
+      "level3": "Izinsuku ezimatasa kakhulu",
+      "level4": "Izinsuku ezimatasa kakhulu kunazo zonke",
+      "structure": "Umucu owodwa ngeviki, ibhulokhi eyodwa ngosuku.",
+      "hintCloth": "Beka isikhombi phezu kosuku, noma uhambe onyakeni ngezinkinobho zemicibisholo.",
+      "hintCity": "Hudula ukuze uzungeze idolobha. Chofoza kabili ukuze ubuyele.",
+      "summary": "{{who}}, kusukela ku-{{from}} kuya ku-{{to}}: {{total}}. Umucu owodwa ngeviki, ibhulokhi eyodwa ngosuku. Sebenzisa izinkinobho zemicibisholo ukufunda usuku ngalunye.",
+      "streak_one": "uchungechunge olude kakhulu: usuku olu-{{count}}",
+      "streak_other": "uchungechunge olude kakhulu: izinsuku ezingu-{{count}}",
+      "showcase": "Unyaka wakho ufanelwe umbukiso"
+    }
+  },
+  "contributions": {
+    "count_one": "umnikelo ongu-{{count}}",
+    "count_other": "iminikelo engu-{{count}}",
+    "none": "Ayikho iminikelo"
+  },
+  "teamRoles": {
+    "frontend": "Umthuthukisi we-front-end",
+    "backend": "Umthuthukisi we-back-end",
+    "mobile": "Umthuthukisi wezinhlelo zeselula",
+    "design": "Umklami we-UI/UX",
+    "data": "Idatha ne-AI",
+    "devops": "I-DevOps ne-cloud",
+    "security": "Ukuphepha",
+    "payments": "I-Mobile Money ne-USSD",
+    "l10n": "Ukuhumusha nezilimi",
+    "docs": "Ukubhala kobuchwepheshe",
+    "product": "Umphathi womkhiqizo",
+    "embedded": "I-IoT nezinhlelo ezishumekiwe",
+    "qa": "Ukuhlola nekhwalithi"
+  },
+  "rolesBand": {
+    "title": "Izindima amathimba azifunayo",
+    "all": "Zonke izikhangiso",
+    "pause": "Misa umugqa wezindima",
+    "play": "Qhubeka nomugqa wezindima",
+    "recruiting": "Bafuna abanikeli: {{projects}}"
+  },
+  "showcase": {
+    "title": "Umbukiso",
+    "all": "Wonke amaphrojekthi",
+    "seeking": "Ifuna: {{roles}}",
+    "seeRoles": "Bona izindima",
+    "seeProject": "Bona iphrojekthi",
+    "stars_one": "Inkanyezi engu-{{count}}",
+    "stars_other": "Izinkanyezi ezingu-{{count}}",
+    "team_one": "Ithimba lomuntu ongu-{{count}}",
+    "team_other": "Ithimba labantu abangu-{{count}}",
+    "firstSteps": "Izinyathelo zokuqala",
+    "photoCredit": "Isithombe: {{credit}}",
+    "noCover": "isithombe sephrojekthi",
+    "loading": "Umbukiso uyalayishwa",
+    "emptyTitle": "Umbukiso ulinde iphrojekthi yawo yokuqala",
+    "emptyText": "Shicilela eyakho: abathuthukisi bezwekazi bazobona okwakhayo nezindima ozifunayo.",
+    "emptyAction": "Shicilela iphrojekthi yami",
+    "errorTitle": "Umbukiso awukwazanga ukulayisha",
+    "errorText": "Hlola uxhumano lwakho, bese uzama futhi.",
+    "more_one": "enye iphrojekthi embukisweni",
+    "more_other": "amanye amaphrojekthi embukisweni"
+  },
+  "media": {
+    "showImage": "Bonisa isithombe"
+  },
+  "footer": {
+    "explore": "Hlola",
+    "contribute": "Nikela",
+    "settings": "Izilungiselelo",
+    "languages": "Iyatholakala nge",
+    "woven": "Kulukwe intambo ngentambo ngumphakathi",
+    "backToTop": "Buyela phezulu",
+    "status": {
+      "checking": "Kuhlolwa i-API…",
+      "online": "I-API ixhunyiwe",
+      "offline": "I-API ayitholakali"
+    },
+    "copyright": "© {{year}} {{name}}",
+    "scrollTop": "Buyela phezulu ekhasini"
+  },
+  "cta": {
+    "eyebrow": "Ishabhu namuhla",
+    "threadTitle": "Intambo eyodwa ayilukeli indwangu.",
+    "threadText": "Wonke umthuthukisi uyintambo: ikhono, ulimi, izwe. Lapha, amathimba alukwa ezungeze amaphrojekthi.",
+    "stats": {
+      "developers_one": "umthuthukisi",
+      "developers_other": "abathuthukisi",
+      "countries_one": "izwe",
+      "countries_other": "amazwe",
+      "projects_one": "iphrojekthi",
+      "projects_other": "amaphrojekthi",
+      "openings_one": "indima evulekile",
+      "openings_other": "izindima ezivulekile",
+      "seats_one": "isikhala esingu-{{count}} sokugcwalisa",
+      "seats_other": "izikhala ezingu-{{count}} zokugcwalisa"
+    },
+    "title": "Iphrojekthi yakho elandelayo iqala ngethimba.",
+    "text": "Bonisa okwakhayo, thola ozosebenza nabo, niqedele ndawonye.",
+    "openWorkshop": "Vula ishabhu",
+    "seeShowcase": "Bona umbukiso",
+    "alreadyWeaving": "Sebeluka lapha kakade",
+    "label": {
+      "title": "Izikhala zokugcwalisa",
+      "inProjects_one": "kuphrojekthi engu-{{count}}",
+      "inProjects_other": "kumaphrojekthi angu-{{count}}",
+      "action": "Bona izikhangiso"
+    }
+  },
+  "features": {
+    "eyebrow": "Kusebenza kanjani",
+    "title": "Kusukela ekuhlanganeni kuya ekulethweni.",
+    "text": "Izikhathi ezinhlanu empilweni yephrojekthi, endaweni eyodwa. Thinta, hudula, maka: lawa makhadi asebenza njengendawo yokusebenza.",
+    "meet": {
+      "eyebrow": "Ukuhlangana",
+      "title": "Ngomsebenzi",
+      "text": "Izindima ezifunwayo nobuchwepheshe bakho kukuholela kubantu abafanele.",
+      "pick": "Ubuchwepheshe bakho",
+      "seatsHeader": "Izikhala",
+      "seats_one": "isikhala esingu-{{count}}",
+      "seats_other": "izikhala ezingu-{{count}}",
+      "found_one": "{{name}} · isikhangiso esingu-{{count}} esivulekile",
+      "found_other": "{{name}} · izikhangiso ezingu-{{count}} ezivulekile",
+      "loading": "Kufunwa izikhangiso…",
+      "firstStep": "Isinyathelo sokuqala #{{number}}",
+      "all": "Zonke izikhangiso ze-{{name}}",
+      "empty": "Akekho oqasha nge-{{name}} okwamanje. Buya maduze, noma ushicilele iphrojekthi yakho.",
+      "error": "Izikhangiso azikwazanga ukulayishwa.",
+      "howTo": "Ukuze ufake isicelo, thatha i-issue ethi «isinyathelo sokuqala» yendima: ikhodi, hhayi i-CV."
+    },
+    "review": {
+      "eyebrow": "Ukushintshana",
+      "title": "Ukubuyekezwa kwekhodi",
+      "text": "I-PR ngayinye ibuyekezwa umugqa ngomugqa, yithimba nomphakathi.",
+      "pr": "Inqolobane ye-Redis yezikhathi ze-BRT",
+      "changesRequested": "Kucelwe ushintsho",
+      "approved": "Kuvunyiwe",
+      "maintainer": "umnakekeli",
+      "comment": "Ukuphelelwa yisikhathi ku-0: izikhathi ngeke zivuselelwe neze. Ngiphakamisa imizuzu eyi-10.",
+      "apply": "Sebenzisa isiphakamiso",
+      "helpful": "kuyasiza",
+      "helpfulHint": "Ingabe lokhu kubuyekeza kukusizile? Umbhali wakho uthola amaphuzu ayi-10 edumela.",
+      "resolved": "U-Ama usebenzise isiphakamiso. U-Chinedu uvuma i-PR.",
+      "replay": "Phinda"
+    },
+    "share": {
+      "eyebrow": "Ukwabelana",
+      "title": "Umbukiso + devlog",
+      "text": "Idemo, izithombe-skrini, ubuchwepheshe, isixhumanisi se-GitHub, irekhodi lentuthuko.",
+      "devlog": "Devlog",
+      "stack": "Ubuchwepheshe bephrojekthi",
+      "versions": {
+        "v07": {
+          "name": "v0.7",
+          "when": "ezinsukwini ezi-2 ezedlule",
+          "text": "Inqolobane ye-Redis: ikhasi lesiteshi lehla lisuka kumasekhondi angu-1.8 liye kuma-ms angu-120."
+        },
+        "v06": {
+          "name": "v0.6",
+          "when": "ezinsukwini ezi-9 ezedlule",
+          "text": "Imodi engaxhunyiwe: iziteshi ezingu-20 zokugcina zihlala zitholakala."
+        },
+        "v05": {
+          "name": "v0.5",
+          "when": "emasontweni ama-3 edlule",
+          "text": "Ukugeleza kokuqala kwe-GTFS kuqinisekisiwe: imizila engu-140 yama-danfo."
+        }
+      },
+      "app": {
+        "next": "I-BRT elandelayo",
+        "minutes_one": "imizuzu engu-{{count}}",
+        "minutes_other": "imizuzu engu-{{count}}",
+        "before": "ngaphambili: 1.8 s",
+        "offline": "Akuxhunyiwe",
+        "kept_one": "isiteshi esingu-{{count}} sigciniwe",
+        "kept_other": "iziteshi ezingu-{{count}} zigciniwe",
+        "routes": "Imizila yama-danfo",
+        "lines_one": "umzila ongu-{{count}} · GTFS ilungile",
+        "lines_other": "imizila engu-{{count}} · GTFS ilungile"
+      }
+    },
+    "team": {
+      "eyebrow": "Ukusebenzisana",
+      "title": "Indawo yethimba ngalinye",
+      "text": "Amalungu, i-kanban, izingxoxo, ama-hackathon. Faka isicelo nge-issue, hhayi nge-CV.",
+      "sprint": "i-sprint 7 · kusele izinsuku ezi-6",
+      "online_one": "{{count}} ku-inthanethi",
+      "online_other": "{{count}} ku-inthanethi",
+      "board": "Ibhodi le-sprint",
+      "firstStep": "isinyathelo sokuqala",
+      "changes": "ushintsho olu-1",
+      "days_one": "usuku olu-{{count}}",
+      "days_other": "izinsuku ezi-{{count}}",
+      "tasks": {
+        "t33": "Bonisa i-BRT elandelayo esikrinini sesiteshi",
+        "t40": "Isakhiwo sekhasi lesiteshi",
+        "t46": "Khawulela izicelo ze-GraphQL nge-IP ngayinye",
+        "t38": "Imodi engaxhunyiwe: ulayini wokuvumelanisa",
+        "t45": "Qinisekisa ukugeleza kwe-GTFS kwama-danfo",
+        "t84": "Inqolobane ye-Redis yezikhathi ze-BRT"
+      },
+      "card": "#{{number}} {{task}}, ku-{{column}}",
+      "keys": "Enter: ikholomu elandelayo. Imicibisholo yesobunxele neyesokudla: ikholomu engumakhelwane.",
+      "moved": "U-{{name}} uhambise «{{task}}» kuya ku-{{column}}",
+      "youMoved": "Uhambise «{{task}}» kuya ku-{{column}}",
+      "hintPointer": "Hudula ikhadi, noma uchofoze ukuze ulidlulisele phambili.",
+      "hintTouch": "Thinta ikhadi ukuze ulidlulisele phambili."
+    },
+    "daily": {
+      "eyebrow": "Nsuku zonke",
+      "title": "Indawo yakho yokusebenza namuhla",
+      "text": "Ukubuyekeza okukulindile, imisebenzi yakho, izikhangiso ezikufanele. Amakhasi alula, imodi yokonga idatha.",
+      "hello": "Sawubona {{name}}",
+      "summary_one": "Namuhla: ukubuyekeza oku-2 kukulindile, umsebenzi ongu-{{count}}, isicelo esi-1 sokubhekwa.",
+      "summary_other": "Namuhla: ukubuyekeza oku-2 kukulindile, imisebenzi engu-{{count}}, isicelo esi-1 sokubhekwa.",
+      "allDone": "Imisebenzi iphelile! Kusele ukubuyekeza oku-2 nesicelo esi-1.",
+      "reviews": "Ukubuyekeza okukulindile",
+      "review84": "Inqolobane ye-Redis yezikhathi ze-BRT",
+      "review12": "Helm chart: imikhawulo yenkumbulo ezenzakalelayo",
+      "tasks": "Imisebenzi yakho",
+      "task1": "#46 Khawulela izicelo ze-GraphQL nge-IP ngayinye",
+      "task2": "Shicilela i-devlog ye-v0.8",
+      "task3": "Lungiselela idemo ye-sprint 7",
+      "saverOn": "Kuvuliwe: isayithi liba lula",
+      "saverOff": "Kuvaliwe",
+      "saverImages": "Izithombe uma ziceliwe",
+      "saverMotion": "Ukunyakaza kumisiwe",
+      "saverPrefetch": "Akukho ukulayisha kusenesikhathi",
+      "open": "Vula indawo yami yokusebenza",
+      "create": "Dala indawo yami yokusebenza"
+    }
+  },
+  "auth": {
+    "login": {
+      "eyebrow": "Ngena",
+      "title": "Kuhle ukukubona futhi.",
+      "text": "Indawo yakho yokusebenza iyakulinda: amathimba akho, ukubuyekeza kwakho, amaphrojekthi akho.",
+      "submit": "Ngena",
+      "pending": "Iyangena…",
+      "failed": "I-imeyili, igama lomsebenzisi noma iphasiwedi akulungile.",
+      "noAccount": "Awunayo i-akhawunti okwamanje?",
+      "toRegister": "Dala i-akhawunti"
+    },
+    "register": {
+      "eyebrow": "Bhalisa",
+      "title": "Joyina indawo yokusebenza.",
+      "text": "Umbukiso wamaphrojekthi akho, amathimba azungeze wena. Umzuzu owodwa wanele.",
+      "submit": "Dala i-akhawunti yami",
+      "pending": "Idala i-akhawunti…",
+      "hasAccount": "Usuyilungu kakade?",
+      "toLogin": "Ngena"
+    },
+    "welcomeButton": "Wamukelekile!",
+    "welcomeLabel": "Wamukelekile endaweni yokusebenza",
+    "fields": {
+      "identifier": "I-imeyili noma igama lomsebenzisi",
+      "identifierPlaceholder": "thandi@isibonelo.com",
+      "password": "Iphasiwedi",
+      "fullName": "Igama eligcwele",
+      "fullNamePlaceholder": "Thandi Nkosi",
+      "username": "Igama lomsebenzisi",
+      "usernamePlaceholder": "thandi_nkosi",
+      "email": "I-imeyili",
+      "emailPlaceholder": "thandi@isibonelo.com"
+    },
+    "password": {
+      "show": "Bonisa iphasiwedi",
+      "capsLock": "I-Caps Lock ivuliwe"
+    },
+    "strength": {
+      "label": "Amandla",
+      "weak": "Buthakathaka",
+      "fair": "Phakathi",
+      "good": "Iqinile",
+      "great": "Kuhle kakhulu",
+      "met": "(kwenziwe)",
+      "unmet": "(kusalindile)",
+      "rules": {
+        "length": "Okungenani izinhlamvu ezingu-8",
+        "long": "Izinhlamvu ezingu-12 noma ngaphezulu",
+        "cases": "Izinhlamvu ezinkulu nezincane",
+        "mixed": "Inombolo nophawu"
+      }
+    },
+    "username": {
+      "free": "{{username}} liyatholakala.",
+      "taken": "{{username}} selithathiwe.",
+      "reserved": "{{username}} ligodliwe.",
+      "suggestions": "Atholakalayo:"
+    },
+    "oauth": {
+      "continueWith": "Qhubeka nge-{{provider}}",
+      "soon": "maduze",
+      "unavailable": "Ukungena nge-{{provider}} kuza maduze. Okwamanje, qhubeka nge-imeyili yakho.",
+      "or": "noma nge-imeyili yakho"
+    },
+    "errors": {
+      "emailTaken": "Kukhona i-akhawunti esebenzisa le imeyili. Ngena kunalokho.",
+      "usernameTaken": "Leli gama lomsebenzisi lisanda kuthathwa.",
+      "usernameReserved": "Leli gama lomsebenzisi ligodliwe."
+    },
+    "loom": {
+      "eyebrow": "Indawo yokusebenza",
+      "loginTitle": "Wamukelekile futhi endaweni yokusebenza.",
+      "loginText": "Ngesikhathi ungekho, amathimba aqhubeke eluka.",
+      "registerTitle": "Intambo eyodwa engeziwe endwangwini.",
+      "registerText": "Wonke umthuthukisi uyintambo. Lapha, amathimba alukwa ezungeze amaphrojekthi."
+    }
+  }
+}

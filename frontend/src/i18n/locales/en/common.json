@@ -1,0 +1,514 @@
+{
+  "app": {
+    "tagline": "Find your team. Ship your project.",
+    "description": "The platform for the continent's developers: a showcase for what you build, listings with the roles teams need, and a team space with a kanban board and code reviews."
+  },
+  "nav": {
+    "showcase": "Showcase",
+    "openings": "Openings",
+    "hackathons": "Hackathons",
+    "forum": "Forum",
+    "dashboard": "Workshop",
+    "projects": "Projects",
+    "reviews": "Reviews",
+    "messages": "Messages",
+    "notifications": "Notifications",
+    "settings": "Settings",
+    "profile": "Profile",
+    "create": "Create"
+  },
+  "actions": {
+    "login": "Log in",
+    "register": "Sign up",
+    "logout": "Log out",
+    "getStarted": "Get started",
+    "joinWithGithub": "Join with GitHub",
+    "publishProject": "Publish my project",
+    "newProject": "New project",
+    "newTopic": "New topic",
+    "newTask": "New task",
+    "publishRole": "Post a role",
+    "apply": "Apply",
+    "joinTeam": "Join the team",
+    "review": "Review",
+    "approve": "Approve",
+    "requestChanges": "Request changes",
+    "invite": "Invite",
+    "sendMessage": "Send a message",
+    "reply": "Reply",
+    "seeAll": "See all",
+    "save": "Save",
+    "cancel": "Cancel",
+    "close": "Close",
+    "back": "Back",
+    "retry": "Try again"
+  },
+  "search": {
+    "placeholder": "Search everything",
+    "shortcut": "Ctrl K",
+    "noResults": "No results for “{{query}}”",
+    "groups": {
+      "roles": "Open roles",
+      "projects": "Projects",
+      "people": "Developers",
+      "topics": "Forum",
+      "actions": "Actions"
+    }
+  },
+  "kanban": {
+    "todo": "To do",
+    "inProgress": "In progress",
+    "inReview": "In review",
+    "done": "Done",
+    "dropHere": "Drop here"
+  },
+  "workspace": {
+    "board": "Board",
+    "reviews": "Reviews",
+    "devlog": "Devlog",
+    "openRoles": "Open roles",
+    "settings": "Settings",
+    "messagePlaceholder": "Message the team…"
+  },
+  "forum": {
+    "replies_one": "{{count}} reply",
+    "replies_other": "{{count}} replies",
+    "solved": "Solved",
+    "unanswered": "Unanswered"
+  },
+  "theme": {
+    "label": "Theme",
+    "light": "Light",
+    "dark": "Dark",
+    "system": "System",
+    "lightTheme": "Light theme",
+    "pullHint": "Pull the cord",
+    "darkTheme": "Dark theme"
+  },
+  "language": {
+    "label": "Language"
+  },
+  "dataSaver": {
+    "label": "Data saver",
+    "description": "Fewer animations, no preloading: designed for small data plans."
+  },
+  "states": {
+    "loading": "Loading…",
+    "empty": "Nothing to show yet.",
+    "offline": "You're offline."
+  },
+  "errors": {
+    "generic": "Something went wrong.",
+    "network": "Can't reach the server. Check your connection.",
+    "notFound": "This page doesn't exist or has been moved."
+  },
+  "validation": {
+    "required": "This field is required.",
+    "email": "Invalid email address.",
+    "username": "3 to 30 characters: letters, numbers or _.",
+    "minChars_one": "At least {{count}} character.",
+    "minChars_other": "At least {{count}} characters.",
+    "maxChars_one": "At most {{count}} character.",
+    "maxChars_other": "At most {{count}} characters.",
+    "minItems_one": "Add at least {{count}} item.",
+    "minItems_other": "Add at least {{count}} items.",
+    "maxItems_one": "At most {{count}} item.",
+    "maxItems_other": "At most {{count}} items."
+  },
+  "a11y": {
+    "skipToContent": "Skip to content",
+    "mainNavigation": "Main navigation",
+    "breadcrumb": "Breadcrumb",
+    "account": "My account"
+  },
+  "pages": {
+    "landing": "Home",
+    "showcase": "Showcase",
+    "project": "Project",
+    "openings": "Openings",
+    "newOpening": "Post an opening",
+    "hackathons": "Hackathons",
+    "hackathon": "Hackathon",
+    "forum": "Forum",
+    "topic": "Topic",
+    "newTopic": "New topic",
+    "profile": "Profile",
+    "search": "Search",
+    "dashboard": "Workshop",
+    "myProjects": "My projects",
+    "newProject": "New project",
+    "workspaceBoard": "Board",
+    "workspaceReviews": "Team reviews",
+    "workspaceDevlog": "Devlog",
+    "workspaceRoles": "Open roles",
+    "workspaceSettings": "Team settings",
+    "review": "Code review",
+    "reviews": "Reviews",
+    "messages": "Messages",
+    "notifications": "Notifications",
+    "settings": "Settings",
+    "login": "Log in",
+    "register": "Sign up",
+    "notFound": "Page not found"
+  },
+  "enums": {
+    "experienceLevel": {
+      "STUDENT": "Student",
+      "JUNIOR": "Junior",
+      "MID": "Mid-level",
+      "SENIOR": "Senior"
+    },
+    "role": {
+      "USER": "Member",
+      "MODERATOR": "Moderator",
+      "ADMIN": "Admin"
+    },
+    "opportunityType": {
+      "JOB": "Job",
+      "FREELANCE": "Freelance",
+      "INTERNSHIP": "Internship",
+      "HACKATHON": "Hackathon"
+    },
+    "workMode": {
+      "REMOTE": "Remote",
+      "ONSITE": "On-site",
+      "HYBRID": "Hybrid"
+    },
+    "projectRole": {
+      "OWNER": "Owner",
+      "MAINTAINER": "Maintainer",
+      "CONTRIBUTOR": "Contributor"
+    }
+  },
+  "hero": {
+    "titleTeam": "Find your team.",
+    "titleShip": "Ship your project.",
+    "lead": "A showcase for what you build, listings with the roles teams need, and a team space with a kanban board and code reviews. For the continent's developers.",
+    "recruiting_one": "{{count}} project is recruiting right now",
+    "recruiting_other": "{{count}} projects are recruiting right now",
+    "firstTeams": "The first teams are forming here. Start yours.",
+    "loom": {
+      "sample": "Sample year",
+      "username": "Your GitHub username",
+      "placeholder": "your-username",
+      "weave": "Weave my year",
+      "weaving": "Weaving…",
+      "reset": "Back to the sample year",
+      "invalid": "A GitHub username uses letters, numbers and hyphens, 39 characters at most.",
+      "notFound": "No GitHub account has this name.",
+      "unavailable": "GitHub isn't responding. Try again in a moment.",
+      "viewLabel": "Year view",
+      "viewCloth": "Cloth: the year laid flat",
+      "viewCity": "City: the year in 3D",
+      "less": "Less",
+      "more": "More",
+      "level0": "Days without contributions",
+      "level1": "Quiet days",
+      "level2": "Active days",
+      "level3": "Busy days",
+      "level4": "Busiest days",
+      "structure": "One strip per week, one block per day.",
+      "hintCloth": "Hover a day, or walk through the year with the arrow keys.",
+      "hintCity": "Drag to turn around the city. Double-click to reset.",
+      "summary": "{{who}}, from {{from}} to {{to}}: {{total}}. One strip per week, one block per day. Use the arrow keys to read each day.",
+      "streak_one": "longest streak: {{count}} day",
+      "streak_other": "longest streak: {{count}} days",
+      "showcase": "Your year deserves a showcase"
+    }
+  },
+  "contributions": {
+    "count_one": "{{count}} contribution",
+    "count_other": "{{count}} contributions",
+    "none": "No contributions"
+  },
+  "teamRoles": {
+    "frontend": "Front-end dev",
+    "backend": "Back-end dev",
+    "mobile": "Mobile dev",
+    "design": "UI/UX designer",
+    "data": "Data & AI",
+    "devops": "DevOps & cloud",
+    "security": "Security",
+    "payments": "Mobile Money & USSD",
+    "l10n": "Translation & languages",
+    "docs": "Technical writing",
+    "product": "Product manager",
+    "embedded": "IoT & embedded",
+    "qa": "Testing & QA"
+  },
+  "rolesBand": {
+    "title": "Roles teams are looking for",
+    "all": "All openings",
+    "pause": "Pause the roles strip",
+    "play": "Resume the roles strip",
+    "recruiting": "Looking for contributors: {{projects}}"
+  },
+  "showcase": {
+    "title": "The showcase",
+    "all": "All projects",
+    "seeking": "Looking for: {{roles}}",
+    "seeRoles": "See the roles",
+    "seeProject": "See the project",
+    "stars_one": "{{count}} star",
+    "stars_other": "{{count}} stars",
+    "team_one": "Team of {{count}} person",
+    "team_other": "Team of {{count}} people",
+    "firstSteps": "First steps",
+    "photoCredit": "Photo: {{credit}}",
+    "noCover": "project screenshot",
+    "loading": "Loading the showcase",
+    "emptyTitle": "The showcase is waiting for its first project",
+    "emptyText": "Publish yours: developers across the continent will see what you build, and the roles you need.",
+    "emptyAction": "Publish my project",
+    "errorTitle": "The showcase couldn't load",
+    "errorText": "Check your connection, then try again.",
+    "more_one": "more project in the showcase",
+    "more_other": "more projects in the showcase"
+  },
+  "media": {
+    "showImage": "Show image"
+  },
+  "footer": {
+    "explore": "Explore",
+    "contribute": "Contribute",
+    "settings": "Settings",
+    "languages": "Available in",
+    "woven": "Woven thread by thread by the community",
+    "backToTop": "Back to top",
+    "status": {
+      "checking": "Checking the API…",
+      "online": "API online",
+      "offline": "API unreachable"
+    },
+    "copyright": "© {{year}} {{name}}",
+    "scrollTop": "Back to the top of the page"
+  },
+  "cta": {
+    "eyebrow": "The workshop today",
+    "threadTitle": "One thread alone doesn't make a cloth.",
+    "threadText": "Every developer is a thread: a skill, a language, a country. Here, teams are woven around projects.",
+    "stats": {
+      "developers_one": "developer",
+      "developers_other": "developers",
+      "countries_one": "country",
+      "countries_other": "countries",
+      "projects_one": "project",
+      "projects_other": "projects",
+      "openings_one": "open role",
+      "openings_other": "open roles",
+      "seats_one": "{{count}} seat to fill",
+      "seats_other": "{{count}} seats to fill"
+    },
+    "title": "Your next project starts with a team.",
+    "text": "Show what you build, find your teammates, ship together.",
+    "openWorkshop": "Open the workshop",
+    "seeShowcase": "See the showcase",
+    "alreadyWeaving": "Already weaving here",
+    "label": {
+      "title": "Seats to fill",
+      "inProjects_one": "across {{count}} project",
+      "inProjects_other": "across {{count}} projects",
+      "action": "See the openings"
+    }
+  },
+  "features": {
+    "eyebrow": "How it works",
+    "title": "From first meeting to shipping.",
+    "text": "Five moments in the life of a project, in one place. Tap, drag, tick: these cards work like the workshop.",
+    "meet": {
+      "eyebrow": "Meet",
+      "title": "Through the work",
+      "text": "The roles teams are looking for and your stack lead you to the right people.",
+      "pick": "Your stack",
+      "seatsHeader": "Seats",
+      "seats_one": "{{count}} seat",
+      "seats_other": "{{count}} seats",
+      "found_one": "{{name}} · {{count}} open role",
+      "found_other": "{{name}} · {{count}} open roles",
+      "loading": "Looking for openings…",
+      "firstStep": "First step #{{number}}",
+      "all": "All {{name}} openings",
+      "empty": "Nobody is hiring for {{name}} right now. Come back soon, or publish your project.",
+      "error": "The openings couldn't be loaded.",
+      "howTo": "To apply, take the role’s “first step” issue: code, not a CV."
+    },
+    "review": {
+      "eyebrow": "Exchange",
+      "title": "Code reviews",
+      "text": "Every PR is reviewed line by line, by the team and the community.",
+      "pr": "Redis cache for BRT timetables",
+      "changesRequested": "Changes requested",
+      "approved": "Approved",
+      "maintainer": "maintainer",
+      "comment": "A TTL of 0 means the timetables will never refresh. I suggest 10 minutes.",
+      "apply": "Apply suggestion",
+      "helpful": "helpful",
+      "helpfulHint": "Did this review help you? Its author earns 10 reputation points.",
+      "resolved": "Ama applied the suggestion. Chinedu approves the PR.",
+      "replay": "Replay"
+    },
+    "share": {
+      "eyebrow": "Share",
+      "title": "Showcase + devlog",
+      "text": "Demo, screenshots, tech stack, GitHub link, progress log.",
+      "devlog": "Devlog",
+      "stack": "Project technologies",
+      "versions": {
+        "v07": {
+          "name": "v0.7",
+          "when": "2 days ago",
+          "text": "Redis cache: the stop page goes from 1.8 s to 120 ms."
+        },
+        "v06": {
+          "name": "v0.6",
+          "when": "9 days ago",
+          "text": "Offline mode: the last 20 stops stay available."
+        },
+        "v05": {
+          "name": "v0.5",
+          "when": "3 weeks ago",
+          "text": "First GTFS feed validated: 140 danfo routes."
+        }
+      },
+      "app": {
+        "next": "Next BRT",
+        "minutes_one": "{{count}} min",
+        "minutes_other": "{{count}} min",
+        "before": "before: 1.8 s",
+        "offline": "Offline",
+        "kept_one": "{{count}} stop saved",
+        "kept_other": "{{count}} stops saved",
+        "routes": "Danfo routes",
+        "lines_one": "{{count}} route · GTFS valid",
+        "lines_other": "{{count}} routes · GTFS valid"
+      }
+    },
+    "team": {
+      "eyebrow": "Collaborate",
+      "title": "A space for every team",
+      "text": "Members, kanban, chat, hackathons. Apply with an issue, not a CV.",
+      "sprint": "sprint 7 · 6 days left",
+      "online_one": "{{count}} online",
+      "online_other": "{{count}} online",
+      "board": "Sprint board",
+      "firstStep": "first step",
+      "changes": "1 change",
+      "days_one": "{{count}} d",
+      "days_other": "{{count}} d",
+      "tasks": {
+        "t33": "Show the next BRT on the stop screen",
+        "t40": "Stop page mockup",
+        "t46": "Rate-limit GraphQL requests by IP",
+        "t38": "Offline mode: sync queue",
+        "t45": "Validate the danfo GTFS feed",
+        "t84": "Redis cache for BRT timetables"
+      },
+      "card": "#{{number}} {{task}}, in {{column}}",
+      "keys": "Enter: next column. Left and right arrows: neighbouring column.",
+      "moved": "{{name}} moved “{{task}}” to {{column}}",
+      "youMoved": "You moved “{{task}}” to {{column}}",
+      "hintPointer": "Drag a card, or click to move it forward.",
+      "hintTouch": "Tap a card to move it forward."
+    },
+    "daily": {
+      "eyebrow": "Every day",
+      "title": "Your workshop today",
+      "text": "The reviews waiting for you, your tasks, the openings that match you. Light pages, data saver mode.",
+      "hello": "Hi {{name}}",
+      "summary_one": "Today: 2 reviews are waiting for you, {{count}} task, 1 application to look at.",
+      "summary_other": "Today: 2 reviews are waiting for you, {{count}} tasks, 1 application to look at.",
+      "allDone": "Tasks done! 2 reviews and 1 application to go.",
+      "reviews": "Waiting for your review",
+      "review84": "Redis cache for BRT timetables",
+      "review12": "Helm chart: default memory limits",
+      "tasks": "Your tasks",
+      "task1": "#46 Rate-limit GraphQL requests by IP",
+      "task2": "Publish the v0.8 devlog",
+      "task3": "Prepare the sprint 7 demo",
+      "saverOn": "On: the site gets lighter",
+      "saverOff": "Off",
+      "saverImages": "Images on demand",
+      "saverMotion": "Animations off",
+      "saverPrefetch": "No preloading",
+      "open": "Open my workshop",
+      "create": "Create my workshop"
+    }
+  },
+  "auth": {
+    "login": {
+      "eyebrow": "Sign in",
+      "title": "Good to see you again.",
+      "text": "Your workshop is waiting: your teams, your reviews, your projects.",
+      "submit": "Sign in",
+      "pending": "Signing in…",
+      "failed": "Wrong email, username or password.",
+      "noAccount": "No account yet?",
+      "toRegister": "Create an account"
+    },
+    "register": {
+      "eyebrow": "Sign up",
+      "title": "Join the workshop.",
+      "text": "A showcase for your projects, teams around you. It takes a minute.",
+      "submit": "Create my account",
+      "pending": "Creating your account…",
+      "hasAccount": "Already a member?",
+      "toLogin": "Sign in"
+    },
+    "welcomeButton": "Welcome!",
+    "welcomeLabel": "Welcome to the workshop",
+    "fields": {
+      "identifier": "Email or username",
+      "identifierPlaceholder": "awa@example.com",
+      "password": "Password",
+      "fullName": "Full name",
+      "fullNamePlaceholder": "Awa Diop",
+      "username": "Username",
+      "usernamePlaceholder": "awa_diop",
+      "email": "Email",
+      "emailPlaceholder": "awa@example.com"
+    },
+    "password": {
+      "show": "Show password",
+      "capsLock": "Caps Lock is on"
+    },
+    "strength": {
+      "label": "Strength",
+      "weak": "Weak",
+      "fair": "Fair",
+      "good": "Strong",
+      "great": "Excellent",
+      "met": "(done)",
+      "unmet": "(to do)",
+      "rules": {
+        "length": "At least 8 characters",
+        "long": "12 characters or more",
+        "cases": "Upper and lower case",
+        "mixed": "A number and a symbol"
+      }
+    },
+    "username": {
+      "free": "{{username}} is available.",
+      "taken": "{{username}} is already taken.",
+      "reserved": "{{username}} is reserved.",
+      "suggestions": "Available:"
+    },
+    "oauth": {
+      "continueWith": "Continue with {{provider}}",
+      "soon": "soon",
+      "unavailable": "Signing in with {{provider}} is coming soon. Meanwhile, continue with your email.",
+      "or": "or with your email"
+    },
+    "errors": {
+      "emailTaken": "An account already uses this email. Sign in instead.",
+      "usernameTaken": "This username was just taken.",
+      "usernameReserved": "This username is reserved."
+    },
+    "loom": {
+      "eyebrow": "The workshop",
+      "loginTitle": "Welcome back to the workshop.",
+      "loginText": "While you were away, the teams kept weaving.",
+      "registerTitle": "One more thread in the cloth.",
+      "registerText": "Every developer is a thread. Here, teams are woven around projects."
+    }
+  }
+}

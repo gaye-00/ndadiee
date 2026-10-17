@@ -1,0 +1,514 @@
+{
+  "app": {
+    "tagline": "Nemo ƙungiyarka. Ƙaddamar da shirinka.",
+    "description": "Dandalin masu haɓaka manhaja na nahiyar: wurin nuna abin da kake ginawa, sanarwar guraben da ƙungiyoyi ke nema, da wurin aiki na ƙungiya mai allon kanban da bitar code."
+  },
+  "nav": {
+    "showcase": "Baje koli",
+    "openings": "Guraben aiki",
+    "hackathons": "Hackathon",
+    "forum": "Tattaunawa",
+    "dashboard": "Wurin aiki",
+    "projects": "Shirye-shirye",
+    "reviews": "Bita",
+    "messages": "Saƙonni",
+    "notifications": "Faɗakarwa",
+    "settings": "Saituna",
+    "profile": "Bayanan martaba",
+    "create": "Ƙirƙira"
+  },
+  "actions": {
+    "login": "Shiga",
+    "register": "Yi rajista",
+    "logout": "Fita",
+    "getStarted": "Fara",
+    "joinWithGithub": "Shiga da GitHub",
+    "publishProject": "Wallafa shirina",
+    "newProject": "Sabon shiri",
+    "newTopic": "Sabon batu",
+    "newTask": "Sabon aiki",
+    "publishRole": "Wallafa gurbi",
+    "apply": "Nema",
+    "joinTeam": "Shiga ƙungiyar",
+    "review": "Duba",
+    "approve": "Amince",
+    "requestChanges": "Nemi gyara",
+    "invite": "Gayyata",
+    "sendMessage": "Aika saƙo",
+    "reply": "Amsa",
+    "seeAll": "Duba duka",
+    "save": "Ajiye",
+    "cancel": "Soke",
+    "close": "Rufe",
+    "back": "Koma baya",
+    "retry": "Sake gwadawa"
+  },
+  "search": {
+    "placeholder": "Nemi komai",
+    "shortcut": "Ctrl K",
+    "noResults": "Babu sakamako don “{{query}}”",
+    "groups": {
+      "roles": "Guraben da ke buɗe",
+      "projects": "Shirye-shirye",
+      "people": "Masu haɓaka manhaja",
+      "topics": "Tattaunawa",
+      "actions": "Umarni"
+    }
+  },
+  "kanban": {
+    "todo": "Abin yi",
+    "inProgress": "Ana yi",
+    "inReview": "Ana dubawa",
+    "done": "An gama",
+    "dropHere": "Saka a nan"
+  },
+  "workspace": {
+    "board": "Allo",
+    "reviews": "Bita",
+    "devlog": "Devlog",
+    "openRoles": "Guraben da ke buɗe",
+    "settings": "Saituna",
+    "messagePlaceholder": "Saƙo ga ƙungiya…"
+  },
+  "forum": {
+    "replies_one": "Amsa {{count}}",
+    "replies_other": "Amsoshi {{count}}",
+    "solved": "An warware",
+    "unanswered": "Ba a amsa ba"
+  },
+  "theme": {
+    "label": "Jigo",
+    "light": "Haske",
+    "dark": "Duhu",
+    "system": "Na na'ura",
+    "lightTheme": "Jigon haske",
+    "pullHint": "Ja igiyar",
+    "darkTheme": "Jigo mai duhu"
+  },
+  "language": {
+    "label": "Harshe"
+  },
+  "dataSaver": {
+    "label": "Ajiye data",
+    "description": "Ƙarancin motsi, babu ɗaukowa a gaba: an tsara shi don ƙananan fakitin data."
+  },
+  "states": {
+    "loading": "Ana lodawa…",
+    "empty": "Babu abin nunawa yanzu.",
+    "offline": "Ba ka kan layi."
+  },
+  "errors": {
+    "generic": "An sami matsala.",
+    "network": "Ba a iya isa ga sabar ba. Duba haɗinka.",
+    "notFound": "Wannan shafin babu shi, ko an matsar da shi."
+  },
+  "validation": {
+    "required": "Ana buƙatar wannan fili.",
+    "email": "Adireshin imel ba daidai ba ne.",
+    "username": "Haruffa 3 zuwa 30: haruffa, lambobi ko _.",
+    "minChars_one": "Aƙalla harafi {{count}}.",
+    "minChars_other": "Aƙalla haruffa {{count}}.",
+    "maxChars_one": "Bai wuce harafi {{count}} ba.",
+    "maxChars_other": "Bai wuce haruffa {{count}} ba.",
+    "minItems_one": "Ƙara aƙalla abu {{count}}.",
+    "minItems_other": "Ƙara aƙalla abubuwa {{count}}.",
+    "maxItems_one": "Bai wuce abu {{count}} ba.",
+    "maxItems_other": "Bai wuce abubuwa {{count}} ba."
+  },
+  "a11y": {
+    "skipToContent": "Tsallaka zuwa abun ciki",
+    "mainNavigation": "Babban kewayawa",
+    "breadcrumb": "Hanyar shafi",
+    "account": "Asusuna"
+  },
+  "pages": {
+    "landing": "Gida",
+    "showcase": "Baje koli",
+    "project": "Shiri",
+    "openings": "Guraben aiki",
+    "newOpening": "Wallafa gurbi",
+    "hackathons": "Hackathon",
+    "hackathon": "Hackathon",
+    "forum": "Tattaunawa",
+    "topic": "Batu",
+    "newTopic": "Sabon batu",
+    "profile": "Bayanan martaba",
+    "search": "Bincike",
+    "dashboard": "Wurin aiki",
+    "myProjects": "Shirye-shiryena",
+    "newProject": "Sabon shiri",
+    "workspaceBoard": "Allo",
+    "workspaceReviews": "Bitar ƙungiya",
+    "workspaceDevlog": "Devlog",
+    "workspaceRoles": "Guraben da ke buɗe",
+    "workspaceSettings": "Saitunan ƙungiya",
+    "review": "Bitar code",
+    "reviews": "Bita",
+    "messages": "Saƙonni",
+    "notifications": "Faɗakarwa",
+    "settings": "Saituna",
+    "login": "Shiga",
+    "register": "Rajista",
+    "notFound": "Ba a sami shafin ba"
+  },
+  "enums": {
+    "experienceLevel": {
+      "STUDENT": "Ɗalibi",
+      "JUNIOR": "Ƙarami",
+      "MID": "Matsakaici",
+      "SENIOR": "Babba"
+    },
+    "role": {
+      "USER": "Memba",
+      "MODERATOR": "Mai sa ido",
+      "ADMIN": "Mai gudanarwa"
+    },
+    "opportunityType": {
+      "JOB": "Aiki",
+      "FREELANCE": "Aikin kai",
+      "INTERNSHIP": "Horon aiki",
+      "HACKATHON": "Hackathon"
+    },
+    "workMode": {
+      "REMOTE": "Daga nesa",
+      "ONSITE": "A wurin aiki",
+      "HYBRID": "Gauraye"
+    },
+    "projectRole": {
+      "OWNER": "Mai shi",
+      "MAINTAINER": "Mai kula",
+      "CONTRIBUTOR": "Mai bayar da gudummawa"
+    }
+  },
+  "hero": {
+    "titleTeam": "Nemo ƙungiyarka.",
+    "titleShip": "Ƙaddamar da shirinka.",
+    "lead": "Wurin nuna abin da kake ginawa, sanarwar guraben da ƙungiyoyi ke nema, da wurin aiki na ƙungiya mai allon kanban da bitar code. Don masu haɓaka manhaja na nahiyar.",
+    "recruiting_one": "Shiri {{count}} yana neman mambobi yanzu",
+    "recruiting_other": "Shirye-shirye {{count}} suna neman mambobi yanzu",
+    "firstTeams": "Ƙungiyoyin farko suna kafuwa a nan. Ka fara taka.",
+    "loom": {
+      "sample": "Shekarar misali",
+      "username": "Sunan mai amfani na GitHub",
+      "placeholder": "sunanka",
+      "weave": "Saƙa shekarata",
+      "weaving": "Ana saƙa…",
+      "reset": "Koma shekarar misali",
+      "invalid": "Sunan mai amfani na GitHub yana ƙunshe da haruffa, lambobi da layin haɗi, haruffa 39 a mafi yawa.",
+      "notFound": "Babu asusun GitHub mai wannan suna.",
+      "unavailable": "GitHub ba ya amsawa. Sake gwadawa nan da ɗan lokaci.",
+      "viewLabel": "Kallon shekara",
+      "viewCloth": "Zane: shekara a shimfiɗe",
+      "viewCity": "Birni: shekara a 3D",
+      "less": "Kaɗan",
+      "more": "Da yawa",
+      "level0": "Kwanaki ba gudummawa",
+      "level1": "Kwanaki natsattsu",
+      "level2": "Kwanaki masu aiki",
+      "level3": "Kwanaki masu cunkoso",
+      "level4": "Kwanaki mafi cunkoso",
+      "structure": "Ratsi ɗaya kowane mako, gunduwa ɗaya kowace rana.",
+      "hintCloth": "Ka nuna wata rana, ko ka bi shekarar da maɓallan kibiya.",
+      "hintCity": "Ja don zagaya birnin. Danna sau biyu don komawa.",
+      "summary": "{{who}}, daga {{from}} zuwa {{to}}: {{total}}. Ratsi ɗaya kowane mako, gunduwa ɗaya kowace rana. Yi amfani da maɓallan kibiya don karanta kowace rana.",
+      "streak_one": "jere mafi tsawo: rana {{count}}",
+      "streak_other": "jere mafi tsawo: kwanaki {{count}}",
+      "showcase": "Shekararka ta cancanci wurin nuni"
+    }
+  },
+  "contributions": {
+    "count_one": "Gudummawa {{count}}",
+    "count_other": "Gudummawa {{count}}",
+    "none": "Babu gudummawa"
+  },
+  "teamRoles": {
+    "frontend": "Mai haɓaka front-end",
+    "backend": "Mai haɓaka back-end",
+    "mobile": "Mai haɓaka manhajar waya",
+    "design": "Mai zanen UI/UX",
+    "data": "Bayanai da AI",
+    "devops": "DevOps da cloud",
+    "security": "Tsaro",
+    "payments": "Mobile Money da USSD",
+    "l10n": "Fassara da harsuna",
+    "docs": "Rubutun fasaha",
+    "product": "Manajan samfur",
+    "embedded": "IoT da na'urori",
+    "qa": "Gwaji da inganci"
+  },
+  "rolesBand": {
+    "title": "Guraben da ƙungiyoyi ke nema",
+    "all": "Duk guraben aiki",
+    "pause": "Dakatar da zirin guraben",
+    "play": "Ci gaba da zirin guraben",
+    "recruiting": "Suna neman masu bayar da gudummawa: {{projects}}"
+  },
+  "showcase": {
+    "title": "Baje kolin",
+    "all": "Duk shirye-shirye",
+    "seeking": "Yana neman: {{roles}}",
+    "seeRoles": "Duba matsayin",
+    "seeProject": "Duba shirin",
+    "stars_one": "Tauraro {{count}}",
+    "stars_other": "Taurari {{count}}",
+    "team_one": "Ƙungiyar mutum {{count}}",
+    "team_other": "Ƙungiyar mutane {{count}}",
+    "firstSteps": "Matakan farko",
+    "photoCredit": "Hoto: {{credit}}",
+    "noCover": "hoton shirin",
+    "loading": "Ana loda baje kolin",
+    "emptyTitle": "Baje kolin yana jiran shirinsa na farko",
+    "emptyText": "Wallafa naka: masu haɓakawa na nahiyar za su ga abin da kake ginawa da matsayin da kake nema.",
+    "emptyAction": "Wallafa shirina",
+    "errorTitle": "Ba a iya loda baje kolin ba",
+    "errorText": "Duba haɗinka, sannan ka sake gwadawa.",
+    "more_one": "ƙarin shiri a baje kolin",
+    "more_other": "ƙarin shirye-shirye a baje kolin"
+  },
+  "media": {
+    "showImage": "Nuna hoton"
+  },
+  "footer": {
+    "explore": "Bincika",
+    "contribute": "Ba da gudummawa",
+    "settings": "Saituna",
+    "languages": "Akwai a cikin",
+    "woven": "Al’umma ce ta saƙa shi, zare bayan zare",
+    "backToTop": "Koma sama",
+    "status": {
+      "checking": "Ana duba API…",
+      "online": "API na aiki",
+      "offline": "Ba a iya isa ga API ba"
+    },
+    "copyright": "© {{year}} {{name}}",
+    "scrollTop": "Koma saman shafin"
+  },
+  "cta": {
+    "eyebrow": "Bita a yau",
+    "threadTitle": "Zare ɗaya ba ya yin zane.",
+    "threadText": "Kowane mai haɓakawa zare ne: fasaha, harshe, ƙasa. A nan, ana saƙa ƙungiyoyi a kewayen shirye-shirye.",
+    "stats": {
+      "developers_one": "mai haɓakawa",
+      "developers_other": "masu haɓakawa",
+      "countries_one": "ƙasa",
+      "countries_other": "ƙasashe",
+      "projects_one": "shiri",
+      "projects_other": "shirye-shirye",
+      "openings_one": "gurbin aiki",
+      "openings_other": "guraben aiki",
+      "seats_one": "gurbi {{count}} da ke jira",
+      "seats_other": "gurabe {{count}} da ke jira"
+    },
+    "title": "Shirinka na gaba yana farawa da ƙungiya.",
+    "text": "Nuna abin da kake ginawa, nemo abokan aikinka, ku kammala tare.",
+    "openWorkshop": "Buɗe bita",
+    "seeShowcase": "Duba baje kolin",
+    "alreadyWeaving": "Suna saƙa a nan tuni",
+    "label": {
+      "title": "Guraben da ke jira",
+      "inProjects_one": "a cikin shiri {{count}}",
+      "inProjects_other": "a cikin shirye-shirye {{count}}",
+      "action": "Duba guraben aiki"
+    }
+  },
+  "features": {
+    "eyebrow": "Yadda yake aiki",
+    "title": "Daga haɗuwa zuwa kammalawa.",
+    "text": "Lokuta biyar na rayuwar shiri, a wuri ɗaya. Taɓa, ja, yi alama: waɗannan katunan suna aiki kamar wurin aikin.",
+    "meet": {
+      "eyebrow": "Haɗuwa",
+      "title": "Ta hanyar aiki",
+      "text": "Ayyukan da ake nema da fasahohinka suna kai ka ga mutanen da suka dace.",
+      "pick": "Fasahohinka",
+      "seatsHeader": "Gurabe",
+      "seats_one": "gurbi {{count}}",
+      "seats_other": "gurabe {{count}}",
+      "found_one": "{{name}} · gurbin aiki {{count}} a buɗe",
+      "found_other": "{{name}} · guraben aiki {{count}} a buɗe",
+      "loading": "Ana neman guraben aiki…",
+      "firstStep": "Mataki na farko #{{number}}",
+      "all": "Duk guraben aiki na {{name}}",
+      "empty": "Babu wanda ke neman ma'aikata a {{name}} yanzu. Ka dawo nan ba da jimawa ba, ko ka wallafa shirinka.",
+      "error": "Ba a iya loda guraben aiki ba.",
+      "howTo": "Don nema, ka ɗauki issue ɗin «mataki na farko» na aikin: lamba, ba CV ba."
+    },
+    "review": {
+      "eyebrow": "Musayar ra’ayi",
+      "title": "Bitar lamba",
+      "text": "Ana bitar kowane PR layi bayan layi, daga ƙungiya da al’umma.",
+      "pr": "Ma’ajiyar Redis don jadawalin BRT",
+      "changesRequested": "An nemi canji",
+      "approved": "An amince",
+      "maintainer": "mai kula",
+      "comment": "Ƙarewa a 0: ba za a taɓa sabunta jadawalin ba. Ina ba da shawarar minti 10.",
+      "apply": "Aiwatar da shawarar",
+      "helpful": "mai amfani",
+      "helpfulHint": "Wannan bita ta taimaka maka? Marubucinta yana samun maki 10 na suna.",
+      "resolved": "Ama ta aiwatar da shawarar. Chinedu ya amince da PR ɗin.",
+      "replay": "Sake kunnawa"
+    },
+    "share": {
+      "eyebrow": "Rabawa",
+      "title": "Baje koli + devlog",
+      "text": "Nuni, hotunan allo, fasahohi, mahaɗin GitHub, littafin ci gaba.",
+      "devlog": "Devlog",
+      "stack": "Fasahohin shirin",
+      "versions": {
+        "v07": {
+          "name": "v0.7",
+          "when": "kwana 2 da suka wuce",
+          "text": "Ma’ajiyar Redis: shafin tasha ya sauko daga daƙiƙa 1.8 zuwa 120 ms."
+        },
+        "v06": {
+          "name": "v0.6",
+          "when": "kwana 9 da suka wuce",
+          "text": "Yanayin ba intanet: tashoshi 20 na ƙarshe suna nan a hannu."
+        },
+        "v05": {
+          "name": "v0.5",
+          "when": "makonni 3 da suka wuce",
+          "text": "An tabbatar da rafin GTFS na farko: hanyoyin danfo 140."
+        }
+      },
+      "app": {
+        "next": "BRT na gaba",
+        "minutes_one": "minti {{count}}",
+        "minutes_other": "minti {{count}}",
+        "before": "a da: 1.8 s",
+        "offline": "Ba intanet",
+        "kept_one": "tasha {{count}} an ajiye",
+        "kept_other": "tashoshi {{count}} an ajiye",
+        "routes": "Hanyoyin danfo",
+        "lines_one": "hanya {{count}} · GTFS ingantacce",
+        "lines_other": "hanyoyi {{count}} · GTFS ingantacce"
+      }
+    },
+    "team": {
+      "eyebrow": "Haɗin kai",
+      "title": "Wuri ga kowace ƙungiya",
+      "text": "Mambobi, kanban, tattaunawa, hackathon. Nema ta hanyar issue, ba ta CV ba.",
+      "sprint": "sprint 7 · saura kwana 6",
+      "online_one": "{{count}} a kan layi",
+      "online_other": "{{count}} a kan layi",
+      "board": "Allon sprint",
+      "firstStep": "mataki na farko",
+      "changes": "canji 1",
+      "days_one": "kwana {{count}}",
+      "days_other": "kwana {{count}}",
+      "tasks": {
+        "t33": "Nuna BRT na gaba a allon tasha",
+        "t40": "Zanen shafin tasha",
+        "t46": "Iyakance buƙatun GraphQL ta IP",
+        "t38": "Yanayin ba intanet: layin daidaitawa",
+        "t45": "Tabbatar da rafin GTFS na danfo",
+        "t84": "Ma’ajiyar Redis don jadawalin BRT"
+      },
+      "card": "#{{number}} {{task}}, a cikin {{column}}",
+      "keys": "Enter: ginshiƙi na gaba. Kibiyoyin hagu da dama: ginshiƙi na kusa.",
+      "moved": "{{name}} ya matsar da «{{task}}» zuwa {{column}}",
+      "youMoved": "Ka matsar da «{{task}}» zuwa {{column}}",
+      "hintPointer": "Ja kati, ko ka danna don ciyar da shi gaba.",
+      "hintTouch": "Taɓa kati don ciyar da shi gaba."
+    },
+    "daily": {
+      "eyebrow": "A kullum",
+      "title": "Wurin aikinka na yau",
+      "text": "Bitar da ke jiranka, ayyukanka, guraben aiki da suka dace da kai. Shafuka masu sauƙi, yanayin ajiye data.",
+      "hello": "Sannu {{name}}",
+      "summary_one": "Yau: bita 2 suna jiranka, aiki {{count}}, buƙata 1 da za a duba.",
+      "summary_other": "Yau: bita 2 suna jiranka, ayyuka {{count}}, buƙata 1 da za a duba.",
+      "allDone": "An gama ayyuka! Saura bita 2 da buƙata 1.",
+      "reviews": "Bita da ke jiranka",
+      "review84": "Ma’ajiyar Redis don jadawalin BRT",
+      "review12": "Helm chart: iyakokin ƙwaƙwalwa na asali",
+      "tasks": "Ayyukanka",
+      "task1": "#46 Iyakance buƙatun GraphQL ta IP",
+      "task2": "Wallafa devlog na v0.8",
+      "task3": "Shirya nunin sprint 7",
+      "saverOn": "A kunne: shafin yana sauƙaƙa",
+      "saverOff": "A kashe",
+      "saverImages": "Hotuna sai an nema",
+      "saverMotion": "An kashe motsi",
+      "saverPrefetch": "Babu ɗaukowa a gaba",
+      "open": "Buɗe wurin aikina",
+      "create": "Ƙirƙiri wurin aikina"
+    }
+  },
+  "auth": {
+    "login": {
+      "eyebrow": "Shiga",
+      "title": "Mun yi farin cikin sake ganinka.",
+      "text": "Wurin aikinka yana jiranka: ƙungiyoyinka, bitocinka, shirye-shiryenka.",
+      "submit": "Shiga",
+      "pending": "Ana shiga…",
+      "failed": "Imel, sunan mai amfani ko kalmar sirri ba daidai ba ne.",
+      "noAccount": "Ba ka da asusu tukuna?",
+      "toRegister": "Ƙirƙiri asusu"
+    },
+    "register": {
+      "eyebrow": "Rajista",
+      "title": "Shiga wurin aikin.",
+      "text": "Baje koli don shirye-shiryenka, ƙungiyoyi a kewayenka. Minti ɗaya ya isa.",
+      "submit": "Ƙirƙiri asusuna",
+      "pending": "Ana ƙirƙirar asusu…",
+      "hasAccount": "Kai mamba ne tuni?",
+      "toLogin": "Shiga"
+    },
+    "welcomeButton": "Barka da zuwa!",
+    "welcomeLabel": "Barka da zuwa wurin aiki",
+    "fields": {
+      "identifier": "Imel ko sunan mai amfani",
+      "identifierPlaceholder": "amina@misali.com",
+      "password": "Kalmar sirri",
+      "fullName": "Cikakken suna",
+      "fullNamePlaceholder": "Amina Bello",
+      "username": "Sunan mai amfani",
+      "usernamePlaceholder": "amina_bello",
+      "email": "Imel",
+      "emailPlaceholder": "amina@misali.com"
+    },
+    "password": {
+      "show": "Nuna kalmar sirri",
+      "capsLock": "Manyan baƙaƙe suna a kunne"
+    },
+    "strength": {
+      "label": "Ƙarfi",
+      "weak": "Mai rauni",
+      "fair": "Matsakaici",
+      "good": "Mai ƙarfi",
+      "great": "Mai kyau ƙwarai",
+      "met": "(an yi)",
+      "unmet": "(saura)",
+      "rules": {
+        "length": "Aƙalla haruffa 8",
+        "long": "Haruffa 12 ko fiye",
+        "cases": "Manya da ƙananan haruffa",
+        "mixed": "Lamba da alama"
+      }
+    },
+    "username": {
+      "free": "{{username}} yana nan.",
+      "taken": "An riga an ɗauki {{username}}.",
+      "reserved": "An keɓe {{username}}.",
+      "suggestions": "Akwai:"
+    },
+    "oauth": {
+      "continueWith": "Ci gaba da {{provider}}",
+      "soon": "nan gaba",
+      "unavailable": "Shiga da {{provider}} na zuwa nan gaba. Kafin nan, ci gaba da imel ɗinka.",
+      "or": "ko da imel ɗinka"
+    },
+    "errors": {
+      "emailTaken": "Akwai asusu da ke amfani da wannan imel. Ka shiga maimakon haka.",
+      "usernameTaken": "An ɗauki wannan sunan mai amfani yanzu.",
+      "usernameReserved": "An keɓe wannan sunan mai amfani."
+    },
+    "loom": {
+      "eyebrow": "Wurin aiki",
+      "loginTitle": "Barka da dawowa wurin aiki.",
+      "loginText": "Lokacin da ba ka nan, ƙungiyoyi sun ci gaba da saƙa.",
+      "registerTitle": "Ƙarin zare ɗaya a cikin zane.",
+      "registerText": "Kowane mai haɓakawa zare ne. A nan, ana saƙa ƙungiyoyi a kewayen shirye-shirye."
+    }
+  }
+}

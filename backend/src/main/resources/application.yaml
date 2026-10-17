@@ -2,13 +2,14 @@ spring:
   application:
     name: ndadiee
   datasource:
-    url: ${SPRING_DATASOURCE_URL:jdbc:postgresql://localhost:5433/ndadiee}
+    url: ${SPRING_DATASOURCE_URL:jdbc:postgresql://localhost:5434/ndadiee}
     username: ${SPRING_DATASOURCE_USERNAME:ndadiee}
     password: ${SPRING_DATASOURCE_PASSWORD:ndadiee}
   jpa:
     hibernate:
       # Le schéma appartient à Flyway (db/migration) : Hibernate se contente de le vérifier.
-      ddl-auto: ${SPRING_JPA_HIBERNATE_DDL_AUTO:validate}
+      # ddl-auto: ${SPRING_JPA_HIBERNATE_DDL_AUTO:validate}
+      ddl-auto: ${SPRING_JPA_HIBERNATE_DDL_AUTO:create-drop}
     open-in-view: false
     show-sql: false
     properties:
@@ -44,6 +45,8 @@ ndadiee:
     # Mot de passe des comptes de démonstration : à changer avant toute mise en ligne.
     admin-password: ${SEED_ADMIN_PASSWORD:Admin@Ndadiee2026}
     demo-password: ${SEED_DEMO_PASSWORD:Ndadiee@2026}
+    # Mot de passe des comptes d'essai Ada et Musa, réservé au développement.
+    test-account-password: ${SEED_TEST_ACCOUNT_PASSWORD:passer@123}
 
 springdoc:
   swagger-ui:

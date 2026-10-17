@@ -4,7 +4,7 @@ import { paths } from './paths';
 
 /**
  * Pages de connexion et d'inscription. Dès que la session est ouverte, renvoie vers la page
- * protégée que l'utilisateur voulait atteindre (posée par ProtectedRoute), ou vers le fil.
+ * protégée que l'utilisateur voulait atteindre (posée par ProtectedRoute), ou vers son atelier.
  */
 export default function GuestRoute() {
   const { isAuthenticated } = useAuth();
@@ -12,7 +12,7 @@ export default function GuestRoute() {
 
   if (isAuthenticated) {
     const from = (location.state as { from?: Location } | null)?.from;
-    return <Navigate to={from ? `${from.pathname}${from.search}` : paths.feed} replace />;
+    return <Navigate to={from ? `${from.pathname}${from.search}` : paths.dashboard} replace />;
   }
 
   return <Outlet />;

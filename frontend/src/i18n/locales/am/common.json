@@ -1,0 +1,514 @@
+{
+  "app": {
+    "tagline": "ቡድንህን ፈልግ። ፕሮጀክትህን አስጀምር።",
+    "description": "የአህጉሩ ገንቢዎች መድረክ፦ የምትገነባውን የምታሳይበት ማሳያ፣ ቡድኖች የሚፈልጓቸውን ሚናዎች የያዙ ማስታወቂያዎች፣ እና የካንባን ሰሌዳና የኮድ ግምገማ ያለው የቡድን ቦታ።"
+  },
+  "nav": {
+    "showcase": "ማሳያ",
+    "openings": "ማስታወቂያዎች",
+    "hackathons": "ሃካቶኖች",
+    "forum": "ውይይት",
+    "dashboard": "የሥራ ቦታ",
+    "projects": "ፕሮጀክቶች",
+    "reviews": "ግምገማዎች",
+    "messages": "መልዕክቶች",
+    "notifications": "ማሳወቂያዎች",
+    "settings": "ቅንብሮች",
+    "profile": "መገለጫ",
+    "create": "ፍጠር"
+  },
+  "actions": {
+    "login": "ግባ",
+    "register": "ተመዝገብ",
+    "logout": "ውጣ",
+    "getStarted": "ጀምር",
+    "joinWithGithub": "በGitHub ተቀላቀል",
+    "publishProject": "ፕሮጀክቴን አትም",
+    "newProject": "አዲስ ፕሮጀክት",
+    "newTopic": "አዲስ ርዕስ",
+    "newTask": "አዲስ ተግባር",
+    "publishRole": "ሚና ለጥፍ",
+    "apply": "አመልክት",
+    "joinTeam": "ቡድኑን ተቀላቀል",
+    "review": "ገምግም",
+    "approve": "አጽድቅ",
+    "requestChanges": "ለውጥ ጠይቅ",
+    "invite": "ጋብዝ",
+    "sendMessage": "መልዕክት ላክ",
+    "reply": "መልስ ስጥ",
+    "seeAll": "ሁሉንም እይ",
+    "save": "አስቀምጥ",
+    "cancel": "ሰርዝ",
+    "close": "ዝጋ",
+    "back": "ተመለስ",
+    "retry": "እንደገና ሞክር"
+  },
+  "search": {
+    "placeholder": "ሁሉንም ፈልግ",
+    "shortcut": "Ctrl K",
+    "noResults": "ለ“{{query}}” ምንም ውጤት የለም",
+    "groups": {
+      "roles": "ክፍት ሚናዎች",
+      "projects": "ፕሮጀክቶች",
+      "people": "ገንቢዎች",
+      "topics": "ውይይት",
+      "actions": "ድርጊቶች"
+    }
+  },
+  "kanban": {
+    "todo": "የሚሠሩ",
+    "inProgress": "በሂደት ላይ",
+    "inReview": "በግምገማ ላይ",
+    "done": "ተጠናቋል",
+    "dropHere": "እዚህ ጣል"
+  },
+  "workspace": {
+    "board": "ሰሌዳ",
+    "reviews": "ግምገማዎች",
+    "devlog": "Devlog",
+    "openRoles": "ክፍት ሚናዎች",
+    "settings": "ቅንብሮች",
+    "messagePlaceholder": "ለቡድኑ መልዕክት…"
+  },
+  "forum": {
+    "replies_one": "{{count}} መልስ",
+    "replies_other": "{{count}} መልሶች",
+    "solved": "ተፈቷል",
+    "unanswered": "ያልተመለሰ"
+  },
+  "theme": {
+    "label": "ገጽታ",
+    "light": "ብሩህ",
+    "dark": "ጨለማ",
+    "system": "እንደ መሣሪያው",
+    "lightTheme": "ብሩህ ገጽታ",
+    "pullHint": "ገመዱን ጎትት",
+    "darkTheme": "ጨለማ ገጽታ"
+  },
+  "language": {
+    "label": "ቋንቋ"
+  },
+  "dataSaver": {
+    "label": "ዳታ ቆጣቢ",
+    "description": "ያነሱ እንቅስቃሴዎች፣ ቅድመ ጭነት የለም፦ ለአነስተኛ የዳታ ጥቅሎች የተዘጋጀ።"
+  },
+  "states": {
+    "loading": "በመጫን ላይ…",
+    "empty": "ለአሁን የሚታይ ነገር የለም።",
+    "offline": "ከመስመር ውጭ ነህ።"
+  },
+  "errors": {
+    "generic": "ስህተት ተከስቷል።",
+    "network": "ከአገልጋዩ ጋር መገናኘት አልተቻለም። ግንኙነትህን አረጋግጥ።",
+    "notFound": "ይህ ገጽ የለም ወይም ተዛውሯል።"
+  },
+  "validation": {
+    "required": "ይህ መስክ ያስፈልጋል።",
+    "email": "የኢሜይል አድራሻው ልክ አይደለም።",
+    "username": "ከ3 እስከ 30 ቁምፊዎች፦ ፊደላት፣ ቁጥሮች ወይም _።",
+    "minChars_one": "ቢያንስ {{count}} ቁምፊ።",
+    "minChars_other": "ቢያንስ {{count}} ቁምፊዎች።",
+    "maxChars_one": "ቢበዛ {{count}} ቁምፊ።",
+    "maxChars_other": "ቢበዛ {{count}} ቁምፊዎች።",
+    "minItems_one": "ቢያንስ {{count}} ንጥል ጨምር።",
+    "minItems_other": "ቢያንስ {{count}} ንጥሎች ጨምር።",
+    "maxItems_one": "ቢበዛ {{count}} ንጥል።",
+    "maxItems_other": "ቢበዛ {{count}} ንጥሎች።"
+  },
+  "a11y": {
+    "skipToContent": "ወደ ይዘቱ ዝለል",
+    "mainNavigation": "ዋና ማሰሻ",
+    "breadcrumb": "የገጽ መንገድ",
+    "account": "መለያዬ"
+  },
+  "pages": {
+    "landing": "መነሻ",
+    "showcase": "ማሳያ",
+    "project": "ፕሮጀክት",
+    "openings": "ማስታወቂያዎች",
+    "newOpening": "ማስታወቂያ ለጥፍ",
+    "hackathons": "ሃካቶኖች",
+    "hackathon": "ሃካቶን",
+    "forum": "ውይይት",
+    "topic": "ርዕስ",
+    "newTopic": "አዲስ ርዕስ",
+    "profile": "መገለጫ",
+    "search": "ፍለጋ",
+    "dashboard": "የሥራ ቦታ",
+    "myProjects": "የእኔ ፕሮጀክቶች",
+    "newProject": "አዲስ ፕሮጀክት",
+    "workspaceBoard": "ሰሌዳ",
+    "workspaceReviews": "የቡድን ግምገማዎች",
+    "workspaceDevlog": "Devlog",
+    "workspaceRoles": "ክፍት ሚናዎች",
+    "workspaceSettings": "የቡድን ቅንብሮች",
+    "review": "የኮድ ግምገማ",
+    "reviews": "ግምገማዎች",
+    "messages": "መልዕክቶች",
+    "notifications": "ማሳወቂያዎች",
+    "settings": "ቅንብሮች",
+    "login": "ግባ",
+    "register": "ተመዝገብ",
+    "notFound": "ገጹ አልተገኘም"
+  },
+  "enums": {
+    "experienceLevel": {
+      "STUDENT": "ተማሪ",
+      "JUNIOR": "ጀማሪ",
+      "MID": "መካከለኛ",
+      "SENIOR": "ከፍተኛ"
+    },
+    "role": {
+      "USER": "አባል",
+      "MODERATOR": "አወያይ",
+      "ADMIN": "አስተዳዳሪ"
+    },
+    "opportunityType": {
+      "JOB": "ሥራ",
+      "FREELANCE": "ነፃ ሥራ",
+      "INTERNSHIP": "የሥራ ልምምድ",
+      "HACKATHON": "ሃካቶን"
+    },
+    "workMode": {
+      "REMOTE": "ከርቀት",
+      "ONSITE": "በቦታው",
+      "HYBRID": "ድብልቅ"
+    },
+    "projectRole": {
+      "OWNER": "ባለቤት",
+      "MAINTAINER": "ጠባቂ",
+      "CONTRIBUTOR": "አስተዋጽኦ አበርካች"
+    }
+  },
+  "hero": {
+    "titleTeam": "ቡድንህን ፈልግ።",
+    "titleShip": "ፕሮጀክትህን አስጀምር።",
+    "lead": "የምትገነባውን የምታሳይበት ማሳያ፣ ቡድኖች የሚፈልጓቸውን ሚናዎች የያዙ ማስታወቂያዎች፣ እና የካንባን ሰሌዳና የኮድ ግምገማ ያለው የቡድን ቦታ። ለአህጉሩ ገንቢዎች።",
+    "recruiting_one": "{{count}} ፕሮጀክት አሁን አባላት እየፈለገ ነው",
+    "recruiting_other": "{{count}} ፕሮጀክቶች አሁን አባላት እየፈለጉ ነው",
+    "firstTeams": "የመጀመሪያዎቹ ቡድኖች እዚህ እየተመሠረቱ ነው። የአንተን ጀምር።",
+    "loom": {
+      "sample": "ናሙና ዓመት",
+      "username": "የGitHub ተጠቃሚ ስምህ",
+      "placeholder": "username",
+      "weave": "ዓመቴን ሸምን",
+      "weaving": "በመሸመን ላይ…",
+      "reset": "ወደ ናሙና ዓመቱ ተመለስ",
+      "invalid": "የGitHub ተጠቃሚ ስም የላቲን ፊደላት፣ ቁጥሮችና ሰረዞችን ብቻ ይይዛል፤ ቢበዛ 39 ቁምፊዎች።",
+      "notFound": "በዚህ ስም የGitHub መለያ የለም።",
+      "unavailable": "GitHub ምላሽ እየሰጠ አይደለም። ትንሽ ቆይተህ እንደገና ሞክር።",
+      "viewLabel": "የዓመቱ እይታ",
+      "viewCloth": "ጨርቅ፦ ዓመቱ በጠፍጣፋ",
+      "viewCity": "ከተማ፦ ዓመቱ በ3D",
+      "less": "ያነሰ",
+      "more": "የበለጠ",
+      "level0": "አስተዋጽኦ የሌለባቸው ቀናት",
+      "level1": "ጸጥ ያሉ ቀናት",
+      "level2": "ንቁ ቀናት",
+      "level3": "የተጨናነቁ ቀናት",
+      "level4": "በጣም የተጨናነቁ ቀናት",
+      "structure": "ለእያንዳንዱ ሳምንት አንድ ቁራጭ፣ ለእያንዳንዱ ቀን አንድ ብሎክ።",
+      "hintCloth": "ጠቋሚውን በአንድ ቀን ላይ አድርግ፣ ወይም ዓመቱን በቀስት ቁልፎች ቃኝ።",
+      "hintCity": "ከተማዋን ለማዞር ጎትት። ለመመለስ ሁለቴ ጠቅ አድርግ።",
+      "summary": "{{who}}፣ ከ{{from}} እስከ {{to}}፦ {{total}}። ለእያንዳንዱ ሳምንት አንድ ቁራጭ፣ ለእያንዳንዱ ቀን አንድ ብሎክ። እያንዳንዱን ቀን ለማንበብ የቀስት ቁልፎችን ተጠቀም።",
+      "streak_one": "ረጅሙ ተከታታይ፦ {{count}} ቀን",
+      "streak_other": "ረጅሙ ተከታታይ፦ {{count}} ቀናት",
+      "showcase": "ዓመትህ ማሳያ ይገባዋል"
+    }
+  },
+  "contributions": {
+    "count_one": "{{count}} አስተዋጽኦ",
+    "count_other": "{{count}} አስተዋጽኦዎች",
+    "none": "ምንም አስተዋጽኦ የለም"
+  },
+  "teamRoles": {
+    "frontend": "Front-end ገንቢ",
+    "backend": "Back-end ገንቢ",
+    "mobile": "የሞባይል መተግበሪያ ገንቢ",
+    "design": "UI/UX ዲዛይነር",
+    "data": "ዳታ እና AI",
+    "devops": "DevOps እና ክላውድ",
+    "security": "ደህንነት",
+    "payments": "Mobile Money እና USSD",
+    "l10n": "ትርጉም እና ቋንቋዎች",
+    "docs": "ቴክኒካል ጽሑፍ",
+    "product": "የምርት ሥራ አስኪያጅ",
+    "embedded": "IoT እና ኢምቤድድ ሲስተም",
+    "qa": "ሙከራ እና ጥራት"
+  },
+  "rolesBand": {
+    "title": "ቡድኖች የሚፈልጓቸው ሚናዎች",
+    "all": "ሁሉም ማስታወቂያዎች",
+    "pause": "የሚናዎቹን ሪባን ለአፍታ አቁም",
+    "play": "የሚናዎቹን ሪባን ቀጥል",
+    "recruiting": "አስተዋጽዖ አድራጊዎችን የሚፈልጉ፦ {{projects}}"
+  },
+  "showcase": {
+    "title": "ማሳያው",
+    "all": "ሁሉም ፕሮጀክቶች",
+    "seeking": "የሚፈልገው፦ {{roles}}",
+    "seeRoles": "ሚናዎቹን እይ",
+    "seeProject": "ፕሮጀክቱን እይ",
+    "stars_one": "{{count}} ኮከብ",
+    "stars_other": "{{count}} ኮከቦች",
+    "team_one": "የ{{count}} ሰው ቡድን",
+    "team_other": "የ{{count}} ሰዎች ቡድን",
+    "firstSteps": "የመጀመሪያ እርምጃዎች",
+    "photoCredit": "ፎቶ፦ {{credit}}",
+    "noCover": "የፕሮጀክቱ ቅጽበታዊ ምስል",
+    "loading": "ማሳያው እየተጫነ ነው",
+    "emptyTitle": "ማሳያው የመጀመሪያውን ፕሮጀክት እየጠበቀ ነው",
+    "emptyText": "የአንተን አትም፦ የአህጉሩ ገንቢዎች የምትሠራውን እና የምትፈልጋቸውን ሚናዎች ያያሉ።",
+    "emptyAction": "ፕሮጀክቴን አትም",
+    "errorTitle": "ማሳያው ሊጫን አልቻለም",
+    "errorText": "ግንኙነትህን አረጋግጥና እንደገና ሞክር።",
+    "more_one": "ሌላ ፕሮጀክት በማሳያው",
+    "more_other": "ሌሎች ፕሮጀክቶች በማሳያው"
+  },
+  "media": {
+    "showImage": "ምስሉን አሳይ"
+  },
+  "footer": {
+    "explore": "አስስ",
+    "contribute": "አስተዋጽዖ አድርግ",
+    "settings": "ቅንብሮች",
+    "languages": "የሚገኝባቸው ቋንቋዎች",
+    "woven": "በማኅበረሰቡ ክር በክር የተሸመነ",
+    "backToTop": "ወደ ላይ ተመለስ",
+    "status": {
+      "checking": "ኤፒአይ እየተረጋገጠ ነው…",
+      "online": "ኤፒአይ በመስመር ላይ ነው",
+      "offline": "ኤፒአይ ሊደረስበት አልቻለም"
+    },
+    "copyright": "© {{year}} {{name}}",
+    "scrollTop": "ወደ ገጹ አናት ተመለስ"
+  },
+  "cta": {
+    "eyebrow": "ዎርክሾፑ ዛሬ",
+    "threadTitle": "አንድ ክር ብቻውን ልብስ አይሆንም።",
+    "threadText": "እያንዳንዱ ገንቢ ክር ነው፦ ክህሎት፣ ቋንቋ፣ አገር። እዚህ ቡድኖች በፕሮጀክቶች ዙሪያ ይሸመናሉ።",
+    "stats": {
+      "developers_one": "ገንቢ",
+      "developers_other": "ገንቢዎች",
+      "countries_one": "አገር",
+      "countries_other": "አገሮች",
+      "projects_one": "ፕሮጀክት",
+      "projects_other": "ፕሮጀክቶች",
+      "openings_one": "ክፍት ሚና",
+      "openings_other": "ክፍት ሚናዎች",
+      "seats_one": "{{count}} ክፍት ቦታ",
+      "seats_other": "{{count}} ክፍት ቦታዎች"
+    },
+    "title": "ቀጣዩ ፕሮጀክትህ በቡድን ይጀምራል።",
+    "text": "የምትሠራውን አሳይ፣ የቡድን አጋሮችህን አግኝ፣ አብራችሁ አስረክቡ።",
+    "openWorkshop": "ዎርክሾፑን ክፈት",
+    "seeShowcase": "ማሳያውን እይ",
+    "alreadyWeaving": "እዚህ አስቀድመው እየሸመኑ ነው",
+    "label": {
+      "title": "ክፍት ቦታዎች",
+      "inProjects_one": "በ{{count}} ፕሮጀክት",
+      "inProjects_other": "በ{{count}} ፕሮጀክቶች",
+      "action": "ማስታወቂያዎቹን እይ"
+    }
+  },
+  "features": {
+    "eyebrow": "እንዴት እንደሚሠራ",
+    "title": "ከመገናኘት እስከ ማስረከብ።",
+    "text": "የአንድ ፕሮጀክት ሕይወት አምስት ወቅቶች፣ በአንድ ቦታ። ንካ፣ ጎትት፣ ምልክት አድርግ፦ እነዚህ ካርዶች እንደ የሥራ ቦታው ይሠራሉ።",
+    "meet": {
+      "eyebrow": "መገናኘት",
+      "title": "በሥራ አማካኝነት",
+      "text": "የሚፈለጉ ሚናዎችና የምትጠቀማቸው ቴክኖሎጂዎች ወደ ትክክለኛዎቹ ሰዎች ይመሩሃል።",
+      "pick": "ቴክኖሎጂዎችህ",
+      "seatsHeader": "ቦታዎች",
+      "seats_one": "{{count}} ቦታ",
+      "seats_other": "{{count}} ቦታዎች",
+      "found_one": "{{name}} · {{count}} ክፍት ማስታወቂያ",
+      "found_other": "{{name}} · {{count}} ክፍት ማስታወቂያዎች",
+      "loading": "ማስታወቂያዎችን በመፈለግ ላይ…",
+      "firstStep": "የመጀመሪያ እርምጃ #{{number}}",
+      "all": "ሁሉም የ{{name}} ማስታወቂያዎች",
+      "empty": "አሁን በ{{name}} የሚቀጥር የለም። በቅርቡ ተመለስ፣ ወይም ፕሮጀክትህን አትም።",
+      "error": "ማስታወቂያዎቹን መጫን አልተቻለም።",
+      "howTo": "ለማመልከት የሚናውን «የመጀመሪያ እርምጃ» issue ውሰድ፦ ኮድ እንጂ CV አይደለም።"
+    },
+    "review": {
+      "eyebrow": "መለዋወጥ",
+      "title": "የኮድ ግምገማዎች",
+      "text": "እያንዳንዱ PR በቡድኑና በማኅበረሰቡ መስመር በመስመር ይገመገማል።",
+      "pr": "ለBRT የጊዜ ሰሌዳዎች የRedis መሸጎጫ",
+      "changesRequested": "ለውጥ ተጠይቋል",
+      "approved": "ጸድቋል",
+      "maintainer": "ጠባቂ",
+      "comment": "የማብቂያ ጊዜ 0 ከሆነ የጊዜ ሰሌዳዎቹ ፈጽሞ አይታደሱም። 10 ደቂቃ እንዲሆን እጠቁማለሁ።",
+      "apply": "ጥቆማውን ተግብር",
+      "helpful": "ጠቃሚ",
+      "helpfulHint": "ይህ ግምገማ ረድቶሃል? ጸሐፊው 10 የዝና ነጥቦችን ያገኛል።",
+      "resolved": "Ama ጥቆማውን ተግብራለች። Chinedu PR-ውን ያጸድቃል።",
+      "replay": "እንደገና አጫውት"
+    },
+    "share": {
+      "eyebrow": "ማጋራት",
+      "title": "ማሳያ + devlog",
+      "text": "ቀጥታ ማሳያ፣ የገጽ ምስሎች፣ ቴክኖሎጂዎች፣ የGitHub አገናኝ፣ የእድገት ማስታወሻ።",
+      "devlog": "Devlog",
+      "stack": "የፕሮጀክቱ ቴክኖሎጂዎች",
+      "versions": {
+        "v07": {
+          "name": "v0.7",
+          "when": "ከ2 ቀን በፊት",
+          "text": "የRedis መሸጎጫ፦ የፌርማታው ገጽ ከ1.8 ሰከንድ ወደ 120 ሚሊሰከንድ ወረደ።"
+        },
+        "v06": {
+          "name": "v0.6",
+          "when": "ከ9 ቀን በፊት",
+          "text": "ከመስመር ውጭ ሁነታ፦ የመጨረሻዎቹ 20 ፌርማታዎች እንደተገኙ ይቆያሉ።"
+        },
+        "v05": {
+          "name": "v0.5",
+          "when": "ከ3 ሳምንት በፊት",
+          "text": "የመጀመሪያው የGTFS ፍሰት ጸደቀ፦ 140 የዳንፎ መስመሮች።"
+        }
+      },
+      "app": {
+        "next": "ቀጣዩ BRT",
+        "minutes_one": "{{count}} ደቂቃ",
+        "minutes_other": "{{count}} ደቂቃ",
+        "before": "በፊት፦ 1.8 ሰ",
+        "offline": "ከመስመር ውጭ",
+        "kept_one": "{{count}} ፌርማታ ተቀምጧል",
+        "kept_other": "{{count}} ፌርማታዎች ተቀምጠዋል",
+        "routes": "የዳንፎ መስመሮች",
+        "lines_one": "{{count}} መስመር · GTFS ትክክል ነው",
+        "lines_other": "{{count}} መስመሮች · GTFS ትክክል ነው"
+      }
+    },
+    "team": {
+      "eyebrow": "መተባበር",
+      "title": "ለእያንዳንዱ ቡድን የራሱ ቦታ",
+      "text": "አባላት፣ ካንባን፣ ውይይት፣ ሃካቶኖች። ማመልከቻ በissue እንጂ በCV አይደለም።",
+      "sprint": "ስፕሪንት 7 · 6 ቀን ቀርቷል",
+      "online_one": "{{count}} በመስመር ላይ",
+      "online_other": "{{count}} በመስመር ላይ",
+      "board": "የስፕሪንቱ ሰሌዳ",
+      "firstStep": "የመጀመሪያ እርምጃ",
+      "changes": "1 ለውጥ",
+      "days_one": "{{count}} ቀን",
+      "days_other": "{{count}} ቀን",
+      "tasks": {
+        "t33": "ቀጣዩን BRT በፌርማታው ማያ ላይ አሳይ",
+        "t40": "የፌርማታ ገጽ ንድፍ",
+        "t46": "የGraphQL ጥያቄዎችን በIP ገድብ",
+        "t38": "ከመስመር ውጭ ሁነታ፦ የማመሳሰያ ወረፋ",
+        "t45": "የዳንፎ GTFS ፍሰትን አረጋግጥ",
+        "t84": "ለBRT የጊዜ ሰሌዳዎች የRedis መሸጎጫ"
+      },
+      "card": "#{{number}} {{task}}፣ በ{{column}} ውስጥ",
+      "keys": "Enter፦ ቀጣዩ ዓምድ። የግራና የቀኝ ቀስቶች፦ አጎራባች ዓምድ።",
+      "moved": "{{name}} «{{task}}»ን ወደ {{column}} አዛወረ",
+      "youMoved": "«{{task}}»ን ወደ {{column}} አዛወርክ",
+      "hintPointer": "ካርድ ጎትት፣ ወይም ወደፊት ለማራመድ ጠቅ አድርግ።",
+      "hintTouch": "ካርድን ወደፊት ለማራመድ ንካው።"
+    },
+    "daily": {
+      "eyebrow": "በየቀኑ",
+      "title": "የዛሬው የሥራ ቦታህ",
+      "text": "የሚጠብቁህ ግምገማዎች፣ ተግባሮችህ፣ የሚስማሙህ ማስታወቂያዎች። ቀላል ገጾች፣ የዳታ ቁጠባ ሁነታ።",
+      "hello": "ሰላም {{name}}",
+      "summary_one": "ዛሬ፦ 2 ግምገማዎች ይጠብቁሃል፣ {{count}} ተግባር፣ 1 ማመልከቻ ለመመልከት።",
+      "summary_other": "ዛሬ፦ 2 ግምገማዎች ይጠብቁሃል፣ {{count}} ተግባሮች፣ 1 ማመልከቻ ለመመልከት።",
+      "allDone": "ተግባሮቹ ተጠናቀቁ! 2 ግምገማዎችና 1 ማመልከቻ ቀርተዋል።",
+      "reviews": "የሚጠብቁህ ግምገማዎች",
+      "review84": "ለBRT የጊዜ ሰሌዳዎች የRedis መሸጎጫ",
+      "review12": "Helm chart፦ ነባሪ የማህደረ ትውስታ ገደቦች",
+      "tasks": "ተግባሮችህ",
+      "task1": "#46 የGraphQL ጥያቄዎችን በIP ገድብ",
+      "task2": "የv0.8 devlog አትም",
+      "task3": "የስፕሪንት 7 ማሳያን አዘጋጅ",
+      "saverOn": "በርቷል፦ ገጹ ይቀላል",
+      "saverOff": "ጠፍቷል",
+      "saverImages": "ምስሎች ሲጠየቁ ብቻ",
+      "saverMotion": "እንቅስቃሴዎች ጠፍተዋል",
+      "saverPrefetch": "ቅድመ ጭነት የለም",
+      "open": "የሥራ ቦታዬን ክፈት",
+      "create": "የሥራ ቦታዬን ፍጠር"
+    }
+  },
+  "auth": {
+    "login": {
+      "eyebrow": "መግቢያ",
+      "title": "እንደገና ስላየንህ ደስ ብሎናል።",
+      "text": "የሥራ ቦታህ እየጠበቀህ ነው፦ ቡድኖችህ፣ ግምገማዎችህ፣ ፕሮጀክቶችህ።",
+      "submit": "ግባ",
+      "pending": "በመግባት ላይ…",
+      "failed": "ኢሜይል፣ የተጠቃሚ ስም ወይም የይለፍ ቃል ትክክል አይደለም።",
+      "noAccount": "እስካሁን መለያ የለህም?",
+      "toRegister": "መለያ ፍጠር"
+    },
+    "register": {
+      "eyebrow": "ምዝገባ",
+      "title": "የሥራ ቦታውን ተቀላቀል።",
+      "text": "ለፕሮጀክቶችህ ማሳያ፣ በዙሪያህ ቡድኖች። አንድ ደቂቃ ይበቃል።",
+      "submit": "መለያዬን ፍጠር",
+      "pending": "መለያ በመፍጠር ላይ…",
+      "hasAccount": "አባል ነህ?",
+      "toLogin": "ግባ"
+    },
+    "welcomeButton": "እንኳን ደህና መጣህ!",
+    "welcomeLabel": "ወደ የሥራ ቦታው እንኳን ደህና መጣህ",
+    "fields": {
+      "identifier": "ኢሜይል ወይም የተጠቃሚ ስም",
+      "identifierPlaceholder": "abebe@example.com",
+      "password": "የይለፍ ቃል",
+      "fullName": "ሙሉ ስም",
+      "fullNamePlaceholder": "አበበ ከበደ",
+      "username": "የተጠቃሚ ስም",
+      "usernamePlaceholder": "abebe_kebede",
+      "email": "ኢሜይል",
+      "emailPlaceholder": "abebe@example.com"
+    },
+    "password": {
+      "show": "የይለፍ ቃሉን አሳይ",
+      "capsLock": "Caps Lock በርቷል"
+    },
+    "strength": {
+      "label": "ጥንካሬ",
+      "weak": "ደካማ",
+      "fair": "መካከለኛ",
+      "good": "ጠንካራ",
+      "great": "በጣም ጥሩ",
+      "met": "(ተሟልቷል)",
+      "unmet": "(ይቀራል)",
+      "rules": {
+        "length": "ቢያንስ 8 ቁምፊዎች",
+        "long": "12 ቁምፊዎች ወይም ከዚያ በላይ",
+        "cases": "ትልቅና ትንሽ ፊደላት",
+        "mixed": "ቁጥርና ምልክት"
+      }
+    },
+    "username": {
+      "free": "{{username}} ነፃ ነው።",
+      "taken": "{{username}} ተይዟል።",
+      "reserved": "{{username}} የተጠበቀ ነው።",
+      "suggestions": "ነፃ፦"
+    },
+    "oauth": {
+      "continueWith": "በ{{provider}} ቀጥል",
+      "soon": "በቅርቡ",
+      "unavailable": "በ{{provider}} መግባት በቅርቡ ይመጣል። እስከዚያው በኢሜይልህ ቀጥል።",
+      "or": "ወይም በኢሜይልህ"
+    },
+    "errors": {
+      "emailTaken": "ይህን ኢሜይል የሚጠቀም መለያ አለ። በምትኩ ግባ።",
+      "usernameTaken": "ይህ የተጠቃሚ ስም አሁን ተይዟል።",
+      "usernameReserved": "ይህ የተጠቃሚ ስም የተጠበቀ ነው።"
+    },
+    "loom": {
+      "eyebrow": "የሥራ ቦታው",
+      "loginTitle": "ወደ የሥራ ቦታው እንኳን ደህና ተመለስክ።",
+      "loginText": "አንተ በሌለህበት ጊዜ ቡድኖቹ መሸመናቸውን ቀጥለዋል።",
+      "registerTitle": "በልብሱ ላይ አንድ ተጨማሪ ክር።",
+      "registerText": "እያንዳንዱ ገንቢ ክር ነው። እዚህ ቡድኖች በፕሮጀክቶች ዙሪያ ይሸመናሉ።"
+    }
+  }
+}

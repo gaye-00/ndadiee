@@ -3,32 +3,25 @@ package com.hautetech.ndadiee.initializer;
 import java.time.LocalDate;
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
 import com.hautetech.ndadiee.dto.request.AnswerRequest;
 import com.hautetech.ndadiee.dto.request.ArticleRequest;
 import com.hautetech.ndadiee.dto.request.CommentRequest;
-import com.hautetech.ndadiee.dto.request.MemberDecisionRequest;
 import com.hautetech.ndadiee.dto.request.OpportunityRequest;
-import com.hautetech.ndadiee.dto.request.ProjectRequest;
 import com.hautetech.ndadiee.dto.request.QuestionRequest;
-import com.hautetech.ndadiee.dto.request.UpdateProfileRequest;
 import com.hautetech.ndadiee.dto.request.VoteRequest;
 import com.hautetech.ndadiee.model.ContentType;
 import com.hautetech.ndadiee.model.Language;
 import com.hautetech.ndadiee.model.content.Tag;
 import com.hautetech.ndadiee.model.opportunity.OpportunityType;
 import com.hautetech.ndadiee.model.opportunity.WorkMode;
-import com.hautetech.ndadiee.model.project.MemberStatus;
-import com.hautetech.ndadiee.model.project.ProjectRole;
-import com.hautetech.ndadiee.model.user.Admin;
-import com.hautetech.ndadiee.model.user.Developer;
 import com.hautetech.ndadiee.model.user.ExperienceLevel;
 import com.hautetech.ndadiee.model.user.Role;
-import com.hautetech.ndadiee.repository.DeveloperRepository;
+import com.hautetech.ndadiee.repository.ArticleRepository;
+import com.hautetech.ndadiee.repository.OpportunityRepository;
+import com.hautetech.ndadiee.repository.QuestionRepository;
 import com.hautetech.ndadiee.repository.TagRepository;
 import com.hautetech.ndadiee.repository.UserRepository;
 import com.hautetech.ndadiee.service.SlugService;
@@ -38,7 +31,6 @@ import com.hautetech.ndadiee.service.content.QuestionService;
 import com.hautetech.ndadiee.service.interaction.CommentService;
 import com.hautetech.ndadiee.service.interaction.VoteService;
 import com.hautetech.ndadiee.service.opportunity.OpportunityService;
-import com.hautetech.ndadiee.service.project.ProjectService;
 import com.hautetech.ndadiee.service.user.UserService;
 
 import lombok.RequiredArgsConstructor;
@@ -46,21 +38,27 @@ import lombok.extern.slf4j.Slf4j;
 
 /**
  * Données de démonstration pour la présentation : une communauté de développeurs de
- * plusieurs pays africains, avec questions, réponses, articles, projets et opportunités.
+ * plusieurs pays africains, avec questions, réponses, articles et opportunités. Les projets
+ * de la vitrine et leurs rôles recherchés viennent ensuite (ShowcaseSeeder).
  *
  * Tout le contenu passe par les services métier, comme le ferait l'API : la réputation,
  * les badges et les notifications obtenus sont donc exactement ceux des règles en vigueur.
  * Les comptes sont fictifs (adresses en example.com).
+ *
+ * Chaque section ne s'exécute que si sa table est vide : une base remplie à moitié (par une
+ * version précédente qui s'est arrêtée en route) est complétée au démarrage suivant.
  */
 @Slf4j
 @Component
 @RequiredArgsConstructor
 public class DemoDataSeeder {
 
+    private final DemoAccounts accounts;
     private final UserRepository userRepository;
-    private final DeveloperRepository developerRepository;
     private final TagRepository tagRepository;
-    private final PasswordEncoder passwordEncoder;
+    private final QuestionRepository questionRepository;
+    private final ArticleRepository articleRepository;
+    private final OpportunityRepository opportunityRepository;
     private final SlugService slugService;
     private final UserService userService;
     private final QuestionService questionService;
@@ -68,90 +66,120 @@ public class DemoDataSeeder {
     private final ArticleService articleService;
     private final VoteService voteService;
     private final CommentService commentService;
-    private final ProjectService projectService;
     private final OpportunityService opportunityService;
     private final JdbcTemplate jdbcTemplate;
 
-    @Value("${ndadiee.seed.admin-password}")
-    private String adminPassword;
+    // Les membres de la communauté, retrouvés ou créés au début de seed()
+    private Long admin;
+    private Long awa;
+    private Long kofi;
+    private Long chioma;
+    private Long wanjiru;
+    private Long yassine;
+    private Long aminata;
+    private Long jeanPaul;
+    private Long thandiwe;
+    private Long samuel;
+    private Long fatou;
+    private Long omar;
+    private Long selam;
 
-    @Value("${ndadiee.seed.demo-password}")
-    private String demoPassword;
-
-    // Tous les comptes de démonstration partagent le même mot de passe : on ne le hache qu'une fois
-    private String encodedDemoPassword;
-
-    public void seedIfEmpty() {
-        if (userRepository.count() > 0) {
-            log.info("[Init] Base déjà initialisée, skip.");
+    public void seed() {
+        boolean fresh = userRepository.count() == 0;
+        boolean missingContent = questionRepository.count() == 0 || articleRepository.count() == 0
+                || opportunityRepository.count() == 0;
+        if (!fresh && !missingContent) {
+            log.info("[Init] Communauté déjà initialisée, skip.");
             return;
         }
 
-        log.info("[Init] Création des données de démonstration Ndadiee...");
-        encodedDemoPassword = passwordEncoder.encode(demoPassword);
+        // Une base remplie par une version précédente peut être incomplète : on garde ce qui existe
+        // (les comptes sont retrouvés par leur identifiant) et on ajoute seulement ce qui manque.
+        log.info(fresh
+                ? "[Init] Création des données de démonstration Ndadiee..."
+                : "[Init] Données de démonstration incomplètes : ajout des contenus manquants...");
 
-        seedTags();
-        Long admin = seedAdmin();
+        if (fresh) {
+            seedTags();
+        }
+        admin = accounts.admin();
 
         // ═══════════════════════════════════════════════════════════════
         //  DÉVELOPPEURS
         // ═══════════════════════════════════════════════════════════════
 
-        Long awa = developer("awa_diop", "Awa Diop", Role.MODERATOR, "SN", "Dakar", ExperienceLevel.SENIOR, Language.FR, false,
+        awa = developer("awa_diop", "Awa Diop", Role.MODERATOR, "SN", "Dakar", ExperienceLevel.SENIOR, Language.FR, false,
                 "Développeuse backend depuis 9 ans. Java, Spring et architecture d'API. Mentor à Dakar, j'aime rendre les sujets compliqués simples.",
                 "Java", "Spring Boot", "PostgreSQL", "Docker");
-        Long kofi = developer("kofi_mensah", "Kofi Mensah", Role.USER, "GH", "Accra", ExperienceLevel.MID, Language.EN, false,
+        kofi = developer("kofi_mensah", "Kofi Mensah", Role.USER, "GH", "Accra", ExperienceLevel.MID, Language.EN, false,
                 "Frontend engineer in Accra. I build design systems and care a lot about accessibility and performance on low-end phones.",
                 "React", "TypeScript", "JavaScript", "CSS");
-        Long chioma = developer("chioma_okafor", "Chioma Okafor", Role.USER, "NG", "Lagos", ExperienceLevel.SENIOR, Language.EN, false,
+        chioma = developer("chioma_okafor", "Chioma Okafor", Role.USER, "NG", "Lagos", ExperienceLevel.SENIOR, Language.EN, false,
                 "Machine learning engineer in Lagos. Working on speech and text models for Igbo, Yoruba and Hausa.",
                 "Python", "Machine Learning", "Django", "PostgreSQL");
-        Long wanjiru = developer("wanjiru_kamau", "Wanjiru Kamau", Role.USER, "KE", "Nairobi", ExperienceLevel.MID, Language.EN, true,
+        wanjiru = developer("wanjiru_kamau", "Wanjiru Kamau", Role.USER, "KE", "Nairobi", ExperienceLevel.MID, Language.EN, true,
                 "Mobile developer in Nairobi. Flutter, offline-first apps and everything that still works when the network does not.",
                 "Flutter", "Dart", "Firebase", "Kotlin");
-        Long yassine = developer("yassine_elamrani", "Yassine El Amrani", Role.USER, "MA", "Casablanca", ExperienceLevel.SENIOR, Language.FR, false,
+        yassine = developer("yassine_elamrani", "Yassine El Amrani", Role.USER, "MA", "Casablanca", ExperienceLevel.SENIOR, Language.FR, false,
                 "Ingénieur DevOps à Casablanca. J'automatise tout ce qui peut l'être et je défends les infrastructures simples et peu coûteuses.",
                 "Docker", "Kubernetes", "DevOps", "PostgreSQL", "Linux");
-        Long aminata = developer("aminata_traore", "Aminata Traoré", Role.USER, "CI", "Abidjan", ExperienceLevel.JUNIOR, Language.FR, true,
+        aminata = developer("aminata_traore", "Aminata Traoré", Role.USER, "CI", "Abidjan", ExperienceLevel.JUNIOR, Language.FR, true,
                 "Développeuse full-stack autodidacte à Abidjan. React côté front, Node.js côté back, et beaucoup de curiosité.",
                 "React", "Node.js", "JavaScript", "TypeScript");
-        Long jeanPaul = developer("jeanpaul_nkurunziza", "Jean-Paul Nkurunziza", Role.USER, "RW", "Kigali", ExperienceLevel.MID, Language.FR, false,
+        jeanPaul = developer("jeanpaul_nkurunziza", "Jean-Paul Nkurunziza", Role.USER, "RW", "Kigali", ExperienceLevel.MID, Language.FR, false,
                 "Développeur backend à Kigali. Go et PostgreSQL au quotidien, passionné par les données ouvertes.",
                 "Go", "PostgreSQL", "Docker", "Open Data");
-        Long thandiwe = developer("thandiwe_ndlovu", "Thandiwe Ndlovu", Role.USER, "ZA", "Johannesburg", ExperienceLevel.SENIOR, Language.EN, false,
+        thandiwe = developer("thandiwe_ndlovu", "Thandiwe Ndlovu", Role.USER, "ZA", "Johannesburg", ExperienceLevel.SENIOR, Language.EN, false,
                 "Android lead in Johannesburg. Kotlin, Compose, and a decade of shipping apps to millions of users.",
                 "Kotlin", "Android", "Java");
-        Long samuel = developer("samuel_ngono", "Samuel Ngono", Role.USER, "CM", "Douala", ExperienceLevel.STUDENT, Language.FR, true,
+        samuel = developer("samuel_ngono", "Samuel Ngono", Role.USER, "CM", "Douala", ExperienceLevel.STUDENT, Language.FR, true,
                 "Étudiant en licence d'informatique à Douala. J'apprends Java et Python, et je cherche mon premier stage.",
                 "Java", "Python");
-        Long fatou = developer("fatou_sow", "Fatou Sow", Role.USER, "SN", "Thiès", ExperienceLevel.JUNIOR, Language.FR, true,
+        fatou = developer("fatou_sow", "Fatou Sow", Role.USER, "SN", "Thiès", ExperienceLevel.JUNIOR, Language.FR, true,
                 "Développeuse mobile junior à Thiès. Flutter le jour, contributions open source le soir.",
                 "Flutter", "Dart");
-        Long omar = developer("omar_benali", "Omar Ben Ali", Role.USER, "TN", "Tunis", ExperienceLevel.MID, Language.FR, false,
+        omar = developer("omar_benali", "Omar Ben Ali", Role.USER, "TN", "Tunis", ExperienceLevel.MID, Language.FR, false,
                 "Développeur web à Tunis. Laravel et Vue.js, avec un faible pour les API bien documentées.",
                 "PHP", "Laravel", "Vue.js", "JavaScript");
-        Long selam = developer("selam_tesfaye", "Selam Tesfaye", Role.USER, "ET", "Addis-Abeba", ExperienceLevel.MID, Language.EN, false,
+        selam = developer("selam_tesfaye", "Selam Tesfaye", Role.USER, "ET", "Addis-Abeba", ExperienceLevel.MID, Language.EN, false,
                 "Data engineer in Addis Ababa. Python, data pipelines, and natural language processing for Amharic.",
                 "Python", "Machine Learning", "PostgreSQL");
 
-        // Abonnements et tags suivis : alimentent le fil personnalisé
-        follow(samuel, "awa_diop", "chioma_okafor", "yassine_elamrani");
-        follow(fatou, "wanjiru_kamau", "awa_diop");
-        follow(aminata, "kofi_mensah", "awa_diop", "omar_benali");
-        follow(kofi, "aminata_traore", "thandiwe_ndlovu");
-        follow(wanjiru, "thandiwe_ndlovu", "fatou_sow");
-        follow(jeanPaul, "yassine_elamrani", "awa_diop");
-        follow(selam, "chioma_okafor");
-        follow(chioma, "selam_tesfaye", "awa_diop");
-        follow(omar, "awa_diop");
-        followTags(samuel, "java", "spring-boot", "carriere");
-        followTags(fatou, "flutter", "offline");
-        followTags(aminata, "react", "node-js", "mobile-money");
-        followTags(selam, "machine-learning", "python");
+        if (fresh) {
+            // Abonnements et tags suivis : alimentent le fil personnalisé
+            follow(samuel, "awa_diop", "chioma_okafor", "yassine_elamrani");
+            follow(fatou, "wanjiru_kamau", "awa_diop");
+            follow(aminata, "kofi_mensah", "awa_diop", "omar_benali");
+            follow(kofi, "aminata_traore", "thandiwe_ndlovu");
+            follow(wanjiru, "thandiwe_ndlovu", "fatou_sow");
+            follow(jeanPaul, "yassine_elamrani", "awa_diop");
+            follow(selam, "chioma_okafor");
+            follow(chioma, "selam_tesfaye", "awa_diop");
+            follow(omar, "awa_diop");
+            followTags(samuel, "java", "spring-boot", "carriere");
+            followTags(fatou, "flutter", "offline");
+            followTags(aminata, "react", "node-js", "mobile-money");
+            followTags(selam, "machine-learning", "python");
+        }
+        if (questionRepository.count() == 0) {
+            seedQuestions();
+        }
+        if (articleRepository.count() == 0) {
+            seedArticles();
+        }
+        if (opportunityRepository.count() == 0) {
+            seedOpportunities();
+        }
 
-        // ═══════════════════════════════════════════════════════════════
-        //  QUESTIONS / RÉPONSES
-        // ═══════════════════════════════════════════════════════════════
+        spreadDatesOverPastWeeks();
+
+        log.info("[Init] Données de démonstration prêtes : {} utilisateurs", userRepository.count());
+        log.info("[Init] Comptes de démonstration : identifiant « awa_diop » (modératrice), « samuel_ngono », « aminata_traore »... et « admin »");
+    }
+
+    // ==================== QUESTIONS / RÉPONSES ====================
+
+    private void seedQuestions() {
 
         Long qComponent = question(samuel, "Spring Boot : quelle différence entre @Component, @Service et @Repository ?", """
                 Je débute avec Spring Boot et je vois ces trois annotations partout. Dans mon projet, si je remplace `@Service` par `@Component`, tout continue de fonctionner :
@@ -358,10 +386,11 @@ public class DemoDataSeeder {
                 Le risque de cette approche est d'oublier le filtre dans une requête. Ne le laisse pas à la discipline des développeurs : applique-le automatiquement avec un *global scope* Eloquent, et ajoute un test qui vérifie qu'une école ne peut pas lire les données d'une autre.
                 """);
         upvote(ContentType.QUESTION, qTenant, awa, jeanPaul);
+    }
 
-        // ═══════════════════════════════════════════════════════════════
-        //  ARTICLES
-        // ═══════════════════════════════════════════════════════════════
+    // ==================== ARTICLES ====================
+
+    private void seedArticles() {
 
         Long artApi = article(awa, Language.FR, true, "Construire une API REST qui vieillit bien avec Spring Boot", """
                 Une API est facile à écrire et difficile à faire évoluer. Voici les décisions que je prends dès le premier jour sur un projet Spring Boot, parce qu'elles coûtent cher à corriger plus tard.
@@ -482,65 +511,11 @@ public class DemoDataSeeder {
         comment(samuel, ContentType.ARTICLE, artParcours, "Je me reconnais tellement dans les six mois à changer de langage. Merci pour ce témoignage.");
         comment(selam, ContentType.ARTICLE, artMl, "We see the same thing with Amharic. Would love to compare notes on data collection.");
         comment(jeanPaul, ContentType.ARTICLE, artVps, "Le point sur les sauvegardes testées devrait être affiché dans tous les bureaux.");
+    }
 
-        // ═══════════════════════════════════════════════════════════════
-        //  PROJETS OPEN SOURCE
-        // ═══════════════════════════════════════════════════════════════
+    // ==================== OPPORTUNITÉS ====================
 
-        Long pMomo = project(aminata, "MoMo Connect", true, """
-                Une bibliothèque Node.js qui offre **une seule interface** pour les API de paiement Mobile Money de plusieurs opérateurs.
-
-                - Initier un paiement et suivre son statut avec le même code, quel que soit l'opérateur
-                - Vérification des signatures de webhook
-                - Environnement de test intégré
-
-                Nous cherchons des contributeurs pour ajouter de nouveaux opérateurs et améliorer la documentation.
-                """, "Node.js", "TypeScript", "Mobile Money");
-        Long pAgri = project(jeanPaul, "AgriData", true, """
-                Une API ouverte des **prix des marchés agricoles** en Afrique de l'Est, mise à jour chaque jour à partir de relevés de terrain.
-
-                Les agriculteurs vendent souvent sans connaître le prix pratiqué au marché voisin. AgriData rend cette information accessible par API et par SMS.
-
-                Écrit en Go, données dans PostgreSQL. Contributions bienvenues : collecteurs de données, nouveaux marchés, client mobile.
-                """, "Go", "PostgreSQL", "Open Data");
-        Long pEdu = project(wanjiru, "EduOffline", true, """
-                A Flutter app that lets students **download course content once and study without a connection**.
-
-                Lessons, quizzes and progress are stored on the device and synchronised when a network is available. Built for schools where connectivity is shared and intermittent.
-
-                Looking for contributors: content packaging, right-to-left language support, and testing on low-end devices.
-                """, "Flutter", "Dart", "Offline");
-        Long pNlp = project(selam, "Habesha NLP", true, """
-                Open tools for **natural language processing in Amharic and Tigrinya**: tokeniser, normaliser for Ge'ez script variants, and a small labelled corpus.
-
-                Most NLP libraries ignore these languages. This project collects the basic building blocks so that others do not have to start from zero.
-
-                Native speakers who can review annotations are especially welcome.
-                """, "Python", "Machine Learning", "NLP");
-        Long pUi = project(kofi, "Sahel UI", false, """
-                A React component library designed for **slow networks and low-end phones**: small bundles, no layout shift, and full keyboard accessibility.
-
-                Used in production by three products. The API is stable; the project is in maintenance mode and not currently looking for new contributors.
-                """, "React", "TypeScript", "CSS");
-        star(pMomo, omar, awa, kofi, fatou, jeanPaul, samuel);
-        star(pAgri, awa, yassine, chioma, selam);
-        star(pEdu, fatou, thandiwe, awa, aminata, samuel);
-        star(pNlp, chioma, awa, wanjiru);
-        star(pUi, aminata, thandiwe, omar, wanjiru);
-        Long omarInMomo = join(omar, pMomo);
-        decide(aminata, pMomo, omarInMomo, MemberStatus.ACCEPTED, ProjectRole.MAINTAINER);
-        Long fatouInEdu = join(fatou, pEdu);
-        decide(wanjiru, pEdu, fatouInEdu, MemberStatus.ACCEPTED, ProjectRole.CONTRIBUTOR);
-        Long chiomaInNlp = join(chioma, pNlp);
-        decide(selam, pNlp, chiomaInNlp, MemberStatus.ACCEPTED, ProjectRole.CONTRIBUTOR);
-        // Demandes laissées en attente : visibles dans les notifications des propriétaires
-        join(samuel, pAgri);
-        join(kofi, pMomo);
-        comment(fatou, ContentType.PROJECT, pEdu, "J'ai testé sur un téléphone avec 1 Go de RAM : fluide. Je prends le ticket sur l'arabe.");
-
-        // ═══════════════════════════════════════════════════════════════
-        //  OPPORTUNITÉS
-        // ═══════════════════════════════════════════════════════════════
+    private void seedOpportunities() {
 
         opportunity(awa, OpportunityType.JOB, WorkMode.HYBRID, "Développeur·se backend Java / Spring Boot", "Teranga Tech", "SN", "Dakar",
                 "800 000 – 1 200 000 FCFA / mois", 30, """
@@ -593,11 +568,6 @@ public class DemoDataSeeder {
                 "USD 25 – 35 per hour", 15, """
                 Short contract to add offline lesson downloads to an existing Flutter app used by secondary schools. Experience with local databases and background synchronisation is essential.
                 """, "Flutter", "Dart", "Offline");
-
-        spreadDatesOverPastWeeks();
-
-        log.info("[Init] Données de démonstration créées : {} utilisateurs", userRepository.count());
-        log.info("[Init] Comptes de démonstration : identifiant « awa_diop » (modératrice), « samuel_ngono », « aminata_traore »... et « admin »");
     }
 
     // ==================== COMPTES ====================
@@ -633,37 +603,10 @@ public class DemoDataSeeder {
                 .build());
     }
 
-    private Long seedAdmin() {
-        return userRepository.save(Admin.builder()
-                .username("admin")
-                .email("admin@example.com")
-                .password(passwordEncoder.encode(adminPassword))
-                .fullName("Équipe Ndadiee")
-                .role(Role.ADMIN)
-                .build()).getId();
-    }
-
+    // Retrouvé s'il existe déjà, sinon créé avec son profil (DemoAccounts)
     private Long developer(String username, String fullName, Role role, String country, String city,
             ExperienceLevel level, Language language, boolean openToWork, String bio, String... skills) {
-        Long id = developerRepository.save(Developer.builder()
-                .username(username)
-                .email(username.replace('_', '.') + "@example.com")
-                .password(encodedDemoPassword)
-                .fullName(fullName)
-                .role(role)
-                .build()).getId();
-
-        userService.updateProfile(id, UpdateProfileRequest.builder()
-                .fullName(fullName)
-                .bio(bio)
-                .country(country)
-                .city(city)
-                .preferredLanguage(language)
-                .level(level)
-                .openToWork(openToWork)
-                .skills(List.of(skills))
-                .build());
-        return id;
+        return accounts.developer(username, fullName, role, country, city, level, language, openToWork, bio, skills);
     }
 
     private void follow(Long followerId, String... usernames) {
@@ -706,26 +649,6 @@ public class DemoDataSeeder {
                 .build()).getId();
     }
 
-    private Long project(Long ownerId, String name, boolean lookingForContributors, String description, String... tags) {
-        return projectService.create(ownerId, ProjectRequest.builder()
-                .name(name)
-                .description(description.strip())
-                // Dépôts fictifs : example.com est un domaine réservé à la documentation
-                .repositoryUrl("https://example.com/ndadiee-demo/" + slugService.toSlug(name))
-                .lookingForContributors(lookingForContributors)
-                .tags(List.of(tags))
-                .build()).getId();
-    }
-
-    private Long join(Long developerId, Long projectId) {
-        return projectService.join(developerId, projectId).getId();
-    }
-
-    private void decide(Long managerId, Long projectId, Long memberId, MemberStatus status, ProjectRole role) {
-        projectService.decide(managerId, projectId, memberId,
-                MemberDecisionRequest.builder().status(status).role(role).build());
-    }
-
     private void opportunity(Long postedById, OpportunityType type, WorkMode workMode, String title, String companyName,
             String country, String city, String salaryRange, int deadlineInDays, String description, String... tags) {
         opportunityService.create(postedById, OpportunityRequest.builder()
@@ -749,10 +672,6 @@ public class DemoDataSeeder {
         for (Long voterId : voterIds) {
             voteService.vote(voterId, VoteRequest.builder().targetType(targetType).targetId(targetId).value(1).build());
         }
-    }
-
-    private void star(Long projectId, Long... developerIds) {
-        upvote(ContentType.PROJECT, projectId, developerIds);
     }
 
     private void comment(Long authorId, ContentType targetType, Long targetId, String body) {
@@ -788,9 +707,6 @@ public class DemoDataSeeder {
                 """);
         jdbcTemplate.update("UPDATE articles SET published_at = created_at WHERE published_at IS NOT NULL");
         jdbcTemplate.update("""
-                UPDATE projects SET created_at = now() - make_interval(days => (2 + ((SELECT max(id) FROM projects) - id) * 6)::int)
-                """);
-        jdbcTemplate.update("""
                 UPDATE opportunities SET created_at = now() - make_interval(hours => (7 + ((SELECT max(id) FROM opportunities) - id) * 22)::int)
                 """);
         // Commentaires et notifications : étalés sur les dernières heures, donc après leur cible
@@ -800,7 +716,7 @@ public class DemoDataSeeder {
         jdbcTemplate.update("""
                 UPDATE notifications SET created_at = now() - make_interval(mins => (2 + ((SELECT max(id) FROM notifications) - id) * 2)::int)
                 """);
-        for (String table : List.of("users", "questions", "answers", "articles", "projects", "opportunities",
+        for (String table : List.of("users", "questions", "answers", "articles", "opportunities",
                 "comments", "notifications")) {
             jdbcTemplate.update("UPDATE " + table + " SET updated_at = created_at");
         }

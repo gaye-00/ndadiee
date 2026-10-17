@@ -1,23 +1,59 @@
 <!doctype html>
-<html lang="fr">
+<html lang="fr" dir="ltr">
   <head>
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Ndadiee — La communauté des développeurs africains</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <meta name="color-scheme" content="dark light" />
+    <meta name="theme-color" content="#07080d" />
+    <title>Ndadiee — Trouve ton équipe. Livre ton projet.</title>
     <meta
       name="description"
-      content="Ndadiee, la plateforme d'échange pour les devs, par les devs : questions et réponses, articles, projets open source et opportunités à travers l'Afrique."
+      content="La plateforme des devs du continent : une vitrine pour montrer ce que tu construis, des annonces avec les rôles recherchés et un espace d'équipe avec kanban et revues de code."
     />
 
-    <!-- Évite le flash de thème : applique la classe dark avant le premier rendu.
-         Même clé et même règle que src/store/useThemeStore.ts -->
+    <!--
+      Réglages appliqués avant le premier rendu, pour qu'aucun flash ne soit visible :
+      thème clair ou sombre, langue et sens d'écriture, mode économie de données.
+      Mêmes clés et mêmes règles que src/utils/storage.ts, src/store/ et src/i18n/languages.ts.
+    -->
     <script>
       (function () {
-        var saved = localStorage.getItem("ndadiee_theme");
-        var prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
-        if (saved === "dark" || (!saved && prefersDark)) {
-          document.documentElement.classList.add("dark");
+        var root = document.documentElement;
+        try {
+          var theme = localStorage.getItem("ndadiee_theme");
+          var dark =
+            theme === "dark" || (theme !== "light" && window.matchMedia("(prefers-color-scheme: dark)").matches);
+          root.classList.toggle("dark", dark);
+          root.style.colorScheme = dark ? "dark" : "light";
+          document.querySelector('meta[name="theme-color"]').content = dark ? "#07080d" : "#f5f5f2";
+
+          // Langue : choix enregistré, sinon première langue du navigateur que l'on traduit, sinon français
+          var languages = ["fr", "en", "ar", "pt", "am", "ha", "sw", "wo", "yo", "zu"];
+          var lang = localStorage.getItem("ndadiee_lang");
+          if (languages.indexOf(lang) < 0) {
+            lang = "fr";
+            var preferred = navigator.languages || [navigator.language];
+            for (var i = 0; i < preferred.length; i++) {
+              var code = String(preferred[i]).toLowerCase().split("-")[0];
+              if (languages.indexOf(code) >= 0) {
+                lang = code;
+                break;
+              }
+            }
+          }
+          root.lang = lang;
+          root.dir = lang === "ar" ? "rtl" : "ltr";
+
+          var saver = localStorage.getItem("ndadiee_data_saver");
+          var browserSaves =
+            (navigator.connection && navigator.connection.saveData) ||
+            window.matchMedia("(prefers-reduced-data: reduce)").matches;
+          if (saver === "on" || (saver === null && browserSaves)) {
+            root.setAttribute("data-saver", "");
+          }
+        } catch (e) {
+          // Stockage bloqué (navigation privée stricte) : valeurs par défaut
         }
       })();
     </script>

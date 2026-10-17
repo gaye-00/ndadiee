@@ -1,0 +1,514 @@
+{
+  "app": {
+    "tagline": "Wá ẹgbẹ́ rẹ. Parí iṣẹ́ àkànṣe rẹ.",
+    "description": "Pẹpẹ àwọn olùgbéejáde ilẹ̀ Áfíríkà: ibi láti ṣàfihàn ohun tí o ń kọ́, ìkéde àwọn ipa tí àwọn ẹgbẹ́ ń wá, àti ààyè ẹgbẹ́ pẹ̀lú pátákó kanban àti àyẹ̀wò kóòdù."
+  },
+  "nav": {
+    "showcase": "Àfihàn",
+    "openings": "Ìkéde",
+    "hackathons": "Hackathon",
+    "forum": "Àpéjọ",
+    "dashboard": "Ibi iṣẹ́",
+    "projects": "Iṣẹ́ àkànṣe",
+    "reviews": "Àyẹ̀wò",
+    "messages": "Ìfiránṣẹ́",
+    "notifications": "Ìfitónilétí",
+    "settings": "Ètò",
+    "profile": "Profaili",
+    "create": "Ṣẹ̀dá"
+  },
+  "actions": {
+    "login": "Wọlé",
+    "register": "Forúkọsílẹ̀",
+    "logout": "Jáde",
+    "getStarted": "Bẹ̀rẹ̀",
+    "joinWithGithub": "Darapọ̀ pẹ̀lú GitHub",
+    "publishProject": "Ṣàtẹ̀jáde iṣẹ́ àkànṣe mi",
+    "newProject": "Iṣẹ́ àkànṣe tuntun",
+    "newTopic": "Àkòrí tuntun",
+    "newTask": "Iṣẹ́ tuntun",
+    "publishRole": "Kéde ipa kan",
+    "apply": "Bèrè",
+    "joinTeam": "Darapọ̀ mọ́ ẹgbẹ́",
+    "review": "Ṣàyẹ̀wò",
+    "approve": "Fọwọ́sí",
+    "requestChanges": "Béèrè àtúnṣe",
+    "invite": "Pè",
+    "sendMessage": "Fi ìfiránṣẹ́ ránṣẹ́",
+    "reply": "Fèsì",
+    "seeAll": "Wo gbogbo rẹ̀",
+    "save": "Fipamọ́",
+    "cancel": "Fagilé",
+    "close": "Pa á dé",
+    "back": "Padà",
+    "retry": "Gbìyànjú lẹ́ẹ̀kan sí i"
+  },
+  "search": {
+    "placeholder": "Ṣàwárí ohun gbogbo",
+    "shortcut": "Ctrl K",
+    "noResults": "Kò sí èsì fún “{{query}}”",
+    "groups": {
+      "roles": "Àwọn ipa tó ṣí sílẹ̀",
+      "projects": "Iṣẹ́ àkànṣe",
+      "people": "Àwọn olùgbéejáde",
+      "topics": "Àpéjọ",
+      "actions": "Àwọn ìgbésẹ̀"
+    }
+  },
+  "kanban": {
+    "todo": "Láti ṣe",
+    "inProgress": "Ń lọ lọ́wọ́",
+    "inReview": "Ní àyẹ̀wò",
+    "done": "Ó ti parí",
+    "dropHere": "Jù ú síbí"
+  },
+  "workspace": {
+    "board": "Pátákó",
+    "reviews": "Àyẹ̀wò",
+    "devlog": "Devlog",
+    "openRoles": "Àwọn ipa tó ṣí sílẹ̀",
+    "settings": "Ètò",
+    "messagePlaceholder": "Ìfiránṣẹ́ sí ẹgbẹ́…"
+  },
+  "forum": {
+    "replies_one": "Ìdáhùn {{count}}",
+    "replies_other": "Ìdáhùn {{count}}",
+    "solved": "Ó ti yanjú",
+    "unanswered": "Kò sí ìdáhùn"
+  },
+  "theme": {
+    "label": "Àwọ̀",
+    "light": "Ìmọ́lẹ̀",
+    "dark": "Òkùnkùn",
+    "system": "Ti ẹ̀rọ",
+    "lightTheme": "Àwọ̀ ìmọ́lẹ̀",
+    "pullHint": "Fa okùn náà",
+    "darkTheme": "Àwọ̀ dúdú"
+  },
+  "language": {
+    "label": "Èdè"
+  },
+  "dataSaver": {
+    "label": "Ìpamọ́ dátà",
+    "description": "Ìṣípòpadà díẹ̀, kò sí ìgbàsílẹ̀ ṣáájú: a ṣe é fún àwọn ìdìpọ̀ dátà kékeré."
+  },
+  "states": {
+    "loading": "Ó ń gbé e wọlé…",
+    "empty": "Kò sí nǹkan láti fihàn báyìí.",
+    "offline": "O kò sí lórí ayélujára."
+  },
+  "errors": {
+    "generic": "Àṣìṣe kan ṣẹlẹ̀.",
+    "network": "A kò lè dé ọ̀dọ̀ sáfà. Ṣàyẹ̀wò ìsopọ̀ rẹ.",
+    "notFound": "Ojú-ìwé yìí kò sí, tàbí a ti gbé e lọ."
+  },
+  "validation": {
+    "required": "A nílò àyè yìí.",
+    "email": "Àdírẹ́sì ímeèlì kò tọ́.",
+    "username": "Lẹ́tà 3 sí 30: lẹ́tà, nọ́mbà tàbí _.",
+    "minChars_one": "Ó kéré tán lẹ́tà {{count}}.",
+    "minChars_other": "Ó kéré tán lẹ́tà {{count}}.",
+    "maxChars_one": "Kò ju lẹ́tà {{count}} lọ.",
+    "maxChars_other": "Kò ju lẹ́tà {{count}} lọ.",
+    "minItems_one": "Ṣàfikún ó kéré tán nǹkan {{count}}.",
+    "minItems_other": "Ṣàfikún ó kéré tán nǹkan {{count}}.",
+    "maxItems_one": "Kò ju nǹkan {{count}} lọ.",
+    "maxItems_other": "Kò ju nǹkan {{count}} lọ."
+  },
+  "a11y": {
+    "skipToContent": "Fò sí àkóónú",
+    "mainNavigation": "Ìtọ́sọ́nà àkọ́kọ́",
+    "breadcrumb": "Ipa ọ̀nà ojú-ìwé",
+    "account": "Àkáǹtì mi"
+  },
+  "pages": {
+    "landing": "Ilé",
+    "showcase": "Àfihàn",
+    "project": "Iṣẹ́ àkànṣe",
+    "openings": "Ìkéde",
+    "newOpening": "Kéde ipa kan",
+    "hackathons": "Hackathon",
+    "hackathon": "Hackathon",
+    "forum": "Àpéjọ",
+    "topic": "Àkòrí",
+    "newTopic": "Àkòrí tuntun",
+    "profile": "Profaili",
+    "search": "Ìwákiri",
+    "dashboard": "Ibi iṣẹ́",
+    "myProjects": "Iṣẹ́ àkànṣe mi",
+    "newProject": "Iṣẹ́ àkànṣe tuntun",
+    "workspaceBoard": "Pátákó",
+    "workspaceReviews": "Àyẹ̀wò ẹgbẹ́",
+    "workspaceDevlog": "Devlog",
+    "workspaceRoles": "Àwọn ipa tó ṣí sílẹ̀",
+    "workspaceSettings": "Ètò ẹgbẹ́",
+    "review": "Àyẹ̀wò kóòdù",
+    "reviews": "Àyẹ̀wò",
+    "messages": "Ìfiránṣẹ́",
+    "notifications": "Ìfitónilétí",
+    "settings": "Ètò",
+    "login": "Wọlé",
+    "register": "Forúkọsílẹ̀",
+    "notFound": "A kò rí ojú-ìwé náà"
+  },
+  "enums": {
+    "experienceLevel": {
+      "STUDENT": "Akẹ́kọ̀ọ́",
+      "JUNIOR": "Olùbẹ̀rẹ̀",
+      "MID": "Agbedeméjì",
+      "SENIOR": "Àgbà"
+    },
+    "role": {
+      "USER": "Ọmọ ẹgbẹ́",
+      "MODERATOR": "Alábòójútó",
+      "ADMIN": "Alákòóso"
+    },
+    "opportunityType": {
+      "JOB": "Iṣẹ́",
+      "FREELANCE": "Iṣẹ́ àdáni",
+      "INTERNSHIP": "Ìkọ́ṣẹ́",
+      "HACKATHON": "Hackathon"
+    },
+    "workMode": {
+      "REMOTE": "Láti ọ̀nà jíjìn",
+      "ONSITE": "Ní ibi iṣẹ́",
+      "HYBRID": "Àdàpọ̀"
+    },
+    "projectRole": {
+      "OWNER": "Olùní",
+      "MAINTAINER": "Olùtọ́jú",
+      "CONTRIBUTOR": "Olùkópa"
+    }
+  },
+  "hero": {
+    "titleTeam": "Wá ẹgbẹ́ rẹ.",
+    "titleShip": "Parí iṣẹ́ àkànṣe rẹ.",
+    "lead": "Ibi láti ṣàfihàn ohun tí o ń kọ́, ìkéde àwọn ipa tí àwọn ẹgbẹ́ ń wá, àti ààyè ẹgbẹ́ pẹ̀lú pátákó kanban àti àyẹ̀wò kóòdù. Fún àwọn olùgbéejáde ilẹ̀ Áfíríkà.",
+    "recruiting_one": "Iṣẹ́ àkànṣe {{count}} ń wá ọmọ ẹgbẹ́ báyìí",
+    "recruiting_other": "Iṣẹ́ àkànṣe {{count}} ń wá ọmọ ẹgbẹ́ báyìí",
+    "firstTeams": "Àwọn ẹgbẹ́ àkọ́kọ́ ń dá sílẹ̀ níbí. Bẹ̀rẹ̀ tìrẹ.",
+    "loom": {
+      "sample": "Ọdún àpẹẹrẹ",
+      "username": "Orúkọ olùmúlò GitHub rẹ",
+      "placeholder": "oruko-re",
+      "weave": "Hun ọdún mi",
+      "weaving": "À ń hun ún…",
+      "reset": "Padà sí ọdún àpẹẹrẹ",
+      "invalid": "Orúkọ olùmúlò GitHub ní lẹ́tà, nọ́ńbà àti àmì àsopọ̀ nìkan, ó pọ̀ jù lọ ní ohun kíkọ 39.",
+      "notFound": "Kò sí àkọọ́lẹ̀ GitHub tó ní orúkọ yìí.",
+      "unavailable": "GitHub kò dáhùn. Gbìyànjú lẹ́ẹ̀kan sí i láìpẹ́.",
+      "viewLabel": "Ìwò ọdún",
+      "viewCloth": "Aṣọ: ọdún ní pẹrẹsẹ",
+      "viewCity": "Ìlú: ọdún ní 3D",
+      "less": "Díẹ̀",
+      "more": "Púpọ̀",
+      "level0": "Ọjọ́ láìsí ìkópa",
+      "level1": "Ọjọ́ tó dákẹ́",
+      "level2": "Ọjọ́ tó ń ṣiṣẹ́",
+      "level3": "Ọjọ́ tó kún",
+      "level4": "Ọjọ́ tó kún jù",
+      "structure": "Ìlà kan fún ọ̀sẹ̀ kọ̀ọ̀kan, bulọ́ọ̀kù kan fún ọjọ́ kọ̀ọ̀kan.",
+      "hintCloth": "Gbé àtọ́ka sórí ọjọ́ kan, tàbí rìn la ọdún náà kọjá pẹ̀lú àwọn bọ́tìnnì ọfà.",
+      "hintCity": "Fà á láti yí ìlú náà ká. Tẹ̀ ẹ́ lẹ́ẹ̀mejì láti padà.",
+      "summary": "{{who}}, láti {{from}} sí {{to}}: {{total}}. Ìlà kan fún ọ̀sẹ̀ kọ̀ọ̀kan, bulọ́ọ̀kù kan fún ọjọ́ kọ̀ọ̀kan. Lo àwọn bọ́tìnnì ọfà láti ka ọjọ́ kọ̀ọ̀kan.",
+      "streak_one": "ọ̀wọ́ tó gùn jù: ọjọ́ {{count}}",
+      "streak_other": "ọ̀wọ́ tó gùn jù: ọjọ́ {{count}}",
+      "showcase": "Ọdún rẹ yẹ fún ibi ìfihàn"
+    }
+  },
+  "contributions": {
+    "count_one": "Ìkópa {{count}}",
+    "count_other": "Ìkópa {{count}}",
+    "none": "Kò sí ìkópa"
+  },
+  "teamRoles": {
+    "frontend": "Olùgbéejáde front-end",
+    "backend": "Olùgbéejáde back-end",
+    "mobile": "Olùgbéejáde ohun èlò fóònù",
+    "design": "Apẹrẹ UI/UX",
+    "data": "Dátà àti AI",
+    "devops": "DevOps àti cloud",
+    "security": "Ààbò",
+    "payments": "Mobile Money àti USSD",
+    "l10n": "Ìtumọ̀ àti àwọn èdè",
+    "docs": "Kíkọ ìwé ìmọ̀-ẹ̀rọ",
+    "product": "Alákòóso ọjà",
+    "embedded": "IoT àti ẹ̀rọ àfibọ̀",
+    "qa": "Ìdánwò àti dídára"
+  },
+  "rolesBand": {
+    "title": "Àwọn ipa tí àwọn ẹgbẹ́ ń wá",
+    "all": "Gbogbo ìkéde",
+    "pause": "Dá ìlà àwọn ipa dúró",
+    "play": "Tẹ̀síwájú ìlà àwọn ipa",
+    "recruiting": "Ń wá olùkópa: {{projects}}"
+  },
+  "showcase": {
+    "title": "Àfihàn",
+    "all": "Gbogbo iṣẹ́ àkànṣe",
+    "seeking": "Ń wá: {{roles}}",
+    "seeRoles": "Wo àwọn ipa",
+    "seeProject": "Wo iṣẹ́ àkànṣe náà",
+    "stars_one": "Ìràwọ̀ {{count}}",
+    "stars_other": "Ìràwọ̀ {{count}}",
+    "team_one": "Ẹgbẹ́ ẹni {{count}}",
+    "team_other": "Ẹgbẹ́ ènìyàn {{count}}",
+    "firstSteps": "Àwọn ìgbésẹ̀ àkọ́kọ́",
+    "photoCredit": "Àwòrán: {{credit}}",
+    "noCover": "àwòrán iṣẹ́ àkànṣe",
+    "loading": "Àfihàn ń ṣí",
+    "emptyTitle": "Àfihàn ń dúró de iṣẹ́ àkànṣe àkọ́kọ́",
+    "emptyText": "Ṣàtẹ̀jáde tìrẹ: àwọn olùgbéejáde ilẹ̀ Áfíríkà yóò rí ohun tí o ń kọ́ àti àwọn ipa tí o ń wá.",
+    "emptyAction": "Ṣàtẹ̀jáde iṣẹ́ àkànṣe mi",
+    "errorTitle": "Àfihàn kò lè ṣí",
+    "errorText": "Ṣàyẹ̀wò ìsopọ̀ rẹ, lẹ́yìn náà gbìyànjú lẹ́ẹ̀kan sí i.",
+    "more_one": "iṣẹ́ àkànṣe mìíràn nínú àfihàn",
+    "more_other": "àwọn iṣẹ́ àkànṣe mìíràn nínú àfihàn"
+  },
+  "media": {
+    "showImage": "Fi àwòrán hàn"
+  },
+  "footer": {
+    "explore": "Ṣàwárí",
+    "contribute": "Kópa",
+    "settings": "Ètò",
+    "languages": "Wà ní",
+    "woven": "Àwùjọ ló hun ún, òwú lórí òwú",
+    "backToTop": "Padà sí òkè",
+    "status": {
+      "checking": "Ń ṣàyẹ̀wò API…",
+      "online": "API wà lórí ayélujára",
+      "offline": "Kò ṣeé dé API"
+    },
+    "copyright": "© {{year}} {{name}}",
+    "scrollTop": "Padà sí òkè ojú-ìwé"
+  },
+  "cta": {
+    "eyebrow": "Ibi iṣẹ́ lónìí",
+    "threadTitle": "Òwú kan ṣoṣo kò lè di aṣọ.",
+    "threadText": "Gbogbo olùgbéejáde jẹ́ òwú kan: ọgbọ́n, èdè, orílẹ̀-èdè. Níbí, àwọn ẹgbẹ́ ń hun ara wọn yí iṣẹ́ àkànṣe ká.",
+    "stats": {
+      "developers_one": "olùgbéejáde",
+      "developers_other": "olùgbéejáde",
+      "countries_one": "orílẹ̀-èdè",
+      "countries_other": "orílẹ̀-èdè",
+      "projects_one": "iṣẹ́ àkànṣe",
+      "projects_other": "iṣẹ́ àkànṣe",
+      "openings_one": "ipa tó ṣí sílẹ̀",
+      "openings_other": "ipa tó ṣí sílẹ̀",
+      "seats_one": "àyè {{count}} láti kún",
+      "seats_other": "àyè {{count}} láti kún"
+    },
+    "title": "Iṣẹ́ àkànṣe rẹ tó kàn bẹ̀rẹ̀ pẹ̀lú ẹgbẹ́ kan.",
+    "text": "Fi ohun tí o ń kọ́ hàn, wá àwọn alábàáṣiṣẹ́ rẹ, ẹ jọ parí rẹ̀.",
+    "openWorkshop": "Ṣí ibi iṣẹ́",
+    "seeShowcase": "Wo àfihàn",
+    "alreadyWeaving": "Wọ́n ti ń hun níbí",
+    "label": {
+      "title": "Àyè láti kún",
+      "inProjects_one": "nínú iṣẹ́ àkànṣe {{count}}",
+      "inProjects_other": "nínú iṣẹ́ àkànṣe {{count}}",
+      "action": "Wo àwọn ìkéde"
+    }
+  },
+  "features": {
+    "eyebrow": "Bí ó ṣe ń ṣiṣẹ́",
+    "title": "Láti ìpàdé dé ìfijíṣẹ́.",
+    "text": "Àkókò márùn-ún nínú ìgbésí ayé iṣẹ́ àkànṣe kan, ní ibì kan. Fọwọ́ kàn án, fà á, sàmì sí i: àwọn káàdì yìí ń ṣiṣẹ́ bí ibi iṣẹ́ náà.",
+    "meet": {
+      "eyebrow": "Ìpàdé",
+      "title": "Nípasẹ̀ iṣẹ́",
+      "text": "Àwọn ipa tí wọ́n ń wá àti àwọn ìmọ̀-ẹ̀rọ rẹ ń darí rẹ sí àwọn ènìyàn tó tọ́.",
+      "pick": "Àwọn ìmọ̀-ẹ̀rọ rẹ",
+      "seatsHeader": "Àyè",
+      "seats_one": "àyè {{count}}",
+      "seats_other": "àyè {{count}}",
+      "found_one": "{{name}} · ìkéde {{count}} tó ṣí sílẹ̀",
+      "found_other": "{{name}} · ìkéde {{count}} tó ṣí sílẹ̀",
+      "loading": "À ń wá àwọn ìkéde…",
+      "firstStep": "Ìgbésẹ̀ àkọ́kọ́ #{{number}}",
+      "all": "Gbogbo ìkéde {{name}}",
+      "empty": "Kò sí ẹni tó ń gba òṣìṣẹ́ fún {{name}} báyìí. Padà wá láìpẹ́, tàbí kí o tẹ iṣẹ́ àkànṣe rẹ jáde.",
+      "error": "A kò lè gbé àwọn ìkéde náà wá.",
+      "howTo": "Láti bèrè, mú issue «ìgbésẹ̀ àkọ́kọ́» ti ipa náà: kóòdù, kì í ṣe CV."
+    },
+    "review": {
+      "eyebrow": "Pàṣípààrọ̀",
+      "title": "Àyẹ̀wò kóòdù",
+      "text": "Ẹgbẹ́ àti àwùjọ ń ṣàyẹ̀wò PR kọ̀ọ̀kan ní ìlà-sí-ìlà.",
+      "pr": "Ibi ìpamọ́ Redis fún àkókò BRT",
+      "changesRequested": "Wọ́n béèrè àyípadà",
+      "approved": "Wọ́n fọwọ́ sí i",
+      "maintainer": "olùtọ́jú",
+      "comment": "Ìparí ní 0: àwọn àkókò náà kò ní ṣe àtúnṣe láé. Mo dábàá ìṣẹ́jú 10.",
+      "apply": "Lo àbá náà",
+      "helpful": "wúlò",
+      "helpfulHint": "Ṣé àyẹ̀wò yìí ràn ọ́ lọ́wọ́? Ẹni tó kọ ọ́ ń gba àmì òkìkí 10.",
+      "resolved": "Ama ti lo àbá náà. Chinedu fọwọ́ sí PR náà.",
+      "replay": "Tún un ṣe"
+    },
+    "share": {
+      "eyebrow": "Pínpín",
+      "title": "Àfihàn + devlog",
+      "text": "Àfihàn, àwòrán ojú-ìwé, àwọn ìmọ̀-ẹ̀rọ, ìjápọ̀ GitHub, ìwé ìlọsíwájú.",
+      "devlog": "Devlog",
+      "stack": "Àwọn ìmọ̀-ẹ̀rọ iṣẹ́ àkànṣe náà",
+      "versions": {
+        "v07": {
+          "name": "v0.7",
+          "when": "ọjọ́ 2 sẹ́yìn",
+          "text": "Ibi ìpamọ́ Redis: ojú-ìwé ibùdókọ̀ dín láti ìṣẹ́jú-àáyá 1.8 sí 120 ms."
+        },
+        "v06": {
+          "name": "v0.6",
+          "when": "ọjọ́ 9 sẹ́yìn",
+          "text": "Ipò àìsí ìntánẹ́ẹ̀tì: àwọn ibùdókọ̀ 20 tó kẹ́yìn wà lárọ̀ọ́wọ́tó."
+        },
+        "v05": {
+          "name": "v0.5",
+          "when": "ọ̀sẹ̀ 3 sẹ́yìn",
+          "text": "A fọwọ́ sí ìṣàn GTFS àkọ́kọ́: ọ̀nà danfo 140."
+        }
+      },
+      "app": {
+        "next": "BRT tó kàn",
+        "minutes_one": "ìṣẹ́jú {{count}}",
+        "minutes_other": "ìṣẹ́jú {{count}}",
+        "before": "tẹ́lẹ̀: 1.8 s",
+        "offline": "Kò sí ìntánẹ́ẹ̀tì",
+        "kept_one": "ibùdókọ̀ {{count}} ni a pa mọ́",
+        "kept_other": "ibùdókọ̀ {{count}} ni a pa mọ́",
+        "routes": "Àwọn ọ̀nà danfo",
+        "lines_one": "ọ̀nà {{count}} · GTFS dára",
+        "lines_other": "ọ̀nà {{count}} · GTFS dára"
+      }
+    },
+    "team": {
+      "eyebrow": "Ìfọwọ́sowọ́pọ̀",
+      "title": "Àyè fún ẹgbẹ́ kọ̀ọ̀kan",
+      "text": "Àwọn ọmọ ẹgbẹ́, kanban, ìjíròrò, hackathon. Ìbéèrè nípasẹ̀ issue, kì í ṣe CV.",
+      "sprint": "sprint 7 · ọjọ́ 6 ló kù",
+      "online_one": "{{count}} wà lórí ayélujára",
+      "online_other": "{{count}} wà lórí ayélujára",
+      "board": "Pátákó sprint",
+      "firstStep": "ìgbésẹ̀ àkọ́kọ́",
+      "changes": "àyípadà 1",
+      "days_one": "ọjọ́ {{count}}",
+      "days_other": "ọjọ́ {{count}}",
+      "tasks": {
+        "t33": "Fi BRT tó kàn hàn lórí ojú ibùdókọ̀",
+        "t40": "Àwòṣe ojú-ìwé ibùdókọ̀",
+        "t46": "Dín àwọn ìbéèrè GraphQL kù fún IP kọ̀ọ̀kan",
+        "t38": "Ipò àìsí ìntánẹ́ẹ̀tì: ìlà ìmúṣiṣẹ́pọ̀",
+        "t45": "Ṣàyẹ̀wò ìṣàn GTFS ti danfo",
+        "t84": "Ibi ìpamọ́ Redis fún àkókò BRT"
+      },
+      "card": "#{{number}} {{task}}, nínú {{column}}",
+      "keys": "Enter: ọ̀wọ̀n tó kàn. Ọfà òsì àti ọ̀tún: ọ̀wọ̀n ẹ̀gbẹ́.",
+      "moved": "{{name}} gbé «{{task}}» lọ sí {{column}}",
+      "youMoved": "O gbé «{{task}}» lọ sí {{column}}",
+      "hintPointer": "Fa káàdì kan, tàbí tẹ̀ ẹ́ láti gbé e síwájú.",
+      "hintTouch": "Fọwọ́ kan káàdì kan láti gbé e síwájú."
+    },
+    "daily": {
+      "eyebrow": "Lójoojúmọ́",
+      "title": "Ibi iṣẹ́ rẹ lónìí",
+      "text": "Àwọn àyẹ̀wò tó ń dúró dè ọ́, àwọn iṣẹ́ rẹ, àwọn ìkéde tó bá ọ mu. Ojú-ìwé fífúyẹ́, ipò ìpamọ́ dátà.",
+      "hello": "Ẹ n lẹ́ {{name}}",
+      "summary_one": "Lónìí: àyẹ̀wò 2 ń dúró dè ọ́, iṣẹ́ {{count}}, ìbéèrè 1 láti wò.",
+      "summary_other": "Lónìí: àyẹ̀wò 2 ń dúró dè ọ́, iṣẹ́ {{count}}, ìbéèrè 1 láti wò.",
+      "allDone": "Àwọn iṣẹ́ ti parí! Àyẹ̀wò 2 àti ìbéèrè 1 ló kù.",
+      "reviews": "Àwọn àyẹ̀wò tó ń dúró dè ọ́",
+      "review84": "Ibi ìpamọ́ Redis fún àkókò BRT",
+      "review12": "Helm chart: ààlà ìrántí àkọ́kọ́",
+      "tasks": "Àwọn iṣẹ́ rẹ",
+      "task1": "#46 Dín àwọn ìbéèrè GraphQL kù fún IP kọ̀ọ̀kan",
+      "task2": "Tẹ devlog v0.8 jáde",
+      "task3": "Múra àfihàn sprint 7 sílẹ̀",
+      "saverOn": "Ó ti tàn: ojú-òpó náà ń fúyẹ́",
+      "saverOff": "Ó ti kú",
+      "saverImages": "Àwòrán nígbà tí a bá béèrè",
+      "saverMotion": "Ìṣípòpadà ti dúró",
+      "saverPrefetch": "Kò sí ìgbàsílẹ̀ ṣáájú",
+      "open": "Ṣí ibi iṣẹ́ mi",
+      "create": "Ṣẹ̀dá ibi iṣẹ́ mi"
+    }
+  },
+  "auth": {
+    "login": {
+      "eyebrow": "Wọlé",
+      "title": "Inú wa dùn láti rí ọ lẹ́ẹ̀kan sí i.",
+      "text": "Ibi iṣẹ́ rẹ ń dúró dè ọ́: àwọn ẹgbẹ́ rẹ, àwọn àyẹ̀wò rẹ, àwọn iṣẹ́ àkànṣe rẹ.",
+      "submit": "Wọlé",
+      "pending": "Ó ń wọlé…",
+      "failed": "Ímeèlì, orúkọ olùmúlò tàbí ọ̀rọ̀ aṣínà kò tọ́.",
+      "noAccount": "O kò tíì ní àkọọ́lẹ̀?",
+      "toRegister": "Ṣẹ̀dá àkọọ́lẹ̀"
+    },
+    "register": {
+      "eyebrow": "Forúkọsílẹ̀",
+      "title": "Darapọ̀ mọ́ ibi iṣẹ́ náà.",
+      "text": "Àfihàn fún àwọn iṣẹ́ àkànṣe rẹ, àwọn ẹgbẹ́ ní àyíká rẹ. Ìṣẹ́jú kan tó.",
+      "submit": "Ṣẹ̀dá àkọọ́lẹ̀ mi",
+      "pending": "Ó ń ṣẹ̀dá àkọọ́lẹ̀…",
+      "hasAccount": "Ṣé ọmọ ẹgbẹ́ ni ọ́ tẹ́lẹ̀?",
+      "toLogin": "Wọlé"
+    },
+    "welcomeButton": "Ẹ káàbọ̀!",
+    "welcomeLabel": "Ẹ káàbọ̀ sí ibi iṣẹ́",
+    "fields": {
+      "identifier": "Ímeèlì tàbí orúkọ olùmúlò",
+      "identifierPlaceholder": "ade@apeere.com",
+      "password": "Ọ̀rọ̀ aṣínà",
+      "fullName": "Orúkọ kíkún",
+      "fullNamePlaceholder": "Adé Ọlá",
+      "username": "Orúkọ olùmúlò",
+      "usernamePlaceholder": "ade_ola",
+      "email": "Ímeèlì",
+      "emailPlaceholder": "ade@apeere.com"
+    },
+    "password": {
+      "show": "Fi ọ̀rọ̀ aṣínà hàn",
+      "capsLock": "Àwọn lẹ́tà ńlá ti tàn"
+    },
+    "strength": {
+      "label": "Agbára",
+      "weak": "Aláìlágbára",
+      "fair": "Ààrin",
+      "good": "Lágbára",
+      "great": "Dára jùlọ",
+      "met": "(ti ṣe)",
+      "unmet": "(kò tíì ṣe)",
+      "rules": {
+        "length": "Ó kéré tán lẹ́tà 8",
+        "long": "Lẹ́tà 12 tàbí jù bẹ́ẹ̀ lọ",
+        "cases": "Lẹ́tà ńlá àti kékeré",
+        "mixed": "Nọ́ńbà kan àti àmì kan"
+      }
+    },
+    "username": {
+      "free": "{{username}} wà.",
+      "taken": "Wọ́n ti mú {{username}}.",
+      "reserved": "Wọ́n ti fi {{username}} pamọ́.",
+      "suggestions": "Èyí tó wà:"
+    },
+    "oauth": {
+      "continueWith": "Tẹ̀síwájú pẹ̀lú {{provider}}",
+      "soon": "láìpẹ́",
+      "unavailable": "Wíwọlé pẹ̀lú {{provider}} ń bọ̀ láìpẹ́. Ní báyìí, tẹ̀síwájú pẹ̀lú ímeèlì rẹ.",
+      "or": "tàbí pẹ̀lú ímeèlì rẹ"
+    },
+    "errors": {
+      "emailTaken": "Àkọọ́lẹ̀ kan ti ń lo ímeèlì yìí. Wọlé dípò rẹ̀.",
+      "usernameTaken": "Wọ́n ṣẹ̀ṣẹ̀ mú orúkọ olùmúlò yìí.",
+      "usernameReserved": "Wọ́n ti fi orúkọ olùmúlò yìí pamọ́."
+    },
+    "loom": {
+      "eyebrow": "Ibi iṣẹ́",
+      "loginTitle": "Ẹ káàbọ̀ padà sí ibi iṣẹ́.",
+      "loginText": "Nígbà tí o kò sí, àwọn ẹgbẹ́ ń bá a lọ ní híhun.",
+      "registerTitle": "Òwú kan sí i nínú aṣọ náà.",
+      "registerText": "Gbogbo olùgbéejáde jẹ́ òwú kan. Níbí, àwọn ẹgbẹ́ ń hun ara wọn yí iṣẹ́ àkànṣe ká."
+    }
+  }
+}

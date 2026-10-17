@@ -1,4 +1,5 @@
 import axios, { type AxiosError, type InternalAxiosRequestConfig } from 'axios';
+import i18n from '@/i18n';
 import { useAuthStore } from '@/store/useAuthStore';
 import type { AuthResponse } from '@/types/auth.types';
 import type { ApiResponse } from '@/types/common.types';
@@ -16,6 +17,8 @@ api.interceptors.request.use((config) => {
   if (token) {
     config.headers.Authorization = `Bearer ${token}`;
   }
+  // Langue de l'interface : le backend pourra s'en servir pour traduire ses messages
+  config.headers['Accept-Language'] = i18n.resolvedLanguage ?? i18n.language;
   return config;
 });
 
@@ -48,6 +51,9 @@ api.interceptors.response.use(
       error.response?.status === 401 &&
       original !== undefined &&
       !original._retry &&
+      // Un visiteur n'a pas de session à renouveler : son 401 remonte tel quel, sans « déconnexion » qui
+      // viderait le cache des requêtes de la page (et laisserait ses sections en chargement)
+      storage.getRefreshToken() !== null &&
       !AUTH_ENDPOINTS.some((endpoint) => original.url?.includes(endpoint));
 
     if (!expiredSession) {

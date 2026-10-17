@@ -1,0 +1,539 @@
+{
+  "app": {
+    "tagline": "Trouve ton équipe. Livre ton projet.",
+    "description": "La plateforme des devs du continent : une vitrine pour montrer ce que tu construis, des annonces avec les rôles recherchés et un espace d'équipe avec kanban et revues de code."
+  },
+  "nav": {
+    "showcase": "Vitrine",
+    "openings": "Annonces",
+    "hackathons": "Hackathons",
+    "forum": "Forum",
+    "dashboard": "Atelier",
+    "projects": "Projets",
+    "reviews": "Revues",
+    "messages": "Messages",
+    "notifications": "Notifications",
+    "settings": "Réglages",
+    "profile": "Profil",
+    "create": "Créer"
+  },
+  "actions": {
+    "login": "Connexion",
+    "register": "Inscription",
+    "logout": "Se déconnecter",
+    "getStarted": "Commencer",
+    "joinWithGithub": "Rejoindre avec GitHub",
+    "publishProject": "Publier mon projet",
+    "newProject": "Nouveau projet",
+    "newTopic": "Nouveau sujet",
+    "newTask": "Nouvelle tâche",
+    "publishRole": "Publier un rôle",
+    "apply": "Postuler",
+    "joinTeam": "Rejoindre l'équipe",
+    "review": "Relire",
+    "approve": "Approuver",
+    "requestChanges": "Demander des changements",
+    "invite": "Inviter",
+    "sendMessage": "Envoyer un message",
+    "reply": "Répondre",
+    "seeAll": "Tout voir",
+    "save": "Enregistrer",
+    "cancel": "Annuler",
+    "close": "Fermer",
+    "back": "Retour",
+    "retry": "Réessayer"
+  },
+  "search": {
+    "placeholder": "Tout rechercher",
+    "shortcut": "Ctrl K",
+    "noResults": "Aucun résultat pour « {{query}} »",
+    "groups": {
+      "roles": "Rôles ouverts",
+      "projects": "Projets",
+      "people": "Devs",
+      "topics": "Forum",
+      "actions": "Actions"
+    }
+  },
+  "kanban": {
+    "todo": "À faire",
+    "inProgress": "En cours",
+    "inReview": "En revue",
+    "done": "Terminé",
+    "dropHere": "Déposer ici"
+  },
+  "workspace": {
+    "board": "Tableau",
+    "reviews": "Revues",
+    "devlog": "Devlog",
+    "openRoles": "Rôles ouverts",
+    "settings": "Réglages",
+    "messagePlaceholder": "Message à l'équipe…"
+  },
+  "forum": {
+    "replies_one": "{{count}} réponse",
+    "replies_many": "{{count}} réponses",
+    "replies_other": "{{count}} réponses",
+    "solved": "Résolu",
+    "unanswered": "Sans réponse"
+  },
+  "theme": {
+    "label": "Thème",
+    "light": "Clair",
+    "dark": "Sombre",
+    "system": "Système",
+    "lightTheme": "Thème clair",
+    "pullHint": "Tire la corde",
+    "darkTheme": "Thème sombre"
+  },
+  "language": {
+    "label": "Langue"
+  },
+  "dataSaver": {
+    "label": "Économie de données",
+    "description": "Moins d'animations, pas de préchargement : pensé pour les petits forfaits."
+  },
+  "states": {
+    "loading": "Chargement…",
+    "empty": "Rien à afficher pour l'instant.",
+    "offline": "Tu es hors ligne."
+  },
+  "errors": {
+    "generic": "Une erreur est survenue.",
+    "network": "Impossible de joindre le serveur. Vérifie ta connexion.",
+    "notFound": "Cette page n'existe pas, ou a été déplacée."
+  },
+  "validation": {
+    "required": "Ce champ est obligatoire.",
+    "email": "Adresse e-mail invalide.",
+    "username": "3 à 30 caractères : lettres, chiffres ou _.",
+    "minChars_one": "{{count}} caractère minimum.",
+    "minChars_many": "{{count}} caractères minimum.",
+    "minChars_other": "{{count}} caractères minimum.",
+    "maxChars_one": "{{count}} caractère maximum.",
+    "maxChars_many": "{{count}} caractères maximum.",
+    "maxChars_other": "{{count}} caractères maximum.",
+    "minItems_one": "Ajoute au moins {{count}} élément.",
+    "minItems_many": "Ajoute au moins {{count}} éléments.",
+    "minItems_other": "Ajoute au moins {{count}} éléments.",
+    "maxItems_one": "{{count}} élément maximum.",
+    "maxItems_many": "{{count}} éléments maximum.",
+    "maxItems_other": "{{count}} éléments maximum."
+  },
+  "a11y": {
+    "skipToContent": "Aller au contenu",
+    "mainNavigation": "Navigation principale",
+    "breadcrumb": "Fil d'Ariane",
+    "account": "Mon compte"
+  },
+  "pages": {
+    "landing": "Accueil",
+    "showcase": "Vitrine",
+    "project": "Projet",
+    "openings": "Annonces",
+    "newOpening": "Publier une annonce",
+    "hackathons": "Hackathons",
+    "hackathon": "Hackathon",
+    "forum": "Forum",
+    "topic": "Sujet",
+    "newTopic": "Nouveau sujet",
+    "profile": "Profil",
+    "search": "Recherche",
+    "dashboard": "Atelier",
+    "myProjects": "Mes projets",
+    "newProject": "Nouveau projet",
+    "workspaceBoard": "Tableau",
+    "workspaceReviews": "Revues de l'équipe",
+    "workspaceDevlog": "Devlog",
+    "workspaceRoles": "Rôles ouverts",
+    "workspaceSettings": "Réglages de l'équipe",
+    "review": "Revue de code",
+    "reviews": "Revues",
+    "messages": "Messages",
+    "notifications": "Notifications",
+    "settings": "Réglages",
+    "login": "Connexion",
+    "register": "Inscription",
+    "notFound": "Page introuvable"
+  },
+  "enums": {
+    "experienceLevel": {
+      "STUDENT": "Étudiant·e",
+      "JUNIOR": "Junior",
+      "MID": "Confirmé·e",
+      "SENIOR": "Senior"
+    },
+    "role": {
+      "USER": "Membre",
+      "MODERATOR": "Modérateur·rice",
+      "ADMIN": "Admin"
+    },
+    "opportunityType": {
+      "JOB": "Emploi",
+      "FREELANCE": "Freelance",
+      "INTERNSHIP": "Stage",
+      "HACKATHON": "Hackathon"
+    },
+    "workMode": {
+      "REMOTE": "À distance",
+      "ONSITE": "Sur site",
+      "HYBRID": "Hybride"
+    },
+    "projectRole": {
+      "OWNER": "Propriétaire",
+      "MAINTAINER": "Mainteneur·se",
+      "CONTRIBUTOR": "Contributeur·rice"
+    }
+  },
+  "hero": {
+    "titleTeam": "Trouve ton équipe.",
+    "titleShip": "Livre ton projet.",
+    "lead": "Une vitrine pour montrer ce que tu construis, des annonces avec les rôles recherchés, et un espace d'équipe avec kanban et revues de code. Pour les devs du continent.",
+    "recruiting_one": "{{count}} projet recrute en ce moment",
+    "recruiting_many": "{{count}} projets recrutent en ce moment",
+    "recruiting_other": "{{count}} projets recrutent en ce moment",
+    "firstTeams": "Les premières équipes se forment ici. Lance la tienne.",
+    "loom": {
+      "sample": "Année type",
+      "username": "Ton pseudo GitHub",
+      "placeholder": "ton-pseudo",
+      "weave": "Tisser mon année",
+      "weaving": "Tissage…",
+      "reset": "Revoir l'année type",
+      "invalid": "Un pseudo GitHub, ce sont des lettres, des chiffres et des tirets : 39 caractères au plus.",
+      "notFound": "Aucun compte GitHub ne porte ce nom.",
+      "unavailable": "GitHub ne répond pas. Réessaie dans un instant.",
+      "viewLabel": "Vue de l'année",
+      "viewCloth": "Pagne : l'année à plat",
+      "viewCity": "Ville : l'année en 3D",
+      "less": "Moins",
+      "more": "Plus",
+      "level0": "Jours sans contribution",
+      "level1": "Jours calmes",
+      "level2": "Jours actifs",
+      "level3": "Jours chargés",
+      "level4": "Jours les plus chargés",
+      "structure": "Une bande par semaine, un bloc par jour.",
+      "hintCloth": "Survole un jour, ou parcours l'année avec les flèches du clavier.",
+      "hintCity": "Glisse pour tourner autour de la ville. Double-clic pour revenir.",
+      "summary": "{{who}}, du {{from}} au {{to}} : {{total}}. Une bande par semaine, un bloc par jour. Flèches du clavier pour lire chaque jour.",
+      "streak_one": "série record : {{count}} jour",
+      "streak_many": "série record : {{count}} jours",
+      "streak_other": "série record : {{count}} jours",
+      "showcase": "Ton année mérite une vitrine"
+    }
+  },
+  "contributions": {
+    "count_one": "{{count}} contribution",
+    "count_many": "{{count}} contributions",
+    "count_other": "{{count}} contributions",
+    "none": "Aucune contribution"
+  },
+  "teamRoles": {
+    "frontend": "Dev front-end",
+    "backend": "Dev back-end",
+    "mobile": "Dev mobile",
+    "design": "Designer UI/UX",
+    "data": "Data & IA",
+    "devops": "DevOps & cloud",
+    "security": "Sécurité",
+    "payments": "Mobile Money & USSD",
+    "l10n": "Traduction & langues",
+    "docs": "Rédaction technique",
+    "product": "Product manager",
+    "embedded": "IoT & embarqué",
+    "qa": "Tests & qualité"
+  },
+  "rolesBand": {
+    "title": "Rôles recherchés par les équipes",
+    "all": "Toutes les annonces",
+    "pause": "Mettre en pause la bande des rôles",
+    "play": "Relancer la bande des rôles",
+    "recruiting": "À la recherche de contributeurs : {{projects}}"
+  },
+  "showcase": {
+    "title": "La vitrine",
+    "all": "Tous les projets",
+    "seeking": "Cherche : {{roles}}",
+    "seeRoles": "Voir les rôles",
+    "seeProject": "Voir le projet",
+    "stars_one": "{{count}} étoile",
+    "stars_many": "{{count}} étoiles",
+    "stars_other": "{{count}} étoiles",
+    "team_one": "Équipe de {{count}} personne",
+    "team_many": "Équipe de {{count}} personnes",
+    "team_other": "Équipe de {{count}} personnes",
+    "firstSteps": "Premiers pas",
+    "photoCredit": "Photo : {{credit}}",
+    "noCover": "capture du projet",
+    "loading": "Chargement de la vitrine",
+    "emptyTitle": "La vitrine attend son premier projet",
+    "emptyText": "Publie le tien : les devs du continent verront ce que tu construis, et les rôles que tu cherches.",
+    "emptyAction": "Publier mon projet",
+    "errorTitle": "La vitrine n'a pas pu se charger",
+    "errorText": "Vérifie ta connexion, puis réessaie.",
+    "more_one": "autre projet dans la vitrine",
+    "more_many": "autres projets dans la vitrine",
+    "more_other": "autres projets dans la vitrine"
+  },
+  "media": {
+    "showImage": "Afficher l'image"
+  },
+  "footer": {
+    "explore": "Explorer",
+    "contribute": "Contribuer",
+    "settings": "Réglages",
+    "languages": "Disponible en",
+    "woven": "Tissé fil à fil par la communauté",
+    "backToTop": "Haut de page",
+    "status": {
+      "checking": "Vérification de l'API…",
+      "online": "API en ligne",
+      "offline": "API injoignable"
+    },
+    "copyright": "© {{year}} {{name}}",
+    "scrollTop": "Revenir en haut de la page"
+  },
+  "cta": {
+    "eyebrow": "L'atelier, aujourd'hui",
+    "threadTitle": "Un fil seul ne fait pas un pagne.",
+    "threadText": "Chaque dev est un fil : une compétence, une langue, un pays. Ici, les équipes se tissent autour des projets.",
+    "stats": {
+      "developers_one": "dev",
+      "developers_many": "devs",
+      "developers_other": "devs",
+      "countries_one": "pays",
+      "countries_many": "pays",
+      "countries_other": "pays",
+      "projects_one": "projet",
+      "projects_many": "projets",
+      "projects_other": "projets",
+      "openings_one": "rôle ouvert",
+      "openings_many": "rôles ouverts",
+      "openings_other": "rôles ouverts",
+      "seats_one": "{{count}} place à prendre",
+      "seats_many": "{{count}} places à prendre",
+      "seats_other": "{{count}} places à prendre"
+    },
+    "title": "Ton prochain projet commence par une équipe.",
+    "text": "Montre ce que tu construis, trouve tes équipiers, livrez ensemble.",
+    "openWorkshop": "Ouvrir l'atelier",
+    "seeShowcase": "Voir la vitrine",
+    "alreadyWeaving": "Ils tissent déjà ici",
+    "label": {
+      "title": "Places à prendre",
+      "inProjects_one": "dans {{count}} projet",
+      "inProjects_many": "dans {{count}} projets",
+      "inProjects_other": "dans {{count}} projets",
+      "action": "Voir les annonces"
+    }
+  },
+  "features": {
+    "eyebrow": "Comment ça marche",
+    "title": "De la rencontre à la livraison.",
+    "text": "Cinq moments de la vie d'un projet, au même endroit. Touche, glisse, coche : ces cartes marchent comme l'atelier.",
+    "meet": {
+      "eyebrow": "Se rencontrer",
+      "title": "Par le travail",
+      "text": "Les rôles recherchés et la stack te mènent aux bonnes personnes.",
+      "pick": "Ta stack",
+      "seatsHeader": "Places",
+      "seats_one": "{{count}} place",
+      "seats_many": "{{count}} places",
+      "seats_other": "{{count}} places",
+      "found_one": "{{name}} · {{count}} annonce ouverte",
+      "found_many": "{{name}} · {{count}} annonces ouvertes",
+      "found_other": "{{name}} · {{count}} annonces ouvertes",
+      "loading": "Recherche des annonces…",
+      "firstStep": "Premier pas #{{number}}",
+      "all": "Toutes les annonces {{name}}",
+      "empty": "Personne ne recrute en {{name}} pour l'instant. Reviens bientôt, ou publie ton projet.",
+      "error": "Les annonces n'ont pas pu se charger.",
+      "howTo": "Pour postuler, on prend l'issue « premier pas » du rôle : du code, pas de CV."
+    },
+    "review": {
+      "eyebrow": "Échanger",
+      "title": "Revues de code",
+      "text": "Chaque PR est relue ligne à ligne, par l'équipe et la communauté.",
+      "pr": "Cache Redis pour les horaires BRT",
+      "changesRequested": "Changement demandé",
+      "approved": "Approuvé",
+      "maintainer": "mainteneur",
+      "comment": "Expiration à 0 : les horaires ne seront jamais rafraîchis. Je propose 10 minutes.",
+      "apply": "Appliquer la suggestion",
+      "helpful": "utile",
+      "helpfulHint": "Cette revue t'a aidé ? Son auteur gagne 10 points de réputation.",
+      "resolved": "Ama a appliqué la suggestion. Chinedu approuve la PR.",
+      "replay": "Rejouer"
+    },
+    "share": {
+      "eyebrow": "Partager",
+      "title": "Vitrine + devlog",
+      "text": "Démo, captures, technologies, lien GitHub, journal de progression.",
+      "devlog": "Devlog",
+      "stack": "Technologies du projet",
+      "versions": {
+        "v07": {
+          "name": "v0.7",
+          "when": "il y a 2 j",
+          "text": "Cache Redis : la page arrêt passe de 1,8 s à 120 ms."
+        },
+        "v06": {
+          "name": "v0.6",
+          "when": "il y a 9 j",
+          "text": "Mode hors-ligne : les 20 derniers arrêts restent consultables."
+        },
+        "v05": {
+          "name": "v0.5",
+          "when": "il y a 3 sem.",
+          "text": "Premier flux GTFS validé : 140 lignes de danfo."
+        }
+      },
+      "app": {
+        "next": "Prochain BRT",
+        "minutes_one": "{{count}} min",
+        "minutes_many": "{{count}} min",
+        "minutes_other": "{{count}} min",
+        "before": "avant : 1,8 s",
+        "offline": "Hors-ligne",
+        "kept_one": "{{count}} arrêt gardé",
+        "kept_many": "{{count}} arrêts gardés",
+        "kept_other": "{{count}} arrêts gardés",
+        "routes": "Lignes de danfo",
+        "lines_one": "{{count}} ligne · GTFS validé",
+        "lines_many": "{{count}} lignes · GTFS validé",
+        "lines_other": "{{count}} lignes · GTFS validé"
+      }
+    },
+    "team": {
+      "eyebrow": "Collaborer",
+      "title": "Un espace par équipe",
+      "text": "Membres, kanban, discussion, hackathons. Candidature par issue, pas par CV.",
+      "sprint": "sprint 7 · 6 jours restants",
+      "online_one": "{{count}} en ligne",
+      "online_many": "{{count}} en ligne",
+      "online_other": "{{count}} en ligne",
+      "board": "Tableau du sprint",
+      "firstStep": "premier pas",
+      "changes": "1 changement",
+      "days_one": "{{count}} j",
+      "days_many": "{{count}} j",
+      "days_other": "{{count}} j",
+      "tasks": {
+        "t33": "Afficher le prochain BRT sur l'écran arrêt",
+        "t40": "Maquette de la page arrêt",
+        "t46": "Limiter les requêtes GraphQL par IP",
+        "t38": "Mode hors-ligne : file de synchronisation",
+        "t45": "Valider le flux GTFS des danfo",
+        "t84": "Cache Redis pour les horaires BRT"
+      },
+      "card": "#{{number}} {{task}}, dans {{column}}",
+      "keys": "Entrée : colonne suivante. Flèches gauche et droite : colonne voisine.",
+      "moved": "{{name}} a déplacé « {{task}} » vers {{column}}",
+      "youMoved": "Tu as déplacé « {{task}} » vers {{column}}",
+      "hintPointer": "Glisse une carte, ou clique pour l'avancer.",
+      "hintTouch": "Touche une carte pour l'avancer."
+    },
+    "daily": {
+      "eyebrow": "Au quotidien",
+      "title": "Ton atelier du jour",
+      "text": "Les revues qui t'attendent, tes tâches, les annonces qui te correspondent. Pages légères, mode économie de données.",
+      "hello": "Salut {{name}}",
+      "summary_one": "Aujourd'hui : 2 revues t'attendent, {{count}} tâche, 1 candidature à étudier.",
+      "summary_many": "Aujourd'hui : 2 revues t'attendent, {{count}} tâches, 1 candidature à étudier.",
+      "summary_other": "Aujourd'hui : 2 revues t'attendent, {{count}} tâches, 1 candidature à étudier.",
+      "allDone": "Tâches bouclées ! Restent 2 revues et 1 candidature.",
+      "reviews": "Revues qui t'attendent",
+      "review84": "Cache Redis pour les horaires BRT",
+      "review12": "Helm chart : limites mémoire par défaut",
+      "tasks": "Tes tâches",
+      "task1": "#46 Limiter les requêtes GraphQL par IP",
+      "task2": "Publier le devlog de la v0.8",
+      "task3": "Préparer la démo du sprint 7",
+      "saverOn": "Activée : le site s'allège",
+      "saverOff": "Désactivée",
+      "saverImages": "Images à la demande",
+      "saverMotion": "Animations coupées",
+      "saverPrefetch": "Pas de préchargement",
+      "open": "Ouvrir mon atelier",
+      "create": "Créer mon atelier"
+    }
+  },
+  "auth": {
+    "login": {
+      "eyebrow": "Connexion",
+      "title": "Content de te revoir.",
+      "text": "Ton atelier t'attend : tes équipes, tes revues, tes projets.",
+      "submit": "Se connecter",
+      "pending": "Connexion…",
+      "failed": "Identifiant ou mot de passe incorrect.",
+      "noAccount": "Pas encore de compte ?",
+      "toRegister": "Créer un compte"
+    },
+    "register": {
+      "eyebrow": "Inscription",
+      "title": "Rejoins l'atelier.",
+      "text": "Une vitrine pour tes projets, des équipes autour de toi. Une minute suffit.",
+      "submit": "Créer mon compte",
+      "pending": "Création du compte…",
+      "hasAccount": "Déjà membre ?",
+      "toLogin": "Se connecter"
+    },
+    "welcomeButton": "Bienvenue !",
+    "welcomeLabel": "Bienvenue à l'atelier",
+    "fields": {
+      "identifier": "E-mail ou nom d'utilisateur",
+      "identifierPlaceholder": "awa@exemple.com",
+      "password": "Mot de passe",
+      "fullName": "Nom complet",
+      "fullNamePlaceholder": "Awa Diop",
+      "username": "Nom d'utilisateur",
+      "usernamePlaceholder": "awa_diop",
+      "email": "E-mail",
+      "emailPlaceholder": "awa@exemple.com"
+    },
+    "password": {
+      "show": "Afficher le mot de passe",
+      "capsLock": "Majuscules verrouillées"
+    },
+    "strength": {
+      "label": "Solidité",
+      "weak": "Faible",
+      "fair": "Moyenne",
+      "good": "Solide",
+      "great": "Excellente",
+      "met": "(fait)",
+      "unmet": "(à faire)",
+      "rules": {
+        "length": "8 caractères minimum",
+        "long": "12 caractères ou plus",
+        "cases": "Majuscules et minuscules",
+        "mixed": "Un chiffre et un symbole"
+      }
+    },
+    "username": {
+      "free": "{{username}} est libre.",
+      "taken": "{{username}} est déjà pris.",
+      "reserved": "{{username}} est réservé.",
+      "suggestions": "Libres :"
+    },
+    "oauth": {
+      "continueWith": "Continuer avec {{provider}}",
+      "soon": "bientôt",
+      "unavailable": "La connexion avec {{provider}} arrive bientôt. En attendant, continue avec ton e-mail.",
+      "or": "ou avec ton e-mail"
+    },
+    "errors": {
+      "emailTaken": "Un compte utilise déjà cet e-mail. Connecte-toi plutôt.",
+      "usernameTaken": "Ce nom d'utilisateur vient d'être pris.",
+      "usernameReserved": "Ce nom d'utilisateur est réservé."
+    },
+    "loom": {
+      "eyebrow": "L'atelier",
+      "loginTitle": "Bon retour à l'atelier.",
+      "loginText": "Pendant ton absence, les équipes ont continué de tisser.",
+      "registerTitle": "Un fil de plus dans l'étoffe.",
+      "registerText": "Chaque dev est un fil. Ici, les équipes se tissent autour des projets."
+    }
+  }
+}

@@ -1,0 +1,173 @@
+/* ─────────────────────────────────────────────────────────────────────────────
+   Palette « Kente Signal » : design Proposition 3, Atelier collaboratif.
+   Le kente devient un système de couleurs : or, rouge et vert, tissés en
+   dégradés et en bandes fines, sur la nuit (thème sombre) ou le fond clair.
+
+   Toutes les couleurs de l'application sont ici. Les composants n'utilisent
+   que les classes Tailwind qui en découlent (voir theme.css) :
+     bg-background, text-foreground, bg-surface, glass, text-muted-foreground…
+     text-gold / text-coral / text-jade  → couleurs lisibles dans les 2 thèmes
+     bg-kente-gold / -coral / -jade       → aplats de marque (avatars, pastilles)
+     bg-kente, bg-kente-warm, text-kente  → dégradés (voir effects.css)
+
+   :root = thème clair, .dark = thème sombre (classe posée sur <html>).
+   ───────────────────────────────────────────────────────────────────────────── */
+
+:root {
+  /* ── Marque : identique dans les deux thèmes ── */
+  --kente-gold: #ffb547; /* or */
+  --kente-coral: #ff5a4e; /* rouge */
+  --kente-jade: #22d3a6; /* vert */
+  --kente-night: #07080d; /* nuit */
+  --kente-ink: #0d0f16; /* surface sombre, texte du thème clair */
+  --kente-paper: #f5f5f2; /* fond clair */
+
+  --gradient-kente: linear-gradient(90deg, var(--kente-gold), var(--kente-coral) 50%, var(--kente-jade));
+  --gradient-warm: linear-gradient(90deg, var(--kente-gold), var(--kente-coral));
+  --gradient-conic: conic-gradient(var(--kente-gold), var(--kente-coral), var(--kente-jade), var(--kente-gold));
+
+  /* ── Typographie : Unbounded (titres), Manrope (texte), Geist Mono (code et données) ──
+     Les polices arabe et éthiopienne ne sont téléchargées que si la langue les demande
+     (voir i18n/languages.ts). */
+  --typeface-body: 'Manrope Variable', 'Noto Sans Arabic Variable', 'Noto Sans Ethiopic Variable', ui-sans-serif,
+    system-ui, sans-serif;
+  --typeface-display: 'Unbounded Variable', 'Noto Sans Arabic Variable', 'Noto Sans Ethiopic Variable', ui-sans-serif,
+    system-ui, sans-serif;
+  /* Les libellés en mono gardent les lettres arabes liées et l'éthiopien lisible : leurs polices passent
+     avant la police mono du système, qui détacherait les lettres */
+  --typeface-mono: 'Geist Mono Variable', 'Noto Sans Arabic Variable', 'Noto Sans Ethiopic Variable', ui-monospace,
+    SFMono-Regular, Menlo, Consolas, monospace;
+
+  /* Rayon de référence des composants shadcn (boutons : 14 px) */
+  --radius: 0.875rem;
+
+  /* ── Thème clair (écran mobile 3G du design) ── */
+  --background: #f5f5f2;
+  --foreground: #0d0f16;
+
+  --surface: #ffffff;
+  --surface-raised: #ffffff;
+  --glass: rgb(255 255 255 / 0.72);
+  --glass-border: rgb(13 15 22 / 0.07);
+
+  --card: var(--surface);
+  --card-foreground: var(--foreground);
+  --popover: #ffffff;
+  --popover-foreground: var(--foreground);
+
+  --soft-foreground: #3b4050;
+  --muted: rgb(13 15 22 / 0.05);
+  --muted-foreground: #5b6070;
+  --faint-foreground: #6e7384;
+
+  --primary: var(--kente-gold);
+  --primary-foreground: var(--kente-night);
+  --secondary: rgb(13 15 22 / 0.06);
+  --secondary-foreground: var(--soft-foreground);
+  --accent: rgb(13 15 22 / 0.07);
+  --accent-foreground: var(--foreground);
+  --inverse: var(--kente-ink);
+  --inverse-foreground: var(--kente-paper);
+
+  /* Variantes lisibles sur fond clair (contraste AA ≥ 4,5:1). Le design proposait
+     #B5761A, #D2402F et #0E8A6C, un peu trop clairs pour du petit texte. */
+  --gold: #9a6212;
+  --coral: #c2382a;
+  --jade: #0b7a5f;
+  --destructive: var(--coral);
+  --success: var(--jade);
+  --warning: var(--gold);
+
+  --border: rgb(13 15 22 / 0.1);
+  --border-subtle: rgb(13 15 22 / 0.06);
+  --border-strong: rgb(13 15 22 / 0.18);
+  --input: rgb(13 15 22 / 0.12);
+  --ring: var(--gold);
+
+  --code-background: #fafaf7;
+  --code-gutter: #a3a7b5;
+  --diff-add: rgb(11 122 95 / 0.1);
+  --diff-remove: rgb(194 56 42 / 0.1);
+
+  /* Carte de chaleur des contributions (profil 3F), du plus calme au plus actif */
+  --heat-0: rgb(13 15 22 / 0.06);
+  --heat-1: rgb(255 181 71 / 0.35);
+  --heat-2: rgb(255 181 71 / 0.7);
+  --heat-3: rgb(255 90 78 / 0.8);
+  --heat-4: var(--jade);
+
+  --chart-1: var(--gold);
+  --chart-2: var(--coral);
+  --chart-3: var(--jade);
+  --chart-4: var(--muted-foreground);
+  --chart-5: var(--soft-foreground);
+
+  --sidebar: var(--glass);
+  --sidebar-foreground: var(--foreground);
+  --sidebar-primary: var(--primary);
+  --sidebar-primary-foreground: var(--primary-foreground);
+  --sidebar-accent: var(--accent);
+  --sidebar-accent-foreground: var(--accent-foreground);
+  --sidebar-border: var(--glass-border);
+  --sidebar-ring: var(--ring);
+
+  /* Ombre des barres flottantes : navigation du visiteur, onglets mobiles */
+  --float-shadow: rgb(13 15 22 / 0.14);
+
+  /* Effets (voir effects.css) */
+  --halo-alpha: 35%;
+  --hatch-a: rgb(13 15 22 / 0.045);
+  --hatch-b: rgb(13 15 22 / 0.015);
+  --skeleton-a: rgb(13 15 22 / 0.05);
+  --skeleton-b: rgb(13 15 22 / 0.11);
+}
+
+/* ── Thème sombre : la nuit, thème principal du design ── */
+.dark {
+  --background: var(--kente-night);
+  --foreground: #f2f3f7;
+
+  --surface: var(--kente-ink);
+  --surface-raised: #151821;
+  --glass: rgb(255 255 255 / 0.03);
+  --glass-border: rgb(255 255 255 / 0.08);
+
+  --popover: var(--kente-ink);
+
+  --soft-foreground: #c8cbd6;
+  --muted: rgb(255 255 255 / 0.04);
+  --muted-foreground: #9ea3b5;
+  --faint-foreground: #6b7083;
+
+  --secondary: rgb(255 255 255 / 0.08);
+  --accent: rgb(255 255 255 / 0.1);
+  --inverse: #f2f3f7;
+  --inverse-foreground: var(--kente-night);
+
+  --gold: var(--kente-gold);
+  --coral: var(--kente-coral);
+  --jade: var(--kente-jade);
+
+  --border: rgb(255 255 255 / 0.08);
+  --border-subtle: rgb(255 255 255 / 0.06);
+  --border-strong: rgb(255 255 255 / 0.15);
+  --input: rgb(255 255 255 / 0.1);
+
+  --code-background: #0b0d14;
+  --code-gutter: #4a4f60;
+  --diff-add: rgb(34 211 166 / 0.08);
+  --diff-remove: rgb(255 90 78 / 0.08);
+
+  --heat-0: rgb(255 255 255 / 0.04);
+  --heat-1: rgb(255 181 71 / 0.2);
+  --heat-2: rgb(255 181 71 / 0.5);
+  --heat-3: rgb(255 90 78 / 0.7);
+
+  --float-shadow: rgb(0 0 0 / 0.55);
+
+  --halo-alpha: 22%;
+  --hatch-a: rgb(255 255 255 / 0.03);
+  --hatch-b: rgb(255 255 255 / 0.012);
+  --skeleton-a: rgb(255 255 255 / 0.04);
+  --skeleton-b: rgb(255 255 255 / 0.12);
+}

@@ -6,6 +6,11 @@ import org.springframework.http.HttpStatus;
 public class OperationNotAllowedException extends BusinessException {
 
     public OperationNotAllowedException(String message) {
-        super(message, HttpStatus.BAD_REQUEST, "OPERATION_NOT_ALLOWED");
+        this(message, null);
+    }
+
+    /** @param property le champ de la requête en cause, renvoyé au formulaire */
+    public OperationNotAllowedException(String message, String property) {
+        super(message, HttpStatus.BAD_REQUEST, "OPERATION_NOT_ALLOWED", property);
     }
 }

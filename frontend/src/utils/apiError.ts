@@ -1,5 +1,6 @@
 import axios from 'axios';
 import type { FieldValues, Path, UseFormSetError } from 'react-hook-form';
+import i18n from '@/i18n';
 
 /** Corps d'erreur renvoyé par le GlobalExceptionHandler du backend (ErrorResponse.java). */
 export interface ApiErrorBody {
@@ -20,12 +21,12 @@ export function getApiError(err: unknown): ApiErrorBody | null {
 }
 
 /** Message à afficher à l'utilisateur pour une erreur d'appel API. */
-export function getApiErrorMessage(err: unknown, fallback = 'Une erreur est survenue'): string {
+export function getApiErrorMessage(err: unknown, fallback?: string): string {
   // Pas de réponse du tout : serveur arrêté, coupure réseau, CORS
   if (axios.isAxiosError(err) && !err.response) {
-    return 'Impossible de joindre le serveur. Vérifiez votre connexion.';
+    return i18n.t('errors.network');
   }
-  return getApiError(err)?.message ?? fallback;
+  return getApiError(err)?.message ?? fallback ?? i18n.t('errors.generic');
 }
 
 /**

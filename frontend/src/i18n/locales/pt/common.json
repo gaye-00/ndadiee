@@ -1,0 +1,539 @@
+{
+  "app": {
+    "tagline": "Encontra a tua equipa. Lança o teu projeto.",
+    "description": "A plataforma dos devs do continente: uma montra para mostrares o que constróis, anúncios com as funções procuradas e um espaço de equipa com kanban e revisões de código."
+  },
+  "nav": {
+    "showcase": "Montra",
+    "openings": "Anúncios",
+    "hackathons": "Hackathons",
+    "forum": "Fórum",
+    "dashboard": "Ateliê",
+    "projects": "Projetos",
+    "reviews": "Revisões",
+    "messages": "Mensagens",
+    "notifications": "Notificações",
+    "settings": "Definições",
+    "profile": "Perfil",
+    "create": "Criar"
+  },
+  "actions": {
+    "login": "Entrar",
+    "register": "Registar",
+    "logout": "Terminar sessão",
+    "getStarted": "Começar",
+    "joinWithGithub": "Entrar com o GitHub",
+    "publishProject": "Publicar o meu projeto",
+    "newProject": "Novo projeto",
+    "newTopic": "Novo tópico",
+    "newTask": "Nova tarefa",
+    "publishRole": "Publicar uma função",
+    "apply": "Candidatar-me",
+    "joinTeam": "Juntar-me à equipa",
+    "review": "Rever",
+    "approve": "Aprovar",
+    "requestChanges": "Pedir alterações",
+    "invite": "Convidar",
+    "sendMessage": "Enviar mensagem",
+    "reply": "Responder",
+    "seeAll": "Ver tudo",
+    "save": "Guardar",
+    "cancel": "Cancelar",
+    "close": "Fechar",
+    "back": "Voltar",
+    "retry": "Tentar novamente"
+  },
+  "search": {
+    "placeholder": "Pesquisar tudo",
+    "shortcut": "Ctrl K",
+    "noResults": "Sem resultados para «{{query}}»",
+    "groups": {
+      "roles": "Funções em aberto",
+      "projects": "Projetos",
+      "people": "Devs",
+      "topics": "Fórum",
+      "actions": "Ações"
+    }
+  },
+  "kanban": {
+    "todo": "A fazer",
+    "inProgress": "Em curso",
+    "inReview": "Em revisão",
+    "done": "Concluído",
+    "dropHere": "Largar aqui"
+  },
+  "workspace": {
+    "board": "Quadro",
+    "reviews": "Revisões",
+    "devlog": "Devlog",
+    "openRoles": "Funções em aberto",
+    "settings": "Definições",
+    "messagePlaceholder": "Mensagem para a equipa…"
+  },
+  "forum": {
+    "replies_one": "{{count}} resposta",
+    "replies_many": "{{count}} respostas",
+    "replies_other": "{{count}} respostas",
+    "solved": "Resolvido",
+    "unanswered": "Sem resposta"
+  },
+  "theme": {
+    "label": "Tema",
+    "light": "Claro",
+    "dark": "Escuro",
+    "system": "Sistema",
+    "lightTheme": "Tema claro",
+    "pullHint": "Puxa o cordão",
+    "darkTheme": "Tema escuro"
+  },
+  "language": {
+    "label": "Idioma"
+  },
+  "dataSaver": {
+    "label": "Poupança de dados",
+    "description": "Menos animações, sem pré-carregamento: pensado para pacotes de dados pequenos."
+  },
+  "states": {
+    "loading": "A carregar…",
+    "empty": "Nada para mostrar por agora.",
+    "offline": "Estás offline."
+  },
+  "errors": {
+    "generic": "Ocorreu um erro.",
+    "network": "Não foi possível contactar o servidor. Verifica a tua ligação.",
+    "notFound": "Esta página não existe ou foi movida."
+  },
+  "validation": {
+    "required": "Este campo é obrigatório.",
+    "email": "Endereço de e-mail inválido.",
+    "username": "3 a 30 caracteres: letras, números ou _.",
+    "minChars_one": "Pelo menos {{count}} carácter.",
+    "minChars_many": "Pelo menos {{count}} caracteres.",
+    "minChars_other": "Pelo menos {{count}} caracteres.",
+    "maxChars_one": "No máximo {{count}} carácter.",
+    "maxChars_many": "No máximo {{count}} caracteres.",
+    "maxChars_other": "No máximo {{count}} caracteres.",
+    "minItems_one": "Adiciona pelo menos {{count}} elemento.",
+    "minItems_many": "Adiciona pelo menos {{count}} elementos.",
+    "minItems_other": "Adiciona pelo menos {{count}} elementos.",
+    "maxItems_one": "No máximo {{count}} elemento.",
+    "maxItems_many": "No máximo {{count}} elementos.",
+    "maxItems_other": "No máximo {{count}} elementos."
+  },
+  "a11y": {
+    "skipToContent": "Saltar para o conteúdo",
+    "mainNavigation": "Navegação principal",
+    "breadcrumb": "Trilho de navegação",
+    "account": "A minha conta"
+  },
+  "pages": {
+    "landing": "Início",
+    "showcase": "Montra",
+    "project": "Projeto",
+    "openings": "Anúncios",
+    "newOpening": "Publicar um anúncio",
+    "hackathons": "Hackathons",
+    "hackathon": "Hackathon",
+    "forum": "Fórum",
+    "topic": "Tópico",
+    "newTopic": "Novo tópico",
+    "profile": "Perfil",
+    "search": "Pesquisa",
+    "dashboard": "Ateliê",
+    "myProjects": "Os meus projetos",
+    "newProject": "Novo projeto",
+    "workspaceBoard": "Quadro",
+    "workspaceReviews": "Revisões da equipa",
+    "workspaceDevlog": "Devlog",
+    "workspaceRoles": "Funções em aberto",
+    "workspaceSettings": "Definições da equipa",
+    "review": "Revisão de código",
+    "reviews": "Revisões",
+    "messages": "Mensagens",
+    "notifications": "Notificações",
+    "settings": "Definições",
+    "login": "Entrar",
+    "register": "Registo",
+    "notFound": "Página não encontrada"
+  },
+  "enums": {
+    "experienceLevel": {
+      "STUDENT": "Estudante",
+      "JUNIOR": "Júnior",
+      "MID": "Intermédio",
+      "SENIOR": "Sénior"
+    },
+    "role": {
+      "USER": "Membro",
+      "MODERATOR": "Moderador(a)",
+      "ADMIN": "Admin"
+    },
+    "opportunityType": {
+      "JOB": "Emprego",
+      "FREELANCE": "Freelance",
+      "INTERNSHIP": "Estágio",
+      "HACKATHON": "Hackathon"
+    },
+    "workMode": {
+      "REMOTE": "Remoto",
+      "ONSITE": "Presencial",
+      "HYBRID": "Híbrido"
+    },
+    "projectRole": {
+      "OWNER": "Proprietário(a)",
+      "MAINTAINER": "Mantenedor(a)",
+      "CONTRIBUTOR": "Contribuidor(a)"
+    }
+  },
+  "hero": {
+    "titleTeam": "Encontra a tua equipa.",
+    "titleShip": "Lança o teu projeto.",
+    "lead": "Uma montra para mostrares o que constróis, anúncios com as funções procuradas e um espaço de equipa com kanban e revisões de código. Para os devs do continente.",
+    "recruiting_one": "{{count}} projeto está a recrutar neste momento",
+    "recruiting_many": "{{count}} projetos estão a recrutar neste momento",
+    "recruiting_other": "{{count}} projetos estão a recrutar neste momento",
+    "firstTeams": "As primeiras equipas estão a formar-se aqui. Lança a tua.",
+    "loom": {
+      "sample": "Ano tipo",
+      "username": "O teu utilizador do GitHub",
+      "placeholder": "o-teu-utilizador",
+      "weave": "Tecer o meu ano",
+      "weaving": "A tecer…",
+      "reset": "Voltar ao ano tipo",
+      "invalid": "Um utilizador do GitHub tem letras, números e hífenes, no máximo 39 caracteres.",
+      "notFound": "Nenhuma conta do GitHub tem este nome.",
+      "unavailable": "O GitHub não responde. Tenta de novo daqui a pouco.",
+      "viewLabel": "Vista do ano",
+      "viewCloth": "Pano: o ano estendido",
+      "viewCity": "Cidade: o ano em 3D",
+      "less": "Menos",
+      "more": "Mais",
+      "level0": "Dias sem contribuições",
+      "level1": "Dias calmos",
+      "level2": "Dias ativos",
+      "level3": "Dias intensos",
+      "level4": "Dias mais intensos",
+      "structure": "Uma faixa por semana, um bloco por dia.",
+      "hintCloth": "Passa o rato sobre um dia, ou percorre o ano com as setas do teclado.",
+      "hintCity": "Arrasta para rodar à volta da cidade. Duplo clique para voltar.",
+      "summary": "{{who}}, de {{from}} a {{to}}: {{total}}. Uma faixa por semana, um bloco por dia. Usa as setas do teclado para ler cada dia.",
+      "streak_one": "maior sequência: {{count}} dia",
+      "streak_many": "maior sequência: {{count}} dias",
+      "streak_other": "maior sequência: {{count}} dias",
+      "showcase": "O teu ano merece uma montra"
+    }
+  },
+  "contributions": {
+    "count_one": "{{count}} contribuição",
+    "count_many": "{{count}} contribuições",
+    "count_other": "{{count}} contribuições",
+    "none": "Nenhuma contribuição"
+  },
+  "teamRoles": {
+    "frontend": "Dev front-end",
+    "backend": "Dev back-end",
+    "mobile": "Dev mobile",
+    "design": "Designer UI/UX",
+    "data": "Dados & IA",
+    "devops": "DevOps & cloud",
+    "security": "Segurança",
+    "payments": "Mobile Money & USSD",
+    "l10n": "Tradução & línguas",
+    "docs": "Redação técnica",
+    "product": "Product manager",
+    "embedded": "IoT & sistemas embebidos",
+    "qa": "Testes & qualidade"
+  },
+  "rolesBand": {
+    "title": "Funções que as equipas procuram",
+    "all": "Todos os anúncios",
+    "pause": "Pausar a faixa das funções",
+    "play": "Retomar a faixa das funções",
+    "recruiting": "À procura de contribuidores: {{projects}}"
+  },
+  "showcase": {
+    "title": "A montra",
+    "all": "Todos os projetos",
+    "seeking": "Procura: {{roles}}",
+    "seeRoles": "Ver as funções",
+    "seeProject": "Ver o projeto",
+    "stars_one": "{{count}} estrela",
+    "stars_many": "{{count}} estrelas",
+    "stars_other": "{{count}} estrelas",
+    "team_one": "Equipa de {{count}} pessoa",
+    "team_many": "Equipa de {{count}} pessoas",
+    "team_other": "Equipa de {{count}} pessoas",
+    "firstSteps": "Primeiros passos",
+    "photoCredit": "Foto: {{credit}}",
+    "noCover": "captura do projeto",
+    "loading": "A carregar a montra",
+    "emptyTitle": "A montra espera o seu primeiro projeto",
+    "emptyText": "Publica o teu: os devs do continente vão ver o que constróis e as funções que procuras.",
+    "emptyAction": "Publicar o meu projeto",
+    "errorTitle": "Não foi possível carregar a montra",
+    "errorText": "Verifica a tua ligação e tenta novamente.",
+    "more_one": "outro projeto na montra",
+    "more_many": "outros projetos na montra",
+    "more_other": "outros projetos na montra"
+  },
+  "media": {
+    "showImage": "Mostrar a imagem"
+  },
+  "footer": {
+    "explore": "Explorar",
+    "contribute": "Contribuir",
+    "settings": "Definições",
+    "languages": "Disponível em",
+    "woven": "Tecido fio a fio pela comunidade",
+    "backToTop": "Voltar ao topo",
+    "status": {
+      "checking": "A verificar a API…",
+      "online": "API online",
+      "offline": "API inacessível"
+    },
+    "copyright": "© {{year}} {{name}}",
+    "scrollTop": "Voltar ao topo da página"
+  },
+  "cta": {
+    "eyebrow": "A oficina, hoje",
+    "threadTitle": "Um fio sozinho não faz um pano.",
+    "threadText": "Cada dev é um fio: uma competência, uma língua, um país. Aqui, as equipas tecem-se à volta dos projetos.",
+    "stats": {
+      "developers_one": "dev",
+      "developers_many": "devs",
+      "developers_other": "devs",
+      "countries_one": "país",
+      "countries_many": "países",
+      "countries_other": "países",
+      "projects_one": "projeto",
+      "projects_many": "projetos",
+      "projects_other": "projetos",
+      "openings_one": "função em aberto",
+      "openings_many": "funções em aberto",
+      "openings_other": "funções em aberto",
+      "seats_one": "{{count}} lugar por preencher",
+      "seats_many": "{{count}} lugares por preencher",
+      "seats_other": "{{count}} lugares por preencher"
+    },
+    "title": "O teu próximo projeto começa com uma equipa.",
+    "text": "Mostra o que constróis, encontra os teus colegas de equipa, entreguem juntos.",
+    "openWorkshop": "Abrir a oficina",
+    "seeShowcase": "Ver a montra",
+    "alreadyWeaving": "Já estão a tecer aqui",
+    "label": {
+      "title": "Lugares por preencher",
+      "inProjects_one": "em {{count}} projeto",
+      "inProjects_many": "em {{count}} projetos",
+      "inProjects_other": "em {{count}} projetos",
+      "action": "Ver os anúncios"
+    }
+  },
+  "features": {
+    "eyebrow": "Como funciona",
+    "title": "Do primeiro encontro à entrega.",
+    "text": "Cinco momentos da vida de um projeto, num só lugar. Toca, arrasta, marca: estes cartões funcionam como o ateliê.",
+    "meet": {
+      "eyebrow": "Conhecer-se",
+      "title": "Pelo trabalho",
+      "text": "As funções procuradas e a tua stack levam-te às pessoas certas.",
+      "pick": "A tua stack",
+      "seatsHeader": "Lugares",
+      "seats_one": "{{count}} lugar",
+      "seats_many": "{{count}} lugares",
+      "seats_other": "{{count}} lugares",
+      "found_one": "{{name}} · {{count}} anúncio aberto",
+      "found_many": "{{name}} · {{count}} anúncios abertos",
+      "found_other": "{{name}} · {{count}} anúncios abertos",
+      "loading": "A procurar anúncios…",
+      "firstStep": "Primeiro passo #{{number}}",
+      "all": "Todos os anúncios {{name}}",
+      "empty": "Ninguém está a recrutar em {{name}} por agora. Volta em breve, ou publica o teu projeto.",
+      "error": "Não foi possível carregar os anúncios.",
+      "howTo": "Para te candidatares, pega na issue «primeiro passo» da função: código, não CV."
+    },
+    "review": {
+      "eyebrow": "Trocar",
+      "title": "Revisões de código",
+      "text": "Cada PR é revisto linha a linha, pela equipa e pela comunidade.",
+      "pr": "Cache Redis para os horários do BRT",
+      "changesRequested": "Alteração pedida",
+      "approved": "Aprovado",
+      "maintainer": "mantenedor",
+      "comment": "Expiração a 0: os horários nunca serão atualizados. Proponho 10 minutos.",
+      "apply": "Aplicar a sugestão",
+      "helpful": "útil",
+      "helpfulHint": "Esta revisão ajudou-te? O autor ganha 10 pontos de reputação.",
+      "resolved": "A Ama aplicou a sugestão. O Chinedu aprova o PR.",
+      "replay": "Repetir"
+    },
+    "share": {
+      "eyebrow": "Partilhar",
+      "title": "Montra + devlog",
+      "text": "Demo, capturas, tecnologias, link do GitHub, diário de progresso.",
+      "devlog": "Devlog",
+      "stack": "Tecnologias do projeto",
+      "versions": {
+        "v07": {
+          "name": "v0.7",
+          "when": "há 2 dias",
+          "text": "Cache Redis: a página da paragem passa de 1,8 s para 120 ms."
+        },
+        "v06": {
+          "name": "v0.6",
+          "when": "há 9 dias",
+          "text": "Modo offline: as últimas 20 paragens continuam disponíveis."
+        },
+        "v05": {
+          "name": "v0.5",
+          "when": "há 3 sem.",
+          "text": "Primeiro feed GTFS validado: 140 linhas de danfo."
+        }
+      },
+      "app": {
+        "next": "Próximo BRT",
+        "minutes_one": "{{count}} min",
+        "minutes_many": "{{count}} min",
+        "minutes_other": "{{count}} min",
+        "before": "antes: 1,8 s",
+        "offline": "Offline",
+        "kept_one": "{{count}} paragem guardada",
+        "kept_many": "{{count}} paragens guardadas",
+        "kept_other": "{{count}} paragens guardadas",
+        "routes": "Linhas de danfo",
+        "lines_one": "{{count}} linha · GTFS válido",
+        "lines_many": "{{count}} linhas · GTFS válido",
+        "lines_other": "{{count}} linhas · GTFS válido"
+      }
+    },
+    "team": {
+      "eyebrow": "Colaborar",
+      "title": "Um espaço por equipa",
+      "text": "Membros, kanban, conversa, hackathons. Candidatura por issue, não por CV.",
+      "sprint": "sprint 7 · faltam 6 dias",
+      "online_one": "{{count}} online",
+      "online_many": "{{count}} online",
+      "online_other": "{{count}} online",
+      "board": "Quadro do sprint",
+      "firstStep": "primeiro passo",
+      "changes": "1 alteração",
+      "days_one": "{{count}} d",
+      "days_many": "{{count}} d",
+      "days_other": "{{count}} d",
+      "tasks": {
+        "t33": "Mostrar o próximo BRT no ecrã da paragem",
+        "t40": "Maqueta da página da paragem",
+        "t46": "Limitar os pedidos GraphQL por IP",
+        "t38": "Modo offline: fila de sincronização",
+        "t45": "Validar o feed GTFS dos danfo",
+        "t84": "Cache Redis para os horários do BRT"
+      },
+      "card": "#{{number}} {{task}}, em {{column}}",
+      "keys": "Enter: coluna seguinte. Setas esquerda e direita: coluna vizinha.",
+      "moved": "{{name}} moveu «{{task}}» para {{column}}",
+      "youMoved": "Moveste «{{task}}» para {{column}}",
+      "hintPointer": "Arrasta um cartão, ou clica para o avançar.",
+      "hintTouch": "Toca num cartão para o avançar."
+    },
+    "daily": {
+      "eyebrow": "No dia a dia",
+      "title": "O teu ateliê de hoje",
+      "text": "As revisões que te esperam, as tuas tarefas, os anúncios que combinam contigo. Páginas leves, modo de poupança de dados.",
+      "hello": "Olá {{name}}",
+      "summary_one": "Hoje: 2 revisões esperam por ti, {{count}} tarefa, 1 candidatura para analisar.",
+      "summary_many": "Hoje: 2 revisões esperam por ti, {{count}} tarefas, 1 candidatura para analisar.",
+      "summary_other": "Hoje: 2 revisões esperam por ti, {{count}} tarefas, 1 candidatura para analisar.",
+      "allDone": "Tarefas concluídas! Faltam 2 revisões e 1 candidatura.",
+      "reviews": "Revisões à tua espera",
+      "review84": "Cache Redis para os horários do BRT",
+      "review12": "Helm chart: limites de memória por defeito",
+      "tasks": "As tuas tarefas",
+      "task1": "#46 Limitar os pedidos GraphQL por IP",
+      "task2": "Publicar o devlog da v0.8",
+      "task3": "Preparar a demo do sprint 7",
+      "saverOn": "Ativada: o site fica mais leve",
+      "saverOff": "Desativada",
+      "saverImages": "Imagens a pedido",
+      "saverMotion": "Animações desligadas",
+      "saverPrefetch": "Sem pré-carregamento",
+      "open": "Abrir o meu ateliê",
+      "create": "Criar o meu ateliê"
+    }
+  },
+  "auth": {
+    "login": {
+      "eyebrow": "Entrar",
+      "title": "Que bom ver-te de novo.",
+      "text": "O teu ateliê espera por ti: as tuas equipas, revisões e projetos.",
+      "submit": "Entrar",
+      "pending": "A entrar…",
+      "failed": "E-mail, nome de utilizador ou palavra-passe incorretos.",
+      "noAccount": "Ainda não tens conta?",
+      "toRegister": "Criar uma conta"
+    },
+    "register": {
+      "eyebrow": "Registo",
+      "title": "Junta-te ao ateliê.",
+      "text": "Uma montra para os teus projetos, equipas à tua volta. Basta um minuto.",
+      "submit": "Criar a minha conta",
+      "pending": "A criar a conta…",
+      "hasAccount": "Já és membro?",
+      "toLogin": "Entrar"
+    },
+    "welcomeButton": "Bem-vindo!",
+    "welcomeLabel": "Bem-vindo ao ateliê",
+    "fields": {
+      "identifier": "E-mail ou nome de utilizador",
+      "identifierPlaceholder": "awa@exemplo.com",
+      "password": "Palavra-passe",
+      "fullName": "Nome completo",
+      "fullNamePlaceholder": "Awa Diop",
+      "username": "Nome de utilizador",
+      "usernamePlaceholder": "awa_diop",
+      "email": "E-mail",
+      "emailPlaceholder": "awa@exemplo.com"
+    },
+    "password": {
+      "show": "Mostrar a palavra-passe",
+      "capsLock": "Caps Lock ativado"
+    },
+    "strength": {
+      "label": "Robustez",
+      "weak": "Fraca",
+      "fair": "Razoável",
+      "good": "Forte",
+      "great": "Excelente",
+      "met": "(feito)",
+      "unmet": "(por fazer)",
+      "rules": {
+        "length": "Pelo menos 8 caracteres",
+        "long": "12 caracteres ou mais",
+        "cases": "Maiúsculas e minúsculas",
+        "mixed": "Um número e um símbolo"
+      }
+    },
+    "username": {
+      "free": "{{username}} está livre.",
+      "taken": "{{username}} já está ocupado.",
+      "reserved": "{{username}} está reservado.",
+      "suggestions": "Livres:"
+    },
+    "oauth": {
+      "continueWith": "Continuar com {{provider}}",
+      "soon": "em breve",
+      "unavailable": "A entrada com {{provider}} chega em breve. Entretanto, continua com o teu e-mail.",
+      "or": "ou com o teu e-mail"
+    },
+    "errors": {
+      "emailTaken": "Já existe uma conta com este e-mail. Entra antes.",
+      "usernameTaken": "Este nome de utilizador acabou de ser ocupado.",
+      "usernameReserved": "Este nome de utilizador está reservado."
+    },
+    "loom": {
+      "eyebrow": "O ateliê",
+      "loginTitle": "Bem-vindo de volta ao ateliê.",
+      "loginText": "Enquanto estiveste fora, as equipas continuaram a tecer.",
+      "registerTitle": "Mais um fio no pano.",
+      "registerText": "Cada dev é um fio. Aqui, as equipas tecem-se à volta dos projetos."
+    }
+  }
+}

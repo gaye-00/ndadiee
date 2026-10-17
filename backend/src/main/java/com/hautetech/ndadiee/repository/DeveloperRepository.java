@@ -17,6 +17,10 @@ public interface DeveloperRepository extends JpaRepository<Developer, Long>, Jpa
 
     Optional<Developer> findByUsername(String username);
 
+    // Pays représentés dans la communauté
+    @Query("SELECT COUNT(DISTINCT d.country) FROM Developer d WHERE d.country IS NOT NULL")
+    long countCountries();
+
     @Query(value = "SELECT f FROM Developer d JOIN d.followers f WHERE d.id = :developerId ORDER BY f.reputation DESC, f.id ASC",
             countQuery = "SELECT COUNT(f) FROM Developer d JOIN d.followers f WHERE d.id = :developerId")
     Page<Developer> findFollowers(@Param("developerId") Long developerId, Pageable pageable);

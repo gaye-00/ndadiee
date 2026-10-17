@@ -1,0 +1,56 @@
+/* Styles de base des éléments HTML, communs à toutes les pages. */
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+    scrollbar-width: thin;
+    scrollbar-color: var(--border-strong) transparent;
+  }
+
+  html {
+    font-family: var(--typeface-body);
+    color-scheme: light;
+    -webkit-text-size-adjust: 100%;
+    -webkit-tap-highlight-color: transparent;
+    text-rendering: optimizeLegibility;
+  }
+
+  html.dark {
+    color-scheme: dark;
+  }
+
+  body {
+    @apply bg-background text-foreground antialiased;
+    min-height: 100dvh;
+  }
+
+  /* Titres en Unbounded. Coupure des mots longs : certaines langues (zoulou, swahili…) en ont beaucoup */
+  h1,
+  h2,
+  h3 {
+    font-family: var(--typeface-display);
+    text-wrap: balance;
+    overflow-wrap: break-word;
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+
+  code,
+  kbd,
+  samp,
+  pre {
+    font-family: var(--typeface-mono);
+  }
+
+  ::selection {
+    background-color: color-mix(in srgb, var(--kente-gold) 35%, transparent);
+  }
+
+  /* Arabe : jamais d'espace entre les lettres, il casserait leurs liaisons */
+  :lang(ar),
+  :lang(ar) * {
+    letter-spacing: 0 !important;
+  }
+}

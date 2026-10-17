@@ -1,0 +1,140 @@
+/* ─────────────────────────────────────────────────────────────────────────────
+   Classes Tailwind générées à partir de la palette (tokens.css).
+   `inline` : chaque classe pointe directement sur la variable de tokens.css,
+   qui change avec le thème. Exemples : bg-surface, text-soft-foreground,
+   border-glass-border, text-jade, bg-gold/12, font-display, text-h1, rounded-2xl.
+   ───────────────────────────────────────────────────────────────────────────── */
+
+@theme inline {
+  /* ── Polices ── */
+  --font-sans: var(--typeface-body);
+  --font-display: var(--typeface-display);
+  --font-heading: var(--typeface-display);
+  --font-mono: var(--typeface-mono);
+
+  /* ── Couleurs shadcn (utilisées par components/ui) ── */
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+
+  /* ── Couleurs du design Kente ── */
+  --color-surface: var(--surface);
+  --color-surface-raised: var(--surface-raised);
+  --color-glass: var(--glass);
+  --color-glass-border: var(--glass-border);
+  --color-soft-foreground: var(--soft-foreground);
+  --color-faint-foreground: var(--faint-foreground);
+  --color-border-subtle: var(--border-subtle);
+  --color-border-strong: var(--border-strong);
+  --color-inverse: var(--inverse);
+  --color-inverse-foreground: var(--inverse-foreground);
+
+  --color-gold: var(--gold);
+  --color-coral: var(--coral);
+  --color-jade: var(--jade);
+  --color-success: var(--success);
+  --color-warning: var(--warning);
+
+  --color-kente-gold: var(--kente-gold);
+  --color-kente-coral: var(--kente-coral);
+  --color-kente-jade: var(--kente-jade);
+  --color-kente-night: var(--kente-night);
+  --color-kente-paper: var(--kente-paper);
+
+  --color-code: var(--code-background);
+  --color-code-gutter: var(--code-gutter);
+  --color-diff-add: var(--diff-add);
+  --color-diff-remove: var(--diff-remove);
+
+  --color-heat-0: var(--heat-0);
+  --color-heat-1: var(--heat-1);
+  --color-heat-2: var(--heat-2);
+  --color-heat-3: var(--heat-3);
+  --color-heat-4: var(--heat-4);
+
+  /* ── Rayons (design : pastilles rondes, boutons 14 px, cartes 22 px, panneaux 28 px) ── */
+  --radius-xs: 0.375rem;
+  --radius-sm: 0.5rem;
+  --radius-md: 0.75rem;
+  --radius-lg: 0.875rem;
+  --radius-xl: 1rem;
+  --radius-2xl: 1.375rem;
+  --radius-3xl: 1.75rem;
+  --radius-4xl: 2.75rem;
+
+  /* ── Tailles de titres fluides : elles suivent la largeur de l'écran, du mobile (390) au bureau (1440) ── */
+  --text-display: clamp(2.5rem, 1.25rem + 5.2vw, 5.25rem);
+  --text-display--line-height: 1;
+  --text-display--letter-spacing: -0.045em;
+  --text-display--font-weight: 800;
+  --text-h1: clamp(2.125rem, 1.5rem + 2.6vw, 3.25rem);
+  --text-h1--line-height: 1;
+  --text-h1--letter-spacing: -0.04em;
+  --text-h1--font-weight: 800;
+  --text-h2: clamp(1.75rem, 1.35rem + 1.6vw, 2.375rem);
+  --text-h2--line-height: 1.05;
+  --text-h2--letter-spacing: -0.03em;
+  --text-h2--font-weight: 700;
+  --text-h3: clamp(1.5rem, 1.3rem + 0.8vw, 2rem);
+  --text-h3--line-height: 1.15;
+  --text-h3--letter-spacing: -0.02em;
+  --text-h3--font-weight: 700;
+  --text-h4: 1.5rem;
+  --text-h4--line-height: 1.2;
+  --text-h4--letter-spacing: -0.02em;
+  --text-h4--font-weight: 700;
+  --text-h5: 1.125rem;
+  --text-h5--line-height: 1.3;
+  --text-h5--letter-spacing: -0.01em;
+  --text-h5--font-weight: 700;
+  --text-lead: clamp(1.0625rem, 0.95rem + 0.45vw, 1.25rem);
+  --text-lead--line-height: 1.6;
+  --text-body: 0.9375rem;
+  --text-body--line-height: 1.6;
+
+  /* ── Ombres ── */
+  /* Carte soulevée pendant un glisser-déposer (kanban 3E) */
+  --shadow-lift: 0 24px 48px rgb(0 0 0 / 0.6), 0 0 0 1px color-mix(in srgb, var(--kente-gold) 40%, transparent);
+  /* Lueur dorée sous la palette de recherche (3H) */
+  --shadow-glow: 0 30px 80px color-mix(in srgb, var(--kente-gold) 15%, transparent);
+  /* Barre flottante au-dessus du contenu (navigation du visiteur, onglets mobiles) */
+  --shadow-float: 0 18px 40px -18px var(--float-shadow), 0 4px 12px -6px var(--float-shadow);
+
+  /* ── Mouvement (images clés dans effects.css) ── */
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --animate-float: kente-float 16s ease-in-out infinite;
+  --animate-pulse-dot: kente-pulse 2s ease-in-out infinite;
+  --animate-blink: kente-blink 1s steps(1) infinite;
+  --animate-spin-slow: kente-rotate 6s linear infinite;
+
+  /* ── Largeur du contenu : maquettes de 1440 px avec 96 px de marge ── */
+  --container-page: 78rem;
+}

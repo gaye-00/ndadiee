@@ -1,9 +1,9 @@
-import { useThemeStore } from "@/store/useThemeStore"
+import { useTheme } from "@/hooks/useTheme"
 import { Toaster as Sonner, type ToasterProps } from "sonner"
 import { CircleCheckIcon, InfoIcon, TriangleAlertIcon, OctagonXIcon, Loader2Icon } from "lucide-react"
 
 const Toaster = ({ ...props }: ToasterProps) => {
-  const theme = useThemeStore((s) => s.theme)
+  const { resolvedTheme: theme } = useTheme()
 
   return (
     <Sonner

@@ -1,0 +1,514 @@
+{
+  "app": {
+    "tagline": "Tafuta timu yako. Zindua mradi wako.",
+    "description": "Mahali pa wasanidi programu wa bara: onyesho la kuonyesha unachojenga, matangazo ya nafasi zinazotafutwa, na eneo la timu lenye ubao wa kanban na mapitio ya msimbo."
+  },
+  "nav": {
+    "showcase": "Onyesho",
+    "openings": "Matangazo",
+    "hackathons": "Hackathoni",
+    "forum": "Jukwaa",
+    "dashboard": "Karakana",
+    "projects": "Miradi",
+    "reviews": "Mapitio",
+    "messages": "Ujumbe",
+    "notifications": "Arifa",
+    "settings": "Mipangilio",
+    "profile": "Wasifu",
+    "create": "Unda"
+  },
+  "actions": {
+    "login": "Ingia",
+    "register": "Jisajili",
+    "logout": "Toka",
+    "getStarted": "Anza",
+    "joinWithGithub": "Jiunge kwa GitHub",
+    "publishProject": "Chapisha mradi wangu",
+    "newProject": "Mradi mpya",
+    "newTopic": "Mada mpya",
+    "newTask": "Kazi mpya",
+    "publishRole": "Chapisha nafasi",
+    "apply": "Tuma ombi",
+    "joinTeam": "Jiunge na timu",
+    "review": "Kagua",
+    "approve": "Idhinisha",
+    "requestChanges": "Omba mabadiliko",
+    "invite": "Alika",
+    "sendMessage": "Tuma ujumbe",
+    "reply": "Jibu",
+    "seeAll": "Ona yote",
+    "save": "Hifadhi",
+    "cancel": "Ghairi",
+    "close": "Funga",
+    "back": "Rudi",
+    "retry": "Jaribu tena"
+  },
+  "search": {
+    "placeholder": "Tafuta kila kitu",
+    "shortcut": "Ctrl K",
+    "noResults": "Hakuna matokeo ya “{{query}}”",
+    "groups": {
+      "roles": "Nafasi zilizo wazi",
+      "projects": "Miradi",
+      "people": "Wasanidi",
+      "topics": "Jukwaa",
+      "actions": "Vitendo"
+    }
+  },
+  "kanban": {
+    "todo": "Za kufanya",
+    "inProgress": "Zinaendelea",
+    "inReview": "Zinakaguliwa",
+    "done": "Zimekamilika",
+    "dropHere": "Weka hapa"
+  },
+  "workspace": {
+    "board": "Ubao",
+    "reviews": "Mapitio",
+    "devlog": "Devlog",
+    "openRoles": "Nafasi zilizo wazi",
+    "settings": "Mipangilio",
+    "messagePlaceholder": "Ujumbe kwa timu…"
+  },
+  "forum": {
+    "replies_one": "Jibu {{count}}",
+    "replies_other": "Majibu {{count}}",
+    "solved": "Imetatuliwa",
+    "unanswered": "Haijajibiwa"
+  },
+  "theme": {
+    "label": "Mandhari",
+    "light": "Angavu",
+    "dark": "Giza",
+    "system": "Mfumo",
+    "lightTheme": "Mandhari angavu",
+    "pullHint": "Vuta kamba",
+    "darkTheme": "Mandhari meusi"
+  },
+  "language": {
+    "label": "Lugha"
+  },
+  "dataSaver": {
+    "label": "Kuokoa data",
+    "description": "Michoro michache, bila kupakia mapema: imeundwa kwa vifurushi vidogo vya data."
+  },
+  "states": {
+    "loading": "Inapakia…",
+    "empty": "Hakuna cha kuonyesha kwa sasa.",
+    "offline": "Hauko mtandaoni."
+  },
+  "errors": {
+    "generic": "Hitilafu imetokea.",
+    "network": "Imeshindwa kufikia seva. Angalia muunganisho wako.",
+    "notFound": "Ukurasa huu haupo au umehamishwa."
+  },
+  "validation": {
+    "required": "Sehemu hii inahitajika.",
+    "email": "Anwani ya barua pepe si sahihi.",
+    "username": "Herufi 3 hadi 30: herufi, nambari au _.",
+    "minChars_one": "Angalau herufi {{count}}.",
+    "minChars_other": "Angalau herufi {{count}}.",
+    "maxChars_one": "Si zaidi ya herufi {{count}}.",
+    "maxChars_other": "Si zaidi ya herufi {{count}}.",
+    "minItems_one": "Ongeza angalau kipengele {{count}}.",
+    "minItems_other": "Ongeza angalau vipengele {{count}}.",
+    "maxItems_one": "Si zaidi ya kipengele {{count}}.",
+    "maxItems_other": "Si zaidi ya vipengele {{count}}."
+  },
+  "a11y": {
+    "skipToContent": "Ruka hadi maudhui",
+    "mainNavigation": "Urambazaji mkuu",
+    "breadcrumb": "Njia ya ukurasa",
+    "account": "Akaunti yangu"
+  },
+  "pages": {
+    "landing": "Mwanzo",
+    "showcase": "Onyesho",
+    "project": "Mradi",
+    "openings": "Matangazo",
+    "newOpening": "Chapisha tangazo",
+    "hackathons": "Hackathoni",
+    "hackathon": "Hackathoni",
+    "forum": "Jukwaa",
+    "topic": "Mada",
+    "newTopic": "Mada mpya",
+    "profile": "Wasifu",
+    "search": "Utafutaji",
+    "dashboard": "Karakana",
+    "myProjects": "Miradi yangu",
+    "newProject": "Mradi mpya",
+    "workspaceBoard": "Ubao",
+    "workspaceReviews": "Mapitio ya timu",
+    "workspaceDevlog": "Devlog",
+    "workspaceRoles": "Nafasi zilizo wazi",
+    "workspaceSettings": "Mipangilio ya timu",
+    "review": "Mapitio ya msimbo",
+    "reviews": "Mapitio",
+    "messages": "Ujumbe",
+    "notifications": "Arifa",
+    "settings": "Mipangilio",
+    "login": "Ingia",
+    "register": "Jisajili",
+    "notFound": "Ukurasa haupatikani"
+  },
+  "enums": {
+    "experienceLevel": {
+      "STUDENT": "Mwanafunzi",
+      "JUNIOR": "Chipukizi",
+      "MID": "Wa kati",
+      "SENIOR": "Mwandamizi"
+    },
+    "role": {
+      "USER": "Mwanachama",
+      "MODERATOR": "Msimamizi",
+      "ADMIN": "Msimamizi mkuu"
+    },
+    "opportunityType": {
+      "JOB": "Kazi",
+      "FREELANCE": "Kazi huru",
+      "INTERNSHIP": "Mafunzo kazini",
+      "HACKATHON": "Hackathoni"
+    },
+    "workMode": {
+      "REMOTE": "Kwa mbali",
+      "ONSITE": "Ofisini",
+      "HYBRID": "Mseto"
+    },
+    "projectRole": {
+      "OWNER": "Mmiliki",
+      "MAINTAINER": "Mtunzaji",
+      "CONTRIBUTOR": "Mchangiaji"
+    }
+  },
+  "hero": {
+    "titleTeam": "Tafuta timu yako.",
+    "titleShip": "Zindua mradi wako.",
+    "lead": "Onyesho la kuonyesha unachojenga, matangazo ya nafasi zinazotafutwa na timu, na eneo la timu lenye ubao wa kanban na mapitio ya msimbo. Kwa wasanidi programu wa bara.",
+    "recruiting_one": "Mradi {{count}} unatafuta wanachama sasa",
+    "recruiting_other": "Miradi {{count}} inatafuta wanachama sasa",
+    "firstTeams": "Timu za kwanza zinaundwa hapa. Anzisha yako.",
+    "loom": {
+      "sample": "Mwaka wa mfano",
+      "username": "Jina lako la mtumiaji la GitHub",
+      "placeholder": "jina-lako",
+      "weave": "Fuma mwaka wangu",
+      "weaving": "Inafuma…",
+      "reset": "Rudi kwenye mwaka wa mfano",
+      "invalid": "Jina la mtumiaji la GitHub lina herufi, namba na vistari, herufi 39 zaidi.",
+      "notFound": "Hakuna akaunti ya GitHub yenye jina hili.",
+      "unavailable": "GitHub haijibu. Jaribu tena baada ya muda mfupi.",
+      "viewLabel": "Mwonekano wa mwaka",
+      "viewCloth": "Kitambaa: mwaka ukiwa bapa",
+      "viewCity": "Jiji: mwaka katika 3D",
+      "less": "Kidogo",
+      "more": "Zaidi",
+      "level0": "Siku bila michango",
+      "level1": "Siku tulivu",
+      "level2": "Siku zenye shughuli",
+      "level3": "Siku zenye shughuli nyingi",
+      "level4": "Siku zenye shughuli nyingi zaidi",
+      "structure": "Ukanda mmoja kwa wiki, kipande kimoja kwa siku.",
+      "hintCloth": "Elekeza kwenye siku, au pitia mwaka kwa vitufe vya mishale.",
+      "hintCity": "Buruta ili kuzunguka jiji. Bofya mara mbili ili kurudi.",
+      "summary": "{{who}}, kuanzia {{from}} hadi {{to}}: {{total}}. Ukanda mmoja kwa wiki, kipande kimoja kwa siku. Tumia vitufe vya mishale kusoma kila siku.",
+      "streak_one": "mfululizo mrefu zaidi: siku {{count}}",
+      "streak_other": "mfululizo mrefu zaidi: siku {{count}}",
+      "showcase": "Mwaka wako unastahili onyesho"
+    }
+  },
+  "contributions": {
+    "count_one": "Mchango {{count}}",
+    "count_other": "Michango {{count}}",
+    "none": "Hakuna michango"
+  },
+  "teamRoles": {
+    "frontend": "Msanidi wa front-end",
+    "backend": "Msanidi wa back-end",
+    "mobile": "Msanidi wa programu za simu",
+    "design": "Mbunifu wa UI/UX",
+    "data": "Data na AI",
+    "devops": "DevOps na wingu",
+    "security": "Usalama",
+    "payments": "Pesa kwa simu na USSD",
+    "l10n": "Tafsiri na lugha",
+    "docs": "Uandishi wa kiufundi",
+    "product": "Meneja wa bidhaa",
+    "embedded": "IoT na mifumo iliyopachikwa",
+    "qa": "Majaribio na ubora"
+  },
+  "rolesBand": {
+    "title": "Nafasi ambazo timu zinatafuta",
+    "all": "Matangazo yote",
+    "pause": "Sitisha ukanda wa nafasi",
+    "play": "Endelea na ukanda wa nafasi",
+    "recruiting": "Wanatafuta wachangiaji: {{projects}}"
+  },
+  "showcase": {
+    "title": "Onyesho",
+    "all": "Miradi yote",
+    "seeking": "Inatafuta: {{roles}}",
+    "seeRoles": "Ona nafasi",
+    "seeProject": "Ona mradi",
+    "stars_one": "Nyota {{count}}",
+    "stars_other": "Nyota {{count}}",
+    "team_one": "Timu ya mtu {{count}}",
+    "team_other": "Timu ya watu {{count}}",
+    "firstSteps": "Hatua za kwanza",
+    "photoCredit": "Picha: {{credit}}",
+    "noCover": "picha ya mradi",
+    "loading": "Onyesho linapakiwa",
+    "emptyTitle": "Onyesho linasubiri mradi wake wa kwanza",
+    "emptyText": "Chapisha wako: wasanidi wa bara wataona unachojenga na nafasi unazotafuta.",
+    "emptyAction": "Chapisha mradi wangu",
+    "errorTitle": "Onyesho halikuweza kupakiwa",
+    "errorText": "Angalia muunganisho wako, kisha ujaribu tena.",
+    "more_one": "mradi mwingine kwenye onyesho",
+    "more_other": "miradi mingine kwenye onyesho"
+  },
+  "media": {
+    "showImage": "Onyesha picha"
+  },
+  "footer": {
+    "explore": "Gundua",
+    "contribute": "Changia",
+    "settings": "Mipangilio",
+    "languages": "Inapatikana kwa",
+    "woven": "Imefumwa uzi kwa uzi na jamii",
+    "backToTop": "Rudi juu",
+    "status": {
+      "checking": "Inakagua API…",
+      "online": "API iko mtandaoni",
+      "offline": "API haipatikani"
+    },
+    "copyright": "© {{year}} {{name}}",
+    "scrollTop": "Rudi juu ya ukurasa"
+  },
+  "cta": {
+    "eyebrow": "Karakana leo",
+    "threadTitle": "Uzi mmoja peke yake haufanyi kitambaa.",
+    "threadText": "Kila msanidi ni uzi: ujuzi, lugha, nchi. Hapa, timu hufumwa kuzunguka miradi.",
+    "stats": {
+      "developers_one": "msanidi",
+      "developers_other": "wasanidi",
+      "countries_one": "nchi",
+      "countries_other": "nchi",
+      "projects_one": "mradi",
+      "projects_other": "miradi",
+      "openings_one": "nafasi wazi",
+      "openings_other": "nafasi wazi",
+      "seats_one": "nafasi {{count}} ya kujaza",
+      "seats_other": "nafasi {{count}} za kujaza"
+    },
+    "title": "Mradi wako ujao unaanza na timu.",
+    "text": "Onyesha unachojenga, tafuta wenzako wa timu, mkamilishe pamoja.",
+    "openWorkshop": "Fungua karakana",
+    "seeShowcase": "Ona onyesho",
+    "alreadyWeaving": "Tayari wanafuma hapa",
+    "label": {
+      "title": "Nafasi za kujaza",
+      "inProjects_one": "katika mradi {{count}}",
+      "inProjects_other": "katika miradi {{count}}",
+      "action": "Ona matangazo"
+    }
+  },
+  "features": {
+    "eyebrow": "Jinsi inavyofanya kazi",
+    "title": "Kutoka kukutana hadi kukabidhi.",
+    "text": "Nyakati tano za maisha ya mradi, mahali pamoja. Gusa, buruta, weka alama: kadi hizi zinafanya kazi kama karakana.",
+    "meet": {
+      "eyebrow": "Kukutana",
+      "title": "Kupitia kazi",
+      "text": "Majukumu yanayotafutwa na teknolojia zako zinakuongoza kwa watu sahihi.",
+      "pick": "Teknolojia zako",
+      "seatsHeader": "Nafasi",
+      "seats_one": "nafasi {{count}}",
+      "seats_other": "nafasi {{count}}",
+      "found_one": "{{name}} · tangazo {{count}} wazi",
+      "found_other": "{{name}} · matangazo {{count}} wazi",
+      "loading": "Inatafuta matangazo…",
+      "firstStep": "Hatua ya kwanza #{{number}}",
+      "all": "Matangazo yote ya {{name}}",
+      "empty": "Hakuna anayeajiri kwa {{name}} kwa sasa. Rudi hivi karibuni, au chapisha mradi wako.",
+      "error": "Matangazo hayakuweza kupakiwa.",
+      "howTo": "Ili kuomba, chukua issue ya «hatua ya kwanza» ya jukumu: msimbo, si CV."
+    },
+    "review": {
+      "eyebrow": "Kubadilishana",
+      "title": "Mapitio ya msimbo",
+      "text": "Kila PR inapitiwa mstari kwa mstari, na timu na jamii.",
+      "pr": "Akiba ya Redis kwa ratiba za BRT",
+      "changesRequested": "Mabadiliko yameombwa",
+      "approved": "Imeidhinishwa",
+      "maintainer": "mtunzaji",
+      "comment": "Muda wa kuisha 0: ratiba hazitasasishwa kamwe. Napendekeza dakika 10.",
+      "apply": "Tumia pendekezo",
+      "helpful": "yanasaidia",
+      "helpfulHint": "Mapitio haya yamekusaidia? Mwandishi wake anapata pointi 10 za sifa.",
+      "resolved": "Ama ametumia pendekezo. Chinedu anaidhinisha PR.",
+      "replay": "Rudia"
+    },
+    "share": {
+      "eyebrow": "Kushiriki",
+      "title": "Onyesho + devlog",
+      "text": "Onyesho la moja kwa moja, picha za skrini, teknolojia, kiungo cha GitHub, shajara ya maendeleo.",
+      "devlog": "Devlog",
+      "stack": "Teknolojia za mradi",
+      "versions": {
+        "v07": {
+          "name": "v0.7",
+          "when": "siku 2 zilizopita",
+          "text": "Akiba ya Redis: ukurasa wa kituo unashuka kutoka sek. 1.8 hadi ms 120."
+        },
+        "v06": {
+          "name": "v0.6",
+          "when": "siku 9 zilizopita",
+          "text": "Hali ya nje ya mtandao: vituo 20 vya mwisho vinabaki kupatikana."
+        },
+        "v05": {
+          "name": "v0.5",
+          "when": "wiki 3 zilizopita",
+          "text": "Mtiririko wa kwanza wa GTFS umethibitishwa: njia 140 za danfo."
+        }
+      },
+      "app": {
+        "next": "BRT ijayo",
+        "minutes_one": "dak. {{count}}",
+        "minutes_other": "dak. {{count}}",
+        "before": "awali: sek. 1.8",
+        "offline": "Nje ya mtandao",
+        "kept_one": "kituo {{count}} kimehifadhiwa",
+        "kept_other": "vituo {{count}} vimehifadhiwa",
+        "routes": "Njia za danfo",
+        "lines_one": "njia {{count}} · GTFS sahihi",
+        "lines_other": "njia {{count}} · GTFS sahihi"
+      }
+    },
+    "team": {
+      "eyebrow": "Kushirikiana",
+      "title": "Nafasi kwa kila timu",
+      "text": "Wanachama, kanban, mazungumzo, hackathoni. Omba kupitia issue, si kwa CV.",
+      "sprint": "sprint 7 · siku 6 zimebaki",
+      "online_one": "{{count}} mtandaoni",
+      "online_other": "{{count}} mtandaoni",
+      "board": "Ubao wa sprint",
+      "firstStep": "hatua ya kwanza",
+      "changes": "badiliko 1",
+      "days_one": "siku {{count}}",
+      "days_other": "siku {{count}}",
+      "tasks": {
+        "t33": "Onyesha BRT ijayo kwenye skrini ya kituo",
+        "t40": "Mchoro wa ukurasa wa kituo",
+        "t46": "Punguza maombi ya GraphQL kwa kila IP",
+        "t38": "Hali ya nje ya mtandao: foleni ya usawazishaji",
+        "t45": "Thibitisha mtiririko wa GTFS wa danfo",
+        "t84": "Akiba ya Redis kwa ratiba za BRT"
+      },
+      "card": "#{{number}} {{task}}, katika {{column}}",
+      "keys": "Enter: safu inayofuata. Mishale ya kushoto na kulia: safu jirani.",
+      "moved": "{{name}} amehamisha «{{task}}» kwenda {{column}}",
+      "youMoved": "Umehamisha «{{task}}» kwenda {{column}}",
+      "hintPointer": "Buruta kadi, au bofya ili kuisogeza mbele.",
+      "hintTouch": "Gusa kadi ili kuisogeza mbele."
+    },
+    "daily": {
+      "eyebrow": "Kila siku",
+      "title": "Karakana yako ya leo",
+      "text": "Mapitio yanayokusubiri, kazi zako, matangazo yanayokufaa. Kurasa nyepesi, hali ya kuokoa data.",
+      "hello": "Habari {{name}}",
+      "summary_one": "Leo: mapitio 2 yanakusubiri, kazi {{count}}, ombi 1 la kuangalia.",
+      "summary_other": "Leo: mapitio 2 yanakusubiri, kazi {{count}}, ombi 1 la kuangalia.",
+      "allDone": "Kazi zimekamilika! Yamebaki mapitio 2 na ombi 1.",
+      "reviews": "Mapitio yanayokusubiri",
+      "review84": "Akiba ya Redis kwa ratiba za BRT",
+      "review12": "Helm chart: mipaka ya kumbukumbu ya msingi",
+      "tasks": "Kazi zako",
+      "task1": "#46 Punguza maombi ya GraphQL kwa kila IP",
+      "task2": "Chapisha devlog ya v0.8",
+      "task3": "Andaa onyesho la sprint 7",
+      "saverOn": "Imewashwa: tovuti inakuwa nyepesi",
+      "saverOff": "Imezimwa",
+      "saverImages": "Picha zinapoombwa tu",
+      "saverMotion": "Michoro hai imezimwa",
+      "saverPrefetch": "Bila kupakia mapema",
+      "open": "Fungua karakana yangu",
+      "create": "Unda karakana yangu"
+    }
+  },
+  "auth": {
+    "login": {
+      "eyebrow": "Ingia",
+      "title": "Ni vizuri kukuona tena.",
+      "text": "Karakana yako inakusubiri: timu zako, mapitio yako, miradi yako.",
+      "submit": "Ingia",
+      "pending": "Inaingia…",
+      "failed": "Barua pepe, jina la mtumiaji au nenosiri si sahihi.",
+      "noAccount": "Bado huna akaunti?",
+      "toRegister": "Fungua akaunti"
+    },
+    "register": {
+      "eyebrow": "Jisajili",
+      "title": "Jiunge na karakana.",
+      "text": "Onyesho la miradi yako, timu karibu nawe. Dakika moja inatosha.",
+      "submit": "Fungua akaunti yangu",
+      "pending": "Inafungua akaunti…",
+      "hasAccount": "Tayari ni mwanachama?",
+      "toLogin": "Ingia"
+    },
+    "welcomeButton": "Karibu!",
+    "welcomeLabel": "Karibu karakanani",
+    "fields": {
+      "identifier": "Barua pepe au jina la mtumiaji",
+      "identifierPlaceholder": "amani@mfano.com",
+      "password": "Nenosiri",
+      "fullName": "Jina kamili",
+      "fullNamePlaceholder": "Amani Juma",
+      "username": "Jina la mtumiaji",
+      "usernamePlaceholder": "amani_juma",
+      "email": "Barua pepe",
+      "emailPlaceholder": "amani@mfano.com"
+    },
+    "password": {
+      "show": "Onyesha nenosiri",
+      "capsLock": "Herufi kubwa zimewashwa"
+    },
+    "strength": {
+      "label": "Uimara",
+      "weak": "Dhaifu",
+      "fair": "Wastani",
+      "good": "Imara",
+      "great": "Bora kabisa",
+      "met": "(imetimia)",
+      "unmet": "(bado)",
+      "rules": {
+        "length": "Angalau herufi 8",
+        "long": "Herufi 12 au zaidi",
+        "cases": "Herufi kubwa na ndogo",
+        "mixed": "Nambari na alama"
+      }
+    },
+    "username": {
+      "free": "{{username}} linapatikana.",
+      "taken": "{{username}} limeshachukuliwa.",
+      "reserved": "{{username}} limehifadhiwa.",
+      "suggestions": "Yanayopatikana:"
+    },
+    "oauth": {
+      "continueWith": "Endelea na {{provider}}",
+      "soon": "karibuni",
+      "unavailable": "Kuingia kwa {{provider}} kunakuja karibuni. Kwa sasa, endelea na barua pepe yako.",
+      "or": "au kwa barua pepe yako"
+    },
+    "errors": {
+      "emailTaken": "Akaunti tayari inatumia barua pepe hii. Ingia badala yake.",
+      "usernameTaken": "Jina hili la mtumiaji limechukuliwa sasa hivi.",
+      "usernameReserved": "Jina hili la mtumiaji limehifadhiwa."
+    },
+    "loom": {
+      "eyebrow": "Karakana",
+      "loginTitle": "Karibu tena karakanani.",
+      "loginText": "Ulipokuwa mbali, timu ziliendelea kufuma.",
+      "registerTitle": "Uzi mmoja zaidi kitambaani.",
+      "registerText": "Kila msanidi ni uzi. Hapa, timu hufumwa kuzunguka miradi."
+    }
+  }
+}

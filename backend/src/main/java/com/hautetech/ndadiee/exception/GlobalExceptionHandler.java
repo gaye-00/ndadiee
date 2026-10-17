@@ -17,6 +17,7 @@ import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.MissingServletRequestParameterException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
+import org.springframework.web.context.request.async.AsyncRequestNotUsableException;
 import org.springframework.web.method.annotation.MethodArgumentTypeMismatchException;
 import org.springframework.web.servlet.resource.NoResourceFoundException;
 
@@ -31,7 +32,17 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(BusinessException.class)
     public ResponseEntity<ErrorResponse> handleBusiness(BusinessException ex) {
         log.warn("Business exception: {}", ex.getMessage());
-        return buildResponse(ex.getStatus(), ex.getErrorCode(), ex.getMessage());
+        if (ex.getField() == null) {
+            return buildResponse(ex.getStatus(), ex.getErrorCode(), ex.getMessage());
+        }
+        // Erreur d'un champ (« email déjà utilisé ») : le formulaire l'affiche sous ce champ
+        ErrorResponse response = ErrorResponse.builder()
+                .status(ex.getStatus().value())
+                .errorCode(ex.getErrorCode())
+                .message(ex.getMessage())
+                .validationErrors(Map.of(ex.getField(), ex.getMessage()))
+                .build();
+        return ResponseEntity.status(ex.getStatus()).body(response);
     }
 
     // ==================== Validation ====================
@@ -121,6 +132,16 @@ public class GlobalExceptionHandler {
         log.warn("Data integrity violation: {}", ex.getMostSpecificCause().getMessage());
         return buildResponse(HttpStatus.CONFLICT, "DUPLICATE_RESOURCE",
                 "Cette opération entre en conflit avec des données existantes");
+    }
+
+    // ==================== Client parti ====================
+
+    // Le navigateur a fermé la connexion avant la réponse (page quittée ou rechargée, requête annulée) :
+    // rien à répondre, et ce n'est pas une erreur du serveur. Sans ce gestionnaire, le filet de sécurité
+    // ci-dessous la journalisait en ERROR, pile complète comprise (« Broken pipe »).
+    @ExceptionHandler(AsyncRequestNotUsableException.class)
+    public void handleClientGone(AsyncRequestNotUsableException ex) {
+        log.debug("Réponse abandonnée, le client a fermé la connexion : {}", ex.getMessage());
     }
 
     // ==================== Catch-all ====================

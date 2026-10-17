@@ -21,6 +21,9 @@ public class ProjectRequest {
     @Size(min = 3, max = 100, message = "Le nom doit contenir entre 3 et 100 caractères")
     private String name;
 
+    @Size(max = 200, message = "L'accroche ne peut pas dépasser 200 caractères")
+    private String tagline;
+
     @NotBlank(message = "La description est requise")
     @Size(max = 10000, message = "La description ne peut pas dépasser 10000 caractères")
     private String description;
@@ -36,6 +39,23 @@ public class ProjectRequest {
     @URL(message = "L'URL du logo n'est pas valide")
     @Size(max = 500, message = "L'URL ne peut pas dépasser 500 caractères")
     private String logoUrl;
+
+    // Couverture : capture ou photo, et sa miniature (sinon la couverture sert aussi de miniature)
+    @URL(message = "L'URL de la couverture n'est pas valide")
+    @Size(max = 500, message = "L'URL ne peut pas dépasser 500 caractères")
+    private String coverUrl;
+
+    @URL(message = "L'URL de la miniature n'est pas valide")
+    @Size(max = 500, message = "L'URL ne peut pas dépasser 500 caractères")
+    private String coverThumbnailUrl;
+
+    // Photo empruntée : auteur et licence, et lien vers la source
+    @Size(max = 200, message = "Le crédit ne peut pas dépasser 200 caractères")
+    private String coverCredit;
+
+    @URL(message = "L'URL de la source n'est pas valide")
+    @Size(max = 500, message = "L'URL ne peut pas dépasser 500 caractères")
+    private String coverSourceUrl;
 
     // Technologies du projet
     @Size(max = 8, message = "8 tags maximum")

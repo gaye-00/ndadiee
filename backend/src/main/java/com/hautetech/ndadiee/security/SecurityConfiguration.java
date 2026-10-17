@@ -55,6 +55,10 @@ public class SecurityConfiguration {
                     "/v1/auth/login",
                     "/v1/auth/refresh"
                 ).permitAll()
+                .requestMatchers(HttpMethod.GET, "/v1/auth/username-availability").permitAll()
+
+                // Médias servis par l'API (couvertures des projets de démonstration)
+                .requestMatchers(HttpMethod.GET, "/media/**").permitAll()
 
                 // Documentation Swagger
                 .requestMatchers(
@@ -76,6 +80,10 @@ public class SecurityConfiguration {
                     "/v1/projects",
                     "/v1/projects/{slug}",
                     "/v1/projects/{id}/members",
+                    "/v1/openings",
+                    "/v1/openings/roles",
+                    "/v1/openings/stacks",
+                    "/v1/stats",
                     "/v1/opportunities",
                     "/v1/opportunities/{id}",
                     "/v1/tags",

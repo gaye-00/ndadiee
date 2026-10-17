@@ -15,13 +15,16 @@ import com.hautetech.ndadiee.dto.request.MemberDecisionRequest;
 import com.hautetech.ndadiee.dto.request.ProjectRequest;
 import com.hautetech.ndadiee.dto.response.PageResponse;
 import com.hautetech.ndadiee.dto.response.ProjectMemberResponse;
+import com.hautetech.ndadiee.dto.response.ProjectOpeningResponse;
 import com.hautetech.ndadiee.dto.response.ProjectResponse;
+import com.hautetech.ndadiee.dto.response.UserSummaryResponse;
 import com.hautetech.ndadiee.event.ProjectCreatedEvent;
 import com.hautetech.ndadiee.event.ProjectJoinRequestedEvent;
 import com.hautetech.ndadiee.exception.ForbiddenException;
 import com.hautetech.ndadiee.exception.OperationNotAllowedException;
 import com.hautetech.ndadiee.exception.ResourceNotFoundException;
 import com.hautetech.ndadiee.mapper.ProjectMapper;
+import com.hautetech.ndadiee.mapper.UserMapper;
 import com.hautetech.ndadiee.model.ContentType;
 import com.hautetech.ndadiee.model.project.MemberStatus;
 import com.hautetech.ndadiee.model.project.Project;
@@ -30,6 +33,7 @@ import com.hautetech.ndadiee.model.project.ProjectRole;
 import com.hautetech.ndadiee.model.user.Developer;
 import com.hautetech.ndadiee.repository.CommentRepository;
 import com.hautetech.ndadiee.repository.ProjectMemberRepository;
+import com.hautetech.ndadiee.repository.ProjectOpeningRepository;
 import com.hautetech.ndadiee.repository.ProjectRepository;
 import com.hautetech.ndadiee.repository.VoteRepository;
 import com.hautetech.ndadiee.repository.specification.ProjectSpecifications;
@@ -47,8 +51,12 @@ import lombok.extern.slf4j.Slf4j;
 @RequiredArgsConstructor
 public class ProjectService {
 
+    // Équipe montrée sur une carte de la vitrine : le porteur et les premiers arrivés
+    private static final int TEAM_PREVIEW = 6;
+
     private final ProjectRepository projectRepository;
     private final ProjectMemberRepository projectMemberRepository;
+    private final ProjectOpeningRepository projectOpeningRepository;
     private final VoteRepository voteRepository;
     private final CommentRepository commentRepository;
     private final UserService userService;
@@ -56,6 +64,7 @@ public class ProjectService {
     private final SlugService slugService;
     private final VoteService voteService;
     private final ProjectMapper projectMapper;
+    private final UserMapper userMapper;
     private final ApplicationEventPublisher eventPublisher;
 
     // ==================== PROJETS ====================
@@ -81,13 +90,10 @@ public class ProjectService {
         Project project = Project.builder()
                 .name(request.getName().trim())
                 .slug(slugService.generateUniqueSlug(request.getName(), projectRepository::existsBySlug))
-                .description(request.getDescription())
-                .repositoryUrl(request.getRepositoryUrl())
-                .demoUrl(request.getDemoUrl())
-                .logoUrl(request.getLogoUrl())
                 .lookingForContributors(Boolean.TRUE.equals(request.getLookingForContributors()))
                 .owner(owner)
                 .build();
+        applyContent(project, request);
         tagService.replaceTags(project.getTags(), request.getTags());
         // Le propriétaire est le premier membre du projet
         project.getMembers().add(ProjectMember.builder()
@@ -109,10 +115,7 @@ public class ProjectService {
 
         // Le slug ne suit pas le nom : les liens déjà partagés restent valides
         project.setName(request.getName().trim());
-        project.setDescription(request.getDescription());
-        project.setRepositoryUrl(request.getRepositoryUrl());
-        project.setDemoUrl(request.getDemoUrl());
-        project.setLogoUrl(request.getLogoUrl());
+        applyContent(project, request);
         project.setLookingForContributors(Boolean.TRUE.equals(request.getLookingForContributors()));
         tagService.replaceTags(project.getTags(), request.getTags());
 
@@ -232,11 +235,21 @@ public class ProjectService {
                 ? Map.of()
                 : projectMemberRepository.findByUserIdAndProjectIdIn(currentUserId, ids).stream()
                         .collect(Collectors.toMap(member -> member.getProject().getId(), ProjectMember::getStatus));
+        Map<Long, List<ProjectOpeningResponse>> openings = projectOpeningRepository
+                .findByProjectIdInAndOpenTrueOrderByIdAsc(ids).stream()
+                .collect(Collectors.groupingBy(opening -> opening.getProject().getId(),
+                        Collectors.mapping(projectMapper::toOpeningResponse, Collectors.toList())));
+        Map<Long, List<UserSummaryResponse>> teams = projectMemberRepository
+                .findWithUserByProjectIdsAndStatus(ids, MemberStatus.ACCEPTED).stream()
+                .collect(Collectors.groupingBy(member -> member.getProject().getId(),
+                        Collectors.mapping(member -> userMapper.toSummary(member.getUser()), Collectors.toList())));
 
         return projects.stream()
                 .map(project -> {
                     ProjectResponse response = projectMapper.toResponse(project);
                     response.setMemberCount(memberCounts.getOrDefault(project.getId(), 0L));
+                    response.setOpenings(openings.getOrDefault(project.getId(), List.of()));
+                    response.setTeam(teams.getOrDefault(project.getId(), List.of()).stream().limit(TEAM_PREVIEW).toList());
                     if (currentUserId != null) {
                         response.setStarredByMe(stars.containsKey(project.getId()));
                         response.setMyMembershipStatus(memberships.get(project.getId()));
@@ -250,7 +263,24 @@ public class ProjectService {
         return toResponses(List.of(project), currentUserId).get(0);
     }
 
-    private Project findProjectOrThrow(Long projectId) {
+    // Champs que le porteur renseigne, à la création comme à la modification
+    private void applyContent(Project project, ProjectRequest request) {
+        project.setTagline(trimToNull(request.getTagline()));
+        project.setDescription(request.getDescription());
+        project.setRepositoryUrl(request.getRepositoryUrl());
+        project.setDemoUrl(request.getDemoUrl());
+        project.setLogoUrl(request.getLogoUrl());
+        project.setCoverUrl(request.getCoverUrl());
+        project.setCoverThumbnailUrl(request.getCoverThumbnailUrl());
+        project.setCoverCredit(trimToNull(request.getCoverCredit()));
+        project.setCoverSourceUrl(request.getCoverSourceUrl());
+    }
+
+    private static String trimToNull(String value) {
+        return value == null || value.isBlank() ? null : value.trim();
+    }
+
+    public Project findProjectOrThrow(Long projectId) {
         return projectRepository.findById(projectId)
                 .orElseThrow(() -> new ResourceNotFoundException("Projet", projectId));
     }
@@ -261,8 +291,8 @@ public class ProjectService {
         }
     }
 
-    // Le propriétaire et les mainteneurs acceptés gèrent les membres du projet
-    private boolean canManage(Project project, Long userId) {
+    // Le propriétaire et les mainteneurs acceptés gèrent les membres et les annonces du projet
+    public boolean canManage(Project project, Long userId) {
         if (userId == null) {
             return false;
         }

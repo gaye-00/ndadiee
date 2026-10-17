@@ -1,0 +1,514 @@
+{
+  "app": {
+    "tagline": "Wutal sa ekip. Matalal sa projet.",
+    "description": "Platform bu developeur yi ci Afrig: wone li ngay tabax, gis ekip yi di wut ñenn, te liggéey ànd ak sa ekip ci kanban ak saytu kood."
+  },
+  "nav": {
+    "showcase": "Vitrine",
+    "openings": "Yéenekaay",
+    "hackathons": "Hackathon yi",
+    "forum": "Waxtaan",
+    "dashboard": "Liggéeyukaay",
+    "projects": "Projet yi",
+    "reviews": "Saytu yi",
+    "messages": "Bataaxal yi",
+    "notifications": "Yégle yi",
+    "settings": "Tànneef yi",
+    "profile": "Profil",
+    "create": "Sos"
+  },
+  "actions": {
+    "login": "Duggu",
+    "register": "Bindu",
+    "logout": "Génn",
+    "getStarted": "Tàmbali",
+    "joinWithGithub": "Bokk ak GitHub",
+    "publishProject": "Siiwal sama projet",
+    "newProject": "Projet bu bees",
+    "newTopic": "Waxtaan wu bees",
+    "newTask": "Liggéey bu bees",
+    "publishRole": "Siiwal ab palaas",
+    "apply": "Bindu",
+    "joinTeam": "Bokk ci ekip bi",
+    "review": "Saytu",
+    "approve": "Nangu",
+    "requestChanges": "Laaj ay soppi",
+    "invite": "Woo",
+    "sendMessage": "Yónnee bataaxal",
+    "reply": "Tontu",
+    "seeAll": "Gis lépp",
+    "save": "Denc",
+    "cancel": "Neenal",
+    "close": "Tëj",
+    "back": "Dellu",
+    "retry": "Jéemaatal"
+  },
+  "search": {
+    "placeholder": "Seet lépp",
+    "shortcut": "Ctrl K",
+    "noResults": "Amul dara ngir “{{query}}”",
+    "groups": {
+      "roles": "Palaas yu ubbeeku",
+      "projects": "Projet yi",
+      "people": "Developeur yi",
+      "topics": "Waxtaan yi",
+      "actions": "Jëf yi"
+    }
+  },
+  "kanban": {
+    "todo": "Lu war a def",
+    "inProgress": "Mu ngi dox",
+    "inReview": "Ñu ngi koy saytu",
+    "done": "Jeex na",
+    "dropHere": "Wacce ko fii"
+  },
+  "workspace": {
+    "board": "Tablo",
+    "reviews": "Saytu yi",
+    "devlog": "Devlog",
+    "openRoles": "Palaas yu ubbeeku",
+    "settings": "Tànneef yi",
+    "messagePlaceholder": "Bindal ekip bi…"
+  },
+  "forum": {
+    "replies_one": "{{count}} tontu",
+    "replies_other": "{{count}} tontu",
+    "solved": "Am na saafara",
+    "unanswered": "Amul tontu"
+  },
+  "theme": {
+    "label": "Melo",
+    "light": "Leer",
+    "dark": "Lëndëm",
+    "system": "Ni jumtukaay bi",
+    "lightTheme": "Melo bu leer",
+    "pullHint": "Xiir buum bi",
+    "darkTheme": "Melo bu lëndëm"
+  },
+  "language": {
+    "label": "Làkk"
+  },
+  "dataSaver": {
+    "label": "Denc sa internet",
+    "description": "Animation yu néew, du yebal dara bala ngay laaj: baax na ci forfait yu ndaw."
+  },
+  "states": {
+    "loading": "Mu ngi yebu…",
+    "empty": "Amul dara fii léegi.",
+    "offline": "Amuloo internet."
+  },
+  "errors": {
+    "generic": "Am na njuumte.",
+    "network": "Mënunu jot serwëër bi. Seetal sa internet.",
+    "notFound": "Xët wii amul, walla dañu ko toxal."
+  },
+  "validation": {
+    "required": "Bindal fii.",
+    "email": "Email bi baaxul.",
+    "username": "3 ba 30 araf: araf, nimero walla _.",
+    "minChars_one": "Minimum {{count}} araf.",
+    "minChars_other": "Minimum {{count}} araf.",
+    "maxChars_one": "Maximum {{count}} araf.",
+    "maxChars_other": "Maximum {{count}} araf.",
+    "minItems_one": "Yokkal minimum {{count}}.",
+    "minItems_other": "Yokkal minimum {{count}}.",
+    "maxItems_one": "Maximum {{count}}.",
+    "maxItems_other": "Maximum {{count}}."
+  },
+  "a11y": {
+    "skipToContent": "Dem ci li ci biir",
+    "mainNavigation": "Menu bu mag bi",
+    "breadcrumb": "Fi nga nekk",
+    "account": "Sama kont"
+  },
+  "pages": {
+    "landing": "Kër",
+    "showcase": "Vitrine",
+    "project": "Projet",
+    "openings": "Yéenekaay",
+    "newOpening": "Siiwal ab yéenekaay",
+    "hackathons": "Hackathon yi",
+    "hackathon": "Hackathon",
+    "forum": "Waxtaan",
+    "topic": "Waxtaan",
+    "newTopic": "Waxtaan wu bees",
+    "profile": "Profil",
+    "search": "Seet",
+    "dashboard": "Liggéeyukaay",
+    "myProjects": "Sama projet yi",
+    "newProject": "Projet bu bees",
+    "workspaceBoard": "Tablo",
+    "workspaceReviews": "Saytu yu ekip bi",
+    "workspaceDevlog": "Devlog",
+    "workspaceRoles": "Palaas yu ubbeeku",
+    "workspaceSettings": "Tànneefu ekip bi",
+    "review": "Saytu kood",
+    "reviews": "Saytu yi",
+    "messages": "Bataaxal yi",
+    "notifications": "Yégle yi",
+    "settings": "Tànneef yi",
+    "login": "Duggu",
+    "register": "Bindu",
+    "notFound": "Xët wi amul"
+  },
+  "enums": {
+    "experienceLevel": {
+      "STUDENT": "Ndongo",
+      "JUNIOR": "Junior",
+      "MID": "Confirmé",
+      "SENIOR": "Senior"
+    },
+    "role": {
+      "USER": "Way-bokk",
+      "MODERATOR": "Moderateur",
+      "ADMIN": "Admin"
+    },
+    "opportunityType": {
+      "JOB": "Liggéey",
+      "FREELANCE": "Freelance",
+      "INTERNSHIP": "Stage",
+      "HACKATHON": "Hackathon"
+    },
+    "workMode": {
+      "REMOTE": "Fu sore",
+      "ONSITE": "Ci béréb bi",
+      "HYBRID": "Hybride"
+    },
+    "projectRole": {
+      "OWNER": "Boroom",
+      "MAINTAINER": "Mainteneur",
+      "CONTRIBUTOR": "Way-dimbali"
+    }
+  },
+  "hero": {
+    "titleTeam": "Wutal sa ekip.",
+    "titleShip": "Matalal sa projet.",
+    "lead": "Fu ngay wone li ngay tabax, yéenekaay yu ekip yi di wut ñenn, ak bérab liggéeyukaay ak kanban ak saytu kood. Ngir developeur yi ci Afrig.",
+    "recruiting_one": "{{count}} projet mu ngi wut ay nit léegi",
+    "recruiting_other": "{{count}} projet ñu ngi wut ay nit léegi",
+    "firstTeams": "Ekip yu jëkk yi ñu ngi sosu fii. Tàmbali sa bos.",
+    "loom": {
+      "sample": "Atum misaal",
+      "username": "Sa tur ci GitHub",
+      "placeholder": "sa-tur",
+      "weave": "Ràbb sama at",
+      "weaving": "Mu ngi ràbb…",
+      "reset": "Dellu ci atum misaal",
+      "invalid": "Tur bu GitHub dafay am ay araf, ay limu ak ay tire, 39 araf lu ëpp.",
+      "notFound": "Amul benn kontu GitHub bu tudd noonu.",
+      "unavailable": "GitHub du tontu. Jéemaatal ci kanam tuuti.",
+      "viewLabel": "Naka lañuy gise at mi",
+      "viewCloth": "Sër: at mi tasaaroo",
+      "viewCity": "Dëkk: at mi ci 3D",
+      "less": "Tuuti",
+      "more": "Bare",
+      "level0": "Bés yu amul dara",
+      "level1": "Bés yu dal",
+      "level2": "Bés yu ñu liggéey",
+      "level3": "Bés yu bare liggéey",
+      "level4": "Bés yi gëna bare liggéey",
+      "structure": "Benn bànd ci ayu-bés bu nekk, benn kaare ci bés bu nekk.",
+      "hintCloth": "Teg sa kurseer ci benn bés, walla nga dox ci at mi ak fles yi.",
+      "hintCity": "Diri ngir wër dëkk bi. Bësal ñaari yoon ngir dellu.",
+      "summary": "{{who}}, li dale ci {{from}} ba {{to}}: {{total}}. Benn bànd ci ayu-bés bu nekk, benn kaare ci bés bu nekk. Jëfandikoo fles yi ngir jàng bés bu nekk.",
+      "streak_one": "toppante bi gëna gudd: {{count}} bés",
+      "streak_other": "toppante bi gëna gudd: {{count}} bés",
+      "showcase": "Sa at mi yeyoo na ab wone"
+    }
+  },
+  "contributions": {
+    "count_one": "{{count}} ndimbal",
+    "count_other": "{{count}} ndimbal",
+    "none": "Amul ndimbal"
+  },
+  "teamRoles": {
+    "frontend": "Dev front-end",
+    "backend": "Dev back-end",
+    "mobile": "Dev mobile",
+    "design": "Designer UI/UX",
+    "data": "Data ak IA",
+    "devops": "DevOps ak cloud",
+    "security": "Kaaraange",
+    "payments": "Mobile Money ak USSD",
+    "l10n": "Tekki ak làkk",
+    "docs": "Bind teknik",
+    "product": "Product manager",
+    "embedded": "IoT ak masin yu ndaw",
+    "qa": "Tèst ak baaxaay"
+  },
+  "rolesBand": {
+    "title": "Palaas yi ekip yi di seet",
+    "all": "Yéenekaay yépp",
+    "pause": "Taxawal bandu palaas yi",
+    "play": "Dooraatal bandu palaas yi",
+    "recruiting": "Di seet ñuy dimbali : {{projects}}"
+  },
+  "showcase": {
+    "title": "Vitrine bi",
+    "all": "Projet yépp",
+    "seeking": "Mu ngi seet : {{roles}}",
+    "seeRoles": "Xool palaas yi",
+    "seeProject": "Xool projet bi",
+    "stars_one": "{{count}} biddiiw",
+    "stars_other": "{{count}} biddiiw",
+    "team_one": "Ekip bu am {{count}} nit",
+    "team_other": "Ekip bu am {{count}} nit",
+    "firstSteps": "Jëmm yu njëkk yi",
+    "photoCredit": "Nataal : {{credit}}",
+    "noCover": "nataalu projet bi",
+    "loading": "Vitrine bi mu ngi yeb",
+    "emptyTitle": "Vitrine bi mu ngi xaar projet bu njëkk",
+    "emptyText": "Siiwal sa bos : dev yu kontinaa bi dinañu gis li ngay tabax ak palaas yi ngay seet.",
+    "emptyAction": "Siiwal sama projet",
+    "errorTitle": "Vitrine bi mënul a yeb",
+    "errorText": "Seetal sa connexion, te jéemaat.",
+    "more_one": "beneen projet ci vitrine bi",
+    "more_other": "yeneen projet ci vitrine bi"
+  },
+  "media": {
+    "showImage": "Wone nataal bi"
+  },
+  "footer": {
+    "explore": "Xool",
+    "contribute": "Dimbali",
+    "settings": "Tànneef yi",
+    "languages": "Am na ci",
+    "woven": "Mbooloo mi moo ko ràbb",
+    "backToTop": "Dellu ci kaw",
+    "status": {
+      "checking": "Ñu ngi seet API bi…",
+      "online": "API bi mu ngi dox",
+      "offline": "API bi mënul a jot"
+    },
+    "copyright": "© {{year}} {{name}}",
+    "scrollTop": "Dellu ci kaw xët wi"
+  },
+  "cta": {
+    "eyebrow": "Atelier bi, tey",
+    "threadTitle": "Benn wëñ rekk du def sër.",
+    "threadText": "Dev bu nekk ab wëñ la : xam-xam, làkk, réew. Fii, ekip yi dañuy ràbbu ci wetu projet yi.",
+    "stats": {
+      "developers_one": "dev",
+      "developers_other": "dev",
+      "countries_one": "réew",
+      "countries_other": "réew",
+      "projects_one": "projet",
+      "projects_other": "projet",
+      "openings_one": "palaas bu ubbeeku",
+      "openings_other": "palaas yu ubbeeku",
+      "seats_one": "{{count}} palaas bu des",
+      "seats_other": "{{count}} palaas yu des"
+    },
+    "title": "Sa projet bu ci topp dafay tàmbali ak ekip.",
+    "text": "Won li ngay tabax, gis sa nawle yi, jeexal leen ko ànd.",
+    "openWorkshop": "Ubbi atelier bi",
+    "seeShowcase": "Xool vitrine bi",
+    "alreadyWeaving": "Ñu ngi ràbb fii ba noppi",
+    "label": {
+      "title": "Palaas yu des",
+      "inProjects_one": "ci {{count}} projet",
+      "inProjects_other": "ci {{count}} projet",
+      "action": "Xool yéenekaay yi"
+    }
+  },
+  "features": {
+    "eyebrow": "Naka la doxee",
+    "title": "Li dale ci gisoo ba ci jébbal.",
+    "text": "Juróomi jamono ci dundu ab projet, ci benn béréb. Laal, xëcc, màndargal : kart yii dañuy dox ni liggéeyukaay bi.",
+    "meet": {
+      "eyebrow": "Gisoo",
+      "title": "Ci liggéey bi",
+      "text": "Rol yi ñuy seet ak say xarala ñoo lay yóbbu ci nit ñi war.",
+      "pick": "Say xarala",
+      "seatsHeader": "Palaas",
+      "seats_one": "{{count}} palaas",
+      "seats_other": "{{count}} palaas",
+      "found_one": "{{name}} · {{count}} yéenekaay bu ubbeeku",
+      "found_other": "{{name}} · {{count}} yéenekaay yu ubbeeku",
+      "loading": "Ñu ngi seet yéenekaay yi…",
+      "firstStep": "Jëmm ju njëkk #{{number}}",
+      "all": "Yéenekaay {{name}} yépp",
+      "empty": "Kenn seetul ñu liggéey ci {{name}} léegi. Ñibbisil ci kanam, walla nga siiwal sa projet.",
+      "error": "Yéenekaay yi mënuñu yeb.",
+      "howTo": "Ngir bindu, jël issue « jëmm ju njëkk » bu rol bi : kood, du CV."
+    },
+    "review": {
+      "eyebrow": "Weccoo",
+      "title": "Saytu kood",
+      "text": "PR bu nekk dañu koy saytu rëdd ak rëdd, ekip bi ak askan wi.",
+      "pr": "Cache Redis ngir waxtu BRT yi",
+      "changesRequested": "Soppi lañu laaj",
+      "approved": "Nangu nañu ko",
+      "maintainer": "toppatookat",
+      "comment": "Jeexital 0 : waxtu yi duñu yees mukk. Dama ciy digle 10 simili.",
+      "apply": "Jëfandikoo digle bi",
+      "helpful": "am njariñ",
+      "helpfulHint": "Saytu bii dimbali na la ? Ki ko bind dina am 10 poñ ci turam.",
+      "resolved": "Ama jëfandikoo na digle bi. Chinedu nangu na PR bi.",
+      "replay": "Waxaatal"
+    },
+    "share": {
+      "eyebrow": "Séddoo",
+      "title": "Vitrine + devlog",
+      "text": "Demo, nataal, xarala, lëkkalekaay GitHub, téereb yokkute.",
+      "devlog": "Devlog",
+      "stack": "Xarala yu projet bi",
+      "versions": {
+        "v07": {
+          "name": "v0.7",
+          "when": "ñaari fan ci ginnaaw",
+          "text": "Cache Redis : xët wu arrêt bi dafa wàcc 1,8 s ba 120 ms."
+        },
+        "v06": {
+          "name": "v0.6",
+          "when": "juróom-ñeenti fan ci ginnaaw",
+          "text": "Mood bu amul internet : 20 arrêt yu mujj yi ñu ngi fi."
+        },
+        "v05": {
+          "name": "v0.5",
+          "when": "ñetti ayubés ci ginnaaw",
+          "text": "Flux GTFS bu njëkk bi nangu nañu ko : 140 rëddu danfo."
+        }
+      },
+      "app": {
+        "next": "BRT bi ci topp",
+        "minutes_one": "{{count}} simili",
+        "minutes_other": "{{count}} simili",
+        "before": "bu jëkk : 1,8 s",
+        "offline": "Amul internet",
+        "kept_one": "{{count}} arrêt bu ñu denc",
+        "kept_other": "{{count}} arrêt yu ñu denc",
+        "routes": "Rëddu danfo yi",
+        "lines_one": "{{count}} rëdd · GTFS baax na",
+        "lines_other": "{{count}} rëdd · GTFS baax na"
+      }
+    },
+    "team": {
+      "eyebrow": "Ànd liggéey",
+      "title": "Béréb ngir ekip bu nekk",
+      "text": "Ñi ci bokk, kanban, waxtaan, hackathon. Ñu bindu ak ab issue, du ak CV.",
+      "sprint": "sprint 7 · 6 fan a des",
+      "online_one": "{{count}} ñu ngi fi",
+      "online_other": "{{count}} ñu ngi fi",
+      "board": "Tablo sprint bi",
+      "firstStep": "jëmm ju njëkk",
+      "changes": "1 soppi",
+      "days_one": "{{count}} f",
+      "days_other": "{{count}} f",
+      "tasks": {
+        "t33": "Won BRT bi ci topp ci ekraanu arrêt bi",
+        "t40": "Maket xëtu arrêt bi",
+        "t46": "Digal laaj GraphQL yi ci IP bu nekk",
+        "t38": "Mood bu amul internet : toggu yemale",
+        "t45": "Saytu flux GTFS bu danfo yi",
+        "t84": "Cache Redis ngir waxtu BRT yi"
+      },
+      "card": "#{{number}} {{task}}, ci {{column}}",
+      "keys": "Entrée : kolon bi ci topp. Fleccu càmmoñ ak ndeyjoor : kolon bi ci wet gi.",
+      "moved": "{{name}} randal na « {{task}} » ci {{column}}",
+      "youMoved": "Randal nga « {{task}} » ci {{column}}",
+      "hintPointer": "Xëccal ab kart, walla bësal ngir yóbbu ko kanam.",
+      "hintTouch": "Laalal ab kart ngir yóbbu ko kanam."
+    },
+    "daily": {
+      "eyebrow": "Bés bu nekk",
+      "title": "Sa liggéeyukaay tey",
+      "text": "Saytu yi lay xaar, say liggéey, yéenekaay yi la mengoo. Xët yu woyof, mood bu denc sa internet.",
+      "hello": "Salaam {{name}}",
+      "summary_one": "Tey : 2 saytu ñu ngi lay xaar, {{count}} liggéey, 1 bindu ngir xool.",
+      "summary_other": "Tey : 2 saytu ñu ngi lay xaar, {{count}} liggéey, 1 bindu ngir xool.",
+      "allDone": "Liggéey yi jeex nañu ! 2 saytu ak 1 bindu ñoo des.",
+      "reviews": "Saytu yi lay xaar",
+      "review84": "Cache Redis ngir waxtu BRT yi",
+      "review12": "Helm chart : digu memwaar yu njëkk yi",
+      "tasks": "Say liggéey",
+      "task1": "#46 Digal laaj GraphQL yi ci IP bu nekk",
+      "task2": "Siiwal devlog v0.8 bi",
+      "task3": "Waajal demo sprint 7 bi",
+      "saverOn": "Taal na : site bi dafay woyofu",
+      "saverOff": "Fey na",
+      "saverImages": "Nataal yi su ñu ko laajee rekk",
+      "saverMotion": "Animation yi taxaw nañu",
+      "saverPrefetch": "Du yebal dara bala ngay laaj",
+      "open": "Ubbi sama liggéeyukaay",
+      "create": "Sos sama liggéeyukaay"
+    }
+  },
+  "auth": {
+    "login": {
+      "eyebrow": "Dugg",
+      "title": "Bég nañu ci gisaat la.",
+      "text": "Sa liggéeyukaay mi ngi lay xaar : say ekip, say saytu, say projet.",
+      "submit": "Dugg",
+      "pending": "Mi ngi dugg…",
+      "failed": "Email, turu jëfandikukat walla baatu jàll bi baaxul.",
+      "noAccount": "Amoo kontu ba tey ?",
+      "toRegister": "Sos ab kontu"
+    },
+    "register": {
+      "eyebrow": "Bindu",
+      "title": "Bokkal ci liggéeyukaay bi.",
+      "text": "Vitrine ngir say projet, ekip yu la wër. Benn simili doy na.",
+      "submit": "Sos sama kontu",
+      "pending": "Mi ngi sos kontu bi…",
+      "hasAccount": "Bokk nga ba noppi ?",
+      "toLogin": "Dugg"
+    },
+    "welcomeButton": "Dalal ak jàmm !",
+    "welcomeLabel": "Dalal ak jàmm ci liggéeyukaay bi",
+    "fields": {
+      "identifier": "Email walla turu jëfandikukat",
+      "identifierPlaceholder": "awa@misaal.com",
+      "password": "Baatu jàll",
+      "fullName": "Tur bu mat",
+      "fullNamePlaceholder": "Awa Diop",
+      "username": "Turu jëfandikukat",
+      "usernamePlaceholder": "awa_diop",
+      "email": "Email",
+      "emailPlaceholder": "awa@misaal.com"
+    },
+    "password": {
+      "show": "Wone baatu jàll bi",
+      "capsLock": "Araf yu mag yi ñu ngi taal"
+    },
+    "strength": {
+      "label": "Doole",
+      "weak": "Néew na",
+      "fair": "Ci diggante",
+      "good": "Dëgër na",
+      "great": "Baax na lool",
+      "met": "(def nañu ko)",
+      "unmet": "(des na)",
+      "rules": {
+        "length": "8 araf lu néew",
+        "long": "12 araf walla lu ko ëpp",
+        "cases": "Araf yu mag ak yu ndaw",
+        "mixed": "Benn siifar ak benn màndarga"
+      }
+    },
+    "username": {
+      "free": "{{username}} mi ngi fi.",
+      "taken": "{{username}} jël nañu ko ba noppi.",
+      "reserved": "{{username}} dañu ko denc.",
+      "suggestions": "Yi des :"
+    },
+    "oauth": {
+      "continueWith": "Kontine ak {{provider}}",
+      "soon": "ci kanam",
+      "unavailable": "Dugg ak {{provider}} dina ñëw ci kanam. Ba ci kanam, kontineel ak sa email.",
+      "or": "walla ak sa email"
+    },
+    "errors": {
+      "emailTaken": "Am na kontu bu jëfandikoo email bii. Duggal rekk.",
+      "usernameTaken": "Tur bii jël nañu ko léegi.",
+      "usernameReserved": "Tur bii dañu ko denc."
+    },
+    "loom": {
+      "eyebrow": "Liggéeyukaay bi",
+      "loginTitle": "Dalal ak jàmm ci liggéeyukaay bi.",
+      "loginText": "Bi nga nekkul, ekip yi dañu wéy di ràbb.",
+      "registerTitle": "Beneen wëñ ci sër bi.",
+      "registerText": "Dev bu nekk ab wëñ la. Fii, ekip yi dañuy ràbbu ci wetu projet yi."
+    }
+  }
+}
