@@ -243,6 +243,28 @@
     "play": "Dooraatal bandu palaas yi",
     "recruiting": "Di seet ñuy dimbali : {{projects}}"
   },
+  "filters": {
+    "previousRoles": "Palaas yi jiitu",
+    "nextRoles": "Palaas yi topp",
+    "searchShortcut": "Yoonu gàtt : /",
+    "clearSearch": "Far li nga seet",
+    "stack": "Xarala",
+    "stackSearch": "Seet ab xarala…",
+    "anyStack": "Xarala yépp",
+    "technologies": "Xarala",
+    "topics": "Tema",
+    "noStack": "Amul benn xarala bu ci dëppoo.",
+    "country": "Réew",
+    "countrySearch": "Seet ab réew…",
+    "anyCountry": "Réew yépp",
+    "countryHint": "Réewu ki yor projet bi.",
+    "noCountry": "Amul benn réew bu ci dëppoo.",
+    "activeFilters": "Li nga tànn",
+    "remove": "Far « {{label}} »",
+    "query": "« {{query}} »",
+    "clear": "Far lépp",
+    "sort": "Toftal"
+  },
   "showcase": {
     "title": "Vitrine bi",
     "all": "Projet yépp",

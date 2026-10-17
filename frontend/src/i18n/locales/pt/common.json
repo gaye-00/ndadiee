@@ -251,6 +251,28 @@
     "play": "Retomar a faixa das funções",
     "recruiting": "À procura de contribuidores: {{projects}}"
   },
+  "filters": {
+    "previousRoles": "Funções anteriores",
+    "nextRoles": "Funções seguintes",
+    "searchShortcut": "Atalho: /",
+    "clearSearch": "Limpar a pesquisa",
+    "stack": "Stack",
+    "stackSearch": "Procurar uma tecnologia…",
+    "anyStack": "Todas as stacks",
+    "technologies": "Tecnologias",
+    "topics": "Temas",
+    "noStack": "Nenhuma tecnologia corresponde.",
+    "country": "País",
+    "countrySearch": "Procurar um país…",
+    "anyCountry": "Todos os países",
+    "countryHint": "O país de quem lidera o projeto.",
+    "noCountry": "Nenhum país corresponde.",
+    "activeFilters": "Filtros ativos",
+    "remove": "Remover o filtro «{{label}}»",
+    "query": "«{{query}}»",
+    "clear": "Limpar tudo",
+    "sort": "Ordenar"
+  },
   "showcase": {
     "title": "A montra",
     "all": "Todos os projetos",

@@ -1,13 +1,15 @@
-import { ArrowDownWideNarrow, ArrowRight, Check, ChevronDown, Clock, Plus, RotateCcw, Search, Star, X, type LucideIcon } from 'lucide-react';
+import { ArrowRight, Clock, Plus, RotateCcw, Search, Star } from 'lucide-react';
 import { AnimatePresence, m } from 'motion/react';
-import { DropdownMenu } from 'radix-ui';
-import { useMemo, type ReactNode } from 'react';
+import { useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
 import ProjectCard, { ProjectCardSkeleton } from './ProjectCard';
 import EmptyState from '@/components/feedback/EmptyState';
 import ErrorState from '@/components/feedback/ErrorState';
+import LoadMore from '@/components/feedback/LoadMore';
 import PulsatingDots from '@/components/feedback/PulsatingDots';
+import ActiveFilters, { type ActiveFilter } from '@/components/shared/ActiveFilters';
+import SortMenu, { type SortOption } from '@/components/shared/SortMenu';
 import StackLogo from '@/components/shared/StackLogo';
 import WovenMotif from '@/components/shared/WovenMotif';
 import { teamRoles, type KenteThread } from '@/config/roles';
@@ -44,11 +46,6 @@ const cardTransition = (index: number) => ({
 
 const focusRing = 'outline-none focus-visible:ring-2 focus-visible:ring-ring/70';
 
-const SORTS: ReadonlyArray<{ value: ShowcaseSort; labelKey: 'results.sortStars' | 'results.sortRecent'; icon: LucideIcon }> = [
-  { value: 'stars', labelKey: 'results.sortStars', icon: Star },
-  { value: 'recent', labelKey: 'results.sortRecent', icon: Clock },
-];
-
 /**
  * La grille de la vitrine : les projets des filtres de l'URL (hooks/useShowcaseFilters), douze à la fois,
  * la suite chargée à l'approche du bas de la page (à la demande en économie de données).
@@ -69,6 +66,10 @@ export default function ProjectGrid() {
   const { data, hasNextPage, isFetchingNextPage, isFetchNextPageError, isPlaceholderData, fetchNextPage } = query;
 
   const projects = useMemo(() => uniqueById(data?.pages.flatMap((page) => page.content) ?? []), [data]);
+  const sorts: SortOption<ShowcaseSort>[] = [
+    { value: 'stars', label: t('results.sortStars'), icon: Star },
+    { value: 'recent', label: t('results.sortRecent'), icon: Clock },
+  ];
   const total = data?.pages[0]?.totalElements;
   const publish = isAuthenticated
     ? { to: paths.newProject, page: pages.newProject }
@@ -105,8 +106,8 @@ export default function ProjectGrid() {
           )}
         </div>
         {query.isFetching && !isFetchingNextPage && total !== undefined && <PulsatingDots size="sm" />}
-        <ActiveFilters filters={filters} set={set} clear={clear} className="order-last w-full sm:order-none sm:w-auto sm:flex-1" />
-        <SortMenu value={filters.sort} onChange={(sort) => set({ sort })} className="ms-auto" />
+        <ShowcaseActiveFilters filters={filters} set={set} clear={clear} className="order-last w-full sm:order-none sm:w-auto sm:flex-1" />
+        <SortMenu value={filters.sort} options={sorts} onChange={(sort) => set({ sort })} className="ms-auto" />
       </div>
 
       <div className="mt-5">
@@ -169,29 +170,16 @@ export default function ProjectGrid() {
       </div>
 
       {hasNextPage && !query.isPending && (
-        <div ref={sentinel} className="mt-10 flex min-h-11 flex-col items-center justify-center gap-3">
-          {isFetchNextPageError ? (
-            <>
-              <p role="alert" className="text-sm text-soft-foreground">
-                {t('results.moreError')}
-              </p>
-              <MoreButton onClick={() => void fetchNextPage()} icon={<RotateCcw aria-hidden className="size-4" />}>
-                {tc('actions.retry')}
-              </MoreButton>
-            </>
-          ) : isFetchingNextPage ? (
-            // Les cartes en attente se voient déjà au bout de la grille
-            <span role="status" className="sr-only">
-              {t('results.loadingMore')}
-            </span>
-          ) : (
-            dataSaver && (
-              <MoreButton onClick={() => void fetchNextPage()} icon={<ChevronDown aria-hidden className="size-4" />}>
-                {t('results.more')}
-              </MoreButton>
-            )
-          )}
-        </div>
+        <LoadMore
+          sentinel={sentinel}
+          loading={isFetchingNextPage}
+          failed={isFetchNextPageError}
+          manual={dataSaver}
+          onMore={() => void fetchNextPage()}
+          moreLabel={t('results.more')}
+          loadingLabel={t('results.loadingMore')}
+          errorLabel={t('results.moreError')}
+        />
       )}
     </section>
   );
@@ -203,43 +191,17 @@ function uniqueById(projects: Project[]): Project[] {
   return projects.filter((project) => !seen.has(project.id) && seen.add(project.id));
 }
 
-function MoreButton({ onClick, icon, children }: { onClick: () => void; icon: ReactNode; children: ReactNode }) {
-  return (
-    <button
-      type="button"
-      onClick={onClick}
-      className={cn(
-        'inline-flex h-11 items-center gap-2.5 rounded-full border border-border-strong px-5 text-sm font-semibold text-foreground transition-colors hover:bg-foreground/5',
-        focusRing,
-      )}
-    >
-      {icon}
-      {children}
-    </button>
-  );
-}
-
 // ── Filtres actifs ──
 
-interface ActiveFiltersProps {
+interface ShowcaseActiveFiltersProps {
   filters: ShowcaseFilters;
   set: ReturnType<typeof useShowcaseFilters>['set'];
   clear: () => void;
   className?: string;
 }
 
-interface ActiveChip {
-  key: string;
-  label: string;
-  icon: ReactNode;
-  remove: () => void;
-}
-
-/**
- * Les filtres choisis, en pastilles : un clic en retire un, « Tout effacer » les retire tous. Le focus va
- * ensuite au nombre de projets, qui dit le nouveau résultat.
- */
-function ActiveFilters({ filters, set, clear, className }: ActiveFiltersProps) {
+/** Les filtres choisis, en pastilles (shared/ActiveFilters) : la recherche, le rôle, la technologie, le pays. */
+function ShowcaseActiveFilters({ filters, set, clear, className }: ShowcaseActiveFiltersProps) {
   const { t } = useTranslation('showcase');
   const { t: tc } = useTranslation();
   const facets = useProjectFacets(toApiFilters(filters));
@@ -248,18 +210,13 @@ function ActiveFilters({ filters, set, clear, className }: ActiveFiltersProps) {
   const role = filters.role ? teamRoles.find((candidate) => candidate.id === filters.role) : undefined;
   const logo = filters.tag ? tagLogoOf(filters.tag) : undefined;
 
-  const then = (action: () => void) => () => {
-    action();
-    document.getElementById('showcase-results')?.focus({ preventScroll: true });
-  };
-
-  const chips: ActiveChip[] = [];
+  const chips: ActiveFilter[] = [];
   if (filters.q) {
     chips.push({
       key: 'q',
-      label: t('results.query', { query: filters.q }),
+      label: tc('filters.query', { query: filters.q }),
       icon: <Search className="size-3.5 text-muted-foreground" />,
-      remove: then(() => set({ q: '' })),
+      remove: () => set({ q: '' }),
     });
   }
   if (role) {
@@ -267,14 +224,14 @@ function ActiveFilters({ filters, set, clear, className }: ActiveFiltersProps) {
       key: 'role',
       label: tc(`teamRoles.${role.id}`),
       icon: <WovenMotif motif={role.motif} colors={role.colors} className="h-4 w-auto" />,
-      remove: then(() => set({ role: null })),
+      remove: () => set({ role: null }),
     });
   } else if (filters.recruiting) {
     chips.push({
       key: 'recruiting',
       label: t('filters.recruiting'),
       icon: <span className="live-dot size-1.5" />,
-      remove: then(() => set({ recruiting: false })),
+      remove: () => set({ recruiting: false }),
     });
   }
   if (filters.tag && tagName) {
@@ -282,7 +239,7 @@ function ActiveFilters({ filters, set, clear, className }: ActiveFiltersProps) {
       key: 'tag',
       label: tagName,
       icon: logo && logos !== false ? <StackLogo path={logos?.[logo]} className="size-3.5 text-soft-foreground" /> : undefined,
-      remove: then(() => set({ tag: null })),
+      remove: () => set({ tag: null }),
     });
   }
   if (filters.country) {
@@ -290,116 +247,11 @@ function ActiveFilters({ filters, set, clear, className }: ActiveFiltersProps) {
       key: 'country',
       label: countryName(filters.country),
       icon: <span className="text-sm leading-none">{countryFlag(filters.country)}</span>,
-      remove: then(() => set({ country: null })),
+      remove: () => set({ country: null }),
     });
   }
 
-  return (
-    <ul aria-label={t('results.activeFilters')} className={cn('flex flex-wrap items-center gap-2 empty:hidden', className)}>
-      <AnimatePresence initial={false} mode="popLayout">
-        {chips.map((chip) => (
-          <m.li
-            key={chip.key}
-            layout
-            initial={{ opacity: 0, scale: 0.85 }}
-            animate={{ opacity: 1, scale: 1 }}
-            exit={{ opacity: 0, scale: 0.85 }}
-            transition={{ duration: 0.25, ease }}
-          >
-            <button
-              type="button"
-              onClick={chip.remove}
-              aria-label={t('results.remove', { label: chip.label })}
-              className={cn(
-                'group/chip inline-flex h-8 max-w-[16rem] items-center gap-1.5 rounded-full border border-glass-border bg-glass ps-2.5 pe-1 text-[0.8125rem] font-semibold text-soft-foreground',
-                'transition-[border-color,color] duration-300 hover:border-border-strong hover:text-foreground',
-                focusRing,
-              )}
-            >
-              {chip.icon && (
-                <span aria-hidden className="grid shrink-0 place-items-center">
-                  {chip.icon}
-                </span>
-              )}
-              <span dir="auto" className="truncate">
-                {chip.label}
-              </span>
-              <span aria-hidden className="grid size-6 shrink-0 place-items-center rounded-full transition-colors group-hover/chip:bg-foreground/8">
-                <X className="size-3.5" />
-              </span>
-            </button>
-          </m.li>
-        ))}
-        {chips.length > 1 && (
-          <m.li key="clear" layout initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 0.25, ease }}>
-            <button
-              type="button"
-              onClick={then(clear)}
-              className={cn('h-8 rounded-full px-2 text-[0.8125rem] font-bold text-gold underline-offset-4 hover:underline', focusRing)}
-            >
-              {t('results.clear')}
-            </button>
-          </m.li>
-        )}
-      </AnimatePresence>
-    </ul>
-  );
-}
-
-// ── Ordre ──
-
-function SortMenu({ value, onChange, className }: { value: ShowcaseSort; onChange: (sort: ShowcaseSort) => void; className?: string }) {
-  const { t } = useTranslation('showcase');
-  const current = SORTS.find((sort) => sort.value === value) ?? SORTS[0];
-
-  return (
-    <DropdownMenu.Root>
-      <DropdownMenu.Trigger
-        aria-label={`${t('results.sort')} — ${t(current.labelKey)}`}
-        className={cn(
-          'group/sort inline-flex h-10 shrink-0 items-center gap-2 rounded-full px-3.5 text-sm font-semibold text-soft-foreground transition-colors',
-          'hover:bg-foreground/6 hover:text-foreground data-[state=open]:bg-foreground/7 data-[state=open]:text-foreground',
-          focusRing,
-          className,
-        )}
-      >
-        <ArrowDownWideNarrow aria-hidden className="size-4 text-muted-foreground" />
-        {t(current.labelKey)}
-        <ChevronDown
-          aria-hidden
-          className="size-4 opacity-60 transition-transform duration-300 ease-out-expo group-data-[state=open]/sort:rotate-180"
-        />
-      </DropdownMenu.Trigger>
-      <DropdownMenu.Portal>
-        <DropdownMenu.Content
-          align="end"
-          sideOffset={6}
-          collisionPadding={12}
-          className={cn(
-            'z-50 w-56 rounded-xl border border-border bg-popover p-1.5 text-popover-foreground shadow-float outline-none',
-            'origin-(--radix-dropdown-menu-content-transform-origin) data-[state=open]:animate-in data-[state=open]:fade-in-0 data-[state=open]:zoom-in-95 data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=closed]:zoom-out-95',
-          )}
-        >
-          <DropdownMenu.Label className="eyebrow px-2.5 pt-1.5 pb-2">{t('results.sort')}</DropdownMenu.Label>
-          <DropdownMenu.RadioGroup value={value} onValueChange={(next) => onChange(next as ShowcaseSort)}>
-            {SORTS.map(({ value: sort, labelKey, icon: Icon }) => (
-              <DropdownMenu.RadioItem
-                key={sort}
-                value={sort}
-                className="flex cursor-default items-center gap-2.5 rounded-lg px-2.5 py-2 text-sm text-soft-foreground outline-none select-none focus:bg-accent focus:text-foreground data-[state=checked]:font-semibold data-[state=checked]:text-foreground"
-              >
-                <Icon aria-hidden className="size-4 text-muted-foreground" />
-                <span className="flex-1">{t(labelKey)}</span>
-                <DropdownMenu.ItemIndicator>
-                  <Check aria-hidden className="size-4 text-gold" />
-                </DropdownMenu.ItemIndicator>
-              </DropdownMenu.RadioItem>
-            ))}
-          </DropdownMenu.RadioGroup>
-        </DropdownMenu.Content>
-      </DropdownMenu.Portal>
-    </DropdownMenu.Root>
-  );
+  return <ActiveFilters filters={chips} onClear={clear} resultsId="showcase-results" className={className} />;
 }
 
 // ── Sans résultat, et la place du prochain projet ──
@@ -415,14 +267,15 @@ interface PublishLink {
  */
 function NoMatch({ query, onClear, publish }: { query: string; onClear: () => void; publish: PublishLink }) {
   const { t } = useTranslation('showcase');
+  const { t: tc } = useTranslation();
 
   return (
     <div className="glass flex flex-col items-center rounded-[1.75rem] px-6 py-14 text-center sm:py-16">
-      <span aria-hidden className="showcase-empty-loom h-16 w-48" />
+      <span aria-hidden className="empty-loom h-16 w-48" />
       <p className="mt-6 font-display text-h4">{t('results.noMatchTitle')}</p>
       {query && (
         <p dir="auto" className="mt-3 max-w-full truncate font-mono text-sm text-soft-foreground">
-          {t('results.query', { query })}
+          {tc('filters.query', { query })}
         </p>
       )}
       <p className="mt-3 max-w-md text-[0.9375rem] leading-relaxed text-muted-foreground">{t('results.noMatchText')}</p>

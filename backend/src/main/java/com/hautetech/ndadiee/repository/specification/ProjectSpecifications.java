@@ -2,9 +2,9 @@ package com.hautetech.ndadiee.repository.specification;
 
 import static com.hautetech.ndadiee.repository.specification.SpecificationUtils.contains;
 import static com.hautetech.ndadiee.repository.specification.SpecificationUtils.hasText;
+import static com.hautetech.ndadiee.repository.specification.SpecificationUtils.terms;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import org.springframework.data.jpa.domain.Specification;
@@ -22,9 +22,6 @@ import jakarta.persistence.criteria.Subquery;
 
 public final class ProjectSpecifications {
 
-    // Mots d'une recherche pris en compte au plus
-    private static final int MAX_TERMS = 8;
-
     private ProjectSpecifications() {
     }
 
@@ -37,14 +34,11 @@ public final class ProjectSpecifications {
         return (root, query, cb) -> {
             List<Predicate> predicates = new ArrayList<>();
             if (hasText(filter.q())) {
-                Arrays.stream(filter.q().trim().split("\\s+"))
-                        .distinct()
-                        .limit(MAX_TERMS)
-                        .forEach(term -> predicates.add(cb.or(
-                                contains(cb, root.get("name"), term),
-                                contains(cb, root.get("tagline"), term),
-                                contains(cb, root.get("description"), term),
-                                hasTagNamed(root, query, cb, term))));
+                terms(filter.q()).forEach(term -> predicates.add(cb.or(
+                        contains(cb, root.get("name"), term),
+                        contains(cb, root.get("tagline"), term),
+                        contains(cb, root.get("description"), term),
+                        hasTagNamed(root, query, cb, term))));
             }
             if (hasText(filter.tag())) {
                 predicates.add(hasTag(root, query, cb, filter.tag()));

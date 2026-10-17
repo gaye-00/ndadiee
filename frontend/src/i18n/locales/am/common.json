@@ -243,6 +243,28 @@
     "play": "የሚናዎቹን ሪባን ቀጥል",
     "recruiting": "አስተዋጽዖ አድራጊዎችን የሚፈልጉ፦ {{projects}}"
   },
+  "filters": {
+    "previousRoles": "ቀዳሚ ሚናዎች",
+    "nextRoles": "ቀጣይ ሚናዎች",
+    "searchShortcut": "አቋራጭ፦ /",
+    "clearSearch": "ፍለጋውን አጽዳ",
+    "stack": "ቴክኖሎጂዎች",
+    "stackSearch": "ቴክኖሎጂ ፈልግ…",
+    "anyStack": "ሁሉም ቴክኖሎጂዎች",
+    "technologies": "ቴክኖሎጂዎች",
+    "topics": "ርዕሶች",
+    "noStack": "የሚዛመድ ቴክኖሎጂ የለም።",
+    "country": "አገር",
+    "countrySearch": "አገር ፈልግ…",
+    "anyCountry": "ሁሉም አገሮች",
+    "countryHint": "የፕሮጀክቱ ባለቤት አገር።",
+    "noCountry": "የሚዛመድ አገር የለም።",
+    "activeFilters": "ንቁ ማጣሪያዎች",
+    "remove": "የ«{{label}}» ማጣሪያን አስወግድ",
+    "query": "«{{query}}»",
+    "clear": "ሁሉንም አጽዳ",
+    "sort": "ደርድር"
+  },
   "showcase": {
     "title": "ማሳያው",
     "all": "ሁሉም ፕሮጀክቶች",

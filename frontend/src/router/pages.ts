@@ -11,7 +11,7 @@ export type PageImport = () => Promise<{ default: ComponentType }>;
  * Le code d'une page et les textes de sa fonctionnalité (un espace de noms des traductions, dans la langue
  * de l'interface), téléchargés ensemble : la page s'affiche avec ses textes, sans attente de plus.
  */
-function withTexts(load: PageImport, namespace: 'hackathons' | 'showcase'): PageImport {
+function withTexts(load: PageImport, namespace: 'hackathons' | 'openings' | 'showcase'): PageImport {
   return () => Promise.all([load(), i18n.loadNamespaces(namespace)]).then(([module]) => module);
 }
 
@@ -25,7 +25,7 @@ export const pages = {
 
   showcase: withTexts(() => import('@/pages/showcase/ShowcasePage'), 'showcase'),
   project: () => import('@/pages/projects/ProjectPage'),
-  openings: () => import('@/pages/openings/OpeningsPage'),
+  openings: withTexts(() => import('@/pages/openings/OpeningsPage'), 'openings'),
   newOpening: () => import('@/pages/openings/NewOpeningPage'),
   hackathons: withTexts(() => import('@/pages/hackathons/HackathonsPage'), 'hackathons'),
   hackathon: withTexts(() => import('@/pages/hackathons/HackathonPage'), 'hackathons'),

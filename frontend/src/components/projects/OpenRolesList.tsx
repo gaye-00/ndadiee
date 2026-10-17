@@ -1,12 +1,10 @@
-import { useEffect, useRef, useState } from 'react';
+import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useLocation, useNavigate } from 'react-router-dom';
 import ApplyDialog from './ApplyDialog';
 import OpenRoleCard, { type RoleViewer } from './OpenRoleCard';
-import { FOCUS_ROLES_EVENT } from './projectEvents';
 import EmptyState from '@/components/feedback/EmptyState';
 import { useAuth } from '@/hooks/useAuth';
-import { useReducedMotion } from '@/hooks/useReducedMotion';
 import { cn } from '@/lib/utils';
 import { paths } from '@/router/paths';
 import type { Project, ProjectOpening } from '@/types/project.types';
@@ -21,44 +19,51 @@ function bestOf(openings: ProjectOpening[]): ProjectOpening | undefined {
     .sort((a, b) => (b.match?.score ?? 0) - (a.match?.score ?? 0))[0];
 }
 
+/** Les rôles à montrer, demandés par la page (ProjectPage) : `nonce` change à chaque demande */
+export interface RolesFocus {
+  /** Le rôle d'un lien (« #role-12 ») ; null : celui où l'on a postulé, sinon le plus proche du profil */
+  opening: number | null;
+  nonce: number;
+}
+
+interface OpenRolesListProps {
+  project: Project;
+  /** Arrivée par un lien vers les rôles, ou « Rejoindre l'équipe » : le rôle visé s'éclaire */
+  focus?: RolesFocus | null;
+  className?: string;
+}
+
 /**
  * « On cherche » : les rôles ouverts du projet, le plus proche du profil mis en avant. Design 3D.
  *
- * « Postuler » ouvre la candidature (ApplyDialog) ; un visiteur passe d'abord par la connexion, et
- * revient ici. « Rejoindre l'équipe », en haut de la page, fait descendre jusqu'ici et montre le rôle
- * à prendre.
+ * « Postuler » ouvre la candidature (ApplyDialog) ; un visiteur passe d'abord par la connexion, et revient
+ * ici, sur ce rôle. Quand la page descend jusqu'ici (un lien vers les rôles, « Rejoindre l'équipe »), le rôle
+ * visé s'éclaire : celui du lien, sinon le rôle à prendre.
  */
-export default function OpenRolesList({ project, className }: { project: Project; className?: string }) {
+export default function OpenRolesList({ project, focus = null, className }: OpenRolesListProps) {
   const { t } = useTranslation();
   const navigate = useNavigate();
   const location = useLocation();
   const { isAuthenticated, user } = useAuth();
-  const reduced = useReducedMotion();
-  const section = useRef<HTMLElement>(null);
   const [applying, setApplying] = useState<ProjectOpening | null>(null);
   const [dialogOpen, setDialogOpen] = useState(false);
-  const [pulse, setPulse] = useState(0);
 
   const openings = project.openings;
   const best = bestOf(openings);
-  // Le rôle à montrer : celui où l'on a postulé, sinon le plus proche du profil, sinon le premier
-  const target = openings.find((opening) => opening.appliedByMe) ?? best ?? openings[0];
+  // Le rôle à montrer : celui du lien, sinon celui où l'on a postulé, sinon le plus proche du profil, sinon le premier
+  const target =
+    openings.find((opening) => opening.id === focus?.opening) ??
+    openings.find((opening) => opening.appliedByMe) ??
+    best ??
+    openings[0];
   const viewer: RoleViewer =
     user?.id === project.owner.id ? 'owner' : project.myMembershipStatus === 'ACCEPTED' ? 'member' : 'visitor';
   const waiting = project.myMembershipStatus === 'PENDING';
 
-  useEffect(() => {
-    function focusRoles() {
-      section.current?.scrollIntoView({ behavior: reduced ? 'auto' : 'smooth', block: 'start' });
-      setPulse((value) => value + 1);
-    }
-    window.addEventListener(FOCUS_ROLES_EVENT, focusRoles);
-    return () => window.removeEventListener(FOCUS_ROLES_EVENT, focusRoles);
-  }, [reduced]);
-
   function apply(opening: ProjectOpening) {
     if (!isAuthenticated) {
-      void navigate(paths.login, { state: { from: { ...location, hash: '#roles' } } });
+      // Après la connexion, la page revient sur ce rôle
+      void navigate(paths.login, { state: { from: { ...location, hash: `#role-${opening.id}` } } });
       return;
     }
     setApplying(opening);
@@ -66,7 +71,8 @@ export default function OpenRolesList({ project, className }: { project: Project
   }
 
   return (
-    <section ref={section} id="roles" aria-labelledby="roles-title" className={cn('min-w-0 scroll-mt-24', className)}>
+    // La page s'arrête avec le titre sous la barre du haut (scroll-mt-24 : ProjectPage en tient compte)
+    <section id="roles" aria-labelledby="roles-title" className={cn('min-w-0 scroll-mt-24', className)}>
       <div className="flex flex-wrap items-end justify-between gap-x-6 gap-y-1.5">
         <h2 id="roles-title" className="font-display text-h4">
           {t('project.roles.title')}
@@ -86,7 +92,7 @@ export default function OpenRolesList({ project, className }: { project: Project
               project={project}
               index={index}
               best={opening.id === best?.id}
-              highlight={opening.id === target?.id ? pulse : 0}
+              highlight={focus && opening.id === target?.id ? focus.nonce : 0}
               viewer={viewer}
               waiting={waiting}
               onApply={() => apply(opening)}

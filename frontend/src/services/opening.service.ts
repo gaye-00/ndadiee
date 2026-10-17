@@ -1,6 +1,8 @@
 import { api } from './api';
 import type { ApiResponse, PageResponse } from '@/types/common.types';
 import type {
+  OpeningFacetFilters,
+  OpeningFacets,
   OpeningFilters,
   OpeningRoleSummary,
   OpeningStackSummary,
@@ -10,9 +12,19 @@ import type {
 
 /** Annonces : les rôles recherchés par les projets (ProjectOpeningController.java). */
 export const openingService = {
-  /** Rôles ouverts, les plus récents d'abord, avec leur projet. */
+  /**
+   * Rôles ouverts, avec leur projet, leurs candidatures et, pour un membre connecté, sa compatibilité. Ordre :
+   * `createdAt,desc` par défaut ; `match` (les plus proches de son profil) ; `applicants,asc` (les moins demandés).
+   */
   getAll: (params?: OpeningFilters) =>
     api.get<ApiResponse<PageResponse<ProjectOpening>>>('/v1/openings', { params }).then((r) => r.data.data),
+
+  /** Pour chaque rôle, technologie et pays : combien d'annonces avec les autres filtres (page des annonces). */
+  getFacets: (params?: OpeningFacetFilters) =>
+    api.get<ApiResponse<OpeningFacets>>('/v1/openings/facets', { params }).then((r) => r.data.data),
+
+  /** Une annonce, comme dans la liste, même déjà pourvue (candidature reprise après la connexion). */
+  getById: (id: number) => api.get<ApiResponse<ProjectOpening>>(`/v1/openings/${id}`).then((r) => r.data.data),
 
   /** Pour chaque rôle où l'on recrute : annonces, places et projets (bande des rôles de l'accueil). */
   getRoleSummary: () =>

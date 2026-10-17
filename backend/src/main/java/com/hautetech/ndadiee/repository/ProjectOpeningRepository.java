@@ -9,7 +9,8 @@ import org.springframework.data.jpa.repository.Query;
 
 import com.hautetech.ndadiee.model.project.ProjectOpening;
 
-public interface ProjectOpeningRepository extends JpaRepository<ProjectOpening, Long>, JpaSpecificationExecutor<ProjectOpening> {
+public interface ProjectOpeningRepository extends JpaRepository<ProjectOpening, Long>, JpaSpecificationExecutor<ProjectOpening>,
+        OpeningFacetRepository {
 
     // Rôles ouverts de plusieurs projets en une requête (cartes de la vitrine)
     List<ProjectOpening> findByProjectIdInAndOpenTrueOrderByIdAsc(Collection<Long> projectIds);

@@ -243,6 +243,28 @@
     "play": "Resume the roles strip",
     "recruiting": "Looking for contributors: {{projects}}"
   },
+  "filters": {
+    "previousRoles": "Previous roles",
+    "nextRoles": "Next roles",
+    "searchShortcut": "Shortcut: /",
+    "clearSearch": "Clear the search",
+    "stack": "Stack",
+    "stackSearch": "Find a technology…",
+    "anyStack": "Any stack",
+    "technologies": "Technologies",
+    "topics": "Topics",
+    "noStack": "No technology matches.",
+    "country": "Country",
+    "countrySearch": "Find a country…",
+    "anyCountry": "Any country",
+    "countryHint": "The country of the project's owner.",
+    "noCountry": "No country matches.",
+    "activeFilters": "Active filters",
+    "remove": "Remove the “{{label}}” filter",
+    "query": "“{{query}}”",
+    "clear": "Clear all",
+    "sort": "Sort"
+  },
   "showcase": {
     "title": "The showcase",
     "all": "All projects",

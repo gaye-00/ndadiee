@@ -1,22 +1,38 @@
 import { ArrowLeft } from 'lucide-react';
-import { useEffect } from 'react';
+import { useEffect, useEffectEvent, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Link, useLocation, useParams } from 'react-router-dom';
+import { Link, useLocation, useNavigationType, useParams } from 'react-router-dom';
 import ErrorState from '@/components/feedback/ErrorState';
 import PulsatingDots from '@/components/feedback/PulsatingDots';
 import DevlogTimeline from '@/components/projects/DevlogTimeline';
 import FeedbackRequestCard from '@/components/projects/FeedbackRequestCard';
 import GithubActivityCard from '@/components/projects/GithubActivityCard';
-import OpenRolesList from '@/components/projects/OpenRolesList';
+import OpenRolesList, { type RolesFocus } from '@/components/projects/OpenRolesList';
 import ProjectGallery from '@/components/projects/ProjectGallery';
 import ProjectHero from '@/components/projects/ProjectHero';
+import { FOCUS_ROLES_EVENT } from '@/components/projects/projectEvents';
 import TeamMembersCard from '@/components/projects/TeamMembersCard';
 import { WovenThreads } from '@/components/shared/WovenMotif';
 import { site } from '@/config/site';
 import { useProject } from '@/hooks/useProjects';
 import { useReducedMotion } from '@/hooks/useReducedMotion';
+import { cn } from '@/lib/utils';
 import { paths } from '@/router/paths';
 import { getApiError } from '@/utils/apiError';
+
+// Ce que fait le membre pour défiler lui-même : la page cesse alors de le ramener aux rôles
+const USER_SCROLL = ['wheel', 'touchmove', 'keydown', 'pointerdown'] as const;
+// Le temps de l'arrivée sur les rôles, pendant lequel la page y revient si autre chose l'en écarte
+const LANDING_MS = 2500;
+
+/**
+ * Un lien vers les rôles du projet (paths.projectRoles) : « #roles », ou « #role-12 » pour l'un d'eux (le rôle
+ * d'une équipe de hackathon, le retour de la connexion). undefined pour une autre ancre, ou sans ancre.
+ */
+function rolesLinkOf(hash: string): { opening: number | null } | undefined {
+  const match = /^#role(?:s|-(\d+))$/.exec(hash);
+  return match ? { opening: match[1] ? Number(match[1]) : null } : undefined;
+}
 
 /**
  * Page projet : présentation publique et recrutement de l'équipe. Design 3D.
@@ -27,7 +43,8 @@ import { getApiError } from '@/utils/apiError';
  */
 export default function ProjectPage() {
   const { slug } = useParams();
-  const { hash } = useLocation();
+  const { hash, key } = useLocation();
+  const navigationType = useNavigationType();
   const { t, i18n } = useTranslation();
   const reduced = useReducedMotion();
   const project = useProject(slug);
@@ -45,13 +62,60 @@ export default function ProjectPage() {
     return () => cancelAnimationFrame(frame);
   }, [name, i18n.language]);
 
-  // Arrivée par « Voir les rôles » (#roles) : le projet chargé, on y descend
+  // Les rôles se montrent quand on arrive par un lien vers eux (paths.projectRoles), ou quand on veut rejoindre
+  // l'équipe (« Rejoindre l'équipe », « Ta place ? » : projects/projectEvents). Chaque demande compte : le rôle
+  // visé s'éclaire à nouveau. En revenant en arrière (ou en avant), la page reprend là où on l'avait laissée
+  // (ScrollRestoration) : on n'y redescend pas. Le premier chargement du site (clé « default ») est une arrivée.
   const loaded = project.data !== undefined;
+  const rolesLink = rolesLinkOf(hash);
+  const arriving = rolesLink !== undefined && (navigationType !== 'POP' || key === 'default');
+  const [joinRequests, setJoinRequests] = useState(0);
+  const focus: RolesFocus | null =
+    joinRequests > 0 ? { opening: null, nonce: joinRequests + 1 } : arriving ? { opening: rolesLink.opening, nonce: 1 } : null;
+
   useEffect(() => {
-    if (loaded && hash === '#roles') {
-      document.getElementById('roles')?.scrollIntoView({ behavior: reduced ? 'auto' : 'smooth', block: 'start' });
+    const onFocusRoles = () => setJoinRequests((count) => count + 1);
+    window.addEventListener(FOCUS_ROLES_EVENT, onFocusRoles);
+    return () => window.removeEventListener(FOCUS_ROLES_EVENT, onFocusRoles);
+  }, []);
+
+  // Le projet chargé, et la place faite sous les rôles (plus bas), la page descend jusqu'à eux : leur titre
+  // s'arrête sous la barre du haut (scroll-mt-24). Pendant l'arrivée, rien d'autre ne doit l'en écarter : une
+  // position rétablie après coup (ScrollRestoration, au premier chargement du site) ou une hauteur qui change
+  // au-dessus. Quand le défilement s'arrête, la page revient sur les rôles, tant qu'on ne défile pas soi-même.
+  const revealRoles = useEffectEvent(() => {
+    const roles = document.getElementById('roles');
+    if (!roles) {
+      return undefined;
     }
-  }, [loaded, hash, reduced]);
+    roles.scrollIntoView({ behavior: reduced ? 'auto' : 'smooth', block: 'start' });
+
+    const settle = () => {
+      const offset = roles.getBoundingClientRect().top - parseFloat(getComputedStyle(roles).scrollMarginTop);
+      if (Math.abs(offset) > 2) {
+        roles.scrollIntoView({ block: 'start' });
+      }
+    };
+    const release = () => {
+      clearTimeout(timer);
+      window.removeEventListener('scrollend', settle);
+      USER_SCROLL.forEach((type) => window.removeEventListener(type, release));
+    };
+    const timer = setTimeout(release, LANDING_MS);
+    window.addEventListener('scrollend', settle);
+    USER_SCROLL.forEach((type) => window.addEventListener(type, release, { passive: true }));
+    return release;
+  });
+  const revealing = focus !== null;
+  useEffect(() => {
+    if (!loaded || !revealing) {
+      return undefined;
+    }
+    return revealRoles();
+  }, [loaded, revealing, hash, joinRequests]);
+  // La place sous les rôles reste faite quand l'adresse les vise, même en revenant en arrière : la page garde la
+  // hauteur où sa position a été retenue
+  const roomForRoles = rolesLink !== undefined || joinRequests > 0;
 
   if (project.isPending) {
     return <ProjectPageSkeleton label={t('project.loading')} />;
@@ -98,8 +162,18 @@ export default function ProjectPage() {
           <ProjectGallery project={data} />
         </section>
 
-        <div className="grid gap-x-8 gap-y-12 pb-20 lg:grid-cols-[minmax(0,1fr)_22.5rem]">
-          <OpenRolesList project={data} className="lg:col-start-1 lg:row-start-1" />
+        <div
+          className={cn(
+            // Les rôles gardent la hauteur de leur contenu, le devlog commence juste dessous : la place en trop (la
+            // marge, plus haute, ou celle faite pour les rôles) va sous la page, pas entre les blocs
+            'grid content-start gap-x-8 gap-y-12 pb-20 lg:grid-cols-[minmax(0,1fr)_22.5rem] lg:grid-rows-[auto_1fr]',
+            // Quand la page descend jusqu'aux rôles, il faut assez de page sous eux pour qu'ils montent jusqu'en
+            // haut de l'écran : sur un projet court ou un grand écran, la fin de la page les arrêterait au milieu.
+            // Les 6 rem sont la marge de leur ancre (scroll-mt-24, OpenRolesList).
+            roomForRoles && 'min-h-[calc(100dvh-6rem)]',
+          )}
+        >
+          <OpenRolesList project={data} focus={focus} className="lg:col-start-1 lg:row-start-1" />
           <aside className="flex flex-col gap-4 lg:col-start-2 lg:row-span-2 lg:row-start-1 lg:self-start">
             <TeamMembersCard project={data} />
             <FeedbackRequestCard project={data} />

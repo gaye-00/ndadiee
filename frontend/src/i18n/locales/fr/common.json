@@ -251,6 +251,28 @@
     "play": "Relancer la bande des rôles",
     "recruiting": "À la recherche de contributeurs : {{projects}}"
   },
+  "filters": {
+    "previousRoles": "Rôles précédents",
+    "nextRoles": "Rôles suivants",
+    "searchShortcut": "Raccourci : /",
+    "clearSearch": "Effacer la recherche",
+    "stack": "Stack",
+    "stackSearch": "Chercher une techno…",
+    "anyStack": "Toutes les stacks",
+    "technologies": "Technologies",
+    "topics": "Thèmes",
+    "noStack": "Aucune techno ne correspond.",
+    "country": "Pays",
+    "countrySearch": "Chercher un pays…",
+    "anyCountry": "Tous les pays",
+    "countryHint": "Le pays du porteur du projet.",
+    "noCountry": "Aucun pays ne correspond.",
+    "activeFilters": "Filtres actifs",
+    "remove": "Retirer le filtre « {{label}} »",
+    "query": "« {{query}} »",
+    "clear": "Tout effacer",
+    "sort": "Trier"
+  },
   "showcase": {
     "title": "La vitrine",
     "all": "Tous les projets",

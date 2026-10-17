@@ -243,6 +243,28 @@
     "play": "Tẹ̀síwájú ìlà àwọn ipa",
     "recruiting": "Ń wá olùkópa: {{projects}}"
   },
+  "filters": {
+    "previousRoles": "Àwọn ipa tó ṣáájú",
+    "nextRoles": "Àwọn ipa tó kàn",
+    "searchShortcut": "Ọ̀nà àbùjá: /",
+    "clearSearch": "Pa ìwákiri rẹ́",
+    "stack": "Ìmọ̀-ẹ̀rọ",
+    "stackSearch": "Wá ìmọ̀-ẹ̀rọ kan…",
+    "anyStack": "Gbogbo ìmọ̀-ẹ̀rọ",
+    "technologies": "Ìmọ̀-ẹ̀rọ",
+    "topics": "Àkòrí",
+    "noStack": "Kò sí ìmọ̀-ẹ̀rọ tó bá a mu.",
+    "country": "Orílẹ̀-èdè",
+    "countrySearch": "Wá orílẹ̀-èdè kan…",
+    "anyCountry": "Gbogbo orílẹ̀-èdè",
+    "countryHint": "Orílẹ̀-èdè ẹni tó ni iṣẹ́ àkànṣe náà.",
+    "noCountry": "Kò sí orílẹ̀-èdè tó bá a mu.",
+    "activeFilters": "Àwọn àṣàyàn tó ń ṣiṣẹ́",
+    "remove": "Yọ àṣàyàn «{{label}}» kúrò",
+    "query": "«{{query}}»",
+    "clear": "Pa gbogbo rẹ̀ rẹ́",
+    "sort": "Tò"
+  },
   "showcase": {
     "title": "Àfihàn",
     "all": "Gbogbo iṣẹ́ àkànṣe",

@@ -21,7 +21,10 @@ interface OpenRoleCardProps {
   index: number;
   /** Le rôle le plus proche du profil du membre connecté : bordure kente qui tourne */
   best: boolean;
-  /** Change quand on veut rejoindre l'équipe (« Rejoindre l'équipe ») : la carte s'anime et prend le focus */
+  /**
+   * Change quand on veut rejoindre l'équipe (« Rejoindre l'équipe ») ou qu'on arrive par un lien vers ce rôle :
+   * la carte s'anime et prend le focus. 0 : rien à montrer
+   */
   highlight: number;
   viewer: RoleViewer;
   /** Une candidature est déjà en attente, pour un autre rôle : une seule à la fois par projet */
@@ -45,16 +48,17 @@ export default function OpenRoleCard({ opening, project, index, best, highlight,
       ? `${project.repositoryUrl.replace(/\/+$/, '')}/issues/${opening.starterIssueNumber}`
       : null;
 
-  // « Rejoindre l'équipe » : la carte s'éclaire et son bouton prend le focus
+  // « Rejoindre l'équipe », ou l'arrivée par un lien vers ce rôle : la carte s'éclaire et son bouton prend le
+  // focus. Pas avant qu'elle soit à l'écran : la page est peut-être encore en train de descendre jusqu'à elle.
   useEffect(() => {
-    if (highlight === 0) {
+    if (highlight === 0 || !seen) {
       return;
     }
     action.current?.focus({ preventScroll: true });
     if (!reduced && scope.current) {
       void animate('[data-flash]', { opacity: [0, 1, 0] }, { duration: 1.4, ease: 'easeInOut', delay: 0.35 });
     }
-  }, [highlight, reduced, animate, scope]);
+  }, [highlight, seen, reduced, animate, scope]);
 
   return (
     <m.li

@@ -67,11 +67,22 @@ libellé et son motif tissé (`frontend/src/config/roles.ts`) : les deux listes 
 
 | Requête | Accès |
 | --- | --- |
-| `GET /v1/openings?role=&q=&tag=` | public : rôles ouverts, avec leur projet |
+| `GET /v1/openings?role=&q=&tag=&country=&sort=` | public : rôles ouverts, avec leur projet (technologies, dépôt) et leurs candidatures en attente (`applicants`) ; pour un membre connecté, sa participation au projet (`project.myMembershipStatus`), sa compatibilité (`match`, pas pour ses propres équipes) et sa candidature (`appliedByMe`) |
+| `GET /v1/openings/facets`, mêmes filtres | public : pour chaque rôle, technologie et pays du porteur, le nombre d'annonces avec les autres filtres ; `all` (sans rôle), `total`, `seats`, `projects` et `unclaimed` (sans candidature en attente) |
+| `GET /v1/openings/{id}` | public : une annonce, comme dans la liste, même déjà pourvue (`open: false`) |
 | `GET /v1/openings/roles` | public : par rôle, annonces, places et projets (bande de l'accueil) |
 | `GET /v1/openings/stacks?limit=` | public : par technologie des projets qui recrutent, annonces, places et projets, les plus demandées d'abord (accueil, « Se rencontrer ») |
 | `POST /v1/projects/{id}/openings` | porteur du projet, mainteneurs, modérateurs |
 | `PUT /v1/openings/{id}`, `PATCH /v1/openings/{id}/open?open=false`, `DELETE /v1/openings/{id}` | idem |
+
+- **Recherche** (`q`) : chaque mot doit se trouver dans l'annonce (intitulé, description, issue « premier pas »)
+  ou dans son projet (nom, accroche, technologie). `country` : le pays du porteur du projet.
+- **Filtres** : `OpeningFilter` et `ProjectOpeningSpecifications` (technologies par sous-requête : une ligne par
+  annonce). Facettes : `OpeningFacetRepositoryImpl`, une requête groupée par facette.
+- **Ordre** : celui demandé (`createdAt,desc` par défaut, `seats,desc`…), départagé par l'identifiant
+  (`common/Pageables`). Deux ordres se calculent sur toutes les annonces des filtres, à égalité les plus récentes
+  d'abord : `sort=match`, les plus proches du profil du membre connecté (`OpeningMatcher` ; pour un visiteur, les
+  plus récentes), et `sort=applicants,asc`, les moins demandées.
 
 Un projet renvoie aussi son accroche, sa couverture (et sa miniature, son crédit), ses rôles ouverts et
 son équipe (`ProjectResponse`).

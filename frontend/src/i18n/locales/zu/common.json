@@ -243,6 +243,28 @@
     "play": "Qhubeka nomugqa wezindima",
     "recruiting": "Bafuna abanikeli: {{projects}}"
   },
+  "filters": {
+    "previousRoles": "Izindima ezedlule",
+    "nextRoles": "Izindima ezilandelayo",
+    "searchShortcut": "Indlela emfushane: /",
+    "clearSearch": "Sula usesho",
+    "stack": "Ubuchwepheshe",
+    "stackSearch": "Sesha ubuchwepheshe…",
+    "anyStack": "Bonke ubuchwepheshe",
+    "technologies": "Ubuchwepheshe",
+    "topics": "Izihloko",
+    "noStack": "Abukho ubuchwepheshe obufanayo.",
+    "country": "Izwe",
+    "countrySearch": "Sesha izwe…",
+    "anyCountry": "Wonke amazwe",
+    "countryHint": "Izwe lomnikazi wephrojekthi.",
+    "noCountry": "Alikho izwe elifanayo.",
+    "activeFilters": "Izihlungi ezisebenzayo",
+    "remove": "Susa isihlungi esithi «{{label}}»",
+    "query": "«{{query}}»",
+    "clear": "Sula konke",
+    "sort": "Hlela"
+  },
   "showcase": {
     "title": "Umbukiso",
     "all": "Wonke amaphrojekthi",

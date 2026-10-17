@@ -10,13 +10,12 @@ import java.util.stream.Collectors;
 
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.hautetech.ndadiee.common.Pageables;
 import com.hautetech.ndadiee.dto.request.JoinProjectRequest;
 import com.hautetech.ndadiee.dto.request.MemberDecisionRequest;
 import com.hautetech.ndadiee.dto.request.MemberSpecialtyRequest;
@@ -102,7 +101,8 @@ public class ProjectService {
 
     @Transactional(readOnly = true)
     public PageResponse<ProjectResponse> list(ProjectFilter filter, Long currentUserId, Pageable pageable) {
-        Page<Project> page = projectRepository.findAll(ProjectSpecifications.filter(filter), inTotalOrder(pageable));
+        // La vitrine se lit page après page : un projet n'y est ni vu deux fois ni sauté
+        Page<Project> page = projectRepository.findAll(ProjectSpecifications.filter(filter), Pageables.inTotalOrder(pageable));
         return PageResponse.from(page, toResponses(page.getContent(), currentUserId));
     }
 
@@ -452,16 +452,6 @@ public class ProjectService {
 
     private static String trimToNull(String value) {
         return value == null || value.isBlank() ? null : value.trim();
-    }
-
-    // Un ordre total, pour une vitrine qui se lit page après page : sans départage, deux projets à égalité
-    // (zéro étoile) pourraient changer de place d'une page à l'autre, l'un vu deux fois, l'autre jamais
-    private static Pageable inTotalOrder(Pageable pageable) {
-        Sort sort = pageable.getSort();
-        if (pageable.isUnpaged() || sort.getOrderFor("id") != null) {
-            return pageable;
-        }
-        return PageRequest.of(pageable.getPageNumber(), pageable.getPageSize(), sort.and(Sort.by(Sort.Direction.DESC, "id")));
     }
 
     public Project findProjectOrThrow(Long projectId) {

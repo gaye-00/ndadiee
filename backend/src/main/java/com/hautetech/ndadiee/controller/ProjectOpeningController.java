@@ -21,11 +21,13 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.hautetech.ndadiee.common.ApiResponse;
 import com.hautetech.ndadiee.dto.request.ProjectOpeningRequest;
+import com.hautetech.ndadiee.dto.response.OpeningFacetsResponse;
 import com.hautetech.ndadiee.dto.response.OpeningRoleSummaryResponse;
 import com.hautetech.ndadiee.dto.response.OpeningStackSummaryResponse;
 import com.hautetech.ndadiee.dto.response.PageResponse;
 import com.hautetech.ndadiee.dto.response.ProjectOpeningResponse;
 import com.hautetech.ndadiee.model.project.TeamRole;
+import com.hautetech.ndadiee.repository.specification.OpeningFilter;
 import com.hautetech.ndadiee.service.project.ProjectOpeningService;
 
 import io.swagger.v3.oas.annotations.Operation;
@@ -43,15 +45,38 @@ public class ProjectOpeningController extends BaseController {
 
     // ─── PUBLIC ───────────────────────────────────────────────────────────────
 
-    @Operation(summary = "Rôles recherchés par les équipes, filtrables par rôle, mot-clé ou technologie")
+    @Operation(summary = "Rôles recherchés par les équipes, filtrables par rôle, mot-clé, technologie ou pays du porteur ; "
+            + "triés par date (par défaut), par compatibilité avec le profil du membre connecté (sort=match) ou par "
+            + "candidatures en attente, les moins demandées d'abord (sort=applicants)")
     @GetMapping("/openings")
     public ResponseEntity<ApiResponse<PageResponse<ProjectOpeningResponse>>> list(
             @RequestParam(required = false) TeamRole role,
             @RequestParam(required = false) String q,
             @RequestParam(required = false) String tag,
+            @RequestParam(required = false) String country,
             @ParameterObject @PageableDefault(size = 20, sort = "createdAt", direction = Sort.Direction.DESC) Pageable pageable) {
+        OpeningFilter filter = new OpeningFilter(role, q, tag, country);
         return ResponseEntity.ok(ApiResponse.success(
-                openingService.listOpen(role, q, tag, pageable), "Annonces récupérées avec succès"));
+                openingService.list(filter, getOptionalUserId(), pageable), "Annonces récupérées avec succès"));
+    }
+
+    @Operation(summary = "Facettes des annonces : annonces par rôle, technologie et pays du porteur, chacune avec les "
+            + "autres filtres appliqués ; places, projets et annonces sans candidature")
+    @GetMapping("/openings/facets")
+    public ResponseEntity<ApiResponse<OpeningFacetsResponse>> facets(
+            @RequestParam(required = false) TeamRole role,
+            @RequestParam(required = false) String q,
+            @RequestParam(required = false) String tag,
+            @RequestParam(required = false) String country) {
+        OpeningFilter filter = new OpeningFilter(role, q, tag, country);
+        return ResponseEntity.ok(ApiResponse.success(openingService.facets(filter), "Facettes récupérées avec succès"));
+    }
+
+    @Operation(summary = "Une annonce et son projet ; pour un membre connecté, sa compatibilité et sa candidature")
+    @GetMapping("/openings/{id}")
+    public ResponseEntity<ApiResponse<ProjectOpeningResponse>> get(@PathVariable Long id) {
+        return ResponseEntity.ok(ApiResponse.success(
+                openingService.get(id, getOptionalUserId()), "Annonce récupérée avec succès"));
     }
 
     @Operation(summary = "Pour chaque rôle où l'on recrute : annonces, places et projets concernés")

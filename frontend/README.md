@@ -220,6 +220,52 @@ projets, pays, projets qui recrutent, places à prendre.
   manque.
 - Textes : l'espace de noms `showcase` des traductions, téléchargé avec la page.
 
+Les briques des filtres servent aussi aux annonces (`components/shared/`) : `RoleStrip` (la bande des rôles),
+`FilterBar` et `FilterSearch` (la barre et sa recherche), `StackPicker` et `CountryPicker` (sur `FacetPicker`),
+`ActiveFilters` (les pastilles des filtres choisis), `SortMenu` (l'ordre), et `feedback/LoadMore` (la suite de
+la liste). Leurs textes communs sont dans la section `filters` de `common.json`.
+
+## Annonces
+
+`/openings` (`pages/openings/OpeningsPage.tsx`) : les rôles que cherchent les équipes. L'accroche
+(`openings/OpeningsIntro.tsx`, « Des équipes te cherchent. Réponds par le code. ») donne les annonces en chiffres :
+annonces, projets, pays, places à prendre, annonces encore sans candidature. Un visiteur y apprend qu'une fois
+connecté, il verra sa compatibilité avec chaque rôle.
+
+- **Filtres** (`openings/OpeningFilters.tsx`) : ceux de la vitrine, avec les briques partagées. Le rôle (« Toutes »
+  puis les treize métiers, avec leur nombre d'annonces), la recherche (chaque mot, dans l'annonce, son issue
+  « premier pas » ou son projet : nom, accroche, technologie), la technologie du projet et le pays du porteur.
+  Facettes : `GET /v1/openings/facets`.
+- **URL** (`hooks/useOpeningBoardFilters.ts`) : `/openings?role=mobile&tag=flutter&country=SN&q=…&sort=recent`.
+  L'accueil y mène par un rôle (bande des rôles, `?role=`) ou une technologie (« Se rencontrer », `?tag=`).
+- **Ordre** : pour un membre connecté, les plus proches de son profil d'abord (son ordre par défaut) ; sinon les
+  plus récentes. Aussi : les moins demandées (le moins de candidatures en attente). Un visiteur qui choisit l'ordre
+  du profil passe par la connexion.
+- **Carte** (`openings/OpeningCard.tsx`) : une bande de kente. Sur sa lisière, aux couleurs du motif du rôle, le
+  motif qui se tisse à l'arrivée à l'écran et les places à prendre en pointillés (au survol, la première s'ouvre :
+  celle du visiteur). Puis le rôle, l'intitulé, la compatibilité (anneau, et les compétences qui l'expliquent ;
+  les technologies du projet qu'il connaît sont en vert), les conditions (places, candidatures, date), l'issue
+  « premier pas » (lien vers GitHub), les technologies et le projet avec son porteur. Toute la carte mène au projet,
+  en haut de sa page : on le découvre, puis ses rôles juste dessous. L'annonce la plus proche du profil, dans la
+  première page, a la bordure kente qui tourne.
+- **Arrivée sur les rôles** (`pages/projects/ProjectPage.tsx`) : un lien qui les annonce (`paths.projectRoles` :
+  `#roles`, « Voir les rôles » de la vitrine, la demande de candidature des notifications ; `#role-12`, le rôle
+  d'une équipe de hackathon, le retour de la connexion), « Rejoindre l'équipe » et « Ta place ? » font descendre la
+  page jusqu'à « On cherche », dont le titre s'arrête sous la barre du haut ; le rôle visé s'éclaire et son bouton
+  prend le focus. Sous les rôles, la page garde au moins la hauteur de l'écran :
+  sur un projet court ou un grand écran, ils montent quand même jusqu'en haut. Pendant l'arrivée (2,5 s), la page
+  revient sur les rôles si autre chose l'en écarte (une position rétablie au premier chargement), sauf si l'on
+  défile soi-même. Précédent et Suivant reprennent la page là où on l'avait laissée.
+- **Postuler** : la fenêtre de la page projet (`projects/ApplyDialog.tsx`), ici même. Un visiteur passe par la
+  connexion et revient avec `?apply={id}` : l'annonce est chargée (`GET /v1/openings/{id}`) et la fenêtre
+  s'ouvre, si le rôle est encore ouvert. Selon qui regarde, la carte dit plutôt « Candidature envoyée », « Ton
+  équipe », ou pour le porteur « Gérer les candidatures ».
+- **Liste** (`openings/OpeningList.tsx`) : deux colonnes sur grand écran, douze annonces à la fois, comme la
+  grille de la vitrine (filtres actifs, liste d'avant atténuée, cartes qui glissent). Au bout, en pointillés,
+  l'annonce que l'équipe du visiteur n'a pas encore publiée. Sans résultat : le métier vide, effacer les filtres
+  ou publier un rôle.
+- Textes : l'espace de noms `openings` des traductions, téléchargé avec la page.
+
 ## Pied de page
 
 `layout/Footer.tsx` : les liens (Explorer, Contribuer), les dix langues écrites chacune dans sa langue

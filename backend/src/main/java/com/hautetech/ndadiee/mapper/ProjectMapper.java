@@ -50,7 +50,10 @@ public interface ProjectMapper {
     @Mapping(target = "appliedByMe", ignore = true)
     ProjectOpeningResponse toOpeningResponse(ProjectOpening opening);
 
+    // Technologies et participation du membre connecté : renseignées dans la liste des annonces (ProjectOpeningService)
     @Mapping(target = "coverThumbnailUrl", expression = "java(thumbnail(project))")
+    @Mapping(target = "tags", ignore = true)
+    @Mapping(target = "myMembershipStatus", ignore = true)
     ProjectBriefResponse toBrief(Project project);
 
     @Mapping(target = "url", qualifiedByName = "media")

@@ -1,5 +1,6 @@
 import type common from './locales/fr/common.json';
 import type hackathons from './locales/fr/hackathons.json';
+import type openings from './locales/fr/openings.json';
 import type showcase from './locales/fr/showcase.json';
 
 // Clés de traduction typées à partir du français : t('nav.forum') est vérifié à la compilation,
@@ -11,6 +12,7 @@ declare module 'i18next' {
     resources: {
       common: typeof common;
       hackathons: typeof hackathons;
+      openings: typeof openings;
       showcase: typeof showcase;
     };
   }

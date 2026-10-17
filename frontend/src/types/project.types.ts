@@ -35,8 +35,8 @@ export interface ProjectOpening {
   createdAt: string;
   /** Renseigné dans la liste des annonces ; absent dans un projet */
   project: ProjectBrief | null;
-  // Page du projet seulement : candidatures en attente, et pour un membre connecté qui n'est pas de
-  // l'équipe, sa compatibilité avec le rôle et sa candidature
+  // Liste des annonces et page du projet : candidatures en attente, et pour un membre connecté qui n'est
+  // pas de l'équipe, sa compatibilité avec le rôle et sa candidature
   applicants: number | null;
   match: OpeningMatch | null;
   appliedByMe: boolean | null;
@@ -49,14 +49,19 @@ export interface OpeningMatch {
   skills: string[];
 }
 
-/** Projet résumé, accompagnant une annonce */
+/** Projet résumé, accompagnant une annonce (ProjectBriefResponse.java) */
 export interface ProjectBrief {
   id: number;
   name: string;
   slug: string;
   tagline: string | null;
   coverThumbnailUrl: string | null;
+  /** L'issue « premier pas » d'une annonce est une issue de ce dépôt */
+  repositoryUrl: string | null;
   owner: UserSummary;
+  // Liste des annonces seulement : les technologies du projet, et pour un membre connecté, sa participation
+  tags: Tag[] | null;
+  myMembershipStatus: MemberStatus | null;
 }
 
 /** Un rôle où l'on recrute : annonces, places et projets (les plus récents d'abord, 4 au plus) */
@@ -242,8 +247,36 @@ export interface ProjectOpeningRequest {
 
 export interface OpeningFilters extends PaginationParams {
   role?: TeamRole;
+  /** Mot-clé : intitulé, description ou issue « premier pas » de l'annonce, nom, accroche ou technologie du projet */
   q?: string;
+  /** Slug d'une technologie du projet */
   tag?: string;
+  /** Pays du porteur du projet, code ISO à 2 lettres */
+  country?: string;
+}
+
+/** Filtres des facettes des annonces : ceux de la liste, sans la pagination */
+export type OpeningFacetFilters = Omit<OpeningFilters, keyof PaginationParams>;
+
+/**
+ * Facettes des annonces (OpeningFacetsResponse.java). Chacune compte les annonces avec tous les filtres sauf
+ * le sien : une valeur proposée ne mène jamais à une liste vide.
+ */
+export interface OpeningFacets {
+  /** Annonces qui répondent à tous les filtres, places qu'elles proposent, projets qui les publient */
+  total: number;
+  seats: number;
+  projects: number;
+  /** Parmi elles, celles qui n'ont aucune candidature en attente */
+  unclaimed: number;
+  /** Sans filtre de rôle (« Toutes ») */
+  all: number;
+  /** Rôles ; un rôle absent n'a aucune annonce */
+  roles: Array<{ role: TeamRole; openings: number; seats: number }>;
+  /** Technologies des projets, les plus demandées d'abord (100 au plus) */
+  stacks: Array<{ slug: string; name: string; openings: number }>;
+  /** Pays des porteurs (code ISO à 2 lettres), les plus représentés d'abord */
+  countries: Array<{ country: string; openings: number }>;
 }
 
 export interface MemberDecisionRequest {

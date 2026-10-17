@@ -12,7 +12,8 @@ export default function GuestRoute() {
 
   if (isAuthenticated) {
     const from = (location.state as { from?: Location } | null)?.from;
-    return <Navigate to={from ? `${from.pathname}${from.search}` : paths.dashboard} replace />;
+    // Avec son ancre : « #role-12 » ramène au rôle du projet pour lequel on voulait postuler
+    return <Navigate to={from ? `${from.pathname}${from.search}${from.hash}` : paths.dashboard} replace />;
   }
 
   return <Outlet />;

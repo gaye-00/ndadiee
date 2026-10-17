@@ -220,7 +220,7 @@ function RecruitingTeams({ teams }: { teams: HackathonTeam[] }) {
           return (
             <li key={team.id}>
               <Link
-                to={`${paths.project(team.project.slug)}#roles`}
+                to={paths.projectRoles(team.project.slug, opening.id)}
                 viewTransition
                 onPointerEnter={() => prefetch(pages.project)}
                 onFocus={() => prefetch(pages.project)}

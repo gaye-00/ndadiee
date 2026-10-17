@@ -10,14 +10,18 @@ import { roleOf } from '@/config/roles';
 import { useProjectMembership } from '@/hooks/useProjects';
 import { cn } from '@/lib/utils';
 import type { Project, ProjectOpening } from '@/types/project.types';
+import type { UserSummary } from '@/types/user.types';
 import { getApiError, getApiErrorMessage } from '@/utils/apiError';
 import { isolate } from '@/utils/formatters';
 
 // Longueur du mot pour l'équipe (JoinProjectRequest.java)
 const MAX_MOTIVATION = 500;
 
+/** Le projet d'une candidature : entier sur sa page, résumé dans la liste des annonces */
+export type ApplyProject = Pick<Project, 'id' | 'name' | 'repositoryUrl'> & { owner: Pick<UserSummary, 'fullName'> };
+
 interface ApplyDialogProps {
-  project: Project;
+  project: ApplyProject;
   /** Le rôle visé ; gardé après la fermeture, le temps que la fenêtre s'en aille */
   opening: ProjectOpening | null;
   open: boolean;
@@ -49,7 +53,7 @@ export default function ApplyDialog({ project, opening, open, onOpenChange }: Ap
   );
 }
 
-function ApplyContent({ project, opening }: { project: Project; opening: ProjectOpening }) {
+function ApplyContent({ project, opening }: { project: ApplyProject; opening: ProjectOpening }) {
   const { t } = useTranslation();
   const membership = useProjectMembership();
   const [motivation, setMotivation] = useState('');

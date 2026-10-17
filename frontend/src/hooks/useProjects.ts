@@ -89,6 +89,8 @@ function useInvalidateProjects() {
   return (projectId?: number) => {
     void qc.invalidateQueries({ queryKey: ['projects'] });
     void qc.invalidateQueries({ queryKey: ['project'] });
+    // Les annonces disent les candidatures reçues, et celle du membre connecté
+    void qc.invalidateQueries({ queryKey: ['openings'] });
     if (projectId !== undefined) {
       void qc.invalidateQueries({ queryKey: ['project-members', projectId] });
     }

@@ -7,6 +7,11 @@ export const paths = {
   showcase: '/showcase',
   /** Page projet : présentation publique et rôles recherchés (design 3D) */
   project: (slug: string) => `/projects/${slug}`,
+  /**
+   * Les rôles recherchés d'un projet (« Voir les rôles »), ou l'un d'eux (le rôle d'une équipe de hackathon, le
+   * retour de la connexion) : la page y descend, et le rôle s'éclaire
+   */
+  projectRoles: (slug: string, openingId?: number) => `/projects/${slug}#${openingId === undefined ? 'roles' : `role-${openingId}`}`,
   /** Annonces : rôles recherchés par les équipes */
   openings: '/openings',
   hackathons: '/hackathons',

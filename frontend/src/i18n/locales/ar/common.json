@@ -275,6 +275,28 @@
     "play": "استئناف شريط الأدوار",
     "recruiting": "تبحث عن مساهمين: {{projects}}"
   },
+  "filters": {
+    "previousRoles": "الأدوار السابقة",
+    "nextRoles": "الأدوار التالية",
+    "searchShortcut": "اختصار: /",
+    "clearSearch": "مسح البحث",
+    "stack": "التقنيات",
+    "stackSearch": "ابحث عن تقنية…",
+    "anyStack": "كل التقنيات",
+    "technologies": "تقنيات",
+    "topics": "مواضيع",
+    "noStack": "لا تقنية مطابقة.",
+    "country": "البلد",
+    "countrySearch": "ابحث عن بلد…",
+    "anyCountry": "كل البلدان",
+    "countryHint": "بلد صاحب المشروع.",
+    "noCountry": "لا بلد مطابق.",
+    "activeFilters": "عوامل التصفية النشطة",
+    "remove": "إزالة عامل التصفية «{{label}}»",
+    "query": "«{{query}}»",
+    "clear": "مسح الكل",
+    "sort": "الترتيب"
+  },
   "showcase": {
     "title": "المعرض",
     "all": "كل المشاريع",

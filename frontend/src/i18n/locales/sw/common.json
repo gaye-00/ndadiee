@@ -243,6 +243,28 @@
     "play": "Endelea na ukanda wa nafasi",
     "recruiting": "Wanatafuta wachangiaji: {{projects}}"
   },
+  "filters": {
+    "previousRoles": "Nafasi zilizotangulia",
+    "nextRoles": "Nafasi zinazofuata",
+    "searchShortcut": "Njia ya mkato: /",
+    "clearSearch": "Futa utafutaji",
+    "stack": "Teknolojia",
+    "stackSearch": "Tafuta teknolojia…",
+    "anyStack": "Teknolojia zote",
+    "technologies": "Teknolojia",
+    "topics": "Mada",
+    "noStack": "Hakuna teknolojia inayolingana.",
+    "country": "Nchi",
+    "countrySearch": "Tafuta nchi…",
+    "anyCountry": "Nchi zote",
+    "countryHint": "Nchi ya mmiliki wa mradi.",
+    "noCountry": "Hakuna nchi inayolingana.",
+    "activeFilters": "Vichujio vinavyotumika",
+    "remove": "Ondoa kichujio «{{label}}»",
+    "query": "«{{query}}»",
+    "clear": "Futa vyote",
+    "sort": "Panga"
+  },
   "showcase": {
     "title": "Onyesho",
     "all": "Miradi yote",

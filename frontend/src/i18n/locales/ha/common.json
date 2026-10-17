@@ -243,6 +243,28 @@
     "play": "Ci gaba da zirin guraben",
     "recruiting": "Suna neman masu bayar da gudummawa: {{projects}}"
   },
+  "filters": {
+    "previousRoles": "Matsayin baya",
+    "nextRoles": "Matsayin gaba",
+    "searchShortcut": "Gajeriyar hanya: /",
+    "clearSearch": "Share binciken",
+    "stack": "Fasahohi",
+    "stackSearch": "Nemi fasaha…",
+    "anyStack": "Duk fasahohi",
+    "technologies": "Fasahohi",
+    "topics": "Jigogi",
+    "noStack": "Babu fasahar da ta dace.",
+    "country": "Ƙasa",
+    "countrySearch": "Nemi ƙasa…",
+    "anyCountry": "Duk ƙasashe",
+    "countryHint": "Ƙasar mai shirin.",
+    "noCountry": "Babu ƙasar da ta dace.",
+    "activeFilters": "Matatun da ke aiki",
+    "remove": "Cire matatar «{{label}}»",
+    "query": "«{{query}}»",
+    "clear": "Share duka",
+    "sort": "Jera"
+  },
   "showcase": {
     "title": "Baje kolin",
     "all": "Duk shirye-shirye",

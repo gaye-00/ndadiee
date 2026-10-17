@@ -136,7 +136,7 @@ export default function ProjectCard({ project, accent = 'jade', imageSizes, clas
           <TeamFaces team={project.team} memberCount={project.memberCount} recruiting={recruiting} />
           <span className="flex-1" />
           <Link
-            to={recruiting ? `${href}#roles` : href}
+            to={recruiting ? paths.projectRoles(project.slug) : href}
             viewTransition
             onPointerEnter={preload}
             onFocus={preload}
