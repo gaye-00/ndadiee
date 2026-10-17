@@ -10,6 +10,7 @@ import com.hautetech.ndadiee.model.user.Developer;
 import com.hautetech.ndadiee.model.user.ExperienceLevel;
 import com.hautetech.ndadiee.model.user.Role;
 import com.hautetech.ndadiee.repository.DeveloperRepository;
+import com.hautetech.ndadiee.service.user.UserService;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -29,6 +30,8 @@ import lombok.extern.slf4j.Slf4j;
  * personne.</li>
  * <li>Créés seulement avec les données de démonstration (ndadiee.seed.enabled), donc jamais en
  * production, où SEED_ENABLED vaut false.</li>
+ * <li>Quelques membres de la vitrine les suivent : à la première connexion, la cloche des
+ * notifications n'est pas vide. Suivre deux fois ne notifie qu'une fois.</li>
  * </ul>
  */
 @Slf4j
@@ -39,6 +42,7 @@ public class TestAccountsSeeder {
     private final DemoAccounts accounts;
     private final DeveloperRepository developerRepository;
     private final PasswordEncoder passwordEncoder;
+    private final UserService userService;
 
     @Value("${ndadiee.seed.test-account-password}")
     private String password;
@@ -51,6 +55,8 @@ public class TestAccountsSeeder {
         ensure("musa", "Musa Diallo", "SN", "Dakar", ExperienceLevel.SENIOR, Language.FR, false,
                 "Compte d'essai. Développeur back-end à Dakar : Java, Spring Boot et PostgreSQL, et des API qu'on lit sans documentation.",
                 "Java", "Spring Boot", "PostgreSQL");
+        welcome("ada", "chinedu_okafor", "kofi_mensah", "tunde_adeyemi");
+        welcome("musa", "awa_diop", "jeanpaul_nkurunziza");
         log.info("[Init] Comptes d'essai prêts : ada@example.com, musa@example.com (mot de passe : ndadiee.seed.test-account-password)");
     }
 
@@ -64,6 +70,14 @@ public class TestAccountsSeeder {
             developer.setPassword(passwordEncoder.encode(password));
             developerRepository.save(developer);
             log.info("[Init] Compte d'essai {} : mot de passe remis à celui de la configuration", username);
+        }
+    }
+
+    // Des membres de la communauté suivent le compte (ceux qui existent : la vitrine a pu ne pas être créée)
+    private void welcome(String username, String... followers) {
+        for (String follower : followers) {
+            developerRepository.findByUsername(follower)
+                    .ifPresent(developer -> userService.follow(developer.getId(), username));
         }
     }
 }

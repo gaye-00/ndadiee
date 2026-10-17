@@ -1,5 +1,8 @@
 package com.hautetech.ndadiee.model.project;
 
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
+
 import com.hautetech.ndadiee.common.BaseEntity;
 import com.hautetech.ndadiee.model.user.Developer;
 
@@ -49,4 +52,19 @@ public class ProjectMember extends BaseEntity {
     @Column(nullable = false)
     @Builder.Default
     private MemberStatus status = MemberStatus.PENDING;
+
+    // Rôle tenu dans l'équipe, un rôle du catalogue : « Tunde Adeyemi · mobile » sur la page projet
+    @Enumerated(EnumType.STRING)
+    @Column(length = 20)
+    private TeamRole specialty;
+
+    // Annonce à laquelle il a répondu, s'il a postulé à un rôle
+    @ManyToOne(fetch = FetchType.LAZY)
+    @OnDelete(action = OnDeleteAction.SET_NULL)
+    @ToString.Exclude
+    private ProjectOpening opening;
+
+    // Le mot de sa candidature, pour le porteur et les mainteneurs
+    @Column(length = 500)
+    private String motivation;
 }

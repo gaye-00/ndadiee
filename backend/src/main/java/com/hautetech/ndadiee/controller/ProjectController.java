@@ -19,11 +19,16 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.hautetech.ndadiee.common.ApiResponse;
+import com.hautetech.ndadiee.dto.request.JoinProjectRequest;
 import com.hautetech.ndadiee.dto.request.MemberDecisionRequest;
+import com.hautetech.ndadiee.dto.request.MemberSpecialtyRequest;
+import com.hautetech.ndadiee.dto.request.ProjectMediaRequest;
 import com.hautetech.ndadiee.dto.request.ProjectRequest;
 import com.hautetech.ndadiee.dto.response.PageResponse;
+import com.hautetech.ndadiee.dto.response.ProjectMediaResponse;
 import com.hautetech.ndadiee.dto.response.ProjectMemberResponse;
 import com.hautetech.ndadiee.dto.response.ProjectResponse;
+import com.hautetech.ndadiee.service.project.ProjectMediaService;
 import com.hautetech.ndadiee.service.project.ProjectService;
 
 import io.swagger.v3.oas.annotations.Operation;
@@ -38,6 +43,7 @@ import lombok.RequiredArgsConstructor;
 public class ProjectController extends BaseController {
 
     private final ProjectService projectService;
+    private final ProjectMediaService mediaService;
 
     // ─── PUBLIC ───────────────────────────────────────────────────────────────
 
@@ -54,6 +60,7 @@ public class ProjectController extends BaseController {
                 "Projets récupérés avec succès"));
     }
 
+    @Operation(summary = "Page d'un projet : galerie, activité GitHub, rôles ouverts avec leurs candidatures et, pour un membre connecté, sa compatibilité avec chacun")
     @GetMapping("/{slug}")
     public ResponseEntity<ApiResponse<ProjectResponse>> getBySlug(@PathVariable String slug) {
         return ResponseEntity.ok(ApiResponse.success(
@@ -90,11 +97,12 @@ public class ProjectController extends BaseController {
         return ResponseEntity.ok(ApiResponse.success(null, "Projet supprimé avec succès"));
     }
 
-    @Operation(summary = "Demander à contribuer à un projet")
+    @Operation(summary = "Demander à contribuer à un projet, en visant un de ses rôles ouverts (openingId) et avec un mot pour l'équipe")
     @PostMapping("/{id}/join")
-    public ResponseEntity<ApiResponse<ProjectMemberResponse>> join(@PathVariable Long id) {
+    public ResponseEntity<ApiResponse<ProjectMemberResponse>> join(
+            @PathVariable Long id, @Valid @RequestBody(required = false) JoinProjectRequest request) {
         return ResponseEntity.status(HttpStatus.CREATED).body(ApiResponse.success(
-                projectService.join(getAuthenticatedUserId(), id), "Demande de contribution envoyée"));
+                projectService.join(getAuthenticatedUserId(), id, request), "Demande de contribution envoyée"));
     }
 
     @Operation(summary = "Quitter un projet, ou annuler sa demande en attente")
@@ -102,6 +110,29 @@ public class ProjectController extends BaseController {
     public ResponseEntity<ApiResponse<Void>> leave(@PathVariable Long id) {
         projectService.leave(getAuthenticatedUserId(), id);
         return ResponseEntity.ok(ApiResponse.success(null, "Vous ne participez plus à ce projet"));
+    }
+
+    @Operation(summary = "Choisir le rôle que l'on tient dans l'équipe (membre accepté)")
+    @PutMapping("/{id}/members/me")
+    public ResponseEntity<ApiResponse<ProjectMemberResponse>> updateMySpecialty(
+            @PathVariable Long id, @Valid @RequestBody MemberSpecialtyRequest request) {
+        return ResponseEntity.ok(ApiResponse.success(
+                projectService.updateMySpecialty(getAuthenticatedUserId(), id, request), "Rôle mis à jour"));
+    }
+
+    @Operation(summary = "Ajouter une image à la galerie (propriétaire, mainteneur ou modérateur)")
+    @PostMapping("/{id}/media")
+    public ResponseEntity<ApiResponse<ProjectMediaResponse>> addMedia(
+            @PathVariable Long id, @Valid @RequestBody ProjectMediaRequest request) {
+        return ResponseEntity.status(HttpStatus.CREATED).body(ApiResponse.success(
+                mediaService.add(getAuthenticatedUserId(), id, request), "Image ajoutée à la galerie"));
+    }
+
+    @Operation(summary = "Retirer une image de la galerie (propriétaire, mainteneur ou modérateur)")
+    @DeleteMapping("/{id}/media/{mediaId}")
+    public ResponseEntity<ApiResponse<Void>> deleteMedia(@PathVariable Long id, @PathVariable Long mediaId) {
+        mediaService.delete(getAuthenticatedUserId(), id, mediaId);
+        return ResponseEntity.ok(ApiResponse.success(null, "Image retirée de la galerie"));
     }
 
     @Operation(summary = "Accepter ou refuser une demande de contribution (propriétaire ou mainteneur)")

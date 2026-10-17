@@ -1,6 +1,20 @@
-import { keepPreviousData, queryOptions, useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
+import {
+  keepPreviousData,
+  queryOptions,
+  useInfiniteQuery,
+  useMutation,
+  useQuery,
+  useQueryClient,
+} from '@tanstack/react-query';
 import { projectService } from '@/services/project.service';
-import type { MemberDecisionRequest, ProjectFilters, ProjectRequest } from '@/types/project.types';
+import type {
+  FeedbackCall,
+  FeedbackRequest,
+  JoinProjectRequest,
+  MemberDecisionRequest,
+  ProjectFilters,
+  ProjectRequest,
+} from '@/types/project.types';
 
 /** Requête d'une liste de projets : partagée par les hooks et le préchargement (LandingPage). */
 export const projectsQuery = (filters?: ProjectFilters) =>
@@ -64,18 +78,59 @@ export function useCreateProject() {
   });
 }
 
-/** Demande à contribuer (join = true) ou quitte le projet / annule sa demande (join = false). */
+/**
+ * Demande à contribuer (join = true), en visant un rôle et avec un mot pour l'équipe ; ou quitte le
+ * projet / annule sa demande (join = false).
+ */
 export function useProjectMembership() {
   const invalidate = useInvalidateProjects();
   return useMutation({
-    mutationFn: async ({ projectId, join }: { projectId: number; join: boolean }) => {
+    mutationFn: async ({ projectId, join, request }: { projectId: number; join: boolean; request?: JoinProjectRequest }) => {
       if (join) {
-        await projectService.join(projectId);
+        await projectService.join(projectId, request);
       } else {
         await projectService.leave(projectId);
       }
     },
     onSuccess: (_result, { projectId }) => invalidate(projectId),
+    meta: { handlesError: true },
+  });
+}
+
+/** Devlog d'un projet, page après page : les entrées les plus récentes d'abord. */
+export const DEVLOG_PAGE_SIZE = 4;
+
+export function useProjectDevlog(projectId: number | undefined) {
+  return useInfiniteQuery({
+    queryKey: ['project-devlog', projectId],
+    queryFn: ({ pageParam }) => projectService.getDevlog(projectId!, { page: pageParam, size: DEVLOG_PAGE_SIZE }),
+    initialPageParam: 0,
+    getNextPageParam: (last) => (last.last ? undefined : last.page + 1),
+    enabled: projectId !== undefined,
+  });
+}
+
+/** Demandes de retours ouvertes d'un projet. */
+export function useFeedbackCalls(projectId: number | undefined) {
+  return useQuery({
+    queryKey: ['feedback-calls', projectId],
+    queryFn: () => projectService.getFeedbackCalls(projectId!),
+    enabled: projectId !== undefined,
+  });
+}
+
+/** Donne son avis : la demande renvoyée (retour compté, « déjà donné ») remplace celle du cache. */
+export function useGiveFeedback(projectId: number) {
+  const qc = useQueryClient();
+  return useMutation({
+    mutationFn: ({ callId, body }: { callId: number; body: FeedbackRequest }) =>
+      projectService.giveFeedback(projectId, callId, body),
+    onSuccess: (call) => {
+      qc.setQueryData<FeedbackCall[]>(['feedback-calls', projectId], (calls) =>
+        calls?.map((candidate) => (candidate.id === call.id ? call : candidate)),
+      );
+    },
+    meta: { handlesError: true },
   });
 }
 

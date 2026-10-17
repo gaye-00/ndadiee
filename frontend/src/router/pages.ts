@@ -1,10 +1,19 @@
 import type { ComponentType } from 'react';
+import i18n from '@/i18n';
 import type frCommon from '@/i18n/locales/fr/common.json';
 
 /** Nom d'une page : c'est aussi la clé de son titre d'onglet (section `pages` des traductions). */
 export type PageName = keyof typeof frCommon.pages;
 
 export type PageImport = () => Promise<{ default: ComponentType }>;
+
+/**
+ * Le code d'une page et les textes de sa fonctionnalité (un espace de noms des traductions, dans la langue
+ * de l'interface), téléchargés ensemble : la page s'affiche avec ses textes, sans attente de plus.
+ */
+function withTexts(load: PageImport, namespace: 'hackathons'): PageImport {
+  return () => Promise.all([load(), i18n.loadNamespaces(namespace)]).then(([module]) => module);
+}
 
 /**
  * Code de chaque page, dans son propre fichier du build, téléchargé seulement à la première visite.
@@ -18,15 +27,16 @@ export const pages = {
   project: () => import('@/pages/projects/ProjectPage'),
   openings: () => import('@/pages/openings/OpeningsPage'),
   newOpening: () => import('@/pages/openings/NewOpeningPage'),
-  hackathons: () => import('@/pages/hackathons/HackathonsPage'),
-  hackathon: () => import('@/pages/hackathons/HackathonPage'),
+  hackathons: withTexts(() => import('@/pages/hackathons/HackathonsPage'), 'hackathons'),
+  hackathon: withTexts(() => import('@/pages/hackathons/HackathonPage'), 'hackathons'),
   forum: () => import('@/pages/forum/ForumPage'),
   topic: () => import('@/pages/forum/TopicPage'),
   newTopic: () => import('@/pages/forum/NewTopicPage'),
   profile: () => import('@/pages/profile/ProfilePage'),
   search: () => import('@/pages/search/SearchPage'),
 
-  dashboard: () => import('@/pages/dashboard/DashboardPage'),
+  // L'atelier montre le prochain hackathon de l'équipe (HackathonSpotlight)
+  dashboard: withTexts(() => import('@/pages/dashboard/DashboardPage'), 'hackathons'),
   myProjects: () => import('@/pages/projects/MyProjectsPage'),
   newProject: () => import('@/pages/projects/NewProjectPage'),
   workspaceBoard: () => import('@/pages/workspace/WorkspaceBoardPage'),

@@ -14,11 +14,12 @@ Au démarrage, `initializer/InitializerNdadiee.java` synchronise les badges, pui
 (vrai par défaut), remplit la base :
 
 1. `DemoDataSeeder` : la communauté (comptes, questions et réponses, articles, opportunités) ;
-2. `ShowcaseSeeder` : la vitrine (10 projets avec couverture, équipes, étoiles et 24 rôles recherchés,
-   qui couvrent les 13 rôles du catalogue) ;
+2. `ShowcaseSeeder` : la vitrine (10 projets avec couverture et galerie, équipes où chacun a son rôle,
+   étoiles, 24 rôles recherchés qui couvrent les 13 rôles du catalogue et 8 candidatures en attente,
+   devlog, demandes de retours, activité GitHub, licence) ;
 3. `TestAccountsSeeder` : deux comptes d'essai pour se connecter. Ils existent à chaque démarrage,
    même dans une base déjà remplie, et leur mot de passe suit la configuration (le hachage est refait
-   s'il a changé).
+   s'il a changé). Quelques membres de la vitrine les suivent : leur cloche n'est pas vide.
 
 | Compte d'essai | Identifiant | Mot de passe en développement |
 | --- | --- | --- |
@@ -70,6 +71,33 @@ libellé et son motif tissé (`frontend/src/config/roles.ts`) : les deux listes 
 Un projet renvoie aussi son accroche, sa couverture (et sa miniature, son crédit), ses rôles ouverts et
 son équipe (`ProjectResponse`).
 
+## Page projet (design 3D)
+
+| Requête | Accès |
+| --- | --- |
+| `GET /v1/projects/{slug}` | public : le projet, sa galerie (`gallery`, après la couverture), l'activité de son dépôt (`github`) et sa licence ; pour chaque rôle ouvert, ses candidatures en attente (`applicants`) et, pour un membre connecté hors de l'équipe, sa compatibilité (`match`) et sa candidature (`appliedByMe`) |
+| `POST /v1/projects/{id}/join`, corps facultatif `{ openingId, motivation }` | connecté : candidature, à un rôle ouvert ou sans rôle |
+| `PUT /v1/projects/{id}/members/me` `{ specialty }` | membre de l'équipe : le rôle qu'il y tient (« mobile ») |
+| `GET /v1/projects/{id}/devlog?page=&size=` | public, les entrées les plus récentes d'abord |
+| `POST /v1/projects/{id}/devlog` | équipe du projet |
+| `GET /v1/projects/{id}/feedback-calls` | public : demandes de retours ouvertes, retours comptés, note moyenne, `givenByMe` |
+| `POST /v1/projects/{id}/feedback-calls` | porteur, mainteneurs |
+| `POST /v1/projects/{id}/feedback-calls/{callId}/feedback` | connecté, une fois par demande (409 ensuite) ; pas l'auteur de la demande |
+| `GET /v1/projects/{id}/feedback-calls/{callId}/feedback` | équipe du projet, modérateurs |
+| `POST /v1/projects/{id}/media`, `DELETE /v1/projects/{id}/media/{mediaId}` | porteur, mainteneurs, modérateurs (12 images au plus) |
+
+- **Compatibilité** (`OpeningMatcher`) : chaque compétence du profil propre au métier du rôle comble 45 % de
+  l'écart restant, chaque technologie du projet 30 % (deux compétences du métier : 70 %) ; jamais 100 %.
+  Elle donne aussi les compétences qui l'expliquent.
+- **Candidature à un rôle** : son rôle devient la spécialité du membre ; quand les places d'un rôle sont
+  toutes prises (candidatures acceptées), l'annonce se ferme.
+- **Activité GitHub** : un relevé par projet (`project_github_activity`), remplacé à chaque synchronisation
+  (`GithubActivityService.record`). Pas encore de synchronisation réelle : seules les données de
+  démonstration en écrivent.
+- La migration `V3__project_page.sql` tient dans un bloc `DO` : avec `ddl-auto: create-drop`, Hibernate a
+  supprimé les tables à l'arrêt précédent et les recrée après Flyway, la migration n'a alors rien à
+  modifier ; avec `validate`, elle s'applique entièrement.
+
 ## Chiffres de la communauté
 
 `GET /v1/stats` (public) : développeurs, pays représentés, projets, rôles ouverts et places qu'ils
@@ -80,4 +108,5 @@ proposent, comptés en base à chaque demande (bannière finale de l'accueil).
 `src/main/resources/static/media` est servi sous `/api/media/**`, mis en cache un mois. Un chemin de
 média enregistré en base (« media/demo/projects/x.webp ») devient une adresse complète sur l'hôte de la
 requête (`common/MediaUrls.java`). Les couvertures de démonstration viennent de Wikimedia Commons :
-auteurs et licences dans `static/media/demo/CREDITS.md`.
+auteurs et licences dans `static/media/demo/CREDITS.md`. Les galeries (`projects/gallery/`) sont des
+captures des applications de démonstration, dessinées pour la vitrine.

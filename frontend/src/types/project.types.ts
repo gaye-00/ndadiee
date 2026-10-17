@@ -35,6 +35,18 @@ export interface ProjectOpening {
   createdAt: string;
   /** Renseigné dans la liste des annonces ; absent dans un projet */
   project: ProjectBrief | null;
+  // Page du projet seulement : candidatures en attente, et pour un membre connecté qui n'est pas de
+  // l'équipe, sa compatibilité avec le rôle et sa candidature
+  applicants: number | null;
+  match: OpeningMatch | null;
+  appliedByMe: boolean | null;
+}
+
+/** Compatibilité du membre connecté avec un rôle (OpeningMatcher.java) : de 1 à 99, et pourquoi */
+export interface OpeningMatch {
+  score: number;
+  /** Compétences de son profil qui comptent, celles de la stack du projet d'abord */
+  skills: string[];
 }
 
 /** Projet résumé, accompagnant une annonce */
@@ -84,6 +96,10 @@ export interface Project {
   /** Crédit d'une photo empruntée (« Auteur · licence ») et lien vers sa source */
   coverCredit: string | null;
   coverSourceUrl: string | null;
+  /** Licence du code, identifiant SPDX : « MIT » */
+  license: string | null;
+  /** Hackathon auquel le projet est inscrit : renseigné par le domaine Hackathon, absent sinon */
+  hackathon?: HackathonBrief | null;
   owner: UserSummary;
   tags: Tag[];
   lookingForContributors: boolean;
@@ -93,6 +109,10 @@ export interface Project {
   openings: ProjectOpening[];
   /** Membres acceptés, le porteur d'abord (6 au plus) */
   team: UserSummary[];
+  // Page du projet seulement (GET /v1/projects/{slug}) : la galerie, qui suit la couverture, et
+  // l'activité du dépôt (null tant qu'il n'a pas été synchronisé)
+  gallery: ProjectMedia[] | null;
+  github: GithubActivity | null;
   // Renseignés uniquement pour un membre connecté
   starredByMe: boolean | null;
   myMembershipStatus: MemberStatus | null;
@@ -105,7 +125,94 @@ export interface ProjectMember {
   user: UserSummary;
   role: ProjectRole;
   status: MemberStatus;
+  /** Rôle tenu dans l'équipe (« mobile ») */
+  specialty: TeamRole | null;
+  /** Annonce à laquelle il a répondu */
+  openingId: number | null;
+  /** Le mot de sa candidature : seulement pour le porteur et les mainteneurs */
+  motivation: string | null;
   createdAt: string;
+}
+
+export type MediaKind = 'SCREENSHOT' | 'PHOTO';
+
+/** Image de la galerie d'un projet (adresses complètes) */
+export interface ProjectMedia {
+  id: number;
+  kind: MediaKind;
+  url: string;
+  thumbnailUrl: string | null;
+  caption: string | null;
+  /** Image empruntée : auteur et licence, et lien vers sa source */
+  credit: string | null;
+  sourceUrl: string | null;
+  width: number | null;
+  height: number | null;
+}
+
+/** Activité du dépôt GitHub, à la dernière synchronisation */
+export interface GithubActivity {
+  stars: number;
+  forks: number;
+  openIssues: number;
+  /** Issues « good first issue » ouvertes */
+  goodFirstIssues: number;
+  contributors: number;
+  commitsThisWeek: number;
+  /** Commits des 12 dernières semaines, de la plus ancienne à la semaine en cours */
+  commitWeeks: number[];
+  lastRelease: string | null;
+  lastReleaseAt: string | null;
+  lastCommitAt: string | null;
+  syncedAt: string;
+}
+
+/** Hackathon auquel un projet est inscrit (HackathonBriefResponse.java, domaine Hackathon) */
+export interface HackathonBrief {
+  id: number;
+  slug: string;
+  title: string;
+  startsAt: string | null;
+  endsAt: string | null;
+  registrationClosesAt: string | null;
+}
+
+/** Entrée du devlog d'un projet */
+export interface DevlogEntry {
+  id: number;
+  /** « v0.7 », quand c'est une release */
+  version: string | null;
+  /** Texte court : `code` et mentions @nom_utilisateur */
+  body: string;
+  author: UserSummary;
+  createdAt: string;
+}
+
+/** Demande de retours d'un projet (« Votre avis sur l'écran trajets ») */
+export interface FeedbackCall {
+  id: number;
+  title: string;
+  prompt: string | null;
+  open: boolean;
+  author: UserSummary;
+  createdAt: string;
+  feedbackCount: number;
+  /** Note moyenne sur 5, null sans note */
+  averageRating: number | null;
+  /** Renseigné uniquement pour un membre connecté */
+  givenByMe: boolean | null;
+}
+
+/** Un avis : note de 1 à 5 facultative, et ce qu'on en pense */
+export interface FeedbackRequest {
+  rating?: number;
+  body: string;
+}
+
+/** Candidature : le rôle visé et un mot pour l'équipe, facultatifs */
+export interface JoinProjectRequest {
+  openingId?: number;
+  motivation?: string;
 }
 
 export interface ProjectRequest {

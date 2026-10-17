@@ -74,6 +74,11 @@
   --gold: #9a6212;
   --coral: #c2382a;
   --jade: #0b7a5f;
+  /* Pour les formes pleines (points de chargement), les couleurs du design, plus vives : contraste
+     ≥ 3:1, assez pour un graphisme, pas pour du petit texte */
+  --gold-graphic: #b5761a;
+  --coral-graphic: #d2402f;
+  --jade-graphic: #0e8a6c;
   --destructive: var(--coral);
   --success: var(--jade);
   --warning: var(--gold);
@@ -147,6 +152,9 @@
   --gold: var(--kente-gold);
   --coral: var(--kente-coral);
   --jade: var(--kente-jade);
+  --gold-graphic: var(--kente-gold);
+  --coral-graphic: var(--kente-coral);
+  --jade-graphic: var(--kente-jade);
 
   --border: rgb(255 255 255 / 0.08);
   --border-subtle: rgb(255 255 255 / 0.06);

@@ -3,6 +3,7 @@ package com.hautetech.ndadiee.initializer;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyBoolean;
+import static org.mockito.ArgumentMatchers.anyLong;
 import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.Mockito.never;
@@ -26,18 +27,22 @@ import com.hautetech.ndadiee.model.user.Developer;
 import com.hautetech.ndadiee.model.user.ExperienceLevel;
 import com.hautetech.ndadiee.model.user.Role;
 import com.hautetech.ndadiee.repository.DeveloperRepository;
+import com.hautetech.ndadiee.service.user.UserService;
 
 /** Les comptes d'essai existent toujours, avec le mot de passe de la configuration, haché en BCrypt. */
 @ExtendWith(MockitoExtension.class)
 class TestAccountsSeederTest {
 
-    private static final String PASSWORD = "passer@123";
+    private static final String PASSWORD = "mot-de-passe-de-test";
 
     @Mock
     private DemoAccounts accounts;
 
     @Mock
     private DeveloperRepository developerRepository;
+
+    @Mock
+    private UserService userService;
 
     // Le vrai hachage : on vérifie ce qui partirait en base
     private final PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
@@ -46,7 +51,7 @@ class TestAccountsSeederTest {
 
     @BeforeEach
     void setUp() {
-        seeder = new TestAccountsSeeder(accounts, developerRepository, passwordEncoder);
+        seeder = new TestAccountsSeeder(accounts, developerRepository, passwordEncoder, userService);
         ReflectionTestUtils.setField(seeder, "password", PASSWORD);
     }
 
@@ -89,5 +94,22 @@ class TestAccountsSeederTest {
         // Jamais en clair : un hachage BCrypt, qui correspond au mot de passe configuré
         assertThat(hash).startsWith("$2a$").isNotEqualTo(PASSWORD);
         assertThat(passwordEncoder.matches(PASSWORD, hash)).isTrue();
+    }
+
+    @Test
+    void membersOfTheShowcaseFollowTheTestAccounts() {
+        accountsAre(1L, 2L);
+        account(1L, passwordEncoder.encode(PASSWORD));
+        account(2L, passwordEncoder.encode(PASSWORD));
+        Developer chinedu = Developer.builder().username("chinedu_okafor").build();
+        chinedu.setId(10L);
+        when(developerRepository.findByUsername(anyString())).thenReturn(Optional.empty());
+        when(developerRepository.findByUsername("chinedu_okafor")).thenReturn(Optional.of(chinedu));
+
+        seeder.seed();
+
+        // Les membres absents (vitrine non créée) sont ignorés
+        verify(userService).follow(10L, "ada");
+        verify(userService, never()).follow(anyLong(), eq("musa"));
     }
 }

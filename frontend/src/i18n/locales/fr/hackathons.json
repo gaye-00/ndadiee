@@ -1,0 +1,100 @@
+{
+  "list": {
+    "eyebrow": "Hackathons",
+    "titleTeam": "Trouve ton équipe.",
+    "titleShip": "Livre en 48 h.",
+    "lead": "Des hackathons en ligne et dans les villes du continent. Inscris ton projet comme équipe, ou rejoins une équipe qui cherche ton rôle.",
+    "live_one": "{{count}} en direct",
+    "live_many": "{{count}} en direct",
+    "live_other": "{{count}} en direct",
+    "upcoming_one": "{{count}} à venir",
+    "upcoming_many": "{{count}} à venir",
+    "upcoming_other": "{{count}} à venir",
+    "seats_one": "{{count}} place à prendre dans les équipes",
+    "seats_many": "{{count}} places à prendre dans les équipes",
+    "seats_other": "{{count}} places à prendre dans les équipes",
+    "upcomingTitle": "Prochains hackathons",
+    "loading": "Chargement des hackathons",
+    "errorTitle": "Les hackathons n'ont pas pu se charger",
+    "errorText": "Vérifie ta connexion, puis réessaie.",
+    "emptyTitle": "Pas de hackathon annoncé pour l'instant",
+    "emptyText": "Les prochains arrivent vite. Publie ton projet dans la vitrine : ton équipe sera prête à s'inscrire.",
+    "emptyAction": "Publier mon projet"
+  },
+  "feature": {
+    "next": "À la une · prochain coup d'envoi",
+    "live": "En direct",
+    "startsIn": "Coup d'envoi dans",
+    "endsIn": "Fin dans",
+    "kickoff": "Coup d'envoi le {{date}}",
+    "ending": "Fin le {{date}}",
+    "registration": "Inscriptions",
+    "hacking": "Le hackathon",
+    "until": "jusqu'au {{date}}",
+    "see": "Voir le hackathon",
+    "joinTeam": "Rejoindre une équipe",
+    "recruiting": "Elles cherchent encore",
+    "seeks": "cherche {{role}}",
+    "apply": "Postuler"
+  },
+  "past": {
+    "title": "Palmarès",
+    "lead": "Les équipes lauréates, et ce qu'elles ont construit depuis.",
+    "teams_one": "{{count}} équipe",
+    "teams_many": "{{count}} équipes",
+    "teams_other": "{{count}} équipes",
+    "place_ordinal_one": "{{count}}er prix",
+    "place_ordinal_other": "{{count}}e prix",
+    "more": "Hackathons précédents",
+    "loadingMore": "Chargement des hackathons précédents"
+  },
+  "status": {
+    "registration": "Inscriptions jusqu'au {{date}}",
+    "lastCall": "Clôture des inscriptions {{time}}",
+    "full": "Complet",
+    "closed": "Inscriptions closes · coup d'envoi {{time}}",
+    "live": "En direct · fin {{time}}",
+    "ended": "Terminé"
+  },
+  "format": {
+    "REMOTE": "En ligne",
+    "ONSITE": "Sur place",
+    "HYBRID": "Sur place et en ligne"
+  },
+  "duration": {
+    "hours_one": "{{count}} h",
+    "hours_many": "{{count}} h",
+    "hours_other": "{{count}} h",
+    "days_one": "{{count}} jour",
+    "days_many": "{{count}} jours",
+    "days_other": "{{count}} jours"
+  },
+  "countdown": {
+    "days_one": "jour",
+    "days_many": "jours",
+    "days_other": "jours",
+    "hours": "h",
+    "minutes": "min",
+    "seconds": "s"
+  },
+  "time": {
+    "yours": "ton heure",
+    "at": "{{date}} · {{time}}",
+    "inZone": "{{time}} ({{zone}})"
+  },
+  "card": {
+    "online": "En ligne",
+    "prize": "Dotation",
+    "teamSizeLabel": "Taille des équipes",
+    "teamSize": "{{min}} à {{max}} pers.",
+    "durationLabel": "Durée",
+    "teams_one": "{{count}} équipe",
+    "teams_many": "{{count}} équipes",
+    "teams_other": "{{count}} équipes",
+    "seats_one": "{{count}} place à prendre",
+    "seats_many": "{{count}} places à prendre",
+    "seats_other": "{{count}} places à prendre",
+    "firstTeam": "Sois la première équipe",
+    "winner": "1er prix :"
+  }
+}

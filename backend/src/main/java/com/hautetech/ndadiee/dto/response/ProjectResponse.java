@@ -29,6 +29,10 @@ public class ProjectResponse {
     private String coverThumbnailUrl;
     private String coverCredit;
     private String coverSourceUrl;
+    // Licence du code (SPDX)
+    private String license;
+    // Hackathon pas encore terminé auquel le projet est inscrit, le plus proche : renseigné par ProjectService
+    private HackathonBriefResponse hackathon;
     private UserSummaryResponse owner;
     private List<TagResponse> tags;
     private boolean lookingForContributors;
@@ -38,6 +42,11 @@ public class ProjectResponse {
     // Rôles ouverts, et équipe (membres acceptés, le porteur d'abord, 6 au plus) : renseignés par ProjectService
     private List<ProjectOpeningResponse> openings;
     private List<UserSummaryResponse> team;
+
+    // Page du projet seulement (GET /v1/projects/{slug}) : la galerie, qui suit la couverture, et
+    // l'activité GitHub (null si le dépôt n'a pas encore été synchronisé)
+    private List<ProjectMediaResponse> gallery;
+    private GithubActivityResponse github;
 
     // Renseignés uniquement pour un membre connecté
     private Boolean starredByMe;

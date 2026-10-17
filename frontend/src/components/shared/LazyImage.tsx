@@ -1,6 +1,7 @@
 import { ImageIcon } from 'lucide-react';
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import PulsatingDots from '@/components/feedback/PulsatingDots';
 import { cn } from '@/lib/utils';
 import { useDataSaverStore } from '@/store/useDataSaverStore';
 
@@ -16,13 +17,15 @@ interface LazyImageProps {
   className?: string;
   /** L'image elle-même (zoom au survol...) */
   imageClassName?: string;
+  /** Les points kente au milieu du cadre tant que l'image arrive (grande image, visionneuse) */
+  loader?: boolean;
 }
 
 /**
  * Image chargée à l'approche de l'écran, avec des hachures en attendant (« capture du projet »), puis
  * un fondu. En mode économie de données, elle attend qu'on la demande.
  */
-export default function LazyImage({ src, thumbnail, sizes, alt, className, imageClassName }: LazyImageProps) {
+export default function LazyImage({ src, thumbnail, sizes, alt, className, imageClassName, loader = false }: LazyImageProps) {
   const { t } = useTranslation();
   const dataSaver = useDataSaverStore((s) => s.enabled);
   const [requested, setRequested] = useState(!dataSaver);
@@ -54,6 +57,11 @@ export default function LazyImage({ src, thumbnail, sizes, alt, className, image
             imageClassName,
           )}
         />
+      )}
+      {loader && requested && !loaded && !failed && (
+        <span className="absolute inset-0 grid place-items-center">
+          <PulsatingDots label={t('states.loading')} />
+        </span>
       )}
       {!requested && (
         <button

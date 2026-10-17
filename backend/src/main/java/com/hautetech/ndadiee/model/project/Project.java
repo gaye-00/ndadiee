@@ -76,6 +76,10 @@ public class Project extends BaseEntity {
     @Column(length = 500)
     private String coverSourceUrl;
 
+    // Licence du code, identifiant SPDX (« MIT », « Apache-2.0 ») : « open source · MIT »
+    @Column(length = 40)
+    private String license;
+
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @ToString.Exclude
     private Developer owner;

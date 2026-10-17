@@ -67,8 +67,8 @@ public class SecurityConfiguration {
                     "/v3/api-docs/**"
                 ).permitAll()
 
-                // ⚠️ Doit précéder la règle publique GET /v1/articles/{slug}
-                .requestMatchers(HttpMethod.GET, "/v1/articles/me").authenticated()
+                // ⚠️ Doivent précéder les règles publiques GET /v1/articles/{slug} et /v1/hackathons/{slug}
+                .requestMatchers(HttpMethod.GET, "/v1/articles/me", "/v1/hackathons/me").authenticated()
 
                 // Lecture publique du contenu de la communauté
                 .requestMatchers(HttpMethod.GET,
@@ -80,9 +80,14 @@ public class SecurityConfiguration {
                     "/v1/projects",
                     "/v1/projects/{slug}",
                     "/v1/projects/{id}/members",
+                    "/v1/projects/{projectId}/devlog",
+                    "/v1/projects/{projectId}/feedback-calls",
                     "/v1/openings",
                     "/v1/openings/roles",
                     "/v1/openings/stacks",
+                    "/v1/hackathons",
+                    "/v1/hackathons/{slug}",
+                    "/v1/hackathons/{id}/teams",
                     "/v1/stats",
                     "/v1/opportunities",
                     "/v1/opportunities/{id}",

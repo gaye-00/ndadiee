@@ -18,6 +18,7 @@ public class InitializerNdadiee implements CommandLineRunner {
     private final DemoDataSeeder demoDataSeeder;
     private final ShowcaseSeeder showcaseSeeder;
     private final TestAccountsSeeder testAccountsSeeder;
+    private final HackathonSeeder hackathonSeeder;
 
     @Value("${ndadiee.seed.enabled}")
     private boolean seedEnabled;
@@ -34,6 +35,8 @@ public class InitializerNdadiee implements CommandLineRunner {
             showcaseSeeder.seed();
             // Les deux comptes d'essai, à chaque démarrage, même dans une base déjà remplie
             testAccountsSeeder.seed();
+            // Les hackathons et leurs équipes : des projets de la vitrine, et une équipe où joue musa
+            hackathonSeeder.seed();
         } else {
             log.info("[Init] Données de démonstration désactivées (ndadiee.seed.enabled=false)");
         }

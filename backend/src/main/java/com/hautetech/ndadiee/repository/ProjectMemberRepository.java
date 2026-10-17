@@ -40,4 +40,15 @@ public interface ProjectMemberRepository extends JpaRepository<ProjectMember, Lo
             """)
     List<ProjectMember> findWithUserByProjectIdsAndStatus(@Param("projectIds") Collection<Long> projectIds,
             @Param("status") MemberStatus status);
+
+    // Candidatures de plusieurs annonces en une requête : lignes [id de l'annonce, total]
+    @Query("""
+            SELECT m.opening.id, COUNT(m) FROM ProjectMember m
+            WHERE m.opening.id IN :openingIds AND m.status = :status
+            GROUP BY m.opening.id
+            """)
+    List<Object[]> countByOpeningIdsAndStatus(@Param("openingIds") Collection<Long> openingIds,
+            @Param("status") MemberStatus status);
+
+    long countByOpeningIdAndStatus(Long openingId, MemberStatus status);
 }

@@ -554,16 +554,6 @@ public class DemoDataSeeder {
 
                 You will work on a modern Kotlin and Compose codebase, with a strong testing culture and weekly releases. Three days a week in our Johannesburg office.
                 """, "Kotlin", "Android");
-        opportunity(admin, OpportunityType.HACKATHON, WorkMode.REMOTE, "Hackathon FinTech Afrique 2026", "Ndadiee", null, null,
-                "Prix : 3 000 000 FCFA à partager", 20, """
-                48 heures pour imaginer des solutions d'inclusion financière : épargne, micro-assurance, paiements transfrontaliers.
-
-                - Équipes de 2 à 5 personnes, de tous les pays
-                - Entièrement en ligne
-                - Mentors disponibles pendant tout l'événement
-
-                Les inscriptions se font par équipe. Pas encore d'équipe ? Présentez-vous dans les commentaires d'un projet de la vitrine.
-                """, "Mobile Money", "API");
         opportunity(wanjiru, OpportunityType.FREELANCE, WorkMode.REMOTE, "Flutter developer for an education app", "Elimu Labs", "KE", "Nairobi",
                 "USD 25 – 35 per hour", 15, """
                 Short contract to add offline lesson downloads to an existing Flutter app used by secondary schools. Experience with local databases and background synchronisation is essential.

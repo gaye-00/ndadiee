@@ -27,4 +27,10 @@ public class ProjectOpeningResponse {
 
     // Renseigné dans la liste des annonces ; absent quand l'annonce est déjà dans son projet
     private ProjectBriefResponse project;
+
+    // Page du projet seulement : candidatures en attente, et pour un membre connecté qui n'est pas de
+    // l'équipe, sa compatibilité avec le rôle (null si aucune de ses compétences ne compte) et sa candidature
+    private Long applicants;
+    private OpeningMatchResponse match;
+    private Boolean appliedByMe;
 }

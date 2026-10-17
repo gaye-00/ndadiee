@@ -1,8 +1,9 @@
 import axios from 'axios';
-import { ArrowRight, Building2, Grid2x2, LoaderCircle, RotateCcw } from 'lucide-react';
+import { ArrowRight, Building2, Grid2x2, RotateCcw } from 'lucide-react';
 import { useEffect, useMemo, useState, type FormEvent } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
+import PulsatingDots from '@/components/feedback/PulsatingDots';
 import GithubMark from '@/components/shared/GithubMark';
 import KenteSkyline, { type SkylineView } from '@/components/shared/KenteSkyline';
 import { useAuth } from '@/hooks/useAuth';
@@ -188,7 +189,7 @@ export default function HeroLoom({ className }: { className?: string }) {
                   focusRing,
                 )}
               >
-                {github.isFetching && <LoaderCircle aria-hidden className="size-3.5 animate-spin" />}
+                {github.isFetching && <PulsatingDots size="sm" tone="current" />}
                 {github.isFetching ? t('hero.loom.weaving') : t('hero.loom.weave')}
               </button>
             </div>

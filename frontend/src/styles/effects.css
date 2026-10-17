@@ -871,6 +871,208 @@
   box-shadow: 0 0 10px 2px color-mix(in srgb, var(--kente-gold) 70%, transparent);
 }
 
+/* ── Points de chargement (feedback/PulsatingDots.tsx, feedback/PageLoader.tsx, index.html) ──
+   Trois points aux couleurs du kente, dans l'ordre de son dégradé : or, rouge, vert. Chacun grossit et
+   s'allume 0,3 s après le précédent : une vague qui court dans le sens de la lecture (en arabe, la rangée
+   s'inverse d'elle-même et la vague part de la droite). Délais comptés depuis l'ouverture de la page
+   (lib/pageClock.ts) : tous les loaders de l'écran battent en mesure.
+   Dans la couche components : les classes Tailwind passées au composant (className) l'emportent. */
+@keyframes kente-dot-pulse {
+  0%,
+  100% {
+    opacity: 0.5;
+    scale: 1;
+  }
+  50% {
+    opacity: 1;
+    scale: 1.5;
+  }
+}
+
+/* Sans mouvement : les points ne grossissent plus, ils s'allument seulement */
+@keyframes kente-dot-glow {
+  0%,
+  100% {
+    opacity: 0.35;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+/* Loader d'une page entière : il n'apparaît qu'après 0,3 s d'attente, une page qui s'ouvre vite ne le fait
+   pas clignoter */
+@keyframes page-loader-in {
+  from {
+    opacity: 0;
+  }
+}
+
+@layer components {
+  .pulsating-dots {
+    --dot-size: 0.75rem;
+    display: inline-flex;
+    flex-shrink: 0;
+    align-items: center;
+    gap: 0.5rem;
+    /* Au milieu de la ligne quand il suit un texte, pas posé sur sa ligne de base */
+    vertical-align: middle;
+  }
+
+  /* La place d'une icône de 16 px : dans un bouton, un champ, une notification */
+  .pulsating-dots[data-size='sm'] {
+    --dot-size: 0.25rem;
+    gap: 0.125rem;
+  }
+
+  .pulsating-dot {
+    width: var(--dot-size);
+    height: var(--dot-size);
+    border-radius: 9999px;
+    background-color: var(--gold-graphic);
+    animation: kente-dot-pulse 1s ease-in-out infinite;
+    /* Retard négatif : la vague court dès le premier affichage, aucun point n'attend son tour immobile */
+    animation-delay: calc(var(--dot-lag, 0s) - 1s);
+  }
+
+  .pulsating-dot:where(:nth-child(2)) {
+    --dot-lag: 0.3s;
+    background-color: var(--coral-graphic);
+  }
+
+  .pulsating-dot:where(:nth-child(3)) {
+    --dot-lag: 0.6s;
+    background-color: var(--jade-graphic);
+  }
+
+  /* La couleur du texte autour : dans un bouton, sur un aplat de couleur */
+  .pulsating-dots[data-tone='current'] > .pulsating-dot {
+    background-color: currentColor;
+  }
+
+  /* Un loader immobile ne dit plus que ça charge. Sans mouvement (réglage du système) comme en économie de
+     données, les points continuent donc de s'allumer à tour de rôle, sans grossir : un fondu ne déplace
+     rien et ne coûte presque rien. Un !important dans une couche l'emporte sur les coupures générales
+     du bas du fichier, qui n'en ont pas. */
+  @media (prefers-reduced-motion: reduce) {
+    .pulsating-dot {
+      animation-name: kente-dot-glow;
+      animation-duration: 1s !important;
+      animation-iteration-count: infinite !important;
+    }
+  }
+
+  :root[data-saver] .pulsating-dot {
+    animation-name: kente-dot-glow;
+    animation-duration: 1s !important;
+    animation-iteration-count: infinite !important;
+  }
+
+  /* Contraste élevé (Windows) : le système efface les fonds, les points disparaîtraient. Ils prennent la
+     couleur du texte. */
+  @media (forced-colors: active) {
+    .pulsating-dot {
+      forced-color-adjust: none;
+      background-color: CanvasText;
+    }
+  }
+
+  .page-loader {
+    display: grid;
+    min-height: 100dvh;
+    place-items: center;
+    animation: page-loader-in 0.4s ease-out 0.3s both;
+  }
+}
+
+/* ── Hackathons (components/hackathons/) ──
+   L'étoffe d'un hackathon (HackathonLoom) : ses bandes or, rouge et vert, tirées de son slug, se tissent à
+   mesure que le temps passe. Ce qui reste à tisser n'est que la chaîne ; la navette, une perle de lumière,
+   marque l'instant présent. Couleurs des formes pleines (--*-graphic) : vives sur la nuit, assez foncées
+   sur le papier. En arabe, l'étoffe avance de droite à gauche. */
+.hackathon-loom {
+  --loom-gold: var(--gold-graphic);
+  --loom-coral: var(--coral-graphic);
+  --loom-jade: var(--jade-graphic);
+}
+
+[dir='rtl'] .hackathon-loom {
+  scale: -1 1;
+}
+
+/* La chaîne : des fils tendus en long, que la navette n'a pas encore croisés */
+.hackathon-loom-warp {
+  background-image: repeating-linear-gradient(
+    180deg,
+    color-mix(in srgb, var(--foreground) 22%, transparent) 0 1px,
+    transparent 1px 3px
+  );
+}
+
+/* L'étoffe : les bandes du hackathon (--cloth), la trame en travers et la chaîne en long, ton sur ton */
+.hackathon-loom-cloth {
+  background-image:
+    repeating-linear-gradient(90deg, color-mix(in srgb, var(--kente-night) 20%, transparent) 0 1px, transparent 1px 3px),
+    repeating-linear-gradient(180deg, color-mix(in srgb, var(--kente-paper) 16%, transparent) 0 1px, transparent 1px 3px),
+    var(--cloth);
+}
+
+.hackathon-loom-shuttle {
+  translate: -50% -50%;
+  border-radius: 9999px;
+  background-color: var(--kente-paper);
+  box-shadow:
+    0 0 6px 1px color-mix(in srgb, var(--kente-gold) 85%, transparent),
+    0 0 16px 3px color-mix(in srgb, var(--kente-gold) 35%, transparent);
+}
+
+/* Sur le papier du thème clair, la perle se détache par un liseré plutôt que par sa lueur */
+:root:not(.dark) .hackathon-loom-shuttle {
+  box-shadow:
+    0 0 0 1px color-mix(in srgb, var(--kente-night) 35%, transparent),
+    0 0 10px 1px color-mix(in srgb, var(--kente-gold) 55%, transparent);
+}
+
+/* En direct, elle bat */
+@keyframes loom-shuttle-beat {
+  50% {
+    opacity: 0.45;
+  }
+}
+
+.hackathon-loom[data-live] .hackathon-loom-shuttle {
+  animation: loom-shuttle-beat 1.6s ease-in-out infinite;
+}
+
+/* Marque d'une équipe (TeamMark) et médaille du palmarès : la trame passe par-dessus l'aplat */
+.team-mark::before,
+.hackathon-medal::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image: repeating-linear-gradient(
+    90deg,
+    color-mix(in srgb, var(--kente-night) 14%, transparent) 0 1px,
+    transparent 1px 3px
+  );
+}
+
+/* Médaille : or pour la 1re place, vert pour la 2e, rouge pour la 3e (--medal) */
+.hackathon-medal {
+  background-image: conic-gradient(
+    from 210deg,
+    var(--medal),
+    color-mix(in srgb, var(--medal) 55%, var(--kente-paper)) 25%,
+    var(--medal) 50%,
+    color-mix(in srgb, var(--medal) 72%, var(--kente-night)) 75%,
+    var(--medal)
+  );
+  box-shadow:
+    inset 0 0 0 1px color-mix(in srgb, var(--kente-paper) 40%, transparent),
+    0 6px 14px -8px var(--medal);
+}
+
 /* ── Changement de thème : transitions coupées le temps d'une image (voir store/useThemeStore.ts) ── */
 .theme-switching *,
 .theme-switching *::before,

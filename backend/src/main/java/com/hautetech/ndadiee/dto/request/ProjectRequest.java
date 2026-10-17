@@ -63,4 +63,8 @@ public class ProjectRequest {
 
     // Absent = false
     private Boolean lookingForContributors;
+
+    // Licence du code, identifiant SPDX : « MIT », « Apache-2.0 »
+    @Size(max = 40, message = "La licence ne peut pas dépasser 40 caractères")
+    private String license;
 }

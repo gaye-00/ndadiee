@@ -32,6 +32,11 @@ const projects: NavItem = { labelKey: 'projects', to: paths.myProjects, icon: Fo
 const reviews: NavItem = { labelKey: 'reviews', to: paths.reviews, icon: GitPullRequestArrow, preload: pages.reviews };
 const messages: NavItem = { labelKey: 'messages', to: paths.messages, icon: Mail, preload: pages.messages };
 
+/** La page affichée est-elle celle du lien, ou une de ses pages (« /projects/lagos-transit » pour « /projects ») ? */
+export function isCurrentPath(pathname: string, to: string): boolean {
+  return pathname === to || pathname.startsWith(`${to}/`);
+}
+
 /** Barre flottante du visiteur (design 3A) */
 export const PUBLIC_NAV: readonly NavItem[] = [showcase, openings, hackathons, forum];
 

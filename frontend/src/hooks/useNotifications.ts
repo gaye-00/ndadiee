@@ -3,12 +3,13 @@ import { notificationService } from '@/services/notification.service';
 import { useAuthStore } from '@/store/useAuthStore';
 import type { PaginationParams } from '@/types/common.types';
 
-export function useNotifications(params?: PaginationParams) {
+/** @param enabled false pour attendre (la liste de la cloche ne se charge qu'à l'ouverture) */
+export function useNotifications(params?: PaginationParams, { enabled = true }: { enabled?: boolean } = {}) {
   const isAuthenticated = useAuthStore((s) => s.isAuthenticated);
   return useQuery({
     queryKey: ['notifications', params],
     queryFn: () => notificationService.getMine(params),
-    enabled: isAuthenticated,
+    enabled: isAuthenticated && enabled,
   });
 }
 

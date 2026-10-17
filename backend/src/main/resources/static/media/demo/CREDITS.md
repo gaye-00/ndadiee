@@ -17,3 +17,11 @@ Chaque projet affiche aussi son crédit (champs `coverCredit` et `coverSourceUrl
 | `kawral` | [Garages extérieurs et voitures « sept-places » à Ndiandiaye](https://commons.wikimedia.org/wiki/File:Garages_ext%C3%A9rieurs_et_voitures_%22sept-places%22_%C3%A0_Ndiandiaye.jpg) | CelmaKoumba | [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/) |
 | `naija-k8s-starter` | [BalticServers data center](https://commons.wikimedia.org/wiki/File:BalticServers_data_center.jpg) | BalticServers.com | [CC BY-SA 3.0](https://creativecommons.org/licenses/by-sa/3.0/) |
 | `sunu-solar` | [Champ de Serigne Cheikh Demba à Niagues Niassène](https://commons.wikimedia.org/wiki/File:Champ_de_Serigne_Cheikh_Demba_%C3%A0_Niagues_Niass%C3%A8ne_12.jpg) | Yagamar | [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/) |
+
+## Galeries
+
+Les captures des galeries (`projects/gallery/`, ajoutées par `ShowcaseSeeder`) montrent les applications
+fictives des projets de démonstration : elles ont été dessinées pour la vitrine (HTML rendu en image), en
+1280 × 800 et 640 × 400 px, au format WebP. Elles n'empruntent aucune photo. Les icônes qu'elles
+contiennent viennent de [Lucide](https://lucide.dev) (licence ISC) ; les textes sont écrits en Manrope,
+Geist Mono et Noto Sans Ethiopic (licence SIL Open Font).

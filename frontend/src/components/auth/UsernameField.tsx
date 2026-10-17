@@ -1,6 +1,7 @@
-import { Check, Loader2, X } from 'lucide-react';
+import { Check, X } from 'lucide-react';
 import { AnimatePresence, m } from 'motion/react';
 import { useTranslation } from 'react-i18next';
+import PulsatingDots from '@/components/feedback/PulsatingDots';
 import { cn } from '@/lib/utils';
 import type { UsernameAvailability } from '@/types/auth.types';
 import { isolate } from '@/utils/formatters';
@@ -28,7 +29,7 @@ export default function UsernameField({ value, availability, checking, onPick, e
   const name = isolate(`@${availability?.username ?? value}`);
 
   const status = checking ? (
-    <Loader2 key="checking" aria-hidden className="size-4 animate-spin text-faint-foreground" />
+    <PulsatingDots key="checking" size="sm" className="flex" />
   ) : free && !error ? (
     <span key="free" aria-hidden className="grid size-5 place-items-center rounded-full bg-jade/15 text-jade">
       <Check className="size-3" strokeWidth={3} />

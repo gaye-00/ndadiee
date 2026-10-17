@@ -59,7 +59,32 @@
     </script>
   </head>
   <body>
-    <div id="root"></div>
+    <div id="root">
+      <!--
+        Loader affiché pendant que le JavaScript arrive (connexion lente) : les points de
+        src/components/feedback/PageLoader.tsx, en HTML pur. React le remplace par celui-là au premier
+        affichage, traduit pour les lecteurs d'écran ; même dessin, même horloge, sans à-coup.
+      -->
+      <div class="page-loader" aria-hidden="true">
+        <span class="pulsating-dots"
+          ><span class="pulsating-dot"></span><span class="pulsating-dot"></span><span class="pulsating-dot"></span
+        ></span>
+      </div>
+    </div>
+    <script>
+      // Animations du loader calées sur l'ouverture de la page, comme src/lib/pageClock.ts. Le navigateur
+      // ne lance ce script qu'une fois la feuille de style chargée : les animations existent déjà.
+      try {
+        document
+          .querySelector("#root .page-loader")
+          .getAnimations({ subtree: true })
+          .forEach(function (animation) {
+            animation.startTime = 0;
+          });
+      } catch (e) {
+        // Navigateur ancien : le loader s'anime quand même, à partir de son apparition
+      }
+    </script>
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>
