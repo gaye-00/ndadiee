@@ -2,11 +2,16 @@
 
 Spring Boot 4, Java 21, PostgreSQL (Flyway), JWT.
 
+Base attendue : le PostgreSQL local (`localhost:5432`, base, utilisateur et mot de passe `ndadiee`).
+
 ```bash
-docker compose up -d     # PostgreSQL, depuis la racine du dépôt
+sudo -u postgres psql -c "CREATE ROLE ndadiee LOGIN PASSWORD 'ndadiee'" -c "CREATE DATABASE ndadiee OWNER ndadiee"
 mvn spring-boot:run      # http://localhost:8080/api, documentation : /api/swagger-ui.html
 mvn test                 # le test de démarrage a besoin de la base
 ```
+
+Pour utiliser plutôt le conteneur (`docker compose up -d`, port 5434) :
+`SPRING_DATASOURCE_URL=jdbc:postgresql://localhost:5434/ndadiee mvn spring-boot:run`.
 
 ## Données de démonstration (init)
 
