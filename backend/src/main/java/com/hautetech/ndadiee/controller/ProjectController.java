@@ -25,9 +25,12 @@ import com.hautetech.ndadiee.dto.request.MemberSpecialtyRequest;
 import com.hautetech.ndadiee.dto.request.ProjectMediaRequest;
 import com.hautetech.ndadiee.dto.request.ProjectRequest;
 import com.hautetech.ndadiee.dto.response.PageResponse;
+import com.hautetech.ndadiee.dto.response.ProjectFacetsResponse;
 import com.hautetech.ndadiee.dto.response.ProjectMediaResponse;
 import com.hautetech.ndadiee.dto.response.ProjectMemberResponse;
 import com.hautetech.ndadiee.dto.response.ProjectResponse;
+import com.hautetech.ndadiee.model.project.TeamRole;
+import com.hautetech.ndadiee.repository.specification.ProjectFilter;
 import com.hautetech.ndadiee.service.project.ProjectMediaService;
 import com.hautetech.ndadiee.service.project.ProjectService;
 
@@ -47,17 +50,34 @@ public class ProjectController extends BaseController {
 
     // ─── PUBLIC ───────────────────────────────────────────────────────────────
 
-    @Operation(summary = "Vitrine des projets open source, filtrable par mot-clé, technologie ou recherche de contributeurs")
+    @Operation(summary = "Vitrine des projets open source, filtrable par mot-clé, technologie, recherche de contributeurs, "
+            + "rôle d'une annonce ouverte ou pays du porteur")
     @GetMapping
     public ResponseEntity<ApiResponse<PageResponse<ProjectResponse>>> list(
             @RequestParam(required = false) String q,
             @RequestParam(required = false) String tag,
             @RequestParam(required = false) Boolean lookingForContributors,
             @RequestParam(required = false) String owner,
+            @RequestParam(required = false) TeamRole role,
+            @RequestParam(required = false) String country,
             @ParameterObject @PageableDefault(size = 20, sort = "createdAt", direction = Sort.Direction.DESC) Pageable pageable) {
+        ProjectFilter filter = new ProjectFilter(q, tag, lookingForContributors, owner, role, country);
         return ResponseEntity.ok(ApiResponse.success(
-                projectService.list(q, tag, lookingForContributors, owner, getOptionalUserId(), pageable),
-                "Projets récupérés avec succès"));
+                projectService.list(filter, getOptionalUserId(), pageable), "Projets récupérés avec succès"));
+    }
+
+    @Operation(summary = "Facettes de la vitrine : projets par rôle recherché, technologie et pays du porteur, "
+            + "chacune avec les autres filtres appliqués")
+    @GetMapping("/facets")
+    public ResponseEntity<ApiResponse<ProjectFacetsResponse>> facets(
+            @RequestParam(required = false) String q,
+            @RequestParam(required = false) String tag,
+            @RequestParam(required = false) Boolean lookingForContributors,
+            @RequestParam(required = false) String owner,
+            @RequestParam(required = false) TeamRole role,
+            @RequestParam(required = false) String country) {
+        ProjectFilter filter = new ProjectFilter(q, tag, lookingForContributors, owner, role, country);
+        return ResponseEntity.ok(ApiResponse.success(projectService.facets(filter), "Facettes récupérées avec succès"));
     }
 
     @Operation(summary = "Page d'un projet : galerie, activité GitHub, rôles ouverts avec leurs candidatures et, pour un membre connecté, sa compatibilité avec chacun")

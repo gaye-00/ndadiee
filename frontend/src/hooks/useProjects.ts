@@ -12,6 +12,7 @@ import type {
   FeedbackRequest,
   JoinProjectRequest,
   MemberDecisionRequest,
+  ProjectFacetFilters,
   ProjectFilters,
   ProjectRequest,
 } from '@/types/project.types';
@@ -31,6 +32,35 @@ export const SHOWCASE_FILTERS = { size: 6, sort: 'starsCount,desc' } as const sa
 
 export function useProjects(filters?: ProjectFilters) {
   return useQuery({ ...projectsQuery(filters), placeholderData: keepPreviousData });
+}
+
+/** La vitrine complète se déroule douze projets à la fois : quatre rangées de trois, six rangées de deux. */
+export const SHOWCASE_PAGE_SIZE = 12;
+
+/**
+ * La vitrine complète, page après page, avec ses filtres (pages/showcase). Pendant qu'un nouveau filtre
+ * charge, les projets d'avant restent affichés.
+ */
+export function useShowcaseProjects(filters: ProjectFilters) {
+  return useInfiniteQuery({
+    queryKey: ['projects', 'showcase', filters],
+    queryFn: ({ pageParam }) => projectService.getAll({ ...filters, page: pageParam, size: SHOWCASE_PAGE_SIZE }),
+    initialPageParam: 0,
+    getNextPageParam: (last) => (last.last ? undefined : last.page + 1),
+    placeholderData: keepPreviousData,
+  });
+}
+
+/** Requête des facettes de la vitrine : partagée par les filtres et l'accroche de la page. */
+export const projectFacetsQuery = (filters: ProjectFacetFilters = {}) =>
+  queryOptions({
+    queryKey: ['projects', 'facets', filters],
+    queryFn: () => projectService.getFacets(filters),
+  });
+
+/** Facettes de la vitrine : combien de projets pour chaque rôle, technologie et pays. Sans filtre : toute la vitrine. */
+export function useProjectFacets(filters?: ProjectFacetFilters) {
+  return useQuery({ ...projectFacetsQuery(filters), placeholderData: keepPreviousData });
 }
 
 /** Les derniers projets qui recrutent, pour l'accroche de l'accueil : leurs porteurs et leur nombre. */

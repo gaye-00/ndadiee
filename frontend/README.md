@@ -191,6 +191,35 @@ Un lien de la bannière qui reçoit le focus au clavier fait aller la scène au 
 réduites, en économie de données ou sur un écran de moins de 600 px de haut, les deux cartes se suivent
 simplement.
 
+## Vitrine
+
+`/showcase` (`pages/showcase/ShowcasePage.tsx`) : tous les projets, à filtrer. L'accroche
+(`projects/ShowcaseIntro.tsx`, « Choisis ton projet. Trouve ta place. ») donne la vitrine en chiffres :
+projets, pays, projets qui recrutent, places à prendre.
+
+- **Filtres** (`projects/ProjectFilters.tsx`) : d'abord le rôle recherché, une bande comme celle de
+  l'accueil : « Tous », « Qui recrutent », puis les treize métiers et leur motif tissé. Un seul choix, aux
+  flèches du clavier ; la pastille glisse vers le rôle choisi et prend sa couleur. La bande défile au doigt ou
+  avec ses deux boutons, ses bords s'effacent là où d'autres rôles attendent. Puis une barre : la recherche
+  (chaque mot, dans le nom, l'accroche, la description ou une technologie ; elle part à la pause dans la
+  frappe, « / » y amène), la technologie et le pays du porteur (`shared/FacetPicker.tsx` : une liste qui se
+  cherche au clavier, sans accents, et en anglais pour les pays).
+- **Facettes** : chaque valeur dit combien de projets elle donnerait avec les autres filtres
+  (`GET /v1/projects/facets`). Un rôle sans projet ne se choisit pas ; les listes ne proposent que des
+  valeurs qui mènent quelque part.
+- **URL** (`hooks/useShowcaseFilters.ts`, sur `hooks/useUrlFilters.ts`) :
+  `/showcase?role=mobile&tag=flutter&country=SN&q=…&sort=recent` se partage. Chaque choix ajoute une entrée à
+  l'historique (Précédent revient au filtre d'avant), affiner la recherche la remplace. La page projet y
+  renvoie par ses technologies (`?tag=`).
+- **Grille** (`projects/ProjectGrid.tsx`) : le nombre de projets (« 3 projets sur 13 »), les filtres actifs,
+  chacun retiré d'un clic, et l'ordre (les plus étoilés, les plus récents). Les cartes de l'accueil
+  (`ProjectCard`), douze à la fois, la suite chargée à l'approche du bas ; en économie de données, à la
+  demande. Pendant qu'un filtre charge, la grille d'avant reste, atténuée ; puis les cartes glissent à leur
+  nouvelle place. Au bout, en pointillés, la carte d'un projet qui n'existe pas encore : celui du visiteur.
+- **Sans résultat** : le métier attend, sans fil de trame ; on efface les filtres, ou on publie le projet qui
+  manque.
+- Textes : l'espace de noms `showcase` des traductions, téléchargé avec la page.
+
 ## Pied de page
 
 `layout/Footer.tsx` : les liens (Explorer, Contribuer), les dix langues écrites chacune dans sa langue

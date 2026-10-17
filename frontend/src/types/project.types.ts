@@ -252,8 +252,55 @@ export interface MemberDecisionRequest {
 }
 
 export interface ProjectFilters extends PaginationParams {
+  /** Mot-clé : nom, accroche, description ou technologie du projet */
   q?: string;
+  /** Slug d'une technologie */
   tag?: string;
+  /** Le projet accepte des contributeurs (« recrute ») */
   lookingForContributors?: boolean;
   owner?: string;
+  /** Rôle d'une annonce ouverte du projet */
+  role?: TeamRole;
+  /** Pays du porteur, code ISO à 2 lettres */
+  country?: string;
+}
+
+/** Filtres des facettes : ceux de la liste, sans la pagination */
+export type ProjectFacetFilters = Omit<ProjectFilters, keyof PaginationParams>;
+
+/**
+ * Facettes de la vitrine (ProjectFacetsResponse.java). Chacune compte les projets avec tous les filtres sauf
+ * le sien : une valeur proposée ne mène jamais à une vitrine vide.
+ */
+export interface ProjectFacets {
+  /** Projets qui répondent à tous les filtres, et places proposées par leurs annonces ouvertes */
+  total: number;
+  seats: number;
+  /** Sans filtre de rôle ni de recrutement (« Tous »), et parmi eux ceux qui recrutent */
+  all: number;
+  recruiting: number;
+  /** Rôles des annonces ouvertes ; un rôle absent n'a aucun projet */
+  roles: RoleFacet[];
+  /** Technologies, les plus présentes d'abord (100 au plus) */
+  stacks: StackFacet[];
+  /** Pays des porteurs, les plus représentés d'abord */
+  countries: CountryFacet[];
+}
+
+export interface RoleFacet {
+  role: TeamRole;
+  projects: number;
+  seats: number;
+}
+
+export interface StackFacet {
+  slug: string;
+  name: string;
+  projects: number;
+}
+
+export interface CountryFacet {
+  /** Code ISO à 2 lettres */
+  country: string;
+  projects: number;
 }

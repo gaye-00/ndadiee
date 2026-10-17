@@ -76,6 +76,23 @@ libellé et son motif tissé (`frontend/src/config/roles.ts`) : les deux listes 
 Un projet renvoie aussi son accroche, sa couverture (et sa miniature, son crédit), ses rôles ouverts et
 son équipe (`ProjectResponse`).
 
+## Vitrine (filtres et facettes)
+
+| Requête | Accès |
+| --- | --- |
+| `GET /v1/projects?q=&tag=&lookingForContributors=&role=&country=&owner=` | public : les projets ; `role`, un rôle d'une de leurs annonces ouvertes (`MOBILE`) ; `country`, le pays du porteur (`SN`) |
+| `GET /v1/projects/facets`, mêmes filtres | public : pour chaque rôle recherché, technologie et pays, le nombre de projets avec les autres filtres ; `all` (sans rôle ni recrutement), `recruiting`, `total` et `seats` (places des annonces ouvertes) |
+
+- **Recherche** (`q`) : chaque mot doit se trouver dans le nom, l'accroche, la description ou une technologie
+  du projet (« nlp wolof » trouve wolof-nlp).
+- **Filtres** : `ProjectFilter` et `ProjectSpecifications`. Technologies et annonces passent par des
+  sous-requêtes (EXISTS) : une ligne par projet. Facettes : `ProjectFacetRepositoryImpl`, une requête groupée
+  par facette (les 100 technologies les plus présentes au plus).
+- **Ordre** : celui demandé (`sort=starsCount,desc`, `createdAt,desc`), départagé par l'identifiant : d'une
+  page à l'autre de la vitrine, un projet n'est ni vu deux fois ni sauté.
+- **Slugs réservés** : `facets` (l'API) et `new` (l'application, `/projects/new`) ne deviennent jamais
+  l'adresse d'un projet.
+
 ## Page projet (design 3D)
 
 | Requête | Accès |

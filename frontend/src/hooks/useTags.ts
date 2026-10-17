@@ -19,6 +19,18 @@ export function useTag(slug: string | undefined) {
   });
 }
 
+/**
+ * Le nom d'une technologie (« react » → « React ») : pris dans une liste déjà chargée, sinon demandé à
+ * l'API ; son slug en attendant, ou s'il n'existe pas.
+ *
+ * @param known liste où le chercher d'abord (facettes de la vitrine) ; undefined tant qu'elle charge
+ */
+export function useTagName(slug: string | null, known: ReadonlyArray<{ slug: string; name: string }> | undefined) {
+  const found = slug ? known?.find((tag) => tag.slug === slug)?.name : undefined;
+  const { data } = useTag(slug && known && !found ? slug : undefined);
+  return slug ? (found ?? data?.name ?? slug) : null;
+}
+
 /** Suit un tag (son contenu remonte dans le fil personnalisé) ou cesse de le suivre. */
 export function useFollowTag() {
   const qc = useQueryClient();

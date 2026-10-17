@@ -1,14 +1,19 @@
 package com.hautetech.ndadiee.service.project;
 
 import java.time.Instant;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -18,6 +23,10 @@ import com.hautetech.ndadiee.dto.request.MemberSpecialtyRequest;
 import com.hautetech.ndadiee.dto.request.ProjectRequest;
 import com.hautetech.ndadiee.dto.response.HackathonBriefResponse;
 import com.hautetech.ndadiee.dto.response.PageResponse;
+import com.hautetech.ndadiee.dto.response.ProjectFacetsResponse;
+import com.hautetech.ndadiee.dto.response.ProjectFacetsResponse.CountryFacet;
+import com.hautetech.ndadiee.dto.response.ProjectFacetsResponse.RoleFacet;
+import com.hautetech.ndadiee.dto.response.ProjectFacetsResponse.StackFacet;
 import com.hautetech.ndadiee.dto.response.ProjectMemberResponse;
 import com.hautetech.ndadiee.dto.response.ProjectOpeningResponse;
 import com.hautetech.ndadiee.dto.response.ProjectResponse;
@@ -37,6 +46,7 @@ import com.hautetech.ndadiee.model.project.Project;
 import com.hautetech.ndadiee.model.project.ProjectMember;
 import com.hautetech.ndadiee.model.project.ProjectOpening;
 import com.hautetech.ndadiee.model.project.ProjectRole;
+import com.hautetech.ndadiee.model.project.TeamRole;
 import com.hautetech.ndadiee.model.user.Developer;
 import com.hautetech.ndadiee.repository.CommentRepository;
 import com.hautetech.ndadiee.repository.DeveloperRepository;
@@ -47,6 +57,7 @@ import com.hautetech.ndadiee.repository.ProjectMemberRepository;
 import com.hautetech.ndadiee.repository.ProjectOpeningRepository;
 import com.hautetech.ndadiee.repository.ProjectRepository;
 import com.hautetech.ndadiee.repository.VoteRepository;
+import com.hautetech.ndadiee.repository.specification.ProjectFilter;
 import com.hautetech.ndadiee.repository.specification.ProjectSpecifications;
 import com.hautetech.ndadiee.service.SlugService;
 import com.hautetech.ndadiee.service.content.TagService;
@@ -64,6 +75,8 @@ public class ProjectService {
 
     // Équipe montrée sur une carte de la vitrine : le porteur et les premiers arrivés
     private static final int TEAM_PREVIEW = 6;
+    // Adresses déjà prises, par l'API (/v1/projects/facets) et par l'application (/projects/new)
+    private static final Set<String> RESERVED_SLUGS = Set.of("facets", "new");
 
     private final ProjectRepository projectRepository;
     private final ProjectMemberRepository projectMemberRepository;
@@ -88,11 +101,43 @@ public class ProjectService {
     // ==================== PROJETS ====================
 
     @Transactional(readOnly = true)
-    public PageResponse<ProjectResponse> list(String q, String tag, Boolean lookingForContributors, String owner,
-            Long currentUserId, Pageable pageable) {
-        Page<Project> page = projectRepository.findAll(ProjectSpecifications.filter(
-                q, tag, lookingForContributors, owner == null ? null : owner.toLowerCase()), pageable);
+    public PageResponse<ProjectResponse> list(ProjectFilter filter, Long currentUserId, Pageable pageable) {
+        Page<Project> page = projectRepository.findAll(ProjectSpecifications.filter(filter), inTotalOrder(pageable));
         return PageResponse.from(page, toResponses(page.getContent(), currentUserId));
+    }
+
+    /**
+     * Facettes de la vitrine : pour chaque rôle recherché, technologie et pays, le nombre de projets que
+     * donnerait ce choix avec les autres filtres de la recherche ; et pour « Tous » et « Qui recrutent ».
+     */
+    @Transactional(readOnly = true)
+    public ProjectFacetsResponse facets(ProjectFilter filter) {
+        Specification<Project> matching = ProjectSpecifications.filter(filter);
+        ProjectFilter anyRole = filter.withoutRecruitment();
+        Specification<Project> anyRoleMatching = ProjectSpecifications.filter(anyRole);
+
+        List<RoleFacet> roles = projectRepository.countByOpenRole(anyRoleMatching).stream()
+                .map(row -> new RoleFacet((TeamRole) row[0], ((Number) row[1]).longValue(), ((Number) row[2]).longValue()))
+                .sorted(Comparator.comparing(RoleFacet::role))
+                .toList();
+        List<StackFacet> stacks = projectRepository.countByTag(ProjectSpecifications.filter(filter.withoutTag())).stream()
+                .map(row -> new StackFacet((String) row[0], (String) row[1], ((Number) row[2]).longValue()))
+                .toList();
+        List<CountryFacet> countries = projectRepository.countByOwnerCountry(ProjectSpecifications.filter(filter.withoutCountry()))
+                .stream()
+                .map(row -> new CountryFacet((String) row[0], ((Number) row[1]).longValue()))
+                .sorted(Comparator.comparingLong(CountryFacet::projects).reversed().thenComparing(CountryFacet::country))
+                .toList();
+
+        return ProjectFacetsResponse.builder()
+                .total(projectRepository.count(matching))
+                .seats(projectRepository.sumOpenSeats(matching))
+                .all(projectRepository.count(anyRoleMatching))
+                .recruiting(projectRepository.count(ProjectSpecifications.filter(anyRole.recruiting())))
+                .roles(roles)
+                .stacks(stacks)
+                .countries(countries)
+                .build();
     }
 
     /** Page du projet (design 3D) : le projet, sa galerie, son activité GitHub, et le détail de ses rôles ouverts. */
@@ -110,7 +155,8 @@ public class ProjectService {
 
         Project project = Project.builder()
                 .name(request.getName().trim())
-                .slug(slugService.generateUniqueSlug(request.getName(), projectRepository::existsBySlug))
+                .slug(slugService.generateUniqueSlug(request.getName(),
+                        slug -> RESERVED_SLUGS.contains(slug) || projectRepository.existsBySlug(slug)))
                 .lookingForContributors(Boolean.TRUE.equals(request.getLookingForContributors()))
                 .owner(owner)
                 .build();
@@ -406,6 +452,16 @@ public class ProjectService {
 
     private static String trimToNull(String value) {
         return value == null || value.isBlank() ? null : value.trim();
+    }
+
+    // Un ordre total, pour une vitrine qui se lit page après page : sans départage, deux projets à égalité
+    // (zéro étoile) pourraient changer de place d'une page à l'autre, l'un vu deux fois, l'autre jamais
+    private static Pageable inTotalOrder(Pageable pageable) {
+        Sort sort = pageable.getSort();
+        if (pageable.isUnpaged() || sort.getOrderFor("id") != null) {
+            return pageable;
+        }
+        return PageRequest.of(pageable.getPageNumber(), pageable.getPageSize(), sort.and(Sort.by(Sort.Direction.DESC, "id")));
     }
 
     public Project findProjectOrThrow(Long projectId) {

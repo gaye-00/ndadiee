@@ -6,7 +6,8 @@ import Chip from '@/components/shared/Chip';
 import LazyImage from '@/components/shared/LazyImage';
 import UserAvatar from '@/components/shared/UserAvatar';
 import WovenMotif from '@/components/shared/WovenMotif';
-import { roleOf, teamRoles, type KenteThread, type RoleDefinition } from '@/config/roles';
+import { roleOf, type KenteThread, type RoleDefinition } from '@/config/roles';
+import { isTechnology } from '@/config/stacks';
 import { prefetch } from '@/lib/prefetch';
 import { cn } from '@/lib/utils';
 import { pages } from '@/router/pages';
@@ -20,15 +21,6 @@ const ACCENTS: Record<KenteThread, string> = {
   coral: 'var(--coral)',
   jade: 'var(--jade)',
 };
-
-// Technologies reconnues : elles passent avant les sujets (« Java · Kotlin » plutôt que « API · Java »)
-const TECHNOLOGIES = new Set(
-  [
-    ...teamRoles.flatMap((role) => role.stack.map((item) => item.name)),
-    ...['Java', 'Kotlin', 'Go', 'Python', 'TypeScript', 'JavaScript', 'Dart', 'PHP', 'Rust', 'Swift', 'C#', 'Ruby', 'Elixir'],
-    ...['Flutter', 'React Native', 'Angular', 'Next.js', 'Django', 'GraphQL', 'PostgreSQL', 'MongoDB', 'Redis', 'Firebase'],
-  ].map((name) => name.toLowerCase()),
-);
 
 // Rôles cités sur la carte ; les autres sont comptés (« +1 »)
 const ROLES_SHOWN = 2;
@@ -256,11 +248,14 @@ function TeamFaces({ team, memberCount, recruiting }: { team: UserSummary[]; mem
   );
 }
 
-/** Deux technologies du projet : les plus connues d'abord, puis les plus répandues sur la plateforme. */
+/**
+ * Deux technologies du projet : les plus connues d'abord (« Java · Kotlin » plutôt que « API · Java »), puis
+ * les plus répandues sur la plateforme.
+ */
 function stackOf(project: Project): string {
   return [...project.tags]
     .sort((a, b) => {
-      const known = Number(TECHNOLOGIES.has(b.name.toLowerCase())) - Number(TECHNOLOGIES.has(a.name.toLowerCase()));
+      const known = Number(isTechnology(b.name)) - Number(isTechnology(a.name));
       return known || b.usageCount - a.usageCount;
     })
     .slice(0, 2)

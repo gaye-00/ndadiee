@@ -78,6 +78,7 @@ public class SecurityConfiguration {
                     "/v1/articles",
                     "/v1/articles/{slug}",
                     "/v1/projects",
+                    "/v1/projects/facets",
                     "/v1/projects/{slug}",
                     "/v1/projects/{id}/members",
                     "/v1/projects/{projectId}/devlog",

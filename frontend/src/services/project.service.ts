@@ -7,6 +7,8 @@ import type {
   JoinProjectRequest,
   MemberDecisionRequest,
   Project,
+  ProjectFacetFilters,
+  ProjectFacets,
   ProjectFilters,
   ProjectMember,
   ProjectRequest,
@@ -17,6 +19,10 @@ const BASE = '/v1/projects';
 export const projectService = {
   getAll: (params?: ProjectFilters) =>
     api.get<ApiResponse<PageResponse<Project>>>(BASE, { params }).then((r) => r.data.data),
+
+  /** Facettes de la vitrine : projets par rôle recherché, technologie et pays, avec les autres filtres. */
+  getFacets: (params?: ProjectFacetFilters) =>
+    api.get<ApiResponse<ProjectFacets>>(`${BASE}/facets`, { params }).then((r) => r.data.data),
 
   getBySlug: (slug: string) => api.get<ApiResponse<Project>>(`${BASE}/${slug}`).then((r) => r.data.data),
 

@@ -22,6 +22,7 @@ import com.hautetech.ndadiee.repository.ProjectRepository;
 import com.hautetech.ndadiee.repository.QuestionRepository;
 import com.hautetech.ndadiee.repository.specification.ArticleSpecifications;
 import com.hautetech.ndadiee.repository.specification.DeveloperSpecifications;
+import com.hautetech.ndadiee.repository.specification.ProjectFilter;
 import com.hautetech.ndadiee.repository.specification.ProjectSpecifications;
 import com.hautetech.ndadiee.repository.specification.QuestionSpecifications;
 import com.hautetech.ndadiee.service.project.ProjectService;
@@ -71,7 +72,7 @@ public class SearchService {
         }
         if (wants(type, SearchType.PROJECTS)) {
             Page<Project> projects = projectRepository.findAll(
-                    ProjectSpecifications.filter(query, null, null, null),
+                    ProjectSpecifications.filter(ProjectFilter.keyword(query)),
                     sortedBy(pageable, "starsCount", "createdAt"));
             response.projects(PageResponse.from(projects, projectService.toResponses(projects.getContent(), currentUserId)));
         }

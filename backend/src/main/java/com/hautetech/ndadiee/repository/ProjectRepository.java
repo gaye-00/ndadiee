@@ -10,7 +10,8 @@ import org.springframework.data.repository.query.Param;
 
 import com.hautetech.ndadiee.model.project.Project;
 
-public interface ProjectRepository extends JpaRepository<Project, Long>, JpaSpecificationExecutor<Project> {
+public interface ProjectRepository extends JpaRepository<Project, Long>, JpaSpecificationExecutor<Project>,
+        ProjectFacetRepository {
 
     Optional<Project> findBySlug(String slug);
 
