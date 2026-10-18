@@ -15,7 +15,8 @@
     "notifications": "Faɗakarwa",
     "settings": "Saituna",
     "profile": "Bayanan martaba",
-    "create": "Ƙirƙira"
+    "create": "Ƙirƙira",
+    "admin": "Gudanarwa"
   },
   "actions": {
     "login": "Shiga",
@@ -150,7 +151,11 @@
     "login": "Shiga",
     "register": "Rajista",
     "notFound": "Ba a sami shafin ba",
-    "editTopic": "Gyara batu"
+    "editTopic": "Gyara batu",
+    "admin": "Gudanarwa",
+    "adminUsers": "Gudanarwa · Membobi",
+    "adminContent": "Gudanarwa · Abubuwa",
+    "adminJournal": "Gudanarwa · Rajista"
   },
   "enums": {
     "experienceLevel": {
@@ -198,29 +203,29 @@
       "invalid": "Sunan mai amfani na GitHub yana ƙunshe da haruffa, lambobi da layin haɗi, haruffa 39 a mafi yawa.",
       "notFound": "Babu asusun GitHub mai wannan suna.",
       "unavailable": "GitHub ba ya amsawa. Sake gwadawa nan da ɗan lokaci.",
-      "viewLabel": "Kallon shekara",
-      "viewCloth": "Zane: shekara a shimfiɗe",
-      "viewCity": "Birni: shekara a 3D",
-      "less": "Kaɗan",
-      "more": "Da yawa",
-      "level0": "Kwanaki ba gudummawa",
-      "level1": "Kwanaki natsattsu",
-      "level2": "Kwanaki masu aiki",
-      "level3": "Kwanaki masu cunkoso",
-      "level4": "Kwanaki mafi cunkoso",
-      "structure": "Ratsi ɗaya kowane mako, gunduwa ɗaya kowace rana.",
-      "hintCloth": "Ka nuna wata rana, ko ka bi shekarar da maɓallan kibiya.",
-      "hintCity": "Ja don zagaya birnin. Danna sau biyu don komawa.",
-      "summary": "{{who}}, daga {{from}} zuwa {{to}}: {{total}}. Ratsi ɗaya kowane mako, gunduwa ɗaya kowace rana. Yi amfani da maɓallan kibiya don karanta kowace rana.",
-      "streak_one": "jere mafi tsawo: rana {{count}}",
-      "streak_other": "jere mafi tsawo: kwanaki {{count}}",
       "showcase": "Shekararka ta cancanci wurin nuni"
     }
   },
   "contributions": {
     "count_one": "Gudummawa {{count}}",
     "count_other": "Gudummawa {{count}}",
-    "none": "Babu gudummawa"
+    "none": "Babu gudummawa",
+    "viewLabel": "Kallon shekara",
+    "viewCloth": "Zane: shekara a shimfiɗe",
+    "viewCity": "Birni: shekara a 3D",
+    "less": "Kaɗan",
+    "more": "Da yawa",
+    "level0": "Kwanaki ba gudummawa",
+    "level1": "Kwanaki natsattsu",
+    "level2": "Kwanaki masu aiki",
+    "level3": "Kwanaki masu cunkoso",
+    "level4": "Kwanaki mafi cunkoso",
+    "structure": "Ratsi ɗaya kowane mako, gunduwa ɗaya kowace rana.",
+    "hintCloth": "Ka nuna wata rana, ko ka bi shekarar da maɓallan kibiya.",
+    "hintCity": "Ja don zagaya birnin. Danna sau biyu don komawa.",
+    "summary": "{{who}}, daga {{from}} zuwa {{to}}: {{total}}. Ratsi ɗaya kowane mako, gunduwa ɗaya kowace rana. Yi amfani da maɓallan kibiya don karanta kowace rana.",
+    "streak_one": "jere mafi tsawo: rana {{count}}",
+    "streak_other": "jere mafi tsawo: kwanaki {{count}}"
   },
   "teamRoles": {
     "frontend": "Mai haɓaka front-end",
@@ -466,7 +471,9 @@
       "pending": "Ana shiga…",
       "failed": "Imel, sunan mai amfani ko kalmar sirri ba daidai ba ne.",
       "noAccount": "Ba ka da asusu tukuna?",
-      "toRegister": "Ƙirƙiri asusu"
+      "toRegister": "Ƙirƙiri asusu",
+      "blocked": "Ƙungiyar Ndadiee ta dakatar da wannan asusu.",
+      "blockedReason": "Dalili: {{reason}}"
     },
     "register": {
       "eyebrow": "Rajista",
@@ -532,7 +539,8 @@
       "loginText": "Lokacin da ba ka nan, ƙungiyoyi sun ci gaba da saƙa.",
       "registerTitle": "Ƙarin zare ɗaya a cikin zane.",
       "registerText": "Kowane mai haɓakawa zare ne. A nan, ana saƙa ƙungiyoyi a kewayen shirye-shirye."
-    }
+    },
+    "sessionBlocked": "Ƙungiyar Ndadiee ta dakatar da asusunka: an fitar da kai."
   },
   "project": {
     "recruiting_one": "yana neman · gurbi {{count}}",
@@ -747,5 +755,13 @@
     "imageType": "«{{name}}»: tsarin da ake karɓa, JPEG, PNG, WebP da GIF.",
     "imageTooBig": "«{{name}}» ya wuce MB {{max}}.",
     "uploadFailed": "Ba a iya tura «{{name}}» ba."
+  },
+  "moderation": {
+    "hidden": {
+      "QUESTION": "Ƙungiyar Ndadiee ta ɓoye wannan batu: jama'a ba sa ganinsa yanzu.",
+      "ANSWER": "Ƙungiyar Ndadiee ta ɓoye wannan amsa: jama'a ba sa ganinta yanzu.",
+      "PROJECT": "Ƙungiyar Ndadiee ta ɓoye wannan shiri: jama'a ba sa ganinsa yanzu."
+    },
+    "reason": "Dalili: {{reason}}"
   }
 }

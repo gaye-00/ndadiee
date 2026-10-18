@@ -1,6 +1,9 @@
 package com.hautetech.ndadiee.model.content;
 
+import java.time.Instant;
+
 import com.hautetech.ndadiee.common.BaseEntity;
+import com.hautetech.ndadiee.model.Hideable;
 import com.hautetech.ndadiee.model.user.Developer;
 
 import org.hibernate.annotations.DynamicUpdate;
@@ -26,7 +29,7 @@ import lombok.experimental.SuperBuilder;
 @Entity
 @DynamicUpdate
 @Table(name = "answers")
-public class Answer extends BaseEntity {
+public class Answer extends BaseEntity implements Hideable {
 
     // Markdown
     @Column(nullable = false, columnDefinition = "TEXT")
@@ -48,4 +51,10 @@ public class Answer extends BaseEntity {
     @Builder.Default
     @Column(nullable = false)
     private boolean accepted = false;
+
+    // Masqué par l'administration (voir Hideable) : null tant qu'il est visible
+    private Instant hiddenAt;
+
+    @Column(length = 500)
+    private String hiddenReason;
 }

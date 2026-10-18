@@ -8,6 +8,7 @@ import { wasEdited } from './forumUtils';
 import { AuthorBadge, CommentForm, CommentItem, ItemMenu } from './ReplyComments';
 import VoteControl from './VoteControl';
 import ConfirmDialog from '@/components/shared/ConfirmDialog';
+import HiddenNotice from '@/components/shared/HiddenNotice';
 import MarkdownContent from '@/components/shared/MarkdownContent';
 import MarkdownEditor from '@/components/shared/MarkdownEditor';
 import UserAvatar from '@/components/shared/UserAvatar';
@@ -115,6 +116,7 @@ export default function ReplyCard({ answer, topic, highlighted }: ReplyCardProps
               highlighted && 'answer-flash',
             )}
           >
+            {answer.hidden && <HiddenNotice kind="ANSWER" reason={answer.hiddenReason} className="mb-3" />}
             {answer.accepted && (
               <p className="mb-2.5 inline-flex items-center gap-1.5 rounded-full bg-jade/12 px-2.5 py-0.5 text-xs font-bold text-jade">
                 <CircleCheck aria-hidden className="size-3.5" />
@@ -179,36 +181,38 @@ export default function ReplyCard({ answer, topic, highlighted }: ReplyCardProps
             )}
           </div>
 
-          {/* ── Agir sur la réponse ── */}
-          <div className="mt-1 flex flex-wrap items-center gap-0.5">
-            <VoteControl
-              score={answer.score}
-              vote={answer.currentUserVote}
-              own={own}
-              onVote={(value) => vote.mutate({ targetType: 'ANSWER', targetId: answer.id, value })}
-              orientation="horizontal"
-              target="answer"
-            />
-            {/* Un sujet fermé n'accepte plus rien de nouveau : ni réponse, ni commentaire */}
-            {open && (
-              <button type="button" onClick={() => startReply()} className={actionClass}>
-                <MessageSquareReply aria-hidden className="size-4" />
-                {t('answers.reply')}
-              </button>
-            )}
-            {asker && (
-              <button
-                type="button"
-                onClick={toggleAccepted}
-                disabled={accept.isPending}
-                aria-pressed={answer.accepted}
-                className={cn(actionClass, answer.accepted ? 'text-jade hover:text-jade' : 'hover:text-jade')}
-              >
-                <CircleCheck aria-hidden className={cn('size-4', answer.accepted && 'fill-jade/15')} />
-                {t(answer.accepted ? 'answers.acceptedShort' : 'answers.accept')}
-              </button>
-            )}
-          </div>
+          {/* ── Agir sur la réponse ── (masquée par l'équipe, elle ne se vote ni ne se commente plus) */}
+          {!answer.hidden && (
+            <div className="mt-1 flex flex-wrap items-center gap-0.5">
+              <VoteControl
+                score={answer.score}
+                vote={answer.currentUserVote}
+                own={own}
+                onVote={(value) => vote.mutate({ targetType: 'ANSWER', targetId: answer.id, value })}
+                orientation="horizontal"
+                target="answer"
+              />
+              {/* Un sujet fermé n'accepte plus rien de nouveau : ni réponse, ni commentaire */}
+              {open && (
+                <button type="button" onClick={() => startReply()} className={actionClass}>
+                  <MessageSquareReply aria-hidden className="size-4" />
+                  {t('answers.reply')}
+                </button>
+              )}
+              {asker && (
+                <button
+                  type="button"
+                  onClick={toggleAccepted}
+                  disabled={accept.isPending}
+                  aria-pressed={answer.accepted}
+                  className={cn(actionClass, answer.accepted ? 'text-jade hover:text-jade' : 'hover:text-jade')}
+                >
+                  <CircleCheck aria-hidden className={cn('size-4', answer.accepted && 'fill-jade/15')} />
+                  {t(answer.accepted ? 'answers.acceptedShort' : 'answers.accept')}
+                </button>
+              )}
+            </div>
+          )}
 
           {/* ── Son fil de commentaires ── */}
           {(comments.length > 0 || reply !== null) && (

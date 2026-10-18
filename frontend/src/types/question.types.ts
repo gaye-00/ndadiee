@@ -46,6 +46,9 @@ export interface Question {
   currentUserVote: number | null;
   /** Le membre connecté l'a-t-il enregistré ? null pour un visiteur */
   bookmarkedByMe: boolean | null;
+  /** Masqué par l'équipe : seuls son auteur et les admins le reçoivent encore, avec le motif */
+  hidden: boolean;
+  hiddenReason: string | null;
   createdAt: string;
   updatedAt: string;
 }
@@ -108,6 +111,9 @@ export interface Answer {
   score: number;
   accepted: boolean;
   currentUserVote: number | null;
+  /** Masqué par l'équipe : seuls son auteur et les admins le reçoivent encore, avec le motif */
+  hidden: boolean;
+  hiddenReason: string | null;
   /** Le fil de commentaires de la réponse, du plus ancien au plus récent (seulement dans la liste des réponses) */
   comments?: Comment[];
   createdAt: string;

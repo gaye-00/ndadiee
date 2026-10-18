@@ -10,6 +10,7 @@ import TopicActions from '@/components/forum/TopicActions';
 import TopicBody from '@/components/forum/TopicBody';
 import TopicHeader from '@/components/forum/TopicHeader';
 import TopicSidebar from '@/components/forum/TopicSidebar';
+import HiddenNotice from '@/components/shared/HiddenNotice';
 import { site } from '@/config/site';
 import { useAuth } from '@/hooks/useAuth';
 import { forumHome } from '@/hooks/useForumFilters';
@@ -88,6 +89,8 @@ export default function TopicPage() {
 
       <div className="mx-auto max-w-[90rem] px-4 pt-6 pb-24 sm:px-6 sm:pt-8 lg:px-10 xl:px-16">
         {back}
+        {/* Masqué par l'équipe : son auteur et les admins le voient encore, le public non */}
+        {data.hidden && <HiddenNotice kind="QUESTION" reason={data.hiddenReason} className="mt-5 max-w-3xl" />}
         <div className="mt-5 grid items-start gap-x-6 gap-y-6 lg:grid-cols-[3.75rem_minmax(0,1fr)] xl:grid-cols-[3.75rem_minmax(0,1fr)_20rem] xl:gap-x-8">
           <TopicActions topic={data} variant="rail" className={cn('sticky hidden lg:flex', stickyTop)} />
 

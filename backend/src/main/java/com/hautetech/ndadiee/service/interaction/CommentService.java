@@ -36,8 +36,9 @@ public class CommentService {
     private final ApplicationEventPublisher eventPublisher;
 
     @Transactional(readOnly = true)
-    public PageResponse<CommentResponse> getByTarget(ContentType targetType, Long targetId, Pageable pageable) {
-        contentTargetService.resolve(targetType, targetId);
+    public PageResponse<CommentResponse> getByTarget(ContentType targetType, Long targetId, Long currentUserId,
+            Pageable pageable) {
+        contentTargetService.resolveFor(targetType, targetId, currentUserId);
         // Fil de discussion : toujours du plus ancien au plus récent
         Pageable chronological = PageRequest.of(pageable.getPageNumber(), pageable.getPageSize());
         return PageResponse.from(commentRepository

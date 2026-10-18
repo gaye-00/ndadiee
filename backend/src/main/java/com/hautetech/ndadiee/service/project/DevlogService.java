@@ -34,8 +34,8 @@ public class DevlogService {
     private final ProjectMapper projectMapper;
 
     @Transactional(readOnly = true)
-    public PageResponse<DevlogEntryResponse> list(Long projectId, Pageable pageable) {
-        projectService.findProjectOrThrow(projectId);
+    public PageResponse<DevlogEntryResponse> list(Long projectId, Long currentUserId, Pageable pageable) {
+        projectService.findVisibleProjectOrThrow(projectId, currentUserId);
         Page<DevlogEntry> page = devlogRepository.findByProjectId(projectId, pageable);
         return PageResponse.from(page, page.getContent().stream().map(projectMapper::toDevlogResponse).toList());
     }

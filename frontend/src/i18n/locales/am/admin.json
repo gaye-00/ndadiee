@@ -1,0 +1,265 @@
+{
+  "shell": {
+    "brand": "የአስተዳደር ገጽ",
+    "nav": "የአስተዳደር ገጹ ክፍሎች",
+    "site": "ድረ ገጹ",
+    "role": "አስተዳደር",
+    "sections": {
+      "overview": "አጠቃላይ እይታ",
+      "users": "አባላት",
+      "content": "ይዘቶች",
+      "journal": "መዝገብ"
+    }
+  },
+  "shared": {
+    "errorText": "ግንኙነትህን አረጋግጥና እንደገና ሞክር።"
+  },
+  "roles": {
+    "USER": "አባል",
+    "MODERATOR": "አወያይ",
+    "ADMIN": "አስተዳዳሪ"
+  },
+  "overview": {
+    "lead": "ማኅበረሰቡና ይዘቶቹ በቁጥር፣ እና የቡድኑ የቅርብ ጊዜ ውሳኔዎች።",
+    "loading": "አጠቃላይ እይታው እየተጫነ ነው",
+    "errorTitle": "አጠቃላይ እይታውን መጫን አልተቻለም",
+    "community": "ማኅበረሰብ",
+    "content": "ይዘቶች",
+    "thisWeek": "በዚህ ሳምንት +{{formatted}}",
+    "kpi": {
+      "members": "አባላት",
+      "active": "በዚህ ሳምንት ንቁ",
+      "activeHint": "ቢያንስ አንድ ጊዜ የገቡ",
+      "moderators": "አወያዮች",
+      "moderatorsHint": "ውይይቱን ይጠብቃሉ",
+      "blocked": "የታገዱ መለያዎች",
+      "blockedHint": "ከእንግዲህ መግባት አይችሉም",
+      "topics": "የውይይት ርዕሶች",
+      "answers": "መልሶች",
+      "projects": "ፕሮጀክቶች",
+      "hidden": "የተደበቁ ይዘቶች",
+      "hiddenHint": "ለሕዝብ የማይታዩ"
+    },
+    "signups": {
+      "title": "ምዝገባዎች",
+      "subtitle_one": "ያለፉት 30 ቀናት · {{formatted}} ምዝገባ",
+      "subtitle_other": "ያለፉት 30 ቀናት · {{formatted}} ምዝገባዎች",
+      "chartLabel": "ባለፉት 30 ቀናት የዕለት ምዝገባዎች። ቀናቱን በቀስቶቹ ተጓዝ።",
+      "day_one": "{{date}}፦ {{count}} ምዝገባ",
+      "day_other": "{{date}}፦ {{count}} ምዝገባዎች",
+      "count_one": "{{formatted}} ምዝገባ",
+      "count_other": "{{formatted}} ምዝገባዎች",
+      "today": "ዛሬ",
+      "showTable": "ሠንጠረዥ",
+      "showChart": "ግራፍ",
+      "dayColumn": "ቀን",
+      "countColumn": "ምዝገባዎች"
+    },
+    "recent": {
+      "title": "የቅርብ ጊዜ ውሳኔዎች",
+      "seeAll": "ሙሉውን መዝገብ",
+      "empty": "እስካሁን ምንም ውሳኔ የለም።"
+    }
+  },
+  "users": {
+    "title": "አባላት",
+    "lead": "መለያ ፈልግ፣ በምክንያት አግደው ወይም መልሰህ አንቃው፣ አወያይ ሹም ወይም ሚናውን አንሣ።",
+    "count_one": "{{formatted}} መለያ",
+    "count_other": "{{formatted}} መለያዎች",
+    "filters": "መለያዎችን አጣራ",
+    "search": "መለያ ፈልግ",
+    "searchPlaceholder": "ስም፣ @የተጠቃሚ ስም ወይም ኢሜይል…",
+    "status": {
+      "label": "የመለያ ሁኔታ",
+      "all": "ሁሉም",
+      "ACTIVE": "ንቁ",
+      "BLOCKED": "የታገዱ"
+    },
+    "role": {
+      "label": "ሚና",
+      "all": "ሁሉም ሚናዎች"
+    },
+    "loading": "መለያዎቹ እየተጫኑ ነው",
+    "errorTitle": "መለያዎቹን መጫን አልተቻለም",
+    "empty": {
+      "title": "የሚዛመድ መለያ የለም",
+      "text": "ፍለጋውን ቀይር ወይም ማጣሪያ አንሣ።"
+    },
+    "you": "አንተ",
+    "active": "ንቁ",
+    "blocked": "የታገደ",
+    "blockedSince": "የታገደው {{when}}",
+    "reason": "ምክንያት፦ {{reason}}",
+    "questions_one": "{{formatted}} ርዕስ",
+    "questions_other": "{{formatted}} ርዕሶች",
+    "answers_one": "{{formatted}} መልስ",
+    "answers_other": "{{formatted}} መልሶች",
+    "projects_one": "{{formatted}} ፕሮጀክት",
+    "projects_other": "{{formatted}} ፕሮጀክቶች",
+    "adminAccount": "የአስተዳደር መለያ",
+    "joined": "የተመዘገበበት ቀን፦ {{date}}",
+    "lastLogin": "የመጨረሻ መግቢያ {{when}}",
+    "neverLoggedIn": "ምንም መግቢያ የለም",
+    "actions": {
+      "label": "ለ{{name}} የሚወሰዱ እርምጃዎች",
+      "profile": "ይፋዊ መገለጫውን እይ",
+      "copyEmail": "ኢሜይሉን ቅዳ",
+      "makeModerator": "አወያይ አድርገው",
+      "makeMember": "የአወያይነት ሚናውን አንሣ",
+      "block": "መለያውን አግድ",
+      "unblock": "መለያውን መልሰህ አንቃ"
+    },
+    "blockDialog": {
+      "title": "{{name}} ይታገድ?",
+      "description": "ይህ መለያ ከእንግዲህ መግባት አይችልም፣ የአሁኑ ክፍለ ጊዜውም ይዘጋል። ያተመው ይዘት እንዳለ ይቆያል፦ ካስፈለገ ለብቻው ደብቀው።",
+      "reasonLabel": "የእገዳው ምክንያት",
+      "confirm": "አግድ"
+    },
+    "unblockDialog": {
+      "title": "{{name}} መልሶ ይንቃ?",
+      "description": "መለያው እንደገና መግባትና መሳተፍ ይችላል።",
+      "confirm": "መልሰህ አንቃ"
+    },
+    "roleDialog": {
+      "moderatorTitle": "{{name}} አወያይ ይሁን?",
+      "moderatorText": "አወያይ በውይይቱና በፕሮጀክቶች የሌሎች አባላትን ይዘት ማስተካከልና መሰረዝ ይችላል። የአስተዳደር ገጹን ግን አያገኝም።",
+      "moderatorConfirm": "አወያይ አድርገው",
+      "memberTitle": "የ{{name}} የአወያይነት ሚና ይነሣ?",
+      "memberText": "ይህ መለያ እንደ ማንኛውም አባል ይሆናል፦ የሌሎችን ይዘት ማስተካከልም ሆነ መሰረዝ አይቻለውም።",
+      "memberConfirm": "ሚናውን አንሣ"
+    },
+    "toast": {
+      "blocked": "የ{{name}} መለያ ታግዷል።",
+      "unblocked": "የ{{name}} መለያ መልሶ ነቅቷል።",
+      "moderator": "ለ{{name}} የአወያይነት ሚና ተሰጥቷል።",
+      "member": "የ{{name}} የአወያይነት ሚና ተነሥቷል።",
+      "emailCopied": "ኢሜይሉ ተቀድቷል።"
+    }
+  },
+  "content": {
+    "title": "ይዘቶች",
+    "lead": "የውይይት ርዕሶች፣ መልሶችና ፕሮጀክቶች። መደበቅ ምንም ሳያጠፋ ይዘትን ከሕዝብ ያርቃል፦ ጸሐፊው ምክንያቱን ያያል፣ አንተም መመለስ ትችላለህ። መሰረዝ ግን የመጨረሻ ነው።",
+    "count_one": "{{formatted}} ይዘት",
+    "count_other": "{{formatted}} ይዘቶች",
+    "filters": "ይዘቶችን አጣራ",
+    "typeLabel": "የይዘት ዓይነት",
+    "types": {
+      "QUESTION": "ርዕሶች",
+      "ANSWER": "መልሶች",
+      "PROJECT": "ፕሮጀክቶች"
+    },
+    "type": {
+      "QUESTION": "ርዕስ",
+      "ANSWER": "መልስ",
+      "PROJECT": "ፕሮጀክት"
+    },
+    "search": "ይዘት ፈልግ",
+    "searchPlaceholder": "ርዕስ፣ ጽሑፍ ወይም @ጸሐፊ…",
+    "visibility": {
+      "label": "መታየት",
+      "all": "ሁሉም",
+      "VISIBLE": "የሚታዩ",
+      "HIDDEN": "የተደበቁ"
+    },
+    "loading": "ይዘቶቹ እየተጫኑ ነው",
+    "errorTitle": "ይዘቶቹን መጫን አልተቻለም",
+    "empty": {
+      "title": "የሚዛመድ ይዘት የለም",
+      "text": "ፍለጋውን ቀይር ወይም ማጣሪያ አንሣ።"
+    },
+    "answerTo": "ለ«{{title}}» የተሰጠ መልስ",
+    "hiddenBadge": "የተደበቀ",
+    "hiddenSince": "የተደበቀው {{when}}",
+    "reason": "ምክንያት፦ {{reason}}",
+    "score_one": "{{formatted}} ነጥብ",
+    "score_other": "{{formatted}} ነጥቦች",
+    "stars_one": "{{formatted}} ኮከብ",
+    "stars_other": "{{formatted}} ኮከቦች",
+    "replies_one": "{{formatted}} መልስ",
+    "replies_other": "{{formatted}} መልሶች",
+    "actions": {
+      "view": "እይ",
+      "hide": "ደብቅ",
+      "unhide": "መልስ",
+      "delete": "ሰርዝ"
+    },
+    "hideDialog": {
+      "title": "ይህ ይዘት ይደበቅ?",
+      "description": "ከሕዝብ ገጾች ይወጣል፦ ከዝርዝሮች፣ ከፍለጋ፣ ከመጋቢና ከቆጣሪዎች። ጸሐፊው ከምክንያቱ ጋር ማየቱን ይቀጥላል፣ አንተም መመለስ ትችላለህ።",
+      "reasonLabel": "ምክንያት (ለጸሐፊው ይታያል)",
+      "confirm": "ደብቅ"
+    },
+    "deleteDialog": {
+      "title": "በቋሚነት ይሰረዝ?",
+      "description": {
+        "QUESTION": "ርዕሱ ከመልሶቹ፣ ከድምፆቹና ከአስተያየቶቹ ጋር ይሰረዛል። መመለስ አይቻልም፦ ብዙ ጊዜ መደበቅ ይበቃል።",
+        "ANSWER": "መልሱ ከድምፆቹና ከአስተያየቶቹ ጋር ይሰረዛል። መመለስ አይቻልም፦ ብዙ ጊዜ መደበቅ ይበቃል።",
+        "PROJECT": "ፕሮጀክቱ ከቡድኑ፣ ከማስታወቂያዎቹ፣ ከድምፆቹና ከአስተያየቶቹ ጋር ይሰረዛል። መመለስ አይቻልም፦ ብዙ ጊዜ መደበቅ ይበቃል።"
+      },
+      "reasonLabel": "ምክንያት (በመዝገቡ ይቀመጣል)",
+      "confirm": "ሰርዝ"
+    },
+    "toast": {
+      "hidden": "ይዘቱ ተደብቋል።",
+      "unhidden": "ይዘቱ ተመልሷል።",
+      "deleted": "ይዘቱ ተሰርዟል።"
+    }
+  },
+  "journal": {
+    "title": "መዝገብ",
+    "lead": "የቡድኑ እያንዳንዱ ውሳኔ ከምክንያቱ ጋር። መዝገቡ አይሰረዝም።",
+    "count_one": "{{formatted}} ውሳኔ",
+    "count_other": "{{formatted}} ውሳኔዎች",
+    "filter": "የውሳኔዎቹ ዒላማ",
+    "targets": {
+      "all": "ሁሉም",
+      "USER": "መለያዎች",
+      "QUESTION": "ርዕሶች",
+      "ANSWER": "መልሶች",
+      "PROJECT": "ፕሮጀክቶች"
+    },
+    "loading": "መዝገቡ እየተጫነ ነው",
+    "errorTitle": "መዝገቡን መጫን አልተቻለም",
+    "empty": {
+      "title": "መዝገቡ ባዶ ነው",
+      "text": "የቡድኑ ውሳኔዎች እዚህ ይመዘገባሉ።"
+    },
+    "formerAdmin": "የቀድሞ አስተዳዳሪ",
+    "reason": "ምክንያት፦",
+    "seeAccount": "መለያውን እይ",
+    "sentence": {
+      "BLOCK_USER": "<b>{{admin}}</b> <b>@{{target}}</b>ን አግደዋል",
+      "UNBLOCK_USER": "<b>{{admin}}</b> <b>@{{target}}</b>ን መልሰው አንቅተዋል",
+      "CHANGE_ROLE": "<b>{{admin}}</b> <b>@{{target}}</b>ን ከ{{from}} ወደ {{to}} ቀይረዋል",
+      "HIDE_CONTENT_QUESTION": "<b>{{admin}}</b> <b>{{target}}</b> የሚለውን ርዕስ ደብቀዋል",
+      "HIDE_CONTENT_ANSWER": "<b>{{admin}}</b> ለ<b>{{target}}</b> የተሰጠ መልስ ደብቀዋል",
+      "HIDE_CONTENT_PROJECT": "<b>{{admin}}</b> <b>{{target}}</b> የተባለውን ፕሮጀክት ደብቀዋል",
+      "UNHIDE_CONTENT_QUESTION": "<b>{{admin}}</b> <b>{{target}}</b> የሚለውን ርዕስ መልሰዋል",
+      "UNHIDE_CONTENT_ANSWER": "<b>{{admin}}</b> ለ<b>{{target}}</b> የተሰጠ መልስ መልሰዋል",
+      "UNHIDE_CONTENT_PROJECT": "<b>{{admin}}</b> <b>{{target}}</b> የተባለውን ፕሮጀክት መልሰዋል",
+      "DELETE_CONTENT_QUESTION": "<b>{{admin}}</b> <b>{{target}}</b> የሚለውን ርዕስ ሰርዘዋል",
+      "DELETE_CONTENT_ANSWER": "<b>{{admin}}</b> ለ<b>{{target}}</b> የተሰጠ መልስ ሰርዘዋል",
+      "DELETE_CONTENT_PROJECT": "<b>{{admin}}</b> <b>{{target}}</b> የተባለውን ፕሮጀክት ሰርዘዋል"
+    }
+  },
+  "reason": {
+    "placeholder": "ውሳኔውን በአንድ ዓረፍተ ነገር አብራራ…",
+    "required": "ምክንያት ያስፈልጋል።",
+    "shown": "ለሚመለከተው ሰው ይታያል።",
+    "optional": "አማራጭ፦ የሚቀመጠው በመዝገቡ ብቻ ነው።",
+    "counter": "{{length}}/{{max}}",
+    "presets": {
+      "spam": "አይፈለጌ መልእክት ወይም ማስታወቂያ።",
+      "fraud": "ማጭበርበር።",
+      "abuse": "አክብሮት የጎደለው ንግግር።",
+      "offTopic": "ከርዕሱ ውጪ።",
+      "duplicate": "ድግግሞሽ።"
+    }
+  },
+  "pager": {
+    "label": "ገጾች",
+    "previous": "የቀድሞ",
+    "next": "ቀጣይ",
+    "page": "ገጽ {{page}} ከ{{total}}"
+  }
+}

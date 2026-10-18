@@ -1,11 +1,13 @@
 package com.hautetech.ndadiee.model.project;
 
+import java.time.Instant;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
 import com.hautetech.ndadiee.common.BaseEntity;
+import com.hautetech.ndadiee.model.Hideable;
 import com.hautetech.ndadiee.model.content.Tag;
 import com.hautetech.ndadiee.model.user.Developer;
 
@@ -37,7 +39,7 @@ import lombok.experimental.SuperBuilder;
 @Entity
 @DynamicUpdate
 @Table(name = "projects")
-public class Project extends BaseEntity {
+public class Project extends BaseEntity implements Hideable {
 
     @Column(nullable = false)
     private String name;
@@ -102,6 +104,12 @@ public class Project extends BaseEntity {
     @Builder.Default
     @Column(nullable = false)
     private int starsCount = 0;
+
+    // Masqué par l'administration (voir Hideable) : null tant qu'il est visible
+    private Instant hiddenAt;
+
+    @Column(length = 500)
+    private String hiddenReason;
 
     @OneToMany(mappedBy = "project", cascade = CascadeType.ALL, orphanRemoval = true)
     @ToString.Exclude

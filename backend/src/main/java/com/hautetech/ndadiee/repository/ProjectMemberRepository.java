@@ -4,12 +4,15 @@ import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
 import com.hautetech.ndadiee.model.project.MemberStatus;
 import com.hautetech.ndadiee.model.project.ProjectMember;
+import com.hautetech.ndadiee.model.project.ProjectRole;
 
 public interface ProjectMemberRepository extends JpaRepository<ProjectMember, Long> {
 
@@ -51,4 +54,35 @@ public interface ProjectMemberRepository extends JpaRepository<ProjectMember, Lo
             @Param("status") MemberStatus status);
 
     long countByOpeningIdAndStatus(Long openingId, MemberStatus status);
+
+    // ─── Profil d'un membre ───
+
+    /**
+     * Les équipes d'un membre, ses propres projets compris, projet chargé : les siens d'abord, puis les plus étoilés,
+     * puis les plus récentes. Un projet masqué n'y figure que pour qui peut encore le voir ({@code withHidden}).
+     */
+    @Query(value = """
+            SELECT m FROM ProjectMember m JOIN FETCH m.project p
+            WHERE m.user.id = :userId AND m.status = :status AND (:withHidden = true OR p.hiddenAt IS NULL)
+            ORDER BY CASE WHEN m.role = :lead THEN 0 ELSE 1 END, p.starsCount DESC, m.createdAt DESC, m.id DESC
+            """,
+            countQuery = """
+            SELECT COUNT(m) FROM ProjectMember m
+            WHERE m.user.id = :userId AND m.status = :status AND (:withHidden = true OR m.project.hiddenAt IS NULL)
+            """)
+    Page<ProjectMember> findTeamsOf(@Param("userId") Long userId, @Param("status") MemberStatus status,
+            @Param("lead") ProjectRole lead, @Param("withHidden") boolean withHidden, Pageable pageable);
+
+    // Équipes rejointes : les projets visibles où il est accepté sans en être le porteur
+    long countByUserIdAndStatusAndRoleNotAndProjectHiddenAtIsNull(Long userId, MemberStatus status, ProjectRole role);
+
+    // Ses coéquipiers sur ses projets visibles : lignes [coéquipier, id, nom, slug et étoiles du projet], acceptés
+    // de part et d'autre
+    @Query("""
+            SELECT other.user.id, p.id, p.name, p.slug, p.starsCount
+            FROM ProjectMember mine JOIN mine.project p, ProjectMember other
+            WHERE other.project = p AND mine.user.id = :userId AND other.user.id <> :userId
+              AND mine.status = :status AND other.status = :status AND p.hiddenAt IS NULL
+            """)
+    List<Object[]> findTeammates(@Param("userId") Long userId, @Param("status") MemberStatus status);
 }

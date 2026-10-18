@@ -15,7 +15,8 @@
     "notifications": "Notifications",
     "settings": "Réglages",
     "profile": "Profil",
-    "create": "Créer"
+    "create": "Créer",
+    "admin": "Back-office"
   },
   "actions": {
     "login": "Connexion",
@@ -155,7 +156,11 @@
     "login": "Connexion",
     "register": "Inscription",
     "notFound": "Page introuvable",
-    "editTopic": "Modifier le sujet"
+    "editTopic": "Modifier le sujet",
+    "admin": "Back-office",
+    "adminUsers": "Back-office · Membres",
+    "adminContent": "Back-office · Contenus",
+    "adminJournal": "Back-office · Journal"
   },
   "enums": {
     "experienceLevel": {
@@ -204,23 +209,6 @@
       "invalid": "Un pseudo GitHub, ce sont des lettres, des chiffres et des tirets : 39 caractères au plus.",
       "notFound": "Aucun compte GitHub ne porte ce nom.",
       "unavailable": "GitHub ne répond pas. Réessaie dans un instant.",
-      "viewLabel": "Vue de l'année",
-      "viewCloth": "Pagne : l'année à plat",
-      "viewCity": "Ville : l'année en 3D",
-      "less": "Moins",
-      "more": "Plus",
-      "level0": "Jours sans contribution",
-      "level1": "Jours calmes",
-      "level2": "Jours actifs",
-      "level3": "Jours chargés",
-      "level4": "Jours les plus chargés",
-      "structure": "Une bande par semaine, un bloc par jour.",
-      "hintCloth": "Survole un jour, ou parcours l'année avec les flèches du clavier.",
-      "hintCity": "Glisse pour tourner autour de la ville. Double-clic pour revenir.",
-      "summary": "{{who}}, du {{from}} au {{to}} : {{total}}. Une bande par semaine, un bloc par jour. Flèches du clavier pour lire chaque jour.",
-      "streak_one": "série record : {{count}} jour",
-      "streak_many": "série record : {{count}} jours",
-      "streak_other": "série record : {{count}} jours",
       "showcase": "Ton année mérite une vitrine"
     }
   },
@@ -228,7 +216,24 @@
     "count_one": "{{count}} contribution",
     "count_many": "{{count}} contributions",
     "count_other": "{{count}} contributions",
-    "none": "Aucune contribution"
+    "none": "Aucune contribution",
+    "viewLabel": "Vue de l'année",
+    "viewCloth": "Pagne : l'année à plat",
+    "viewCity": "Ville : l'année en 3D",
+    "less": "Moins",
+    "more": "Plus",
+    "level0": "Jours sans contribution",
+    "level1": "Jours calmes",
+    "level2": "Jours actifs",
+    "level3": "Jours chargés",
+    "level4": "Jours les plus chargés",
+    "structure": "Une bande par semaine, un bloc par jour.",
+    "hintCloth": "Survole un jour, ou parcours l'année avec les flèches du clavier.",
+    "hintCity": "Glisse pour tourner autour de la ville. Double-clic pour revenir.",
+    "summary": "{{who}}, du {{from}} au {{to}} : {{total}}. Une bande par semaine, un bloc par jour. Flèches du clavier pour lire chaque jour.",
+    "streak_one": "série record : {{count}} jour",
+    "streak_many": "série record : {{count}} jours",
+    "streak_other": "série record : {{count}} jours"
   },
   "teamRoles": {
     "frontend": "Dev front-end",
@@ -491,7 +496,9 @@
       "pending": "Connexion…",
       "failed": "Identifiant ou mot de passe incorrect.",
       "noAccount": "Pas encore de compte ?",
-      "toRegister": "Créer un compte"
+      "toRegister": "Créer un compte",
+      "blocked": "Ce compte a été suspendu par l'équipe Ndadiee.",
+      "blockedReason": "Motif : {{reason}}"
     },
     "register": {
       "eyebrow": "Inscription",
@@ -557,7 +564,8 @@
       "loginText": "Pendant ton absence, les équipes ont continué de tisser.",
       "registerTitle": "Un fil de plus dans l'étoffe.",
       "registerText": "Chaque dev est un fil. Ici, les équipes se tissent autour des projets."
-    }
+    },
+    "sessionBlocked": "Ton compte a été suspendu par l'équipe Ndadiee : tu as été déconnecté."
   },
   "project": {
     "recruiting_one": "recrute · {{count}} rôle",
@@ -791,5 +799,13 @@
     "imageType": "« {{name}} » : formats acceptés, JPEG, PNG, WebP et GIF.",
     "imageTooBig": "« {{name}} » dépasse {{max}} Mo.",
     "uploadFailed": "« {{name}} » n'a pas pu être envoyée."
+  },
+  "moderation": {
+    "hidden": {
+      "QUESTION": "Ce sujet a été masqué par l'équipe Ndadiee : le public ne le voit plus.",
+      "ANSWER": "Cette réponse a été masquée par l'équipe Ndadiee : le public ne la voit plus.",
+      "PROJECT": "Ce projet a été masqué par l'équipe Ndadiee : le public ne le voit plus."
+    },
+    "reason": "Motif : {{reason}}"
   }
 }

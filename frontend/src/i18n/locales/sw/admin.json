@@ -1,0 +1,265 @@
+{
+  "shell": {
+    "brand": "Usimamizi",
+    "nav": "Sehemu za usimamizi",
+    "site": "Tovuti",
+    "role": "Usimamizi",
+    "sections": {
+      "overview": "Muhtasari",
+      "users": "Wanachama",
+      "content": "Maudhui",
+      "journal": "Kumbukumbu"
+    }
+  },
+  "shared": {
+    "errorText": "Angalia muunganisho wako, kisha ujaribu tena."
+  },
+  "roles": {
+    "USER": "Mwanachama",
+    "MODERATOR": "Msimamizi",
+    "ADMIN": "Mkuu wa mfumo"
+  },
+  "overview": {
+    "lead": "Jumuiya na maudhui yake kwa takwimu, na maamuzi ya hivi karibuni ya timu.",
+    "loading": "Inapakia muhtasari",
+    "errorTitle": "Muhtasari haukuweza kupakiwa",
+    "community": "Jumuiya",
+    "content": "Maudhui",
+    "thisWeek": "+{{formatted}} wiki hii",
+    "kpi": {
+      "members": "Wanachama",
+      "active": "Hai wiki hii",
+      "activeHint": "wameingia angalau mara moja",
+      "moderators": "Wasimamizi",
+      "moderatorsHint": "wanaangalia jukwaa",
+      "blocked": "Akaunti zilizosimamishwa",
+      "blockedHint": "haziwezi kuingia tena",
+      "topics": "Mada za jukwaa",
+      "answers": "Majibu",
+      "projects": "Miradi",
+      "hidden": "Maudhui yaliyofichwa",
+      "hiddenHint": "hayaonekani kwa umma"
+    },
+    "signups": {
+      "title": "Usajili",
+      "subtitle_one": "Siku 30 zilizopita · usajili {{formatted}}",
+      "subtitle_other": "Siku 30 zilizopita · usajili {{formatted}}",
+      "chartLabel": "Usajili kwa siku katika siku 30 zilizopita. Mishale inapitia siku.",
+      "day_one": "{{date}}: usajili {{count}}",
+      "day_other": "{{date}}: usajili {{count}}",
+      "count_one": "Usajili {{formatted}}",
+      "count_other": "Usajili {{formatted}}",
+      "today": "leo",
+      "showTable": "Jedwali",
+      "showChart": "Chati",
+      "dayColumn": "Siku",
+      "countColumn": "Usajili"
+    },
+    "recent": {
+      "title": "Maamuzi ya hivi karibuni",
+      "seeAll": "Kumbukumbu zote",
+      "empty": "Bado hakuna uamuzi."
+    }
+  },
+  "users": {
+    "title": "Wanachama",
+    "lead": "Tafuta akaunti, isimamishe kwa sababu au uirejeshe, teua msimamizi au umwondolee nafasi hiyo.",
+    "count_one": "Akaunti {{formatted}}",
+    "count_other": "Akaunti {{formatted}}",
+    "filters": "Chuja akaunti",
+    "search": "Tafuta akaunti",
+    "searchPlaceholder": "Jina, @mtumiaji au barua pepe…",
+    "status": {
+      "label": "Hali ya akaunti",
+      "all": "Zote",
+      "ACTIVE": "Hai",
+      "BLOCKED": "Zimesimamishwa"
+    },
+    "role": {
+      "label": "Nafasi",
+      "all": "Nafasi zote"
+    },
+    "loading": "Inapakia akaunti",
+    "errorTitle": "Akaunti hazikuweza kupakiwa",
+    "empty": {
+      "title": "Hakuna akaunti inayolingana",
+      "text": "Badilisha utafutaji au ondoa kichujio."
+    },
+    "you": "wewe",
+    "active": "Hai",
+    "blocked": "Imesimamishwa",
+    "blockedSince": "Imesimamishwa {{when}}",
+    "reason": "Sababu: {{reason}}",
+    "questions_one": "Mada {{formatted}}",
+    "questions_other": "Mada {{formatted}}",
+    "answers_one": "Jibu {{formatted}}",
+    "answers_other": "Majibu {{formatted}}",
+    "projects_one": "Mradi {{formatted}}",
+    "projects_other": "Miradi {{formatted}}",
+    "adminAccount": "Akaunti ya usimamizi",
+    "joined": "Alijiunga {{date}}",
+    "lastLogin": "Aliingia {{when}}",
+    "neverLoggedIn": "Hajawahi kuingia",
+    "actions": {
+      "label": "Vitendo kwa {{name}}",
+      "profile": "Tazama wasifu wa umma",
+      "copyEmail": "Nakili barua pepe",
+      "makeModerator": "Mteue msimamizi",
+      "makeMember": "Ondoa nafasi ya msimamizi",
+      "block": "Simamisha akaunti",
+      "unblock": "Rejesha akaunti"
+    },
+    "blockDialog": {
+      "title": "Simamisha {{name}}?",
+      "description": "Akaunti hii haitaweza kuingia tena, na kipindi chake cha sasa kitafungwa. Alichochapisha kinabaki mtandaoni: kificha kando ikihitajika.",
+      "reasonLabel": "Sababu ya kusimamisha",
+      "confirm": "Simamisha"
+    },
+    "unblockDialog": {
+      "title": "Rejesha {{name}}?",
+      "description": "Akaunti itaweza kuingia na kushiriki tena.",
+      "confirm": "Rejesha"
+    },
+    "roleDialog": {
+      "moderatorTitle": "Mteue {{name}} kuwa msimamizi?",
+      "moderatorText": "Msimamizi anaweza kuhariri na kufuta maudhui ya wanachama wengine kwenye jukwaa na miradi. Hana ufikiaji wa usimamizi.",
+      "moderatorConfirm": "Mteue msimamizi",
+      "memberTitle": "Mwondolee {{name}} nafasi ya msimamizi?",
+      "memberText": "Atarudi kuwa mwanachama wa kawaida: hataweza tena kuhariri au kufuta maudhui ya wengine.",
+      "memberConfirm": "Ondoa nafasi"
+    },
+    "toast": {
+      "blocked": "{{name}} amesimamishwa.",
+      "unblocked": "{{name}} amerejeshwa.",
+      "moderator": "{{name}} sasa ni msimamizi.",
+      "member": "{{name}} amerudi kuwa mwanachama.",
+      "emailCopied": "Barua pepe imenakiliwa."
+    }
+  },
+  "content": {
+    "title": "Maudhui",
+    "lead": "Mada za jukwaa, majibu na miradi. Kuficha kunaondoa maudhui kwa umma bila kupoteza chochote: mwandishi anaona sababu, na unaweza kuyarejesha. Kufuta ni kwa kudumu.",
+    "count_one": "Kipengele {{formatted}}",
+    "count_other": "Vipengele {{formatted}}",
+    "filters": "Chuja maudhui",
+    "typeLabel": "Aina ya maudhui",
+    "types": {
+      "QUESTION": "Mada",
+      "ANSWER": "Majibu",
+      "PROJECT": "Miradi"
+    },
+    "type": {
+      "QUESTION": "Mada",
+      "ANSWER": "Jibu",
+      "PROJECT": "Mradi"
+    },
+    "search": "Tafuta maudhui",
+    "searchPlaceholder": "Kichwa, maandishi au @mwandishi…",
+    "visibility": {
+      "label": "Kuonekana",
+      "all": "Yote",
+      "VISIBLE": "Yanayoonekana",
+      "HIDDEN": "Yaliyofichwa"
+    },
+    "loading": "Inapakia maudhui",
+    "errorTitle": "Maudhui hayakuweza kupakiwa",
+    "empty": {
+      "title": "Hakuna maudhui yanayolingana",
+      "text": "Badilisha utafutaji au ondoa kichujio."
+    },
+    "answerTo": "Jibu kwa «{{title}}»",
+    "hiddenBadge": "Imefichwa",
+    "hiddenSince": "Imefichwa {{when}}",
+    "reason": "Sababu: {{reason}}",
+    "score_one": "Pointi {{formatted}}",
+    "score_other": "Pointi {{formatted}}",
+    "stars_one": "Nyota {{formatted}}",
+    "stars_other": "Nyota {{formatted}}",
+    "replies_one": "Jibu {{formatted}}",
+    "replies_other": "Majibu {{formatted}}",
+    "actions": {
+      "view": "Tazama",
+      "hide": "Ficha",
+      "unhide": "Rejesha",
+      "delete": "Futa"
+    },
+    "hideDialog": {
+      "title": "Ficha maudhui haya?",
+      "description": "Yanaondoka kwenye kurasa za umma: orodha, utafutaji, mlisho na hesabu. Mwandishi bado anayaona pamoja na sababu, na utaweza kuyarejesha.",
+      "reasonLabel": "Sababu (itaonyeshwa kwa mwandishi)",
+      "confirm": "Ficha"
+    },
+    "deleteDialog": {
+      "title": "Futa kabisa?",
+      "description": {
+        "QUESTION": "Mada itafutwa pamoja na majibu, kura na maoni yake. Haiwezi kurudishwa: mara nyingi kuficha kunatosha.",
+        "ANSWER": "Jibu litafutwa pamoja na kura na maoni yake. Haliwezi kurudishwa: mara nyingi kuficha kunatosha.",
+        "PROJECT": "Mradi utafutwa pamoja na timu, matangazo, kura na maoni yake. Hauwezi kurudishwa: mara nyingi kuficha kunatosha."
+      },
+      "reasonLabel": "Sababu (inahifadhiwa kwenye kumbukumbu)",
+      "confirm": "Futa"
+    },
+    "toast": {
+      "hidden": "Maudhui yamefichwa.",
+      "unhidden": "Maudhui yamerejeshwa.",
+      "deleted": "Maudhui yamefutwa."
+    }
+  },
+  "journal": {
+    "title": "Kumbukumbu",
+    "lead": "Kila uamuzi wa timu, pamoja na sababu yake. Kumbukumbu hazifutwi.",
+    "count_one": "Uamuzi {{formatted}}",
+    "count_other": "Maamuzi {{formatted}}",
+    "filter": "Lengo la maamuzi",
+    "targets": {
+      "all": "Yote",
+      "USER": "Akaunti",
+      "QUESTION": "Mada",
+      "ANSWER": "Majibu",
+      "PROJECT": "Miradi"
+    },
+    "loading": "Inapakia kumbukumbu",
+    "errorTitle": "Kumbukumbu hazikuweza kupakiwa",
+    "empty": {
+      "title": "Hakuna kitu kwenye kumbukumbu",
+      "text": "Maamuzi ya timu yataandikwa hapa."
+    },
+    "formerAdmin": "Mkuu wa mfumo wa zamani",
+    "reason": "Sababu:",
+    "seeAccount": "Tazama akaunti",
+    "sentence": {
+      "BLOCK_USER": "<b>{{admin}}</b> amesimamisha <b>@{{target}}</b>",
+      "UNBLOCK_USER": "<b>{{admin}}</b> amerejesha <b>@{{target}}</b>",
+      "CHANGE_ROLE": "<b>{{admin}}</b> amehamisha <b>@{{target}}</b> kutoka {{from}} kwenda {{to}}",
+      "HIDE_CONTENT_QUESTION": "<b>{{admin}}</b> ameficha mada <b>{{target}}</b>",
+      "HIDE_CONTENT_ANSWER": "<b>{{admin}}</b> ameficha jibu kwa <b>{{target}}</b>",
+      "HIDE_CONTENT_PROJECT": "<b>{{admin}}</b> ameficha mradi <b>{{target}}</b>",
+      "UNHIDE_CONTENT_QUESTION": "<b>{{admin}}</b> amerejesha mada <b>{{target}}</b>",
+      "UNHIDE_CONTENT_ANSWER": "<b>{{admin}}</b> amerejesha jibu kwa <b>{{target}}</b>",
+      "UNHIDE_CONTENT_PROJECT": "<b>{{admin}}</b> amerejesha mradi <b>{{target}}</b>",
+      "DELETE_CONTENT_QUESTION": "<b>{{admin}}</b> amefuta mada <b>{{target}}</b>",
+      "DELETE_CONTENT_ANSWER": "<b>{{admin}}</b> amefuta jibu kwa <b>{{target}}</b>",
+      "DELETE_CONTENT_PROJECT": "<b>{{admin}}</b> amefuta mradi <b>{{target}}</b>"
+    }
+  },
+  "reason": {
+    "placeholder": "Eleza uamuzi kwa sentensi moja…",
+    "required": "Sababu inahitajika.",
+    "shown": "Itaonyeshwa kwa mhusika.",
+    "optional": "Si lazima: inahifadhiwa kwenye kumbukumbu tu.",
+    "counter": "{{length}}/{{max}}",
+    "presets": {
+      "spam": "Barua taka au matangazo.",
+      "fraud": "Utapeli au udanganyifu.",
+      "abuse": "Lugha isiyo ya heshima.",
+      "offTopic": "Nje ya mada.",
+      "duplicate": "Nakala."
+    }
+  },
+  "pager": {
+    "label": "Kurasa",
+    "previous": "Iliyotangulia",
+    "next": "Inayofuata",
+    "page": "Ukurasa {{page}} kati ya {{total}}"
+  }
+}

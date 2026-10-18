@@ -1105,16 +1105,9 @@
 }
 
 /* ── Hackathons (components/hackathons/) ──
-   L'étoffe d'un hackathon (HackathonLoom) : ses bandes or, rouge et vert, tirées de son slug, se tissent à
-   mesure que le temps passe. Ce qui reste à tisser n'est que la chaîne ; la navette, une perle de lumière,
-   marque l'instant présent. Couleurs des formes pleines (--*-graphic) : vives sur la nuit, assez foncées
-   sur le papier. En arabe, l'étoffe avance de droite à gauche. */
-.hackathon-loom {
-  --loom-gold: var(--gold-graphic);
-  --loom-coral: var(--coral-graphic);
-  --loom-jade: var(--jade-graphic);
-}
-
+   L'étoffe d'un hackathon (HackathonLoom) : ses bandes or, rouge et vert, tirées de son slug (lib/kenteCloth.ts),
+   se tissent à mesure que le temps passe. Ce qui reste à tisser n'est que la chaîne ; la navette, une perle de
+   lumière, marque l'instant présent. En arabe, l'étoffe avance de droite à gauche. */
 [dir='rtl'] .hackathon-loom {
   scale: -1 1;
 }
@@ -1223,6 +1216,82 @@
   .answer-flash {
     box-shadow: 0 0 0 3px color-mix(in srgb, var(--kente-gold) 50%, transparent);
   }
+}
+
+/* ── Profil (components/profile/) ──
+   La bannière d'un membre (ProfileCover) : son étoffe kente, tirée de son pseudo (lib/kenteCloth.ts), comme un
+   kente a son motif. Les bandes en long, coupées de blocs plus sombres en travers ; la trame et la chaîne ton sur
+   ton par-dessus. Avant que l'étoffe se tisse, on voit la chaîne tendue. */
+.profile-warp {
+  background-color: color-mix(in srgb, var(--foreground) 5%, var(--background));
+  background-image: repeating-linear-gradient(
+    90deg,
+    color-mix(in srgb, var(--foreground) 18%, transparent) 0 1px,
+    transparent 1px 4px
+  );
+}
+
+.profile-cloth {
+  background-image:
+    repeating-linear-gradient(90deg, color-mix(in srgb, var(--kente-night) 18%, transparent) 0 1px, transparent 1px 4px),
+    repeating-linear-gradient(180deg, color-mix(in srgb, var(--kente-paper) 14%, transparent) 0 1px, transparent 1px 4px),
+    repeating-linear-gradient(
+      180deg,
+      transparent 0 26%,
+      color-mix(in srgb, var(--kente-night) 26%, transparent) 26% 34%,
+      transparent 34% 50%
+    ),
+    var(--cloth);
+}
+
+/* Un reflet de soie traverse l'étoffe, lentement ; en arabe, de droite à gauche */
+@keyframes profile-sheen {
+  from {
+    translate: -120% 0;
+  }
+  to {
+    translate: 320% 0;
+  }
+}
+
+.profile-sheen {
+  position: absolute;
+  inset-block: 0;
+  width: 40%;
+  background-image: linear-gradient(
+    100deg,
+    transparent,
+    color-mix(in srgb, var(--kente-paper) 22%, transparent) 50%,
+    transparent
+  );
+  animation: profile-sheen 9s ease-in-out 1.4s infinite;
+}
+
+[dir='rtl'] .profile-sheen {
+  animation-direction: reverse;
+}
+
+/* La photo de profil : un anneau kente qui tourne doucement autour, posé sur la page */
+.profile-ring {
+  background-image: var(--gradient-conic);
+  animation: kente-rotate 14s linear infinite;
+}
+
+/* Les badges : une médaille tissée de la couleur du badge (--badge) */
+.profile-badge {
+  background-image:
+    repeating-linear-gradient(90deg, color-mix(in srgb, var(--kente-night) 14%, transparent) 0 1px, transparent 1px 3px),
+    conic-gradient(
+      from 210deg,
+      var(--badge),
+      color-mix(in srgb, var(--badge) 55%, var(--kente-paper)) 25%,
+      var(--badge) 50%,
+      color-mix(in srgb, var(--badge) 72%, var(--kente-night)) 75%,
+      var(--badge)
+    );
+  box-shadow:
+    inset 0 0 0 1px color-mix(in srgb, var(--kente-paper) 40%, transparent),
+    0 8px 18px -10px var(--badge);
 }
 
 /* ── Changement de thème : transitions coupées le temps d'une image (voir store/useThemeStore.ts) ── */

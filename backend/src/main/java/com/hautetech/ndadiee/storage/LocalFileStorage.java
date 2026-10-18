@@ -2,8 +2,10 @@ package com.hautetech.ndadiee.storage;
 
 import java.io.IOException;
 import java.io.UncheckedIOException;
+import java.net.URI;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.util.Optional;
 
 import com.hautetech.ndadiee.common.MediaUrls;
 
@@ -28,11 +30,7 @@ public class LocalFileStorage implements FileStorage {
 
     @Override
     public String store(String key, byte[] content, String contentType) {
-        Path target = root.resolve(key).normalize();
-        // La clé vient du serveur, mais on ne sort jamais du dossier, quoi qu'il arrive
-        if (!target.startsWith(root)) {
-            throw new IllegalArgumentException("Clé de fichier invalide : " + key);
-        }
+        Path target = resolve(key);
         try {
             Files.createDirectories(target.getParent());
             Files.write(target, content);
@@ -43,7 +41,51 @@ public class LocalFileStorage implements FileStorage {
     }
 
     @Override
+    public void delete(String key) {
+        Path target = resolve(key);
+        try {
+            Files.deleteIfExists(target);
+        } catch (IOException e) {
+            throw new UncheckedIOException("Impossible de supprimer " + target, e);
+        }
+    }
+
+    /**
+     * L'adresse d'un fichier est « {hôte}/api/uploads/{clé} » (ou « uploads/{clé} » hors d'une requête) : l'hôte
+     * dépend de la requête qui l'a créée, seul le chemin compte.
+     */
+    @Override
+    public Optional<String> keyOf(String url) {
+        if (url == null || url.isBlank()) {
+            return Optional.empty();
+        }
+        String path;
+        try {
+            path = URI.create(url).getPath();
+        } catch (IllegalArgumentException e) {
+            return Optional.empty();
+        }
+        if (path == null) {
+            return Optional.empty();
+        }
+        String marker = "/" + URL_PREFIX;
+        int at = path.indexOf(marker);
+        String key = at >= 0 ? path.substring(at + marker.length())
+                : path.startsWith(URL_PREFIX) ? path.substring(URL_PREFIX.length()) : "";
+        return key.isEmpty() ? Optional.empty() : Optional.of(key);
+    }
+
+    @Override
     public String description() {
         return "disque (" + root + ")";
+    }
+
+    // La clé vient du serveur, mais on ne sort jamais du dossier, quoi qu'il arrive
+    private Path resolve(String key) {
+        Path target = root.resolve(key).normalize();
+        if (!target.startsWith(root) || target.equals(root)) {
+            throw new IllegalArgumentException("Clé de fichier invalide : " + key);
+        }
+        return target;
     }
 }

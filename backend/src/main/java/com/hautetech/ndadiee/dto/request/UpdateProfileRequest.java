@@ -15,6 +15,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+/** Le profil public d'un membre. La photo a ses propres routes (PUT et DELETE /v1/users/me/avatar). */
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -27,10 +28,6 @@ public class UpdateProfileRequest {
 
     @Size(max = 1000, message = "La bio ne peut pas dépasser 1000 caractères")
     private String bio;
-
-    @URL(message = "L'URL de l'avatar n'est pas valide")
-    @Size(max = 500, message = "L'URL ne peut pas dépasser 500 caractères")
-    private String avatarUrl;
 
     @Pattern(regexp = "^[A-Za-z]{2}$", message = "Le pays doit être un code ISO à 2 lettres (SN, CI, NG...)")
     private String country;

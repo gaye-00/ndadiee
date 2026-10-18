@@ -15,7 +15,8 @@
     "notifications": "ማሳወቂያዎች",
     "settings": "ቅንብሮች",
     "profile": "መገለጫ",
-    "create": "ፍጠር"
+    "create": "ፍጠር",
+    "admin": "የአስተዳደር ገጽ"
   },
   "actions": {
     "login": "ግባ",
@@ -150,7 +151,11 @@
     "login": "ግባ",
     "register": "ተመዝገብ",
     "notFound": "ገጹ አልተገኘም",
-    "editTopic": "ርዕሱን አስተካክል"
+    "editTopic": "ርዕሱን አስተካክል",
+    "admin": "የአስተዳደር ገጽ",
+    "adminUsers": "የአስተዳደር ገጽ · አባላት",
+    "adminContent": "የአስተዳደር ገጽ · ይዘቶች",
+    "adminJournal": "የአስተዳደር ገጽ · መዝገብ"
   },
   "enums": {
     "experienceLevel": {
@@ -198,29 +203,29 @@
       "invalid": "የGitHub ተጠቃሚ ስም የላቲን ፊደላት፣ ቁጥሮችና ሰረዞችን ብቻ ይይዛል፤ ቢበዛ 39 ቁምፊዎች።",
       "notFound": "በዚህ ስም የGitHub መለያ የለም።",
       "unavailable": "GitHub ምላሽ እየሰጠ አይደለም። ትንሽ ቆይተህ እንደገና ሞክር።",
-      "viewLabel": "የዓመቱ እይታ",
-      "viewCloth": "ጨርቅ፦ ዓመቱ በጠፍጣፋ",
-      "viewCity": "ከተማ፦ ዓመቱ በ3D",
-      "less": "ያነሰ",
-      "more": "የበለጠ",
-      "level0": "አስተዋጽኦ የሌለባቸው ቀናት",
-      "level1": "ጸጥ ያሉ ቀናት",
-      "level2": "ንቁ ቀናት",
-      "level3": "የተጨናነቁ ቀናት",
-      "level4": "በጣም የተጨናነቁ ቀናት",
-      "structure": "ለእያንዳንዱ ሳምንት አንድ ቁራጭ፣ ለእያንዳንዱ ቀን አንድ ብሎክ።",
-      "hintCloth": "ጠቋሚውን በአንድ ቀን ላይ አድርግ፣ ወይም ዓመቱን በቀስት ቁልፎች ቃኝ።",
-      "hintCity": "ከተማዋን ለማዞር ጎትት። ለመመለስ ሁለቴ ጠቅ አድርግ።",
-      "summary": "{{who}}፣ ከ{{from}} እስከ {{to}}፦ {{total}}። ለእያንዳንዱ ሳምንት አንድ ቁራጭ፣ ለእያንዳንዱ ቀን አንድ ብሎክ። እያንዳንዱን ቀን ለማንበብ የቀስት ቁልፎችን ተጠቀም።",
-      "streak_one": "ረጅሙ ተከታታይ፦ {{count}} ቀን",
-      "streak_other": "ረጅሙ ተከታታይ፦ {{count}} ቀናት",
       "showcase": "ዓመትህ ማሳያ ይገባዋል"
     }
   },
   "contributions": {
     "count_one": "{{count}} አስተዋጽኦ",
     "count_other": "{{count}} አስተዋጽኦዎች",
-    "none": "ምንም አስተዋጽኦ የለም"
+    "none": "ምንም አስተዋጽኦ የለም",
+    "viewLabel": "የዓመቱ እይታ",
+    "viewCloth": "ጨርቅ፦ ዓመቱ በጠፍጣፋ",
+    "viewCity": "ከተማ፦ ዓመቱ በ3D",
+    "less": "ያነሰ",
+    "more": "የበለጠ",
+    "level0": "አስተዋጽኦ የሌለባቸው ቀናት",
+    "level1": "ጸጥ ያሉ ቀናት",
+    "level2": "ንቁ ቀናት",
+    "level3": "የተጨናነቁ ቀናት",
+    "level4": "በጣም የተጨናነቁ ቀናት",
+    "structure": "ለእያንዳንዱ ሳምንት አንድ ቁራጭ፣ ለእያንዳንዱ ቀን አንድ ብሎክ።",
+    "hintCloth": "ጠቋሚውን በአንድ ቀን ላይ አድርግ፣ ወይም ዓመቱን በቀስት ቁልፎች ቃኝ።",
+    "hintCity": "ከተማዋን ለማዞር ጎትት። ለመመለስ ሁለቴ ጠቅ አድርግ።",
+    "summary": "{{who}}፣ ከ{{from}} እስከ {{to}}፦ {{total}}። ለእያንዳንዱ ሳምንት አንድ ቁራጭ፣ ለእያንዳንዱ ቀን አንድ ብሎክ። እያንዳንዱን ቀን ለማንበብ የቀስት ቁልፎችን ተጠቀም።",
+    "streak_one": "ረጅሙ ተከታታይ፦ {{count}} ቀን",
+    "streak_other": "ረጅሙ ተከታታይ፦ {{count}} ቀናት"
   },
   "teamRoles": {
     "frontend": "Front-end ገንቢ",
@@ -466,7 +471,9 @@
       "pending": "በመግባት ላይ…",
       "failed": "ኢሜይል፣ የተጠቃሚ ስም ወይም የይለፍ ቃል ትክክል አይደለም።",
       "noAccount": "እስካሁን መለያ የለህም?",
-      "toRegister": "መለያ ፍጠር"
+      "toRegister": "መለያ ፍጠር",
+      "blocked": "ይህ መለያ በNdadiee ቡድን ታግዷል።",
+      "blockedReason": "ምክንያት፦ {{reason}}"
     },
     "register": {
       "eyebrow": "ምዝገባ",
@@ -532,7 +539,8 @@
       "loginText": "አንተ በሌለህበት ጊዜ ቡድኖቹ መሸመናቸውን ቀጥለዋል።",
       "registerTitle": "በልብሱ ላይ አንድ ተጨማሪ ክር።",
       "registerText": "እያንዳንዱ ገንቢ ክር ነው። እዚህ ቡድኖች በፕሮጀክቶች ዙሪያ ይሸመናሉ።"
-    }
+    },
+    "sessionBlocked": "መለያህ በNdadiee ቡድን ታግዷል፦ ከክፍለ ጊዜህ ወጥተሃል።"
   },
   "project": {
     "recruiting_one": "እየፈለገ ነው · {{count}} ሚና",
@@ -747,5 +755,13 @@
     "imageType": "«{{name}}»፦ ተቀባይነት ያላቸው ቅርጸቶች JPEG፣ PNG፣ WebP እና GIF ናቸው።",
     "imageTooBig": "«{{name}}» ከ{{max}} ሜባ ይበልጣል።",
     "uploadFailed": "«{{name}}» ሊላክ አልቻለም።"
+  },
+  "moderation": {
+    "hidden": {
+      "QUESTION": "ይህ ርዕስ በNdadiee ቡድን ተደብቋል፦ ሕዝቡ ከእንግዲህ አያየውም።",
+      "ANSWER": "ይህ መልስ በNdadiee ቡድን ተደብቋል፦ ሕዝቡ ከእንግዲህ አያየውም።",
+      "PROJECT": "ይህ ፕሮጀክት በNdadiee ቡድን ተደብቋል፦ ሕዝቡ ከእንግዲህ አያየውም።"
+    },
+    "reason": "ምክንያት፦ {{reason}}"
   }
 }

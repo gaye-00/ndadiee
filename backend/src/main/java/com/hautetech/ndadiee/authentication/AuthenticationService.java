@@ -1,5 +1,6 @@
 package com.hautetech.ndadiee.authentication;
 
+import java.time.Instant;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
@@ -14,6 +15,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.hautetech.ndadiee.authentication.UsernameAvailabilityResponse.Reason;
+import com.hautetech.ndadiee.exception.AccountBlockedException;
 import com.hautetech.ndadiee.exception.DuplicateResourceException;
 import com.hautetech.ndadiee.exception.OperationNotAllowedException;
 import com.hautetech.ndadiee.exception.ResourceNotFoundException;
@@ -86,6 +88,10 @@ public class AuthenticationService {
                 new UsernamePasswordAuthenticationToken(normalize(request.getIdentifier()), request.getPassword()));
 
         User user = (User) authentication.getPrincipal();
+        // Après le mot de passe : seul le titulaire du compte apprend qu'il est suspendu
+        requireActive(user);
+        user.setLastLoginAt(Instant.now());
+        userRepository.save(user);
         log.info("[Auth] Connexion - ID: {} - username: {}", user.getId(), user.getUsername());
         return buildResponse(user);
     }
@@ -101,6 +107,8 @@ public class AuthenticationService {
 
         User user = userRepository.findByUsername(username)
                 .orElseThrow(() -> new UnauthorizedException("Refresh token invalide ou expiré"));
+        // Suspendu depuis la connexion : la session ne se renouvelle plus
+        requireActive(user);
         return buildResponse(user);
     }
 
@@ -131,6 +139,13 @@ public class AuthenticationService {
     }
 
     // ==================== HELPERS ====================
+
+    private void requireActive(User user) {
+        if (user.isBlocked()) {
+            log.info("[Auth] Compte suspendu, session refusée - ID: {}", user.getId());
+            throw new AccountBlockedException(user.getBlockedReason());
+        }
+    }
 
     private AuthenticationResponse buildResponse(User user) {
         return AuthenticationResponse.builder()

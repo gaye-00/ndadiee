@@ -1,0 +1,166 @@
+{
+  "loading": "A ń gbé profaili wọlé",
+  "notFoundTitle": "Profaili yìí kò sí",
+  "notFoundText": "Kò sí ẹni tó ń jẹ́ @{{username}} níbí. Bóyá ìjápọ̀ náà kò pé, tàbí àkáǹtì náà ti yí orúkọ padà.",
+  "backToShowcase": "Padà sí àfihàn",
+  "errorTitle": "Profaili kò lè wọlé",
+  "errorText": "Ṣàyẹ̀wò ìsopọ̀ rẹ, lẹ́yìn náà gbìyànjú lẹ́ẹ̀kan sí i.",
+  "aside": "Àwọn ẹgbẹ́ àti àmì ẹ̀yẹ",
+  "header": {
+    "openToWork": "Ó ṣetán láti darapọ̀ mọ́ ẹgbẹ́",
+    "reputation_one": "àmì orúkọ rere <n>{{value}}</n>",
+    "reputation_other": "àmì orúkọ rere <n>{{value}}</n>",
+    "followers_one": "olùtẹ̀lé <n>{{value}}</n>",
+    "followers_other": "olùtẹ̀lé <n>{{value}}</n>",
+    "following_one": "ó ń tẹ̀lé <n>{{value}}</n>",
+    "following_other": "ó ń tẹ̀lé <n>{{value}}</n>",
+    "skills": "Ọgbọ́n iṣẹ́",
+    "website": "Ojú òpó wẹ́ẹ̀bù",
+    "place": "{{city}}, {{country}}",
+    "memberSince": "Ọmọ ẹgbẹ́ láti {{date}}",
+    "follow": "Tẹ̀lé {{name}}",
+    "followingThem": "O ń tẹ̀lé e",
+    "unfollow": "Dẹ́kun títẹ̀lé {{name}}",
+    "share": "Pín",
+    "shareMine": "Pín profaili mi",
+    "linkCopied": "A ti da ìjápọ̀ profaili kọ",
+    "copyFailed": "A kò lè da ìjápọ̀ náà kọ."
+  },
+  "stats": {
+    "title": "Ẹ̀rí iṣẹ́",
+    "projects_one": "iṣẹ́ àkànṣe tó bẹ̀rẹ̀",
+    "projects_other": "iṣẹ́ àkànṣe tó bẹ̀rẹ̀",
+    "teams_one": "ẹgbẹ́ tó darapọ̀ mọ́",
+    "teams_other": "ẹgbẹ́ tó darapọ̀ mọ́",
+    "acceptedAnswers_one": "ìdáhùn tí a gbà",
+    "acceptedAnswers_other": "ìdáhùn tí a gbà",
+    "ofAnswers_one": "nínú ìdáhùn {{count}} ní àpéjọ",
+    "ofAnswers_other": "nínú ìdáhùn {{count}} ní àpéjọ",
+    "hackathons_one": "hackathon tó kópa nínú",
+    "hackathons_other": "hackathon tó kópa nínú",
+    "podiums_one": "pẹ̀lú ipò ọlá {{count}}",
+    "podiums_other": "pẹ̀lú ipò ọlá {{count}}"
+  },
+  "showcase": {
+    "eyebrow": "Àfihàn",
+    "title": "Ohun tí {{name}} ń kọ́",
+    "titleOwn": "Ohun tí o ń kọ́",
+    "count_one": "iṣẹ́ àkànṣe {{count}}",
+    "count_other": "iṣẹ́ àkànṣe {{count}}",
+    "role": {
+      "OWNER": "Olùdásílẹ̀",
+      "MAINTAINER": "Olùtọ́jú",
+      "CONTRIBUTOR": "Olùkópa"
+    },
+    "more_one": "Wo iṣẹ́ àkànṣe kejì",
+    "more_other": "Wo àwọn iṣẹ́ àkànṣe {{count}} yòókù",
+    "moreFailed": "Ìyókù kò lè wọlé. Gbìyànjú lẹ́ẹ̀kan sí i.",
+    "errorTitle": "Àwọn iṣẹ́ àkànṣe kò lè wọlé",
+    "errorText": "Ṣàyẹ̀wò ìsopọ̀ rẹ, lẹ́yìn náà gbìyànjú lẹ́ẹ̀kan sí i.",
+    "emptyOwnTitle": "Àfihàn rẹ ń dúró de iṣẹ́ àkànṣe àkọ́kọ́",
+    "emptyOwnText": "Ṣàfihàn iṣẹ́ àkànṣe orísun ṣíṣí, tàbí darapọ̀ mọ́ ẹgbẹ́: gbogbo iṣẹ́ àkànṣe tí o wà nínú rẹ̀ yóò hàn níbí.",
+    "emptyOwnAction": "Tẹ iṣẹ́ àkànṣe jáde",
+    "emptyTitle": "{{name}} kò tíì ní iṣẹ́ àkànṣe níbí",
+    "emptyText": "Àwọn iṣẹ́ àkànṣe rẹ̀ yóò hàn níbí ní kété tí ó bá bẹ̀rẹ̀ ọ̀kan, tàbí darapọ̀ mọ́ ẹgbẹ́."
+  },
+  "heatmap": {
+    "eyebrow": "Ìkópa",
+    "title": "Ọdún tí a hun",
+    "currentStreak_one": "ìtẹ̀léra lọ́wọ́lọ́wọ́: ọjọ́ {{count}}",
+    "currentStreak_other": "ìtẹ̀léra lọ́wọ́lọ́wọ́: ọjọ́ {{count}}",
+    "sources": "Ìkópa tí a kà",
+    "platform": "Ndadiee",
+    "withGithub": "Pẹ̀lú GitHub",
+    "githubHint": "Ṣàfikún kàlẹ́ńdà gbangba @{{login}} lórí GitHub",
+    "githubUnknown": "Kò sí àkáǹtì GitHub tó ń jẹ́ @{{login}}: ìkópa lórí Ndadiee nìkan ni a hun.",
+    "githubUnavailable": "GitHub kò dáhùn: ìkópa lórí Ndadiee nìkan ni a hun. Gbìyànjú lẹ́ẹ̀kan sí i láìpẹ́.",
+    "counts": "Àwọn kókó ọ̀rọ̀, ìdáhùn, àsọyé, àpilẹ̀kọ, iṣẹ́ àkànṣe tí a bẹ̀rẹ̀, àkọsílẹ̀ devlog àti èsì.",
+    "countsWithGithub": "Ìkópa rẹ̀ lórí Ndadiee, àti kàlẹ́ńdà gbangba rẹ̀ lórí GitHub.",
+    "errorTitle": "Ìkópa kò lè wọlé",
+    "errorText": "Ṣàyẹ̀wò ìsopọ̀ rẹ, lẹ́yìn náà gbìyànjú lẹ́ẹ̀kan sí i."
+  },
+  "collaborators": {
+    "title": "Ó ti ṣiṣẹ́ pẹ̀lú",
+    "shared": "{{projects}}",
+    "sharedMore_one": "{{projects}} àti iṣẹ́ àkànṣe mìíràn {{count}}",
+    "sharedMore_other": "{{projects}} àti àwọn iṣẹ́ àkànṣe mìíràn {{count}}",
+    "empty": "Kò tíì sí ẹgbẹ́ àjọṣe lórí Ndadiee.",
+    "emptyOwn": "Àwọn ẹlẹgbẹ́ rẹ yóò hàn níbí ní kété tí o bá darapọ̀ mọ́ ẹgbẹ́.",
+    "findTeam": "Wá ẹgbẹ́",
+    "error": "Àkójọ náà kò lè wọlé.",
+    "retry": "Gbìyànjú lẹ́ẹ̀kan sí i"
+  },
+  "badges": {
+    "title_one": "Àmì ẹ̀yẹ · {{count}}",
+    "title_other": "Àmì ẹ̀yẹ · {{count}}",
+    "empty": "Kò tíì sí àmì ẹ̀yẹ.",
+    "emptyOwn": "Àmì ẹ̀yẹ àkọ́kọ́ rẹ ń dúró dè ọ́: béèrè ìbéèrè, dá ẹnìkan lóhùn, tàbí ṣàfihàn iṣẹ́ àkànṣe.",
+    "locked": "Láti ṣí",
+    "awarded": "ó gbà á ní {{date}}",
+    "catalog": {
+      "FIRST_QUESTION": {
+        "name": "Olùwádìí",
+        "description": "Ó béèrè ìbéèrè àkọ́kọ́ rẹ̀",
+        "criteria": "Béèrè ìbéèrè àkọ́kọ́ ní àpéjọ"
+      },
+      "FIRST_ANSWER": {
+        "name": "Ìrànlọ́wọ́",
+        "description": "Ó dáhùn ìbéèrè fún ìgbà àkọ́kọ́",
+        "criteria": "Tẹ ìdáhùn àkọ́kọ́ jáde"
+      },
+      "FIRST_ACCEPTED_ANSWER": {
+        "name": "Ìṣòro yanjú",
+        "description": "A gba ọ̀kan nínú àwọn ìdáhùn rẹ̀",
+        "criteria": "Kí a gba ọ̀kan nínú àwọn ìdáhùn rẹ"
+      },
+      "FIRST_ARTICLE": {
+        "name": "Kálámù",
+        "description": "Ó tẹ àpilẹ̀kọ àkọ́kọ́ rẹ̀ jáde",
+        "criteria": "Tẹ àpilẹ̀kọ àkọ́kọ́ jáde"
+      },
+      "FIRST_PROJECT": {
+        "name": "Akọ́lé",
+        "description": "Ó ṣàfihàn iṣẹ́ àkànṣe orísun ṣíṣí àkọ́kọ́ rẹ̀",
+        "criteria": "Ṣàfihàn iṣẹ́ àkànṣe àkọ́kọ́"
+      },
+      "REPUTATION_100": {
+        "name": "Olùkópa",
+        "description": "Ó dé àmì orúkọ rere 100",
+        "criteria": "Dé àmì orúkọ rere 100"
+      },
+      "REPUTATION_500": {
+        "name": "Ọ̀jọ̀gbọ́n",
+        "description": "Ó dé àmì orúkọ rere 500",
+        "criteria": "Dé àmì orúkọ rere 500"
+      }
+    }
+  },
+  "avatar": {
+    "eyebrow": "Fọ́tò profaili",
+    "title": "Ṣètò fọ́tò rẹ",
+    "hint": "Fa fọ́tò náà sábẹ́ òbìrí; sún mọ́ pẹ̀lú ọ̀pá ìsún, kẹ̀kẹ́ eku tàbí ìka méjì. Pẹ̀lú àtẹ bọ́tìnnì: àwọn ọfà, + àti −.",
+    "stage": "Ìṣètò fọ́tò",
+    "opening": "A ń ṣí fọ́tò náà",
+    "zoom": "Sún mọ́",
+    "recenter": "Dá padà sí àárín",
+    "preview": "Àkọ́wò",
+    "pickAnother": "Yan fọ́tò mìíràn",
+    "cancel": "Fagilé",
+    "close": "Pa á dé",
+    "save": "Fi pamọ́",
+    "saving": "A ń fi ránṣẹ́… {{percent}}%",
+    "saved": "Fọ́tò profaili rẹ ti di tuntun",
+    "failed": "A kò lè fi fọ́tò náà ránṣẹ́. Gbìyànjú lẹ́ẹ̀kan sí i.",
+    "unreadable": "Fáìlì yìí kì í ṣe fọ́tò tí a lè kà. Yan àwòrán JPEG, PNG, WebP tàbí GIF.",
+    "tooBig": "Fọ́tò yìí ju MB {{max}} lọ. Yan èyí tó fúyẹ́ jù.",
+    "menu": "Yí fọ́tò profaili rẹ padà tàbí yọ ọ́ kúrò",
+    "add": "Ṣàfikún fọ́tò",
+    "change": "Yí fọ́tò padà",
+    "drop": "Ju fọ́tò rẹ síbí",
+    "remove": "Yọ fọ́tò kúrò",
+    "removeTitle": "Yọ fọ́tò rẹ kúrò?",
+    "removeText": "Àwọn lẹ́tà àkọ́kọ́ orúkọ rẹ yóò rọ́pò rẹ̀ níbi gbogbo lórí Ndadiee. O lè fi òmíràn sí nígbàkúùgbà tí o bá fẹ́.",
+    "removed": "A ti yọ fọ́tò rẹ kúrò",
+    "removeFailed": "A kò lè yọ fọ́tò náà kúrò. Gbìyànjú lẹ́ẹ̀kan sí i."
+  }
+}

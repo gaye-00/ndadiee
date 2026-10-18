@@ -6,6 +6,9 @@ interface Formatters {
   month: Intl.DateTimeFormat;
   day: Intl.DateTimeFormat;
   compactNumber: Intl.NumberFormat;
+  number: Intl.NumberFormat;
+  shortDay: Intl.DateTimeFormat;
+  dateTime: Intl.DateTimeFormat;
   regionNames: Intl.DisplayNames;
 }
 
@@ -24,6 +27,10 @@ function formatters(): Formatters {
       month: new Intl.DateTimeFormat(locales, { month: 'long', year: 'numeric' }),
       day: new Intl.DateTimeFormat(locales, { weekday: 'long', day: 'numeric', month: 'long' }),
       compactNumber: new Intl.NumberFormat(locales, { notation: 'compact', maximumFractionDigits: 1 }),
+      number: new Intl.NumberFormat(locales),
+      // Un jour de l'API (« 2026-10-18 ») est une date UTC : lu en UTC, il ne recule pas d'un jour à l'ouest
+      shortDay: new Intl.DateTimeFormat(locales, { day: 'numeric', month: 'short', timeZone: 'UTC' }),
+      dateTime: new Intl.DateTimeFormat(locales, { dateStyle: 'long', timeStyle: 'short' }),
       regionNames: new Intl.DisplayNames(locales, { type: 'region' }),
     };
     formattersByLanguage.set(language.code, entry);
@@ -73,6 +80,21 @@ export function formatDay(date: Date): string {
  */
 export function isolate(text: string): string {
   return `\u2068${text}\u2069`;
+}
+
+/** « 18 octobre 2026 à 16:04 » : l'instant exact, en infobulle d'une date relative */
+export function formatDateTime(isoDate: string): string {
+  return formatters().dateTime.format(new Date(isoDate));
+}
+
+/** « 18 oct. » : un jour de l'API, au format AAAA-MM-JJ (UTC) */
+export function formatShortDay(isoDay: string): string {
+  return formatters().shortDay.format(new Date(`${isoDay}T00:00:00Z`));
+}
+
+/** 1240 → « 1 240 » : un chiffre clé, en entier */
+export function formatNumber(value: number): string {
+  return formatters().number.format(value);
 }
 
 /** 1 240 → « 1,2 k » */

@@ -9,6 +9,8 @@ export interface ApiErrorBody {
   message?: string;
   /** Champ en erreur → message, uniquement pour errorCode = VALIDATION_ERROR */
   validationErrors?: Record<string, string>;
+  /** Précisions propres à l'erreur : `reason`, le motif d'une suspension (ACCOUNT_BLOCKED) */
+  details?: Record<string, string>;
   timestamp?: string;
 }
 

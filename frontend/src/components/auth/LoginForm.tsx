@@ -69,9 +69,16 @@ export default function LoginForm() {
     setFailure(null);
     login.mutate(values, {
       onError: (error) => {
-        if (getApiError(error)?.status === 401) {
+        const body = getApiError(error);
+        if (body?.status === 401) {
           refuse(t('auth.login.failed'));
           setFocus('password', { shouldSelect: true });
+          return;
+        }
+        // Compte suspendu par l'équipe : le titulaire lit pourquoi (le mot de passe était juste)
+        if (body?.errorCode === 'ACCOUNT_BLOCKED') {
+          const reason = body.details?.reason;
+          refuse(reason ? `${t('auth.login.blocked')} ${t('auth.login.blockedReason', { reason })}` : t('auth.login.blocked'));
           return;
         }
         if (!applyServerErrors(error, setError)) {

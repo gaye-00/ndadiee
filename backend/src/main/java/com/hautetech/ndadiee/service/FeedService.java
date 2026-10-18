@@ -43,6 +43,12 @@ public class FeedService {
     private static final Specification<Article> PUBLISHED =
             (root, query, cb) -> cb.equal(root.get("status"), ArticleStatus.PUBLISHED);
 
+    // Ni les sujets ni les projets masqués par l'administration n'entrent dans le fil
+    private static final Specification<Question> VISIBLE_QUESTION =
+            (root, query, cb) -> cb.isNull(root.get("hiddenAt"));
+    private static final Specification<Project> VISIBLE_PROJECT =
+            (root, query, cb) -> cb.isNull(root.get("hiddenAt"));
+
     private final QuestionRepository questionRepository;
     private final ArticleRepository articleRepository;
     private final ProjectRepository projectRepository;
@@ -82,16 +88,16 @@ public class FeedService {
         int depth = Math.min((page + 1) * size, MAX_DEPTH);
 
         Page<Question> questions = questionRepository.findAll(
-                FeedSpecifications.filter(Question.class, "author", false, tag, country, language,
-                        followingIds, followedTagIds),
+                Specification.allOf(VISIBLE_QUESTION, FeedSpecifications.filter(Question.class, "author", false, tag,
+                        country, language, followingIds, followedTagIds)),
                 newest(depth, "createdAt"));
         Page<Article> articles = articleRepository.findAll(
                 Specification.allOf(PUBLISHED, FeedSpecifications.filter(Article.class, "author", true, tag,
                         country, language, followingIds, followedTagIds)),
                 newest(depth, "publishedAt"));
         Page<Project> projects = projectRepository.findAll(
-                FeedSpecifications.filter(Project.class, "owner", false, tag, country, language,
-                        followingIds, followedTagIds),
+                Specification.allOf(VISIBLE_PROJECT, FeedSpecifications.filter(Project.class, "owner", false, tag,
+                        country, language, followingIds, followedTagIds)),
                 newest(depth, "createdAt"));
 
         List<FeedItemResponse> content = Stream.of(

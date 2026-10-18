@@ -1,8 +1,10 @@
 import axios, { type AxiosError, type InternalAxiosRequestConfig } from 'axios';
+import { toast } from 'sonner';
 import i18n from '@/i18n';
 import { useAuthStore } from '@/store/useAuthStore';
 import type { AuthResponse } from '@/types/auth.types';
 import type { ApiResponse } from '@/types/common.types';
+import { getApiError } from '@/utils/apiError';
 import { API_BASE_URL } from '@/utils/constants';
 import { storage } from '@/utils/storage';
 
@@ -68,9 +70,13 @@ api.interceptors.response.use(
         refreshInProgress = null;
       });
       accessToken = await refreshInProgress;
-    } catch {
+    } catch (refreshError) {
       // Session impossible à renouveler. Pas de redirection forcée : la plupart des pages sont
       // publiques, et ProtectedRoute renvoie vers /login si la page courante exige d'être connecté.
+      // Un compte suspendu entre-temps par l'équipe l'apprend ici (le motif l'attend à la connexion).
+      if (getApiError(refreshError)?.errorCode === 'ACCOUNT_BLOCKED') {
+        toast.error(i18n.t('auth.sessionBlocked'));
+      }
       useAuthStore.getState().logout();
       return Promise.reject(error);
     }

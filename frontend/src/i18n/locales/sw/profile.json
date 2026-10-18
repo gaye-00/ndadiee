@@ -1,0 +1,166 @@
+{
+  "loading": "Inapakia wasifu",
+  "notFoundTitle": "Wasifu huu haupo",
+  "notFoundText": "Hakuna mtu anayeitwa @{{username}} hapa. Huenda kiungo hakijakamilika, au akaunti imebadilisha jina.",
+  "backToShowcase": "Rudi kwenye onyesho",
+  "errorTitle": "Wasifu haukuweza kupakia",
+  "errorText": "Angalia muunganisho wako, kisha ujaribu tena.",
+  "aside": "Timu na beji",
+  "header": {
+    "openToWork": "Yuko tayari kujiunga na timu",
+    "reputation_one": "pointi <n>{{value}}</n> ya sifa",
+    "reputation_other": "pointi <n>{{value}}</n> za sifa",
+    "followers_one": "mfuasi <n>{{value}}</n>",
+    "followers_other": "wafuasi <n>{{value}}</n>",
+    "following_one": "anafuata <n>{{value}}</n>",
+    "following_other": "anafuata <n>{{value}}</n>",
+    "skills": "Ujuzi",
+    "website": "Tovuti",
+    "place": "{{city}}, {{country}}",
+    "memberSince": "Mwanachama tangu {{date}}",
+    "follow": "Mfuate {{name}}",
+    "followingThem": "Unamfuata",
+    "unfollow": "Acha kumfuata {{name}}",
+    "share": "Shiriki",
+    "shareMine": "Shiriki wasifu wangu",
+    "linkCopied": "Kiungo cha wasifu kimenakiliwa",
+    "copyFailed": "Kiungo hakikuweza kunakiliwa."
+  },
+  "stats": {
+    "title": "Ushahidi wa kazi",
+    "projects_one": "mradi uliozinduliwa",
+    "projects_other": "miradi iliyozinduliwa",
+    "teams_one": "timu aliyojiunga nayo",
+    "teams_other": "timu alizojiunga nazo",
+    "acceptedAnswers_one": "jibu lililokubaliwa",
+    "acceptedAnswers_other": "majibu yaliyokubaliwa",
+    "ofAnswers_one": "kati ya jibu {{count}} kwenye jukwaa",
+    "ofAnswers_other": "kati ya majibu {{count}} kwenye jukwaa",
+    "hackathons_one": "hackathon aliyoshiriki",
+    "hackathons_other": "hackathon alizoshiriki",
+    "podiums_one": "pamoja na jukwaa la ushindi {{count}}",
+    "podiums_other": "pamoja na majukwaa ya ushindi {{count}}"
+  },
+  "showcase": {
+    "eyebrow": "Onyesho",
+    "title": "Anachojenga {{name}}",
+    "titleOwn": "Unachojenga",
+    "count_one": "mradi {{count}}",
+    "count_other": "miradi {{count}}",
+    "role": {
+      "OWNER": "Mwanzilishi",
+      "MAINTAINER": "Mtunzaji",
+      "CONTRIBUTOR": "Mchangiaji"
+    },
+    "more_one": "Ona mradi mwingine",
+    "more_other": "Ona miradi mingine {{count}}",
+    "moreFailed": "Sehemu iliyobaki haikuweza kupakia. Jaribu tena.",
+    "errorTitle": "Miradi haikuweza kupakia",
+    "errorText": "Angalia muunganisho wako, kisha ujaribu tena.",
+    "emptyOwnTitle": "Onyesho lako linasubiri mradi wake wa kwanza",
+    "emptyOwnText": "Wasilisha mradi wa chanzo huria, au jiunge na timu: kila mradi unaoshiriki unaonekana hapa.",
+    "emptyOwnAction": "Chapisha mradi",
+    "emptyTitle": "{{name}} bado hana mradi hapa",
+    "emptyText": "Miradi yake itaonekana hapa pindi atakapozindua mmoja, au atakapojiunga na timu."
+  },
+  "heatmap": {
+    "eyebrow": "Michango",
+    "title": "Mwaka uliofumwa",
+    "currentStreak_one": "mfululizo wa sasa: siku {{count}}",
+    "currentStreak_other": "mfululizo wa sasa: siku {{count}}",
+    "sources": "Michango inayohesabiwa",
+    "platform": "Ndadiee",
+    "withGithub": "Pamoja na GitHub",
+    "githubHint": "Ongeza kalenda ya umma ya @{{login}} kwenye GitHub",
+    "githubUnknown": "Hakuna akaunti ya GitHub inayoitwa @{{login}}: michango ya Ndadiee pekee ndiyo imefumwa.",
+    "githubUnavailable": "GitHub haijibu: michango ya Ndadiee pekee ndiyo imefumwa. Jaribu tena baada ya muda mfupi.",
+    "counts": "Mada, majibu, maoni, makala, miradi iliyozinduliwa, maelezo ya devlog na mrejesho.",
+    "countsWithGithub": "Michango yake kwenye Ndadiee, na kalenda yake ya umma ya GitHub.",
+    "errorTitle": "Michango haikuweza kupakia",
+    "errorText": "Angalia muunganisho wako, kisha ujaribu tena."
+  },
+  "collaborators": {
+    "title": "Amefanya kazi na",
+    "shared": "{{projects}}",
+    "sharedMore_one": "{{projects}} na mradi mwingine {{count}}",
+    "sharedMore_other": "{{projects}} na miradi mingine {{count}}",
+    "empty": "Bado hakuna timu ya pamoja kwenye Ndadiee.",
+    "emptyOwn": "Wenzako wa timu wataonekana hapa pindi utakapojiunga na timu.",
+    "findTeam": "Tafuta timu",
+    "error": "Orodha haikuweza kupakia.",
+    "retry": "Jaribu tena"
+  },
+  "badges": {
+    "title_one": "Beji · {{count}}",
+    "title_other": "Beji · {{count}}",
+    "empty": "Bado hakuna beji.",
+    "emptyOwn": "Beji yako ya kwanza inakusubiri: uliza swali, mjibu mtu, au wasilisha mradi.",
+    "locked": "Za kufungua",
+    "awarded": "ilipatikana {{date}}",
+    "catalog": {
+      "FIRST_QUESTION": {
+        "name": "Mdadisi",
+        "description": "Ameuliza swali lake la kwanza",
+        "criteria": "Uliza swali la kwanza kwenye jukwaa"
+      },
+      "FIRST_ANSWER": {
+        "name": "Mkono wa msaada",
+        "description": "Amejibu swali kwa mara ya kwanza",
+        "criteria": "Chapisha jibu la kwanza"
+      },
+      "FIRST_ACCEPTED_ANSWER": {
+        "name": "Tatizo limetatuliwa",
+        "description": "Moja ya majibu yake limekubaliwa",
+        "criteria": "Jibu lako moja likubaliwe"
+      },
+      "FIRST_ARTICLE": {
+        "name": "Kalamu",
+        "description": "Amechapisha makala yake ya kwanza",
+        "criteria": "Chapisha makala ya kwanza"
+      },
+      "FIRST_PROJECT": {
+        "name": "Mjenzi",
+        "description": "Amewasilisha mradi wake wa kwanza wa chanzo huria",
+        "criteria": "Wasilisha mradi wa kwanza"
+      },
+      "REPUTATION_100": {
+        "name": "Mchangiaji",
+        "description": "Amefikia pointi 100 za sifa",
+        "criteria": "Fikia pointi 100 za sifa"
+      },
+      "REPUTATION_500": {
+        "name": "Mtaalamu",
+        "description": "Amefikia pointi 500 za sifa",
+        "criteria": "Fikia pointi 500 za sifa"
+      }
+    }
+  },
+  "avatar": {
+    "eyebrow": "Picha ya wasifu",
+    "title": "Panga picha yako",
+    "hint": "Buruta picha chini ya duara; kuza kwa kitelezi, gurudumu la kipanya au vidole viwili. Kwa kibodi: mishale, + na −.",
+    "stage": "Mpangilio wa picha",
+    "opening": "Inafungua picha",
+    "zoom": "Kuza",
+    "recenter": "Rudisha katikati",
+    "preview": "Onyesho la awali",
+    "pickAnother": "Chagua picha nyingine",
+    "cancel": "Ghairi",
+    "close": "Funga",
+    "save": "Hifadhi",
+    "saving": "Inatuma… {{percent}}%",
+    "saved": "Picha yako ya wasifu imesasishwa",
+    "failed": "Picha haikuweza kutumwa. Jaribu tena.",
+    "unreadable": "Faili hili si picha tunayoweza kusoma. Chagua picha ya JPEG, PNG, WebP au GIF.",
+    "tooBig": "Picha hii inazidi MB {{max}}. Chagua nyepesi zaidi.",
+    "menu": "Badilisha au ondoa picha yako ya wasifu",
+    "add": "Ongeza picha",
+    "change": "Badilisha picha",
+    "drop": "Weka picha yako hapa",
+    "remove": "Ondoa picha",
+    "removeTitle": "Ondoa picha yako?",
+    "removeText": "Herufi za mwanzo za jina lako zitaichukua nafasi kila mahali kwenye Ndadiee. Unaweza kuweka nyingine wakati wowote.",
+    "removed": "Picha yako imeondolewa",
+    "removeFailed": "Picha haikuweza kuondolewa. Jaribu tena."
+  }
+}

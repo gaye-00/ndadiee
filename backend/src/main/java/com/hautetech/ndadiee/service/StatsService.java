@@ -10,7 +10,10 @@ import com.hautetech.ndadiee.repository.ProjectRepository;
 
 import lombok.RequiredArgsConstructor;
 
-/** Chiffres de la communauté, comptés en base à chaque demande (cinq requêtes simples). */
+/**
+ * Chiffres de la communauté, comptés en base à chaque demande (cinq requêtes simples). Ni les comptes suspendus
+ * ni les projets masqués par l'administration n'y comptent.
+ */
 @Service
 @RequiredArgsConstructor
 @Transactional(readOnly = true)
@@ -22,10 +25,10 @@ public class StatsService {
 
     public CommunityStatsResponse community() {
         return CommunityStatsResponse.builder()
-                .developers(developerRepository.count())
+                .developers(developerRepository.countByBlockedAtIsNull())
                 .countries(developerRepository.countCountries())
-                .projects(projectRepository.count())
-                .openings(openingRepository.countByOpenTrue())
+                .projects(projectRepository.countByHiddenAtIsNull())
+                .openings(openingRepository.countOpen())
                 .seats(openingRepository.sumOpenSeats())
                 .build();
     }

@@ -7,6 +7,7 @@ import NotificationBell from './NotificationBell';
 import SearchTrigger from './SearchTrigger';
 import UserMenu from './UserMenu';
 import { site } from '@/config/site';
+import { useAuth } from '@/hooks/useAuth';
 import { useHideOnScroll } from '@/hooks/useHideOnScroll';
 import { prefetch } from '@/lib/prefetch';
 import { cn } from '@/lib/utils';
@@ -23,6 +24,8 @@ import { paths } from '@/router/paths';
 export default function Topbar() {
   const { t } = useTranslation();
   const { scrolled } = useHideOnScroll();
+  // Un admin ne publie pas et ne reçoit pas de notifications : ni cloche, ni « Nouveau projet »
+  const { isAdmin, home } = useAuth();
 
   return (
     <header
@@ -35,9 +38,9 @@ export default function Topbar() {
     >
       <div className="flex h-16 items-center gap-2 px-4 sm:gap-3 sm:px-6 lg:px-8">
         <Link
-          to={paths.dashboard}
+          to={home}
           viewTransition
-          onPointerEnter={() => prefetch(pages.dashboard)}
+          onPointerEnter={() => prefetch(isAdmin ? pages.admin : pages.dashboard)}
           className="group/logo shrink-0 rounded-lg outline-none focus-visible:ring-2 focus-visible:ring-ring/70 md:hidden"
         >
           <span aria-hidden className="block size-7 rounded-[0.5rem] bg-kente-conic transition-transform duration-700 ease-out-expo group-hover/logo:rotate-180" />
@@ -48,7 +51,7 @@ export default function Topbar() {
 
         <div className="flex shrink-0 items-center gap-1 sm:gap-2">
           <SearchTrigger />
-          <NotificationBell />
+          {!isAdmin && <NotificationBell />}
           <Link
             to={paths.newProject}
             viewTransition
@@ -56,7 +59,8 @@ export default function Topbar() {
             onPointerEnter={() => prefetch(pages.newProject)}
             onFocus={() => prefetch(pages.newProject)}
             className={cn(
-              'group/new relative isolate hidden h-10 items-center gap-1.5 overflow-hidden rounded-[0.875rem] bg-kente-warm px-3 text-sm font-bold whitespace-nowrap text-kente-night md:inline-flex lg:ps-3.5 lg:pe-4',
+              'group/new relative isolate hidden h-10 items-center gap-1.5 overflow-hidden rounded-[0.875rem] bg-kente-warm px-3 text-sm font-bold whitespace-nowrap text-kente-night lg:ps-3.5 lg:pe-4',
+              !isAdmin && 'md:inline-flex',
               'shadow-[0_10px_24px_-14px_var(--kente-coral)] transition-[translate,box-shadow] duration-300 ease-out-expo hover:-translate-y-px hover:shadow-[0_14px_30px_-12px_var(--kente-coral)] active:translate-y-0',
               'outline-none focus-visible:ring-2 focus-visible:ring-ring/70 focus-visible:ring-offset-2 focus-visible:ring-offset-background',
             )}

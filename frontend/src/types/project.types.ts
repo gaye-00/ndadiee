@@ -121,6 +121,9 @@ export interface Project {
   // Renseignés uniquement pour un membre connecté
   starredByMe: boolean | null;
   myMembershipStatus: MemberStatus | null;
+  /** Masqué par l'équipe : seuls son auteur et les admins le reçoivent encore, avec le motif */
+  hidden: boolean;
+  hiddenReason: string | null;
   createdAt: string;
   updatedAt: string;
 }

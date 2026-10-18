@@ -1,0 +1,166 @@
+{
+  "loading": "መገለጫው እየተጫነ ነው",
+  "notFoundTitle": "ይህ መገለጫ የለም",
+  "notFoundText": "እዚህ @{{username}} የሚባል ማንም የለም። አገናኙ ያልተሟላ ሊሆን ይችላል፣ ወይም መለያው ስሙን ቀይሮ ይሆናል።",
+  "backToShowcase": "ወደ ማሳያው ተመለስ",
+  "errorTitle": "መገለጫው ሊጫን አልቻለም",
+  "errorText": "ግንኙነትህን አረጋግጥና እንደገና ሞክር።",
+  "aside": "ቡድኖች እና ባጆች",
+  "header": {
+    "openToWork": "ቡድን ለመቀላቀል ዝግጁ",
+    "reputation_one": "<n>{{value}}</n> የዝና ነጥብ",
+    "reputation_other": "<n>{{value}}</n> የዝና ነጥቦች",
+    "followers_one": "<n>{{value}}</n> ተከታይ",
+    "followers_other": "<n>{{value}}</n> ተከታዮች",
+    "following_one": "<n>{{value}}</n> ይከተላል",
+    "following_other": "<n>{{value}}</n> ይከተላል",
+    "skills": "ክህሎቶች",
+    "website": "ድረ ገጽ",
+    "place": "{{city}}፣ {{country}}",
+    "memberSince": "ከ{{date}} ጀምሮ አባል",
+    "follow": "{{name}}ን ተከተል",
+    "followingThem": "እየተከተልክ ነው",
+    "unfollow": "{{name}}ን መከተል አቁም",
+    "share": "አጋራ",
+    "shareMine": "መገለጫዬን አጋራ",
+    "linkCopied": "የመገለጫው አገናኝ ተቀድቷል",
+    "copyFailed": "አገናኙን መቅዳት አልተቻለም።"
+  },
+  "stats": {
+    "title": "የሥራ ማስረጃዎች",
+    "projects_one": "የጀመረው ፕሮጀክት",
+    "projects_other": "የጀመራቸው ፕሮጀክቶች",
+    "teams_one": "የተቀላቀለው ቡድን",
+    "teams_other": "የተቀላቀላቸው ቡድኖች",
+    "acceptedAnswers_one": "ተቀባይነት ያገኘ መልስ",
+    "acceptedAnswers_other": "ተቀባይነት ያገኙ መልሶች",
+    "ofAnswers_one": "በመድረኩ ላይ ካሉ {{count}} መልስ",
+    "ofAnswers_other": "በመድረኩ ላይ ካሉ {{count}} መልሶች",
+    "hackathons_one": "የተሳተፈበት ሃካቶን",
+    "hackathons_other": "የተሳተፈባቸው ሃካቶኖች",
+    "podiums_one": "{{count}} የአሸናፊዎች መድረክን ጨምሮ",
+    "podiums_other": "{{count}} የአሸናፊዎች መድረኮችን ጨምሮ"
+  },
+  "showcase": {
+    "eyebrow": "ማሳያ",
+    "title": "{{name}} እየገነባ ያለው",
+    "titleOwn": "እየገነባህ ያለኸው",
+    "count_one": "{{count}} ፕሮጀክት",
+    "count_other": "{{count}} ፕሮጀክቶች",
+    "role": {
+      "OWNER": "መሥራች",
+      "MAINTAINER": "ጠባቂ",
+      "CONTRIBUTOR": "አስተዋጽኦ አበርካች"
+    },
+    "more_one": "ሌላውን ፕሮጀክት ተመልከት",
+    "more_other": "ሌሎቹን {{count}} ፕሮጀክቶች ተመልከት",
+    "moreFailed": "ቀሪው ሊጫን አልቻለም። እንደገና ሞክር።",
+    "errorTitle": "ፕሮጀክቶቹ ሊጫኑ አልቻሉም",
+    "errorText": "ግንኙነትህን አረጋግጥና እንደገና ሞክር።",
+    "emptyOwnTitle": "ማሳያህ የመጀመሪያውን ፕሮጀክት እየጠበቀ ነው",
+    "emptyOwnText": "ክፍት ምንጭ ፕሮጀክት አቅርብ፣ ወይም ቡድን ተቀላቀል፦ የምትሳተፍበት እያንዳንዱ ፕሮጀክት እዚህ ይታያል።",
+    "emptyOwnAction": "ፕሮጀክት አትም",
+    "emptyTitle": "{{name}} እስካሁን እዚህ ፕሮጀክት የለውም",
+    "emptyText": "አንዱን እንደጀመረ ወይም ቡድን እንደተቀላቀለ ፕሮጀክቶቹ እዚህ ይታያሉ።"
+  },
+  "heatmap": {
+    "eyebrow": "አስተዋጽኦዎች",
+    "title": "የተሸመነ ዓመት",
+    "currentStreak_one": "የአሁኑ ተከታታይ፦ {{count}} ቀን",
+    "currentStreak_other": "የአሁኑ ተከታታይ፦ {{count}} ቀናት",
+    "sources": "የተቆጠሩ አስተዋጽኦዎች",
+    "platform": "Ndadiee",
+    "withGithub": "ከGitHub ጋር",
+    "githubHint": "የ@{{login}}ን የGitHub ሕዝባዊ ቀን መቁጠሪያ ጨምር",
+    "githubUnknown": "@{{login}} የሚባል የGitHub መለያ የለም፦ የተሸመኑት በNdadiee ላይ ያሉ አስተዋጽኦዎች ብቻ ናቸው።",
+    "githubUnavailable": "GitHub ምላሽ አይሰጥም፦ የተሸመኑት በNdadiee ላይ ያሉ አስተዋጽኦዎች ብቻ ናቸው። ትንሽ ቆይተህ እንደገና ሞክር።",
+    "counts": "ርዕሶች፣ መልሶች፣ አስተያየቶች፣ ጽሑፎች፣ የተጀመሩ ፕሮጀክቶች፣ የdevlog ማስታወሻዎች እና ግብረ መልሶች።",
+    "countsWithGithub": "በNdadiee ላይ ያሉ አስተዋጽኦዎቹ፣ እና የGitHub ሕዝባዊ ቀን መቁጠሪያው።",
+    "errorTitle": "አስተዋጽኦዎቹ ሊጫኑ አልቻሉም",
+    "errorText": "ግንኙነትህን አረጋግጥና እንደገና ሞክር።"
+  },
+  "collaborators": {
+    "title": "አብሮ የሠራቸው",
+    "shared": "{{projects}}",
+    "sharedMore_one": "{{projects}} እና {{count}} ሌላ ፕሮጀክት",
+    "sharedMore_other": "{{projects}} እና {{count}} ሌሎች ፕሮጀክቶች",
+    "empty": "በNdadiee ላይ እስካሁን የጋራ ቡድን የለም።",
+    "emptyOwn": "ቡድን እንደተቀላቀልክ የቡድን አጋሮችህ እዚህ ይታያሉ።",
+    "findTeam": "ቡድን ፈልግ",
+    "error": "ዝርዝሩ ሊጫን አልቻለም።",
+    "retry": "እንደገና ሞክር"
+  },
+  "badges": {
+    "title_one": "ባጅ · {{count}}",
+    "title_other": "ባጆች · {{count}}",
+    "empty": "እስካሁን ባጅ የለም።",
+    "emptyOwn": "የመጀመሪያው ባጅህ እየጠበቀህ ነው፦ ጥያቄ ጠይቅ፣ ለአንድ ሰው መልስ ስጥ፣ ወይም ፕሮጀክት አቅርብ።",
+    "locked": "የሚከፈቱ",
+    "awarded": "በ{{date}} የተገኘ",
+    "catalog": {
+      "FIRST_QUESTION": {
+        "name": "ጠያቂ",
+        "description": "የመጀመሪያ ጥያቄውን ጠየቀ",
+        "criteria": "በመድረኩ ላይ የመጀመሪያ ጥያቄ ጠይቅ"
+      },
+      "FIRST_ANSWER": {
+        "name": "መረዳዳት",
+        "description": "ለመጀመሪያ ጊዜ ጥያቄን መለሰ",
+        "criteria": "የመጀመሪያ መልስ አትም"
+      },
+      "FIRST_ACCEPTED_ANSWER": {
+        "name": "ችግር ተፈታ",
+        "description": "ከመልሶቹ አንዱ ተቀባይነት አገኘ",
+        "criteria": "ከመልሶችህ አንዱ ተቀባይነት እንዲያገኝ"
+      },
+      "FIRST_ARTICLE": {
+        "name": "ብዕር",
+        "description": "የመጀመሪያ ጽሑፉን አሳተመ",
+        "criteria": "የመጀመሪያ ጽሑፍ አትም"
+      },
+      "FIRST_PROJECT": {
+        "name": "ገንቢ",
+        "description": "የመጀመሪያውን ክፍት ምንጭ ፕሮጀክቱን አቀረበ",
+        "criteria": "የመጀመሪያ ፕሮጀክት አቅርብ"
+      },
+      "REPUTATION_100": {
+        "name": "አስተዋጽኦ አበርካች",
+        "description": "100 የዝና ነጥቦች ላይ ደረሰ",
+        "criteria": "100 የዝና ነጥቦች ላይ ድረስ"
+      },
+      "REPUTATION_500": {
+        "name": "ባለሙያ",
+        "description": "500 የዝና ነጥቦች ላይ ደረሰ",
+        "criteria": "500 የዝና ነጥቦች ላይ ድረስ"
+      }
+    }
+  },
+  "avatar": {
+    "eyebrow": "የመገለጫ ፎቶ",
+    "title": "ፎቶህን አስተካክል",
+    "hint": "ፎቶውን በክቡ ሥር ጎትት፤ በተንሸራታቹ፣ በመዳፊት መሽከርከሪያው ወይም በሁለት ጣቶች አቅርብ። በቁልፍ ሰሌዳ፦ ቀስቶቹ፣ + እና −።",
+    "stage": "የፎቶ አቀማመጥ",
+    "opening": "ፎቶው እየተከፈተ ነው",
+    "zoom": "አጉላ",
+    "recenter": "ወደ መሃል መልስ",
+    "preview": "ቅድመ እይታ",
+    "pickAnother": "ሌላ ፎቶ ምረጥ",
+    "cancel": "ሰርዝ",
+    "close": "ዝጋ",
+    "save": "አስቀምጥ",
+    "saving": "እየተላከ ነው… {{percent}}%",
+    "saved": "የመገለጫ ፎቶህ ተዘምኗል",
+    "failed": "ፎቶው ሊላክ አልቻለም። እንደገና ሞክር።",
+    "unreadable": "ይህ ፋይል ልናነበው የምንችል ፎቶ አይደለም። JPEG፣ PNG፣ WebP ወይም GIF ምስል ምረጥ።",
+    "tooBig": "ይህ ፎቶ ከ{{max}} ሜባ ይበልጣል። ቀለል ያለ ምረጥ።",
+    "menu": "የመገለጫ ፎቶህን ቀይር ወይም አስወግድ",
+    "add": "ፎቶ ጨምር",
+    "change": "ፎቶ ቀይር",
+    "drop": "ፎቶህን እዚህ ጣል",
+    "remove": "ፎቶ አስወግድ",
+    "removeTitle": "ፎቶህን ልታስወግድ ነው?",
+    "removeText": "የስምህ የመጀመሪያ ፊደላት በNdadiee ላይ በሁሉም ቦታ ይተኩታል። በፈለግከው ጊዜ ሌላ ማስገባት ትችላለህ።",
+    "removed": "ፎቶህ ተወግዷል",
+    "removeFailed": "ፎቶው ሊወገድ አልቻለም። እንደገና ሞክር።"
+  }
+}

@@ -1,0 +1,265 @@
+{
+  "shell": {
+    "brand": "Ukuphatha",
+    "nav": "Izigaba zokuphatha",
+    "site": "Isizindalwazi",
+    "role": "Ukuphatha",
+    "sections": {
+      "overview": "Ukubuka konke",
+      "users": "Amalungu",
+      "content": "Okuqukethwe",
+      "journal": "Irekhodi"
+    }
+  },
+  "shared": {
+    "errorText": "Hlola uxhumano lwakho, bese uzama futhi."
+  },
+  "roles": {
+    "USER": "Ilungu",
+    "MODERATOR": "Umlawuli",
+    "ADMIN": "Umphathi"
+  },
+  "overview": {
+    "lead": "Umphakathi nokuqukethwe kwawo ngezinombolo, nezinqumo zakamuva zethimba.",
+    "loading": "Kulayishwa ukubuka konke",
+    "errorTitle": "Ukubuka konke akukwazanga ukulayisha",
+    "community": "Umphakathi",
+    "content": "Okuqukethwe",
+    "thisWeek": "+{{formatted}} kuleli sonto",
+    "kpi": {
+      "members": "Amalungu",
+      "active": "Abasebenzile kuleli sonto",
+      "activeHint": "bangene okungenani kanye",
+      "moderators": "Abalawuli",
+      "moderatorsHint": "baqapha izingxoxo",
+      "blocked": "Ama-akhawunti amisiwe",
+      "blockedHint": "awasakwazi ukungena",
+      "topics": "Izihloko zezingxoxo",
+      "answers": "Izimpendulo",
+      "projects": "Amaphrojekthi",
+      "hidden": "Okuqukethwe okufihliwe",
+      "hiddenHint": "umphakathi awukuboni"
+    },
+    "signups": {
+      "title": "Ukubhalisa",
+      "subtitle_one": "Izinsuku ezingu-30 ezedlule · ukubhalisa okungu-{{formatted}}",
+      "subtitle_other": "Izinsuku ezingu-30 ezedlule · ukubhalisa okungu-{{formatted}}",
+      "chartLabel": "Ukubhalisa ngosuku ezinsukwini ezingu-30 ezedlule. Imicibisholo ihamba phakathi kwezinsuku.",
+      "day_one": "{{date}}: ukubhalisa okungu-{{count}}",
+      "day_other": "{{date}}: ukubhalisa okungu-{{count}}",
+      "count_one": "Ukubhalisa okungu-{{formatted}}",
+      "count_other": "Ukubhalisa okungu-{{formatted}}",
+      "today": "namuhla",
+      "showTable": "Ithebula",
+      "showChart": "Ishadi",
+      "dayColumn": "Usuku",
+      "countColumn": "Ukubhalisa"
+    },
+    "recent": {
+      "title": "Izinqumo zakamuva",
+      "seeAll": "Irekhodi lonke",
+      "empty": "Asikho isinqumo okwamanje."
+    }
+  },
+  "users": {
+    "title": "Amalungu",
+    "lead": "Sesha i-akhawunti, uyimise ngesizathu noma uyibuyise, uqoke umlawuli noma umsuse kuleyo ndima.",
+    "count_one": "I-akhawunti engu-{{formatted}}",
+    "count_other": "Ama-akhawunti angu-{{formatted}}",
+    "filters": "Hlunga ama-akhawunti",
+    "search": "Sesha i-akhawunti",
+    "searchPlaceholder": "Igama, @igama lomsebenzisi noma i-imeyili…",
+    "status": {
+      "label": "Isimo se-akhawunti",
+      "all": "Konke",
+      "ACTIVE": "Asebenzayo",
+      "BLOCKED": "Amisiwe"
+    },
+    "role": {
+      "label": "Indima",
+      "all": "Zonke izindima"
+    },
+    "loading": "Kulayishwa ama-akhawunti",
+    "errorTitle": "Ama-akhawunti awakwazanga ukulayisha",
+    "empty": {
+      "title": "Ayikho i-akhawunti efanayo",
+      "text": "Shintsha usesho noma ususe isihlungi."
+    },
+    "you": "wena",
+    "active": "Iyasebenza",
+    "blocked": "Imisiwe",
+    "blockedSince": "Imisiwe {{when}}",
+    "reason": "Isizathu: {{reason}}",
+    "questions_one": "Isihloko esingu-{{formatted}}",
+    "questions_other": "Izihloko ezingu-{{formatted}}",
+    "answers_one": "Impendulo engu-{{formatted}}",
+    "answers_other": "Izimpendulo ezingu-{{formatted}}",
+    "projects_one": "Iphrojekthi engu-{{formatted}}",
+    "projects_other": "Amaphrojekthi angu-{{formatted}}",
+    "adminAccount": "I-akhawunti yokuphatha",
+    "joined": "Ujoyine ngo-{{date}}",
+    "lastLogin": "Ungene {{when}}",
+    "neverLoggedIn": "Akakaze angene",
+    "actions": {
+      "label": "Izenzo zika-{{name}}",
+      "profile": "Buka iphrofayela yomphakathi",
+      "copyEmail": "Kopisha i-imeyili",
+      "makeModerator": "Mqoke abe umlawuli",
+      "makeMember": "Susa indima yomlawuli",
+      "block": "Misa i-akhawunti",
+      "unblock": "Buyisa i-akhawunti"
+    },
+    "blockDialog": {
+      "title": "Misa u-{{name}}?",
+      "description": "Le akhawunti ngeke isakwazi ukungena, futhi iseshini yayo yamanje izovalwa. Lokho ekushicilele kuzohlala kukhona: kufihle ngokwehlukana uma kudingeka.",
+      "reasonLabel": "Isizathu sokumisa",
+      "confirm": "Misa"
+    },
+    "unblockDialog": {
+      "title": "Buyisa u-{{name}}?",
+      "description": "I-akhawunti izokwazi ukungena futhi ibambe iqhaza futhi.",
+      "confirm": "Buyisa"
+    },
+    "roleDialog": {
+      "moderatorTitle": "Qoka u-{{name}} abe umlawuli?",
+      "moderatorText": "Umlawuli angahlela futhi asuse okuqukethwe kwamanye amalungu ezingxoxweni nasemaphrojekthini. Akanakho ukufinyelela ekuphatheni.",
+      "moderatorConfirm": "Mqoke abe umlawuli",
+      "memberTitle": "Susa indima yomlawuli ku-{{name}}?",
+      "memberText": "Uzophinde abe ilungu elivamile: ngeke esakwazi ukuhlela noma ukususa okuqukethwe kwabanye.",
+      "memberConfirm": "Susa indima"
+    },
+    "toast": {
+      "blocked": "U-{{name}} umisiwe.",
+      "unblocked": "U-{{name}} ubuyisiwe.",
+      "moderator": "U-{{name}} manje ungumlawuli.",
+      "member": "U-{{name}} ubuyele ekubeni yilungu.",
+      "emailCopied": "I-imeyili ikopishiwe."
+    }
+  },
+  "content": {
+    "title": "Okuqukethwe",
+    "lead": "Izihloko zezingxoxo, izimpendulo namaphrojekthi. Ukufihla kususa okuqukethwe emphakathini ngaphandle kokulahlekelwa yilutho: umbhali ubona isizathu, futhi ungakubuyisa. Ukususa kungunaphakade.",
+    "count_one": "Into engu-{{formatted}}",
+    "count_other": "Izinto ezingu-{{formatted}}",
+    "filters": "Hlunga okuqukethwe",
+    "typeLabel": "Uhlobo lokuqukethwe",
+    "types": {
+      "QUESTION": "Izihloko",
+      "ANSWER": "Izimpendulo",
+      "PROJECT": "Amaphrojekthi"
+    },
+    "type": {
+      "QUESTION": "Isihloko",
+      "ANSWER": "Impendulo",
+      "PROJECT": "Iphrojekthi"
+    },
+    "search": "Sesha okuqukethwe",
+    "searchPlaceholder": "Isihloko, umbhalo noma @umbhali…",
+    "visibility": {
+      "label": "Ukubonakala",
+      "all": "Konke",
+      "VISIBLE": "Okubonakalayo",
+      "HIDDEN": "Okufihliwe"
+    },
+    "loading": "Kulayishwa okuqukethwe",
+    "errorTitle": "Okuqukethwe akukwazanga ukulayisha",
+    "empty": {
+      "title": "Akukho okuqukethwe okufanayo",
+      "text": "Shintsha usesho noma ususe isihlungi."
+    },
+    "answerTo": "Impendulo ku-«{{title}}»",
+    "hiddenBadge": "Kufihliwe",
+    "hiddenSince": "Kufihliwe {{when}}",
+    "reason": "Isizathu: {{reason}}",
+    "score_one": "Iphuzu elingu-{{formatted}}",
+    "score_other": "Amaphuzu angu-{{formatted}}",
+    "stars_one": "Inkanyezi engu-{{formatted}}",
+    "stars_other": "Izinkanyezi ezingu-{{formatted}}",
+    "replies_one": "Impendulo engu-{{formatted}}",
+    "replies_other": "Izimpendulo ezingu-{{formatted}}",
+    "actions": {
+      "view": "Buka",
+      "hide": "Fihla",
+      "unhide": "Buyisa",
+      "delete": "Susa"
+    },
+    "hideDialog": {
+      "title": "Fihla lokhu okuqukethwe?",
+      "description": "Kuphuma emakhasini omphakathi: ohlwini, osesho, okuphakelayo nasezibalweni. Umbhali usakubona kanye nesizathu, futhi uzokwazi ukukubuyisa.",
+      "reasonLabel": "Isizathu (sizokhonjiswa umbhali)",
+      "confirm": "Fihla"
+    },
+    "deleteDialog": {
+      "title": "Susa unomphela?",
+      "description": {
+        "QUESTION": "Isihloko sizohamba nezimpendulo, amavoti nokuphawula kwaso. Akubuyiswa: ukufihla kuvame ukwanela.",
+        "ANSWER": "Impendulo izohamba namavoti nokuphawula kwayo. Akubuyiswa: ukufihla kuvame ukwanela.",
+        "PROJECT": "Iphrojekthi izohamba nethimba layo, izikhangiso, amavoti nokuphawula kwayo. Akubuyiswa: ukufihla kuvame ukwanela."
+      },
+      "reasonLabel": "Isizathu (sigcinwa erekhodini)",
+      "confirm": "Susa"
+    },
+    "toast": {
+      "hidden": "Okuqukethwe kufihliwe.",
+      "unhidden": "Okuqukethwe kubuyisiwe.",
+      "deleted": "Okuqukethwe kususiwe."
+    }
+  },
+  "journal": {
+    "title": "Irekhodi",
+    "lead": "Zonke izinqumo zethimba, nesizathu sazo. Irekhodi alisulwa.",
+    "count_one": "Isinqumo esingu-{{formatted}}",
+    "count_other": "Izinqumo ezingu-{{formatted}}",
+    "filter": "Okuthintwa yizinqumo",
+    "targets": {
+      "all": "Konke",
+      "USER": "Ama-akhawunti",
+      "QUESTION": "Izihloko",
+      "ANSWER": "Izimpendulo",
+      "PROJECT": "Amaphrojekthi"
+    },
+    "loading": "Kulayishwa irekhodi",
+    "errorTitle": "Irekhodi alikwazanga ukulayisha",
+    "empty": {
+      "title": "Akukho lutho erekhodini",
+      "text": "Izinqumo zethimba zizobhalwa lapha."
+    },
+    "formerAdmin": "Umphathi wangaphambili",
+    "reason": "Isizathu:",
+    "seeAccount": "Buka i-akhawunti",
+    "sentence": {
+      "BLOCK_USER": "<b>{{admin}}</b> umise <b>@{{target}}</b>",
+      "UNBLOCK_USER": "<b>{{admin}}</b> ubuyise <b>@{{target}}</b>",
+      "CHANGE_ROLE": "<b>{{admin}}</b> ushintshe <b>@{{target}}</b> kusuka ku-{{from}} kuya ku-{{to}}",
+      "HIDE_CONTENT_QUESTION": "<b>{{admin}}</b> ufihle isihloko <b>{{target}}</b>",
+      "HIDE_CONTENT_ANSWER": "<b>{{admin}}</b> ufihle impendulo ku-<b>{{target}}</b>",
+      "HIDE_CONTENT_PROJECT": "<b>{{admin}}</b> ufihle iphrojekthi <b>{{target}}</b>",
+      "UNHIDE_CONTENT_QUESTION": "<b>{{admin}}</b> ubuyise isihloko <b>{{target}}</b>",
+      "UNHIDE_CONTENT_ANSWER": "<b>{{admin}}</b> ubuyise impendulo ku-<b>{{target}}</b>",
+      "UNHIDE_CONTENT_PROJECT": "<b>{{admin}}</b> ubuyise iphrojekthi <b>{{target}}</b>",
+      "DELETE_CONTENT_QUESTION": "<b>{{admin}}</b> ususe isihloko <b>{{target}}</b>",
+      "DELETE_CONTENT_ANSWER": "<b>{{admin}}</b> ususe impendulo ku-<b>{{target}}</b>",
+      "DELETE_CONTENT_PROJECT": "<b>{{admin}}</b> ususe iphrojekthi <b>{{target}}</b>"
+    }
+  },
+  "reason": {
+    "placeholder": "Chaza isinqumo ngomusho owodwa…",
+    "required": "Isizathu siyadingeka.",
+    "shown": "Sizokhonjiswa othintekayo.",
+    "optional": "Akuphoqelekile: sigcinwa erekhodini kuphela.",
+    "counter": "{{length}}/{{max}}",
+    "presets": {
+      "spam": "Ugaxekile noma isikhangiso.",
+      "fraud": "Inkohliso noma ukukhwabanisa.",
+      "abuse": "Amazwi angenanhlonipho.",
+      "offTopic": "Akuhlobene nesihloko.",
+      "duplicate": "Kuphindiwe."
+    }
+  },
+  "pager": {
+    "label": "Amakhasi",
+    "previous": "Edlule",
+    "next": "Elandelayo",
+    "page": "Ikhasi {{page}} kwangu-{{total}}"
+  }
+}

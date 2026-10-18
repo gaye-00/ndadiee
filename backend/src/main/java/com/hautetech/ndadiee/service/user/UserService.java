@@ -1,5 +1,7 @@
 package com.hautetech.ndadiee.service.user;
 
+import java.time.Instant;
+
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -21,12 +23,17 @@ import com.hautetech.ndadiee.mapper.UserMapper;
 import com.hautetech.ndadiee.model.Language;
 import com.hautetech.ndadiee.model.content.ArticleStatus;
 import com.hautetech.ndadiee.model.content.Tag;
+import com.hautetech.ndadiee.model.project.MemberStatus;
+import com.hautetech.ndadiee.model.project.ProjectRole;
 import com.hautetech.ndadiee.model.user.Developer;
 import com.hautetech.ndadiee.model.user.ExperienceLevel;
+import com.hautetech.ndadiee.model.user.Role;
 import com.hautetech.ndadiee.model.user.User;
 import com.hautetech.ndadiee.repository.AnswerRepository;
 import com.hautetech.ndadiee.repository.ArticleRepository;
 import com.hautetech.ndadiee.repository.DeveloperRepository;
+import com.hautetech.ndadiee.repository.HackathonTeamRepository;
+import com.hautetech.ndadiee.repository.ProjectMemberRepository;
 import com.hautetech.ndadiee.repository.ProjectRepository;
 import com.hautetech.ndadiee.repository.QuestionRepository;
 import com.hautetech.ndadiee.repository.UserBadgeRepository;
@@ -49,6 +56,8 @@ public class UserService {
     private final AnswerRepository answerRepository;
     private final ArticleRepository articleRepository;
     private final ProjectRepository projectRepository;
+    private final ProjectMemberRepository projectMemberRepository;
+    private final HackathonTeamRepository hackathonTeamRepository;
     private final UserBadgeRepository userBadgeRepository;
     private final TagService tagService;
     private final UserMapper userMapper;
@@ -74,10 +83,16 @@ public class UserService {
         response.setBadges(badgeMapper.toUserBadgeResponses(userBadgeRepository.findByUserIdOrderByAwardedAtDesc(id)));
         response.setFollowersCount(developerRepository.countFollowers(id));
         response.setFollowingCount(developerRepository.countFollowing(id));
-        response.setQuestionCount(questionRepository.countByAuthorId(id));
-        response.setAnswerCount(answerRepository.countByAuthorId(id));
+        // Ce que le public peut voir : les contenus masqués par l'administration ne comptent pas
+        response.setQuestionCount(questionRepository.countByAuthorIdAndHiddenAtIsNull(id));
+        response.setAnswerCount(answerRepository.countByAuthorIdAndHiddenAtIsNull(id));
         response.setArticleCount(articleRepository.countByAuthorIdAndStatus(id, ArticleStatus.PUBLISHED));
-        response.setProjectCount(projectRepository.countByOwnerId(id));
+        response.setProjectCount(projectRepository.countByOwnerIdAndHiddenAtIsNull(id));
+        response.setTeamCount(projectMemberRepository.countByUserIdAndStatusAndRoleNotAndProjectHiddenAtIsNull(
+                id, MemberStatus.ACCEPTED, ProjectRole.OWNER));
+        response.setAcceptedAnswerCount(answerRepository.countByAuthorIdAndAcceptedTrueAndHiddenAtIsNull(id));
+        response.setHackathonCount(hackathonTeamRepository.countStartedForMember(id, MemberStatus.ACCEPTED, Instant.now()));
+        response.setPodiumCount(hackathonTeamRepository.countPodiumsForMember(id, MemberStatus.ACCEPTED));
         if (currentUserId != null && !currentUserId.equals(id)) {
             response.setFollowedByMe(developerRepository.isFollowing(currentUserId, id));
         }
@@ -89,7 +104,6 @@ public class UserService {
 
         developer.setFullName(request.getFullName().trim());
         developer.setBio(request.getBio());
-        developer.setAvatarUrl(request.getAvatarUrl());
         developer.setCountry(request.getCountry() == null ? null : request.getCountry().toUpperCase());
         developer.setCity(request.getCity());
         developer.setPreferredLanguage(request.getPreferredLanguage() == null ? Language.FR : request.getPreferredLanguage());
@@ -178,6 +192,21 @@ public class UserService {
     /** Vrai pour un modérateur ou un admin : peut modifier ou supprimer le contenu des autres. */
     public boolean canModerate(Long userId) {
         return findUserOrThrow(userId).getRole().canModerate();
+    }
+
+    /** Vrai pour un compte d'administration ; faux pour un visiteur (null). */
+    public boolean isAdmin(Long userId) {
+        return userId != null && userRepository.findById(userId)
+                .map(user -> user.getRole() == Role.ADMIN)
+                .orElse(false);
+    }
+
+    /**
+     * Un contenu masqué par l'administration reste visible de son auteur (qui y lit le motif) et des admins ;
+     * pour tous les autres, il n'existe plus.
+     */
+    public boolean canSeeHidden(Long viewerId, Long authorId) {
+        return viewerId != null && (viewerId.equals(authorId) || isAdmin(viewerId));
     }
 
     // Les requêtes d'abonnés ont leur propre ORDER BY : on ne garde que la pagination demandée

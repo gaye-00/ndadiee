@@ -46,6 +46,18 @@ public class GlobalExceptionHandler {
         return ResponseEntity.status(ex.getStatus()).body(response);
     }
 
+    // Compte suspendu : le motif accompagne le refus, le formulaire de connexion l'affiche
+    @ExceptionHandler(AccountBlockedException.class)
+    public ResponseEntity<ErrorResponse> handleAccountBlocked(AccountBlockedException ex) {
+        ErrorResponse response = ErrorResponse.builder()
+                .status(ex.getStatus().value())
+                .errorCode(ex.getErrorCode())
+                .message(ex.getMessage())
+                .details(ex.getReason() == null ? null : Map.of("reason", ex.getReason()))
+                .build();
+        return ResponseEntity.status(ex.getStatus()).body(response);
+    }
+
     // ==================== Validation ====================
 
     @ExceptionHandler(MethodArgumentNotValidException.class)

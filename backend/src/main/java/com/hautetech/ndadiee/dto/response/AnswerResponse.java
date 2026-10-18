@@ -25,6 +25,10 @@ public class AnswerResponse {
     // Vote du membre connecté : +1, -1, ou null s'il n'a pas voté
     private Integer currentUserVote;
 
+    // Masqué par l'administration : seuls son auteur et les admins reçoivent alors ce contenu, avec le motif
+    private boolean hidden;
+    private String hiddenReason;
+
     // Les commentaires de la réponse, du plus ancien au plus récent : son fil de discussion
     @Builder.Default
     private List<CommentResponse> comments = new ArrayList<>();

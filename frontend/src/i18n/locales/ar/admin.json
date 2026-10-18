@@ -1,0 +1,313 @@
+{
+  "shell": {
+    "brand": "لوحة الإدارة",
+    "nav": "أقسام لوحة الإدارة",
+    "site": "الموقع",
+    "role": "الإدارة",
+    "sections": {
+      "overview": "نظرة عامة",
+      "users": "الأعضاء",
+      "content": "المحتوى",
+      "journal": "السجل"
+    }
+  },
+  "shared": {
+    "errorText": "تحقّق من اتصالك ثم أعد المحاولة."
+  },
+  "roles": {
+    "USER": "عضو",
+    "MODERATOR": "مشرف",
+    "ADMIN": "مدير"
+  },
+  "overview": {
+    "lead": "المجتمع ومحتواه بالأرقام، وآخر قرارات الفريق.",
+    "loading": "جارٍ تحميل النظرة العامة",
+    "errorTitle": "تعذّر تحميل النظرة العامة",
+    "community": "المجتمع",
+    "content": "المحتوى",
+    "thisWeek": "+{{formatted}} هذا الأسبوع",
+    "kpi": {
+      "members": "الأعضاء",
+      "active": "نشطون هذا الأسبوع",
+      "activeHint": "سجّلوا الدخول مرة على الأقل",
+      "moderators": "المشرفون",
+      "moderatorsHint": "يرعون المنتدى",
+      "blocked": "حسابات موقوفة",
+      "blockedHint": "لم يعد بإمكانها تسجيل الدخول",
+      "topics": "مواضيع المنتدى",
+      "answers": "الإجابات",
+      "projects": "المشاريع",
+      "hidden": "محتوى مخفي",
+      "hiddenHint": "لا يراه الجمهور"
+    },
+    "signups": {
+      "title": "التسجيلات",
+      "subtitle_zero": "آخر 30 يومًا · لا تسجيلات",
+      "subtitle_one": "آخر 30 يومًا · تسجيل واحد",
+      "subtitle_two": "آخر 30 يومًا · تسجيلان",
+      "subtitle_few": "آخر 30 يومًا · {{formatted}} تسجيلات",
+      "subtitle_many": "آخر 30 يومًا · {{formatted}} تسجيلًا",
+      "subtitle_other": "آخر 30 يومًا · {{formatted}} تسجيل",
+      "chartLabel": "التسجيلات اليومية خلال آخر 30 يومًا. استخدم الأسهم للتنقل بين الأيام.",
+      "day_zero": "{{date}}: لا تسجيلات",
+      "day_one": "{{date}}: تسجيل واحد",
+      "day_two": "{{date}}: تسجيلان",
+      "day_few": "{{date}}: {{count}} تسجيلات",
+      "day_many": "{{date}}: {{count}} تسجيلًا",
+      "day_other": "{{date}}: {{count}} تسجيل",
+      "count_zero": "لا تسجيلات",
+      "count_one": "تسجيل واحد",
+      "count_two": "تسجيلان",
+      "count_few": "{{formatted}} تسجيلات",
+      "count_many": "{{formatted}} تسجيلًا",
+      "count_other": "{{formatted}} تسجيل",
+      "today": "اليوم",
+      "showTable": "جدول",
+      "showChart": "رسم بياني",
+      "dayColumn": "اليوم",
+      "countColumn": "التسجيلات"
+    },
+    "recent": {
+      "title": "آخر القرارات",
+      "seeAll": "السجل كاملًا",
+      "empty": "لا قرارات حتى الآن."
+    }
+  },
+  "users": {
+    "title": "الأعضاء",
+    "lead": "ابحث عن حساب، أوقفه مع ذكر السبب أو أعد تفعيله، عيّن مشرفًا أو اسحب منه الإشراف.",
+    "count_zero": "لا حسابات",
+    "count_one": "حساب واحد",
+    "count_two": "حسابان",
+    "count_few": "{{formatted}} حسابات",
+    "count_many": "{{formatted}} حسابًا",
+    "count_other": "{{formatted}} حساب",
+    "filters": "تصفية الحسابات",
+    "search": "البحث عن حساب",
+    "searchPlaceholder": "الاسم أو @المستخدم أو البريد الإلكتروني…",
+    "status": {
+      "label": "حالة الحساب",
+      "all": "الكل",
+      "ACTIVE": "نشطة",
+      "BLOCKED": "موقوفة"
+    },
+    "role": {
+      "label": "الدور",
+      "all": "كل الأدوار"
+    },
+    "loading": "جارٍ تحميل الحسابات",
+    "errorTitle": "تعذّر تحميل الحسابات",
+    "empty": {
+      "title": "لا حساب مطابق",
+      "text": "غيّر البحث أو أزل عامل تصفية."
+    },
+    "you": "أنت",
+    "active": "نشط",
+    "blocked": "موقوف",
+    "blockedSince": "موقوف {{when}}",
+    "reason": "السبب: {{reason}}",
+    "questions_zero": "لا مواضيع",
+    "questions_one": "موضوع واحد",
+    "questions_two": "موضوعان",
+    "questions_few": "{{formatted}} مواضيع",
+    "questions_many": "{{formatted}} موضوعًا",
+    "questions_other": "{{formatted}} موضوع",
+    "answers_zero": "لا إجابات",
+    "answers_one": "إجابة واحدة",
+    "answers_two": "إجابتان",
+    "answers_few": "{{formatted}} إجابات",
+    "answers_many": "{{formatted}} إجابةً",
+    "answers_other": "{{formatted}} إجابة",
+    "projects_zero": "لا مشاريع",
+    "projects_one": "مشروع واحد",
+    "projects_two": "مشروعان",
+    "projects_few": "{{formatted}} مشاريع",
+    "projects_many": "{{formatted}} مشروعًا",
+    "projects_other": "{{formatted}} مشروع",
+    "adminAccount": "حساب إدارة",
+    "joined": "الانضمام: {{date}}",
+    "lastLogin": "آخر دخول {{when}}",
+    "neverLoggedIn": "لا دخول حتى الآن",
+    "actions": {
+      "label": "إجراءات لـ {{name}}",
+      "profile": "عرض الملف العام",
+      "copyEmail": "نسخ البريد الإلكتروني",
+      "makeModerator": "تعيينه مشرفًا",
+      "makeMember": "سحب دور المشرف",
+      "block": "إيقاف الحساب",
+      "unblock": "إعادة تفعيل الحساب"
+    },
+    "blockDialog": {
+      "title": "إيقاف {{name}}؟",
+      "description": "لن يتمكّن هذا الحساب من تسجيل الدخول، وستُغلق جلسته الحالية. ما نشره يبقى ظاهرًا: أخفِه على حدة إن لزم.",
+      "reasonLabel": "سبب الإيقاف",
+      "confirm": "إيقاف"
+    },
+    "unblockDialog": {
+      "title": "إعادة تفعيل {{name}}؟",
+      "description": "سيتمكّن الحساب من تسجيل الدخول والمشاركة من جديد.",
+      "confirm": "إعادة التفعيل"
+    },
+    "roleDialog": {
+      "moderatorTitle": "تعيين {{name}} مشرفًا؟",
+      "moderatorText": "للمشرف صلاحية تعديل محتوى الأعضاء الآخرين وحذفه في المنتدى والمشاريع، دون الدخول إلى لوحة الإدارة.",
+      "moderatorConfirm": "تعيينه مشرفًا",
+      "memberTitle": "سحب دور المشرف من {{name}}؟",
+      "memberText": "يعود هذا الحساب عضوًا كغيره، بلا صلاحية تعديل محتوى الآخرين أو حذفه.",
+      "memberConfirm": "سحب الدور"
+    },
+    "toast": {
+      "blocked": "أُوقف حساب {{name}}.",
+      "unblocked": "أُعيد تفعيل حساب {{name}}.",
+      "moderator": "مُنح {{name}} دور المشرف.",
+      "member": "سُحب دور المشرف من {{name}}.",
+      "emailCopied": "نُسخ البريد الإلكتروني."
+    }
+  },
+  "content": {
+    "title": "المحتوى",
+    "lead": "مواضيع المنتدى والإجابات والمشاريع. الإخفاء يُبعد المحتوى عن الجمهور دون فقدان شيء: يرى صاحبه السبب، ويمكنك إعادته. أما الحذف فنهائي.",
+    "count_zero": "لا محتوى",
+    "count_one": "عنصر واحد",
+    "count_two": "عنصران",
+    "count_few": "{{formatted}} عناصر",
+    "count_many": "{{formatted}} عنصرًا",
+    "count_other": "{{formatted}} عنصر",
+    "filters": "تصفية المحتوى",
+    "typeLabel": "نوع المحتوى",
+    "types": {
+      "QUESTION": "المواضيع",
+      "ANSWER": "الإجابات",
+      "PROJECT": "المشاريع"
+    },
+    "type": {
+      "QUESTION": "موضوع",
+      "ANSWER": "إجابة",
+      "PROJECT": "مشروع"
+    },
+    "search": "البحث في المحتوى",
+    "searchPlaceholder": "العنوان أو النص أو @الكاتب…",
+    "visibility": {
+      "label": "الظهور",
+      "all": "الكل",
+      "VISIBLE": "ظاهر",
+      "HIDDEN": "مخفي"
+    },
+    "loading": "جارٍ تحميل المحتوى",
+    "errorTitle": "تعذّر تحميل المحتوى",
+    "empty": {
+      "title": "لا محتوى مطابق",
+      "text": "غيّر البحث أو أزل عامل تصفية."
+    },
+    "answerTo": "إجابة على «{{title}}»",
+    "hiddenBadge": "مخفي",
+    "hiddenSince": "مخفي {{when}}",
+    "reason": "السبب: {{reason}}",
+    "score_zero": "لا نقاط",
+    "score_one": "نقطة واحدة",
+    "score_two": "نقطتان",
+    "score_few": "{{formatted}} نقاط",
+    "score_many": "{{formatted}} نقطة",
+    "score_other": "{{formatted}} نقطة",
+    "stars_zero": "لا نجوم",
+    "stars_one": "نجمة واحدة",
+    "stars_two": "نجمتان",
+    "stars_few": "{{formatted}} نجوم",
+    "stars_many": "{{formatted}} نجمة",
+    "stars_other": "{{formatted}} نجمة",
+    "replies_zero": "لا إجابات",
+    "replies_one": "إجابة واحدة",
+    "replies_two": "إجابتان",
+    "replies_few": "{{formatted}} إجابات",
+    "replies_many": "{{formatted}} إجابةً",
+    "replies_other": "{{formatted}} إجابة",
+    "actions": {
+      "view": "عرض",
+      "hide": "إخفاء",
+      "unhide": "إعادة",
+      "delete": "حذف"
+    },
+    "hideDialog": {
+      "title": "إخفاء هذا المحتوى؟",
+      "description": "يخرج من الصفحات العامة: القوائم والبحث والخلاصة والعدّادات. يبقى صاحبه يراه مع السبب، ويمكنك إعادته لاحقًا.",
+      "reasonLabel": "السبب (يُعرض على الكاتب)",
+      "confirm": "إخفاء"
+    },
+    "deleteDialog": {
+      "title": "حذف نهائي؟",
+      "description": {
+        "QUESTION": "سيُحذف الموضوع مع إجاباته وأصواته وتعليقاته. لا يمكن التراجع: الإخفاء يكفي غالبًا.",
+        "ANSWER": "ستُحذف الإجابة مع أصواتها وتعليقاتها. لا يمكن التراجع: الإخفاء يكفي غالبًا.",
+        "PROJECT": "سيُحذف المشروع مع فريقه وإعلاناته وأصواته وتعليقاته. لا يمكن التراجع: الإخفاء يكفي غالبًا."
+      },
+      "reasonLabel": "السبب (يُحفظ في السجل)",
+      "confirm": "حذف"
+    },
+    "toast": {
+      "hidden": "أُخفي المحتوى.",
+      "unhidden": "أُعيد المحتوى.",
+      "deleted": "حُذف المحتوى."
+    }
+  },
+  "journal": {
+    "title": "السجل",
+    "lead": "كل قرار يتخذه الفريق، مع سببه. السجل لا يُمحى.",
+    "count_zero": "لا قرارات",
+    "count_one": "قرار واحد",
+    "count_two": "قراران",
+    "count_few": "{{formatted}} قرارات",
+    "count_many": "{{formatted}} قرارًا",
+    "count_other": "{{formatted}} قرار",
+    "filter": "هدف القرارات",
+    "targets": {
+      "all": "الكل",
+      "USER": "الحسابات",
+      "QUESTION": "المواضيع",
+      "ANSWER": "الإجابات",
+      "PROJECT": "المشاريع"
+    },
+    "loading": "جارٍ تحميل السجل",
+    "errorTitle": "تعذّر تحميل السجل",
+    "empty": {
+      "title": "السجل فارغ",
+      "text": "ستُدوَّن هنا قرارات الفريق."
+    },
+    "formerAdmin": "مدير سابق",
+    "reason": "السبب:",
+    "seeAccount": "عرض الحساب",
+    "sentence": {
+      "BLOCK_USER": "<b>{{admin}}</b>: إيقاف الحساب <b>@{{target}}</b>",
+      "UNBLOCK_USER": "<b>{{admin}}</b>: إعادة تفعيل <b>@{{target}}</b>",
+      "CHANGE_ROLE": "<b>{{admin}}</b>: نقل <b>@{{target}}</b> من {{from}} إلى {{to}}",
+      "HIDE_CONTENT_QUESTION": "<b>{{admin}}</b>: إخفاء الموضوع <b>{{target}}</b>",
+      "HIDE_CONTENT_ANSWER": "<b>{{admin}}</b>: إخفاء إجابة على <b>{{target}}</b>",
+      "HIDE_CONTENT_PROJECT": "<b>{{admin}}</b>: إخفاء المشروع <b>{{target}}</b>",
+      "UNHIDE_CONTENT_QUESTION": "<b>{{admin}}</b>: إعادة الموضوع <b>{{target}}</b>",
+      "UNHIDE_CONTENT_ANSWER": "<b>{{admin}}</b>: إعادة إجابة على <b>{{target}}</b>",
+      "UNHIDE_CONTENT_PROJECT": "<b>{{admin}}</b>: إعادة المشروع <b>{{target}}</b>",
+      "DELETE_CONTENT_QUESTION": "<b>{{admin}}</b>: حذف الموضوع <b>{{target}}</b>",
+      "DELETE_CONTENT_ANSWER": "<b>{{admin}}</b>: حذف إجابة على <b>{{target}}</b>",
+      "DELETE_CONTENT_PROJECT": "<b>{{admin}}</b>: حذف المشروع <b>{{target}}</b>"
+    }
+  },
+  "reason": {
+    "placeholder": "اشرح القرار في جملة واحدة…",
+    "required": "السبب مطلوب.",
+    "shown": "سيُعرض على الشخص المعني.",
+    "optional": "اختياري: يُحفظ في السجل فقط.",
+    "counter": "{{length}}/{{max}}",
+    "presets": {
+      "spam": "رسائل مزعجة أو إعلانات.",
+      "fraud": "احتيال أو غش.",
+      "abuse": "كلام غير لائق.",
+      "offTopic": "خارج الموضوع.",
+      "duplicate": "مكرّر."
+    }
+  },
+  "pager": {
+    "label": "الصفحات",
+    "previous": "السابق",
+    "next": "التالي",
+    "page": "الصفحة {{page}} من {{total}}"
+  }
+}

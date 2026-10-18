@@ -1,0 +1,180 @@
+{
+  "loading": "Chargement du profil",
+  "notFoundTitle": "Ce profil n'existe pas",
+  "notFoundText": "Personne ne porte le pseudo @{{username}} ici. Le lien est peut-être incomplet, ou le compte a changé de nom.",
+  "backToShowcase": "Retour à la vitrine",
+  "errorTitle": "Le profil n'a pas pu se charger",
+  "errorText": "Vérifie ta connexion, puis réessaie.",
+  "aside": "Équipes et badges",
+  "header": {
+    "openToWork": "Disponible pour une équipe",
+    "reputation_one": "<n>{{value}}</n> point de réputation",
+    "reputation_many": "<n>{{value}}</n> points de réputation",
+    "reputation_other": "<n>{{value}}</n> points de réputation",
+    "followers_one": "<n>{{value}}</n> abonné·e",
+    "followers_many": "<n>{{value}}</n> abonné·es",
+    "followers_other": "<n>{{value}}</n> abonné·es",
+    "following_one": "<n>{{value}}</n> abonnement",
+    "following_many": "<n>{{value}}</n> abonnements",
+    "following_other": "<n>{{value}}</n> abonnements",
+    "skills": "Compétences",
+    "website": "Site web",
+    "place": "{{city}}, {{country}}",
+    "memberSince": "Membre depuis {{date}}",
+    "follow": "Suivre {{name}}",
+    "followingThem": "Abonné·e",
+    "unfollow": "Ne plus suivre {{name}}",
+    "share": "Partager",
+    "shareMine": "Partager mon profil",
+    "linkCopied": "Lien du profil copié",
+    "copyFailed": "Le lien n'a pas pu être copié."
+  },
+  "stats": {
+    "title": "Preuves de travail",
+    "projects_one": "projet lancé",
+    "projects_many": "projets lancés",
+    "projects_other": "projets lancés",
+    "teams_one": "équipe rejointe",
+    "teams_many": "équipes rejointes",
+    "teams_other": "équipes rejointes",
+    "acceptedAnswers_one": "réponse acceptée",
+    "acceptedAnswers_many": "réponses acceptées",
+    "acceptedAnswers_other": "réponses acceptées",
+    "ofAnswers_one": "sur {{count}} réponse au forum",
+    "ofAnswers_many": "sur {{count}} réponses au forum",
+    "ofAnswers_other": "sur {{count}} réponses au forum",
+    "hackathons_one": "hackathon disputé",
+    "hackathons_many": "hackathons disputés",
+    "hackathons_other": "hackathons disputés",
+    "podiums_one": "dont {{count}} podium",
+    "podiums_many": "dont {{count}} podiums",
+    "podiums_other": "dont {{count}} podiums"
+  },
+  "showcase": {
+    "eyebrow": "Vitrine",
+    "title": "Ce que {{name}} construit",
+    "titleOwn": "Ce que tu construis",
+    "count_one": "{{count}} projet",
+    "count_many": "{{count}} projets",
+    "count_other": "{{count}} projets",
+    "role": {
+      "OWNER": "Porteur·se",
+      "MAINTAINER": "Mainteneur·se",
+      "CONTRIBUTOR": "Contributeur·rice"
+    },
+    "more_one": "Voir l'autre projet",
+    "more_many": "Voir les {{count}} autres projets",
+    "more_other": "Voir les {{count}} autres projets",
+    "moreFailed": "La suite n'a pas pu se charger. Réessaie.",
+    "errorTitle": "Les projets n'ont pas pu se charger",
+    "errorText": "Vérifie ta connexion, puis réessaie.",
+    "emptyOwnTitle": "Ta vitrine attend son premier projet",
+    "emptyOwnText": "Présente un projet open source, ou rejoins une équipe : chaque projet dont tu fais partie s'affiche ici.",
+    "emptyOwnAction": "Publier un projet",
+    "emptyTitle": "{{name}} n'a pas encore de projet ici",
+    "emptyText": "Ses projets s'afficheront ici dès qu'il ou elle en lancera un, ou rejoindra une équipe."
+  },
+  "heatmap": {
+    "eyebrow": "Contributions",
+    "title": "Une année tissée",
+    "currentStreak_one": "série en cours : {{count}} jour",
+    "currentStreak_many": "série en cours : {{count}} jours",
+    "currentStreak_other": "série en cours : {{count}} jours",
+    "sources": "Contributions comptées",
+    "platform": "Ndadiee",
+    "withGithub": "Avec GitHub",
+    "githubHint": "Ajoute le calendrier public de @{{login}} sur GitHub",
+    "githubUnknown": "Aucun compte GitHub ne porte le nom @{{login}} : seules les contributions sur Ndadiee sont tissées.",
+    "githubUnavailable": "GitHub ne répond pas : seules les contributions sur Ndadiee sont tissées. Réessaie dans un instant.",
+    "counts": "Sujets, réponses, commentaires, articles, projets lancés, notes de devlog et retours.",
+    "countsWithGithub": "Ses contributions sur Ndadiee, et son calendrier public GitHub.",
+    "errorTitle": "Les contributions n'ont pas pu se charger",
+    "errorText": "Vérifie ta connexion, puis réessaie."
+  },
+  "collaborators": {
+    "title": "A travaillé avec",
+    "shared": "{{projects}}",
+    "sharedMore_one": "{{projects}} et {{count}} autre projet",
+    "sharedMore_many": "{{projects}} et {{count}} autres projets",
+    "sharedMore_other": "{{projects}} et {{count}} autres projets",
+    "empty": "Pas encore d'équipe partagée sur Ndadiee.",
+    "emptyOwn": "Tes coéquipiers apparaîtront ici dès que tu feras partie d'une équipe.",
+    "findTeam": "Trouver une équipe",
+    "error": "La liste n'a pas pu se charger.",
+    "retry": "Réessayer"
+  },
+  "badges": {
+    "title_one": "Badge · {{count}}",
+    "title_many": "Badges · {{count}}",
+    "title_other": "Badges · {{count}}",
+    "empty": "Pas encore de badge.",
+    "emptyOwn": "Ton premier badge t'attend : pose une question, réponds à quelqu'un, ou présente un projet.",
+    "locked": "À débloquer",
+    "awarded": "obtenu le {{date}}",
+    "catalog": {
+      "FIRST_QUESTION": {
+        "name": "Curieux·se",
+        "description": "A posé sa première question",
+        "criteria": "Poser une première question au forum"
+      },
+      "FIRST_ANSWER": {
+        "name": "Entraide",
+        "description": "A répondu à une question pour la première fois",
+        "criteria": "Publier une première réponse"
+      },
+      "FIRST_ACCEPTED_ANSWER": {
+        "name": "Problème résolu",
+        "description": "Une de ses réponses a été acceptée",
+        "criteria": "Voir une de ses réponses acceptée"
+      },
+      "FIRST_ARTICLE": {
+        "name": "Plume",
+        "description": "A publié son premier article",
+        "criteria": "Publier un premier article"
+      },
+      "FIRST_PROJECT": {
+        "name": "Bâtisseur·se",
+        "description": "A présenté son premier projet open source",
+        "criteria": "Présenter un premier projet"
+      },
+      "REPUTATION_100": {
+        "name": "Contributeur·rice",
+        "description": "A atteint 100 points de réputation",
+        "criteria": "Atteindre 100 points de réputation"
+      },
+      "REPUTATION_500": {
+        "name": "Expert·e",
+        "description": "A atteint 500 points de réputation",
+        "criteria": "Atteindre 500 points de réputation"
+      }
+    }
+  },
+  "avatar": {
+    "eyebrow": "Photo de profil",
+    "title": "Cadre ta photo",
+    "hint": "Glisse la photo sous le cercle ; zoome avec le curseur, la molette ou deux doigts. Au clavier : les flèches, + et −.",
+    "stage": "Cadrage de la photo",
+    "opening": "Ouverture de la photo",
+    "zoom": "Zoom",
+    "recenter": "Recentrer",
+    "preview": "Aperçu",
+    "pickAnother": "Choisir une autre photo",
+    "cancel": "Annuler",
+    "close": "Fermer",
+    "save": "Enregistrer",
+    "saving": "Envoi… {{percent}} %",
+    "saved": "Ta photo de profil est à jour",
+    "failed": "La photo n'a pas pu être envoyée. Réessaie.",
+    "unreadable": "Ce fichier n'est pas une photo que l'on sait lire. Choisis une image JPEG, PNG, WebP ou GIF.",
+    "tooBig": "Cette photo dépasse {{max}} Mo. Choisis-en une plus légère.",
+    "menu": "Changer ou retirer ta photo de profil",
+    "add": "Ajouter une photo",
+    "change": "Changer la photo",
+    "drop": "Dépose ta photo",
+    "remove": "Retirer la photo",
+    "removeTitle": "Retirer ta photo ?",
+    "removeText": "Tes initiales la remplaceront partout sur Ndadiee. Tu pourras en remettre une quand tu veux.",
+    "removed": "Ta photo a été retirée",
+    "removeFailed": "La photo n'a pas pu être retirée. Réessaie."
+  }
+}

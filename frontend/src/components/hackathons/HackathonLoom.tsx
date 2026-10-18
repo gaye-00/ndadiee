@@ -3,56 +3,9 @@ import { useMemo, type CSSProperties } from 'react';
 import { useNow } from '@/hooks/useNow';
 import { useReducedMotion } from '@/hooks/useReducedMotion';
 import { loomLayout, loomPosition, loomProgress, phaseOf } from '@/lib/hackathonTime';
+import { clothGradient } from '@/lib/kenteCloth';
 import { cn } from '@/lib/utils';
 import type { Hackathon } from '@/types/hackathon.types';
-
-type Thread = 'gold' | 'coral' | 'jade';
-
-// Largeurs des bandes, en parts : des bandes larges coupées de bandes fines, comme sur la maquette
-// (3, 1, 2, 1, 3, 1)
-const WIDTHS = [3, 1, 2, 1, 3, 1, 2, 4] as const;
-const THREADS: readonly Thread[] = ['gold', 'coral', 'jade'];
-// Parts tissées en tout : assez de bandes pour que l'étoffe se lise, pas assez pour qu'elle grésille
-const CLOTH_LENGTH = 30;
-
-/**
- * Les bandes de l'étoffe d'un hackathon, toujours les mêmes pour lui : tirées de son slug, comme un kente a
- * son motif. Deux bandes voisines n'ont jamais la même couleur.
- */
-function clothOf(slug: string): { thread: Thread; from: number; to: number }[] {
-  let seed = [...slug].reduce((hash, char) => (Math.imul(hash, 31) + char.charCodeAt(0)) >>> 0, 7);
-  const random = () => {
-    seed = (Math.imul(seed, 1_664_525) + 1_013_904_223) >>> 0;
-    return seed / 2 ** 32;
-  };
-
-  const bands: { thread: Thread; width: number }[] = [];
-  let length = 0;
-  let previous = -1;
-  while (length < CLOTH_LENGTH) {
-    let thread = Math.floor(random() * THREADS.length);
-    if (thread === previous) {
-      thread = (thread + 1) % THREADS.length;
-    }
-    const width = WIDTHS[Math.floor(random() * WIDTHS.length)];
-    bands.push({ thread: THREADS[thread], width });
-    length += width;
-    previous = thread;
-  }
-
-  let from = 0;
-  return bands.map(({ thread, width }) => {
-    const band = { thread, from, to: from + (width / length) * 100 };
-    from = band.to;
-    return band;
-  });
-}
-
-/** L'étoffe en un dégradé à arrêts francs : une seule image de fond, rien à dessiner de plus. */
-function clothGradient(slug: string): string {
-  const stops = clothOf(slug).map(({ thread, from, to }) => `var(--loom-${thread}) ${from.toFixed(2)}% ${to.toFixed(2)}%`);
-  return `linear-gradient(90deg, ${stops.join(', ')})`;
-}
 
 interface HackathonLoomProps {
   hackathon: Pick<Hackathon, 'slug' | 'createdAt' | 'registrationClosesAt' | 'startsAt' | 'endsAt' | 'registrationOpen' | 'schedule'>;

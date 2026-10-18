@@ -1,0 +1,265 @@
+{
+  "shell": {
+    "brand": "Ìṣàkóso",
+    "nav": "Àwọn abala ìṣàkóso",
+    "site": "Ojú-òpó náà",
+    "role": "Ìṣàkóso",
+    "sections": {
+      "overview": "Àkópọ̀",
+      "users": "Àwọn ọmọ ẹgbẹ́",
+      "content": "Àwọn àkóónú",
+      "journal": "Àkọsílẹ̀"
+    }
+  },
+  "shared": {
+    "errorText": "Ṣàyẹ̀wò ìsopọ̀ rẹ, lẹ́yìn náà gbìyànjú lẹ́ẹ̀kan sí i."
+  },
+  "roles": {
+    "USER": "Ọmọ ẹgbẹ́",
+    "MODERATOR": "Alábòójútó",
+    "ADMIN": "Alákòóso"
+  },
+  "overview": {
+    "lead": "Àwùjọ àti àwọn àkóónú rẹ̀ ní nọ́mbà, àti àwọn ìpinnu tuntun ẹgbẹ́ náà.",
+    "loading": "Àkópọ̀ ń gbéjáde",
+    "errorTitle": "Àkópọ̀ kò lè gbéjáde",
+    "community": "Àwùjọ",
+    "content": "Àwọn àkóónú",
+    "thisWeek": "+{{formatted}} ní ọ̀sẹ̀ yìí",
+    "kpi": {
+      "members": "Àwọn ọmọ ẹgbẹ́",
+      "active": "Tí ó ṣiṣẹ́ ní ọ̀sẹ̀ yìí",
+      "activeHint": "wọlé ní ẹ̀ẹ̀kan ó kéré tán",
+      "moderators": "Àwọn alábòójútó",
+      "moderatorsHint": "ń ṣọ́ àgbàlá ìjíròrò",
+      "blocked": "Àwọn àkọọ́lẹ̀ tí a dádúró",
+      "blockedHint": "kò lè wọlé mọ́",
+      "topics": "Àwọn kókó ìjíròrò",
+      "answers": "Àwọn ìdáhùn",
+      "projects": "Àwọn iṣẹ́ àkànṣe",
+      "hidden": "Àwọn àkóónú tí a fi pamọ́",
+      "hiddenHint": "gbogbo ènìyàn kò rí wọn"
+    },
+    "signups": {
+      "title": "Ìforúkọsílẹ̀",
+      "subtitle_one": "Ọjọ́ 30 sẹ́yìn · ìforúkọsílẹ̀ {{formatted}}",
+      "subtitle_other": "Ọjọ́ 30 sẹ́yìn · ìforúkọsílẹ̀ {{formatted}}",
+      "chartLabel": "Ìforúkọsílẹ̀ ojoojúmọ́ ní ọjọ́ 30 sẹ́yìn. Àwọn ọfà ń rìn láàárín àwọn ọjọ́.",
+      "day_one": "{{date}}: ìforúkọsílẹ̀ {{count}}",
+      "day_other": "{{date}}: ìforúkọsílẹ̀ {{count}}",
+      "count_one": "Ìforúkọsílẹ̀ {{formatted}}",
+      "count_other": "Ìforúkọsílẹ̀ {{formatted}}",
+      "today": "òní",
+      "showTable": "Tábìlì",
+      "showChart": "Àwòrán ìṣirò",
+      "dayColumn": "Ọjọ́",
+      "countColumn": "Ìforúkọsílẹ̀"
+    },
+    "recent": {
+      "title": "Àwọn ìpinnu tuntun",
+      "seeAll": "Gbogbo àkọsílẹ̀",
+      "empty": "Kò sí ìpinnu kankan síbẹ̀."
+    }
+  },
+  "users": {
+    "title": "Àwọn ọmọ ẹgbẹ́",
+    "lead": "Wá àkọọ́lẹ̀ kan, dá a dúró pẹ̀lú ìdí tàbí dá a padà, yan alábòójútó tàbí yọ ipa náà kúrò.",
+    "count_one": "Àkọọ́lẹ̀ {{formatted}}",
+    "count_other": "Àkọọ́lẹ̀ {{formatted}}",
+    "filters": "Ṣàlẹ̀mọ́ àwọn àkọọ́lẹ̀",
+    "search": "Wá àkọọ́lẹ̀",
+    "searchPlaceholder": "Orúkọ, @orúkọ olùmúlò tàbí ímeèlì…",
+    "status": {
+      "label": "Ipò àkọọ́lẹ̀",
+      "all": "Gbogbo",
+      "ACTIVE": "Tí ó ṣiṣẹ́",
+      "BLOCKED": "Tí a dádúró"
+    },
+    "role": {
+      "label": "Ipa",
+      "all": "Gbogbo ipa"
+    },
+    "loading": "Àwọn àkọọ́lẹ̀ ń gbéjáde",
+    "errorTitle": "Àwọn àkọọ́lẹ̀ kò lè gbéjáde",
+    "empty": {
+      "title": "Kò sí àkọọ́lẹ̀ tó bá a mu",
+      "text": "Yí ìwádìí padà tàbí yọ àlẹ̀mọ́ kan kúrò."
+    },
+    "you": "ìwọ",
+    "active": "Ó ń ṣiṣẹ́",
+    "blocked": "A ti dá a dúró",
+    "blockedSince": "A dá a dúró {{when}}",
+    "reason": "Ìdí: {{reason}}",
+    "questions_one": "Kókó {{formatted}}",
+    "questions_other": "Kókó {{formatted}}",
+    "answers_one": "Ìdáhùn {{formatted}}",
+    "answers_other": "Ìdáhùn {{formatted}}",
+    "projects_one": "Iṣẹ́ àkànṣe {{formatted}}",
+    "projects_other": "Iṣẹ́ àkànṣe {{formatted}}",
+    "adminAccount": "Àkọọ́lẹ̀ ìṣàkóso",
+    "joined": "Darapọ̀ ní {{date}}",
+    "lastLogin": "Wọlé {{when}}",
+    "neverLoggedIn": "Kò wọlé rí",
+    "actions": {
+      "label": "Àwọn ìgbésẹ̀ fún {{name}}",
+      "profile": "Wo àkọsílẹ̀ gbangba",
+      "copyEmail": "Ṣe ẹ̀dà ímeèlì",
+      "makeModerator": "Yàn án ní alábòójútó",
+      "makeMember": "Yọ ipa alábòójútó kúrò",
+      "block": "Dá àkọọ́lẹ̀ dúró",
+      "unblock": "Dá àkọọ́lẹ̀ padà"
+    },
+    "blockDialog": {
+      "title": "Dá {{name}} dúró?",
+      "description": "Àkọọ́lẹ̀ yìí kò ní lè wọlé mọ́, a ó sì pa ìgbà ìwọlé rẹ̀ lọ́wọ́lọ́wọ́. Ohun tí ó ti tẹ̀jáde yóò wà níbẹ̀: fi í pamọ́ lọ́tọ̀ tí ó bá yẹ.",
+      "reasonLabel": "Ìdí ìdádúró",
+      "confirm": "Dá dúró"
+    },
+    "unblockDialog": {
+      "title": "Dá {{name}} padà?",
+      "description": "Àkọọ́lẹ̀ náà yóò lè wọlé kí ó sì kópa lẹ́ẹ̀kan sí i.",
+      "confirm": "Dá padà"
+    },
+    "roleDialog": {
+      "moderatorTitle": "Yan {{name}} ní alábòójútó?",
+      "moderatorText": "Alábòójútó lè ṣàtúnṣe àti pa àkóónú àwọn ọmọ ẹgbẹ́ mìíràn rẹ́ nínú ìjíròrò àti àwọn iṣẹ́ àkànṣe. Kò ní àyè sí ìṣàkóso.",
+      "moderatorConfirm": "Yàn án ní alábòójútó",
+      "memberTitle": "Yọ ipa alábòójútó kúrò lọ́wọ́ {{name}}?",
+      "memberText": "Yóò padà di ọmọ ẹgbẹ́ lásán: kò ní lè ṣàtúnṣe tàbí pa àkóónú àwọn ẹlòmíràn rẹ́ mọ́.",
+      "memberConfirm": "Yọ ipa náà kúrò"
+    },
+    "toast": {
+      "blocked": "A ti dá {{name}} dúró.",
+      "unblocked": "A ti dá {{name}} padà.",
+      "moderator": "{{name}} ti di alábòójútó.",
+      "member": "{{name}} ti padà di ọmọ ẹgbẹ́.",
+      "emailCopied": "A ti ṣe ẹ̀dà ímeèlì."
+    }
+  },
+  "content": {
+    "title": "Àwọn àkóónú",
+    "lead": "Àwọn kókó ìjíròrò, ìdáhùn àti iṣẹ́ àkànṣe. Fífi pamọ́ ń mú àkóónú kúrò lójú gbogbo ènìyàn láìsọ nǹkan nù: òǹkọ̀wé rí ìdí rẹ̀, o sì lè dá a padà. Pípa rẹ́ jẹ́ títí láé.",
+    "count_one": "Àkóónú {{formatted}}",
+    "count_other": "Àkóónú {{formatted}}",
+    "filters": "Ṣàlẹ̀mọ́ àwọn àkóónú",
+    "typeLabel": "Irú àkóónú",
+    "types": {
+      "QUESTION": "Kókó",
+      "ANSWER": "Ìdáhùn",
+      "PROJECT": "Iṣẹ́ àkànṣe"
+    },
+    "type": {
+      "QUESTION": "Kókó",
+      "ANSWER": "Ìdáhùn",
+      "PROJECT": "Iṣẹ́ àkànṣe"
+    },
+    "search": "Wá àkóónú",
+    "searchPlaceholder": "Àkọlé, ọ̀rọ̀ tàbí @òǹkọ̀wé…",
+    "visibility": {
+      "label": "Ìhàn",
+      "all": "Gbogbo",
+      "VISIBLE": "Tí ó hàn",
+      "HIDDEN": "Tí a fi pamọ́"
+    },
+    "loading": "Àwọn àkóónú ń gbéjáde",
+    "errorTitle": "Àwọn àkóónú kò lè gbéjáde",
+    "empty": {
+      "title": "Kò sí àkóónú tó bá a mu",
+      "text": "Yí ìwádìí padà tàbí yọ àlẹ̀mọ́ kan kúrò."
+    },
+    "answerTo": "Ìdáhùn sí «{{title}}»",
+    "hiddenBadge": "A fi pamọ́",
+    "hiddenSince": "A fi pamọ́ {{when}}",
+    "reason": "Ìdí: {{reason}}",
+    "score_one": "Àmì {{formatted}}",
+    "score_other": "Àmì {{formatted}}",
+    "stars_one": "Ìràwọ̀ {{formatted}}",
+    "stars_other": "Ìràwọ̀ {{formatted}}",
+    "replies_one": "Ìdáhùn {{formatted}}",
+    "replies_other": "Ìdáhùn {{formatted}}",
+    "actions": {
+      "view": "Wò ó",
+      "hide": "Fi pamọ́",
+      "unhide": "Dá padà",
+      "delete": "Pa rẹ́"
+    },
+    "hideDialog": {
+      "title": "Fi àkóónú yìí pamọ́?",
+      "description": "Yóò kúrò ní àwọn ojú-ewé gbangba: àwọn àtòjọ, ìwádìí, ìfúnni àti àwọn ònkà. Òǹkọ̀wé yóò ṣì rí i pẹ̀lú ìdí rẹ̀, o sì lè dá a padà.",
+      "reasonLabel": "Ìdí (a ó fi hàn òǹkọ̀wé)",
+      "confirm": "Fi pamọ́"
+    },
+    "deleteDialog": {
+      "title": "Pa á rẹ́ pátápátá?",
+      "description": {
+        "QUESTION": "Kókó náà yóò lọ pẹ̀lú àwọn ìdáhùn, ìbò àti àsọyé rẹ̀. Kò ṣeé dá padà: fífi pamọ́ sábà máa ń tó.",
+        "ANSWER": "Ìdáhùn náà yóò lọ pẹ̀lú àwọn ìbò àti àsọyé rẹ̀. Kò ṣeé dá padà: fífi pamọ́ sábà máa ń tó.",
+        "PROJECT": "Iṣẹ́ àkànṣe náà yóò lọ pẹ̀lú ẹgbẹ́ rẹ̀, àwọn ìkéde, ìbò àti àsọyé rẹ̀. Kò ṣeé dá padà: fífi pamọ́ sábà máa ń tó."
+      },
+      "reasonLabel": "Ìdí (a ó pa á mọ́ sínú àkọsílẹ̀)",
+      "confirm": "Pa rẹ́"
+    },
+    "toast": {
+      "hidden": "A ti fi àkóónú pamọ́.",
+      "unhidden": "A ti dá àkóónú padà.",
+      "deleted": "A ti pa àkóónú rẹ́."
+    }
+  },
+  "journal": {
+    "title": "Àkọsílẹ̀",
+    "lead": "Gbogbo ìpinnu ẹgbẹ́ náà, pẹ̀lú ìdí rẹ̀. Àkọsílẹ̀ kì í parẹ́.",
+    "count_one": "Ìpinnu {{formatted}}",
+    "count_other": "Ìpinnu {{formatted}}",
+    "filter": "Ohun tí ìpinnu kàn",
+    "targets": {
+      "all": "Gbogbo",
+      "USER": "Àkọọ́lẹ̀",
+      "QUESTION": "Kókó",
+      "ANSWER": "Ìdáhùn",
+      "PROJECT": "Iṣẹ́ àkànṣe"
+    },
+    "loading": "Àkọsílẹ̀ ń gbéjáde",
+    "errorTitle": "Àkọsílẹ̀ kò lè gbéjáde",
+    "empty": {
+      "title": "Kò sí nǹkan nínú àkọsílẹ̀",
+      "text": "A ó kọ àwọn ìpinnu ẹgbẹ́ sílẹ̀ níbí."
+    },
+    "formerAdmin": "Alákòóso àtijọ́ kan",
+    "reason": "Ìdí:",
+    "seeAccount": "Wo àkọọ́lẹ̀",
+    "sentence": {
+      "BLOCK_USER": "<b>{{admin}}</b> dá <b>@{{target}}</b> dúró",
+      "UNBLOCK_USER": "<b>{{admin}}</b> dá <b>@{{target}}</b> padà",
+      "CHANGE_ROLE": "<b>{{admin}}</b> yí <b>@{{target}}</b> padà láti {{from}} sí {{to}}",
+      "HIDE_CONTENT_QUESTION": "<b>{{admin}}</b> fi kókó <b>{{target}}</b> pamọ́",
+      "HIDE_CONTENT_ANSWER": "<b>{{admin}}</b> fi ìdáhùn kan sí <b>{{target}}</b> pamọ́",
+      "HIDE_CONTENT_PROJECT": "<b>{{admin}}</b> fi iṣẹ́ àkànṣe <b>{{target}}</b> pamọ́",
+      "UNHIDE_CONTENT_QUESTION": "<b>{{admin}}</b> dá kókó <b>{{target}}</b> padà",
+      "UNHIDE_CONTENT_ANSWER": "<b>{{admin}}</b> dá ìdáhùn kan sí <b>{{target}}</b> padà",
+      "UNHIDE_CONTENT_PROJECT": "<b>{{admin}}</b> dá iṣẹ́ àkànṣe <b>{{target}}</b> padà",
+      "DELETE_CONTENT_QUESTION": "<b>{{admin}}</b> pa kókó <b>{{target}}</b> rẹ́",
+      "DELETE_CONTENT_ANSWER": "<b>{{admin}}</b> pa ìdáhùn kan sí <b>{{target}}</b> rẹ́",
+      "DELETE_CONTENT_PROJECT": "<b>{{admin}}</b> pa iṣẹ́ àkànṣe <b>{{target}}</b> rẹ́"
+    }
+  },
+  "reason": {
+    "placeholder": "Ṣàlàyé ìpinnu náà ní gbólóhùn kan…",
+    "required": "Ìdí jẹ́ dandan.",
+    "shown": "A ó fi hàn ẹni tí ọ̀rọ̀ kàn.",
+    "optional": "Kò pọn dandan: inú àkọsílẹ̀ nìkan ni a ó pa á mọ́ sí.",
+    "counter": "{{length}}/{{max}}",
+    "presets": {
+      "spam": "Ìpolówó tàbí àwúrúju.",
+      "fraud": "Jìbìtì tàbí ẹ̀tàn.",
+      "abuse": "Ọ̀rọ̀ àrífín.",
+      "offTopic": "Kò bá kókó mu.",
+      "duplicate": "Àtúnwí."
+    }
+  },
+  "pager": {
+    "label": "Àwọn ojú-ewé",
+    "previous": "Ti tẹ́lẹ̀",
+    "next": "Tó kàn",
+    "page": "Ojú-ewé {{page}} nínú {{total}}"
+  }
+}

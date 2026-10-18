@@ -15,7 +15,8 @@
     "notifications": "Ìfitónilétí",
     "settings": "Ètò",
     "profile": "Profaili",
-    "create": "Ṣẹ̀dá"
+    "create": "Ṣẹ̀dá",
+    "admin": "Ìṣàkóso"
   },
   "actions": {
     "login": "Wọlé",
@@ -150,7 +151,11 @@
     "login": "Wọlé",
     "register": "Forúkọsílẹ̀",
     "notFound": "A kò rí ojú-ìwé náà",
-    "editTopic": "Ṣàtúnṣe kókó"
+    "editTopic": "Ṣàtúnṣe kókó",
+    "admin": "Ìṣàkóso",
+    "adminUsers": "Ìṣàkóso · Àwọn ọmọ ẹgbẹ́",
+    "adminContent": "Ìṣàkóso · Àwọn àkóónú",
+    "adminJournal": "Ìṣàkóso · Àkọsílẹ̀"
   },
   "enums": {
     "experienceLevel": {
@@ -198,29 +203,29 @@
       "invalid": "Orúkọ olùmúlò GitHub ní lẹ́tà, nọ́ńbà àti àmì àsopọ̀ nìkan, ó pọ̀ jù lọ ní ohun kíkọ 39.",
       "notFound": "Kò sí àkọọ́lẹ̀ GitHub tó ní orúkọ yìí.",
       "unavailable": "GitHub kò dáhùn. Gbìyànjú lẹ́ẹ̀kan sí i láìpẹ́.",
-      "viewLabel": "Ìwò ọdún",
-      "viewCloth": "Aṣọ: ọdún ní pẹrẹsẹ",
-      "viewCity": "Ìlú: ọdún ní 3D",
-      "less": "Díẹ̀",
-      "more": "Púpọ̀",
-      "level0": "Ọjọ́ láìsí ìkópa",
-      "level1": "Ọjọ́ tó dákẹ́",
-      "level2": "Ọjọ́ tó ń ṣiṣẹ́",
-      "level3": "Ọjọ́ tó kún",
-      "level4": "Ọjọ́ tó kún jù",
-      "structure": "Ìlà kan fún ọ̀sẹ̀ kọ̀ọ̀kan, bulọ́ọ̀kù kan fún ọjọ́ kọ̀ọ̀kan.",
-      "hintCloth": "Gbé àtọ́ka sórí ọjọ́ kan, tàbí rìn la ọdún náà kọjá pẹ̀lú àwọn bọ́tìnnì ọfà.",
-      "hintCity": "Fà á láti yí ìlú náà ká. Tẹ̀ ẹ́ lẹ́ẹ̀mejì láti padà.",
-      "summary": "{{who}}, láti {{from}} sí {{to}}: {{total}}. Ìlà kan fún ọ̀sẹ̀ kọ̀ọ̀kan, bulọ́ọ̀kù kan fún ọjọ́ kọ̀ọ̀kan. Lo àwọn bọ́tìnnì ọfà láti ka ọjọ́ kọ̀ọ̀kan.",
-      "streak_one": "ọ̀wọ́ tó gùn jù: ọjọ́ {{count}}",
-      "streak_other": "ọ̀wọ́ tó gùn jù: ọjọ́ {{count}}",
       "showcase": "Ọdún rẹ yẹ fún ibi ìfihàn"
     }
   },
   "contributions": {
     "count_one": "Ìkópa {{count}}",
     "count_other": "Ìkópa {{count}}",
-    "none": "Kò sí ìkópa"
+    "none": "Kò sí ìkópa",
+    "viewLabel": "Ìwò ọdún",
+    "viewCloth": "Aṣọ: ọdún ní pẹrẹsẹ",
+    "viewCity": "Ìlú: ọdún ní 3D",
+    "less": "Díẹ̀",
+    "more": "Púpọ̀",
+    "level0": "Ọjọ́ láìsí ìkópa",
+    "level1": "Ọjọ́ tó dákẹ́",
+    "level2": "Ọjọ́ tó ń ṣiṣẹ́",
+    "level3": "Ọjọ́ tó kún",
+    "level4": "Ọjọ́ tó kún jù",
+    "structure": "Ìlà kan fún ọ̀sẹ̀ kọ̀ọ̀kan, bulọ́ọ̀kù kan fún ọjọ́ kọ̀ọ̀kan.",
+    "hintCloth": "Gbé àtọ́ka sórí ọjọ́ kan, tàbí rìn la ọdún náà kọjá pẹ̀lú àwọn bọ́tìnnì ọfà.",
+    "hintCity": "Fà á láti yí ìlú náà ká. Tẹ̀ ẹ́ lẹ́ẹ̀mejì láti padà.",
+    "summary": "{{who}}, láti {{from}} sí {{to}}: {{total}}. Ìlà kan fún ọ̀sẹ̀ kọ̀ọ̀kan, bulọ́ọ̀kù kan fún ọjọ́ kọ̀ọ̀kan. Lo àwọn bọ́tìnnì ọfà láti ka ọjọ́ kọ̀ọ̀kan.",
+    "streak_one": "ọ̀wọ́ tó gùn jù: ọjọ́ {{count}}",
+    "streak_other": "ọ̀wọ́ tó gùn jù: ọjọ́ {{count}}"
   },
   "teamRoles": {
     "frontend": "Olùgbéejáde front-end",
@@ -466,7 +471,9 @@
       "pending": "Ó ń wọlé…",
       "failed": "Ímeèlì, orúkọ olùmúlò tàbí ọ̀rọ̀ aṣínà kò tọ́.",
       "noAccount": "O kò tíì ní àkọọ́lẹ̀?",
-      "toRegister": "Ṣẹ̀dá àkọọ́lẹ̀"
+      "toRegister": "Ṣẹ̀dá àkọọ́lẹ̀",
+      "blocked": "Ẹgbẹ́ Ndadiee ti dá àkọọ́lẹ̀ yìí dúró.",
+      "blockedReason": "Ìdí: {{reason}}"
     },
     "register": {
       "eyebrow": "Forúkọsílẹ̀",
@@ -532,7 +539,8 @@
       "loginText": "Nígbà tí o kò sí, àwọn ẹgbẹ́ ń bá a lọ ní híhun.",
       "registerTitle": "Òwú kan sí i nínú aṣọ náà.",
       "registerText": "Gbogbo olùgbéejáde jẹ́ òwú kan. Níbí, àwọn ẹgbẹ́ ń hun ara wọn yí iṣẹ́ àkànṣe ká."
-    }
+    },
+    "sessionBlocked": "Ẹgbẹ́ Ndadiee ti dá àkọọ́lẹ̀ rẹ dúró: a ti mú ọ jáde."
   },
   "project": {
     "recruiting_one": "ń wá · ipa {{count}}",
@@ -747,5 +755,13 @@
     "imageType": "«{{name}}»: àwọn ìlànà tí a gbà ni JPEG, PNG, WebP àti GIF.",
     "imageTooBig": "«{{name}}» ju MB {{max}} lọ.",
     "uploadFailed": "Kò ṣeé ṣe láti fi «{{name}}» ránṣẹ́."
+  },
+  "moderation": {
+    "hidden": {
+      "QUESTION": "Ẹgbẹ́ Ndadiee ti fi kókó yìí pamọ́: gbogbo ènìyàn kò rí i mọ́.",
+      "ANSWER": "Ẹgbẹ́ Ndadiee ti fi ìdáhùn yìí pamọ́: gbogbo ènìyàn kò rí i mọ́.",
+      "PROJECT": "Ẹgbẹ́ Ndadiee ti fi iṣẹ́ àkànṣe yìí pamọ́: gbogbo ènìyàn kò rí i mọ́."
+    },
+    "reason": "Ìdí: {{reason}}"
   }
 }

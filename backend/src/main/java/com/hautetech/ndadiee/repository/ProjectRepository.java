@@ -1,5 +1,8 @@
 package com.hautetech.ndadiee.repository;
 
+import java.time.Instant;
+import java.util.Collection;
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -17,7 +20,18 @@ public interface ProjectRepository extends JpaRepository<Project, Long>, JpaSpec
 
     boolean existsBySlug(String slug);
 
-    long countByOwnerId(Long ownerId);
+    // Les chiffres publics ne comptent que les projets visibles (voir Hideable)
+    long countByOwnerIdAndHiddenAtIsNull(Long ownerId);
+
+    long countByHiddenAtIsNull();
+
+    long countByHiddenAtIsNotNull();
+
+    long countByCreatedAtGreaterThanEqual(Instant since);
+
+    // [porteur, nombre de projets] pour ces membres (back-office : une requête pour toute la page)
+    @Query("SELECT p.owner.id, COUNT(p) FROM Project p WHERE p.owner.id IN :ownerIds GROUP BY p.owner.id")
+    List<Object[]> countByOwners(@Param("ownerIds") Collection<Long> ownerIds);
 
     @Modifying
     @Query("""

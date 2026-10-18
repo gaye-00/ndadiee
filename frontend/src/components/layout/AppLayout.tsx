@@ -2,7 +2,8 @@ import { Outlet } from 'react-router-dom';
 import MobileTabBar from './MobileTabBar';
 import Sidebar from './Sidebar';
 import Topbar from './Topbar';
-import { APP_NAV } from '@/config/navigation';
+import { ADMIN_APP_NAV, APP_NAV } from '@/config/navigation';
+import { useAuth } from '@/hooks/useAuth';
 import { usePrefetchWhenIdle } from '@/hooks/usePrefetchWhenIdle';
 
 /**
@@ -13,7 +14,8 @@ import { usePrefetchWhenIdle } from '@/hooks/usePrefetchWhenIdle';
  * - Téléphone : la barre du haut seule, et les onglets en bas de l'écran, à portée de pouce.
  */
 export default function AppLayout() {
-  usePrefetchWhenIdle(APP_NAV);
+  const { isAdmin } = useAuth();
+  usePrefetchWhenIdle(isAdmin ? ADMIN_APP_NAV : APP_NAV);
 
   return (
     <div className="relative min-h-dvh md:grid md:grid-cols-[5.5rem_minmax(0,1fr)]">

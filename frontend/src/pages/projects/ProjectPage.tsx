@@ -12,6 +12,7 @@ import ProjectGallery from '@/components/projects/ProjectGallery';
 import ProjectHero from '@/components/projects/ProjectHero';
 import { FOCUS_ROLES_EVENT } from '@/components/projects/projectEvents';
 import TeamMembersCard from '@/components/projects/TeamMembersCard';
+import HiddenNotice from '@/components/shared/HiddenNotice';
 import { WovenThreads } from '@/components/shared/WovenMotif';
 import { site } from '@/config/site';
 import { useProject } from '@/hooks/useProjects';
@@ -157,6 +158,8 @@ export default function ProjectPage() {
       <div aria-hidden className="halo halo-gold -top-40 end-[-12rem] -z-10 size-[36rem] opacity-70" />
 
       <div className="mx-auto max-w-[90rem] px-4 sm:px-6 lg:px-10 xl:px-16">
+        {/* Masqué par l'équipe : son équipe et les admins le voient encore, le public non */}
+        {data.hidden && <HiddenNotice kind="PROJECT" reason={data.hiddenReason} className="mt-6 max-w-3xl" />}
         <section className="grid items-center gap-8 pt-6 pb-10 sm:pt-10 lg:grid-cols-[minmax(0,1fr)_minmax(0,32.5rem)] lg:gap-10 lg:pb-12">
           <ProjectHero project={data} />
           <ProjectGallery project={data} />

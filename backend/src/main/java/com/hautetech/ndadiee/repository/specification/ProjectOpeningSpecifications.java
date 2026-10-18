@@ -31,13 +31,15 @@ public final class ProjectOpeningSpecifications {
      * Les annonces ouvertes qui répondent aux filtres ; technologies et pays sont ceux de leur projet. Les
      * technologies passent par une sous-requête (EXISTS) : une ligne par annonce, quelle que soit la requête
      * qui s'en sert (page, comptage, facettes). Chaque mot du mot-clé doit se trouver dans l'annonce ou dans
-     * son projet : « flutter réservation » trouve les devs Flutter de Kawral.
+     * son projet : « flutter réservation » trouve les devs Flutter de Kawral. Les annonces d'un projet masqué
+     * par l'administration n'y sont jamais.
      */
     public static Specification<ProjectOpening> filter(OpeningFilter filter) {
         return (root, query, cb) -> {
             Path<Project> project = root.get("project");
             List<Predicate> predicates = new ArrayList<>();
             predicates.add(cb.isTrue(root.get("open")));
+            predicates.add(cb.isNull(project.get("hiddenAt")));
             if (filter.role() != null) {
                 predicates.add(cb.equal(root.get("role"), filter.role()));
             }

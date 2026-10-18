@@ -37,7 +37,7 @@ public class DevlogController extends BaseController {
     public ResponseEntity<ApiResponse<PageResponse<DevlogEntryResponse>>> list(
             @PathVariable Long projectId,
             @ParameterObject @PageableDefault(size = 5, sort = "createdAt", direction = Sort.Direction.DESC) Pageable pageable) {
-        return ResponseEntity.ok(ApiResponse.success(devlogService.list(projectId, pageable), "Devlog récupéré avec succès"));
+        return ResponseEntity.ok(ApiResponse.success(devlogService.list(projectId, getOptionalUserId(), pageable), "Devlog récupéré avec succès"));
     }
 
     @Operation(summary = "Écrire dans le devlog (membre de l'équipe)")

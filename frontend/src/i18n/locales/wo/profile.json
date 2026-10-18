@@ -1,0 +1,166 @@
+{
+  "loading": "Profil bi mu ngi yeb",
+  "notFoundTitle": "Profil bii amul",
+  "notFoundText": "Kenn duñu ko wax @{{username}} fii. Xéy na lëkkalekaay bi matul, walla kont bi soppi na turam.",
+  "backToShowcase": "Dellu ci vitrine bi",
+  "errorTitle": "Profil bi mënul a yeb",
+  "errorText": "Seetal sa connexion, ba noppi jéemaat.",
+  "aside": "Ekip yi ak màndarga yi",
+  "header": {
+    "openToWork": "Mu ngi waaj a dugg ci ekip",
+    "reputation_one": "<n>{{value}}</n> poñ bu tur",
+    "reputation_other": "<n>{{value}}</n> poñ yu tur",
+    "followers_one": "<n>{{value}}</n> ku koy topp",
+    "followers_other": "<n>{{value}}</n> ñu koy topp",
+    "following_one": "mu ngi topp <n>{{value}}</n>",
+    "following_other": "mu ngi topp <n>{{value}}</n>",
+    "skills": "Xam-xam",
+    "website": "Site web",
+    "place": "{{city}}, {{country}}",
+    "memberSince": "Mu ngi fi dale ci {{date}}",
+    "follow": "Topp {{name}}",
+    "followingThem": "Yaa ngi koy topp",
+    "unfollow": "Bàyyi topp {{name}}",
+    "share": "Séddoo",
+    "shareMine": "Séddoo sama profil",
+    "linkCopied": "Lëkkalekaay bu profil bi duppi nañu ko",
+    "copyFailed": "Lëkkalekaay bi mënul a duppiku."
+  },
+  "stats": {
+    "title": "Firnde yu liggéey",
+    "projects_one": "projet bu mu tàmbali",
+    "projects_other": "projet yu mu tàmbali",
+    "teams_one": "ekip bu mu dugg",
+    "teams_other": "ekip yu mu dugg",
+    "acceptedAnswers_one": "tontu bu ñu nangu",
+    "acceptedAnswers_other": "tontu yu ñu nangu",
+    "ofAnswers_one": "ci {{count}} tontu ci forum bi",
+    "ofAnswers_other": "ci {{count}} tontu ci forum bi",
+    "hackathons_one": "hackathon bu mu bokk",
+    "hackathons_other": "hackathon yu mu bokk",
+    "podiums_one": "ak {{count}} podium",
+    "podiums_other": "ak {{count}} podium"
+  },
+  "showcase": {
+    "eyebrow": "Vitrine",
+    "title": "Li {{name}} di tabax",
+    "titleOwn": "Li ngay tabax",
+    "count_one": "{{count}} projet",
+    "count_other": "{{count}} projet",
+    "role": {
+      "OWNER": "Kiy sos",
+      "MAINTAINER": "Kiy topptoo",
+      "CONTRIBUTOR": "Way-dimbali"
+    },
+    "more_one": "Gis beneen projet bi",
+    "more_other": "Gis {{count}} projet yi des",
+    "moreFailed": "Li des mënul a yeb. Jéemaatal.",
+    "errorTitle": "Projet yi mënuñu a yeb",
+    "errorText": "Seetal sa connexion, ba noppi jéemaat.",
+    "emptyOwnTitle": "Sa vitrine mu ngi xaar projet bu njëkk",
+    "emptyOwnText": "Wone benn projet open source, walla nga dugg ci ekip : projet bu nekk boo ci bokk, fii lay feeñ.",
+    "emptyOwnAction": "Siiwal benn projet",
+    "emptyTitle": "{{name}} amagul projet fii",
+    "emptyText": "Ay projetam dinañu feeñ fii bu tàmbalee benn, walla mu dugg ci ekip."
+  },
+  "heatmap": {
+    "eyebrow": "Ndimbal",
+    "title": "Benn at mu ñu ràbb",
+    "currentStreak_one": "toftaloo bi leegi : {{count}} fan",
+    "currentStreak_other": "toftaloo bi leegi : {{count}} fan",
+    "sources": "Ndimbal yi ñu waññ",
+    "platform": "Ndadiee",
+    "withGithub": "Ak GitHub",
+    "githubHint": "Yokk kalandiryee bu @{{login}} ci GitHub",
+    "githubUnknown": "Amul benn kont GitHub bu tudd @{{login}} : ndimbal yu Ndadiee rekk lañu ràbb.",
+    "githubUnavailable": "GitHub tontuwul : ndimbal yu Ndadiee rekk lañu ràbb. Jéemaatal ci kanam.",
+    "counts": "Mbir yi, tontu yi, kàddu yi, bind yi, projet yu ñu tàmbali, notu devlog ak xalaat yi.",
+    "countsWithGithub": "Ay ndimbalam ci Ndadiee, ak kalandiryeem bu GitHub.",
+    "errorTitle": "Ndimbal yi mënuñu a yeb",
+    "errorText": "Seetal sa connexion, ba noppi jéemaat."
+  },
+  "collaborators": {
+    "title": "Liggéey na ak",
+    "shared": "{{projects}}",
+    "sharedMore_one": "{{projects}} ak {{count}} beneen projet",
+    "sharedMore_other": "{{projects}} ak {{count}} yeneen projet",
+    "empty": "Amagul ekip bu ñu bokk ci Ndadiee.",
+    "emptyOwn": "Say àndandoo dinañu feeñ fii boo duggee ci ekip.",
+    "findTeam": "Wut ekip",
+    "error": "Lim bi mënul a yeb.",
+    "retry": "Jéemaatal"
+  },
+  "badges": {
+    "title_one": "Màndarga · {{count}}",
+    "title_other": "Màndarga · {{count}}",
+    "empty": "Amagul màndarga.",
+    "emptyOwn": "Sa màndarga bu njëkk mu ngi lay xaar : laajal, tontul kenn, walla nga wone benn projet.",
+    "locked": "Ngir ubbi",
+    "awarded": "jot na ko ci {{date}}",
+    "catalog": {
+      "FIRST_QUESTION": {
+        "name": "Laajkat",
+        "description": "Laaj na laaj bu njëkk",
+        "criteria": "Laaj laaj bu njëkk ci forum bi"
+      },
+      "FIRST_ANSWER": {
+        "name": "Jappalante",
+        "description": "Tontu na ci laaj bu njëkk",
+        "criteria": "Siiwal tontu bu njëkk"
+      },
+      "FIRST_ACCEPTED_ANSWER": {
+        "name": "Jafe-jafe bi saf na",
+        "description": "Nangu nañu benn ci ay tontoom",
+        "criteria": "Ñu nangu benn ci say tontu"
+      },
+      "FIRST_ARTICLE": {
+        "name": "Xalima",
+        "description": "Siiwal na bindam bu njëkk",
+        "criteria": "Siiwal bind bu njëkk"
+      },
+      "FIRST_PROJECT": {
+        "name": "Tabaxkat",
+        "description": "Wone na projetam open source bu njëkk",
+        "criteria": "Wone projet bu njëkk"
+      },
+      "REPUTATION_100": {
+        "name": "Way-dimbali",
+        "description": "Jot na 100 poñ yu tur",
+        "criteria": "Jot 100 poñ yu tur"
+      },
+      "REPUTATION_500": {
+        "name": "Boroom xam-xam",
+        "description": "Jot na 500 poñ yu tur",
+        "criteria": "Jot 500 poñ yu tur"
+      }
+    }
+  },
+  "avatar": {
+    "eyebrow": "Nataalu profil",
+    "title": "Defaral sa nataal",
+    "hint": "Diri nataal bi ci suufu kéréñ gi ; jegeleel ak curseur bi, molet bi walla ñaari baaraam. Ak klawie bi : fles yi, + ak −.",
+    "stage": "Defaru nataal bi",
+    "opening": "Nataal bi mu ngi ubbiku",
+    "zoom": "Jegeleel",
+    "recenter": "Dellu ci digg bi",
+    "preview": "Seet ko balaa",
+    "pickAnother": "Tànnal beneen nataal",
+    "cancel": "Neenal",
+    "close": "Tëj",
+    "save": "Denc",
+    "saving": "Mu ngi yónnee… {{percent}} %",
+    "saved": "Sa nataalu profil yeesal nañu ko",
+    "failed": "Nataal bi mënul a yónneeku. Jéemaatal.",
+    "unreadable": "Fichier bii du nataal bu nu mën a jàng. Tànnal nataal JPEG, PNG, WebP walla GIF.",
+    "tooBig": "Nataal bii ëpp na {{max}} Mo. Tànnal bu gëna woyof.",
+    "menu": "Soppi walla dindi sa nataalu profil",
+    "add": "Yokk nataal",
+    "change": "Soppi nataal bi",
+    "drop": "Wacceel sa nataal fii",
+    "remove": "Dindi nataal bi",
+    "removeTitle": "Dindi sa nataal ?",
+    "removeText": "Arafu sa tur dinañu ko wuutu fépp ci Ndadiee. Mën nga yokk beneen saa boo bëggee.",
+    "removed": "Dindi nañu sa nataal",
+    "removeFailed": "Nataal bi mënul a dindiku. Jéemaatal."
+  }
+}

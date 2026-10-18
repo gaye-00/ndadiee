@@ -1,0 +1,265 @@
+{
+  "shell": {
+    "brand": "Gudanarwa",
+    "nav": "Sassan gudanarwa",
+    "site": "Shafin",
+    "role": "Gudanarwa",
+    "sections": {
+      "overview": "Taƙaitawa",
+      "users": "Membobi",
+      "content": "Abubuwa",
+      "journal": "Rajista"
+    }
+  },
+  "shared": {
+    "errorText": "Duba haɗinka, sannan ka sake gwadawa."
+  },
+  "roles": {
+    "USER": "Memba",
+    "MODERATOR": "Mai kula",
+    "ADMIN": "Mai gudanarwa"
+  },
+  "overview": {
+    "lead": "Al'umma da abubuwan da ta wallafa a lambobi, da sabbin shawarwarin ƙungiyar.",
+    "loading": "Ana loda taƙaitawa",
+    "errorTitle": "Ba a iya loda taƙaitawa ba",
+    "community": "Al'umma",
+    "content": "Abubuwa",
+    "thisWeek": "+{{formatted}} a wannan makon",
+    "kpi": {
+      "members": "Membobi",
+      "active": "Masu aiki a wannan makon",
+      "activeHint": "sun shiga aƙalla sau ɗaya",
+      "moderators": "Masu kula",
+      "moderatorsHint": "suna kula da tattaunawa",
+      "blocked": "Asusun da aka dakatar",
+      "blockedHint": "ba za su iya shiga ba yanzu",
+      "topics": "Batutuwan tattaunawa",
+      "answers": "Amsoshi",
+      "projects": "Shirye-shirye",
+      "hidden": "Abubuwan da aka ɓoye",
+      "hiddenHint": "jama'a ba sa ganinsu"
+    },
+    "signups": {
+      "title": "Rajistoci",
+      "subtitle_one": "Kwanaki 30 da suka wuce · rajista {{formatted}}",
+      "subtitle_other": "Kwanaki 30 da suka wuce · rajistoci {{formatted}}",
+      "chartLabel": "Rajistoci a kowace rana cikin kwanaki 30 da suka wuce. Kibiyoyi suna zagaya kwanakin.",
+      "day_one": "{{date}}: rajista {{count}}",
+      "day_other": "{{date}}: rajistoci {{count}}",
+      "count_one": "Rajista {{formatted}}",
+      "count_other": "Rajistoci {{formatted}}",
+      "today": "yau",
+      "showTable": "Tebur",
+      "showChart": "Jadawali",
+      "dayColumn": "Rana",
+      "countColumn": "Rajistoci"
+    },
+    "recent": {
+      "title": "Sabbin shawarwari",
+      "seeAll": "Duk rajistar",
+      "empty": "Babu wata shawara tukuna."
+    }
+  },
+  "users": {
+    "title": "Membobi",
+    "lead": "Nemi asusu, dakatar da shi da dalili ko maido da shi, naɗa mai kula ko cire masa matsayin.",
+    "count_one": "Asusu {{formatted}}",
+    "count_other": "Asusu {{formatted}}",
+    "filters": "Tace asusu",
+    "search": "Nemi asusu",
+    "searchPlaceholder": "Suna, @sunan mai amfani ko imel…",
+    "status": {
+      "label": "Matsayin asusu",
+      "all": "Duka",
+      "ACTIVE": "Masu aiki",
+      "BLOCKED": "An dakatar"
+    },
+    "role": {
+      "label": "Matsayi",
+      "all": "Duk matsayi"
+    },
+    "loading": "Ana loda asusu",
+    "errorTitle": "Ba a iya loda asusu ba",
+    "empty": {
+      "title": "Babu asusun da ya dace",
+      "text": "Canza binciken ko cire wani tacewa."
+    },
+    "you": "kai",
+    "active": "Mai aiki",
+    "blocked": "An dakatar",
+    "blockedSince": "An dakatar {{when}}",
+    "reason": "Dalili: {{reason}}",
+    "questions_one": "Batu {{formatted}}",
+    "questions_other": "Batutuwa {{formatted}}",
+    "answers_one": "Amsa {{formatted}}",
+    "answers_other": "Amsoshi {{formatted}}",
+    "projects_one": "Shiri {{formatted}}",
+    "projects_other": "Shirye-shirye {{formatted}}",
+    "adminAccount": "Asusun gudanarwa",
+    "joined": "Rajista: {{date}}",
+    "lastLogin": "Shiga ta ƙarshe {{when}}",
+    "neverLoggedIn": "Babu shiga tukuna",
+    "actions": {
+      "label": "Ayyuka don {{name}}",
+      "profile": "Duba bayanan martaba",
+      "copyEmail": "Kwafi imel",
+      "makeModerator": "Naɗa shi mai kula",
+      "makeMember": "Cire matsayin mai kula",
+      "block": "Dakatar da asusu",
+      "unblock": "Maido da asusu"
+    },
+    "blockDialog": {
+      "title": "A dakatar da {{name}}?",
+      "description": "Wannan asusu ba zai iya shiga ba, kuma za a rufe zamansa na yanzu. Abin da ya wallafa zai ci gaba da kasancewa: ka ɓoye shi daban idan ya cancanta.",
+      "reasonLabel": "Dalilin dakatarwa",
+      "confirm": "Dakatar"
+    },
+    "unblockDialog": {
+      "title": "A maido da {{name}}?",
+      "description": "Asusun zai iya sake shiga ya shiga ayyuka.",
+      "confirm": "Maido"
+    },
+    "roleDialog": {
+      "moderatorTitle": "A naɗa {{name}} mai kula?",
+      "moderatorText": "Mai kula na iya gyara da share abubuwan sauran membobi a tattaunawa da shirye-shirye, amma ba tare da shiga gudanarwa ba.",
+      "moderatorConfirm": "Naɗa mai kula",
+      "memberTitle": "A cire wa {{name}} matsayin mai kula?",
+      "memberText": "Asusun zai koma memba kamar kowa: ba za a iya gyara ko share abubuwan wasu da shi ba.",
+      "memberConfirm": "Cire matsayin"
+    },
+    "toast": {
+      "blocked": "An dakatar da {{name}}.",
+      "unblocked": "An maido da {{name}}.",
+      "moderator": "An naɗa {{name}} mai kula.",
+      "member": "An cire wa {{name}} matsayin mai kula.",
+      "emailCopied": "An kwafi imel."
+    }
+  },
+  "content": {
+    "title": "Abubuwa",
+    "lead": "Batutuwan tattaunawa, amsoshi da shirye-shirye. Ɓoyewa yana janye abu daga jama'a ba tare da rasa komai ba: marubucin yana ganin dalilin, kuma za ka iya maido da shi. Sharewa kuwa na dindindin ne.",
+    "count_one": "Abu {{formatted}}",
+    "count_other": "Abubuwa {{formatted}}",
+    "filters": "Tace abubuwa",
+    "typeLabel": "Nau'in abu",
+    "types": {
+      "QUESTION": "Batutuwa",
+      "ANSWER": "Amsoshi",
+      "PROJECT": "Shirye-shirye"
+    },
+    "type": {
+      "QUESTION": "Batu",
+      "ANSWER": "Amsa",
+      "PROJECT": "Shiri"
+    },
+    "search": "Nemi abu",
+    "searchPlaceholder": "Take, rubutu ko @marubuci…",
+    "visibility": {
+      "label": "Bayyana",
+      "all": "Duka",
+      "VISIBLE": "Masu bayyana",
+      "HIDDEN": "Ɓoyayyu"
+    },
+    "loading": "Ana loda abubuwa",
+    "errorTitle": "Ba a iya loda abubuwa ba",
+    "empty": {
+      "title": "Babu abin da ya dace",
+      "text": "Canza binciken ko cire wani tacewa."
+    },
+    "answerTo": "Amsa ga «{{title}}»",
+    "hiddenBadge": "An ɓoye",
+    "hiddenSince": "An ɓoye {{when}}",
+    "reason": "Dalili: {{reason}}",
+    "score_one": "Maki {{formatted}}",
+    "score_other": "Maki {{formatted}}",
+    "stars_one": "Tauraro {{formatted}}",
+    "stars_other": "Taurari {{formatted}}",
+    "replies_one": "Amsa {{formatted}}",
+    "replies_other": "Amsoshi {{formatted}}",
+    "actions": {
+      "view": "Duba",
+      "hide": "Ɓoye",
+      "unhide": "Maido",
+      "delete": "Share"
+    },
+    "hideDialog": {
+      "title": "A ɓoye wannan abu?",
+      "description": "Zai fita daga shafukan jama'a: jerin abubuwa, bincike, abinci da ƙididdiga. Marubucin zai ci gaba da ganinsa tare da dalilin, kuma za ka iya maido da shi.",
+      "reasonLabel": "Dalili (za a nuna wa marubucin)",
+      "confirm": "Ɓoye"
+    },
+    "deleteDialog": {
+      "title": "A share gaba ɗaya?",
+      "description": {
+        "QUESTION": "Batun zai tafi tare da amsoshinsa, ƙuri'unsa da sharhohinsa. Ba za a iya dawowa ba: ɓoyewa ya isa sau da yawa.",
+        "ANSWER": "Amsar za ta tafi tare da ƙuri'unta da sharhohinta. Ba za a iya dawowa ba: ɓoyewa ya isa sau da yawa.",
+        "PROJECT": "Shirin zai tafi tare da ƙungiyarsa, guraben aikinsa, ƙuri'unsa da sharhohinsa. Ba za a iya dawowa ba: ɓoyewa ya isa sau da yawa."
+      },
+      "reasonLabel": "Dalili (za a ajiye a rajista)",
+      "confirm": "Share"
+    },
+    "toast": {
+      "hidden": "An ɓoye abin.",
+      "unhidden": "An maido da abin.",
+      "deleted": "An share abin."
+    }
+  },
+  "journal": {
+    "title": "Rajista",
+    "lead": "Kowace shawarar ƙungiyar, tare da dalilinta. Rajistar ba ta gogewa.",
+    "count_one": "Shawara {{formatted}}",
+    "count_other": "Shawarwari {{formatted}}",
+    "filter": "Abin da shawarwarin suka shafa",
+    "targets": {
+      "all": "Duka",
+      "USER": "Asusu",
+      "QUESTION": "Batutuwa",
+      "ANSWER": "Amsoshi",
+      "PROJECT": "Shirye-shirye"
+    },
+    "loading": "Ana loda rajista",
+    "errorTitle": "Ba a iya loda rajista ba",
+    "empty": {
+      "title": "Babu komai a rajista",
+      "text": "Za a rubuta shawarwarin ƙungiyar a nan."
+    },
+    "formerAdmin": "Tsohon mai gudanarwa",
+    "reason": "Dalili:",
+    "seeAccount": "Duba asusun",
+    "sentence": {
+      "BLOCK_USER": "<b>{{admin}}</b>: an dakatar da <b>@{{target}}</b>",
+      "UNBLOCK_USER": "<b>{{admin}}</b>: an maido da <b>@{{target}}</b>",
+      "CHANGE_ROLE": "<b>{{admin}}</b>: an mayar da <b>@{{target}}</b> daga {{from}} zuwa {{to}}",
+      "HIDE_CONTENT_QUESTION": "<b>{{admin}}</b>: an ɓoye batun <b>{{target}}</b>",
+      "HIDE_CONTENT_ANSWER": "<b>{{admin}}</b>: an ɓoye amsa ga <b>{{target}}</b>",
+      "HIDE_CONTENT_PROJECT": "<b>{{admin}}</b>: an ɓoye shirin <b>{{target}}</b>",
+      "UNHIDE_CONTENT_QUESTION": "<b>{{admin}}</b>: an maido da batun <b>{{target}}</b>",
+      "UNHIDE_CONTENT_ANSWER": "<b>{{admin}}</b>: an maido da amsa ga <b>{{target}}</b>",
+      "UNHIDE_CONTENT_PROJECT": "<b>{{admin}}</b>: an maido da shirin <b>{{target}}</b>",
+      "DELETE_CONTENT_QUESTION": "<b>{{admin}}</b>: an share batun <b>{{target}}</b>",
+      "DELETE_CONTENT_ANSWER": "<b>{{admin}}</b>: an share amsa ga <b>{{target}}</b>",
+      "DELETE_CONTENT_PROJECT": "<b>{{admin}}</b>: an share shirin <b>{{target}}</b>"
+    }
+  },
+  "reason": {
+    "placeholder": "Bayyana shawarar a jimla ɗaya…",
+    "required": "Ana buƙatar dalili.",
+    "shown": "Za a nuna shi ga wanda abin ya shafa.",
+    "optional": "Ba dole ba ne: ana ajiye shi a rajista kawai.",
+    "counter": "{{length}}/{{max}}",
+    "presets": {
+      "spam": "Saƙon banza ko talla.",
+      "fraud": "Zamba ko yaudara.",
+      "abuse": "Kalamai marasa ladabi.",
+      "offTopic": "Ba shi da alaƙa da batun.",
+      "duplicate": "Maimaici."
+    }
+  },
+  "pager": {
+    "label": "Shafuka",
+    "previous": "Na baya",
+    "next": "Na gaba",
+    "page": "Shafi {{page}} cikin {{total}}"
+  }
+}

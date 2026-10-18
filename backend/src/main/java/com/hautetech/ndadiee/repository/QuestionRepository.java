@@ -1,5 +1,7 @@
 package com.hautetech.ndadiee.repository;
 
+import java.time.Instant;
+import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
 
@@ -18,32 +20,47 @@ public interface QuestionRepository extends JpaRepository<Question, Long>, JpaSp
 
     boolean existsBySlug(String slug);
 
-    long countByAuthorId(Long authorId);
+    // Les chiffres publics ne comptent que les sujets visibles : un sujet masqué par l'administration n'existe
+    // plus pour le public
+    long countByAuthorIdAndHiddenAtIsNull(Long authorId);
 
-    long countByAcceptedAnswerIsNotNull();
+    long countByHiddenAtIsNull();
 
-    long countByAnswerCount(int answerCount);
+    long countByHiddenAtIsNotNull();
 
-    // Les tags du forum, du plus utilisé au moins utilisé : [slug, nom, nombre de sujets]
+    long countByAcceptedAnswerIsNotNullAndHiddenAtIsNull();
+
+    long countByAnswerCountAndHiddenAtIsNull(int answerCount);
+
+    // Nouveaux sujets depuis cette date (back-office)
+    long countByCreatedAtGreaterThanEqual(Instant since);
+
+    // [auteur, nombre de sujets] pour ces membres (back-office : une requête pour toute la page)
+    @Query("SELECT q.author.id, COUNT(q) FROM Question q WHERE q.author.id IN :authorIds GROUP BY q.author.id")
+    List<Object[]> countByAuthors(@Param("authorIds") Collection<Long> authorIds);
+
+    // Les tags du forum, du plus utilisé au moins utilisé : [slug, nom, nombre de sujets visibles]
     @Query("""
             SELECT t.slug, t.name, COUNT(q) FROM Question q JOIN q.tags t
+            WHERE q.hiddenAt IS NULL
             GROUP BY t.id, t.slug, t.name
             ORDER BY COUNT(q) DESC, t.name ASC
             """)
     List<Object[]> countTopicsByTag(Pageable pageable);
 
-    // Membres qui ont publié au moins un sujet ou une réponse
+    // Membres qui ont publié au moins un sujet ou une réponse visibles
     @Query("""
             SELECT COUNT(d) FROM Developer d
-            WHERE EXISTS (SELECT 1 FROM Question q WHERE q.author = d)
-               OR EXISTS (SELECT 1 FROM Answer a WHERE a.author = d)
+            WHERE EXISTS (SELECT 1 FROM Question q WHERE q.author = d AND q.hiddenAt IS NULL)
+               OR EXISTS (SELECT 1 FROM Answer a WHERE a.author = d AND a.hiddenAt IS NULL AND a.question.hiddenAt IS NULL)
             """)
     long countContributors();
 
     // Les compteurs passent par des UPDATE atomiques : pas de vote perdu en cas d'accès
-    // concurrents, et updatedAt (date de dernière modification du contenu) n'est pas touché.
+    // concurrents, et updatedAt (date de dernière modification du contenu) n'est pas touché. Un sujet masqué
+    // ne compte pas de vues : seuls son auteur et les admins l'ouvrent encore.
     @Modifying
-    @Query("UPDATE Question q SET q.viewCount = q.viewCount + 1 WHERE q.slug = :slug")
+    @Query("UPDATE Question q SET q.viewCount = q.viewCount + 1 WHERE q.slug = :slug AND q.hiddenAt IS NULL")
     int incrementViewCount(@Param("slug") String slug);
 
     @Modifying

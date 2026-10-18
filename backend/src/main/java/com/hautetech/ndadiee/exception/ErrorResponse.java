@@ -25,6 +25,9 @@ public class ErrorResponse {
     // Champ en erreur -> message, uniquement pour les erreurs de validation
     private Map<String, String> validationErrors;
 
+    // Précisions propres à l'erreur : le motif d'une suspension (ACCOUNT_BLOCKED)
+    private Map<String, String> details;
+
     @Builder.Default
     private Instant timestamp = Instant.now();
 }

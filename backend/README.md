@@ -50,6 +50,44 @@ par les services métier (réputation, badges et notifications cohérents). Comp
 
 Pour repartir de zéro : supprimer le volume de la base (`docker compose down -v`), puis relancer.
 
+## Administration (back-office)
+
+Un compte `Admin` (rôle `ADMIN`) ne participe pas à la communauté : à la connexion, le frontend l'envoie sur son
+back-office (`/admin`), un développeur sur son atelier (`/dashboard`). En développement, le compte est créé au
+démarrage : identifiant `admin` (ou `admin@example.com`), mot de passe `SEED_ADMIN_PASSWORD` (`Admin@Ndadiee2026`
+par défaut).
+
+| Requête | Accès |
+| --- | --- |
+| `GET /v1/admin/overview` | admin : membres (modérateurs, suspendus, nouveaux et actifs sur 7 jours), contenus (masqués compris), inscriptions par jour sur 30 jours, dernières décisions |
+| `GET /v1/admin/users?q=&role=&status=ACTIVE\|BLOCKED` | admin : les comptes, avec ce que chacun a publié |
+| `POST /v1/admin/users/{id}/block` `{ reason }`, `POST …/unblock` | admin : suspendre (motif obligatoire), réactiver |
+| `PATCH /v1/admin/users/{id}/role` `{ role }` | admin : `USER` ou `MODERATOR` (jamais `ADMIN`) |
+| `GET /v1/admin/content?type=QUESTION\|ANSWER\|PROJECT&q=&visibility=VISIBLE\|HIDDEN` | admin : sujets, réponses ou projets, masqués compris |
+| `POST /v1/admin/content/{type}/{id}/hide` `{ reason }`, `POST …/unhide` | admin : masquer (motif obligatoire), rétablir |
+| `DELETE /v1/admin/content/{type}/{id}?reason=` | admin : supprimer définitivement (par les services du contenu, comme un modérateur) |
+| `GET /v1/admin/actions?targetType=` | admin : le journal des décisions, les plus récentes d'abord |
+
+- **Droits** : deux barrières. Les règles d'URL de `SecurityConfiguration` (`admin:read` en lecture, `admin:update`,
+  `admin:delete`), placées avant toutes les autres, et `@PreAuthorize("hasRole('ADMIN')")` sur `AdminController`. Un
+  modérateur garde ses droits sur le contenu (modifier, supprimer) mais n'entre pas au back-office. Testé par
+  `AdminSecurityTest`.
+- **Compte suspendu** (`User.blockedAt`, `blockedReason`) : connexion refusée (403 `ACCOUNT_BLOCKED`, le motif dans
+  `details.reason`), seulement une fois le mot de passe vérifié, pour ne rien apprendre à un tiers ; refresh refusé ;
+  ses jetons encore valides n'authentifient plus (`JwtAuthenticationFilter`). Ce qu'il a publié reste en ligne. Un
+  compte d'administration ne se suspend pas, et personne ne se suspend soi-même.
+- **Contenu masqué** (`Hideable` : `hiddenAt`, `hiddenReason` sur `Question`, `Answer`, `Project`) : il quitte les
+  listes, la recherche, le fil, les facettes, les statistiques, la liste de lecture et les compteurs des profils ; ses
+  annonces (projet) aussi. Sa page répond 404, sauf à son auteur (l'équipe, pour un projet) et aux admins, qui la voient
+  avec le motif (`hidden`, `hiddenReason`). Il ne se vote ni ne se commente plus. Une réponse masquée sort du compteur
+  de réponses de son sujet (un sujet dont la seule réponse est masquée redevient « sans réponse ») et y revient si elle
+  est rétablie.
+- **Journal** (`admin_actions`, `AdminAuditService`) : chaque décision, dans la même transaction, avec son motif et le
+  libellé de sa cible au moment de l'action (la cible a pu être supprimée depuis). Il ne s'efface pas.
+- **Démonstration** (`ModerationSeeder`) : un compte de spam (`cash_rapide`) suspendu, son sujet et sa réponse
+  masqués, et `thandiwe_ndlovu` nommée modératrice ; le journal porte ces décisions.
+- Migration `V6__administration.sql` (bloc `DO`, comme V3 à V5).
+
 ## Inscription et connexion
 
 | Requête | Accès |
@@ -188,6 +226,36 @@ Pour brancher R2 :
 
 Les images envoyées mais jamais publiées (brouillon abandonné) restent dans le bucket : une règle de cycle de vie, ou
 une tâche de nettoyage, pourra les retirer.
+
+## Profil (design 3F)
+
+`GET /v1/users/{username}` (public) : la fiche du développeur, ses badges, et ses preuves de travail en plus de ses
+compteurs du forum : `projectCount` (projets lancés), `teamCount` (équipes rejointes hors de ses projets),
+`acceptedAnswerCount`, `hackathonCount` (hackathons commencés où il avait une équipe) et `podiumCount`. Comme les autres
+chiffres, seulement ce que le public peut voir : rien de masqué par l'administration. Chaque badge porte son `type`
+(`BadgeType`, ou `null` pour un badge ajouté à la main) : le frontend en traduit le nom.
+
+| Route (publique) | Rôle |
+|---|---|
+| `GET /v1/users/{username}/projects?page=&size=` | ses projets (6 par page), avec sa place dans l'équipe (`role`, `specialty`, `joinedAt`) : ceux qu'il porte d'abord, puis les plus étoilés. Un projet masqué n'y reste que pour lui et les admins |
+| `GET /v1/users/{username}/collaborators` | ses coéquipiers sur ses projets visibles (8 au plus), ceux des projets en commun les plus nombreux d'abord, avec deux de ces projets |
+| `GET /v1/users/{username}/activity` | ses contributions jour par jour (UTC) sur 53 semaines, les jours vides en moins : sujets, réponses, commentaires, articles publiés, projets lancés, notes de devlog et retours (`DeveloperRepository.findContributionDates`, une requête) |
+
+### Photo de profil
+
+`PUT /v1/users/me/avatar` (connecté, `multipart/form-data`, champ `file`) la remplace, `DELETE /v1/users/me/avatar` la
+retire ; les deux rendent le compte à jour. `PUT /v1/users/me` ne touche plus à la photo.
+
+- **Préparation** (frontend, `lib/avatarImage.ts`) : le membre cadre sa photo dans un cercle ; le navigateur en fait un
+  carré de 512 px en WebP (JPEG si le navigateur ne sait pas écrire le WebP), quelques dizaines de Ko, sans les
+  métadonnées de la photo.
+- **Contrôles** (`service/media/AvatarService`, par `ImageUploadService`) : JPEG, PNG ou WebP (pas de GIF : une photo
+  de profil est fixe), 1 Mo au plus, dans le même compte d'envois par heure que les images du forum.
+- **Clés** : `avatars/{membre}/{uuid}.{ext}`, dans le même stockage (R2 en production).
+- **Ménage** : le stockage n'est pas transactionnel. L'ancienne photo n'est supprimée qu'une fois le profil enregistré ;
+  si l'enregistrement échoue, c'est la nouvelle qui l'est. Seul un fichier `avatars/{membre}/` du membre lui-même est
+  jamais supprimé (`FileStorage.keyOf` retrouve la clé dans l'adresse). Une suppression qui échoue est journalisée,
+  sans casser le profil.
 
 ## Chiffres de la communauté
 

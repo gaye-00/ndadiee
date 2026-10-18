@@ -1,6 +1,7 @@
 package com.hautetech.ndadiee.storage;
 
 import java.net.URI;
+import java.util.Optional;
 
 import software.amazon.awssdk.auth.credentials.AwsBasicCredentials;
 import software.amazon.awssdk.auth.credentials.StaticCredentialsProvider;
@@ -10,6 +11,7 @@ import software.amazon.awssdk.core.sync.RequestBody;
 import software.amazon.awssdk.regions.Region;
 import software.amazon.awssdk.services.s3.S3Client;
 import software.amazon.awssdk.services.s3.S3Configuration;
+import software.amazon.awssdk.services.s3.model.DeleteObjectRequest;
 import software.amazon.awssdk.services.s3.model.PutObjectRequest;
 
 /**
@@ -52,6 +54,21 @@ public class R2FileStorage implements FileStorage, AutoCloseable {
                         .build(),
                 RequestBody.fromBytes(content));
         return publicUrl + "/" + key;
+    }
+
+    @Override
+    public void delete(String key) {
+        // S3 ne signale pas une clé absente : la suppression est toujours un succès
+        client.deleteObject(DeleteObjectRequest.builder().bucket(bucket).key(key).build());
+    }
+
+    @Override
+    public Optional<String> keyOf(String url) {
+        String prefix = publicUrl + "/";
+        if (url == null || !url.startsWith(prefix) || url.length() == prefix.length()) {
+            return Optional.empty();
+        }
+        return Optional.of(url.substring(prefix.length()));
     }
 
     @Override

@@ -15,7 +15,8 @@
     "notifications": "Yégle yi",
     "settings": "Tànneef yi",
     "profile": "Profil",
-    "create": "Sos"
+    "create": "Sos",
+    "admin": "Saytu"
   },
   "actions": {
     "login": "Duggu",
@@ -150,7 +151,11 @@
     "login": "Duggu",
     "register": "Bindu",
     "notFound": "Xët wi amul",
-    "editTopic": "Soppi waxtaan wi"
+    "editTopic": "Soppi waxtaan wi",
+    "admin": "Saytu",
+    "adminUsers": "Saytu · Way-bokk yi",
+    "adminContent": "Saytu · Li ñu siiwal",
+    "adminJournal": "Saytu · Téere bi"
   },
   "enums": {
     "experienceLevel": {
@@ -198,29 +203,29 @@
       "invalid": "Tur bu GitHub dafay am ay araf, ay limu ak ay tire, 39 araf lu ëpp.",
       "notFound": "Amul benn kontu GitHub bu tudd noonu.",
       "unavailable": "GitHub du tontu. Jéemaatal ci kanam tuuti.",
-      "viewLabel": "Naka lañuy gise at mi",
-      "viewCloth": "Sër: at mi tasaaroo",
-      "viewCity": "Dëkk: at mi ci 3D",
-      "less": "Tuuti",
-      "more": "Bare",
-      "level0": "Bés yu amul dara",
-      "level1": "Bés yu dal",
-      "level2": "Bés yu ñu liggéey",
-      "level3": "Bés yu bare liggéey",
-      "level4": "Bés yi gëna bare liggéey",
-      "structure": "Benn bànd ci ayu-bés bu nekk, benn kaare ci bés bu nekk.",
-      "hintCloth": "Teg sa kurseer ci benn bés, walla nga dox ci at mi ak fles yi.",
-      "hintCity": "Diri ngir wër dëkk bi. Bësal ñaari yoon ngir dellu.",
-      "summary": "{{who}}, li dale ci {{from}} ba {{to}}: {{total}}. Benn bànd ci ayu-bés bu nekk, benn kaare ci bés bu nekk. Jëfandikoo fles yi ngir jàng bés bu nekk.",
-      "streak_one": "toppante bi gëna gudd: {{count}} bés",
-      "streak_other": "toppante bi gëna gudd: {{count}} bés",
       "showcase": "Sa at mi yeyoo na ab wone"
     }
   },
   "contributions": {
     "count_one": "{{count}} ndimbal",
     "count_other": "{{count}} ndimbal",
-    "none": "Amul ndimbal"
+    "none": "Amul ndimbal",
+    "viewLabel": "Naka lañuy gise at mi",
+    "viewCloth": "Sër: at mi tasaaroo",
+    "viewCity": "Dëkk: at mi ci 3D",
+    "less": "Tuuti",
+    "more": "Bare",
+    "level0": "Bés yu amul dara",
+    "level1": "Bés yu dal",
+    "level2": "Bés yu ñu liggéey",
+    "level3": "Bés yu bare liggéey",
+    "level4": "Bés yi gëna bare liggéey",
+    "structure": "Benn bànd ci ayu-bés bu nekk, benn kaare ci bés bu nekk.",
+    "hintCloth": "Teg sa kurseer ci benn bés, walla nga dox ci at mi ak fles yi.",
+    "hintCity": "Diri ngir wër dëkk bi. Bësal ñaari yoon ngir dellu.",
+    "summary": "{{who}}, li dale ci {{from}} ba {{to}}: {{total}}. Benn bànd ci ayu-bés bu nekk, benn kaare ci bés bu nekk. Jëfandikoo fles yi ngir jàng bés bu nekk.",
+    "streak_one": "toppante bi gëna gudd: {{count}} bés",
+    "streak_other": "toppante bi gëna gudd: {{count}} bés"
   },
   "teamRoles": {
     "frontend": "Dev front-end",
@@ -466,7 +471,9 @@
       "pending": "Mi ngi dugg…",
       "failed": "Email, turu jëfandikukat walla baatu jàll bi baaxul.",
       "noAccount": "Amoo kontu ba tey ?",
-      "toRegister": "Sos ab kontu"
+      "toRegister": "Sos ab kontu",
+      "blocked": "Ekipu Ndadiee taxawal na kont bii.",
+      "blockedReason": "Lay : {{reason}}"
     },
     "register": {
       "eyebrow": "Bindu",
@@ -532,7 +539,8 @@
       "loginText": "Bi nga nekkul, ekip yi dañu wéy di ràbb.",
       "registerTitle": "Beneen wëñ ci sër bi.",
       "registerText": "Dev bu nekk ab wëñ la. Fii, ekip yi dañuy ràbbu ci wetu projet yi."
-    }
+    },
+    "sessionBlocked": "Ekipu Ndadiee taxawal na sa kont : génne nañu la."
   },
   "project": {
     "recruiting_one": "mu ngi seet · {{count}} palaas",
@@ -747,5 +755,13 @@
     "imageType": "« {{name}} » : JPEG, PNG, WebP ak GIF rekk lañu nangu.",
     "imageTooBig": "« {{name}} » ëpp na {{max}} Mo.",
     "uploadFailed": "Mënunu yónnee « {{name}} »."
+  },
+  "moderation": {
+    "hidden": {
+      "QUESTION": "Ekipu Ndadiee nëbb na waxtaan wii : nit ñi gisatuñu ko.",
+      "ANSWER": "Ekipu Ndadiee nëbb na tontu bii : nit ñi gisatuñu ko.",
+      "PROJECT": "Ekipu Ndadiee nëbb na projet bii : nit ñi gisatuñu ko."
+    },
+    "reason": "Lay : {{reason}}"
   }
 }

@@ -1,0 +1,166 @@
+{
+  "loading": "Loading the profile",
+  "notFoundTitle": "This profile doesn't exist",
+  "notFoundText": "Nobody goes by @{{username}} here. The link may be incomplete, or the account changed its name.",
+  "backToShowcase": "Back to the showcase",
+  "errorTitle": "The profile couldn't load",
+  "errorText": "Check your connection, then try again.",
+  "aside": "Teams and badges",
+  "header": {
+    "openToWork": "Open to joining a team",
+    "reputation_one": "<n>{{value}}</n> reputation point",
+    "reputation_other": "<n>{{value}}</n> reputation points",
+    "followers_one": "<n>{{value}}</n> follower",
+    "followers_other": "<n>{{value}}</n> followers",
+    "following_one": "<n>{{value}}</n> following",
+    "following_other": "<n>{{value}}</n> following",
+    "skills": "Skills",
+    "website": "Website",
+    "place": "{{city}}, {{country}}",
+    "memberSince": "Member since {{date}}",
+    "follow": "Follow {{name}}",
+    "followingThem": "Following",
+    "unfollow": "Unfollow {{name}}",
+    "share": "Share",
+    "shareMine": "Share my profile",
+    "linkCopied": "Profile link copied",
+    "copyFailed": "The link couldn't be copied."
+  },
+  "stats": {
+    "title": "Proof of work",
+    "projects_one": "project launched",
+    "projects_other": "projects launched",
+    "teams_one": "team joined",
+    "teams_other": "teams joined",
+    "acceptedAnswers_one": "accepted answer",
+    "acceptedAnswers_other": "accepted answers",
+    "ofAnswers_one": "out of {{count}} forum answer",
+    "ofAnswers_other": "out of {{count}} forum answers",
+    "hackathons_one": "hackathon entered",
+    "hackathons_other": "hackathons entered",
+    "podiums_one": "{{count}} podium finish",
+    "podiums_other": "{{count}} podium finishes"
+  },
+  "showcase": {
+    "eyebrow": "Showcase",
+    "title": "What {{name}} is building",
+    "titleOwn": "What you're building",
+    "count_one": "{{count}} project",
+    "count_other": "{{count}} projects",
+    "role": {
+      "OWNER": "Founder",
+      "MAINTAINER": "Maintainer",
+      "CONTRIBUTOR": "Contributor"
+    },
+    "more_one": "See the other project",
+    "more_other": "See the {{count}} other projects",
+    "moreFailed": "The rest couldn't load. Try again.",
+    "errorTitle": "The projects couldn't load",
+    "errorText": "Check your connection, then try again.",
+    "emptyOwnTitle": "Your showcase is waiting for its first project",
+    "emptyOwnText": "Present an open source project, or join a team: every project you're part of shows up here.",
+    "emptyOwnAction": "Publish a project",
+    "emptyTitle": "{{name}} has no project here yet",
+    "emptyText": "Their projects will show up here as soon as they launch one, or join a team."
+  },
+  "heatmap": {
+    "eyebrow": "Contributions",
+    "title": "A woven year",
+    "currentStreak_one": "current streak: {{count}} day",
+    "currentStreak_other": "current streak: {{count}} days",
+    "sources": "Contributions counted",
+    "platform": "Ndadiee",
+    "withGithub": "With GitHub",
+    "githubHint": "Add @{{login}}'s public GitHub calendar",
+    "githubUnknown": "No GitHub account goes by @{{login}}: only contributions on Ndadiee are woven.",
+    "githubUnavailable": "GitHub isn't responding: only contributions on Ndadiee are woven. Try again in a moment.",
+    "counts": "Topics, answers, comments, articles, projects launched, devlog notes and feedback.",
+    "countsWithGithub": "Their contributions on Ndadiee, and their public GitHub calendar.",
+    "errorTitle": "The contributions couldn't load",
+    "errorText": "Check your connection, then try again."
+  },
+  "collaborators": {
+    "title": "Worked with",
+    "shared": "{{projects}}",
+    "sharedMore_one": "{{projects}} and {{count}} other project",
+    "sharedMore_other": "{{projects}} and {{count}} other projects",
+    "empty": "No shared team on Ndadiee yet.",
+    "emptyOwn": "Your teammates will show up here as soon as you're part of a team.",
+    "findTeam": "Find a team",
+    "error": "The list couldn't load.",
+    "retry": "Try again"
+  },
+  "badges": {
+    "title_one": "Badge · {{count}}",
+    "title_other": "Badges · {{count}}",
+    "empty": "No badge yet.",
+    "emptyOwn": "Your first badge is waiting: ask a question, answer someone, or present a project.",
+    "locked": "To unlock",
+    "awarded": "earned on {{date}}",
+    "catalog": {
+      "FIRST_QUESTION": {
+        "name": "Curious",
+        "description": "Asked their first question",
+        "criteria": "Ask a first question on the forum"
+      },
+      "FIRST_ANSWER": {
+        "name": "Helping hand",
+        "description": "Answered a question for the first time",
+        "criteria": "Post a first answer"
+      },
+      "FIRST_ACCEPTED_ANSWER": {
+        "name": "Problem solved",
+        "description": "One of their answers was accepted",
+        "criteria": "Get one of your answers accepted"
+      },
+      "FIRST_ARTICLE": {
+        "name": "Pen",
+        "description": "Published their first article",
+        "criteria": "Publish a first article"
+      },
+      "FIRST_PROJECT": {
+        "name": "Builder",
+        "description": "Presented their first open source project",
+        "criteria": "Present a first project"
+      },
+      "REPUTATION_100": {
+        "name": "Contributor",
+        "description": "Reached 100 reputation points",
+        "criteria": "Reach 100 reputation points"
+      },
+      "REPUTATION_500": {
+        "name": "Expert",
+        "description": "Reached 500 reputation points",
+        "criteria": "Reach 500 reputation points"
+      }
+    }
+  },
+  "avatar": {
+    "eyebrow": "Profile photo",
+    "title": "Frame your photo",
+    "hint": "Drag the photo under the circle; zoom with the slider, the mouse wheel or two fingers. With the keyboard: the arrows, + and −.",
+    "stage": "Photo framing",
+    "opening": "Opening the photo",
+    "zoom": "Zoom",
+    "recenter": "Recenter",
+    "preview": "Preview",
+    "pickAnother": "Choose another photo",
+    "cancel": "Cancel",
+    "close": "Close",
+    "save": "Save",
+    "saving": "Uploading… {{percent}}%",
+    "saved": "Your profile photo is up to date",
+    "failed": "The photo couldn't be uploaded. Try again.",
+    "unreadable": "This file isn't a photo we can read. Choose a JPEG, PNG, WebP or GIF image.",
+    "tooBig": "This photo is over {{max}} MB. Choose a lighter one.",
+    "menu": "Change or remove your profile photo",
+    "add": "Add a photo",
+    "change": "Change photo",
+    "drop": "Drop your photo",
+    "remove": "Remove photo",
+    "removeTitle": "Remove your photo?",
+    "removeText": "Your initials will replace it everywhere on Ndadiee. You can add one again whenever you like.",
+    "removed": "Your photo was removed",
+    "removeFailed": "The photo couldn't be removed. Try again."
+  }
+}

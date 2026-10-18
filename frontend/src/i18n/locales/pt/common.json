@@ -15,7 +15,8 @@
     "notifications": "Notificações",
     "settings": "Definições",
     "profile": "Perfil",
-    "create": "Criar"
+    "create": "Criar",
+    "admin": "Back-office"
   },
   "actions": {
     "login": "Entrar",
@@ -155,7 +156,11 @@
     "login": "Entrar",
     "register": "Registo",
     "notFound": "Página não encontrada",
-    "editTopic": "Editar o tópico"
+    "editTopic": "Editar o tópico",
+    "admin": "Back-office",
+    "adminUsers": "Back-office · Membros",
+    "adminContent": "Back-office · Conteúdos",
+    "adminJournal": "Back-office · Registo"
   },
   "enums": {
     "experienceLevel": {
@@ -204,23 +209,6 @@
       "invalid": "Um utilizador do GitHub tem letras, números e hífenes, no máximo 39 caracteres.",
       "notFound": "Nenhuma conta do GitHub tem este nome.",
       "unavailable": "O GitHub não responde. Tenta de novo daqui a pouco.",
-      "viewLabel": "Vista do ano",
-      "viewCloth": "Pano: o ano estendido",
-      "viewCity": "Cidade: o ano em 3D",
-      "less": "Menos",
-      "more": "Mais",
-      "level0": "Dias sem contribuições",
-      "level1": "Dias calmos",
-      "level2": "Dias ativos",
-      "level3": "Dias intensos",
-      "level4": "Dias mais intensos",
-      "structure": "Uma faixa por semana, um bloco por dia.",
-      "hintCloth": "Passa o rato sobre um dia, ou percorre o ano com as setas do teclado.",
-      "hintCity": "Arrasta para rodar à volta da cidade. Duplo clique para voltar.",
-      "summary": "{{who}}, de {{from}} a {{to}}: {{total}}. Uma faixa por semana, um bloco por dia. Usa as setas do teclado para ler cada dia.",
-      "streak_one": "maior sequência: {{count}} dia",
-      "streak_many": "maior sequência: {{count}} dias",
-      "streak_other": "maior sequência: {{count}} dias",
       "showcase": "O teu ano merece uma montra"
     }
   },
@@ -228,7 +216,24 @@
     "count_one": "{{count}} contribuição",
     "count_many": "{{count}} contribuições",
     "count_other": "{{count}} contribuições",
-    "none": "Nenhuma contribuição"
+    "none": "Nenhuma contribuição",
+    "viewLabel": "Vista do ano",
+    "viewCloth": "Pano: o ano estendido",
+    "viewCity": "Cidade: o ano em 3D",
+    "less": "Menos",
+    "more": "Mais",
+    "level0": "Dias sem contribuições",
+    "level1": "Dias calmos",
+    "level2": "Dias ativos",
+    "level3": "Dias intensos",
+    "level4": "Dias mais intensos",
+    "structure": "Uma faixa por semana, um bloco por dia.",
+    "hintCloth": "Passa o rato sobre um dia, ou percorre o ano com as setas do teclado.",
+    "hintCity": "Arrasta para rodar à volta da cidade. Duplo clique para voltar.",
+    "summary": "{{who}}, de {{from}} a {{to}}: {{total}}. Uma faixa por semana, um bloco por dia. Usa as setas do teclado para ler cada dia.",
+    "streak_one": "maior sequência: {{count}} dia",
+    "streak_many": "maior sequência: {{count}} dias",
+    "streak_other": "maior sequência: {{count}} dias"
   },
   "teamRoles": {
     "frontend": "Dev front-end",
@@ -491,7 +496,9 @@
       "pending": "A entrar…",
       "failed": "E-mail, nome de utilizador ou palavra-passe incorretos.",
       "noAccount": "Ainda não tens conta?",
-      "toRegister": "Criar uma conta"
+      "toRegister": "Criar uma conta",
+      "blocked": "Esta conta foi suspensa pela equipa Ndadiee.",
+      "blockedReason": "Motivo: {{reason}}"
     },
     "register": {
       "eyebrow": "Registo",
@@ -557,7 +564,8 @@
       "loginText": "Enquanto estiveste fora, as equipas continuaram a tecer.",
       "registerTitle": "Mais um fio no pano.",
       "registerText": "Cada dev é um fio. Aqui, as equipas tecem-se à volta dos projetos."
-    }
+    },
+    "sessionBlocked": "A tua conta foi suspensa pela equipa Ndadiee: terminámos a tua sessão."
   },
   "project": {
     "recruiting_one": "recruta · {{count}} função",
@@ -791,5 +799,13 @@
     "imageType": "«{{name}}»: formatos aceites, JPEG, PNG, WebP e GIF.",
     "imageTooBig": "«{{name}}» ultrapassa {{max}} MB.",
     "uploadFailed": "Não foi possível enviar «{{name}}»."
+  },
+  "moderation": {
+    "hidden": {
+      "QUESTION": "Este tópico foi ocultado pela equipa Ndadiee: o público já não o vê.",
+      "ANSWER": "Esta resposta foi ocultada pela equipa Ndadiee: o público já não a vê.",
+      "PROJECT": "Este projeto foi ocultado pela equipa Ndadiee: o público já não o vê."
+    },
+    "reason": "Motivo: {{reason}}"
   }
 }

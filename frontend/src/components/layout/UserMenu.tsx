@@ -1,4 +1,4 @@
-import { Check, ChevronRight, FolderKanban, Languages, Leaf, LogOut, Moon, Settings, UserRound, type LucideIcon } from 'lucide-react';
+import { Check, ChevronRight, FolderKanban, Languages, Leaf, LogOut, Moon, Settings, ShieldCheck, UserRound, type LucideIcon } from 'lucide-react';
 import { DropdownMenu } from 'radix-ui';
 import { useRef, type ReactNode } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -35,7 +35,7 @@ interface UserMenuProps {
 export default function UserMenu({ placement, className }: UserMenuProps) {
   const { t } = useTranslation();
   const navigate = useNavigate();
-  const { user, logout } = useAuth();
+  const { user, isAdmin, logout } = useAuth();
   const { language, languages, setLanguage } = useLanguage();
   const { resolvedTheme } = useTheme();
   const reduced = useReducedMotion();
@@ -119,15 +119,24 @@ export default function UserMenu({ placement, className }: UserMenuProps) {
           </div>
           <DropdownMenu.Separator className={SEPARATOR} />
 
-          <MenuItem icon={UserRound} onSelect={() => go(paths.profile(user.username), pages.profile)}>
-            {t('shell.account.profile')}
-          </MenuItem>
-          <MenuItem icon={FolderKanban} onSelect={() => go(paths.myProjects, pages.myProjects)}>
-            {t('pages.myProjects')}
-          </MenuItem>
-          <MenuItem icon={Settings} onSelect={() => go(paths.settings, pages.settings)}>
-            {t('nav.settings')}
-          </MenuItem>
+          {/* Un admin n'a ni profil public, ni projets, ni réglages de membre : son espace, c'est le back-office */}
+          {isAdmin ? (
+            <MenuItem icon={ShieldCheck} onSelect={() => go(paths.admin, pages.admin)}>
+              {t('nav.admin')}
+            </MenuItem>
+          ) : (
+            <>
+              <MenuItem icon={UserRound} onSelect={() => go(paths.profile(user.username), pages.profile)}>
+                {t('shell.account.profile')}
+              </MenuItem>
+              <MenuItem icon={FolderKanban} onSelect={() => go(paths.myProjects, pages.myProjects)}>
+                {t('pages.myProjects')}
+              </MenuItem>
+              <MenuItem icon={Settings} onSelect={() => go(paths.settings, pages.settings)}>
+                {t('nav.settings')}
+              </MenuItem>
+            </>
+          )}
 
           <DropdownMenu.Separator className={SEPARATOR} />
           <DropdownMenu.Label className="eyebrow px-2.5 pt-1 pb-1.5">{t('shell.account.explore')}</DropdownMenu.Label>
@@ -136,8 +145,9 @@ export default function UserMenu({ placement, className }: UserMenuProps) {
               key={item.to}
               icon={item.icon}
               onSelect={() => go(item.to, item.preload)}
-              // Le rail montre déjà les autres sections ; seule la vitrine n'y est pas
-              className={item.to === paths.showcase ? undefined : 'md:hidden'}
+              // Le rail d'un membre montre déjà les autres sections ; seule la vitrine n'y est pas. La console du
+              // back-office, elle, a ses propres raccourcis : un admin les retrouve tous ici
+              className={isAdmin || item.to === paths.showcase ? undefined : 'md:hidden'}
             >
               {t(`nav.${item.labelKey}`)}
             </MenuItem>

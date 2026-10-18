@@ -1,5 +1,6 @@
 package com.hautetech.ndadiee.model.user;
 
+import java.time.Instant;
 import java.util.Collection;
 
 import org.springframework.security.core.GrantedAuthority;
@@ -67,6 +68,25 @@ public abstract class User extends BaseEntity implements UserDetails {
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
     private Role role;
+
+    // Suspension par l'administration : null tant que le compte est actif
+    private Instant blockedAt;
+
+    // Motif de la suspension, montré au titulaire quand sa connexion est refusée
+    @Column(length = 500)
+    private String blockedReason;
+
+    // Dernière connexion réussie (back-office : membres actifs)
+    private Instant lastLoginAt;
+
+    /**
+     * Suspendu par l'administration : ni connexion, ni renouvellement de session, ni requête authentifiée.
+     * Volontairement distinct de {@link #isAccountNonLocked()} : Spring vérifie ce dernier avant le mot de
+     * passe, et dirait à n'importe qui qu'un compte existe et qu'il est suspendu.
+     */
+    public boolean isBlocked() {
+        return blockedAt != null;
+    }
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {

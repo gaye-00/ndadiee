@@ -1,0 +1,265 @@
+{
+  "shell": {
+    "brand": "Saytu",
+    "nav": "Xaaj yu saytu bi",
+    "site": "Sit bi",
+    "role": "Saytu",
+    "sections": {
+      "overview": "Xool bu mat",
+      "users": "Way-bokk yi",
+      "content": "Li ñu siiwal",
+      "journal": "Téereb saytu"
+    }
+  },
+  "shared": {
+    "errorText": "Seetal sa internet, te jéemaat."
+  },
+  "roles": {
+    "USER": "Way-bokk",
+    "MODERATOR": "Saytukat",
+    "ADMIN": "Njiit"
+  },
+  "overview": {
+    "lead": "Mbooloo mi ak li mu siiwal ci ay limu, ak dogal yu mujj yu ekip bi.",
+    "loading": "Xool bu mat bi mi ngi yeb",
+    "errorTitle": "Mënunu yeb xool bu mat bi",
+    "community": "Mbooloo",
+    "content": "Li ñu siiwal",
+    "thisWeek": "+{{formatted}} ci ayu-bés bii",
+    "kpi": {
+      "members": "Way-bokk",
+      "active": "Ñi dugg ayu-bés bii",
+      "activeHint": "dugg nañu benn yoon lu mu néew néew",
+      "moderators": "Saytukat yi",
+      "moderatorsHint": "ñoo yor waxtaan yi",
+      "blocked": "Kont yu ñu taxawal",
+      "blockedHint": "mënatuñu dugg",
+      "topics": "Waxtaan yi",
+      "answers": "Tontu yi",
+      "projects": "Projet yi",
+      "hidden": "Li ñu nëbb",
+      "hiddenHint": "nit ñi gisatuñu ko"
+    },
+    "signups": {
+      "title": "Bind yi",
+      "subtitle_one": "30 fan yu mujj · {{formatted}} bind",
+      "subtitle_other": "30 fan yu mujj · {{formatted}} bind",
+      "chartLabel": "Bind yi bés bu nekk ci 30 fan yu mujj. Fett yi ñoo lay wone fan yi.",
+      "day_one": "{{date}} : {{count}} bind",
+      "day_other": "{{date}} : {{count}} bind",
+      "count_one": "{{formatted}} bind",
+      "count_other": "{{formatted}} bind",
+      "today": "tey",
+      "showTable": "Tablo",
+      "showChart": "Nataal",
+      "dayColumn": "Bés",
+      "countColumn": "Bind"
+    },
+    "recent": {
+      "title": "Dogal yu mujj",
+      "seeAll": "Téere bi yépp",
+      "empty": "Amagul benn dogal ba tey."
+    }
+  },
+  "users": {
+    "title": "Way-bokk yi",
+    "lead": "Seetal ab kont, taxawal ko ak ab lay walla delloo ko, tabb ab saytukat walla jële ko ci.",
+    "count_one": "{{formatted}} kont",
+    "count_other": "{{formatted}} kont",
+    "filters": "Tànn kont yi",
+    "search": "Seet ab kont",
+    "searchPlaceholder": "Tur, @tur walla imeel…",
+    "status": {
+      "label": "Mbiru kont bi",
+      "all": "Yépp",
+      "ACTIVE": "Yu dox",
+      "BLOCKED": "Yu ñu taxawal"
+    },
+    "role": {
+      "label": "Ndaje",
+      "all": "Ndaje yépp"
+    },
+    "loading": "Kont yi ñu ngi yeb",
+    "errorTitle": "Mënunu yeb kont yi",
+    "empty": {
+      "title": "Amul benn kont bu dëppoo",
+      "text": "Soppil li ngay seet walla nga far ab tànn."
+    },
+    "you": "yow",
+    "active": "Mu ngi dox",
+    "blocked": "Taxawal nañu ko",
+    "blockedSince": "Taxawal nañu ko {{when}}",
+    "reason": "Lay : {{reason}}",
+    "questions_one": "{{formatted}} waxtaan",
+    "questions_other": "{{formatted}} waxtaan",
+    "answers_one": "{{formatted}} tontu",
+    "answers_other": "{{formatted}} tontu",
+    "projects_one": "{{formatted}} projet",
+    "projects_other": "{{formatted}} projet",
+    "adminAccount": "Kontu saytu",
+    "joined": "Bind na ko ci {{date}}",
+    "lastLogin": "Dugg na {{when}}",
+    "neverLoggedIn": "Duggagul benn yoon",
+    "actions": {
+      "label": "Jëf yi ci {{name}}",
+      "profile": "Xool profil bi",
+      "copyEmail": "Duppi imeel bi",
+      "makeModerator": "Def ko saytukat",
+      "makeMember": "Jële ko ci saytukat",
+      "block": "Taxawal kont bi",
+      "unblock": "Delloo kont bi"
+    },
+    "blockDialog": {
+      "title": "Taxawal {{name}} ?",
+      "description": "Kont bii mënatul a dugg, te sa duggam bi mu nekk dinañu ko tëj. Li mu siiwal dina des : nëbbal ko boppam bu soxlaa.",
+      "reasonLabel": "Layu taxawal gi",
+      "confirm": "Taxawal"
+    },
+    "unblockDialog": {
+      "title": "Delloo {{name}} ?",
+      "description": "Kont bi dina mën a dugg ak a bokk ci ndaje mi ba noppi.",
+      "confirm": "Delloo"
+    },
+    "roleDialog": {
+      "moderatorTitle": "Def {{name}} saytukat ?",
+      "moderatorText": "Saytukat mën na soppi ak far li yeneen way-bokk siiwal ci waxtaan yi ak projet yi. Dugguwul ci saytu bi.",
+      "moderatorConfirm": "Def ko saytukat",
+      "memberTitle": "Jële {{name}} ci saytukat ?",
+      "memberText": "Dina dellu nekk way-bokk ni ñeneen ñi : mënatul a soppi walla far li ñeneen siiwal.",
+      "memberConfirm": "Jële ko ci"
+    },
+    "toast": {
+      "blocked": "Taxawal nañu {{name}}.",
+      "unblocked": "Delloo nañu {{name}}.",
+      "moderator": "{{name}} saytukat la léegi.",
+      "member": "{{name}} dellu na way-bokk.",
+      "emailCopied": "Duppi nañu imeel bi."
+    }
+  },
+  "content": {
+    "title": "Li ñu siiwal",
+    "lead": "Waxtaan yi, tontu yi ak projet yi. Nëbb dafay dindi lenn ci kanamu nit ñi te dara du réer : ki ko bind dina gis lay bi, te yow mën nga ko delloo. Far, moom, ba fàww la.",
+    "count_one": "{{formatted}} lenn",
+    "count_other": "{{formatted}} lenn",
+    "filters": "Tànn li ñu siiwal",
+    "typeLabel": "Xeetu li ñu siiwal",
+    "types": {
+      "QUESTION": "Waxtaan",
+      "ANSWER": "Tontu",
+      "PROJECT": "Projet"
+    },
+    "type": {
+      "QUESTION": "Waxtaan",
+      "ANSWER": "Tontu",
+      "PROJECT": "Projet"
+    },
+    "search": "Seet lenn",
+    "searchPlaceholder": "Tur, mbind walla @ki ko bind…",
+    "visibility": {
+      "label": "Feeñ",
+      "all": "Yépp",
+      "VISIBLE": "Yu feeñ",
+      "HIDDEN": "Yu ñu nëbb"
+    },
+    "loading": "Li ñu siiwal mi ngi yeb",
+    "errorTitle": "Mënunu yeb li ñu siiwal",
+    "empty": {
+      "title": "Amul dara lu dëppoo",
+      "text": "Soppil li ngay seet walla nga far ab tànn."
+    },
+    "answerTo": "Tontu ci « {{title}} »",
+    "hiddenBadge": "Nëbb nañu ko",
+    "hiddenSince": "Nëbb nañu ko {{when}}",
+    "reason": "Lay : {{reason}}",
+    "score_one": "{{formatted}} poñ",
+    "score_other": "{{formatted}} poñ",
+    "stars_one": "{{formatted}} biddiw",
+    "stars_other": "{{formatted}} biddiw",
+    "replies_one": "{{formatted}} tontu",
+    "replies_other": "{{formatted}} tontu",
+    "actions": {
+      "view": "Xool",
+      "hide": "Nëbb",
+      "unhide": "Delloo",
+      "delete": "Far"
+    },
+    "hideDialog": {
+      "title": "Nëbb lii ?",
+      "description": "Dafay génn ci xët yi nit ñi di gis : lim yi, seet bi, yoon wi ak lim yi. Ki ko bind dina ko gis ba tey, ak lay bi, te mën nga ko delloo.",
+      "reasonLabel": "Lay (ki ko bind dina ko gis)",
+      "confirm": "Nëbb"
+    },
+    "deleteDialog": {
+      "title": "Far ko ba fàww ?",
+      "description": {
+        "QUESTION": "Waxtaan wi dina dem ak ay tontoom, ay bësam ak ay kàddoom. Duñu ko mën a delloo : nëbb ko doy na lu bari.",
+        "ANSWER": "Tontu bi dina dem ak ay bësam ak ay kàddoom. Duñu ko mën a delloo : nëbb ko doy na lu bari.",
+        "PROJECT": "Projet bi dina dem ak ekipam, ay yéenekaayam, ay bësam ak ay kàddoom. Duñu ko mën a delloo : nëbb ko doy na lu bari."
+      },
+      "reasonLabel": "Lay (dañu koy denc ci téere bi)",
+      "confirm": "Far"
+    },
+    "toast": {
+      "hidden": "Nëbb nañu ko.",
+      "unhidden": "Delloo nañu ko.",
+      "deleted": "Far nañu ko."
+    }
+  },
+  "journal": {
+    "title": "Téereb saytu",
+    "lead": "Dogal bu nekk bu ekip bi, ak layam. Téere bi du far.",
+    "count_one": "{{formatted}} dogal",
+    "count_other": "{{formatted}} dogal",
+    "filter": "Li dogal yi jëm",
+    "targets": {
+      "all": "Yépp",
+      "USER": "Kont",
+      "QUESTION": "Waxtaan",
+      "ANSWER": "Tontu",
+      "PROJECT": "Projet"
+    },
+    "loading": "Téere bi mi ngi yeb",
+    "errorTitle": "Mënunu yeb téere bi",
+    "empty": {
+      "title": "Dara nekkul ci téere bi",
+      "text": "Dogal yu ekip bi dinañu leen bind fii."
+    },
+    "formerAdmin": "Ab njiit bu jëkk",
+    "reason": "Lay :",
+    "seeAccount": "Xool kont bi",
+    "sentence": {
+      "BLOCK_USER": "<b>{{admin}}</b> taxawal na <b>@{{target}}</b>",
+      "UNBLOCK_USER": "<b>{{admin}}</b> delloo na <b>@{{target}}</b>",
+      "CHANGE_ROLE": "<b>{{admin}}</b> toxal na <b>@{{target}}</b> ci {{from}} jëm ci {{to}}",
+      "HIDE_CONTENT_QUESTION": "<b>{{admin}}</b> nëbb na waxtaan wi <b>{{target}}</b>",
+      "HIDE_CONTENT_ANSWER": "<b>{{admin}}</b> nëbb na ab tontu ci <b>{{target}}</b>",
+      "HIDE_CONTENT_PROJECT": "<b>{{admin}}</b> nëbb na projet bi <b>{{target}}</b>",
+      "UNHIDE_CONTENT_QUESTION": "<b>{{admin}}</b> delloo na waxtaan wi <b>{{target}}</b>",
+      "UNHIDE_CONTENT_ANSWER": "<b>{{admin}}</b> delloo na ab tontu ci <b>{{target}}</b>",
+      "UNHIDE_CONTENT_PROJECT": "<b>{{admin}}</b> delloo na projet bi <b>{{target}}</b>",
+      "DELETE_CONTENT_QUESTION": "<b>{{admin}}</b> far na waxtaan wi <b>{{target}}</b>",
+      "DELETE_CONTENT_ANSWER": "<b>{{admin}}</b> far na ab tontu ci <b>{{target}}</b>",
+      "DELETE_CONTENT_PROJECT": "<b>{{admin}}</b> far na projet bi <b>{{target}}</b>"
+    }
+  },
+  "reason": {
+    "placeholder": "Leeral dogal bi ci benn kàddu…",
+    "required": "Lay bi war na.",
+    "shown": "Dañu koy won ki mu jëm.",
+    "optional": "Warul : ci téere bi rekk lañu koy denc.",
+    "counter": "{{length}}/{{max}}",
+    "presets": {
+      "spam": "Spam walla xamle.",
+      "fraud": "Naxe walla njublaŋ.",
+      "abuse": "Wax ju amul teggin.",
+      "offTopic": "Bokkul ci waxtaan wi.",
+      "duplicate": "Ñaari yoon la."
+    }
+  },
+  "pager": {
+    "label": "Xët yi",
+    "previous": "Ginnaaw",
+    "next": "Kanam",
+    "page": "Xët {{page}} ci {{total}}"
+  }
+}

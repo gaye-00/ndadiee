@@ -1,0 +1,265 @@
+{
+  "shell": {
+    "brand": "Back office",
+    "nav": "Back office sections",
+    "site": "The site",
+    "role": "Administration",
+    "sections": {
+      "overview": "Overview",
+      "users": "Members",
+      "content": "Content",
+      "journal": "Log"
+    }
+  },
+  "shared": {
+    "errorText": "Check your connection, then try again."
+  },
+  "roles": {
+    "USER": "Member",
+    "MODERATOR": "Moderator",
+    "ADMIN": "Admin"
+  },
+  "overview": {
+    "lead": "The community and its content in numbers, and the team's latest decisions.",
+    "loading": "Loading the overview",
+    "errorTitle": "The overview couldn't load",
+    "community": "Community",
+    "content": "Content",
+    "thisWeek": "+{{formatted}} this week",
+    "kpi": {
+      "members": "Members",
+      "active": "Active this week",
+      "activeHint": "signed in at least once",
+      "moderators": "Moderators",
+      "moderatorsHint": "look after the forum",
+      "blocked": "Suspended accounts",
+      "blockedHint": "can no longer sign in",
+      "topics": "Forum topics",
+      "answers": "Answers",
+      "projects": "Projects",
+      "hidden": "Hidden content",
+      "hiddenHint": "invisible to the public"
+    },
+    "signups": {
+      "title": "Sign-ups",
+      "subtitle_one": "Last 30 days · {{formatted}} sign-up",
+      "subtitle_other": "Last 30 days · {{formatted}} sign-ups",
+      "chartLabel": "Sign-ups per day over the last 30 days. Use the arrow keys to move between days.",
+      "day_one": "{{date}}: {{count}} sign-up",
+      "day_other": "{{date}}: {{count}} sign-ups",
+      "count_one": "{{formatted}} sign-up",
+      "count_other": "{{formatted}} sign-ups",
+      "today": "today",
+      "showTable": "Table",
+      "showChart": "Chart",
+      "dayColumn": "Day",
+      "countColumn": "Sign-ups"
+    },
+    "recent": {
+      "title": "Latest decisions",
+      "seeAll": "Full log",
+      "empty": "No decisions yet."
+    }
+  },
+  "users": {
+    "title": "Members",
+    "lead": "Find an account, suspend it with a reason or reinstate it, appoint or remove a moderator.",
+    "count_one": "{{formatted}} account",
+    "count_other": "{{formatted}} accounts",
+    "filters": "Filter accounts",
+    "search": "Search accounts",
+    "searchPlaceholder": "Name, @username or email…",
+    "status": {
+      "label": "Account status",
+      "all": "All",
+      "ACTIVE": "Active",
+      "BLOCKED": "Suspended"
+    },
+    "role": {
+      "label": "Role",
+      "all": "All roles"
+    },
+    "loading": "Loading accounts",
+    "errorTitle": "The accounts couldn't load",
+    "empty": {
+      "title": "No matching accounts",
+      "text": "Change the search or remove a filter."
+    },
+    "you": "you",
+    "active": "Active",
+    "blocked": "Suspended",
+    "blockedSince": "Suspended {{when}}",
+    "reason": "Reason: {{reason}}",
+    "questions_one": "{{formatted}} topic",
+    "questions_other": "{{formatted}} topics",
+    "answers_one": "{{formatted}} answer",
+    "answers_other": "{{formatted}} answers",
+    "projects_one": "{{formatted}} project",
+    "projects_other": "{{formatted}} projects",
+    "adminAccount": "Administration account",
+    "joined": "Joined on {{date}}",
+    "lastLogin": "Signed in {{when}}",
+    "neverLoggedIn": "Never signed in",
+    "actions": {
+      "label": "Actions for {{name}}",
+      "profile": "View public profile",
+      "copyEmail": "Copy email",
+      "makeModerator": "Appoint as moderator",
+      "makeMember": "Remove moderator role",
+      "block": "Suspend account",
+      "unblock": "Reinstate account"
+    },
+    "blockDialog": {
+      "title": "Suspend {{name}}?",
+      "description": "This account will no longer be able to sign in, and its current session will end. What it has posted stays online: hide it separately if needed.",
+      "reasonLabel": "Reason for the suspension",
+      "confirm": "Suspend"
+    },
+    "unblockDialog": {
+      "title": "Reinstate {{name}}?",
+      "description": "The account will be able to sign in and take part again.",
+      "confirm": "Reinstate"
+    },
+    "roleDialog": {
+      "moderatorTitle": "Appoint {{name}} as moderator?",
+      "moderatorText": "A moderator can edit and delete other members' content in the forum and in projects. They have no access to the back office.",
+      "moderatorConfirm": "Appoint moderator",
+      "memberTitle": "Remove {{name}}'s moderator role?",
+      "memberText": "They become a regular member again and can no longer edit or delete other people's content.",
+      "memberConfirm": "Remove role"
+    },
+    "toast": {
+      "blocked": "{{name}} is suspended.",
+      "unblocked": "{{name}} is reinstated.",
+      "moderator": "{{name}} is now a moderator.",
+      "member": "{{name}} is a member again.",
+      "emailCopied": "Email copied."
+    }
+  },
+  "content": {
+    "title": "Content",
+    "lead": "Forum topics, answers and projects. Hiding takes content away from the public without losing anything: its author sees the reason, and you can restore it. Deleting is permanent.",
+    "count_one": "{{formatted}} item",
+    "count_other": "{{formatted}} items",
+    "filters": "Filter content",
+    "typeLabel": "Content type",
+    "types": {
+      "QUESTION": "Topics",
+      "ANSWER": "Answers",
+      "PROJECT": "Projects"
+    },
+    "type": {
+      "QUESTION": "Topic",
+      "ANSWER": "Answer",
+      "PROJECT": "Project"
+    },
+    "search": "Search content",
+    "searchPlaceholder": "Title, text or @author…",
+    "visibility": {
+      "label": "Visibility",
+      "all": "All",
+      "VISIBLE": "Visible",
+      "HIDDEN": "Hidden"
+    },
+    "loading": "Loading content",
+    "errorTitle": "The content couldn't load",
+    "empty": {
+      "title": "No matching content",
+      "text": "Change the search or remove a filter."
+    },
+    "answerTo": "Answer to “{{title}}”",
+    "hiddenBadge": "Hidden",
+    "hiddenSince": "Hidden {{when}}",
+    "reason": "Reason: {{reason}}",
+    "score_one": "{{formatted}} point",
+    "score_other": "{{formatted}} points",
+    "stars_one": "{{formatted}} star",
+    "stars_other": "{{formatted}} stars",
+    "replies_one": "{{formatted}} answer",
+    "replies_other": "{{formatted}} answers",
+    "actions": {
+      "view": "View",
+      "hide": "Hide",
+      "unhide": "Restore",
+      "delete": "Delete"
+    },
+    "hideDialog": {
+      "title": "Hide this content?",
+      "description": "It leaves the public pages: lists, search, feed and counters. Its author still sees it, with the reason, and you'll be able to restore it.",
+      "reasonLabel": "Reason (shown to the author)",
+      "confirm": "Hide"
+    },
+    "deleteDialog": {
+      "title": "Delete permanently?",
+      "description": {
+        "QUESTION": "The topic goes with its answers, votes and comments. This can't be undone: hiding is often enough.",
+        "ANSWER": "The answer goes with its votes and comments. This can't be undone: hiding is often enough.",
+        "PROJECT": "The project goes with its team, openings, votes and comments. This can't be undone: hiding is often enough."
+      },
+      "reasonLabel": "Reason (kept in the log)",
+      "confirm": "Delete"
+    },
+    "toast": {
+      "hidden": "Content hidden.",
+      "unhidden": "Content restored.",
+      "deleted": "Content deleted."
+    }
+  },
+  "journal": {
+    "title": "Log",
+    "lead": "Every decision the team makes, with its reason. The log is never erased.",
+    "count_one": "{{formatted}} decision",
+    "count_other": "{{formatted}} decisions",
+    "filter": "Decision target",
+    "targets": {
+      "all": "All",
+      "USER": "Accounts",
+      "QUESTION": "Topics",
+      "ANSWER": "Answers",
+      "PROJECT": "Projects"
+    },
+    "loading": "Loading the log",
+    "errorTitle": "The log couldn't load",
+    "empty": {
+      "title": "Nothing in the log",
+      "text": "The team's decisions will be recorded here."
+    },
+    "formerAdmin": "A former admin",
+    "reason": "Reason:",
+    "seeAccount": "View account",
+    "sentence": {
+      "BLOCK_USER": "<b>{{admin}}</b> suspended <b>@{{target}}</b>",
+      "UNBLOCK_USER": "<b>{{admin}}</b> reinstated <b>@{{target}}</b>",
+      "CHANGE_ROLE": "<b>{{admin}}</b> moved <b>@{{target}}</b> from {{from}} to {{to}}",
+      "HIDE_CONTENT_QUESTION": "<b>{{admin}}</b> hid the topic <b>{{target}}</b>",
+      "HIDE_CONTENT_ANSWER": "<b>{{admin}}</b> hid an answer to <b>{{target}}</b>",
+      "HIDE_CONTENT_PROJECT": "<b>{{admin}}</b> hid the project <b>{{target}}</b>",
+      "UNHIDE_CONTENT_QUESTION": "<b>{{admin}}</b> restored the topic <b>{{target}}</b>",
+      "UNHIDE_CONTENT_ANSWER": "<b>{{admin}}</b> restored an answer to <b>{{target}}</b>",
+      "UNHIDE_CONTENT_PROJECT": "<b>{{admin}}</b> restored the project <b>{{target}}</b>",
+      "DELETE_CONTENT_QUESTION": "<b>{{admin}}</b> deleted the topic <b>{{target}}</b>",
+      "DELETE_CONTENT_ANSWER": "<b>{{admin}}</b> deleted an answer to <b>{{target}}</b>",
+      "DELETE_CONTENT_PROJECT": "<b>{{admin}}</b> deleted the project <b>{{target}}</b>"
+    }
+  },
+  "reason": {
+    "placeholder": "Explain the decision in one sentence…",
+    "required": "A reason is required.",
+    "shown": "It will be shown to the person concerned.",
+    "optional": "Optional: it is only kept in the log.",
+    "counter": "{{length}}/{{max}}",
+    "presets": {
+      "spam": "Spam or advertising.",
+      "fraud": "Scam or fraud.",
+      "abuse": "Disrespectful language.",
+      "offTopic": "Off topic.",
+      "duplicate": "Duplicate."
+    }
+  },
+  "pager": {
+    "label": "Pages",
+    "previous": "Previous",
+    "next": "Next",
+    "page": "Page {{page}} of {{total}}"
+  }
+}

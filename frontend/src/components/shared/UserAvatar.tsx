@@ -20,8 +20,9 @@ interface UserAvatarProps {
 
 /** Avatar : photo, ou initiales sur fond de couleur si elle manque ou ne se charge pas. */
 export default function UserAvatar({ user, size = 'md', className }: UserAvatarProps) {
-  const [broken, setBroken] = useState(false);
-  const photo = user.avatarUrl && !broken ? user.avatarUrl : null;
+  // La photo qui n'a pas pu se charger : une nouvelle adresse (photo changée) a sa chance
+  const [broken, setBroken] = useState<string | null>(null);
+  const photo = user.avatarUrl && user.avatarUrl !== broken ? user.avatarUrl : null;
 
   return (
     <span
@@ -34,7 +35,7 @@ export default function UserAvatar({ user, size = 'md', className }: UserAvatarP
       )}
     >
       {photo ? (
-        <img src={photo} alt="" loading="lazy" decoding="async" onError={() => setBroken(true)} className="size-full object-cover" />
+        <img src={photo} alt="" loading="lazy" decoding="async" onError={() => setBroken(photo)} className="size-full object-cover" />
       ) : (
         initials(user.fullName || user.username)
       )}

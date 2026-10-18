@@ -50,7 +50,7 @@ public class FeedbackService {
     /** Demandes ouvertes d'un projet, les plus récentes d'abord, avec leurs retours comptés. */
     @Transactional(readOnly = true)
     public List<FeedbackCallResponse> listOpen(Long projectId, Long currentUserId) {
-        projectService.findProjectOrThrow(projectId);
+        projectService.findVisibleProjectOrThrow(projectId, currentUserId);
         return toResponses(callRepository.findByProjectIdAndOpenTrueOrderByCreatedAtDescIdDesc(projectId), currentUserId);
     }
 

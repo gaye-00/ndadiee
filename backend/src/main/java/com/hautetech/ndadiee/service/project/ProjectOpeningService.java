@@ -164,7 +164,9 @@ public class ProjectOpeningService {
      */
     @Transactional(readOnly = true)
     public ProjectOpeningResponse get(Long openingId, Long currentUserId) {
-        ProjectOpening opening = findOrThrow(openingId);
+        ProjectOpening opening = openingRepository.findById(openingId)
+                .filter(found -> projectService.isVisibleTo(found.getProject(), currentUserId))
+                .orElseThrow(() -> new ResourceNotFoundException("Annonce", openingId));
         return toResponse(opening, contextOf(List.of(opening), currentUserId));
     }
 

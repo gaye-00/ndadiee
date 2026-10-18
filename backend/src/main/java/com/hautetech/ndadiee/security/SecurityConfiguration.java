@@ -9,6 +9,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationProvider;
+import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.http.SessionCreationPolicy;
@@ -25,6 +26,8 @@ import lombok.RequiredArgsConstructor;
 
 @Configuration
 @EnableWebSecurity
+// @PreAuthorize sur les contrôleurs sensibles (back-office) : une seconde barrière derrière les règles d'URL
+@EnableMethodSecurity
 @RequiredArgsConstructor
 public class SecurityConfiguration {
 
@@ -44,6 +47,17 @@ public class SecurityConfiguration {
             .cors(withDefaults())
             .authorizeHttpRequests(auth -> auth
                 .dispatcherTypeMatchers(DispatcherType.ERROR).permitAll()
+
+                // ═══════════════════════════════════════════════════════════════
+                //  ADMINISTRATION — comptes Admin seulement (permissions admin:*).
+                //  En tête : aucune règle plus large ne doit s'appliquer avant.
+                // ═══════════════════════════════════════════════════════════════
+                .requestMatchers(HttpMethod.GET, "/v1/admin/**")
+                    .hasAuthority(Permission.ADMIN_READ.getPermission())
+                .requestMatchers(HttpMethod.DELETE, "/v1/admin/**")
+                    .hasAuthority(Permission.ADMIN_DELETE.getPermission())
+                .requestMatchers("/v1/admin/**")
+                    .hasAuthority(Permission.ADMIN_UPDATE.getPermission())
 
                 // ═══════════════════════════════════════════════════════════════
                 //  PUBLIC — aucune authentification requise
@@ -101,6 +115,9 @@ public class SecurityConfiguration {
                     "/v1/users/{username}",
                     "/v1/users/{username}/followers",
                     "/v1/users/{username}/following",
+                    "/v1/users/{username}/projects",
+                    "/v1/users/{username}/collaborators",
+                    "/v1/users/{username}/activity",
                     "/v1/comments",
                     "/v1/badges",
                     "/v1/search",

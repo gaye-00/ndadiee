@@ -3,7 +3,8 @@ import { AnimatePresence, m } from 'motion/react';
 import { useCallback, useEffect, useId, useRef, useState, type Ref } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Link, useLocation } from 'react-router-dom';
-import { isCurrentPath, MOBILE_TABS, type NavItem } from '@/config/navigation';
+import { ADMIN_MOBILE_TABS, isCurrentPath, MOBILE_TABS, type NavItem } from '@/config/navigation';
+import { useAuth } from '@/hooks/useAuth';
 import { useHideOnScroll } from '@/hooks/useHideOnScroll';
 import { prefetch } from '@/lib/prefetch';
 import { cn } from '@/lib/utils';
@@ -38,6 +39,7 @@ export default function MobileTabBar() {
   const { t } = useTranslation();
   const { pathname } = useLocation();
   const { hidden, reveal } = useHideOnScroll();
+  const { isAdmin } = useAuth();
   const [creating, setCreating] = useState(false);
   const createButton = useRef<HTMLButtonElement>(null);
   const left = MOBILE_TABS.slice(0, 2);
@@ -50,6 +52,32 @@ export default function MobileTabBar() {
       createButton.current?.focus();
     }
   }, []);
+
+  // Un admin ne crée rien dans la communauté : quatre onglets (le back-office, puis le site), sans bouton central
+  if (isAdmin) {
+    return (
+      <nav
+        aria-label={t('a11y.mainNavigation')}
+        data-hidden={hidden || undefined}
+        onFocusCapture={reveal}
+        className={cn(
+          'dark fixed inset-x-4 bottom-[max(1rem,env(safe-area-inset-bottom))] z-50 mx-auto max-w-md md:hidden',
+          'rounded-3xl border border-glass-border bg-surface/90 p-1.5 text-muted-foreground shadow-float backdrop-blur-xl saver:bg-surface',
+          '[.dark_&]:bg-surface-raised/90 [.dark_&]:saver:bg-surface-raised',
+          'transition-[translate] duration-500 ease-out-expo data-hidden:translate-y-[calc(100%+2rem)]',
+          '[view-transition-name:app-tabbar]',
+        )}
+      >
+        <ul className="grid h-14 grid-cols-4 items-center">
+          {ADMIN_MOBILE_TABS.map((item) => (
+            <li key={item.to}>
+              <TabLink item={item} current={isCurrentPath(pathname, item.to)} />
+            </li>
+          ))}
+        </ul>
+      </nav>
+    );
+  }
 
   return (
     <>

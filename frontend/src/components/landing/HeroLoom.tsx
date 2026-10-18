@@ -1,11 +1,12 @@
 import axios from 'axios';
-import { ArrowRight, Building2, Grid2x2, RotateCcw } from 'lucide-react';
+import { ArrowRight, RotateCcw } from 'lucide-react';
 import { useEffect, useMemo, useState, type FormEvent } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
 import PulsatingDots from '@/components/feedback/PulsatingDots';
 import GithubMark from '@/components/shared/GithubMark';
 import KenteSkyline, { type SkylineView } from '@/components/shared/KenteSkyline';
+import { SkylineLegend, SkylineViewToggle } from '@/components/shared/SkylineControls';
 import { useAuth } from '@/hooks/useAuth';
 import { useGithubContributions } from '@/hooks/useGithubContributions';
 import { currentLanguage } from '@/i18n';
@@ -16,17 +17,6 @@ import { pages } from '@/router/pages';
 import { paths } from '@/router/paths';
 import { GITHUB_LOGIN, githubService } from '@/services/github.service';
 import { storage } from '@/utils/storage';
-
-// Couleurs de la légende : les mêmes que la scène (kenteSkylineEngine.ts, retheme)
-const EMPTY = 'color-mix(in srgb, var(--foreground) 8%, var(--background))';
-const SWATCHES = [
-  EMPTY,
-  `color-mix(in srgb, var(--kente-jade) 50%, ${EMPTY})`,
-  'var(--kente-jade)',
-  'var(--kente-gold)',
-  'var(--kente-coral)',
-];
-const LEVELS = ['level0', 'level1', 'level2', 'level3', 'level4'] as const;
 
 const focusRing = 'outline-none focus-visible:ring-2 focus-visible:ring-ring/70';
 
@@ -105,7 +95,7 @@ export default function HeroLoom({ className }: { className?: string }) {
   const last = year.cells[year.cells.length - 1]?.date;
   const who = weaver ? `@${weaver}` : t('hero.loom.sample');
   const total = t('contributions.count', { count: year.stats.total });
-  const summary = t('hero.loom.summary', {
+  const summary = t('contributions.summary', {
     who,
     total,
     from: first ? dates.format(dayMs(first)) : '',
@@ -135,7 +125,7 @@ export default function HeroLoom({ className }: { className?: string }) {
           <div className="min-w-0">
             <p className="truncate font-mono text-sm text-foreground">{who}</p>
             <p className="truncate text-xs text-muted-foreground">
-              {total} · {t('hero.loom.streak', { count: year.stats.longest.days })}
+              {total} · {t('contributions.streak', { count: year.stats.longest.days })}
             </p>
           </div>
           {weaver && (
@@ -195,38 +185,7 @@ export default function HeroLoom({ className }: { className?: string }) {
             </div>
           </form>
 
-          <div
-            role="group"
-            aria-label={t('hero.loom.viewLabel')}
-            className="relative inline-flex shrink-0 rounded-full border border-border p-0.5"
-          >
-            <span
-              aria-hidden
-              data-view={view}
-              className="absolute inset-y-0.5 start-0.5 w-9 rounded-full bg-foreground transition-transform duration-500 ease-out-expo data-[view=city]:translate-x-full rtl:data-[view=city]:-translate-x-full"
-            />
-            {(['cloth', 'city'] as const).map((option) => {
-              const Icon = option === 'cloth' ? Grid2x2 : Building2;
-              const name = t(option === 'cloth' ? 'hero.loom.viewCloth' : 'hero.loom.viewCity');
-              return (
-                <button
-                  key={option}
-                  type="button"
-                  aria-pressed={view === option}
-                  aria-label={name}
-                  title={name}
-                  onClick={() => setView(option)}
-                  className={cn(
-                    'relative z-10 grid h-8 w-9 place-items-center rounded-full transition-colors duration-300',
-                    view === option ? 'text-background' : 'text-muted-foreground hover:text-foreground',
-                    focusRing,
-                  )}
-                >
-                  <Icon aria-hidden className="size-4" />
-                </button>
-              );
-            })}
-          </div>
+          <SkylineViewToggle view={view} onChange={setView} />
 
           <p id="hero-github-error" role="status" className="w-full text-xs text-coral empty:hidden sm:text-end">
             {error}
@@ -246,26 +205,8 @@ export default function HeroLoom({ className }: { className?: string }) {
 
       <div className="mx-auto flex max-w-page flex-wrap items-center justify-between gap-x-6 gap-y-3 px-4 pt-3 text-xs text-muted-foreground sm:px-6">
         <div className="flex flex-wrap items-center gap-x-4 gap-y-2">
-          <span>{t('hero.loom.structure')}</span>
-          <div className="flex items-center gap-1.5" onMouseLeave={() => setLegendLevel(-1)}>
-            <span>{t('hero.loom.less')}</span>
-            {SWATCHES.map((background, level) => (
-              <button
-                key={level}
-                type="button"
-                aria-label={t(`hero.loom.${LEVELS[level]}`)}
-                aria-pressed={legendLevel === level}
-                title={t(`hero.loom.${LEVELS[level]}`)}
-                onMouseEnter={() => setLegendLevel(level)}
-                onFocus={() => setLegendLevel(level)}
-                onBlur={() => setLegendLevel(-1)}
-                onClick={() => setLegendLevel((current) => (current === level ? -1 : level))}
-                className={cn('size-3 rounded-[3px] ring-1 ring-foreground/10 transition-transform hover:scale-125', focusRing)}
-                style={{ background }}
-              />
-            ))}
-            <span>{t('hero.loom.more')}</span>
-          </div>
+          <span>{t('contributions.structure')}</span>
+          <SkylineLegend level={legendLevel} onLevel={setLegendLevel} />
         </div>
         {weaver ? (
           <Link
@@ -281,7 +222,7 @@ export default function HeroLoom({ className }: { className?: string }) {
             />
           </Link>
         ) : (
-          <span>{t(view === 'city' ? 'hero.loom.hintCity' : 'hero.loom.hintCloth')}</span>
+          <span>{t(view === 'city' ? 'contributions.hintCity' : 'contributions.hintCloth')}</span>
         )}
       </div>
     </div>

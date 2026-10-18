@@ -26,6 +26,8 @@ import org.springframework.util.unit.DataSize;
 
 import com.hautetech.ndadiee.dto.response.UploadResponse;
 import com.hautetech.ndadiee.exception.UploadRejectedException;
+import com.hautetech.ndadiee.service.media.ImageUploadService.ImageType;
+import com.hautetech.ndadiee.service.media.ImageUploadService.StoredImage;
 import com.hautetech.ndadiee.service.user.UserService;
 import com.hautetech.ndadiee.storage.FileStorage;
 import com.hautetech.ndadiee.storage.StorageProperties;
@@ -103,6 +105,35 @@ class ImageUploadServiceTest {
         assertThatThrownBy(() -> service.uploadImage(MEMBER, file(heavy, "big.png", "image/png")))
                 .isInstanceOf(UploadRejectedException.class)
                 .extracting("status").isEqualTo(HttpStatus.CONTENT_TOO_LARGE);
+    }
+
+    @Test
+    void aStillImageCannotBeAGif() {
+        byte[] gif = withHeader(new byte[] { 'G', 'I', 'F', '8', '9', 'a' });
+
+        assertThatThrownBy(() -> service.store(MEMBER, file(gif, "danse.gif", "image/gif"), "avatars/12", ImageType.STILL, 1024))
+                .isInstanceOf(UploadRejectedException.class)
+                .hasMessage("Formats acceptés : JPEG, PNG et WebP");
+        verify(storage, never()).store(anyString(), any(), anyString());
+    }
+
+    @Test
+    void anUploadCanBeLighterThanTheConfiguredLimitButNeverHeavier() {
+        when(storage.store(anyString(), any(), anyString())).thenAnswer(call -> "https://media.example.com/" + call.getArgument(0));
+        byte[] medium = Arrays.copyOf(PNG, 600);
+
+        assertThatThrownBy(() -> service.store(MEMBER, file(medium, "moi.png", "image/png"), "avatars/12", ImageType.STILL, 512))
+                .isInstanceOf(UploadRejectedException.class)
+                .extracting("status").isEqualTo(HttpStatus.CONTENT_TOO_LARGE);
+        // Au-delà de la limite de la configuration (1 Ko ici), c'est elle qui compte
+        assertThatThrownBy(() -> service.store(MEMBER, file(Arrays.copyOf(PNG, 2048), "moi.png", "image/png"), "avatars/12",
+                ImageType.STILL, 1024 * 1024))
+                .isInstanceOf(UploadRejectedException.class);
+
+        StoredImage image = service.store(MEMBER, file(medium, "moi.png", "image/png"), "avatars/12", ImageType.STILL, 1024);
+        assertThat(image.key()).matches("avatars/12/[0-9a-f-]{36}\\.png");
+        assertThat(image.url()).isEqualTo("https://media.example.com/" + image.key());
+        assertThat(image.size()).isEqualTo(600);
     }
 
     @Test

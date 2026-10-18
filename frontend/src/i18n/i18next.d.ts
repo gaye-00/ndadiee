@@ -1,7 +1,9 @@
+import type admin from './locales/fr/admin.json';
 import type common from './locales/fr/common.json';
 import type forum from './locales/fr/forum.json';
 import type hackathons from './locales/fr/hackathons.json';
 import type openings from './locales/fr/openings.json';
+import type profile from './locales/fr/profile.json';
 import type showcase from './locales/fr/showcase.json';
 
 // Clés de traduction typées à partir du français : t('nav.forum') est vérifié à la compilation,
@@ -11,10 +13,12 @@ declare module 'i18next' {
   interface CustomTypeOptions {
     defaultNS: 'common';
     resources: {
+      admin: typeof admin;
       common: typeof common;
       forum: typeof forum;
       hackathons: typeof hackathons;
       openings: typeof openings;
+      profile: typeof profile;
       showcase: typeof showcase;
     };
   }

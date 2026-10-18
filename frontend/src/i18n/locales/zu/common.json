@@ -15,7 +15,8 @@
     "notifications": "Izaziso",
     "settings": "Izilungiselelo",
     "profile": "Iphrofayela",
-    "create": "Dala"
+    "create": "Dala",
+    "admin": "Ukuphatha"
   },
   "actions": {
     "login": "Ngena",
@@ -150,7 +151,11 @@
     "login": "Ngena",
     "register": "Bhalisa",
     "notFound": "Ikhasi alitholakali",
-    "editTopic": "Hlela isihloko"
+    "editTopic": "Hlela isihloko",
+    "admin": "Ukuphatha",
+    "adminUsers": "Ukuphatha · Amalungu",
+    "adminContent": "Ukuphatha · Okuqukethwe",
+    "adminJournal": "Ukuphatha · Irekhodi"
   },
   "enums": {
     "experienceLevel": {
@@ -198,29 +203,29 @@
       "invalid": "Igama lomsebenzisi le-GitHub linezinhlamvu, izinombolo namahayifeni, izinhlamvu ezingeqi kwezingu-39.",
       "notFound": "Ayikho i-akhawunti ye-GitHub enaleli gama.",
       "unavailable": "I-GitHub ayiphenduli. Zama futhi ngemuva kwesikhashana.",
-      "viewLabel": "Ukubuka unyaka",
-      "viewCloth": "Indwangu: unyaka uvuliwe",
-      "viewCity": "Idolobha: unyaka ku-3D",
-      "less": "Okuncane",
-      "more": "Okuningi",
-      "level0": "Izinsuku ezingenayo iminikelo",
-      "level1": "Izinsuku ezithule",
-      "level2": "Izinsuku ezimatasa",
-      "level3": "Izinsuku ezimatasa kakhulu",
-      "level4": "Izinsuku ezimatasa kakhulu kunazo zonke",
-      "structure": "Umucu owodwa ngeviki, ibhulokhi eyodwa ngosuku.",
-      "hintCloth": "Beka isikhombi phezu kosuku, noma uhambe onyakeni ngezinkinobho zemicibisholo.",
-      "hintCity": "Hudula ukuze uzungeze idolobha. Chofoza kabili ukuze ubuyele.",
-      "summary": "{{who}}, kusukela ku-{{from}} kuya ku-{{to}}: {{total}}. Umucu owodwa ngeviki, ibhulokhi eyodwa ngosuku. Sebenzisa izinkinobho zemicibisholo ukufunda usuku ngalunye.",
-      "streak_one": "uchungechunge olude kakhulu: usuku olu-{{count}}",
-      "streak_other": "uchungechunge olude kakhulu: izinsuku ezingu-{{count}}",
       "showcase": "Unyaka wakho ufanelwe umbukiso"
     }
   },
   "contributions": {
     "count_one": "umnikelo ongu-{{count}}",
     "count_other": "iminikelo engu-{{count}}",
-    "none": "Ayikho iminikelo"
+    "none": "Ayikho iminikelo",
+    "viewLabel": "Ukubuka unyaka",
+    "viewCloth": "Indwangu: unyaka uvuliwe",
+    "viewCity": "Idolobha: unyaka ku-3D",
+    "less": "Okuncane",
+    "more": "Okuningi",
+    "level0": "Izinsuku ezingenayo iminikelo",
+    "level1": "Izinsuku ezithule",
+    "level2": "Izinsuku ezimatasa",
+    "level3": "Izinsuku ezimatasa kakhulu",
+    "level4": "Izinsuku ezimatasa kakhulu kunazo zonke",
+    "structure": "Umucu owodwa ngeviki, ibhulokhi eyodwa ngosuku.",
+    "hintCloth": "Beka isikhombi phezu kosuku, noma uhambe onyakeni ngezinkinobho zemicibisholo.",
+    "hintCity": "Hudula ukuze uzungeze idolobha. Chofoza kabili ukuze ubuyele.",
+    "summary": "{{who}}, kusukela ku-{{from}} kuya ku-{{to}}: {{total}}. Umucu owodwa ngeviki, ibhulokhi eyodwa ngosuku. Sebenzisa izinkinobho zemicibisholo ukufunda usuku ngalunye.",
+    "streak_one": "uchungechunge olude kakhulu: usuku olu-{{count}}",
+    "streak_other": "uchungechunge olude kakhulu: izinsuku ezingu-{{count}}"
   },
   "teamRoles": {
     "frontend": "Umthuthukisi we-front-end",
@@ -466,7 +471,9 @@
       "pending": "Iyangena…",
       "failed": "I-imeyili, igama lomsebenzisi noma iphasiwedi akulungile.",
       "noAccount": "Awunayo i-akhawunti okwamanje?",
-      "toRegister": "Dala i-akhawunti"
+      "toRegister": "Dala i-akhawunti",
+      "blocked": "Le akhawunti imiswe yithimba le-Ndadiee.",
+      "blockedReason": "Isizathu: {{reason}}"
     },
     "register": {
       "eyebrow": "Bhalisa",
@@ -532,7 +539,8 @@
       "loginText": "Ngesikhathi ungekho, amathimba aqhubeke eluka.",
       "registerTitle": "Intambo eyodwa engeziwe endwangwini.",
       "registerText": "Wonke umthuthukisi uyintambo. Lapha, amathimba alukwa ezungeze amaphrojekthi."
-    }
+    },
+    "sessionBlocked": "I-akhawunti yakho imiswe yithimba le-Ndadiee: ukhishiwe."
   },
   "project": {
     "recruiting_one": "ifuna · indima engu-{{count}}",
@@ -747,5 +755,13 @@
     "imageType": "«{{name}}»: amafomethi amukelekayo yi-JPEG, PNG, WebP ne-GIF.",
     "imageTooBig": "«{{name}}» idlula ama-MB angu-{{max}}.",
     "uploadFailed": "«{{name}}» ayikwazanga ukulayishwa."
+  },
+  "moderation": {
+    "hidden": {
+      "QUESTION": "Lesi sihloko sifihlwe yithimba le-Ndadiee: umphakathi awusasiboni.",
+      "ANSWER": "Le mpendulo ifihlwe yithimba le-Ndadiee: umphakathi awusayiboni.",
+      "PROJECT": "Le phrojekthi ifihlwe yithimba le-Ndadiee: umphakathi awusayiboni."
+    },
+    "reason": "Isizathu: {{reason}}"
   }
 }

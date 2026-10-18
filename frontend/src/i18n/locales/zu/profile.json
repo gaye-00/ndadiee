@@ -1,0 +1,166 @@
+{
+  "loading": "Ilayisha iphrofayela",
+  "notFoundTitle": "Le phrofayela ayikho",
+  "notFoundText": "Akekho obizwa ngo-@{{username}} lapha. Mhlawumbe isixhumanisi asiphelele, noma i-akhawunti ishintshe igama.",
+  "backToShowcase": "Buyela embukisweni",
+  "errorTitle": "Iphrofayela ayikwazanga ukulayisha",
+  "errorText": "Hlola uxhumano lwakho, bese uzama futhi.",
+  "aside": "Amathimba namabheji",
+  "header": {
+    "openToWork": "Ukulungele ukujoyina ithimba",
+    "reputation_one": "iphuzu lodumo elingu-<n>{{value}}</n>",
+    "reputation_other": "amaphuzu odumo angu-<n>{{value}}</n>",
+    "followers_one": "umlandeli ongu-<n>{{value}}</n>",
+    "followers_other": "abalandeli abangu-<n>{{value}}</n>",
+    "following_one": "ulandela abangu-<n>{{value}}</n>",
+    "following_other": "ulandela abangu-<n>{{value}}</n>",
+    "skills": "Amakhono",
+    "website": "Iwebhusayithi",
+    "place": "{{city}}, {{country}}",
+    "memberSince": "Ilungu kusukela ngo-{{date}}",
+    "follow": "Landela u-{{name}}",
+    "followingThem": "Uyamlandela",
+    "unfollow": "Yeka ukulandela u-{{name}}",
+    "share": "Yabelana",
+    "shareMine": "Yabelana ngephrofayela yami",
+    "linkCopied": "Isixhumanisi sephrofayela sikopishiwe",
+    "copyFailed": "Isixhumanisi asikwazanga ukukopishwa."
+  },
+  "stats": {
+    "title": "Ubufakazi bomsebenzi",
+    "projects_one": "iphrojekthi eqalisiwe",
+    "projects_other": "amaphrojekthi aqalisiwe",
+    "teams_one": "ithimba alijoyinile",
+    "teams_other": "amathimba awajoyinile",
+    "acceptedAnswers_one": "impendulo eyamukelwe",
+    "acceptedAnswers_other": "izimpendulo ezamukelwe",
+    "ofAnswers_one": "kwimpendulo engu-{{count}} enkundleni",
+    "ofAnswers_other": "kwizimpendulo ezingu-{{count}} enkundleni",
+    "hackathons_one": "i-hackathon abambe iqhaza kuyo",
+    "hackathons_other": "ama-hackathon abambe iqhaza kuwo",
+    "podiums_one": "kuhlanganise inkundla yokunqoba engu-{{count}}",
+    "podiums_other": "kuhlanganise izinkundla zokunqoba ezingu-{{count}}"
+  },
+  "showcase": {
+    "eyebrow": "Umbukiso",
+    "title": "Lokho u-{{name}} akwakhayo",
+    "titleOwn": "Lokho okwakhayo",
+    "count_one": "iphrojekthi engu-{{count}}",
+    "count_other": "amaphrojekthi angu-{{count}}",
+    "role": {
+      "OWNER": "Umsunguli",
+      "MAINTAINER": "Umnakekeli",
+      "CONTRIBUTOR": "Umnikeli"
+    },
+    "more_one": "Bona enye iphrojekthi",
+    "more_other": "Bona amanye amaphrojekthi angu-{{count}}",
+    "moreFailed": "Okusele akukwazanga ukulayisha. Zama futhi.",
+    "errorTitle": "Amaphrojekthi awakwazanga ukulayisha",
+    "errorText": "Hlola uxhumano lwakho, bese uzama futhi.",
+    "emptyOwnTitle": "Umbukiso wakho ulinde iphrojekthi yawo yokuqala",
+    "emptyOwnText": "Yethula iphrojekthi yomthombo ovulekile, noma ujoyine ithimba: yonke iphrojekthi oyingxenye yayo ivela lapha.",
+    "emptyOwnAction": "Shicilela iphrojekthi",
+    "emptyTitle": "U-{{name}} akakabi nayo iphrojekthi lapha",
+    "emptyText": "Amaphrojekthi akhe azovela lapha uma eqala eyodwa, noma ejoyina ithimba."
+  },
+  "heatmap": {
+    "eyebrow": "Iminikelo",
+    "title": "Unyaka olukiwe",
+    "currentStreak_one": "uchungechunge lwamanje: usuku olu-{{count}}",
+    "currentStreak_other": "uchungechunge lwamanje: izinsuku ezingu-{{count}}",
+    "sources": "Iminikelo ebaliwe",
+    "platform": "Ndadiee",
+    "withGithub": "Ne-GitHub",
+    "githubHint": "Engeza ikhalenda yomphakathi ka-@{{login}} ku-GitHub",
+    "githubUnknown": "Ayikho i-akhawunti ye-GitHub ebizwa ngo-@{{login}}: kulukwe iminikelo ye-Ndadiee kuphela.",
+    "githubUnavailable": "I-GitHub ayiphenduli: kulukwe iminikelo ye-Ndadiee kuphela. Zama futhi ngemuva kwesikhashana.",
+    "counts": "Izihloko, izimpendulo, amazwana, ama-athikili, amaphrojekthi aqalisiwe, amanothi e-devlog nempendulo.",
+    "countsWithGithub": "Iminikelo yakhe ku-Ndadiee, nekhalenda yakhe yomphakathi ku-GitHub.",
+    "errorTitle": "Iminikelo ayikwazanga ukulayisha",
+    "errorText": "Hlola uxhumano lwakho, bese uzama futhi."
+  },
+  "collaborators": {
+    "title": "Usebenze no",
+    "shared": "{{projects}}",
+    "sharedMore_one": "{{projects}} nenye iphrojekthi engu-{{count}}",
+    "sharedMore_other": "{{projects}} namanye amaphrojekthi angu-{{count}}",
+    "empty": "Alikabi bikhona ithimba elabelwanayo ku-Ndadiee.",
+    "emptyOwn": "Ozakwenu bethimba bazovela lapha uma ujoyina ithimba.",
+    "findTeam": "Thola ithimba",
+    "error": "Uhlu alukwazanga ukulayisha.",
+    "retry": "Zama futhi"
+  },
+  "badges": {
+    "title_one": "Ibheji · {{count}}",
+    "title_other": "Amabheji · {{count}}",
+    "empty": "Alikabi bikhona ibheji.",
+    "emptyOwn": "Ibheji lakho lokuqala liyakulinda: buza umbuzo, phendula othile, noma wethule iphrojekthi.",
+    "locked": "Okuzovulwa",
+    "awarded": "litholwe ngo-{{date}}",
+    "catalog": {
+      "FIRST_QUESTION": {
+        "name": "Onelukuluku",
+        "description": "Ubuze umbuzo wakhe wokuqala",
+        "criteria": "Buza umbuzo wokuqala enkundleni"
+      },
+      "FIRST_ANSWER": {
+        "name": "Usizo",
+        "description": "Uphendule umbuzo okokuqala",
+        "criteria": "Shicilela impendulo yokuqala"
+      },
+      "FIRST_ACCEPTED_ANSWER": {
+        "name": "Inkinga ixazululiwe",
+        "description": "Enye yezimpendulo zakhe yamukelwe",
+        "criteria": "Enye yezimpendulo zakho yamukelwe"
+      },
+      "FIRST_ARTICLE": {
+        "name": "Usiba",
+        "description": "Ushicilele i-athikili yakhe yokuqala",
+        "criteria": "Shicilela i-athikili yokuqala"
+      },
+      "FIRST_PROJECT": {
+        "name": "Umakhi",
+        "description": "Wethule iphrojekthi yakhe yokuqala yomthombo ovulekile",
+        "criteria": "Yethula iphrojekthi yokuqala"
+      },
+      "REPUTATION_100": {
+        "name": "Umnikeli",
+        "description": "Ufinyelele amaphuzu odumo ayi-100",
+        "criteria": "Finyelela amaphuzu odumo ayi-100"
+      },
+      "REPUTATION_500": {
+        "name": "Uchwepheshe",
+        "description": "Ufinyelele amaphuzu odumo angama-500",
+        "criteria": "Finyelela amaphuzu odumo angama-500"
+      }
+    }
+  },
+  "avatar": {
+    "eyebrow": "Isithombe sephrofayela",
+    "title": "Lungisa isithombe sakho",
+    "hint": "Hudula isithombe ngaphansi kwendilinga; sondeza ngesilayidi, isondo legundane noma iminwe emibili. Ngekhibhodi: imicibisholo, + no −.",
+    "stage": "Ukulungiswa kwesithombe",
+    "opening": "Ivula isithombe",
+    "zoom": "Sondeza",
+    "recenter": "Buyisela phakathi",
+    "preview": "Ukubuka kuqala",
+    "pickAnother": "Khetha esinye isithombe",
+    "cancel": "Khansela",
+    "close": "Vala",
+    "save": "Londoloza",
+    "saving": "Iyathumela… {{percent}}%",
+    "saved": "Isithombe sakho sephrofayela sibuyekeziwe",
+    "failed": "Isithombe asikwazanga ukuthunyelwa. Zama futhi.",
+    "unreadable": "Leli fayela akusona isithombe esikwazi ukusifunda. Khetha isithombe se-JPEG, PNG, WebP noma GIF.",
+    "tooBig": "Lesi sithombe sedlula ama-MB angu-{{max}}. Khetha esilula.",
+    "menu": "Shintsha noma susa isithombe sakho sephrofayela",
+    "add": "Engeza isithombe",
+    "change": "Shintsha isithombe",
+    "drop": "Lahla isithombe sakho lapha",
+    "remove": "Susa isithombe",
+    "removeTitle": "Susa isithombe sakho?",
+    "removeText": "Izinhlamvu zokuqala zegama lakho zizosithatha indawo yonke ku-Ndadiee. Ungafaka esinye noma nini.",
+    "removed": "Isithombe sakho sisusiwe",
+    "removeFailed": "Isithombe asikwazanga ukususwa. Zama futhi."
+  }
+}

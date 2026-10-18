@@ -105,27 +105,28 @@ public class QuestionService {
         return PageResponse.from(page, content);
     }
 
-    /** Le forum en chiffres, et ses tags les plus utilisés (navigation du forum). */
+    /** Le forum en chiffres, et ses tags les plus utilisés (navigation du forum) ; sans les contenus masqués. */
     @Transactional(readOnly = true)
     public ForumOverviewResponse overview() {
         List<TagCount> tags = questionRepository.countTopicsByTag(PageRequest.of(0, OVERVIEW_TAGS)).stream()
                 .map(row -> new TagCount((String) row[0], (String) row[1], ((Number) row[2]).longValue()))
                 .toList();
         return ForumOverviewResponse.builder()
-                .topics(questionRepository.count())
-                .solved(questionRepository.countByAcceptedAnswerIsNotNull())
-                .unanswered(questionRepository.countByAnswerCount(0))
-                .answers(answerRepository.count())
+                .topics(questionRepository.countByHiddenAtIsNull())
+                .solved(questionRepository.countByAcceptedAnswerIsNotNullAndHiddenAtIsNull())
+                .unanswered(questionRepository.countByAnswerCountAndHiddenAtIsNull(0))
+                .answers(answerRepository.countVisible())
                 .contributors(questionRepository.countContributors())
                 .tags(tags)
                 .build();
     }
 
-    /** Consulter une question compte une vue. */
+    /** Consulter une question compte une vue. Masquée par l'administration, elle n'existe plus que pour son auteur et les admins. */
     public QuestionResponse getBySlug(String slug, Long currentUserId) {
-        // Incrément avant la lecture : la réponse porte le compteur à jour
+        // Incrément avant la lecture : la réponse porte le compteur à jour (un sujet masqué ne compte pas de vues)
         questionRepository.incrementViewCount(slug);
         Question question = questionRepository.findBySlug(slug)
+                .filter(found -> !found.isHidden() || userService.canSeeHidden(currentUserId, found.getAuthor().getId()))
                 .orElseThrow(() -> new ResourceNotFoundException("Question", "slug", slug));
         return toResponse(question, currentUserId);
     }

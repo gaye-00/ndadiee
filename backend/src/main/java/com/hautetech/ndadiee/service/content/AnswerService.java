@@ -62,11 +62,14 @@ public class AnswerService {
      */
     @Transactional(readOnly = true)
     public PageResponse<AnswerResponse> getByQuestion(Long questionId, Long currentUserId, Pageable pageable) {
-        if (!questionRepository.existsById(questionId)) {
-            throw new ResourceNotFoundException("Question", questionId);
-        }
-        Page<Answer> page = answerRepository.findByQuestionIdOrderByAcceptedDescScoreDescCreatedAtAsc(
-                questionId, PageRequest.of(pageable.getPageNumber(), pageable.getPageSize()));
+        // Contenus masqués par l'administration : le sujet n'existe plus que pour son auteur et les admins, une
+        // réponse masquée n'est montrée qu'à son auteur et aux admins
+        questionRepository.findById(questionId)
+                .filter(question -> !question.isHidden()
+                        || userService.canSeeHidden(currentUserId, question.getAuthor().getId()))
+                .orElseThrow(() -> new ResourceNotFoundException("Question", questionId));
+        Page<Answer> page = answerRepository.findVisibleByQuestion(questionId, currentUserId,
+                userService.isAdmin(currentUserId), PageRequest.of(pageable.getPageNumber(), pageable.getPageSize()));
 
         List<Long> answerIds = page.getContent().stream().map(Answer::getId).toList();
         Map<Long, Integer> votes = voteService.getUserVotes(currentUserId, ContentType.ANSWER, answerIds);
@@ -89,6 +92,10 @@ public class AnswerService {
         Developer author = userService.getDeveloperOrThrow(userId);
         Question question = questionRepository.findById(questionId)
                 .orElseThrow(() -> new ResourceNotFoundException("Question", questionId));
+        if (question.isHidden()) {
+            throw new OperationNotAllowedException(
+                    "Ce sujet a été masqué par l'administration : il n'accepte plus de réponses");
+        }
         if (question.getStatus() == QuestionStatus.CLOSED) {
             throw new OperationNotAllowedException("Cette question est fermée : elle n'accepte plus de réponses");
         }
@@ -132,7 +139,10 @@ public class AnswerService {
         commentRepository.deleteByTargets(ContentType.ANSWER, List.of(answerId));
 
         answerRepository.delete(answer);
-        questionRepository.addAnswerCount(question.getId(), -1);
+        // Une réponse masquée était déjà sortie du compteur de son sujet (AdminContentService)
+        if (!answer.isHidden()) {
+            questionRepository.addAnswerCount(question.getId(), -1);
+        }
         log.info("[Answer] ID: {} supprimée par {}", answerId, userId);
     }
 

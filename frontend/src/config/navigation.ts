@@ -2,12 +2,17 @@ import {
   FolderKanban,
   GitPullRequestArrow,
   House,
+  Layers,
+  LayoutDashboard,
   LayoutGrid,
   Mail,
   MessagesSquare,
   Plus,
+  ScrollText,
+  ShieldCheck,
   Sparkles,
   Trophy,
+  Users,
   type LucideIcon,
 } from 'lucide-react';
 import type frCommon from '@/i18n/locales/fr/common.json';
@@ -31,6 +36,7 @@ const dashboard: NavItem = { labelKey: 'dashboard', to: paths.dashboard, icon: H
 const projects: NavItem = { labelKey: 'projects', to: paths.myProjects, icon: FolderKanban, preload: pages.myProjects };
 const reviews: NavItem = { labelKey: 'reviews', to: paths.reviews, icon: GitPullRequestArrow, preload: pages.reviews };
 const messages: NavItem = { labelKey: 'messages', to: paths.messages, icon: Mail, preload: pages.messages };
+const backOffice: NavItem = { labelKey: 'admin', to: paths.admin, icon: ShieldCheck, preload: pages.admin };
 
 /** La page affichée est-elle celle du lien, ou une de ses pages (« /projects/lagos-transit » pour « /projects ») ? */
 export function isCurrentPath(pathname: string, to: string): boolean {
@@ -45,6 +51,34 @@ export const APP_NAV: readonly NavItem[] = [dashboard, projects, reviews, openin
 
 /** Barre d'onglets mobile (design 3G) : deux onglets, le bouton de création au centre, deux onglets */
 export const MOBILE_TABS: readonly NavItem[] = [dashboard, projects, reviews, messages];
+/**
+ * Un admin qui parcourt le site : le back-office d'abord, puis les sections publiques. Il ne participe pas à la
+ * communauté (pas d'atelier, de projets ni de messages, pas de bouton de création).
+ */
+export const ADMIN_APP_NAV: readonly NavItem[] = [backOffice, showcase, openings, hackathons, forum];
+export const ADMIN_MOBILE_TABS: readonly NavItem[] = [backOffice, showcase, forum, hackathons];
+
+/** Une section du back-office. Libellé : `shell.sections` de l'espace de noms `admin`. */
+export interface AdminSection {
+  key: 'overview' | 'users' | 'content' | 'journal';
+  to: string;
+  icon: LucideIcon;
+  preload: PageImport;
+}
+
+/** Les sections du back-office (sa console, à gauche ; ses pastilles, sur téléphone) */
+export const ADMIN_SECTIONS: readonly AdminSection[] = [
+  { key: 'overview', to: paths.admin, icon: LayoutDashboard, preload: pages.admin },
+  { key: 'users', to: paths.adminUsers, icon: Users, preload: pages.adminUsers },
+  { key: 'content', to: paths.adminContent, icon: Layers, preload: pages.adminContent },
+  { key: 'journal', to: paths.adminJournal, icon: ScrollText, preload: pages.adminJournal },
+];
+
+/** La section du back-office ouverte : la vue d'ensemble seulement à son adresse exacte */
+export function isCurrentSection(pathname: string, section: AdminSection): boolean {
+  return section.to === paths.admin ? pathname === paths.admin || pathname === `${paths.admin}/` : isCurrentPath(pathname, section.to);
+}
+
 export const MOBILE_CREATE: NavItem = {
   labelKey: 'create',
   to: paths.newProject,

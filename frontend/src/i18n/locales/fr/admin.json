@@ -1,0 +1,277 @@
+{
+  "shell": {
+    "brand": "Back-office",
+    "nav": "Sections du back-office",
+    "site": "Le site",
+    "role": "Administration",
+    "sections": {
+      "overview": "Vue d'ensemble",
+      "users": "Membres",
+      "content": "Contenus",
+      "journal": "Journal"
+    }
+  },
+  "shared": {
+    "errorText": "Vérifie ta connexion, puis réessaie."
+  },
+  "roles": {
+    "USER": "Membre",
+    "MODERATOR": "Modérateur",
+    "ADMIN": "Admin"
+  },
+  "overview": {
+    "lead": "La communauté et ses contenus en chiffres, et les dernières décisions de l'équipe.",
+    "loading": "Chargement de la vue d'ensemble",
+    "errorTitle": "La vue d'ensemble n'a pas pu se charger",
+    "community": "Communauté",
+    "content": "Contenus",
+    "thisWeek": "+{{formatted}} cette semaine",
+    "kpi": {
+      "members": "Membres",
+      "active": "Actifs cette semaine",
+      "activeHint": "connectés au moins une fois",
+      "moderators": "Modérateurs",
+      "moderatorsHint": "veillent sur le forum",
+      "blocked": "Comptes suspendus",
+      "blockedHint": "ne peuvent plus se connecter",
+      "topics": "Sujets du forum",
+      "answers": "Réponses",
+      "projects": "Projets",
+      "hidden": "Contenus masqués",
+      "hiddenHint": "invisibles du public"
+    },
+    "signups": {
+      "title": "Inscriptions",
+      "subtitle_one": "30 derniers jours · {{formatted}} inscription",
+      "subtitle_many": "30 derniers jours · {{formatted}} inscriptions",
+      "subtitle_other": "30 derniers jours · {{formatted}} inscriptions",
+      "chartLabel": "Inscriptions par jour sur les 30 derniers jours. Les flèches parcourent les jours.",
+      "day_one": "{{date}} : {{count}} inscription",
+      "day_many": "{{date}} : {{count}} inscriptions",
+      "day_other": "{{date}} : {{count}} inscriptions",
+      "count_one": "{{formatted}} inscription",
+      "count_many": "{{formatted}} inscriptions",
+      "count_other": "{{formatted}} inscriptions",
+      "today": "aujourd'hui",
+      "showTable": "Tableau",
+      "showChart": "Graphique",
+      "dayColumn": "Jour",
+      "countColumn": "Inscriptions"
+    },
+    "recent": {
+      "title": "Dernières décisions",
+      "seeAll": "Tout le journal",
+      "empty": "Aucune décision pour l'instant."
+    }
+  },
+  "users": {
+    "title": "Membres",
+    "lead": "Cherche un compte, suspends-le avec un motif ou réactive-le, nomme ou retire un modérateur.",
+    "count_one": "{{formatted}} compte",
+    "count_many": "{{formatted}} comptes",
+    "count_other": "{{formatted}} comptes",
+    "filters": "Filtrer les comptes",
+    "search": "Rechercher un compte",
+    "searchPlaceholder": "Nom, @utilisateur ou e-mail…",
+    "status": {
+      "label": "État du compte",
+      "all": "Tous",
+      "ACTIVE": "Actifs",
+      "BLOCKED": "Suspendus"
+    },
+    "role": {
+      "label": "Rôle",
+      "all": "Tous les rôles"
+    },
+    "loading": "Chargement des comptes",
+    "errorTitle": "Les comptes n'ont pas pu se charger",
+    "empty": {
+      "title": "Aucun compte ne correspond",
+      "text": "Change la recherche ou retire un filtre."
+    },
+    "you": "toi",
+    "active": "Actif",
+    "blocked": "Suspendu",
+    "blockedSince": "Suspendu {{when}}",
+    "reason": "Motif : {{reason}}",
+    "questions_one": "{{formatted}} sujet",
+    "questions_many": "{{formatted}} sujets",
+    "questions_other": "{{formatted}} sujets",
+    "answers_one": "{{formatted}} réponse",
+    "answers_many": "{{formatted}} réponses",
+    "answers_other": "{{formatted}} réponses",
+    "projects_one": "{{formatted}} projet",
+    "projects_many": "{{formatted}} projets",
+    "projects_other": "{{formatted}} projets",
+    "adminAccount": "Compte d'administration",
+    "joined": "Inscription le {{date}}",
+    "lastLogin": "Dernière connexion {{when}}",
+    "neverLoggedIn": "Aucune connexion",
+    "actions": {
+      "label": "Actions pour {{name}}",
+      "profile": "Voir le profil public",
+      "copyEmail": "Copier l'e-mail",
+      "makeModerator": "Nommer modérateur",
+      "makeMember": "Retirer le rôle de modérateur",
+      "block": "Suspendre le compte",
+      "unblock": "Réactiver le compte"
+    },
+    "blockDialog": {
+      "title": "Suspendre {{name}} ?",
+      "description": "Ce compte ne pourra plus se connecter, et sa session en cours se fermera. Ce qu'il a publié reste en ligne : masque-le à part si besoin.",
+      "reasonLabel": "Motif de la suspension",
+      "confirm": "Suspendre"
+    },
+    "unblockDialog": {
+      "title": "Réactiver {{name}} ?",
+      "description": "Le compte pourra de nouveau se connecter et participer.",
+      "confirm": "Réactiver"
+    },
+    "roleDialog": {
+      "moderatorTitle": "Confier le rôle de modérateur à {{name}} ?",
+      "moderatorText": "Un modérateur peut modifier et supprimer les contenus des autres membres, dans le forum et les projets. Il n'a pas accès au back-office.",
+      "moderatorConfirm": "Nommer modérateur",
+      "memberTitle": "Retirer son rôle de modérateur à {{name}} ?",
+      "memberText": "Ce compte redevient un membre comme les autres : plus question de modifier ou de supprimer les contenus des autres.",
+      "memberConfirm": "Retirer le rôle"
+    },
+    "toast": {
+      "blocked": "Le compte de {{name}} est suspendu.",
+      "unblocked": "Le compte de {{name}} est réactivé.",
+      "moderator": "{{name}} a désormais le rôle de modérateur.",
+      "member": "{{name}} n'a plus le rôle de modérateur.",
+      "emailCopied": "E-mail copié."
+    }
+  },
+  "content": {
+    "title": "Contenus",
+    "lead": "Sujets du forum, réponses et projets. Masquer retire un contenu du public sans rien perdre : son auteur voit le motif, et tu peux le rétablir. Supprimer est définitif.",
+    "count_one": "{{formatted}} contenu",
+    "count_many": "{{formatted}} contenus",
+    "count_other": "{{formatted}} contenus",
+    "filters": "Filtrer les contenus",
+    "typeLabel": "Type de contenu",
+    "types": {
+      "QUESTION": "Sujets",
+      "ANSWER": "Réponses",
+      "PROJECT": "Projets"
+    },
+    "type": {
+      "QUESTION": "Sujet",
+      "ANSWER": "Réponse",
+      "PROJECT": "Projet"
+    },
+    "search": "Rechercher un contenu",
+    "searchPlaceholder": "Titre, texte ou @auteur…",
+    "visibility": {
+      "label": "Visibilité",
+      "all": "Tous",
+      "VISIBLE": "Visibles",
+      "HIDDEN": "Masqués"
+    },
+    "loading": "Chargement des contenus",
+    "errorTitle": "Les contenus n'ont pas pu se charger",
+    "empty": {
+      "title": "Aucun contenu ne correspond",
+      "text": "Change la recherche ou retire un filtre."
+    },
+    "answerTo": "Réponse à « {{title}} »",
+    "hiddenBadge": "Masqué",
+    "hiddenSince": "Masqué {{when}}",
+    "reason": "Motif : {{reason}}",
+    "score_one": "{{formatted}} point",
+    "score_many": "{{formatted}} points",
+    "score_other": "{{formatted}} points",
+    "stars_one": "{{formatted}} étoile",
+    "stars_many": "{{formatted}} étoiles",
+    "stars_other": "{{formatted}} étoiles",
+    "replies_one": "{{formatted}} réponse",
+    "replies_many": "{{formatted}} réponses",
+    "replies_other": "{{formatted}} réponses",
+    "actions": {
+      "view": "Voir",
+      "hide": "Masquer",
+      "unhide": "Rétablir",
+      "delete": "Supprimer"
+    },
+    "hideDialog": {
+      "title": "Masquer ce contenu ?",
+      "description": "Il quitte les pages publiques : listes, recherche, fil et compteurs. Son auteur le voit encore, avec le motif, et tu pourras le rétablir.",
+      "reasonLabel": "Motif (montré à l'auteur)",
+      "confirm": "Masquer"
+    },
+    "deleteDialog": {
+      "title": "Supprimer définitivement ?",
+      "description": {
+        "QUESTION": "Le sujet part avec ses réponses, ses votes et ses commentaires. C'est irréversible : masquer suffit souvent.",
+        "ANSWER": "La réponse part avec ses votes et ses commentaires. C'est irréversible : masquer suffit souvent.",
+        "PROJECT": "Le projet part avec son équipe, ses annonces, ses votes et ses commentaires. C'est irréversible : masquer suffit souvent."
+      },
+      "reasonLabel": "Motif (gardé au journal)",
+      "confirm": "Supprimer"
+    },
+    "toast": {
+      "hidden": "Contenu masqué.",
+      "unhidden": "Contenu rétabli.",
+      "deleted": "Contenu supprimé."
+    }
+  },
+  "journal": {
+    "title": "Journal",
+    "lead": "Chaque décision de l'équipe, avec son motif. Le journal ne s'efface pas.",
+    "count_one": "{{formatted}} décision",
+    "count_many": "{{formatted}} décisions",
+    "count_other": "{{formatted}} décisions",
+    "filter": "Cible des décisions",
+    "targets": {
+      "all": "Tout",
+      "USER": "Comptes",
+      "QUESTION": "Sujets",
+      "ANSWER": "Réponses",
+      "PROJECT": "Projets"
+    },
+    "loading": "Chargement du journal",
+    "errorTitle": "Le journal n'a pas pu se charger",
+    "empty": {
+      "title": "Rien au journal",
+      "text": "Les décisions de l'équipe s'inscriront ici."
+    },
+    "formerAdmin": "Un ancien admin",
+    "reason": "Motif :",
+    "seeAccount": "Voir le compte",
+    "sentence": {
+      "BLOCK_USER": "<b>{{admin}}</b> a suspendu <b>@{{target}}</b>",
+      "UNBLOCK_USER": "<b>{{admin}}</b> a réactivé <b>@{{target}}</b>",
+      "CHANGE_ROLE": "<b>{{admin}}</b> a fait passer <b>@{{target}}</b> de {{from}} à {{to}}",
+      "HIDE_CONTENT_QUESTION": "<b>{{admin}}</b> a masqué le sujet <b>{{target}}</b>",
+      "HIDE_CONTENT_ANSWER": "<b>{{admin}}</b> a masqué une réponse à <b>{{target}}</b>",
+      "HIDE_CONTENT_PROJECT": "<b>{{admin}}</b> a masqué le projet <b>{{target}}</b>",
+      "UNHIDE_CONTENT_QUESTION": "<b>{{admin}}</b> a rétabli le sujet <b>{{target}}</b>",
+      "UNHIDE_CONTENT_ANSWER": "<b>{{admin}}</b> a rétabli une réponse à <b>{{target}}</b>",
+      "UNHIDE_CONTENT_PROJECT": "<b>{{admin}}</b> a rétabli le projet <b>{{target}}</b>",
+      "DELETE_CONTENT_QUESTION": "<b>{{admin}}</b> a supprimé le sujet <b>{{target}}</b>",
+      "DELETE_CONTENT_ANSWER": "<b>{{admin}}</b> a supprimé une réponse à <b>{{target}}</b>",
+      "DELETE_CONTENT_PROJECT": "<b>{{admin}}</b> a supprimé le projet <b>{{target}}</b>"
+    }
+  },
+  "reason": {
+    "placeholder": "Explique la décision en une phrase…",
+    "required": "Le motif est requis.",
+    "shown": "Il sera montré à la personne concernée.",
+    "optional": "Facultatif : il n'est gardé qu'au journal.",
+    "counter": "{{length}}/{{max}}",
+    "presets": {
+      "spam": "Spam ou publicité.",
+      "fraud": "Arnaque ou fraude.",
+      "abuse": "Propos irrespectueux.",
+      "offTopic": "Hors sujet.",
+      "duplicate": "Doublon."
+    }
+  },
+  "pager": {
+    "label": "Pages",
+    "previous": "Précédent",
+    "next": "Suivant",
+    "page": "Page {{page}} sur {{total}}"
+  }
+}

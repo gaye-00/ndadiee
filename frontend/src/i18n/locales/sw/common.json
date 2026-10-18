@@ -15,7 +15,8 @@
     "notifications": "Arifa",
     "settings": "Mipangilio",
     "profile": "Wasifu",
-    "create": "Unda"
+    "create": "Unda",
+    "admin": "Usimamizi"
   },
   "actions": {
     "login": "Ingia",
@@ -150,7 +151,11 @@
     "login": "Ingia",
     "register": "Jisajili",
     "notFound": "Ukurasa haupatikani",
-    "editTopic": "Hariri mada"
+    "editTopic": "Hariri mada",
+    "admin": "Usimamizi",
+    "adminUsers": "Usimamizi · Wanachama",
+    "adminContent": "Usimamizi · Maudhui",
+    "adminJournal": "Usimamizi · Kumbukumbu"
   },
   "enums": {
     "experienceLevel": {
@@ -198,29 +203,29 @@
       "invalid": "Jina la mtumiaji la GitHub lina herufi, namba na vistari, herufi 39 zaidi.",
       "notFound": "Hakuna akaunti ya GitHub yenye jina hili.",
       "unavailable": "GitHub haijibu. Jaribu tena baada ya muda mfupi.",
-      "viewLabel": "Mwonekano wa mwaka",
-      "viewCloth": "Kitambaa: mwaka ukiwa bapa",
-      "viewCity": "Jiji: mwaka katika 3D",
-      "less": "Kidogo",
-      "more": "Zaidi",
-      "level0": "Siku bila michango",
-      "level1": "Siku tulivu",
-      "level2": "Siku zenye shughuli",
-      "level3": "Siku zenye shughuli nyingi",
-      "level4": "Siku zenye shughuli nyingi zaidi",
-      "structure": "Ukanda mmoja kwa wiki, kipande kimoja kwa siku.",
-      "hintCloth": "Elekeza kwenye siku, au pitia mwaka kwa vitufe vya mishale.",
-      "hintCity": "Buruta ili kuzunguka jiji. Bofya mara mbili ili kurudi.",
-      "summary": "{{who}}, kuanzia {{from}} hadi {{to}}: {{total}}. Ukanda mmoja kwa wiki, kipande kimoja kwa siku. Tumia vitufe vya mishale kusoma kila siku.",
-      "streak_one": "mfululizo mrefu zaidi: siku {{count}}",
-      "streak_other": "mfululizo mrefu zaidi: siku {{count}}",
       "showcase": "Mwaka wako unastahili onyesho"
     }
   },
   "contributions": {
     "count_one": "Mchango {{count}}",
     "count_other": "Michango {{count}}",
-    "none": "Hakuna michango"
+    "none": "Hakuna michango",
+    "viewLabel": "Mwonekano wa mwaka",
+    "viewCloth": "Kitambaa: mwaka ukiwa bapa",
+    "viewCity": "Jiji: mwaka katika 3D",
+    "less": "Kidogo",
+    "more": "Zaidi",
+    "level0": "Siku bila michango",
+    "level1": "Siku tulivu",
+    "level2": "Siku zenye shughuli",
+    "level3": "Siku zenye shughuli nyingi",
+    "level4": "Siku zenye shughuli nyingi zaidi",
+    "structure": "Ukanda mmoja kwa wiki, kipande kimoja kwa siku.",
+    "hintCloth": "Elekeza kwenye siku, au pitia mwaka kwa vitufe vya mishale.",
+    "hintCity": "Buruta ili kuzunguka jiji. Bofya mara mbili ili kurudi.",
+    "summary": "{{who}}, kuanzia {{from}} hadi {{to}}: {{total}}. Ukanda mmoja kwa wiki, kipande kimoja kwa siku. Tumia vitufe vya mishale kusoma kila siku.",
+    "streak_one": "mfululizo mrefu zaidi: siku {{count}}",
+    "streak_other": "mfululizo mrefu zaidi: siku {{count}}"
   },
   "teamRoles": {
     "frontend": "Msanidi wa front-end",
@@ -466,7 +471,9 @@
       "pending": "Inaingia…",
       "failed": "Barua pepe, jina la mtumiaji au nenosiri si sahihi.",
       "noAccount": "Bado huna akaunti?",
-      "toRegister": "Fungua akaunti"
+      "toRegister": "Fungua akaunti",
+      "blocked": "Akaunti hii imesimamishwa na timu ya Ndadiee.",
+      "blockedReason": "Sababu: {{reason}}"
     },
     "register": {
       "eyebrow": "Jisajili",
@@ -532,7 +539,8 @@
       "loginText": "Ulipokuwa mbali, timu ziliendelea kufuma.",
       "registerTitle": "Uzi mmoja zaidi kitambaani.",
       "registerText": "Kila msanidi ni uzi. Hapa, timu hufumwa kuzunguka miradi."
-    }
+    },
+    "sessionBlocked": "Akaunti yako imesimamishwa na timu ya Ndadiee: umetolewa."
   },
   "project": {
     "recruiting_one": "inatafuta · nafasi {{count}}",
@@ -747,5 +755,13 @@
     "imageType": "«{{name}}»: miundo inayokubalika ni JPEG, PNG, WebP na GIF.",
     "imageTooBig": "«{{name}}» inazidi MB {{max}}.",
     "uploadFailed": "«{{name}}» haikuweza kupakiwa."
+  },
+  "moderation": {
+    "hidden": {
+      "QUESTION": "Mada hii imefichwa na timu ya Ndadiee: umma hauioni tena.",
+      "ANSWER": "Jibu hili limefichwa na timu ya Ndadiee: umma haulioni tena.",
+      "PROJECT": "Mradi huu umefichwa na timu ya Ndadiee: umma hauuoni tena."
+    },
+    "reason": "Sababu: {{reason}}"
   }
 }

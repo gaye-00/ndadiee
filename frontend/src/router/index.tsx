@@ -1,4 +1,5 @@
 import { createBrowserRouter } from 'react-router-dom';
+import AdminRoute from './AdminRoute';
 import GuestRoute from './GuestRoute';
 import type { RouteHandle } from './handle';
 import { pages, type PageName } from './pages';
@@ -6,6 +7,7 @@ import { paths } from './paths';
 import ProtectedRoute from './ProtectedRoute';
 import PageLoader from '@/components/feedback/PageLoader';
 import RouteErrorBoundary from '@/components/feedback/RouteErrorBoundary';
+import AdminLayout from '@/components/layout/AdminLayout';
 import AuthLayout from '@/components/layout/AuthLayout';
 import PublicLayout from '@/components/layout/PublicLayout';
 import RootLayout from '@/components/layout/RootLayout';
@@ -56,6 +58,27 @@ const router = createBrowserRouter([
         ],
       },
 
+      // ── Back-office : comptes d'administration seulement, dans leur propre coquille ──
+      {
+        element: <AdminRoute />,
+        children: [
+          {
+            element: <AdminLayout />,
+            children: [
+              {
+                errorElement: <RouteErrorBoundary />,
+                children: [
+                  { path: paths.admin, ...page('admin') },
+                  { path: paths.adminUsers, ...page('adminUsers') },
+                  { path: paths.adminContent, ...page('adminContent') },
+                  { path: paths.adminJournal, ...page('adminJournal') },
+                ],
+              },
+            ],
+          },
+        ],
+      },
+
       // ── Plateforme : coquille de l'application une fois connecté, du visiteur sinon ──
       {
         element: <ShellLayout />,
@@ -74,7 +97,14 @@ const router = createBrowserRouter([
               { path: paths.profile(':username'), ...page('profile') },
               { path: paths.search, ...page('search') },
 
-              // Réservé aux membres connectés : sinon, direction /login puis retour ici
+              // Ouvert aux membres connectés et aux admins (modération d'un sujet)
+              {
+                element: <ProtectedRoute allowAdmin />,
+                children: [{ path: paths.editTopic(':slug'), ...page('editTopic') }],
+              },
+
+              // Réservé aux membres connectés : sinon, direction /login puis retour ici ; un admin, lui, retourne
+              // au back-office
               {
                 element: <ProtectedRoute />,
                 children: [
@@ -96,7 +126,6 @@ const router = createBrowserRouter([
                   { path: paths.reviews, ...page('reviews') },
                   { path: paths.newOpening, ...page('newOpening') },
                   { path: paths.newTopic, ...page('newTopic') },
-                  { path: paths.editTopic(':slug'), ...page('editTopic') },
                   { path: paths.messages, ...page('messages') },
                   { path: paths.notifications, ...page('notifications') },
                   { path: paths.settings, ...page('settings') },

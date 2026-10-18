@@ -144,6 +144,7 @@ public class ProjectService {
     @Transactional(readOnly = true)
     public ProjectResponse getBySlug(String slug, Long currentUserId) {
         Project project = projectRepository.findBySlug(slug)
+                .filter(found -> isVisibleTo(found, currentUserId))
                 .orElseThrow(() -> new ResourceNotFoundException("Projet", "slug", slug));
         ProjectResponse response = toResponse(project, currentUserId);
         addPageDetails(project, response, currentUserId);
@@ -217,7 +218,7 @@ public class ProjectService {
      */
     public ProjectMemberResponse join(Long userId, Long projectId, JoinProjectRequest request) {
         Developer developer = userService.getDeveloperOrThrow(userId);
-        Project project = findProjectOrThrow(projectId);
+        Project project = findVisibleProjectOrThrow(projectId, userId);
 
         Optional<ProjectMember> existing = projectMemberRepository.findByProjectIdAndUserId(projectId, userId);
         if (existing.isPresent() && existing.get().getStatus() == MemberStatus.ACCEPTED) {
@@ -264,7 +265,7 @@ public class ProjectService {
     /** Membres acceptés ; le propriétaire et les mainteneurs voient aussi les demandes en attente ou refusées. */
     @Transactional(readOnly = true)
     public List<ProjectMemberResponse> getMembers(Long projectId, Long currentUserId) {
-        Project project = findProjectOrThrow(projectId);
+        Project project = findVisibleProjectOrThrow(projectId, currentUserId);
         boolean manager = canManage(project, currentUserId);
         List<ProjectMember> members = manager
                 ? projectMemberRepository.findByProjectIdOrderByCreatedAtAsc(projectId)
@@ -457,6 +458,21 @@ public class ProjectService {
     public Project findProjectOrThrow(Long projectId) {
         return projectRepository.findById(projectId)
                 .orElseThrow(() -> new ResourceNotFoundException("Projet", projectId));
+    }
+
+    /** Le projet, s'il existe pour ce lecteur : un projet masqué n'existe plus que pour son équipe et les admins. */
+    public Project findVisibleProjectOrThrow(Long projectId, Long viewerId) {
+        return projectRepository.findById(projectId)
+                .filter(project -> isVisibleTo(project, viewerId))
+                .orElseThrow(() -> new ResourceNotFoundException("Projet", projectId));
+    }
+
+    /**
+     * Un projet masqué par l'administration quitte la vitrine, les annonces et le fil ; son équipe le voit encore
+     * (avec le motif), les admins aussi.
+     */
+    public boolean isVisibleTo(Project project, Long viewerId) {
+        return !project.isHidden() || isTeamMember(project, viewerId) || userService.isAdmin(viewerId);
     }
 
     private void requireOwnerOrModerator(Project project, Long userId, String message) {

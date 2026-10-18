@@ -34,12 +34,19 @@ public interface BookmarkRepository extends JpaRepository<Bookmark, Long> {
     @Query("SELECT b.question.id FROM Bookmark b WHERE b.user.id = :userId AND b.question.id IN :questionIds")
     List<Long> findBookmarkedQuestionIds(@Param("userId") Long userId, @Param("questionIds") Collection<Long> questionIds);
 
-    // La liste de lecture : les derniers enregistrés d'abord
-    @Query(value = "SELECT b.question FROM Bookmark b WHERE b.user.id = :userId ORDER BY b.createdAt DESC, b.id DESC",
-            countQuery = "SELECT COUNT(b) FROM Bookmark b WHERE b.user.id = :userId")
+    // La liste de lecture : les derniers enregistrés d'abord. Un sujet masqué par l'administration en sort (il y
+    // revient s'il est rétabli).
+    @Query(value = """
+            SELECT b.question FROM Bookmark b
+            WHERE b.user.id = :userId AND b.question.hiddenAt IS NULL
+            ORDER BY b.createdAt DESC, b.id DESC
+            """,
+            countQuery = "SELECT COUNT(b) FROM Bookmark b WHERE b.user.id = :userId AND b.question.hiddenAt IS NULL")
     Page<Question> findSavedQuestions(@Param("userId") Long userId, Pageable pageable);
 
-    long countByUserId(Long userId);
+    // Taille de la liste de lecture : les sujets masqués par l'administration n'y comptent pas
+    @Query("SELECT COUNT(b) FROM Bookmark b WHERE b.user.id = :userId AND b.question.hiddenAt IS NULL")
+    long countByUserId(@Param("userId") Long userId);
 
     @Modifying
     @Query("DELETE FROM Bookmark b WHERE b.question.id = :questionId")

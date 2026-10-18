@@ -1,9 +1,11 @@
 package com.hautetech.ndadiee.model.content;
 
+import java.time.Instant;
 import java.util.HashSet;
 import java.util.Set;
 
 import com.hautetech.ndadiee.common.BaseEntity;
+import com.hautetech.ndadiee.model.Hideable;
 import com.hautetech.ndadiee.model.user.Developer;
 
 import org.hibernate.annotations.DynamicUpdate;
@@ -38,7 +40,7 @@ import lombok.experimental.SuperBuilder;
 @Entity
 @DynamicUpdate
 @Table(name = "questions")
-public class Question extends BaseEntity {
+public class Question extends BaseEntity implements Hideable {
 
     @Column(nullable = false)
     private String title;
@@ -85,6 +87,12 @@ public class Question extends BaseEntity {
     @Column(nullable = false)
     @Builder.Default
     private QuestionStatus status = QuestionStatus.OPEN;
+
+    // Masqué par l'administration (voir Hideable) : null tant qu'il est visible
+    private Instant hiddenAt;
+
+    @Column(length = 500)
+    private String hiddenReason;
 
     /**
      * Pertinence dans le fil du forum (« Pertinents », sort=hotness) : les votes et les réponses font monter un

@@ -45,6 +45,11 @@ export default function ReplyForm({ topic, onPosted }: ReplyFormProps) {
   const [error, setError] = useState<string | null>(null);
   const own = topic.author.id === user?.id;
 
+  // Masqué par l'équipe : le sujet n'accepte plus de réponses (l'avis en tête de page dit pourquoi)
+  if (topic.hidden) {
+    return null;
+  }
+
   if (topic.status === 'CLOSED') {
     return (
       <p className="mt-5 flex items-center gap-2.5 rounded-2xl border border-border bg-foreground/4 px-4 py-3 text-sm text-soft-foreground">

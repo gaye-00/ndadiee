@@ -28,11 +28,13 @@ public final class ProjectSpecifications {
     /**
      * Les projets qui répondent aux filtres. Technologies et annonces passent par des sous-requêtes
      * (EXISTS) : une ligne par projet, quelle que soit la requête qui s'en sert (page, comptage, facettes).
-     * Chaque mot du mot-clé doit se trouver quelque part : « nlp wolof » trouve wolof-nlp.
+     * Chaque mot du mot-clé doit se trouver quelque part : « nlp wolof » trouve wolof-nlp. Les projets masqués
+     * par l'administration n'y sont jamais (le back-office a ses propres listes).
      */
     public static Specification<Project> filter(ProjectFilter filter) {
         return (root, query, cb) -> {
             List<Predicate> predicates = new ArrayList<>();
+            predicates.add(cb.isNull(root.get("hiddenAt")));
             if (hasText(filter.q())) {
                 terms(filter.q()).forEach(term -> predicates.add(cb.or(
                         contains(cb, root.get("name"), term),

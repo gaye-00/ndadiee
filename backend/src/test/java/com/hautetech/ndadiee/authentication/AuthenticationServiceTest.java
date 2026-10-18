@@ -2,8 +2,14 @@ package com.hautetech.ndadiee.authentication;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyString;
+import static org.mockito.Mockito.never;
+import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
+
+import java.time.Instant;
+import java.util.Optional;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -11,15 +17,22 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 import com.hautetech.ndadiee.authentication.UsernameAvailabilityResponse.Reason;
+import com.hautetech.ndadiee.exception.AccountBlockedException;
 import com.hautetech.ndadiee.exception.BusinessException;
 import com.hautetech.ndadiee.mapper.UserMapper;
+import com.hautetech.ndadiee.model.user.Developer;
+import com.hautetech.ndadiee.model.user.Role;
 import com.hautetech.ndadiee.repository.UserRepository;
 import com.hautetech.ndadiee.security.JwtService;
 
-/** Inscription : le nom d'utilisateur se vérifie à la frappe, et chaque refus désigne son champ. */
+/**
+ * Inscription : le nom d'utilisateur se vérifie à la frappe, et chaque refus désigne son champ. Connexion : un
+ * compte suspendu n'ouvre plus de session, ni ne la renouvelle.
+ */
 @ExtendWith(MockitoExtension.class)
 class AuthenticationServiceTest {
 
@@ -110,5 +123,52 @@ class AuthenticationServiceTest {
                 .isInstanceOf(BusinessException.class)
                 .extracting(error -> ((BusinessException) error).getField())
                 .isEqualTo("username");
+    }
+
+    // ==================== COMPTE SUSPENDU ====================
+
+    private static Developer member(Instant blockedAt) {
+        Developer developer = Developer.builder().username("awa").role(Role.USER).blockedAt(blockedAt)
+                .blockedReason(blockedAt == null ? null : "Spam répété").build();
+        developer.setId(7L);
+        return developer;
+    }
+
+    private void passwordAccepted(Developer developer) {
+        when(authenticationManager.authenticate(any()))
+                .thenReturn(new UsernamePasswordAuthenticationToken(developer, null, developer.getAuthorities()));
+    }
+
+    @Test
+    void aSuspendedAccountLearnsWhyOnceItsPasswordIsRight() {
+        passwordAccepted(member(Instant.now()));
+
+        assertThatThrownBy(() -> authenticationService.login(new AuthenticationRequest("awa", "tisse-ton-kente")))
+                .isInstanceOf(AccountBlockedException.class)
+                .extracting(error -> ((AccountBlockedException) error).getReason())
+                .isEqualTo("Spam répété");
+        verify(jwtService, never()).generateAccessToken(any());
+        verify(userRepository, never()).save(any());
+    }
+
+    @Test
+    void anActiveAccountRecordsItsLastLogin() {
+        Developer awa = member(null);
+        passwordAccepted(awa);
+
+        authenticationService.login(new AuthenticationRequest("awa", "tisse-ton-kente"));
+
+        assertThat(awa.getLastLoginAt()).isNotNull();
+        verify(userRepository).save(awa);
+    }
+
+    @Test
+    void aSuspendedAccountCannotRenewItsSession() {
+        when(jwtService.extractUsernameFromRefreshToken("refresh")).thenReturn("awa");
+        when(userRepository.findByUsername("awa")).thenReturn(Optional.of(member(Instant.now())));
+
+        assertThatThrownBy(() -> authenticationService.refreshToken(new RefreshTokenRequest("refresh")))
+                .isInstanceOf(AccountBlockedException.class);
+        verify(jwtService, never()).generateAccessToken(any());
     }
 }

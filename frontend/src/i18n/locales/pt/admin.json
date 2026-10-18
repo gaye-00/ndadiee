@@ -1,0 +1,277 @@
+{
+  "shell": {
+    "brand": "Back-office",
+    "nav": "Secções do back-office",
+    "site": "O site",
+    "role": "Administração",
+    "sections": {
+      "overview": "Visão geral",
+      "users": "Membros",
+      "content": "Conteúdos",
+      "journal": "Registo"
+    }
+  },
+  "shared": {
+    "errorText": "Verifica a tua ligação e tenta de novo."
+  },
+  "roles": {
+    "USER": "Membro",
+    "MODERATOR": "Moderador",
+    "ADMIN": "Admin"
+  },
+  "overview": {
+    "lead": "A comunidade e os seus conteúdos em números, e as últimas decisões da equipa.",
+    "loading": "A carregar a visão geral",
+    "errorTitle": "Não foi possível carregar a visão geral",
+    "community": "Comunidade",
+    "content": "Conteúdos",
+    "thisWeek": "+{{formatted}} esta semana",
+    "kpi": {
+      "members": "Membros",
+      "active": "Ativos esta semana",
+      "activeHint": "entraram pelo menos uma vez",
+      "moderators": "Moderadores",
+      "moderatorsHint": "cuidam do fórum",
+      "blocked": "Contas suspensas",
+      "blockedHint": "já não podem entrar",
+      "topics": "Tópicos do fórum",
+      "answers": "Respostas",
+      "projects": "Projetos",
+      "hidden": "Conteúdos ocultos",
+      "hiddenHint": "invisíveis ao público"
+    },
+    "signups": {
+      "title": "Inscrições",
+      "subtitle_one": "Últimos 30 dias · {{formatted}} inscrição",
+      "subtitle_many": "Últimos 30 dias · {{formatted}} inscrições",
+      "subtitle_other": "Últimos 30 dias · {{formatted}} inscrições",
+      "chartLabel": "Inscrições por dia nos últimos 30 dias. As setas percorrem os dias.",
+      "day_one": "{{date}}: {{count}} inscrição",
+      "day_many": "{{date}}: {{count}} inscrições",
+      "day_other": "{{date}}: {{count}} inscrições",
+      "count_one": "{{formatted}} inscrição",
+      "count_many": "{{formatted}} inscrições",
+      "count_other": "{{formatted}} inscrições",
+      "today": "hoje",
+      "showTable": "Tabela",
+      "showChart": "Gráfico",
+      "dayColumn": "Dia",
+      "countColumn": "Inscrições"
+    },
+    "recent": {
+      "title": "Últimas decisões",
+      "seeAll": "Registo completo",
+      "empty": "Ainda não há decisões."
+    }
+  },
+  "users": {
+    "title": "Membros",
+    "lead": "Procura uma conta, suspende-a com um motivo ou reativa-a, nomeia ou retira um moderador.",
+    "count_one": "{{formatted}} conta",
+    "count_many": "{{formatted}} contas",
+    "count_other": "{{formatted}} contas",
+    "filters": "Filtrar contas",
+    "search": "Procurar uma conta",
+    "searchPlaceholder": "Nome, @utilizador ou e-mail…",
+    "status": {
+      "label": "Estado da conta",
+      "all": "Todas",
+      "ACTIVE": "Ativas",
+      "BLOCKED": "Suspensas"
+    },
+    "role": {
+      "label": "Função",
+      "all": "Todas as funções"
+    },
+    "loading": "A carregar as contas",
+    "errorTitle": "Não foi possível carregar as contas",
+    "empty": {
+      "title": "Nenhuma conta corresponde",
+      "text": "Muda a pesquisa ou retira um filtro."
+    },
+    "you": "tu",
+    "active": "Ativa",
+    "blocked": "Suspensa",
+    "blockedSince": "Suspensa {{when}}",
+    "reason": "Motivo: {{reason}}",
+    "questions_one": "{{formatted}} tópico",
+    "questions_many": "{{formatted}} tópicos",
+    "questions_other": "{{formatted}} tópicos",
+    "answers_one": "{{formatted}} resposta",
+    "answers_many": "{{formatted}} respostas",
+    "answers_other": "{{formatted}} respostas",
+    "projects_one": "{{formatted}} projeto",
+    "projects_many": "{{formatted}} projetos",
+    "projects_other": "{{formatted}} projetos",
+    "adminAccount": "Conta de administração",
+    "joined": "Inscrição a {{date}}",
+    "lastLogin": "Última entrada {{when}}",
+    "neverLoggedIn": "Nenhuma entrada",
+    "actions": {
+      "label": "Ações para {{name}}",
+      "profile": "Ver o perfil público",
+      "copyEmail": "Copiar o e-mail",
+      "makeModerator": "Nomear moderador",
+      "makeMember": "Retirar a função de moderador",
+      "block": "Suspender a conta",
+      "unblock": "Reativar a conta"
+    },
+    "blockDialog": {
+      "title": "Suspender {{name}}?",
+      "description": "Esta conta deixa de poder entrar e a sessão em curso termina. O que publicou continua online: oculta-o à parte, se for preciso.",
+      "reasonLabel": "Motivo da suspensão",
+      "confirm": "Suspender"
+    },
+    "unblockDialog": {
+      "title": "Reativar {{name}}?",
+      "description": "A conta volta a poder entrar e participar.",
+      "confirm": "Reativar"
+    },
+    "roleDialog": {
+      "moderatorTitle": "Dar a função de moderador a {{name}}?",
+      "moderatorText": "Um moderador pode editar e apagar os conteúdos dos outros membros, no fórum e nos projetos. Não tem acesso ao back-office.",
+      "moderatorConfirm": "Nomear moderador",
+      "memberTitle": "Retirar a função de moderador a {{name}}?",
+      "memberText": "Esta conta volta a ser um membro como os outros: deixa de poder editar ou apagar os conteúdos dos outros.",
+      "memberConfirm": "Retirar a função"
+    },
+    "toast": {
+      "blocked": "A conta de {{name}} foi suspensa.",
+      "unblocked": "A conta de {{name}} foi reativada.",
+      "moderator": "{{name}} tem agora a função de moderador.",
+      "member": "{{name}} deixou de ter a função de moderador.",
+      "emailCopied": "E-mail copiado."
+    }
+  },
+  "content": {
+    "title": "Conteúdos",
+    "lead": "Tópicos do fórum, respostas e projetos. Ocultar retira um conteúdo do público sem perder nada: o autor vê o motivo e podes repô-lo. Apagar é definitivo.",
+    "count_one": "{{formatted}} conteúdo",
+    "count_many": "{{formatted}} conteúdos",
+    "count_other": "{{formatted}} conteúdos",
+    "filters": "Filtrar conteúdos",
+    "typeLabel": "Tipo de conteúdo",
+    "types": {
+      "QUESTION": "Tópicos",
+      "ANSWER": "Respostas",
+      "PROJECT": "Projetos"
+    },
+    "type": {
+      "QUESTION": "Tópico",
+      "ANSWER": "Resposta",
+      "PROJECT": "Projeto"
+    },
+    "search": "Procurar um conteúdo",
+    "searchPlaceholder": "Título, texto ou @autor…",
+    "visibility": {
+      "label": "Visibilidade",
+      "all": "Todos",
+      "VISIBLE": "Visíveis",
+      "HIDDEN": "Ocultos"
+    },
+    "loading": "A carregar os conteúdos",
+    "errorTitle": "Não foi possível carregar os conteúdos",
+    "empty": {
+      "title": "Nenhum conteúdo corresponde",
+      "text": "Muda a pesquisa ou retira um filtro."
+    },
+    "answerTo": "Resposta a «{{title}}»",
+    "hiddenBadge": "Oculto",
+    "hiddenSince": "Oculto {{when}}",
+    "reason": "Motivo: {{reason}}",
+    "score_one": "{{formatted}} ponto",
+    "score_many": "{{formatted}} pontos",
+    "score_other": "{{formatted}} pontos",
+    "stars_one": "{{formatted}} estrela",
+    "stars_many": "{{formatted}} estrelas",
+    "stars_other": "{{formatted}} estrelas",
+    "replies_one": "{{formatted}} resposta",
+    "replies_many": "{{formatted}} respostas",
+    "replies_other": "{{formatted}} respostas",
+    "actions": {
+      "view": "Ver",
+      "hide": "Ocultar",
+      "unhide": "Repor",
+      "delete": "Apagar"
+    },
+    "hideDialog": {
+      "title": "Ocultar este conteúdo?",
+      "description": "Sai das páginas públicas: listas, pesquisa, feed e contadores. O autor continua a vê-lo, com o motivo, e poderás repô-lo.",
+      "reasonLabel": "Motivo (mostrado ao autor)",
+      "confirm": "Ocultar"
+    },
+    "deleteDialog": {
+      "title": "Apagar definitivamente?",
+      "description": {
+        "QUESTION": "O tópico vai com as suas respostas, votos e comentários. É irreversível: ocultar costuma bastar.",
+        "ANSWER": "A resposta vai com os seus votos e comentários. É irreversível: ocultar costuma bastar.",
+        "PROJECT": "O projeto vai com a sua equipa, anúncios, votos e comentários. É irreversível: ocultar costuma bastar."
+      },
+      "reasonLabel": "Motivo (guardado no registo)",
+      "confirm": "Apagar"
+    },
+    "toast": {
+      "hidden": "Conteúdo oculto.",
+      "unhidden": "Conteúdo reposto.",
+      "deleted": "Conteúdo apagado."
+    }
+  },
+  "journal": {
+    "title": "Registo",
+    "lead": "Cada decisão da equipa, com o seu motivo. O registo nunca se apaga.",
+    "count_one": "{{formatted}} decisão",
+    "count_many": "{{formatted}} decisões",
+    "count_other": "{{formatted}} decisões",
+    "filter": "Alvo das decisões",
+    "targets": {
+      "all": "Tudo",
+      "USER": "Contas",
+      "QUESTION": "Tópicos",
+      "ANSWER": "Respostas",
+      "PROJECT": "Projetos"
+    },
+    "loading": "A carregar o registo",
+    "errorTitle": "Não foi possível carregar o registo",
+    "empty": {
+      "title": "Nada no registo",
+      "text": "As decisões da equipa vão ficar registadas aqui."
+    },
+    "formerAdmin": "Um antigo admin",
+    "reason": "Motivo:",
+    "seeAccount": "Ver a conta",
+    "sentence": {
+      "BLOCK_USER": "<b>{{admin}}</b> suspendeu <b>@{{target}}</b>",
+      "UNBLOCK_USER": "<b>{{admin}}</b> reativou <b>@{{target}}</b>",
+      "CHANGE_ROLE": "<b>{{admin}}</b> passou <b>@{{target}}</b> de {{from}} a {{to}}",
+      "HIDE_CONTENT_QUESTION": "<b>{{admin}}</b> ocultou o tópico <b>{{target}}</b>",
+      "HIDE_CONTENT_ANSWER": "<b>{{admin}}</b> ocultou uma resposta a <b>{{target}}</b>",
+      "HIDE_CONTENT_PROJECT": "<b>{{admin}}</b> ocultou o projeto <b>{{target}}</b>",
+      "UNHIDE_CONTENT_QUESTION": "<b>{{admin}}</b> repôs o tópico <b>{{target}}</b>",
+      "UNHIDE_CONTENT_ANSWER": "<b>{{admin}}</b> repôs uma resposta a <b>{{target}}</b>",
+      "UNHIDE_CONTENT_PROJECT": "<b>{{admin}}</b> repôs o projeto <b>{{target}}</b>",
+      "DELETE_CONTENT_QUESTION": "<b>{{admin}}</b> apagou o tópico <b>{{target}}</b>",
+      "DELETE_CONTENT_ANSWER": "<b>{{admin}}</b> apagou uma resposta a <b>{{target}}</b>",
+      "DELETE_CONTENT_PROJECT": "<b>{{admin}}</b> apagou o projeto <b>{{target}}</b>"
+    }
+  },
+  "reason": {
+    "placeholder": "Explica a decisão numa frase…",
+    "required": "O motivo é obrigatório.",
+    "shown": "Será mostrado à pessoa em causa.",
+    "optional": "Opcional: só fica guardado no registo.",
+    "counter": "{{length}}/{{max}}",
+    "presets": {
+      "spam": "Spam ou publicidade.",
+      "fraud": "Burla ou fraude.",
+      "abuse": "Linguagem desrespeitosa.",
+      "offTopic": "Fora do tema.",
+      "duplicate": "Duplicado."
+    }
+  },
+  "pager": {
+    "label": "Páginas",
+    "previous": "Anterior",
+    "next": "Seguinte",
+    "page": "Página {{page}} de {{total}}"
+  }
+}

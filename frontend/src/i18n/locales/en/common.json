@@ -15,7 +15,8 @@
     "notifications": "Notifications",
     "settings": "Settings",
     "profile": "Profile",
-    "create": "Create"
+    "create": "Create",
+    "admin": "Back office"
   },
   "actions": {
     "login": "Log in",
@@ -150,7 +151,11 @@
     "login": "Log in",
     "register": "Sign up",
     "notFound": "Page not found",
-    "editTopic": "Edit topic"
+    "editTopic": "Edit topic",
+    "admin": "Back office",
+    "adminUsers": "Back office · Members",
+    "adminContent": "Back office · Content",
+    "adminJournal": "Back office · Log"
   },
   "enums": {
     "experienceLevel": {
@@ -198,29 +203,29 @@
       "invalid": "A GitHub username uses letters, numbers and hyphens, 39 characters at most.",
       "notFound": "No GitHub account has this name.",
       "unavailable": "GitHub isn't responding. Try again in a moment.",
-      "viewLabel": "Year view",
-      "viewCloth": "Cloth: the year laid flat",
-      "viewCity": "City: the year in 3D",
-      "less": "Less",
-      "more": "More",
-      "level0": "Days without contributions",
-      "level1": "Quiet days",
-      "level2": "Active days",
-      "level3": "Busy days",
-      "level4": "Busiest days",
-      "structure": "One strip per week, one block per day.",
-      "hintCloth": "Hover a day, or walk through the year with the arrow keys.",
-      "hintCity": "Drag to turn around the city. Double-click to reset.",
-      "summary": "{{who}}, from {{from}} to {{to}}: {{total}}. One strip per week, one block per day. Use the arrow keys to read each day.",
-      "streak_one": "longest streak: {{count}} day",
-      "streak_other": "longest streak: {{count}} days",
       "showcase": "Your year deserves a showcase"
     }
   },
   "contributions": {
     "count_one": "{{count}} contribution",
     "count_other": "{{count}} contributions",
-    "none": "No contributions"
+    "none": "No contributions",
+    "viewLabel": "Year view",
+    "viewCloth": "Cloth: the year laid flat",
+    "viewCity": "City: the year in 3D",
+    "less": "Less",
+    "more": "More",
+    "level0": "Days without contributions",
+    "level1": "Quiet days",
+    "level2": "Active days",
+    "level3": "Busy days",
+    "level4": "Busiest days",
+    "structure": "One strip per week, one block per day.",
+    "hintCloth": "Hover a day, or walk through the year with the arrow keys.",
+    "hintCity": "Drag to turn around the city. Double-click to reset.",
+    "summary": "{{who}}, from {{from}} to {{to}}: {{total}}. One strip per week, one block per day. Use the arrow keys to read each day.",
+    "streak_one": "longest streak: {{count}} day",
+    "streak_other": "longest streak: {{count}} days"
   },
   "teamRoles": {
     "frontend": "Front-end dev",
@@ -466,7 +471,9 @@
       "pending": "Signing in…",
       "failed": "Wrong email, username or password.",
       "noAccount": "No account yet?",
-      "toRegister": "Create an account"
+      "toRegister": "Create an account",
+      "blocked": "This account has been suspended by the Ndadiee team.",
+      "blockedReason": "Reason: {{reason}}"
     },
     "register": {
       "eyebrow": "Sign up",
@@ -532,7 +539,8 @@
       "loginText": "While you were away, the teams kept weaving.",
       "registerTitle": "One more thread in the cloth.",
       "registerText": "Every developer is a thread. Here, teams are woven around projects."
-    }
+    },
+    "sessionBlocked": "Your account has been suspended by the Ndadiee team: you have been signed out."
   },
   "project": {
     "recruiting_one": "hiring · {{count}} role",
@@ -747,5 +755,13 @@
     "imageType": "\"{{name}}\": accepted formats are JPEG, PNG, WebP and GIF.",
     "imageTooBig": "\"{{name}}\" is larger than {{max}} MB.",
     "uploadFailed": "\"{{name}}\" could not be uploaded."
+  },
+  "moderation": {
+    "hidden": {
+      "QUESTION": "This topic has been hidden by the Ndadiee team: the public can no longer see it.",
+      "ANSWER": "This answer has been hidden by the Ndadiee team: the public can no longer see it.",
+      "PROJECT": "This project has been hidden by the Ndadiee team: the public can no longer see it."
+    },
+    "reason": "Reason: {{reason}}"
   }
 }

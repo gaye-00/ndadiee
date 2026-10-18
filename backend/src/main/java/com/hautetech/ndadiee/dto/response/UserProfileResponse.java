@@ -41,7 +41,15 @@ public class UserProfileResponse {
     private long questionCount;
     private long answerCount;
     private long articleCount;
+    // Projets lancés (dont il est le porteur)
     private long projectCount;
+
+    // Preuves de travail : équipes rejointes (hors de ses projets), réponses acceptées, hackathons commencés où il
+    // avait une équipe, et places sur un podium. Comme les autres chiffres, seulement ce que le public peut voir.
+    private long teamCount;
+    private long acceptedAnswerCount;
+    private long hackathonCount;
+    private long podiumCount;
 
     // Renseigné uniquement pour un membre connecté
     private Boolean followedByMe;

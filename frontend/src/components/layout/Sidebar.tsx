@@ -2,12 +2,12 @@ import { m } from 'motion/react';
 import { useTranslation } from 'react-i18next';
 import { Link, useLocation } from 'react-router-dom';
 import UserMenu from './UserMenu';
-import { APP_NAV, isCurrentPath, type NavItem } from '@/config/navigation';
+import { ADMIN_APP_NAV, APP_NAV, isCurrentPath, type NavItem } from '@/config/navigation';
 import { site } from '@/config/site';
+import { useAuth } from '@/hooks/useAuth';
 import { prefetch } from '@/lib/prefetch';
 import { cn } from '@/lib/utils';
 import { pages } from '@/router/pages';
-import { paths } from '@/router/paths';
 
 // La pastille de la section ouverte glisse d'une icône à l'autre
 const slide = { type: 'spring', stiffness: 420, damping: 36 } as const;
@@ -23,15 +23,18 @@ const slide = { type: 'spring', stiffness: 420, damping: 36 } as const;
 export default function Sidebar() {
   const { t } = useTranslation();
   const { pathname } = useLocation();
+  const { isAdmin, home } = useAuth();
+  // Un admin qui parcourt le site : le back-office, puis les sections publiques
+  const nav = isAdmin ? ADMIN_APP_NAV : APP_NAV;
 
   return (
     <aside className="sticky top-0 z-30 hidden h-dvh py-5 ps-4 md:block [view-transition-name:app-rail]">
       <div className="glass relative flex h-full w-[4.5rem] flex-col items-center gap-2 rounded-[1.375rem] py-4 backdrop-blur-xl saver:bg-background">
         <Link
-          to={paths.dashboard}
+          to={home}
           viewTransition
-          onPointerEnter={() => prefetch(pages.dashboard)}
-          onFocus={() => prefetch(pages.dashboard)}
+          onPointerEnter={() => prefetch(isAdmin ? pages.admin : pages.dashboard)}
+          onFocus={() => prefetch(isAdmin ? pages.admin : pages.dashboard)}
           className="group/logo mb-4 rounded-xl outline-none focus-visible:ring-2 focus-visible:ring-ring/70 focus-visible:ring-offset-2 focus-visible:ring-offset-background"
         >
           <span
@@ -43,7 +46,7 @@ export default function Sidebar() {
 
         <nav aria-label={t('shell.rail')}>
           <ul className="flex flex-col items-center gap-2">
-            {APP_NAV.map((item) => (
+            {nav.map((item) => (
               <li key={item.to}>
                 <RailLink item={item} current={isCurrentPath(pathname, item.to)} />
               </li>

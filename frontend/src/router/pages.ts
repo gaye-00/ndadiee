@@ -11,7 +11,7 @@ export type PageImport = () => Promise<{ default: ComponentType }>;
  * Le code d'une page et les textes de sa fonctionnalité (un espace de noms des traductions, dans la langue
  * de l'interface), téléchargés ensemble : la page s'affiche avec ses textes, sans attente de plus.
  */
-function withTexts(load: PageImport, namespace: 'forum' | 'hackathons' | 'openings' | 'showcase'): PageImport {
+function withTexts(load: PageImport, namespace: 'admin' | 'forum' | 'hackathons' | 'openings' | 'profile' | 'showcase'): PageImport {
   return () => Promise.all([load(), i18n.loadNamespaces(namespace)]).then(([module]) => module);
 }
 
@@ -33,7 +33,7 @@ export const pages = {
   topic: withTexts(() => import('@/pages/forum/TopicPage'), 'forum'),
   newTopic: withTexts(() => import('@/pages/forum/NewTopicPage'), 'forum'),
   editTopic: withTexts(() => import('@/pages/forum/EditTopicPage'), 'forum'),
-  profile: () => import('@/pages/profile/ProfilePage'),
+  profile: withTexts(() => import('@/pages/profile/ProfilePage'), 'profile'),
   search: () => import('@/pages/search/SearchPage'),
 
   // L'atelier montre le prochain hackathon de l'équipe (HackathonSpotlight)
@@ -50,6 +50,12 @@ export const pages = {
   messages: () => import('@/pages/messages/MessagesPage'),
   notifications: () => import('@/pages/notifications/NotificationsPage'),
   settings: () => import('@/pages/settings/SettingsPage'),
+
+  // Back-office
+  admin: withTexts(() => import('@/pages/admin/AdminOverviewPage'), 'admin'),
+  adminUsers: withTexts(() => import('@/pages/admin/AdminUsersPage'), 'admin'),
+  adminContent: withTexts(() => import('@/pages/admin/AdminContentPage'), 'admin'),
+  adminJournal: withTexts(() => import('@/pages/admin/AdminJournalPage'), 'admin'),
 
   login: () => import('@/pages/auth/LoginPage'),
   register: () => import('@/pages/auth/RegisterPage'),

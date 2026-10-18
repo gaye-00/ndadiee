@@ -45,7 +45,7 @@ public class CommentController extends BaseController {
             @RequestParam Long targetId,
             @ParameterObject @PageableDefault(size = 20) Pageable pageable) {
         return ResponseEntity.ok(ApiResponse.success(
-                commentService.getByTarget(targetType, targetId, pageable), "Commentaires récupérés avec succès"));
+                commentService.getByTarget(targetType, targetId, getOptionalUserId(), pageable), "Commentaires récupérés avec succès"));
     }
 
     // ─── MEMBRE CONNECTÉ ──────────────────────────────────────────────────────

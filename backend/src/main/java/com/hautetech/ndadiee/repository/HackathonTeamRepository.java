@@ -51,6 +51,24 @@ public interface HackathonTeamRepository extends JpaRepository<HackathonTeam, Lo
     List<HackathonTeam> findCurrentForMember(@Param("userId") Long userId, @Param("status") MemberStatus status,
             @Param("now") Instant now);
 
+    // Hackathons commencés où ce membre avait une équipe : un projet visible dont il est membre accepté
+    @Query("""
+            SELECT COUNT(DISTINCT t.hackathon.id) FROM HackathonTeam t
+            WHERE t.hackathon.startsAt <= :now AND t.project.hiddenAt IS NULL AND EXISTS (
+                SELECT m.id FROM ProjectMember m
+                WHERE m.project = t.project AND m.user.id = :userId AND m.status = :status)
+            """)
+    long countStartedForMember(@Param("userId") Long userId, @Param("status") MemberStatus status, @Param("now") Instant now);
+
+    // Places sur un podium (1re à 3e) des équipes de ce membre, sur ses projets visibles
+    @Query("""
+            SELECT COUNT(t) FROM HackathonTeam t
+            WHERE t.rank BETWEEN 1 AND 3 AND t.project.hiddenAt IS NULL AND EXISTS (
+                SELECT m.id FROM ProjectMember m
+                WHERE m.project = t.project AND m.user.id = :userId AND m.status = :status)
+            """)
+    long countPodiumsForMember(@Param("userId") Long userId, @Param("status") MemberStatus status);
+
     // Le projet est-il déjà inscrit à un hackathon dont les dates chevauchent celles-ci ?
     @Query("""
             SELECT COUNT(t) > 0 FROM HackathonTeam t

@@ -46,6 +46,13 @@ export const paths = {
   notifications: '/notifications',
   settings: '/settings',
 
+  // ── Back-office : comptes d'administration seulement ──
+  /** Vue d'ensemble : l'accueil d'un admin connecté */
+  admin: '/admin',
+  adminUsers: '/admin/users',
+  adminContent: '/admin/content',
+  adminJournal: '/admin/journal',
+
   // ── Compte ──
   login: '/login',
   register: '/register',

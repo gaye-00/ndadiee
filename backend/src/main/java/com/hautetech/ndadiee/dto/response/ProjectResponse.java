@@ -52,6 +52,10 @@ public class ProjectResponse {
     private Boolean starredByMe;
     private MemberStatus myMembershipStatus;
 
+    // Masqué par l'administration : seuls son auteur et les admins reçoivent alors ce contenu, avec le motif
+    private boolean hidden;
+    private String hiddenReason;
+
     private Instant createdAt;
     private Instant updatedAt;
 }

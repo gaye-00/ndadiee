@@ -10,8 +10,10 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayDeque;
 import java.util.Arrays;
 import java.util.Deque;
+import java.util.List;
 import java.util.Map;
 import java.util.Optional;
+import java.util.Set;
 import java.util.UUID;
 import java.util.concurrent.ConcurrentHashMap;
 
@@ -29,15 +31,16 @@ import com.hautetech.ndadiee.storage.StorageProperties;
 import lombok.extern.slf4j.Slf4j;
 
 /**
- * Les images que les membres insèrent dans le forum (sujets, réponses, commentaires).
+ * Les images envoyées par les membres : celles qu'ils insèrent dans le forum (sujets, réponses, commentaires), et
+ * leur photo de profil (AvatarService).
  *
  * <ul>
  * <li>Le format se lit dans les premiers octets du fichier, pas dans son nom ni dans le type annoncé : seuls JPEG,
  * PNG, WebP et GIF passent. Jamais de SVG (il peut contenir du script).</li>
  * <li>Le navigateur a déjà réduit et réencodé l'image (frontend : lib/imageUpload.ts), ce qui retire ses
  * métadonnées (position GPS d'une photo). Le serveur garde la limite de taille.</li>
- * <li>Chaque fichier a une clé neuve et imprévisible : forum/{membre}/{année}/{mois}/{uuid}.{ext}. Le préfixe du
- * membre permet de retrouver ses fichiers (modération, suppression du compte).</li>
+ * <li>Chaque fichier a une clé neuve et imprévisible, sous un dossier propre au membre : forum/{membre}/{année}/{mois}/,
+ * avatars/{membre}/. Le préfixe du membre permet de retrouver ses fichiers (modération, suppression du compte).</li>
  * <li>Un nombre d'envois par membre et par heure, pour protéger le bucket. Compté en mémoire : par serveur.</li>
  * </ul>
  */
@@ -73,21 +76,38 @@ public class ImageUploadService {
     public UploadResponse uploadImage(Long userId, MultipartFile file) {
         // Un compte développeur seulement : c'est lui qui écrit dans le forum
         userService.getDeveloperOrThrow(userId);
+        StoredImage image = store(userId, file, "forum/%d/%s".formatted(userId, MONTH.format(clock.instant())),
+                ImageType.ALL, maxBytes);
+        return UploadResponse.builder().url(image.url()).contentType(image.contentType()).size(image.size()).build();
+    }
+
+    /**
+     * Vérifie une image envoyée par un membre, puis la range sous ce dossier avec un nom neuf et imprévisible. Elle
+     * compte dans ses envois de l'heure.
+     *
+     * @param folder   dossier du stockage, propre au membre, sans barre finale (« avatars/12 »)
+     * @param accepted les formats acceptés ici
+     * @param limit    poids maximal, en octets ; jamais plus que la limite de la configuration
+     */
+    StoredImage store(Long userId, MultipartFile file, String folder, Set<ImageType> accepted, long limit) {
         if (file == null || file.isEmpty()) {
             throw new OperationNotAllowedException("Aucun fichier reçu");
         }
-        if (file.getSize() > maxBytes) {
-            throw UploadRejectedException.tooLarge(maxBytes / (1024 * 1024));
+        long allowed = Math.min(limit, maxBytes);
+        if (file.getSize() > allowed) {
+            throw UploadRejectedException.tooLarge(Math.max(1, allowed / (1024 * 1024)));
         }
 
         byte[] content = read(file);
-        ImageType type = ImageType.detect(content).orElseThrow(UploadRejectedException::unsupported);
+        ImageType type = ImageType.detect(content)
+                .filter(accepted::contains)
+                .orElseThrow(() -> UploadRejectedException.unsupported(ImageType.describe(accepted)));
         reserveSlot(userId);
 
-        String key = "forum/%d/%s/%s.%s".formatted(userId, MONTH.format(clock.instant()), UUID.randomUUID(), type.extension());
+        String key = "%s/%s.%s".formatted(folder, UUID.randomUUID(), type.extension());
         String url = storage.store(key, content, type.contentType());
         log.info("[Upload] Membre {} : image {} ({} octets)", userId, key, content.length);
-        return UploadResponse.builder().url(url).contentType(type.contentType()).size(content.length).build();
+        return new StoredImage(key, url, type.contentType(), content.length);
     }
 
     // Une place dans la fenêtre d'une heure, ou le refus
@@ -113,21 +133,41 @@ public class ImageUploadService {
         }
     }
 
+    /** Une image rangée dans le stockage : sa clé, son adresse publique, son format et son poids en octets. */
+    record StoredImage(String key, String url, String contentType, long size) {
+    }
+
     /** Les formats acceptés, reconnus à leur signature (les premiers octets du fichier). */
     enum ImageType {
-        JPEG("image/jpeg", "jpg", new byte[] { (byte) 0xFF, (byte) 0xD8, (byte) 0xFF }),
-        PNG("image/png", "png", new byte[] { (byte) 0x89, 'P', 'N', 'G', '\r', '\n', 0x1A, '\n' }),
-        GIF("image/gif", "gif", new byte[] { 'G', 'I', 'F', '8' }),
-        WEBP("image/webp", "webp", new byte[] { 'R', 'I', 'F', 'F' });
+        JPEG("JPEG", "image/jpeg", "jpg", new byte[] { (byte) 0xFF, (byte) 0xD8, (byte) 0xFF }),
+        PNG("PNG", "image/png", "png", new byte[] { (byte) 0x89, 'P', 'N', 'G', '\r', '\n', 0x1A, '\n' }),
+        WEBP("WebP", "image/webp", "webp", new byte[] { 'R', 'I', 'F', 'F' }),
+        GIF("GIF", "image/gif", "gif", new byte[] { 'G', 'I', 'F', '8' });
 
+        /** Tous les formats : les images du forum */
+        static final Set<ImageType> ALL = Set.of(values());
+        /** Sans le GIF, qui peut être animé : une photo de profil est fixe */
+        static final Set<ImageType> STILL = Set.of(JPEG, PNG, WEBP);
+
+        private final String label;
         private final String contentType;
         private final String extension;
         private final byte[] signature;
 
-        ImageType(String contentType, String extension, byte[] signature) {
+        ImageType(String label, String contentType, String extension, byte[] signature) {
+            this.label = label;
             this.contentType = contentType;
             this.extension = extension;
             this.signature = signature;
+        }
+
+        /** « JPEG, PNG, WebP et GIF » : les formats d'un envoi, pour le message qui en refuse un autre */
+        static String describe(Set<ImageType> types) {
+            List<String> labels = Arrays.stream(values()).filter(types::contains).map(type -> type.label).toList();
+            if (labels.size() < 2) {
+                return String.join("", labels);
+            }
+            return String.join(", ", labels.subList(0, labels.size() - 1)) + " et " + labels.get(labels.size() - 1);
         }
 
         String contentType() {

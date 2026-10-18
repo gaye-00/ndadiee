@@ -15,16 +15,18 @@ public interface ProjectOpeningRepository extends JpaRepository<ProjectOpening, 
     // Rôles ouverts de plusieurs projets en une requête (cartes de la vitrine)
     List<ProjectOpening> findByProjectIdInAndOpenTrueOrderByIdAsc(Collection<Long> projectIds);
 
-    long countByOpenTrue();
+    // Les annonces d'un projet masqué par l'administration ne s'affichent nulle part
+    @Query("SELECT COUNT(o) FROM ProjectOpening o WHERE o.open = true AND o.project.hiddenAt IS NULL")
+    long countOpen();
 
     // Places proposées par les rôles ouverts
-    @Query("SELECT COALESCE(SUM(o.seats), 0) FROM ProjectOpening o WHERE o.open = true")
+    @Query("SELECT COALESCE(SUM(o.seats), 0) FROM ProjectOpening o WHERE o.open = true AND o.project.hiddenAt IS NULL")
     long sumOpenSeats();
 
     // Tous les rôles ouverts avec leur projet et son porteur, les plus récents d'abord (bande des rôles)
     @Query("""
             SELECT o FROM ProjectOpening o JOIN FETCH o.project p JOIN FETCH p.owner
-            WHERE o.open = true
+            WHERE o.open = true AND p.hiddenAt IS NULL
             ORDER BY o.createdAt DESC, o.id DESC
             """)
     List<ProjectOpening> findAllOpenWithProject();
@@ -34,7 +36,7 @@ public interface ProjectOpeningRepository extends JpaRepository<ProjectOpening, 
     @Query("""
             SELECT t.slug, t.name, t.usageCount, p.id, COUNT(o), COALESCE(SUM(o.seats), 0)
             FROM ProjectOpening o JOIN o.project p JOIN p.tags t
-            WHERE o.open = true
+            WHERE o.open = true AND p.hiddenAt IS NULL
             GROUP BY t.slug, t.name, t.usageCount, p.id
             """)
     List<Object[]> countOpenByStackAndProject();

@@ -13,8 +13,9 @@ public class UploadRejectedException extends BusinessException {
         return new UploadRejectedException("L'image dépasse " + maxMegabytes + " Mo", HttpStatus.CONTENT_TOO_LARGE, "FILE_TOO_LARGE");
     }
 
-    public static UploadRejectedException unsupported() {
-        return new UploadRejectedException("Formats acceptés : JPEG, PNG, WebP et GIF", HttpStatus.UNSUPPORTED_MEDIA_TYPE, "UNSUPPORTED_FILE_TYPE");
+    /** @param formats les formats acceptés, en toutes lettres (« JPEG, PNG et WebP ») */
+    public static UploadRejectedException unsupported(String formats) {
+        return new UploadRejectedException("Formats acceptés : " + formats, HttpStatus.UNSUPPORTED_MEDIA_TYPE, "UNSUPPORTED_FILE_TYPE");
     }
 
     public static UploadRejectedException tooMany(int perHour) {

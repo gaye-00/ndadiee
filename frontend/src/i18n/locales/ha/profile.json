@@ -1,0 +1,166 @@
+{
+  "loading": "Ana loda bayanan martaba",
+  "notFoundTitle": "Wannan bayanan martaba babu su",
+  "notFoundText": "Babu wanda ke amfani da sunan @{{username}} a nan. Watakila mahaɗin bai cika ba, ko asusun ya canza suna.",
+  "backToShowcase": "Koma baje kolin",
+  "errorTitle": "Bayanan martaba ba su loda ba",
+  "errorText": "Duba haɗin ka, sannan ka sake gwadawa.",
+  "aside": "Ƙungiyoyi da lambobin yabo",
+  "header": {
+    "openToWork": "A shirye yake ya shiga ƙungiya",
+    "reputation_one": "maki <n>{{value}}</n> na suna",
+    "reputation_other": "maki <n>{{value}}</n> na suna",
+    "followers_one": "mabiyi <n>{{value}}</n>",
+    "followers_other": "mabiya <n>{{value}}</n>",
+    "following_one": "yana bin <n>{{value}}</n>",
+    "following_other": "yana bin <n>{{value}}</n>",
+    "skills": "Ƙwarewa",
+    "website": "Shafin yanar gizo",
+    "place": "{{city}}, {{country}}",
+    "memberSince": "Memba tun {{date}}",
+    "follow": "Bi {{name}}",
+    "followingThem": "Kana bin sa",
+    "unfollow": "Daina bin {{name}}",
+    "share": "Raba",
+    "shareMine": "Raba bayanan martaba na",
+    "linkCopied": "An kwafi mahaɗin bayanan martaba",
+    "copyFailed": "Ba a iya kwafin mahaɗin ba."
+  },
+  "stats": {
+    "title": "Shaidar aiki",
+    "projects_one": "shirin da ya ƙaddamar",
+    "projects_other": "shirye-shiryen da ya ƙaddamar",
+    "teams_one": "ƙungiyar da ya shiga",
+    "teams_other": "ƙungiyoyin da ya shiga",
+    "acceptedAnswers_one": "amsar da aka karɓa",
+    "acceptedAnswers_other": "amsoshin da aka karɓa",
+    "ofAnswers_one": "cikin amsa {{count}} a dandalin",
+    "ofAnswers_other": "cikin amsoshi {{count}} a dandalin",
+    "hackathons_one": "hackathon da ya fafata",
+    "hackathons_other": "hackathon da ya fafata",
+    "podiums_one": "ciki har da dandamalin nasara {{count}}",
+    "podiums_other": "ciki har da dandamalin nasara {{count}}"
+  },
+  "showcase": {
+    "eyebrow": "Baje koli",
+    "title": "Abin da {{name}} ke ginawa",
+    "titleOwn": "Abin da kake ginawa",
+    "count_one": "shiri {{count}}",
+    "count_other": "shirye-shirye {{count}}",
+    "role": {
+      "OWNER": "Wanda ya kafa",
+      "MAINTAINER": "Mai kula",
+      "CONTRIBUTOR": "Mai bayar da gudummawa"
+    },
+    "more_one": "Duba ɗayan shirin",
+    "more_other": "Duba sauran shirye-shirye {{count}}",
+    "moreFailed": "Sauran ba su loda ba. Sake gwadawa.",
+    "errorTitle": "Shirye-shiryen ba su loda ba",
+    "errorText": "Duba haɗin ka, sannan ka sake gwadawa.",
+    "emptyOwnTitle": "Baje kolinka yana jiran shirinsa na farko",
+    "emptyOwnText": "Gabatar da shirin buɗaɗɗen tushe, ko ka shiga ƙungiya: kowane shirin da kake cikinsa zai bayyana a nan.",
+    "emptyOwnAction": "Wallafa shiri",
+    "emptyTitle": "{{name}} bai da shiri a nan tukuna",
+    "emptyText": "Shirye-shiryensa za su bayyana a nan da zarar ya ƙaddamar da ɗaya, ko ya shiga ƙungiya."
+  },
+  "heatmap": {
+    "eyebrow": "Gudummawa",
+    "title": "Shekarar da aka saƙa",
+    "currentStreak_one": "jerin yanzu: kwana {{count}}",
+    "currentStreak_other": "jerin yanzu: kwanaki {{count}}",
+    "sources": "Gudummawar da aka ƙirga",
+    "platform": "Ndadiee",
+    "withGithub": "Tare da GitHub",
+    "githubHint": "Ƙara kalandar jama'a ta @{{login}} a GitHub",
+    "githubUnknown": "Babu asusun GitHub mai suna @{{login}}: gudummawar Ndadiee kaɗai aka saƙa.",
+    "githubUnavailable": "GitHub ba ya amsawa: gudummawar Ndadiee kaɗai aka saƙa. Sake gwadawa nan da ɗan lokaci.",
+    "counts": "Batutuwa, amsoshi, sharhi, maƙaloli, shirye-shiryen da aka ƙaddamar, bayanan devlog da ra'ayoyi.",
+    "countsWithGithub": "Gudummawarsa a Ndadiee, da kalandarsa ta jama'a a GitHub.",
+    "errorTitle": "Gudummawar ba ta loda ba",
+    "errorText": "Duba haɗin ka, sannan ka sake gwadawa."
+  },
+  "collaborators": {
+    "title": "Ya yi aiki tare da",
+    "shared": "{{projects}}",
+    "sharedMore_one": "{{projects}} da wani shiri {{count}}",
+    "sharedMore_other": "{{projects}} da wasu shirye-shirye {{count}}",
+    "empty": "Babu ƙungiyar da aka raba a Ndadiee tukuna.",
+    "emptyOwn": "Abokan aikinka za su bayyana a nan da zarar ka shiga ƙungiya.",
+    "findTeam": "Nemo ƙungiya",
+    "error": "Jerin bai loda ba.",
+    "retry": "Sake gwadawa"
+  },
+  "badges": {
+    "title_one": "Lambar yabo · {{count}}",
+    "title_other": "Lambobin yabo · {{count}}",
+    "empty": "Babu lambar yabo tukuna.",
+    "emptyOwn": "Lambar yabonka ta farko tana jiranka: yi tambaya, amsa wani, ko gabatar da shiri.",
+    "locked": "Don buɗewa",
+    "awarded": "an samu a {{date}}",
+    "catalog": {
+      "FIRST_QUESTION": {
+        "name": "Mai son sani",
+        "description": "Ya yi tambayarsa ta farko",
+        "criteria": "Yi tambaya ta farko a dandalin"
+      },
+      "FIRST_ANSWER": {
+        "name": "Taimakon juna",
+        "description": "Ya amsa tambaya a karon farko",
+        "criteria": "Wallafa amsa ta farko"
+      },
+      "FIRST_ACCEPTED_ANSWER": {
+        "name": "An warware matsala",
+        "description": "An karɓi ɗaya daga cikin amsoshinsa",
+        "criteria": "A karɓi ɗaya daga cikin amsoshinka"
+      },
+      "FIRST_ARTICLE": {
+        "name": "Alƙalami",
+        "description": "Ya wallafa maƙalarsa ta farko",
+        "criteria": "Wallafa maƙala ta farko"
+      },
+      "FIRST_PROJECT": {
+        "name": "Magini",
+        "description": "Ya gabatar da shirinsa na buɗaɗɗen tushe na farko",
+        "criteria": "Gabatar da shiri na farko"
+      },
+      "REPUTATION_100": {
+        "name": "Mai bayar da gudummawa",
+        "description": "Ya kai maki 100 na suna",
+        "criteria": "Kai maki 100 na suna"
+      },
+      "REPUTATION_500": {
+        "name": "Ƙwararre",
+        "description": "Ya kai maki 500 na suna",
+        "criteria": "Kai maki 500 na suna"
+      }
+    }
+  },
+  "avatar": {
+    "eyebrow": "Hoton bayanan martaba",
+    "title": "Tsara hotonka",
+    "hint": "Ja hoton ƙarƙashin da'irar; zuƙo da madaidaici, ƙafar linzami ko yatsu biyu. Da madannai: kibiyoyi, + da −.",
+    "stage": "Tsarin hoto",
+    "opening": "Ana buɗe hoton",
+    "zoom": "Zuƙowa",
+    "recenter": "Mayar tsakiya",
+    "preview": "Hangen farko",
+    "pickAnother": "Zaɓi wani hoto",
+    "cancel": "Soke",
+    "close": "Rufe",
+    "save": "Ajiye",
+    "saving": "Ana aikawa… {{percent}}%",
+    "saved": "An sabunta hoton bayanan martabarka",
+    "failed": "Ba a iya aika hoton ba. Sake gwadawa.",
+    "unreadable": "Wannan fayil ba hoto ne da muke iya karantawa ba. Zaɓi hoton JPEG, PNG, WebP ko GIF.",
+    "tooBig": "Wannan hoton ya wuce MB {{max}}. Zaɓi mai sauƙi.",
+    "menu": "Canja ko cire hoton bayanan martabarka",
+    "add": "Ƙara hoto",
+    "change": "Canja hoto",
+    "drop": "Saki hotonka a nan",
+    "remove": "Cire hoto",
+    "removeTitle": "Cire hotonka?",
+    "removeText": "Baƙaƙen farko na sunanka za su maye gurbinsa ko'ina a Ndadiee. Kana iya sake saka wani duk lokacin da kake so.",
+    "removed": "An cire hotonka",
+    "removeFailed": "Ba a iya cire hoton ba. Sake gwadawa."
+  }
+}

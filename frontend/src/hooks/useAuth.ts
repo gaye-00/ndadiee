@@ -1,5 +1,6 @@
 import { useEffect } from 'react';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
+import { paths } from '@/router/paths';
 import { authService } from '@/services/auth.service';
 import { useAuthStore } from '@/store/useAuthStore';
 import type { AuthResponse } from '@/types/auth.types';
@@ -9,15 +10,18 @@ export function useAuth() {
   const user = useAuthStore((s) => s.user);
   const isAuthenticated = useAuthStore((s) => s.isAuthenticated);
   const logout = useAuthStore((s) => s.logout);
+  const isAdmin = user?.role === 'ADMIN';
 
   return {
     user,
     isAuthenticated,
     // Seul un compte développeur participe à la communauté (publier, voter, suivre) ;
-    // un compte admin modère et publie des opportunités
+    // un compte admin administre la plateforme depuis le back-office
     isDeveloper: user?.userType === 'developer',
-    isAdmin: user?.role === 'ADMIN',
-    canModerate: user?.role === 'MODERATOR' || user?.role === 'ADMIN',
+    isAdmin,
+    canModerate: user?.role === 'MODERATOR' || isAdmin,
+    /** L'accueil du compte : le back-office pour un admin, l'atelier pour un développeur */
+    home: isAdmin ? paths.admin : paths.dashboard,
     logout,
   };
 }

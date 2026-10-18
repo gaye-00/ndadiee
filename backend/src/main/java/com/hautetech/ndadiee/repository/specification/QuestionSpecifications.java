@@ -29,11 +29,13 @@ public final class QuestionSpecifications {
     /**
      * Les sujets qui répondent aux filtres. Les tags passent par une sous-requête (EXISTS) : une ligne par sujet,
      * quelle que soit la requête qui s'en sert (page, comptage). Chaque mot du mot-clé doit se trouver dans le
-     * titre, le contenu ou un tag : « flutter hors-ligne » trouve la question de Fatou.
+     * titre, le contenu ou un tag : « flutter hors-ligne » trouve la question de Fatou. Les sujets masqués par
+     * l'administration n'y sont jamais (le back-office a ses propres listes).
      */
     public static Specification<Question> filter(QuestionFilter filter) {
         return (root, query, cb) -> {
             List<Predicate> predicates = new ArrayList<>();
+            predicates.add(cb.isNull(root.get("hiddenAt")));
             if (hasText(filter.q())) {
                 terms(filter.q()).forEach(term -> predicates.add(cb.or(
                         contains(cb, root.get("title"), term),
