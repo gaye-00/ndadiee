@@ -10,8 +10,16 @@ import org.springframework.http.CacheControl;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
+import com.hautetech.ndadiee.storage.FileStorage;
+import com.hautetech.ndadiee.storage.LocalFileStorage;
+
+import lombok.RequiredArgsConstructor;
+
 @Configuration
+@RequiredArgsConstructor
 public class WebConfig implements WebMvcConfigurer {
+
+    private final FileStorage fileStorage;
 
     /**
      * Médias servis par l'API elle-même (resources/static/media), comme les couvertures des projets de
@@ -22,6 +30,13 @@ public class WebConfig implements WebMvcConfigurer {
         registry.addResourceHandler("/media/**")
                 .addResourceLocations("classpath:/static/media/")
                 .setCacheControl(CacheControl.maxAge(Duration.ofDays(30)).cachePublic());
+
+        // Images des membres gardées sur le disque (développement, sans R2) : un fichier ne change jamais
+        if (fileStorage instanceof LocalFileStorage local) {
+            registry.addResourceHandler("/" + LocalFileStorage.URL_PREFIX + "**")
+                    .addResourceLocations(local.root().toUri() + "/")
+                    .setCacheControl(CacheControl.maxAge(Duration.ofDays(365)).cachePublic().immutable());
+        }
     }
 
     @Override

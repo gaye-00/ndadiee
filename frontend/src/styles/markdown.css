@@ -1,0 +1,227 @@
+/* ─────────────────────────────────────────────────────────────────────────────
+   Contenus Markdown écrits par les membres (shared/MarkdownContent.tsx) : la
+   classe `prose` du plugin typography, aux couleurs du kente, dans les deux
+   thèmes. Les blocs de code ont leur propre cadre (shared/CodeBlock.tsx, hors
+   de prose) ; leur coloration est en bas de ce fichier.
+   ───────────────────────────────────────────────────────────────────────────── */
+
+.markdown {
+  --tw-prose-body: var(--soft-foreground);
+  --tw-prose-headings: var(--foreground);
+  --tw-prose-lead: var(--muted-foreground);
+  --tw-prose-links: var(--foreground);
+  --tw-prose-bold: var(--foreground);
+  --tw-prose-counters: var(--muted-foreground);
+  --tw-prose-bullets: var(--gold);
+  --tw-prose-hr: var(--border);
+  --tw-prose-quotes: var(--foreground);
+  --tw-prose-quote-borders: var(--gold);
+  --tw-prose-captions: var(--muted-foreground);
+  --tw-prose-code: var(--foreground);
+  --tw-prose-pre-code: var(--foreground);
+  --tw-prose-pre-bg: var(--code-background);
+  --tw-prose-th-borders: var(--border-strong);
+  --tw-prose-td-borders: var(--border);
+  overflow-wrap: break-word;
+}
+
+.markdown > :first-child {
+  margin-top: 0;
+}
+
+.markdown > :last-child {
+  margin-bottom: 0;
+}
+
+.markdown :where(h2, h3, h4, h5, h6):not(:where(.not-prose *)) {
+  font-family: var(--typeface-display);
+  letter-spacing: -0.02em;
+  text-wrap: balance;
+}
+
+/* Liens : soulignés d'or, qui s'allume au survol */
+.markdown :where(a):not(:where(.not-prose *)) {
+  font-weight: 600;
+  text-decoration-color: color-mix(in srgb, var(--gold) 55%, transparent);
+  text-decoration-thickness: 1.5px;
+  text-underline-offset: 3px;
+  transition:
+    color 0.2s,
+    text-decoration-color 0.2s;
+}
+
+.markdown :where(a):not(:where(.not-prose *)):hover {
+  color: var(--gold);
+  text-decoration-color: currentColor;
+}
+
+/* Code dans le texte : une pastille, sans les accents graves que prose ajoute autour */
+.markdown :where(:not(pre) > code):not(:where(.not-prose *)) {
+  padding: 0.15em 0.4em;
+  border-radius: 0.375rem;
+  background-color: color-mix(in srgb, var(--foreground) 7%, transparent);
+  font-size: 0.875em;
+  font-weight: 500;
+}
+
+.markdown :where(code):not(:where(.not-prose *))::before,
+.markdown :where(code):not(:where(.not-prose *))::after {
+  content: none;
+}
+
+/* Citation : un fil d'or sur le bord, un fond à peine teinté, sans guillemets ajoutés */
+.markdown :where(blockquote):not(:where(.not-prose *)) {
+  padding: 0.5em 1em;
+  border-inline-start-width: 3px;
+  border-start-end-radius: 0.75rem;
+  border-end-end-radius: 0.75rem;
+  background-color: color-mix(in srgb, var(--gold) 7%, transparent);
+  font-style: normal;
+  font-weight: 400;
+}
+
+.markdown :where(blockquote p):not(:where(.not-prose *))::before,
+.markdown :where(blockquote p):not(:where(.not-prose *))::after {
+  content: none;
+}
+
+.markdown :where(img):not(:where(.not-prose *)) {
+  margin-block: 1.25em;
+}
+
+.markdown :where(kbd):not(:where(.not-prose *)) {
+  padding: 0.1em 0.45em;
+  border: 1px solid var(--border-strong);
+  border-bottom-width: 2px;
+  border-radius: 0.375rem;
+  font-size: 0.8125em;
+  box-shadow: none;
+}
+
+/* Listes de tâches (- [x] fait) : la case du kente, sans puce */
+.markdown :where(.contains-task-list) {
+  padding-inline-start: 0.25em;
+  list-style: none;
+}
+
+.markdown :where(.task-list-item) {
+  padding-inline-start: 0;
+}
+
+.markdown :where(.task-list-item input[type='checkbox']) {
+  margin: 0;
+  margin-inline-end: 0.55em;
+  vertical-align: -0.1em;
+  accent-color: var(--kente-jade);
+}
+
+/* Tableaux : dans leur cadre, qui défile en largeur sur téléphone */
+.markdown-table table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.875rem;
+}
+
+.markdown-table :is(th, td) {
+  padding: 0.55rem 0.85rem;
+  border-bottom: 1px solid var(--border-subtle);
+  text-align: start;
+  white-space: nowrap;
+}
+
+.markdown-table th {
+  background-color: color-mix(in srgb, var(--foreground) 4%, transparent);
+  color: var(--foreground);
+  font-weight: 700;
+}
+
+.markdown-table tr:last-child td {
+  border-bottom: 0;
+}
+
+/* Une réponse, un commentaire : des titres plus discrets */
+.markdown-sm :where(h2, h3, h4, h5, h6):not(:where(.not-prose *)) {
+  margin-top: 1.25em;
+  margin-bottom: 0.5em;
+  font-size: 1em;
+}
+
+/* ── Coloration du code (rehype-highlight, classes de highlight.js), lisible dans les deux thèmes ── */
+.hljs {
+  color: var(--foreground);
+  background: transparent;
+}
+
+.hljs-comment,
+.hljs-quote,
+.hljs-meta {
+  color: var(--muted-foreground);
+}
+
+.hljs-comment,
+.hljs-quote {
+  font-style: italic;
+}
+
+.hljs-keyword,
+.hljs-selector-tag,
+.hljs-doctag,
+.hljs-section,
+.hljs-template-tag,
+.hljs-meta .hljs-keyword {
+  color: var(--coral);
+}
+
+.hljs-string,
+.hljs-regexp,
+.hljs-char.escape_,
+.hljs-meta .hljs-string {
+  color: var(--jade);
+}
+
+.hljs-number,
+.hljs-literal,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-variable.constant_ {
+  color: var(--gold);
+}
+
+.hljs-title,
+.hljs-title.function_,
+.hljs-title.class_,
+.hljs-type,
+.hljs-built_in,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class {
+  color: color-mix(in srgb, var(--gold) 72%, var(--foreground));
+  font-weight: 600;
+}
+
+.hljs-attr,
+.hljs-attribute,
+.hljs-property,
+.hljs-params,
+.hljs-variable,
+.hljs-template-variable {
+  color: var(--soft-foreground);
+}
+
+.hljs-addition {
+  background-color: var(--diff-add);
+  color: var(--jade);
+}
+
+.hljs-deletion {
+  background-color: var(--diff-remove);
+  color: var(--coral);
+}
+
+.hljs-emphasis {
+  font-style: italic;
+}
+
+.hljs-strong {
+  font-weight: 700;
+}

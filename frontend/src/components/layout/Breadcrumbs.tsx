@@ -37,6 +37,8 @@ function crumbsOf(page: PageName | undefined, params: Params, t: TFunction): Cru
       return [section(t('nav.forum'), paths.forum), { label: slug }];
     case 'newTopic':
       return [section(t('nav.forum'), paths.forum), section(t('pages.newTopic'))];
+    case 'editTopic':
+      return [section(t('nav.forum'), paths.forum), { label: slug, to: paths.topic(slug) }, section(t('pages.editTopic'))];
     case 'hackathon':
       return [section(t('nav.hackathons'), paths.hackathons), { label: slug }];
     case 'newOpening':

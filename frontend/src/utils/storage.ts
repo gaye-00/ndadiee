@@ -10,6 +10,8 @@ const DATA_SAVER_KEY = 'ndadiee_data_saver';
 const CORD_PULLED_KEY = 'ndadiee_cord_pulled';
 const GITHUB_LOGIN_KEY = 'ndadiee_github_login';
 const ROLES_PAUSED_KEY = 'ndadiee_roles_paused';
+// Brouillons du forum : ndadiee_draft_topic, ndadiee_draft_answer-12…
+const DRAFT_PREFIX = 'ndadiee_draft_';
 
 /** Choix de thème ; « system » suit le réglage clair/sombre de l'appareil. */
 export type ThemePreference = 'light' | 'dark' | 'system';
@@ -40,7 +42,29 @@ export const storage = {
     localStorage.removeItem(ACCESS_TOKEN_KEY);
     localStorage.removeItem(REFRESH_TOKEN_KEY);
     localStorage.removeItem(USER_KEY);
+    // Les brouillons appartiennent au compte : le suivant sur cet appareil ne les voit pas
+    Object.keys(localStorage)
+      .filter((key) => key.startsWith(DRAFT_PREFIX))
+      .forEach((key) => localStorage.removeItem(key));
   },
+
+  // ── Brouillons du forum (hooks/useDraft.ts) ──────────────
+  getDraft: <T>(key: string): T | null => {
+    try {
+      const raw = localStorage.getItem(DRAFT_PREFIX + key);
+      return raw ? (JSON.parse(raw) as T) : null;
+    } catch {
+      return null;
+    }
+  },
+  setDraft: (key: string, value: unknown): void => {
+    try {
+      localStorage.setItem(DRAFT_PREFIX + key, JSON.stringify(value));
+    } catch {
+      // Stockage plein ou refusé (navigation privée) : le brouillon n'est simplement pas gardé
+    }
+  },
+  clearDraft: (key: string): void => localStorage.removeItem(DRAFT_PREFIX + key),
 
   // ── Thème ────────────────────────────────────────────────
   getTheme: (): ThemePreference | null => {

@@ -169,7 +169,8 @@
     "settings": "الإعدادات",
     "login": "تسجيل الدخول",
     "register": "إنشاء حساب",
-    "notFound": "الصفحة غير موجودة"
+    "notFound": "الصفحة غير موجودة",
+    "editTopic": "تعديل الموضوع"
   },
   "enums": {
     "experienceLevel": {
@@ -866,5 +867,61 @@
       "reputation_many": "{{count}} نقطة سمعة",
       "reputation_other": "{{count}} نقطة سمعة"
     }
+  },
+  "code": {
+    "copy": "نسخ",
+    "copied": "نُسخ"
+  },
+  "editor": {
+    "mode": "وضع المحرر",
+    "write": "الكتابة",
+    "preview": "المعاينة",
+    "toolbar": "التنسيق",
+    "tools": {
+      "bold": "غامق",
+      "italic": "مائل",
+      "link": "رابط",
+      "heading": "عنوان",
+      "quote": "اقتباس",
+      "code": "كود",
+      "codeBlock": "كتلة كود",
+      "list": "قائمة نقطية",
+      "orderedList": "قائمة مرقّمة",
+      "image": "صورة"
+    },
+    "sample": {
+      "bold": "نص غامق",
+      "italic": "نص مائل",
+      "link": "نص الرابط",
+      "code": "كود",
+      "word": "نص"
+    },
+    "help": "مساعدة",
+    "helpTitle": "أساسيات Markdown",
+    "emptyPreview": "لا شيء للمعاينة بعد.",
+    "remaining_zero": "لم يبقَ أي حرف",
+    "remaining_one": "بقي حرف واحد",
+    "remaining_two": "بقي حرفان",
+    "remaining_few": "بقيت {{count}} أحرف",
+    "remaining_many": "بقي {{count}} حرفًا",
+    "remaining_other": "بقي {{count}} حرف",
+    "uploading": "جارٍ رفع {{name}}… ({{id}})",
+    "imageAlt": "وصف الصورة",
+    "dropImage": "أفلت صورك هنا",
+    "uploadingStatus_zero": "جارٍ الرفع…",
+    "uploadingStatus_one": "جارٍ رفع صورة…",
+    "uploadingStatus_two": "جارٍ رفع صورتين…",
+    "uploadingStatus_few": "جارٍ رفع {{count}} صور…",
+    "uploadingStatus_many": "جارٍ رفع {{count}} صورة…",
+    "uploadingStatus_other": "جارٍ رفع {{count}} صورة…",
+    "tooManyImages_zero": "لا صور في كل مرة.",
+    "tooManyImages_one": "صورة واحدة في كل مرة كحد أقصى: تُرسل الأولى.",
+    "tooManyImages_two": "صورتان في كل مرة كحد أقصى: تُرسل الأوليان.",
+    "tooManyImages_few": "{{count}} صور في كل مرة كحد أقصى: تُرسل الأولى منها.",
+    "tooManyImages_many": "{{count}} صورة في كل مرة كحد أقصى: تُرسل الأولى منها.",
+    "tooManyImages_other": "{{count}} صورة في كل مرة كحد أقصى: تُرسل الأولى منها.",
+    "imageType": "«{{name}}»: الصيغ المقبولة هي JPEG وPNG وWebP وGIF.",
+    "imageTooBig": "«{{name}}» يتجاوز {{max}} ميغابايت.",
+    "uploadFailed": "تعذّر رفع «{{name}}»."
   }
 }

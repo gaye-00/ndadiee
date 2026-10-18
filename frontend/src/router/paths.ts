@@ -38,6 +38,10 @@ export const paths = {
   reviews: '/reviews',
   newOpening: '/openings/new',
   newTopic: '/forum/new',
+  /** Modifier un sujet (son auteur, un modérateur) */
+  editTopic: (slug: string) => `/forum/${slug}/edit`,
+  /** Une réponse d'un sujet : la page y descend et l'éclaire */
+  topicAnswer: (slug: string, answerId: number) => `/forum/${slug}#answer-${answerId}`,
   messages: '/messages',
   notifications: '/notifications',
   settings: '/settings',

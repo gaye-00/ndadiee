@@ -1,0 +1,411 @@
+{
+  "intro": {
+    "eyebrow": "Àpéjọ",
+    "titleAsk": "Béèrè ìbéèrè rẹ.",
+    "titleShare": "Pín ohun tí o mọ̀.",
+    "lead": "Àwọn olùgbéjáde ilẹ̀ Áfíríkà ń ran ara wọn lọ́wọ́: àwọn ìbéèrè tó ṣe kedere, àwọn ìdáhùn tó ń yanjú ìṣòro, àwọn ìjíròrò tó ń mú ìlọsíwájú wá. Ìdáhùn tó wúlò kọ̀ọ̀kan ń fún òǹkọ̀wé rẹ̀ ní orúkọ rere.",
+    "topics_one": "Kókó {{count}}",
+    "topics_other": "Àwọn kókó {{count}}",
+    "answers_one": "Ìdáhùn {{count}}",
+    "answers_other": "Àwọn ìdáhùn {{count}}",
+    "contributors_one": "Olùgbéjáde {{count}} ń kópa",
+    "contributors_other": "Àwọn olùgbéjáde {{count}} ń kópa",
+    "solved_one": "{{count}} ti yanjú",
+    "solved_other": "{{count}} ti yanjú",
+    "unanswered_one": "{{count}} ń dúró de ìdáhùn",
+    "unanswered_other": "{{count}} ń dúró de ìdáhùn",
+    "ask": "Béèrè ìbéèrè"
+  },
+  "nav": {
+    "label": "Ìtọ́sọ́nà àpéjọ",
+    "views": "Àwọn ìwò àpéjọ",
+    "membersOnly": "Fún àwọn ọmọ ẹgbẹ́ tó ti wọlé nìkan",
+    "followedTags": "Àwọn àmì rẹ",
+    "noFollowedTags": "Tẹ̀lé àwọn àmì (lókè ojú-ìwé àmì kan): àwọn kókó wọn ni yóò kún ìfúnni rẹ.",
+    "popularTags": "Àwọn àmì gbajúmọ̀",
+    "removeTag": "Yọ àlẹ̀mọ́ #{{tag}} kúrò"
+  },
+  "views": {
+    "all": "Gbogbo kókó",
+    "following": "Ìfúnni mi",
+    "unanswered": "Láìsí ìdáhùn",
+    "solved": "Tí ó ti yanjú",
+    "mine": "Àwọn kókó mi",
+    "saved": "Tí a fipamọ́"
+  },
+  "join": {
+    "title": "Darapọ̀ mọ́ ìjíròrò náà",
+    "text": "Béèrè àwọn ìbéèrè rẹ, ran àwọn olùgbéjáde mìíràn lọ́wọ́, kí o sì fi àwọn kókó tó dára jù pamọ́ sínú àtòjọ kíkà rẹ.",
+    "textCount_one": "Olùgbéjáde {{count}} láti ilẹ̀ Áfíríkà ti ń pín ohun tí ó mọ̀ níbí. Béèrè, dáhùn, fi àwọn kókó tó dára jù pamọ́.",
+    "textCount_other": "Àwọn olùgbéjáde {{count}} láti ilẹ̀ Áfíríkà ti ń pín ohun tí wọ́n mọ̀ níbí. Béèrè, dáhùn, fi àwọn kókó tó dára jù pamọ́.",
+    "register": "Ṣẹ̀dá àkọọ́lẹ̀",
+    "login": "Wọlé"
+  },
+  "filters": {
+    "label": "Ṣàlẹ̀mọ́ àwọn kókó",
+    "search": "Wá nínú àpéjọ",
+    "searchPlaceholder": "Ọ̀rọ̀ kókó, àṣìṣe, ìmọ̀ ẹ̀rọ…",
+    "tag": "Àmì",
+    "anyTag": "Gbogbo àmì",
+    "tagSearch": "Wá àmì kan…",
+    "noTag": "Kò sí àmì tó bá a mu."
+  },
+  "sort": {
+    "label": "Ètò àwọn kókó",
+    "relevant": "Tó ṣe pàtàkì",
+    "recent": "Tuntun",
+    "top": "Tó ga jù"
+  },
+  "period": {
+    "label": "Àkókò",
+    "week": "Ọ̀sẹ̀",
+    "month": "Oṣù",
+    "year": "Ọdún",
+    "all": "Gbogbo ìgbà"
+  },
+  "results": {
+    "count_one": "Kókó {{count}}",
+    "count_other": "Àwọn kókó {{count}}",
+    "saved_one": "Kókó {{count}} tí a fipamọ́",
+    "saved_other": "Àwọn kókó {{count}} tí a fipamọ́",
+    "outOf": "nínú {{total}}",
+    "loading": "Ó ń gbé àwọn kókó wá",
+    "loadingMore": "Ó ń gbé díẹ̀ sí i wá",
+    "more": "Fi àwọn kókó míì hàn",
+    "moreError": "Kò ṣeé ṣe láti gbé àwọn kókó tó kàn wá.",
+    "errorTitle": "Kò ṣeé ṣe láti gbé àpéjọ náà wá",
+    "errorText": "Ṣàyẹ̀wò ìsopọ̀ rẹ, lẹ́yìn náà gbìyànjú lẹ́ẹ̀kan sí i.",
+    "noMatchTitle": "Kò sí kókó tó bá a mu",
+    "noMatchText": "Gbìyànjú àwọn ọ̀rọ̀ míì tàbí yọ àlẹ̀mọ́ kan kúrò. Kò sí ẹni tó tí ì béèrè? Béèrè ìbéèrè náà: ìwọ yóò tún ran àwọn tó máa wá a lẹ́yìn rẹ lọ́wọ́.",
+    "clearFilters": "Pa àwọn àlẹ̀mọ́ rẹ́",
+    "askIt": "Béèrè ìbéèrè náà"
+  },
+  "empty": {
+    "browse": "Wo gbogbo kókó",
+    "all": {
+      "title": "Àpéjọ náà ń dúró de kókó àkọ́kọ́ rẹ̀",
+      "text": "Ìbéèrè kan, ìṣòro tó le, ìrírí kan: bẹ̀rẹ̀ ìjíròrò."
+    },
+    "following": {
+      "title": "Ìfúnni rẹ ṣì ṣófo",
+      "text": "Tẹ̀lé àwọn àmì àti ọmọ ẹgbẹ́: àwọn kókó tuntun wọn yóò hàn níbí."
+    },
+    "unanswered": {
+      "title": "Gbogbo ìbéèrè ló ní ìdáhùn",
+      "text": "Ẹ kú iṣẹ́ o, àwùjọ! Padà wá láìpẹ́: ìbéèrè tuntun lè nílò ìrànlọ́wọ́ rẹ."
+    },
+    "solved": {
+      "title": "Kò sí kókó tó ti yanjú síbẹ̀",
+      "text": "Nígbà tí òǹkọ̀wé ìbéèrè bá gba ìdáhùn kan, kókó náà á wá síbí."
+    },
+    "mine": {
+      "title": "O kò tí ì ṣí kókó kankan",
+      "text": "Ìbéèrè, ìmọ̀ràn láti béèrè, ìrírí láti pín: àwùjọ ń dúró dè ọ́."
+    },
+    "saved": {
+      "title": "Àtòjọ kíkà rẹ ṣófo",
+      "text": "Fi kókó kan pamọ́ pẹ̀lú àmì-ìwé: ìwọ yóò rí i níbí, lórí gbogbo ẹ̀rọ rẹ."
+    }
+  },
+  "gate": {
+    "following": {
+      "title": "Ìfúnni rẹ, bí o ṣe fẹ́",
+      "text": "Wọlé láti tẹ̀lé àwọn àmì àti ọmọ ẹgbẹ́: àwọn kókó wọn ni yóò kún ìfúnni rẹ."
+    },
+    "mine": {
+      "title": "Àwọn kókó rẹ, ní ibì kan",
+      "text": "Wọlé láti rí àwọn kókó tí o ṣí kí o sì tẹ̀lé àwọn ìdáhùn wọn."
+    },
+    "saved": {
+      "title": "Àtòjọ kíkà rẹ",
+      "text": "Wọlé láti fi àwọn kókó pamọ́ kí o sì padà sí wọn lẹ́yìn náà, lórí gbogbo ẹ̀rọ rẹ."
+    }
+  },
+  "askCard": {
+    "title": "O kò rí ìdáhùn rẹ?",
+    "text": "Béèrè ìbéèrè rẹ: àwọn olùgbéjáde láti gbogbo ilẹ̀ Áfíríkà yóò dáhùn."
+  },
+  "card": {
+    "solved": "Ó ti yanjú",
+    "closed": "A ti tì í",
+    "new": "Tuntun",
+    "votes_one": "Ìbò {{count}}",
+    "votes_other": "Àwọn ìbò {{count}}",
+    "answers_one": "Ìdáhùn {{count}}",
+    "answers_other": "Àwọn ìdáhùn {{count}}",
+    "answersSolved_one": "Ìdáhùn {{count}}, a ti gbà á",
+    "answersSolved_other": "Àwọn ìdáhùn {{count}}, a ti gba ọ̀kan",
+    "answersWord_one": "ìdáhùn",
+    "answersWord_other": "àwọn ìdáhùn",
+    "noAnswer": "Láìsí ìdáhùn",
+    "views_one": "Ìwò {{count}}",
+    "views_other": "Àwọn ìwò {{count}}",
+    "reading_one": "Ìṣẹ́jú {{count}} kíkà",
+    "reading_other": "Ìṣẹ́jú {{count}} kíkà"
+  },
+  "bookmark": {
+    "save": "Fipamọ́",
+    "saved": "A ti fipamọ́",
+    "savedToast": "A ti fi pamọ́ sínú àtòjọ kíkà rẹ",
+    "removedToast": "A ti yọ ọ́ kúrò nínú àtòjọ kíkà rẹ",
+    "open": "Wo àtòjọ náà",
+    "undo": "Dá a padà"
+  },
+  "signIn": {
+    "title": "Wọlé láti tẹ̀síwájú",
+    "close": "Pa á dé",
+    "login": "Wọlé",
+    "register": "Ṣẹ̀dá àkọọ́lẹ̀",
+    "free": "Ọ̀fẹ́ ni, kò sí ìpolówó. Ìṣẹ́jú kan tó.",
+    "community_one": "Olùgbéjáde {{formatted}} ti ń kópa nínú àpéjọ.",
+    "community_other": "Àwọn olùgbéjáde {{formatted}} ti ń kópa nínú àpéjọ.",
+    "reasons": {
+      "vote": "Dìbò fún àwọn kókó àti ìdáhùn tó ràn ọ́ lọ́wọ́: bẹ́ẹ̀ ni àwọn tó dára jù ṣe ń gòkè.",
+      "save": "Fi àwọn kókó tó wù ọ́ pamọ́ láti rí wọn lẹ́yìn náà, lórí gbogbo ẹ̀rọ rẹ.",
+      "answer": "Dáhùn kókó yìí: ìrírí rẹ lè ran olùgbéjáde mìíràn lọ́wọ́, kí ó sì fún ọ ní orúkọ rere.",
+      "comment": "Darapọ̀ mọ́ ìjíròrò: béèrè àlàyé, fèsì sí àsọyé kan.",
+      "ask": "Béèrè lọ́wọ́ àwùjọ: àwọn olùgbéjáde láti gbogbo ilẹ̀ Áfíríkà ń dáhùn.",
+      "follow": "Tẹ̀lé àwọn ọmọ ẹgbẹ́ àti àmì: àwọn kókó wọn ni yóò kún ìfúnni rẹ.",
+      "feed": "Wọlé láti rí ìfúnni rẹ, àwọn kókó rẹ àti àtòjọ kíkà rẹ."
+    }
+  },
+  "tag": {
+    "follow": "Tẹ̀lé",
+    "following": "Ò ń tẹ̀lé"
+  },
+  "aside": {
+    "label": "Nípa àpéjọ",
+    "helpTitle": "Ran olùgbéjáde lọ́wọ́",
+    "helpEmpty": "Gbogbo ìbéèrè ló ti rí ìdáhùn. Ẹ kú iṣẹ́!",
+    "trendingTitle": "Àwọn tó gbajúmọ̀ lọ́sẹ̀ yìí",
+    "trendingEmpty": "Kò sí nǹkan tuntun lọ́sẹ̀ yìí síbẹ̀.",
+    "seeAll": "Wo gbogbo rẹ̀",
+    "tipsTitle": "Bí a ṣe ń béèrè ìbéèrè tó dára",
+    "tips": {
+      "title": "Àkọlé tó ṣe kedere: ìmọ̀ ẹ̀rọ náà, àti ohun tó dí ọ lọ́wọ́.",
+      "code": "Kóòdù tó kan ọ̀rọ̀ náà nínú àpótí kóòdù, kì í ṣe àwòrán ojú-ìbojú.",
+      "tried": "Ohun tí o ti gbìyànjú, àti ọ̀rọ̀ àṣìṣe náà lódindi.",
+      "accept": "Ìdáhùn kan ràn ọ́ lọ́wọ́? Gbà á: kókó náà di «ó ti yanjú»."
+    }
+  },
+  "topic": {
+    "back": "Àpéjọ",
+    "loading": "Ó ń gbé kókó náà wá",
+    "notFoundTitle": "Kókó yìí kò sí mọ́",
+    "notFoundText": "Ó ṣeé ṣe kí òǹkọ̀wé rẹ̀ tàbí alábòójútó kan ti pa á rẹ́.",
+    "errorTitle": "Kò ṣeé ṣe láti gbé kókó náà wá",
+    "errorText": "Ṣàyẹ̀wò ìsopọ̀ rẹ, lẹ́yìn náà gbìyànjú lẹ́ẹ̀kan sí i.",
+    "actions": "Àwọn ìgbésẹ̀ kókó",
+    "toAnswers_one": "Lọ sí ìdáhùn ({{count}})",
+    "toAnswers_other": "Lọ sí àwọn ìdáhùn ({{count}})",
+    "posted": "A tẹ̀ ẹ́ jáde ní",
+    "edited": "a ṣàtúnṣe rẹ̀ {{when}}",
+    "reputation_one": "Àmì orúkọ rere {{count}}",
+    "reputation_other": "Àwọn àmì orúkọ rere {{count}}",
+    "reputationShort": "àmì",
+    "solved": "Ó ti yanjú · wo ojútùú",
+    "closed": "A ti tì í: kò sí ìdáhùn tuntun mọ́",
+    "manage": "Ṣàkóso kókó náà",
+    "close": "Ti kókó náà",
+    "closeHint": "Kò ní gba ìdáhùn tuntun mọ́.",
+    "reopen": "Tún kókó náà ṣí",
+    "reopenHint": "Yóò tún máa gba ìdáhùn.",
+    "closedToast": "A ti ti kókó náà",
+    "reopenedToast": "A ti tún kókó náà ṣí",
+    "deleteBlocked": "Ó ti ní àwọn ìdáhùn: alábòójútó nìkan ló lè pa á rẹ́.",
+    "deleteTitle": "Pa kókó yìí rẹ́?",
+    "deleteText": "A óò pa «{{title}}» rẹ́ pẹ̀lú àwọn ìbò àti àsọyé rẹ̀. Kò ṣeé dá padà.",
+    "deleted": "A ti pa kókó náà rẹ́"
+  },
+  "menu": {
+    "edit": "Ṣàtúnṣe",
+    "delete": "Pa rẹ́"
+  },
+  "vote": {
+    "group": {
+      "topic": "Dìbò fún kókó yìí",
+      "answer": "Dìbò fún ìdáhùn yìí"
+    },
+    "up": {
+      "topic": "Kókó yìí wúlò",
+      "answer": "Ìdáhùn yìí wúlò"
+    },
+    "down": {
+      "topic": "Kókó yìí kò ṣe kedere tàbí kò wúlò",
+      "answer": "Ìdáhùn yìí kò wúlò"
+    },
+    "own": {
+      "topic": "Kókó rẹ ni: o kò lè dìbò fún un",
+      "answer": "Ìdáhùn rẹ ni: o kò lè dìbò fún un"
+    },
+    "score_one": "Àmì: {{count}}",
+    "score_other": "Àmì: {{count}}"
+  },
+  "share": {
+    "title": "Pín",
+    "short": "Pín",
+    "copy": "Ṣe àdàkọ ìjápọ̀",
+    "copied": "A ti ṣe àdàkọ ìjápọ̀",
+    "copyFailed": "Kò ṣeé ṣe láti ṣe àdàkọ ìjápọ̀ náà.",
+    "native": "Pín nípasẹ̀…",
+    "on": "Pín lórí {{network}}"
+  },
+  "answers": {
+    "title_one": "Ìdáhùn ({{count}})",
+    "title_other": "Àwọn ìdáhùn ({{count}})",
+    "sortBest": "Àwọn tó dára jù",
+    "sortNewest": "Àwọn tuntun jù",
+    "sortOldest": "Àwọn tó ti pẹ́ jù",
+    "label": "Ìdáhùn rẹ",
+    "placeholder": "Fi ìdáhùn rẹ kún un…",
+    "placeholderOwn": "Àlàyé kan, ọ̀nà tí o rí láàárín àkókò yìí? Fi kún un…",
+    "submit": "Tẹ ìdáhùn jáde",
+    "guideline": "Ṣe kedere kí o sì jẹ́ onínúure: kóòdù, orísun, ìrírí rẹ.",
+    "posted": "A ti tẹ ìdáhùn jáde",
+    "closed": "A ti ti kókó yìí: kò gba ìdáhùn tuntun mọ́.",
+    "emptyTitle": "Kò sí ìdáhùn síbẹ̀",
+    "emptyText": "Jẹ́ ẹni àkọ́kọ́ tí yóò ran {{name}} lọ́wọ́: kódà àbá kékeré lè yanjú gbogbo rẹ̀.",
+    "errorTitle": "Kò ṣeé ṣe láti gbé àwọn ìdáhùn wá",
+    "errorText": "Ṣàyẹ̀wò ìsopọ̀ rẹ, lẹ́yìn náà gbìyànjú lẹ́ẹ̀kan sí i.",
+    "acceptedBy": "Ojútùú tí {{name}} gbà",
+    "accept": "Gbà á gẹ́gẹ́ bí ojútùú",
+    "acceptedShort": "Ojútùú",
+    "unaccept": "Yọ ojútùú kúrò",
+    "acceptedToast": "A ti gba ìdáhùn náà: kókó náà ti yanjú",
+    "unacceptedToast": "Kì í ṣe ojútùú mọ́",
+    "reply": "Fèsì",
+    "menu": "Àwọn àṣàyàn ìdáhùn",
+    "editLabel": "Ṣàtúnṣe ìdáhùn rẹ",
+    "updated": "A ti ṣàtúnṣe ìdáhùn",
+    "deleteTitle": "Pa ìdáhùn yìí rẹ́?",
+    "deleteText": "A óò pa á rẹ́ pẹ̀lú àwọn ìbò àti àsọyé rẹ̀. Kò ṣeé dá padà.",
+    "deleteAcceptedText": "Òun ni ojútùú tí a gbà: kókó náà kò ní yanjú mọ́. A óò pa á rẹ́ pẹ̀lú àwọn ìbò àti àsọyé rẹ̀.",
+    "deleted": "A ti pa ìdáhùn rẹ́"
+  },
+  "thread": {
+    "collapse_one": "Ká ìjíròrò náà ({{count}})",
+    "collapse_other": "Ká ìjíròrò náà ({{count}})",
+    "expand_one": "Ṣí ìjíròrò náà ({{count}})",
+    "expand_other": "Ṣí ìjíròrò náà ({{count}})",
+    "show_one": "Fi àsọyé {{count}} hàn",
+    "show_other": "Fi àwọn àsọyé {{count}} hàn",
+    "more_one": "Wo àsọyé {{count}} míì",
+    "more_other": "Wo àwọn àsọyé {{count}} míì"
+  },
+  "comment": {
+    "reply": "Fèsì",
+    "author": "Òǹkọ̀wé",
+    "edited": "a ti ṣàtúnṣe",
+    "menu": "Àwọn àṣàyàn àsọyé",
+    "placeholder": "Àsọyé rẹ…",
+    "label": "Fèsì sí {{name}}",
+    "editLabel": "Ṣàtúnṣe àsọyé rẹ",
+    "submit": "Sọ àsọyé",
+    "delete": "Pa rẹ́",
+    "deleteTitle": "Pa àsọyé yìí rẹ́?",
+    "deleteText": "A óò pa á rẹ́ pátápátá.",
+    "deleted": "A ti pa àsọyé rẹ́"
+  },
+  "clarify": {
+    "title_one": "Àlàyé ({{count}})",
+    "title_other": "Àwọn àlàyé ({{count}})",
+    "ask": "Béèrè àlàyé",
+    "placeholder": "Ẹ̀dà kan, ọ̀rọ̀ àṣìṣe, àlàyé tó kù?",
+    "label": "Béèrè àlàyé lọ́wọ́ òǹkọ̀wé",
+    "submit": "Fi ránṣẹ́"
+  },
+  "sidebar": {
+    "label": "Nípa kókó náà",
+    "author": "Òǹkọ̀wé",
+    "follow": "Tẹ̀lé",
+    "following": "Ò ń tẹ̀lé",
+    "editProfile": "Ṣàtúnṣe àkọsílẹ̀ mi",
+    "location": "Ibi",
+    "level": "Ìpele",
+    "reputation": "Orúkọ rere",
+    "joined": "Ọmọ ẹgbẹ́ láti",
+    "openToWork": "Ṣí sílẹ̀ fún àǹfààní",
+    "topics_one": "Kókó {{count}}",
+    "topics_other": "Àwọn kókó {{count}}",
+    "answers_one": "Ìdáhùn {{count}}",
+    "answers_other": "Àwọn ìdáhùn {{count}}",
+    "moreFrom": "Púpọ̀ sí i láti ọ̀dọ̀ {{name}}",
+    "related": "Àwọn kókó tó jọra"
+  },
+  "form": {
+    "newTitle": "Kókó tuntun",
+    "editTitle": "Ṣàtúnṣe kókó náà",
+    "backToTopic": "Padà sí kókó náà",
+    "mode": "Ipò olóòtú",
+    "write": "Kọ",
+    "preview": "Àyẹ̀wò ṣáájú",
+    "titleLabel": "Àkọlé",
+    "titlePlaceholder": "Àkọlé ìbéèrè rẹ…",
+    "titleHint": "Gbólóhùn kan tó ṣe kedere: ìmọ̀ ẹ̀rọ náà, ohun tí o fẹ́ ṣe, ohun tó dí ọ lọ́wọ́.",
+    "tagsLabel": "Àwọn àmì",
+    "tagsHint_one": "Títí dé àmì {{count}}: ìmọ̀ ẹ̀rọ àti kókó-ọ̀rọ̀.",
+    "tagsHint_other": "Títí dé àmì {{count}}: àwọn ìmọ̀ ẹ̀rọ àti kókó-ọ̀rọ̀.",
+    "tagsPlaceholder_one": "Fi àmì tó tó {{count}} kún un…",
+    "tagsPlaceholder_other": "Fi àmì tó tó {{count}} kún un…",
+    "tagsMore": "Àmì míì?",
+    "tagsFull_one": "Àmì {{count}} ní púpọ̀ jù",
+    "tagsFull_other": "Àmì {{count}} ní púpọ̀ jù",
+    "tagsChosen": "Àwọn àmì tí a yàn",
+    "tagSuggestions": "Àwọn àbá àmì",
+    "removeTag": "Yọ àmì {{tag}} kúrò",
+    "createTag": "Fi «{{tag}}» kún un",
+    "bodyLabel": "Àkóónú",
+    "bodyPlaceholder": "Ṣàlàyé ìṣòro rẹ: ohun tí o fẹ́ rí, ohun tó ń ṣẹlẹ̀ dípò rẹ̀, kóòdù tó kan ọ̀rọ̀ náà, ohun tí o ti gbìyànjú…",
+    "publish": "Tẹ̀ ẹ́ jáde",
+    "save": "Fipamọ́",
+    "cancel": "Fagilé",
+    "published": "A ti tẹ kókó náà jáde",
+    "updated": "A ti ṣàtúnṣe kókó náà",
+    "draftSaved": "A ti fi àkọpamọ́ pamọ́ sórí ẹ̀rọ yìí",
+    "draftRestored": "A ti dá àkọpamọ́ rẹ padà.",
+    "startOver": "Bẹ̀rẹ̀ láti ìbẹ̀rẹ̀",
+    "discard": "Pa àkọpamọ́ rẹ́",
+    "discardTitle": "Pa àkọpamọ́ náà rẹ́?",
+    "discardText": "A óò pa àkọlé, àwọn àmì àti àkóónú rẹ́.",
+    "discardConfirm": "Pa rẹ́",
+    "leaveTitle": "Jáde láìfipamọ́?",
+    "leaveText": "Àwọn àtúnṣe rẹ yóò sọnù.",
+    "leaveConfirm": "Jáde",
+    "leaveCancel": "Dúró",
+    "helpLabel": "Ìrànlọ́wọ́ ìkọ̀wé",
+    "previewNow": "ní báyìí",
+    "previewNoTitle": "Àkọlé rẹ yóò hàn níbí",
+    "previewNoBody": "Àkóónú kókó rẹ yóò hàn níbí.",
+    "similarTitle": "Àwọn kókó wọ̀nyí lè ti dáhùn ìbéèrè rẹ",
+    "submitHint": "{{mod}} + Enter láti tẹ̀ ẹ́ jáde",
+    "commentEmpty": "Kọ nǹkan kan kí o tó fi ránṣẹ́.",
+    "imagesPending": "Dúró kí fífi àwọn àwòrán ránṣẹ́ parí."
+  },
+  "guide": {
+    "title": {
+      "title": "Àkọlé tó dára",
+      "points": [
+        "Ṣe àkópọ̀ ìṣòro rẹ ní gbólóhùn kan: ìmọ̀ ẹ̀rọ náà, ohun tí o ń gbìyànjú láti ṣe, ohun tó dí ọ lọ́wọ́.",
+        "«Flutter: ìṣọ̀kan láìsí íńtánẹ́ẹ̀tì ń ṣẹ̀dá ẹ̀dà méjì» dára ju «Ẹ jọ̀ọ́ ẹ ràn mí lọ́wọ́!».",
+        "Àkọlé tó ṣe kedere ń fa àwọn ènìyàn tó yẹ, ó sì ń ran àwọn tó máa wá ohun kan náà lẹ́yìn rẹ lọ́wọ́."
+      ]
+    },
+    "tags": {
+      "title": "Yíyan àwọn àmì",
+      "points": [
+        "Títí dé àmì 5: ìmọ̀ ẹ̀rọ náà (React, Spring Boot…) àti kókó-ọ̀rọ̀ (Ìṣiṣẹ́, Iṣẹ́…).",
+        "Ìbéèrè rẹ máa dé ìfúnni àwọn olùgbéjáde tó ń tẹ̀lé àwọn àmì wọ̀nyí.",
+        "Yan àmì tó ti wà tẹ́lẹ̀: a máa dá a lábàá bí o ṣe ń tẹ̀ ẹ́."
+      ]
+    },
+    "body": {
+      "title": "Ṣíṣàlàyé ìṣòro náà",
+      "points": [
+        "Ohun tí o fẹ́ rí, àti ohun tó ń ṣẹlẹ̀ dípò rẹ̀.",
+        "Kóòdù tó kan ọ̀rọ̀ náà nínú àpótí ```java (pẹ̀lú èdè náà): a óò kun ún ní àwọ̀, a sì lè ṣe àdàkọ rẹ̀.",
+        "Ọ̀rọ̀ àṣìṣe náà lódindi, àti ohun tí o ti gbìyànjú.",
+        "Àwọn ẹ̀dà àti àyíká rẹ: fóònù, aṣàwákiri, ètò."
+      ]
+    }
+  }
+}

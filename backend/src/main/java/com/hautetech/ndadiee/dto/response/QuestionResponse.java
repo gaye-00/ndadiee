@@ -27,9 +27,13 @@ public class QuestionResponse {
     private int answerCount;
     private Long acceptedAnswerId;
     private QuestionStatus status;
+    private int readingMinutes;
 
     // Vote du membre connecté : +1, -1, ou null s'il n'a pas voté
     private Integer currentUserVote;
+
+    // Le membre connecté l'a-t-il enregistré ? null pour un visiteur anonyme
+    private Boolean bookmarkedByMe;
 
     private Instant createdAt;
     private Instant updatedAt;

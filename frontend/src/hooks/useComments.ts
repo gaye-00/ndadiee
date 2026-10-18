@@ -15,6 +15,16 @@ export function useCreateComment(targetType: ContentType, targetId: number) {
   return useMutation({
     mutationFn: (body: string) => commentService.create({ targetType, targetId, body }),
     onSuccess: () => void qc.invalidateQueries({ queryKey: ['comments', targetType, targetId] }),
+    meta: { handlesError: true },
+  });
+}
+
+export function useUpdateComment(targetType: ContentType, targetId: number) {
+  const qc = useQueryClient();
+  return useMutation({
+    mutationFn: ({ commentId, body }: { commentId: number; body: string }) => commentService.update(commentId, body),
+    onSuccess: () => void qc.invalidateQueries({ queryKey: ['comments', targetType, targetId] }),
+    meta: { handlesError: true },
   });
 }
 

@@ -1,0 +1,411 @@
+{
+  "intro": {
+    "eyebrow": "Tattaunawa",
+    "titleAsk": "Yi tambayarka.",
+    "titleShare": "Raba abin da ka sani.",
+    "lead": "Masu haɓaka manhajoji na nahiyar suna taimakon juna: tambayoyi bayyanannu, amsoshi masu warware matsala, tattaunawa mai ciyar da gaba. Kowace amsa mai amfani tana ba marubucinta martaba.",
+    "topics_one": "Batu {{count}}",
+    "topics_other": "Batutuwa {{count}}",
+    "answers_one": "Amsa {{count}}",
+    "answers_other": "Amsoshi {{count}}",
+    "contributors_one": "Mai haɓaka {{count}} yana shiga",
+    "contributors_other": "Masu haɓaka {{count}} suna shiga",
+    "solved_one": "{{count}} an warware",
+    "solved_other": "{{count}} an warware",
+    "unanswered_one": "{{count}} yana jiran amsa",
+    "unanswered_other": "{{count}} suna jiran amsa",
+    "ask": "Yi tambaya"
+  },
+  "nav": {
+    "label": "Kewayawar tattaunawa",
+    "views": "Ra'ayoyin tattaunawa",
+    "membersOnly": "Don membobin da suka shiga kawai",
+    "followedTags": "Alamominka",
+    "noFollowedTags": "Bi alamomi (a saman shafin alama): batutuwansu za su zama abincinka.",
+    "popularTags": "Shahararrun alamomi",
+    "removeTag": "Cire matatar #{{tag}}"
+  },
+  "views": {
+    "all": "Duk batutuwa",
+    "following": "Abincina",
+    "unanswered": "Ba a amsa ba",
+    "solved": "An warware",
+    "mine": "Batutuwana",
+    "saved": "An ajiye"
+  },
+  "join": {
+    "title": "Shiga tattaunawar",
+    "text": "Yi tambayoyinka, taimaki sauran masu haɓaka, kuma ajiye mafi kyawun batutuwa a jerin karatunka.",
+    "textCount_one": "Mai haɓaka {{count}} na nahiyar yana raba abin da ya sani a nan. Tambaya, amsa, ajiye mafi kyawun batutuwa.",
+    "textCount_other": "Masu haɓaka {{count}} na nahiyar suna raba abin da suka sani a nan. Tambaya, amsa, ajiye mafi kyawun batutuwa.",
+    "register": "Ƙirƙiri asusu",
+    "login": "Shiga"
+  },
+  "filters": {
+    "label": "Tace batutuwa",
+    "search": "Bincika a tattaunawa",
+    "searchPlaceholder": "Kalma, kuskure, fasaha…",
+    "tag": "Alama",
+    "anyTag": "Duk alamomi",
+    "tagSearch": "Nemi alama…",
+    "noTag": "Babu alamar da ta dace."
+  },
+  "sort": {
+    "label": "Tsarin batutuwa",
+    "relevant": "Masu muhimmanci",
+    "recent": "Sababbi",
+    "top": "Mafi kyau"
+  },
+  "period": {
+    "label": "Lokaci",
+    "week": "Mako",
+    "month": "Wata",
+    "year": "Shekara",
+    "all": "Koyaushe"
+  },
+  "results": {
+    "count_one": "Batu {{count}}",
+    "count_other": "Batutuwa {{count}}",
+    "saved_one": "Batu {{count}} da aka ajiye",
+    "saved_other": "Batutuwa {{count}} da aka ajiye",
+    "outOf": "cikin {{total}}",
+    "loading": "Ana loda batutuwa",
+    "loadingMore": "Ana loda ƙari",
+    "more": "Nuna ƙarin batutuwa",
+    "moreError": "Ba a iya loda batutuwa na gaba ba.",
+    "errorTitle": "Ba a iya loda tattaunawar ba",
+    "errorText": "Duba haɗin ka, sannan ka sake gwadawa.",
+    "noMatchTitle": "Babu batun da ya dace",
+    "noMatchText": "Gwada wasu kalmomi ko cire matata. Babu wanda ya tambaya tukuna? Yi tambayar: za ka taimaki waɗanda za su nema bayanka.",
+    "clearFilters": "Share matatu",
+    "askIt": "Yi tambayar"
+  },
+  "empty": {
+    "browse": "Duba duk batutuwa",
+    "all": {
+      "title": "Tattaunawar tana jiran batunta na farko",
+      "text": "Tambaya, matsala mai taurin kai, gogewa: fara tattaunawa."
+    },
+    "following": {
+      "title": "Abincinka babu komai tukuna",
+      "text": "Bi alamomi da membobi: sababbin batutuwansu za su bayyana a nan."
+    },
+    "unanswered": {
+      "title": "Kowace tambaya tana da amsarta",
+      "text": "Madalla al'umma! Dawo nan ba da jimawa ba: sabuwar tambaya na iya buƙatar taimakonka."
+    },
+    "solved": {
+      "title": "Babu batun da aka warware tukuna",
+      "text": "Idan marubucin tambaya ya karɓi amsa, batun yana zuwa nan."
+    },
+    "mine": {
+      "title": "Ba ka buɗe wani batu ba tukuna",
+      "text": "Tambaya, shawara da za ka nema, gogewa da za ka raba: al'umma tana jiranka."
+    },
+    "saved": {
+      "title": "Jerin karatunka babu komai",
+      "text": "Ajiye batu da alamar shafi: za ka same shi a nan, a duk na'urorinka."
+    }
+  },
+  "gate": {
+    "following": {
+      "title": "Abincinka, yadda kake so",
+      "text": "Shiga don bin alamomi da membobi: batutuwansu za su zama abincinka."
+    },
+    "mine": {
+      "title": "Batutuwanka, wuri ɗaya",
+      "text": "Shiga don nemo batutuwan da ka buɗe kuma ka bi amsoshinsu."
+    },
+    "saved": {
+      "title": "Jerin karatunka",
+      "text": "Shiga don ajiye batutuwa ka koma gare su daga baya, a duk na'urorinka."
+    }
+  },
+  "askCard": {
+    "title": "Ba ka sami amsarka ba?",
+    "text": "Yi tambayarka: masu haɓaka daga ko'ina a nahiyar za su amsa."
+  },
+  "card": {
+    "solved": "An warware",
+    "closed": "An rufe",
+    "new": "Sabo",
+    "votes_one": "Ƙuri'a {{count}}",
+    "votes_other": "Ƙuri'u {{count}}",
+    "answers_one": "Amsa {{count}}",
+    "answers_other": "Amsoshi {{count}}",
+    "answersSolved_one": "Amsa {{count}}, an karɓa",
+    "answersSolved_other": "Amsoshi {{count}}, an karɓi ɗaya",
+    "answersWord_one": "amsa",
+    "answersWord_other": "amsoshi",
+    "noAnswer": "Ba a amsa ba",
+    "views_one": "Kallo {{count}}",
+    "views_other": "Kallo {{count}}",
+    "reading_one": "Karatun minti {{count}}",
+    "reading_other": "Karatun mintuna {{count}}"
+  },
+  "bookmark": {
+    "save": "Ajiye",
+    "saved": "An ajiye",
+    "savedToast": "An ajiye a jerin karatunka",
+    "removedToast": "An cire daga jerin karatunka",
+    "open": "Duba jerin",
+    "undo": "Soke"
+  },
+  "signIn": {
+    "title": "Shiga don ci gaba",
+    "close": "Rufe",
+    "login": "Shiga",
+    "register": "Ƙirƙiri asusu",
+    "free": "Kyauta, babu talla. Minti ɗaya ya isa.",
+    "community_one": "Mai haɓaka {{formatted}} yana shiga tattaunawar.",
+    "community_other": "Masu haɓaka {{formatted}} suna shiga tattaunawar.",
+    "reasons": {
+      "vote": "Zaɓi batutuwa da amsoshin da suka taimake ka: haka mafi kyau ke tashi sama.",
+      "save": "Ajiye batutuwan da suka burge ka don ka same su daga baya, a duk na'urorinka.",
+      "answer": "Amsa wannan batu: gogewarka na iya taimakon wani mai haɓaka, kuma ta ba ka martaba.",
+      "comment": "Shiga tattaunawar: nemi ƙarin bayani, amsa sharhi.",
+      "ask": "Yi wa al'umma tambayarka: masu haɓaka daga ko'ina a nahiyar suna amsawa.",
+      "follow": "Bi membobi da alamomi: batutuwansu za su zama abincinka.",
+      "feed": "Shiga don nemo abincinka, batutuwanka da jerin karatunka."
+    }
+  },
+  "tag": {
+    "follow": "Bi",
+    "following": "Kana bi"
+  },
+  "aside": {
+    "label": "Game da tattaunawar",
+    "helpTitle": "Taimaki mai haɓaka",
+    "helpEmpty": "Duk tambayoyi sun sami amsa. Madalla!",
+    "trendingTitle": "Masu tasowa a wannan makon",
+    "trendingEmpty": "Babu sabon abu a wannan makon tukuna.",
+    "seeAll": "Duba duka",
+    "tipsTitle": "Yin tambaya mai kyau",
+    "tips": {
+      "title": "Take bayyananne: fasahar, da abin da ya hana ka.",
+      "code": "Lambar da ake magana a cikin akwatin lamba, ba hoton allo ba.",
+      "tried": "Abin da ka riga ka gwada, da cikakken saƙon kuskure.",
+      "accept": "Amsa ta taimake ka? Karɓe ta: batun ya zama «an warware»."
+    }
+  },
+  "topic": {
+    "back": "Tattaunawa",
+    "loading": "Ana loda batun",
+    "notFoundTitle": "Wannan batun babu shi kuma",
+    "notFoundText": "Wataƙila marubucinsa ko mai kula ya share shi.",
+    "errorTitle": "Ba a iya loda batun ba",
+    "errorText": "Duba haɗin ka, sannan ka sake gwadawa.",
+    "actions": "Ayyukan batu",
+    "toAnswers_one": "Je zuwa amsa ({{count}})",
+    "toAnswers_other": "Je zuwa amsoshi ({{count}})",
+    "posted": "An wallafa a",
+    "edited": "an gyara {{when}}",
+    "reputation_one": "Makin martaba {{count}}",
+    "reputation_other": "Makin martaba {{count}}",
+    "reputationShort": "maki",
+    "solved": "An warware · duba mafita",
+    "closed": "An rufe: babu sababbin amsoshi",
+    "manage": "Sarrafa batun",
+    "close": "Rufe batun",
+    "closeHint": "Ba zai karɓi sababbin amsoshi ba.",
+    "reopen": "Sake buɗe batun",
+    "reopenHint": "Zai sake karɓar amsoshi.",
+    "closedToast": "An rufe batun",
+    "reopenedToast": "An sake buɗe batun",
+    "deleteBlocked": "Yana da amsoshi: mai kula kaɗai zai iya share shi.",
+    "deleteTitle": "A share wannan batun?",
+    "deleteText": "Za a share «{{title}}» tare da ƙuri'unsa da sharhohinsa. Ba za a iya dawowa ba.",
+    "deleted": "An share batun"
+  },
+  "menu": {
+    "edit": "Gyara",
+    "delete": "Share"
+  },
+  "vote": {
+    "group": {
+      "topic": "Zaɓi wannan batun",
+      "answer": "Zaɓi wannan amsa"
+    },
+    "up": {
+      "topic": "Wannan batu yana da amfani",
+      "answer": "Wannan amsa tana da amfani"
+    },
+    "down": {
+      "topic": "Wannan batu bai bayyana ba ko bai da amfani",
+      "answer": "Wannan amsa ba ta da amfani"
+    },
+    "own": {
+      "topic": "Batunka ne: ba za ka iya zaɓe shi ba",
+      "answer": "Amsarka ce: ba za ka iya zaɓe ta ba"
+    },
+    "score_one": "Maki: {{count}}",
+    "score_other": "Maki: {{count}}"
+  },
+  "share": {
+    "title": "Raba",
+    "short": "Raba",
+    "copy": "Kwafi mahaɗi",
+    "copied": "An kwafi mahaɗi",
+    "copyFailed": "Ba a iya kwafin mahaɗin ba.",
+    "native": "Raba ta…",
+    "on": "Raba a {{network}}"
+  },
+  "answers": {
+    "title_one": "Amsa ({{count}})",
+    "title_other": "Amsoshi ({{count}})",
+    "sortBest": "Mafi kyau",
+    "sortNewest": "Mafi sabo",
+    "sortOldest": "Mafi daɗewa",
+    "label": "Amsarka",
+    "placeholder": "Ƙara amsarka…",
+    "placeholderOwn": "Ƙarin bayani, hanyar da ka samu a halin yanzu? Ƙara ta…",
+    "submit": "Wallafa amsa",
+    "guideline": "Ka bayyana sosai kuma ka kasance mai ladabi: lamba, majiyoyi, gogewarka.",
+    "posted": "An wallafa amsa",
+    "closed": "An rufe wannan batu: ba ya karɓar sababbin amsoshi.",
+    "emptyTitle": "Babu amsa tukuna",
+    "emptyText": "Ka zama na farko da zai taimaki {{name}}: ko ɗan haske na iya warware komai.",
+    "errorTitle": "Ba a iya loda amsoshi ba",
+    "errorText": "Duba haɗin ka, sannan ka sake gwadawa.",
+    "acceptedBy": "Mafitar da {{name}} ya karɓa",
+    "accept": "Karɓa a matsayin mafita",
+    "acceptedShort": "Mafita",
+    "unaccept": "Cire mafita",
+    "acceptedToast": "An karɓi amsa: an warware batun",
+    "unacceptedToast": "Ba ita ce mafita ba kuma",
+    "reply": "Amsa",
+    "menu": "Zaɓuɓɓukan amsa",
+    "editLabel": "Gyara amsarka",
+    "updated": "An gyara amsa",
+    "deleteTitle": "A share wannan amsa?",
+    "deleteText": "Za a share ta tare da ƙuri'unta da sharhohinta. Ba za a iya dawowa ba.",
+    "deleteAcceptedText": "Ita ce mafitar da aka karɓa: batun ba zai kasance an warware ba. Za a share ta tare da ƙuri'unta da sharhohinta.",
+    "deleted": "An share amsa"
+  },
+  "thread": {
+    "collapse_one": "Naɗe tattaunawa ({{count}})",
+    "collapse_other": "Naɗe tattaunawa ({{count}})",
+    "expand_one": "Buɗe tattaunawa ({{count}})",
+    "expand_other": "Buɗe tattaunawa ({{count}})",
+    "show_one": "Nuna sharhi {{count}}",
+    "show_other": "Nuna sharhohi {{count}}",
+    "more_one": "Duba ƙarin sharhi {{count}}",
+    "more_other": "Duba ƙarin sharhohi {{count}}"
+  },
+  "comment": {
+    "reply": "Amsa",
+    "author": "Marubuci",
+    "edited": "an gyara",
+    "menu": "Zaɓuɓɓukan sharhi",
+    "placeholder": "Sharhinka…",
+    "label": "Amsa wa {{name}}",
+    "editLabel": "Gyara sharhinka",
+    "submit": "Yi sharhi",
+    "delete": "Share",
+    "deleteTitle": "A share wannan sharhi?",
+    "deleteText": "Za a share shi gaba ɗaya.",
+    "deleted": "An share sharhi"
+  },
+  "clarify": {
+    "title_one": "Ƙarin bayani ({{count}})",
+    "title_other": "Ƙarin bayanai ({{count}})",
+    "ask": "Nemi ƙarin bayani",
+    "placeholder": "Sigar, saƙon kuskure, bayanin da ya ɓace?",
+    "label": "Nemi ƙarin bayani daga marubucin",
+    "submit": "Aika"
+  },
+  "sidebar": {
+    "label": "Game da batun",
+    "author": "Marubucin",
+    "follow": "Bi",
+    "following": "Kana bi",
+    "editProfile": "Gyara bayanan martabata",
+    "location": "Wuri",
+    "level": "Mataki",
+    "reputation": "Martaba",
+    "joined": "Memba tun",
+    "openToWork": "A shirye don damammaki",
+    "topics_one": "Batu {{count}}",
+    "topics_other": "Batutuwa {{count}}",
+    "answers_one": "Amsa {{count}}",
+    "answers_other": "Amsoshi {{count}}",
+    "moreFrom": "Ƙari daga {{name}}",
+    "related": "Batutuwa masu alaƙa"
+  },
+  "form": {
+    "newTitle": "Sabon batu",
+    "editTitle": "Gyara batun",
+    "backToTopic": "Koma zuwa batun",
+    "mode": "Yanayin edita",
+    "write": "Rubuta",
+    "preview": "Samfoti",
+    "titleLabel": "Take",
+    "titlePlaceholder": "Taken tambayarka…",
+    "titleHint": "Jumla bayyananniya: fasahar, abin da kake son yi, abin da ya hana ka.",
+    "tagsLabel": "Alamomi",
+    "tagsHint_one": "Har alama {{count}}: fasaha da batu.",
+    "tagsHint_other": "Har alamomi {{count}}: fasahohi da batu.",
+    "tagsPlaceholder_one": "Ƙara har alama {{count}}…",
+    "tagsPlaceholder_other": "Ƙara har alamomi {{count}}…",
+    "tagsMore": "Wata alama?",
+    "tagsFull_one": "Alama {{count}} ce iyaka",
+    "tagsFull_other": "Alamomi {{count}} ne iyaka",
+    "tagsChosen": "Alamomin da aka zaɓa",
+    "tagSuggestions": "Shawarwarin alamomi",
+    "removeTag": "Cire alamar {{tag}}",
+    "createTag": "Ƙara «{{tag}}»",
+    "bodyLabel": "Abun ciki",
+    "bodyPlaceholder": "Bayyana matsalarka: abin da kake son samu, abin da ke faruwa maimakon haka, lambar da ake magana, abin da ka riga ka gwada…",
+    "publish": "Wallafa",
+    "save": "Ajiye",
+    "cancel": "Soke",
+    "published": "An wallafa batu",
+    "updated": "An gyara batu",
+    "draftSaved": "An ajiye daftari a wannan na'urar",
+    "draftRestored": "An dawo da daftarinka.",
+    "startOver": "Sake farawa",
+    "discard": "Share daftari",
+    "discardTitle": "A share daftarin?",
+    "discardText": "Za a share take, alamomi da abun ciki.",
+    "discardConfirm": "Share",
+    "leaveTitle": "A fita ba tare da ajiyewa ba?",
+    "leaveText": "Canje-canjenka za su ɓace.",
+    "leaveConfirm": "Fita",
+    "leaveCancel": "Zauna",
+    "helpLabel": "Taimakon rubutu",
+    "previewNow": "yanzu",
+    "previewNoTitle": "Takenka zai bayyana a nan",
+    "previewNoBody": "Abun cikin batunka zai bayyana a nan.",
+    "similarTitle": "Waɗannan batutuwa wataƙila sun riga sun amsa tambayarka",
+    "submitHint": "{{mod}} + Enter don wallafawa",
+    "commentEmpty": "Rubuta wani abu kafin aikawa.",
+    "imagesPending": "Jira har a gama tura hotuna."
+  },
+  "guide": {
+    "title": {
+      "title": "Take mai kyau",
+      "points": [
+        "Taƙaita matsalarka a jumla ɗaya: fasahar, abin da kake ƙoƙarin yi, abin da ya hana ka.",
+        "«Flutter: daidaitawa ba tare da intanet ba tana ninka bayanai» ya fi «Taimako don Allah!».",
+        "Take bayyananne yana jawo mutanen da suka dace, kuma yana taimakon waɗanda za su nemi abu ɗaya bayanka."
+      ]
+    },
+    "tags": {
+      "title": "Zaɓar alamomi",
+      "points": [
+        "Har alamomi 5: fasahar (React, Spring Boot…) da batun (Inganci, Sana'a…).",
+        "Tambayarka za ta isa abincin masu haɓaka da ke bin waɗannan alamomi.",
+        "Fi son alamar da ta riga ta wanzu: ana ba da shawararta yayin da kake rubutu."
+      ]
+    },
+    "body": {
+      "title": "Bayyana matsalar",
+      "points": [
+        "Abin da kake son samu, da abin da ke faruwa maimakon haka.",
+        "Lambar da ake magana a cikin akwatin ```java (tare da harshen): za a yi mata launi kuma a iya kwafa.",
+        "Cikakken saƙon kuskure, da abin da ka riga ka gwada.",
+        "Sigogi da muhallinka: waya, burauza, tsari."
+      ]
+    }
+  }
+}

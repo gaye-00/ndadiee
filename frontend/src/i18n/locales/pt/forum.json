@@ -1,0 +1,440 @@
+{
+  "intro": {
+    "eyebrow": "Fórum",
+    "titleAsk": "Faz a tua pergunta.",
+    "titleShare": "Partilha o que sabes.",
+    "lead": "A entreajuda dos devs do continente: perguntas precisas, respostas que desbloqueiam, discussões que fazem avançar. Cada resposta útil dá reputação ao seu autor.",
+    "topics_one": "{{count}} tópico",
+    "topics_many": "{{count}} tópicos",
+    "topics_other": "{{count}} tópicos",
+    "answers_one": "{{count}} resposta",
+    "answers_many": "{{count}} respostas",
+    "answers_other": "{{count}} respostas",
+    "contributors_one": "{{count}} dev participa",
+    "contributors_many": "{{count}} devs participam",
+    "contributors_other": "{{count}} devs participam",
+    "solved_one": "{{count}} resolvido",
+    "solved_many": "{{count}} resolvidos",
+    "solved_other": "{{count}} resolvidos",
+    "unanswered_one": "{{count}} à espera de resposta",
+    "unanswered_many": "{{count}} à espera de resposta",
+    "unanswered_other": "{{count}} à espera de resposta",
+    "ask": "Fazer uma pergunta"
+  },
+  "nav": {
+    "label": "Navegação do fórum",
+    "views": "Vistas do fórum",
+    "membersOnly": "Reservado a membros com sessão iniciada",
+    "followedTags": "As tuas tags",
+    "noFollowedTags": "Segue tags (no topo da página de uma tag): os seus tópicos vão compor o teu feed.",
+    "popularTags": "Tags populares",
+    "removeTag": "Retirar o filtro #{{tag}}"
+  },
+  "views": {
+    "all": "Todos os tópicos",
+    "following": "O meu feed",
+    "unanswered": "Sem resposta",
+    "solved": "Resolvidos",
+    "mine": "Os meus tópicos",
+    "saved": "Guardados"
+  },
+  "join": {
+    "title": "Junta-te à conversa",
+    "text": "Faz as tuas perguntas, ajuda outros devs e guarda os melhores tópicos na tua lista de leitura.",
+    "textCount_one": "{{count}} dev do continente já partilha aqui o que sabe. Pergunta, responde, guarda os melhores tópicos.",
+    "textCount_many": "{{count}} devs do continente já partilham aqui o que sabem. Pergunta, responde, guarda os melhores tópicos.",
+    "textCount_other": "{{count}} devs do continente já partilham aqui o que sabem. Pergunta, responde, guarda os melhores tópicos.",
+    "register": "Criar conta",
+    "login": "Entrar"
+  },
+  "filters": {
+    "label": "Filtrar os tópicos",
+    "search": "Pesquisar no fórum",
+    "searchPlaceholder": "Uma palavra-chave, um erro, uma tecnologia…",
+    "tag": "Tag",
+    "anyTag": "Todas as tags",
+    "tagSearch": "Procurar uma tag…",
+    "noTag": "Nenhuma tag corresponde."
+  },
+  "sort": {
+    "label": "Ordem dos tópicos",
+    "relevant": "Relevantes",
+    "recent": "Recentes",
+    "top": "Top"
+  },
+  "period": {
+    "label": "Período",
+    "week": "Semana",
+    "month": "Mês",
+    "year": "Ano",
+    "all": "Sempre"
+  },
+  "results": {
+    "count_one": "{{count}} tópico",
+    "count_many": "{{count}} tópicos",
+    "count_other": "{{count}} tópicos",
+    "saved_one": "{{count}} tópico guardado",
+    "saved_many": "{{count}} tópicos guardados",
+    "saved_other": "{{count}} tópicos guardados",
+    "outOf": "de {{total}}",
+    "loading": "A carregar os tópicos",
+    "loadingMore": "A carregar mais",
+    "more": "Ver mais tópicos",
+    "moreError": "Não foi possível carregar mais tópicos.",
+    "errorTitle": "Não foi possível carregar o fórum",
+    "errorText": "Verifica a tua ligação e tenta de novo.",
+    "noMatchTitle": "Nenhum tópico corresponde",
+    "noMatchText": "Tenta outras palavras ou retira um filtro. Ninguém perguntou ainda? Faz a pergunta: também vais ajudar quem a procurar depois de ti.",
+    "clearFilters": "Limpar os filtros",
+    "askIt": "Fazer a pergunta"
+  },
+  "empty": {
+    "browse": "Ver todos os tópicos",
+    "all": {
+      "title": "O fórum espera pelo seu primeiro tópico",
+      "text": "Uma pergunta, um problema teimoso, uma experiência: abre a discussão."
+    },
+    "following": {
+      "title": "O teu feed ainda está vazio",
+      "text": "Segue tags e membros: os seus novos tópicos vão aparecer aqui."
+    },
+    "unanswered": {
+      "title": "Todas as perguntas têm resposta",
+      "text": "Parabéns, comunidade! Volta em breve: uma nova pergunta pode precisar da tua ajuda."
+    },
+    "solved": {
+      "title": "Ainda nenhum tópico resolvido",
+      "text": "Quando o autor de uma pergunta aceita uma resposta, o tópico aparece aqui."
+    },
+    "mine": {
+      "title": "Ainda não abriste nenhum tópico",
+      "text": "Uma pergunta, um conselho a pedir, uma experiência a partilhar: a comunidade espera por ti."
+    },
+    "saved": {
+      "title": "A tua lista de leitura está vazia",
+      "text": "Guarda um tópico com o marcador: vais encontrá-lo aqui, em todos os teus dispositivos."
+    }
+  },
+  "gate": {
+    "following": {
+      "title": "O teu feed, à tua medida",
+      "text": "Entra para seguir tags e membros: os seus tópicos vão compor o teu feed."
+    },
+    "mine": {
+      "title": "Os teus tópicos, num só lugar",
+      "text": "Entra para encontrar os tópicos que abriste e acompanhar as respostas."
+    },
+    "saved": {
+      "title": "A tua lista de leitura",
+      "text": "Entra para guardar tópicos e voltar a eles mais tarde, em todos os teus dispositivos."
+    }
+  },
+  "askCard": {
+    "title": "Não encontraste a tua resposta?",
+    "text": "Faz a tua pergunta: devs de todo o continente vão responder."
+  },
+  "card": {
+    "solved": "Resolvido",
+    "closed": "Fechado",
+    "new": "Novo",
+    "votes_one": "{{count}} voto",
+    "votes_many": "{{count}} votos",
+    "votes_other": "{{count}} votos",
+    "answers_one": "{{count}} resposta",
+    "answers_many": "{{count}} respostas",
+    "answers_other": "{{count}} respostas",
+    "answersSolved_one": "{{count}} resposta, aceite",
+    "answersSolved_many": "{{count}} respostas, uma aceite",
+    "answersSolved_other": "{{count}} respostas, uma aceite",
+    "answersWord_one": "resposta",
+    "answersWord_many": "respostas",
+    "answersWord_other": "respostas",
+    "noAnswer": "Sem resposta",
+    "views_one": "{{count}} visualização",
+    "views_many": "{{count}} visualizações",
+    "views_other": "{{count}} visualizações",
+    "reading_one": "{{count}} min de leitura",
+    "reading_many": "{{count}} min de leitura",
+    "reading_other": "{{count}} min de leitura"
+  },
+  "bookmark": {
+    "save": "Guardar",
+    "saved": "Guardado",
+    "savedToast": "Guardado na tua lista de leitura",
+    "removedToast": "Retirado da tua lista de leitura",
+    "open": "Ver a lista",
+    "undo": "Anular"
+  },
+  "signIn": {
+    "title": "Entra para continuar",
+    "close": "Fechar",
+    "login": "Entrar",
+    "register": "Criar conta",
+    "free": "Grátis e sem publicidade. Basta um minuto.",
+    "community_one": "{{formatted}} dev já participa no fórum.",
+    "community_many": "{{formatted}} devs já participam no fórum.",
+    "community_other": "{{formatted}} devs já participam no fórum.",
+    "reasons": {
+      "vote": "Vota nos tópicos e nas respostas que te ajudaram: é assim que os melhores sobem.",
+      "save": "Guarda os tópicos que te interessam para os encontrares mais tarde, em todos os teus dispositivos.",
+      "answer": "Responde a este tópico: a tua experiência pode desbloquear outro dev e dar-te reputação.",
+      "comment": "Junta-te à discussão: pede um detalhe, responde a um comentário.",
+      "ask": "Faz a tua pergunta à comunidade: devs de todo o continente respondem.",
+      "follow": "Segue membros e tags: os seus tópicos vão compor o teu feed.",
+      "feed": "Entra para encontrar o teu feed, os teus tópicos e a tua lista de leitura."
+    }
+  },
+  "tag": {
+    "follow": "Seguir",
+    "following": "A seguir"
+  },
+  "aside": {
+    "label": "À volta do fórum",
+    "helpTitle": "Ajuda um dev",
+    "helpEmpty": "Todas as perguntas encontraram resposta. Parabéns!",
+    "trendingTitle": "Tendências da semana",
+    "trendingEmpty": "Ainda nada de novo esta semana.",
+    "seeAll": "Ver tudo",
+    "tipsTitle": "Fazer uma boa pergunta",
+    "tips": {
+      "title": "Um título preciso: a tecnologia e o que bloqueia.",
+      "code": "O código em causa num bloco de código, não numa captura de ecrã.",
+      "tried": "O que já tentaste, e a mensagem de erro completa.",
+      "accept": "Uma resposta ajudou-te? Aceita-a: o tópico passa a «resolvido»."
+    }
+  },
+  "topic": {
+    "back": "Fórum",
+    "loading": "A carregar o tópico",
+    "notFoundTitle": "Este tópico já não existe",
+    "notFoundText": "Pode ter sido apagado pelo autor ou por um moderador.",
+    "errorTitle": "Não foi possível carregar o tópico",
+    "errorText": "Verifica a tua ligação e tenta de novo.",
+    "actions": "Ações do tópico",
+    "toAnswers_one": "Ir para a resposta ({{count}})",
+    "toAnswers_many": "Ir para as respostas ({{count}})",
+    "toAnswers_other": "Ir para as respostas ({{count}})",
+    "posted": "Publicado a",
+    "edited": "editado {{when}}",
+    "reputation_one": "{{count}} ponto de reputação",
+    "reputation_many": "{{count}} pontos de reputação",
+    "reputation_other": "{{count}} pontos de reputação",
+    "reputationShort": "pts",
+    "solved": "Resolvido · ver a solução",
+    "closed": "Fechado: sem novas respostas",
+    "manage": "Gerir o tópico",
+    "close": "Fechar o tópico",
+    "closeHint": "Deixará de aceitar novas respostas.",
+    "reopen": "Reabrir o tópico",
+    "reopenHint": "Voltará a aceitar respostas.",
+    "closedToast": "Tópico fechado",
+    "reopenedToast": "Tópico reaberto",
+    "deleteBlocked": "Já tem respostas: só um moderador o pode apagar.",
+    "deleteTitle": "Apagar este tópico?",
+    "deleteText": "«{{title}}» será apagado, com os seus votos e comentários. É definitivo.",
+    "deleted": "Tópico apagado"
+  },
+  "menu": {
+    "edit": "Editar",
+    "delete": "Apagar"
+  },
+  "vote": {
+    "group": {
+      "topic": "Votar neste tópico",
+      "answer": "Votar nesta resposta"
+    },
+    "up": {
+      "topic": "Este tópico é útil",
+      "answer": "Esta resposta é útil"
+    },
+    "down": {
+      "topic": "Este tópico não é claro ou não é útil",
+      "answer": "Esta resposta não é útil"
+    },
+    "own": {
+      "topic": "É o teu tópico: não podes votar nele",
+      "answer": "É a tua resposta: não podes votar nela"
+    },
+    "score_one": "Pontuação: {{count}}",
+    "score_many": "Pontuação: {{count}}",
+    "score_other": "Pontuação: {{count}}"
+  },
+  "share": {
+    "title": "Partilhar",
+    "short": "Partilhar",
+    "copy": "Copiar a ligação",
+    "copied": "Ligação copiada",
+    "copyFailed": "Não foi possível copiar a ligação.",
+    "native": "Partilhar via…",
+    "on": "Partilhar no {{network}}"
+  },
+  "answers": {
+    "title_one": "Resposta ({{count}})",
+    "title_many": "Respostas ({{count}})",
+    "title_other": "Respostas ({{count}})",
+    "sortBest": "As melhores",
+    "sortNewest": "As mais recentes",
+    "sortOldest": "As mais antigas",
+    "label": "A tua resposta",
+    "placeholder": "Escreve a tua resposta…",
+    "placeholderOwn": "Um detalhe, uma pista que encontraste entretanto? Acrescenta-a…",
+    "submit": "Publicar a resposta",
+    "guideline": "Sê preciso e cordial: código, fontes, a tua experiência.",
+    "posted": "Resposta publicada",
+    "closed": "Este tópico está fechado: já não aceita novas respostas.",
+    "emptyTitle": "Ainda sem resposta",
+    "emptyText": "Sê o primeiro a ajudar {{name}}: até uma pista pode desbloquear tudo.",
+    "errorTitle": "Não foi possível carregar as respostas",
+    "errorText": "Verifica a tua ligação e tenta de novo.",
+    "acceptedBy": "Solução aceite por {{name}}",
+    "accept": "Aceitar como solução",
+    "acceptedShort": "Solução",
+    "unaccept": "Retirar a solução",
+    "acceptedToast": "Resposta aceite: o tópico está resolvido",
+    "unacceptedToast": "Já não é a solução",
+    "reply": "Responder",
+    "menu": "Opções da resposta",
+    "editLabel": "Editar a tua resposta",
+    "updated": "Resposta editada",
+    "deleteTitle": "Apagar esta resposta?",
+    "deleteText": "Será apagada com os seus votos e comentários. É definitivo.",
+    "deleteAcceptedText": "É a solução aceite: o tópico deixará de estar resolvido. Será apagada com os seus votos e comentários.",
+    "deleted": "Resposta apagada"
+  },
+  "thread": {
+    "collapse_one": "Recolher a discussão ({{count}})",
+    "collapse_many": "Recolher a discussão ({{count}})",
+    "collapse_other": "Recolher a discussão ({{count}})",
+    "expand_one": "Expandir a discussão ({{count}})",
+    "expand_many": "Expandir a discussão ({{count}})",
+    "expand_other": "Expandir a discussão ({{count}})",
+    "show_one": "Mostrar {{count}} comentário",
+    "show_many": "Mostrar {{count}} comentários",
+    "show_other": "Mostrar {{count}} comentários",
+    "more_one": "Ver mais {{count}} comentário",
+    "more_many": "Ver mais {{count}} comentários",
+    "more_other": "Ver mais {{count}} comentários"
+  },
+  "comment": {
+    "reply": "Responder",
+    "author": "Autor",
+    "edited": "editado",
+    "menu": "Opções do comentário",
+    "placeholder": "O teu comentário…",
+    "label": "Responder a {{name}}",
+    "editLabel": "Editar o teu comentário",
+    "submit": "Comentar",
+    "delete": "Apagar",
+    "deleteTitle": "Apagar este comentário?",
+    "deleteText": "Será apagado definitivamente.",
+    "deleted": "Comentário apagado"
+  },
+  "clarify": {
+    "title_one": "Esclarecimento ({{count}})",
+    "title_many": "Esclarecimentos ({{count}})",
+    "title_other": "Esclarecimentos ({{count}})",
+    "ask": "Pedir um esclarecimento",
+    "placeholder": "Uma versão, uma mensagem de erro, um detalhe em falta?",
+    "label": "Pedir um esclarecimento ao autor",
+    "submit": "Enviar"
+  },
+  "sidebar": {
+    "label": "Sobre o tópico",
+    "author": "O autor",
+    "follow": "Seguir",
+    "following": "A seguir",
+    "editProfile": "Editar o meu perfil",
+    "location": "Localização",
+    "level": "Nível",
+    "reputation": "Reputação",
+    "joined": "Membro desde",
+    "openToWork": "Aberto a oportunidades",
+    "topics_one": "{{count}} tópico",
+    "topics_many": "{{count}} tópicos",
+    "topics_other": "{{count}} tópicos",
+    "answers_one": "{{count}} resposta",
+    "answers_many": "{{count}} respostas",
+    "answers_other": "{{count}} respostas",
+    "moreFrom": "Mais de {{name}}",
+    "related": "Tópicos relacionados"
+  },
+  "form": {
+    "newTitle": "Novo tópico",
+    "editTitle": "Editar o tópico",
+    "backToTopic": "Voltar ao tópico",
+    "mode": "Modo do editor",
+    "write": "Escrever",
+    "preview": "Pré-visualizar",
+    "titleLabel": "Título",
+    "titlePlaceholder": "O título da tua pergunta…",
+    "titleHint": "Uma frase precisa: a tecnologia, o que queres fazer, o que bloqueia.",
+    "tagsLabel": "Tags",
+    "tagsHint_one": "Até {{count}} tag: a tecnologia e o tema.",
+    "tagsHint_many": "Até {{count}} tags: as tecnologias e o tema.",
+    "tagsHint_other": "Até {{count}} tags: as tecnologias e o tema.",
+    "tagsPlaceholder_one": "Adiciona até {{count}} tag…",
+    "tagsPlaceholder_many": "Adiciona até {{count}} tags…",
+    "tagsPlaceholder_other": "Adiciona até {{count}} tags…",
+    "tagsMore": "Outra tag?",
+    "tagsFull_one": "{{count}} tag no máximo",
+    "tagsFull_many": "{{count}} tags no máximo",
+    "tagsFull_other": "{{count}} tags no máximo",
+    "tagsChosen": "Tags escolhidas",
+    "tagSuggestions": "Sugestões de tags",
+    "removeTag": "Retirar a tag {{tag}}",
+    "createTag": "Adicionar «{{tag}}»",
+    "bodyLabel": "Conteúdo",
+    "bodyPlaceholder": "Descreve o teu problema: o que queres obter, o que acontece em vez disso, o código em causa, o que já tentaste…",
+    "publish": "Publicar",
+    "save": "Guardar",
+    "cancel": "Cancelar",
+    "published": "Tópico publicado",
+    "updated": "Tópico editado",
+    "draftSaved": "Rascunho guardado neste dispositivo",
+    "draftRestored": "O teu rascunho foi recuperado.",
+    "startOver": "Recomeçar do zero",
+    "discard": "Apagar o rascunho",
+    "discardTitle": "Apagar o rascunho?",
+    "discardText": "O título, as tags e o conteúdo serão apagados.",
+    "discardConfirm": "Apagar",
+    "leaveTitle": "Sair sem guardar?",
+    "leaveText": "As tuas alterações vão perder-se.",
+    "leaveConfirm": "Sair",
+    "leaveCancel": "Ficar",
+    "helpLabel": "Ajuda à escrita",
+    "previewNow": "agora mesmo",
+    "previewNoTitle": "O teu título vai aparecer aqui",
+    "previewNoBody": "O conteúdo do teu tópico vai aparecer aqui.",
+    "similarTitle": "Estes tópicos talvez já respondam à tua pergunta",
+    "submitHint": "{{mod}} + Enter para publicar",
+    "commentEmpty": "Escreve algo antes de enviar.",
+    "imagesPending": "Espera que o envio das imagens termine."
+  },
+  "guide": {
+    "title": {
+      "title": "Um bom título",
+      "points": [
+        "Resume o teu problema numa frase: a tecnologia, o que tentas fazer, o que bloqueia.",
+        "«Flutter: a sincronização offline cria duplicados» é melhor do que «Ajuda pf!».",
+        "Um título preciso atrai as pessoas certas e ajuda quem procurar o mesmo depois de ti."
+      ]
+    },
+    "tags": {
+      "title": "Escolher as tags",
+      "points": [
+        "Até 5 tags: a tecnologia (React, Spring Boot…) e o tema (Performance, Carreira…).",
+        "A tua pergunta chega ao feed dos devs que seguem estas tags.",
+        "Prefere uma tag que já exista: é sugerida enquanto escreves."
+      ]
+    },
+    "body": {
+      "title": "Descrever o problema",
+      "points": [
+        "O que queres obter, e o que acontece em vez disso.",
+        "O código em causa num bloco ```java (com a linguagem): fica colorido e copiável.",
+        "A mensagem de erro completa, e o que já tentaste.",
+        "As tuas versões e o teu ambiente: telemóvel, navegador, sistema."
+      ]
+    }
+  }
+}

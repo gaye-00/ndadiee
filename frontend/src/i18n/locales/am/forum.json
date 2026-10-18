@@ -1,0 +1,411 @@
+{
+  "intro": {
+    "eyebrow": "ውይይት",
+    "titleAsk": "ጥያቄህን ጠይቅ።",
+    "titleShare": "የምታውቀውን አጋራ።",
+    "lead": "የአህጉሩ ገንቢዎች እርስ በርስ ይረዳዳሉ፦ ግልጽ ጥያቄዎች፣ ችግር የሚፈቱ መልሶች፣ ወደፊት የሚያራምዱ ውይይቶች። እያንዳንዱ ጠቃሚ መልስ ለጸሐፊው ዝና ያስገኛል።",
+    "topics_one": "{{count}} ርዕስ",
+    "topics_other": "{{count}} ርዕሶች",
+    "answers_one": "{{count}} መልስ",
+    "answers_other": "{{count}} መልሶች",
+    "contributors_one": "{{count}} ገንቢ ይሳተፋል",
+    "contributors_other": "{{count}} ገንቢዎች ይሳተፋሉ",
+    "solved_one": "{{count}} ተፈቷል",
+    "solved_other": "{{count}} ተፈተዋል",
+    "unanswered_one": "{{count}} መልስ ይጠብቃል",
+    "unanswered_other": "{{count}} መልስ ይጠብቃሉ",
+    "ask": "ጥያቄ ጠይቅ"
+  },
+  "nav": {
+    "label": "የውይይቱ ማሰሻ",
+    "views": "የውይይት እይታዎች",
+    "membersOnly": "ለገቡ አባላት ብቻ",
+    "followedTags": "የአንተ መለያዎች",
+    "noFollowedTags": "መለያዎችን ተከተል (በመለያው ገጽ ላይኛው ክፍል)፦ ርዕሶቻቸው መጋቢህን ይሠራሉ።",
+    "popularTags": "ታዋቂ መለያዎች",
+    "removeTag": "የ#{{tag}} ማጣሪያን አስወግድ"
+  },
+  "views": {
+    "all": "ሁሉም ርዕሶች",
+    "following": "የእኔ መጋቢ",
+    "unanswered": "ያልተመለሱ",
+    "solved": "የተፈቱ",
+    "mine": "የእኔ ርዕሶች",
+    "saved": "የተቀመጡ"
+  },
+  "join": {
+    "title": "ውይይቱን ተቀላቀል",
+    "text": "ጥያቄዎችህን ጠይቅ፣ ሌሎች ገንቢዎችን እርዳ፣ ምርጥ ርዕሶችን በንባብ ዝርዝርህ አስቀምጥ።",
+    "textCount_one": "ከአህጉሩ {{count}} ገንቢ የሚያውቀውን እዚህ ያጋራል። ጠይቅ፣ መልስ፣ ምርጥ ርዕሶችን አስቀምጥ።",
+    "textCount_other": "ከአህጉሩ {{count}} ገንቢዎች የሚያውቁትን እዚህ ያጋራሉ። ጠይቅ፣ መልስ፣ ምርጥ ርዕሶችን አስቀምጥ።",
+    "register": "መለያ ፍጠር",
+    "login": "ግባ"
+  },
+  "filters": {
+    "label": "ርዕሶችን አጣራ",
+    "search": "በውይይቱ ውስጥ ፈልግ",
+    "searchPlaceholder": "ቁልፍ ቃል፣ ስህተት፣ ቴክኖሎጂ…",
+    "tag": "መለያ",
+    "anyTag": "ሁሉም መለያዎች",
+    "tagSearch": "መለያ ፈልግ…",
+    "noTag": "የሚዛመድ መለያ የለም።"
+  },
+  "sort": {
+    "label": "የርዕሶች ቅደም ተከተል",
+    "relevant": "ተገቢ",
+    "recent": "አዲስ",
+    "top": "ምርጥ"
+  },
+  "period": {
+    "label": "ጊዜ",
+    "week": "ሳምንት",
+    "month": "ወር",
+    "year": "ዓመት",
+    "all": "ሁልጊዜ"
+  },
+  "results": {
+    "count_one": "{{count}} ርዕስ",
+    "count_other": "{{count}} ርዕሶች",
+    "saved_one": "{{count}} የተቀመጠ ርዕስ",
+    "saved_other": "{{count}} የተቀመጡ ርዕሶች",
+    "outOf": "ከ{{total}}",
+    "loading": "ርዕሶች እየተጫኑ ነው",
+    "loadingMore": "ተጨማሪ እየተጫነ ነው",
+    "more": "ተጨማሪ ርዕሶችን አሳይ",
+    "moreError": "ቀጣዮቹ ርዕሶች ሊጫኑ አልቻሉም።",
+    "errorTitle": "ውይይቱ ሊጫን አልቻለም",
+    "errorText": "ግንኙነትህን አረጋግጥ፣ ከዚያ እንደገና ሞክር።",
+    "noMatchTitle": "የሚዛመድ ርዕስ የለም",
+    "noMatchText": "ሌሎች ቃላትን ሞክር ወይም ማጣሪያ አስወግድ። እስካሁን የጠየቀ የለም? ጥያቄውን ጠይቅ፦ ከአንተ በኋላ የሚፈልጉትንም ትረዳለህ።",
+    "clearFilters": "ማጣሪያዎችን አጽዳ",
+    "askIt": "ጥያቄውን ጠይቅ"
+  },
+  "empty": {
+    "browse": "ሁሉንም ርዕሶች ተመልከት",
+    "all": {
+      "title": "ውይይቱ የመጀመሪያ ርዕሱን እየጠበቀ ነው",
+      "text": "ጥያቄ፣ ያልተፈታ ችግር፣ ልምድ፦ ውይይቱን ጀምር።"
+    },
+    "following": {
+      "title": "መጋቢህ ገና ባዶ ነው",
+      "text": "መለያዎችንና አባላትን ተከተል፦ አዲስ ርዕሶቻቸው እዚህ ይታያሉ።"
+    },
+    "unanswered": {
+      "title": "እያንዳንዱ ጥያቄ መልስ አለው",
+      "text": "ጎበዝ ማኅበረሰብ! በቅርቡ ተመለስ፦ አዲስ ጥያቄ እርዳታህን ሊፈልግ ይችላል።"
+    },
+    "solved": {
+      "title": "እስካሁን የተፈታ ርዕስ የለም",
+      "text": "የጥያቄው ጸሐፊ መልስ ሲቀበል ርዕሱ እዚህ ይመጣል።"
+    },
+    "mine": {
+      "title": "እስካሁን ምንም ርዕስ አልከፈትክም",
+      "text": "ጥያቄ፣ የምትጠይቀው ምክር፣ የምታጋራው ልምድ፦ ማኅበረሰቡ እየጠበቀህ ነው።"
+    },
+    "saved": {
+      "title": "የንባብ ዝርዝርህ ባዶ ነው",
+      "text": "ርዕስን በዕልባት አስቀምጥ፦ በሁሉም መሣሪያዎችህ ላይ እዚህ ታገኘዋለህ።"
+    }
+  },
+  "gate": {
+    "following": {
+      "title": "መጋቢህ፣ እንደ ፍላጎትህ",
+      "text": "መለያዎችንና አባላትን ለመከተል ግባ፦ ርዕሶቻቸው መጋቢህን ይሠራሉ።"
+    },
+    "mine": {
+      "title": "ርዕሶችህ፣ በአንድ ቦታ",
+      "text": "የከፈትካቸውን ርዕሶች ለማግኘትና መልሶቻቸውን ለመከታተል ግባ።"
+    },
+    "saved": {
+      "title": "የንባብ ዝርዝርህ",
+      "text": "ርዕሶችን ለማስቀመጥና በኋላ በሁሉም መሣሪያዎችህ ለመመለስ ግባ።"
+    }
+  },
+  "askCard": {
+    "title": "መልስህን አላገኘህም?",
+    "text": "ጥያቄህን ጠይቅ፦ ከመላው አህጉሩ የመጡ ገንቢዎች ይመልሳሉ።"
+  },
+  "card": {
+    "solved": "ተፈቷል",
+    "closed": "ተዘግቷል",
+    "new": "አዲስ",
+    "votes_one": "{{count}} ድምፅ",
+    "votes_other": "{{count}} ድምፆች",
+    "answers_one": "{{count}} መልስ",
+    "answers_other": "{{count}} መልሶች",
+    "answersSolved_one": "{{count}} መልስ፣ ተቀባይነት አግኝቷል",
+    "answersSolved_other": "{{count}} መልሶች፣ አንዱ ተቀባይነት አግኝቷል",
+    "answersWord_one": "መልስ",
+    "answersWord_other": "መልሶች",
+    "noAnswer": "ያልተመለሰ",
+    "views_one": "{{count}} እይታ",
+    "views_other": "{{count}} እይታዎች",
+    "reading_one": "{{count}} ደቂቃ ንባብ",
+    "reading_other": "{{count}} ደቂቃ ንባብ"
+  },
+  "bookmark": {
+    "save": "አስቀምጥ",
+    "saved": "ተቀምጧል",
+    "savedToast": "በንባብ ዝርዝርህ ተቀምጧል",
+    "removedToast": "ከንባብ ዝርዝርህ ተወግዷል",
+    "open": "ዝርዝሩን ተመልከት",
+    "undo": "ቀልብስ"
+  },
+  "signIn": {
+    "title": "ለመቀጠል ግባ",
+    "close": "ዝጋ",
+    "login": "ግባ",
+    "register": "መለያ ፍጠር",
+    "free": "ነፃ ነው፣ ማስታወቂያ የለም። አንድ ደቂቃ ይበቃል።",
+    "community_one": "{{formatted}} ገንቢ በውይይቱ ይሳተፋል።",
+    "community_other": "{{formatted}} ገንቢዎች በውይይቱ ይሳተፋሉ።",
+    "reasons": {
+      "vote": "የረዱህን ርዕሶችና መልሶች ምረጥ፦ ምርጦቹ ወደ ላይ የሚወጡት በዚህ ነው።",
+      "save": "የሚስቡህን ርዕሶች በኋላ በሁሉም መሣሪያዎችህ ለማግኘት አስቀምጥ።",
+      "answer": "ለዚህ ርዕስ መልስ ስጥ፦ ልምድህ ሌላ ገንቢን ሊረዳ እና ዝና ሊያስገኝልህ ይችላል።",
+      "comment": "ውይይቱን ተቀላቀል፦ ማብራሪያ ጠይቅ፣ ለአስተያየት መልስ ስጥ።",
+      "ask": "ጥያቄህን ለማኅበረሰቡ ጠይቅ፦ ከመላው አህጉሩ የመጡ ገንቢዎች ይመልሳሉ።",
+      "follow": "አባላትንና መለያዎችን ተከተል፦ ርዕሶቻቸው መጋቢህን ይሠራሉ።",
+      "feed": "መጋቢህን፣ ርዕሶችህንና የንባብ ዝርዝርህን ለማግኘት ግባ።"
+    }
+  },
+  "tag": {
+    "follow": "ተከተል",
+    "following": "እየተከተልክ ነው"
+  },
+  "aside": {
+    "label": "ስለ ውይይቱ",
+    "helpTitle": "ገንቢን እርዳ",
+    "helpEmpty": "ሁሉም ጥያቄዎች መልስ አግኝተዋል። ጎበዝ!",
+    "trendingTitle": "የዚህ ሳምንት ተወዳጆች",
+    "trendingEmpty": "በዚህ ሳምንት እስካሁን አዲስ ነገር የለም።",
+    "seeAll": "ሁሉንም ተመልከት",
+    "tipsTitle": "ጥሩ ጥያቄ መጠየቅ",
+    "tips": {
+      "title": "ግልጽ ርዕስ፦ ቴክኖሎጂውና የሚያግድህ ነገር።",
+      "code": "ተዛማጁ ኮድ በኮድ ሳጥን ውስጥ፣ በቅጽበታዊ ገጽ እይታ አይደለም።",
+      "tried": "አስቀድመህ የሞከርከው፣ እና ሙሉው የስህተት መልእክት።",
+      "accept": "መልስ ረድቶሃል? ተቀበለው፦ ርዕሱ «ተፈቷል» ይሆናል።"
+    }
+  },
+  "topic": {
+    "back": "ውይይት",
+    "loading": "ርዕሱ እየተጫነ ነው",
+    "notFoundTitle": "ይህ ርዕስ ከእንግዲህ የለም",
+    "notFoundText": "ምናልባት በጸሐፊው ወይም በአወያይ ተሰርዞ ሊሆን ይችላል።",
+    "errorTitle": "ርዕሱ ሊጫን አልቻለም",
+    "errorText": "ግንኙነትህን አረጋግጥ፣ ከዚያ እንደገና ሞክር።",
+    "actions": "የርዕሱ ተግባራት",
+    "toAnswers_one": "ወደ መልሱ ሂድ ({{count}})",
+    "toAnswers_other": "ወደ መልሶቹ ሂድ ({{count}})",
+    "posted": "የታተመው",
+    "edited": "ተስተካክሏል {{when}}",
+    "reputation_one": "{{count}} የዝና ነጥብ",
+    "reputation_other": "{{count}} የዝና ነጥቦች",
+    "reputationShort": "ነጥብ",
+    "solved": "ተፈቷል · መፍትሔውን ተመልከት",
+    "closed": "ተዘግቷል፦ አዲስ መልስ የለም",
+    "manage": "ርዕሱን አስተዳድር",
+    "close": "ርዕሱን ዝጋ",
+    "closeHint": "አዲስ መልሶችን አይቀበልም።",
+    "reopen": "ርዕሱን እንደገና ክፈት",
+    "reopenHint": "እንደገና መልሶችን ይቀበላል።",
+    "closedToast": "ርዕሱ ተዘግቷል",
+    "reopenedToast": "ርዕሱ እንደገና ተከፍቷል",
+    "deleteBlocked": "አስቀድሞ መልሶች አሉት፦ ሊሰርዘው የሚችለው አወያይ ብቻ ነው።",
+    "deleteTitle": "ይህ ርዕስ ይሰረዝ?",
+    "deleteText": "«{{title}}» ከድምፆቹና ከአስተያየቶቹ ጋር ይሰረዛል። መመለስ አይቻልም።",
+    "deleted": "ርዕሱ ተሰርዟል"
+  },
+  "menu": {
+    "edit": "አስተካክል",
+    "delete": "ሰርዝ"
+  },
+  "vote": {
+    "group": {
+      "topic": "ለዚህ ርዕስ ድምፅ ስጥ",
+      "answer": "ለዚህ መልስ ድምፅ ስጥ"
+    },
+    "up": {
+      "topic": "ይህ ርዕስ ጠቃሚ ነው",
+      "answer": "ይህ መልስ ጠቃሚ ነው"
+    },
+    "down": {
+      "topic": "ይህ ርዕስ ግልጽ አይደለም ወይም ጠቃሚ አይደለም",
+      "answer": "ይህ መልስ ጠቃሚ አይደለም"
+    },
+    "own": {
+      "topic": "የአንተ ርዕስ ነው፦ ድምፅ ልትሰጠው አትችልም",
+      "answer": "የአንተ መልስ ነው፦ ድምፅ ልትሰጠው አትችልም"
+    },
+    "score_one": "ውጤት፦ {{count}}",
+    "score_other": "ውጤት፦ {{count}}"
+  },
+  "share": {
+    "title": "አጋራ",
+    "short": "አጋራ",
+    "copy": "አገናኙን ቅዳ",
+    "copied": "አገናኙ ተቀድቷል",
+    "copyFailed": "አገናኙ ሊቀዳ አልቻለም።",
+    "native": "በ… አጋራ",
+    "on": "በ{{network}} አጋራ"
+  },
+  "answers": {
+    "title_one": "መልስ ({{count}})",
+    "title_other": "መልሶች ({{count}})",
+    "sortBest": "ምርጦቹ",
+    "sortNewest": "አዲሶቹ",
+    "sortOldest": "የቆዩት",
+    "label": "መልስህ",
+    "placeholder": "መልስህን ጨምር…",
+    "placeholderOwn": "ማብራሪያ፣ በመሃል ያገኘኸው መፍትሔ? ጨምረው…",
+    "submit": "መልሱን አትም",
+    "guideline": "ግልጽና ትሁት ሁን፦ ኮድ፣ ምንጮች፣ ልምድህ።",
+    "posted": "መልሱ ታትሟል",
+    "closed": "ይህ ርዕስ ተዘግቷል፦ አዲስ መልሶችን አይቀበልም።",
+    "emptyTitle": "እስካሁን መልስ የለም",
+    "emptyText": "{{name}}ን ለመርዳት የመጀመሪያው ሁን፦ ትንሽ ፍንጭ እንኳን ሁሉንም ሊፈታ ይችላል።",
+    "errorTitle": "መልሶቹ ሊጫኑ አልቻሉም",
+    "errorText": "ግንኙነትህን አረጋግጥ፣ ከዚያ እንደገና ሞክር።",
+    "acceptedBy": "{{name}} የተቀበለው መፍትሔ",
+    "accept": "እንደ መፍትሔ ተቀበል",
+    "acceptedShort": "መፍትሔ",
+    "unaccept": "መፍትሔነቱን አስወግድ",
+    "acceptedToast": "መልሱ ተቀባይነት አግኝቷል፦ ርዕሱ ተፈቷል",
+    "unacceptedToast": "ከእንግዲህ መፍትሔ አይደለም",
+    "reply": "መልስ ስጥ",
+    "menu": "የመልሱ አማራጮች",
+    "editLabel": "መልስህን አስተካክል",
+    "updated": "መልሱ ተስተካክሏል",
+    "deleteTitle": "ይህ መልስ ይሰረዝ?",
+    "deleteText": "ከድምፆቹና ከአስተያየቶቹ ጋር ይሰረዛል። መመለስ አይቻልም።",
+    "deleteAcceptedText": "ተቀባይነት ያገኘው መፍትሔ ነው፦ ርዕሱ ከእንግዲህ የተፈታ አይሆንም። ከድምፆቹና ከአስተያየቶቹ ጋር ይሰረዛል።",
+    "deleted": "መልሱ ተሰርዟል"
+  },
+  "thread": {
+    "collapse_one": "ውይይቱን አጥፍ ({{count}})",
+    "collapse_other": "ውይይቱን አጥፍ ({{count}})",
+    "expand_one": "ውይይቱን ዘርጋ ({{count}})",
+    "expand_other": "ውይይቱን ዘርጋ ({{count}})",
+    "show_one": "{{count}} አስተያየት አሳይ",
+    "show_other": "{{count}} አስተያየቶችን አሳይ",
+    "more_one": "ሌላ {{count}} አስተያየት ተመልከት",
+    "more_other": "ሌሎች {{count}} አስተያየቶችን ተመልከት"
+  },
+  "comment": {
+    "reply": "መልስ ስጥ",
+    "author": "ጸሐፊ",
+    "edited": "ተስተካክሏል",
+    "menu": "የአስተያየቱ አማራጮች",
+    "placeholder": "አስተያየትህ…",
+    "label": "ለ{{name}} መልስ ስጥ",
+    "editLabel": "አስተያየትህን አስተካክል",
+    "submit": "አስተያየት ስጥ",
+    "delete": "ሰርዝ",
+    "deleteTitle": "ይህ አስተያየት ይሰረዝ?",
+    "deleteText": "በቋሚነት ይሰረዛል።",
+    "deleted": "አስተያየቱ ተሰርዟል"
+  },
+  "clarify": {
+    "title_one": "ማብራሪያ ({{count}})",
+    "title_other": "ማብራሪያዎች ({{count}})",
+    "ask": "ማብራሪያ ጠይቅ",
+    "placeholder": "ስሪት፣ የስህተት መልእክት፣ የጎደለ ዝርዝር?",
+    "label": "ጸሐፊውን ማብራሪያ ጠይቅ",
+    "submit": "ላክ"
+  },
+  "sidebar": {
+    "label": "ስለ ርዕሱ",
+    "author": "ጸሐፊው",
+    "follow": "ተከተል",
+    "following": "እየተከተልክ ነው",
+    "editProfile": "መገለጫዬን አስተካክል",
+    "location": "ቦታ",
+    "level": "ደረጃ",
+    "reputation": "ዝና",
+    "joined": "አባል የሆነው ከ",
+    "openToWork": "ለዕድሎች ክፍት",
+    "topics_one": "{{count}} ርዕስ",
+    "topics_other": "{{count}} ርዕሶች",
+    "answers_one": "{{count}} መልስ",
+    "answers_other": "{{count}} መልሶች",
+    "moreFrom": "ተጨማሪ ከ{{name}}",
+    "related": "ተዛማጅ ርዕሶች"
+  },
+  "form": {
+    "newTitle": "አዲስ ርዕስ",
+    "editTitle": "ርዕሱን አስተካክል",
+    "backToTopic": "ወደ ርዕሱ ተመለስ",
+    "mode": "የአርታኢው ሁነታ",
+    "write": "ጻፍ",
+    "preview": "ቅድመ እይታ",
+    "titleLabel": "ርዕስ",
+    "titlePlaceholder": "የጥያቄህ ርዕስ…",
+    "titleHint": "ግልጽ ዓረፍተ ነገር፦ ቴክኖሎጂው፣ ማድረግ የምትፈልገው፣ የሚያግድህ ነገር።",
+    "tagsLabel": "መለያዎች",
+    "tagsHint_one": "እስከ {{count}} መለያ፦ ቴክኖሎጂውና ርዕሰ ጉዳዩ።",
+    "tagsHint_other": "እስከ {{count}} መለያዎች፦ ቴክኖሎጂዎቹና ርዕሰ ጉዳዩ።",
+    "tagsPlaceholder_one": "እስከ {{count}} መለያ ጨምር…",
+    "tagsPlaceholder_other": "እስከ {{count}} መለያዎች ጨምር…",
+    "tagsMore": "ሌላ መለያ?",
+    "tagsFull_one": "ቢበዛ {{count}} መለያ",
+    "tagsFull_other": "ቢበዛ {{count}} መለያዎች",
+    "tagsChosen": "የተመረጡ መለያዎች",
+    "tagSuggestions": "የመለያ ጥቆማዎች",
+    "removeTag": "መለያ {{tag}}ን አስወግድ",
+    "createTag": "«{{tag}}» ጨምር",
+    "bodyLabel": "ይዘት",
+    "bodyPlaceholder": "ችግርህን ግለጽ፦ ማግኘት የምትፈልገው፣ በምትኩ የሚሆነው፣ ተዛማጁ ኮድ፣ አስቀድመህ የሞከርከው…",
+    "publish": "አትም",
+    "save": "አስቀምጥ",
+    "cancel": "ሰርዝ",
+    "published": "ርዕሱ ታትሟል",
+    "updated": "ርዕሱ ተስተካክሏል",
+    "draftSaved": "ረቂቁ በዚህ መሣሪያ ላይ ተቀምጧል",
+    "draftRestored": "ረቂቅህ ተመልሷል።",
+    "startOver": "ከመጀመሪያው ጀምር",
+    "discard": "ረቂቁን አጥፋ",
+    "discardTitle": "ረቂቁ ይጥፋ?",
+    "discardText": "ርዕሱ፣ መለያዎቹና ይዘቱ ይጸዳሉ።",
+    "discardConfirm": "አጥፋ",
+    "leaveTitle": "ሳታስቀምጥ ትወጣለህ?",
+    "leaveText": "ለውጦችህ ይጠፋሉ።",
+    "leaveConfirm": "ውጣ",
+    "leaveCancel": "ቆይ",
+    "helpLabel": "የአጻጻፍ እርዳታ",
+    "previewNow": "አሁን",
+    "previewNoTitle": "ርዕስህ እዚህ ይታያል",
+    "previewNoBody": "የርዕስህ ይዘት እዚህ ይታያል።",
+    "similarTitle": "እነዚህ ርዕሶች ምናልባት ጥያቄህን አስቀድመው መልሰዋል",
+    "submitHint": "ለማተም {{mod}} + Enter",
+    "commentEmpty": "ከመላክህ በፊት የሆነ ነገር ጻፍ።",
+    "imagesPending": "ምስሎቹ ተልከው እስኪያልቁ ጠብቅ።"
+  },
+  "guide": {
+    "title": {
+      "title": "ጥሩ ርዕስ",
+      "points": [
+        "ችግርህን በአንድ ዓረፍተ ነገር አጠቃልል፦ ቴክኖሎጂው፣ ለማድረግ የምትሞክረው፣ የሚያግድህ ነገር።",
+        "«Flutter፦ ከመስመር ውጭ ማመሳሰል ድግግሞሽ ይፈጥራል» ከ«እባካችሁ እርዱኝ!» ይሻላል።",
+        "ግልጽ ርዕስ ትክክለኛ ሰዎችን ይስባል፣ ከአንተ በኋላ ተመሳሳይ ነገር የሚፈልጉትንም ይረዳል።"
+      ]
+    },
+    "tags": {
+      "title": "መለያዎችን መምረጥ",
+      "points": [
+        "እስከ 5 መለያዎች፦ ቴክኖሎጂው (React፣ Spring Boot…) እና ርዕሰ ጉዳዩ (አፈጻጸም፣ ሙያ…)።",
+        "ጥያቄህ እነዚህን መለያዎች ለሚከተሉ ገንቢዎች መጋቢ ይደርሳል።",
+        "አስቀድሞ ያለ መለያ ምረጥ፦ ስትጽፍ ይጠቆማል።"
+      ]
+    },
+    "body": {
+      "title": "ችግሩን መግለጽ",
+      "points": [
+        "ማግኘት የምትፈልገው፣ እና በምትኩ የሚሆነው።",
+        "ተዛማጁ ኮድ በ```java ሳጥን ውስጥ (ከቋንቋው ጋር)፦ ቀለም ይኖረዋል፣ መቅዳትም ይቻላል።",
+        "ሙሉው የስህተት መልእክት፣ እና አስቀድመህ የሞከርከው።",
+        "ስሪቶችህና አካባቢህ፦ ስልክ፣ አሳሽ፣ ሥርዓት።"
+      ]
+    }
+  }
+}

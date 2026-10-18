@@ -7,6 +7,7 @@ import com.hautetech.ndadiee.common.BaseEntity;
 import com.hautetech.ndadiee.model.user.Developer;
 
 import org.hibernate.annotations.DynamicUpdate;
+import org.hibernate.annotations.Formula;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -19,11 +20,13 @@ import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
+import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 import lombok.ToString;
 import lombok.experimental.SuperBuilder;
 
@@ -82,4 +85,14 @@ public class Question extends BaseEntity {
     @Column(nullable = false)
     @Builder.Default
     private QuestionStatus status = QuestionStatus.OPEN;
+
+    /**
+     * Pertinence dans le fil du forum (« Pertinents », sort=hotness) : les votes et les réponses font monter un
+     * sujet, les heures qui passent le font redescendre, comme le classement de Hacker News. Un sujet tout neuf
+     * passe un moment en tête : c'est là qu'il a besoin de réponses. Calculée par la base à chaque lecture, elle
+     * n'est jamais enregistrée.
+     */
+    @Formula("(score + 2 * answer_count + 1) / power(date_part('epoch', now() - created_at) / 3600 + 2, 1.5)")
+    @Setter(AccessLevel.NONE)
+    private double hotness;
 }

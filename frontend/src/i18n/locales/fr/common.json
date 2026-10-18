@@ -154,7 +154,8 @@
     "settings": "Réglages",
     "login": "Connexion",
     "register": "Inscription",
-    "notFound": "Page introuvable"
+    "notFound": "Page introuvable",
+    "editTopic": "Modifier le sujet"
   },
   "enums": {
     "experienceLevel": {
@@ -743,5 +744,52 @@
       "reputation_many": "{{count}} points de réputation",
       "reputation_other": "{{count}} points de réputation"
     }
+  },
+  "code": {
+    "copy": "Copier",
+    "copied": "Copié"
+  },
+  "editor": {
+    "mode": "Mode de l'éditeur",
+    "write": "Écrire",
+    "preview": "Aperçu",
+    "toolbar": "Mise en forme",
+    "tools": {
+      "bold": "Gras",
+      "italic": "Italique",
+      "link": "Lien",
+      "heading": "Titre",
+      "quote": "Citation",
+      "code": "Code",
+      "codeBlock": "Bloc de code",
+      "list": "Liste à puces",
+      "orderedList": "Liste numérotée",
+      "image": "Image"
+    },
+    "sample": {
+      "bold": "texte en gras",
+      "italic": "texte en italique",
+      "link": "texte du lien",
+      "code": "code",
+      "word": "texte"
+    },
+    "help": "Aide",
+    "helpTitle": "Markdown, les bases",
+    "emptyPreview": "Rien à prévisualiser pour l'instant.",
+    "remaining_one": "{{count}} caractère restant",
+    "remaining_many": "{{count}} caractères restants",
+    "remaining_other": "{{count}} caractères restants",
+    "uploading": "Envoi de {{name}}… ({{id}})",
+    "imageAlt": "description de l'image",
+    "dropImage": "Dépose tes images ici",
+    "uploadingStatus_one": "Envoi d'une image…",
+    "uploadingStatus_many": "Envoi de {{count}} images…",
+    "uploadingStatus_other": "Envoi de {{count}} images…",
+    "tooManyImages_one": "{{count}} image à la fois au plus : la première part.",
+    "tooManyImages_many": "{{count}} images à la fois au plus : les premières partent.",
+    "tooManyImages_other": "{{count}} images à la fois au plus : les premières partent.",
+    "imageType": "« {{name}} » : formats acceptés, JPEG, PNG, WebP et GIF.",
+    "imageTooBig": "« {{name}} » dépasse {{max}} Mo.",
+    "uploadFailed": "« {{name}} » n'a pas pu être envoyée."
   }
 }

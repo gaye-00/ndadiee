@@ -1,14 +1,19 @@
 package com.hautetech.ndadiee.service.content;
 
 import java.util.List;
+import java.util.Set;
 
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.hautetech.ndadiee.common.Pageables;
 import com.hautetech.ndadiee.dto.request.QuestionRequest;
+import com.hautetech.ndadiee.dto.response.ForumOverviewResponse;
+import com.hautetech.ndadiee.dto.response.ForumOverviewResponse.TagCount;
 import com.hautetech.ndadiee.dto.response.PageResponse;
 import com.hautetech.ndadiee.dto.response.QuestionResponse;
 import com.hautetech.ndadiee.dto.response.QuestionSummaryResponse;
@@ -16,17 +21,23 @@ import com.hautetech.ndadiee.event.QuestionPostedEvent;
 import com.hautetech.ndadiee.exception.ForbiddenException;
 import com.hautetech.ndadiee.exception.OperationNotAllowedException;
 import com.hautetech.ndadiee.exception.ResourceNotFoundException;
+import com.hautetech.ndadiee.exception.UnauthorizedException;
 import com.hautetech.ndadiee.mapper.QuestionMapper;
 import com.hautetech.ndadiee.model.ContentType;
 import com.hautetech.ndadiee.model.content.Question;
 import com.hautetech.ndadiee.model.content.QuestionStatus;
 import com.hautetech.ndadiee.model.user.Developer;
 import com.hautetech.ndadiee.repository.AnswerRepository;
+import com.hautetech.ndadiee.repository.BookmarkRepository;
 import com.hautetech.ndadiee.repository.CommentRepository;
+import com.hautetech.ndadiee.repository.DeveloperRepository;
 import com.hautetech.ndadiee.repository.QuestionRepository;
 import com.hautetech.ndadiee.repository.VoteRepository;
+import com.hautetech.ndadiee.repository.specification.QuestionFilter;
+import com.hautetech.ndadiee.repository.specification.QuestionFilter.Following;
 import com.hautetech.ndadiee.repository.specification.QuestionSpecifications;
 import com.hautetech.ndadiee.service.SlugService;
+import com.hautetech.ndadiee.service.interaction.BookmarkService;
 import com.hautetech.ndadiee.service.interaction.VoteService;
 import com.hautetech.ndadiee.service.user.UserService;
 
@@ -39,23 +50,75 @@ import lombok.extern.slf4j.Slf4j;
 @RequiredArgsConstructor
 public class QuestionService {
 
+    // Adresses déjà prises, par l'API (/v1/questions/saved, /overview) et par l'application (/forum/new)
+    private static final Set<String> RESERVED_SLUGS = Set.of("new", "saved", "overview");
+    // Tags cités dans la vue d'ensemble du forum
+    private static final int OVERVIEW_TAGS = 15;
+
     private final QuestionRepository questionRepository;
     private final AnswerRepository answerRepository;
     private final VoteRepository voteRepository;
     private final CommentRepository commentRepository;
+    private final BookmarkRepository bookmarkRepository;
+    private final DeveloperRepository developerRepository;
     private final UserService userService;
     private final TagService tagService;
     private final SlugService slugService;
     private final VoteService voteService;
+    private final BookmarkService bookmarkService;
     private final QuestionMapper questionMapper;
     private final ApplicationEventPublisher eventPublisher;
 
+    /**
+     * Les sujets des filtres, dans l'ordre demandé (départagé par l'identifiant : d'une page à l'autre, un sujet
+     * n'est ni vu deux fois ni sauté). {@code following} : seulement le fil du membre, les auteurs et les tags qu'il
+     * suit ; réservé à un membre connecté.
+     */
     @Transactional(readOnly = true)
-    public PageResponse<QuestionSummaryResponse> list(String q, String tag, QuestionStatus status,
-            String author, Boolean unanswered, Pageable pageable) {
+    public PageResponse<QuestionSummaryResponse> list(QuestionFilter filter, boolean following, Long currentUserId,
+            Pageable pageable) {
+        if (following) {
+            if (currentUserId == null) {
+                throw new UnauthorizedException();
+            }
+            filter = filter.within(new Following(
+                    developerRepository.findFollowingIds(currentUserId),
+                    developerRepository.findFollowedTagIds(currentUserId)));
+        }
         Page<Question> page = questionRepository.findAll(
-                QuestionSpecifications.filter(q, tag, status, lowerCase(author), unanswered), pageable);
-        return PageResponse.from(page.map(questionMapper::toSummary));
+                QuestionSpecifications.filter(filter), Pageables.inTotalOrder(pageable));
+        return PageResponse.from(page, toSummaries(page.getContent(), currentUserId));
+    }
+
+    /** La liste de lecture du membre : les sujets qu'il a enregistrés, les derniers enregistrés d'abord. */
+    @Transactional(readOnly = true)
+    public PageResponse<QuestionSummaryResponse> listSaved(Long userId, Pageable pageable) {
+        Page<Question> page = bookmarkRepository.findSavedQuestions(
+                userId, PageRequest.of(pageable.getPageNumber(), pageable.getPageSize()));
+        List<QuestionSummaryResponse> content = page.getContent().stream()
+                .map(question -> {
+                    QuestionSummaryResponse summary = questionMapper.toSummary(question);
+                    summary.setBookmarkedByMe(true);
+                    return summary;
+                })
+                .toList();
+        return PageResponse.from(page, content);
+    }
+
+    /** Le forum en chiffres, et ses tags les plus utilisés (navigation du forum). */
+    @Transactional(readOnly = true)
+    public ForumOverviewResponse overview() {
+        List<TagCount> tags = questionRepository.countTopicsByTag(PageRequest.of(0, OVERVIEW_TAGS)).stream()
+                .map(row -> new TagCount((String) row[0], (String) row[1], ((Number) row[2]).longValue()))
+                .toList();
+        return ForumOverviewResponse.builder()
+                .topics(questionRepository.count())
+                .solved(questionRepository.countByAcceptedAnswerIsNotNull())
+                .unanswered(questionRepository.countByAnswerCount(0))
+                .answers(answerRepository.count())
+                .contributors(questionRepository.countContributors())
+                .tags(tags)
+                .build();
     }
 
     /** Consulter une question compte une vue. */
@@ -72,7 +135,8 @@ public class QuestionService {
 
         Question question = Question.builder()
                 .title(request.getTitle().trim())
-                .slug(slugService.generateUniqueSlug(request.getTitle(), questionRepository::existsBySlug))
+                .slug(slugService.generateUniqueSlug(request.getTitle(),
+                        slug -> RESERVED_SLUGS.contains(slug) || questionRepository.existsBySlug(slug)))
                 .body(request.getBody())
                 .author(author)
                 .build();
@@ -130,6 +194,7 @@ public class QuestionService {
         }
         voteRepository.deleteByTargets(ContentType.QUESTION, List.of(questionId));
         commentRepository.deleteByTargets(ContentType.QUESTION, List.of(questionId));
+        bookmarkRepository.deleteByQuestionId(questionId);
         tagService.releaseTags(question.getTags());
 
         questionRepository.delete(question);
@@ -152,10 +217,19 @@ public class QuestionService {
     private QuestionResponse toResponse(Question question, Long currentUserId) {
         QuestionResponse response = questionMapper.toResponse(question);
         response.setCurrentUserVote(voteService.getUserVote(currentUserId, ContentType.QUESTION, question.getId()));
+        response.setBookmarkedByMe(bookmarkService.isBookmarked(currentUserId, question.getId()));
         return response;
     }
 
-    private String lowerCase(String value) {
-        return value == null ? null : value.toLowerCase();
+    // Une page de sujets, avec ceux que le membre connecté a enregistrés (une requête pour toute la page)
+    private List<QuestionSummaryResponse> toSummaries(List<Question> questions, Long currentUserId) {
+        Set<Long> bookmarked = bookmarkService.bookmarkedIds(currentUserId, questions.stream().map(Question::getId).toList());
+        return questions.stream()
+                .map(question -> {
+                    QuestionSummaryResponse summary = questionMapper.toSummary(question);
+                    summary.setBookmarkedByMe(currentUserId == null ? null : bookmarked.contains(question.getId()));
+                    return summary;
+                })
+                .toList();
     }
 }

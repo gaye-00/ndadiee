@@ -18,7 +18,9 @@ public final class TextUtils {
                 .replaceAll("!\\[[^\\]]*\\]\\([^)]*\\)", " ")        // images
                 .replaceAll("\\[([^\\]]*)\\]\\([^)]*\\)", "$1")      // liens : on garde le libellé
                 .replaceAll("(?m)^\\s{0,3}(#{1,6}|>|[-*+]|\\d+\\.)\\s+", "") // titres, citations, listes
-                .replaceAll("[*_`~]", "")
+                .replaceAll("[`~]", "")
+                // Les marques d'emphase (*gras*, _italique_), pas les « _ » d'un identifiant (ecole_id)
+                .replaceAll("(?<![\\p{L}\\p{N}])[*_]+|[*_]+(?![\\p{L}\\p{N}])", "")
                 .replaceAll("\\s+", " ")
                 .trim();
         if (text.length() <= EXCERPT_LENGTH) {

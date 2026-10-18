@@ -12,8 +12,10 @@ public interface QuestionMapper {
 
     @Mapping(target = "excerpt", expression = "java(com.hautetech.ndadiee.common.TextUtils.excerpt(question.getBody()))")
     @Mapping(target = "hasAcceptedAnswer", expression = "java(question.getAcceptedAnswer() != null)")
+    @Mapping(target = "readingMinutes", expression = "java(com.hautetech.ndadiee.common.TextUtils.readingTimeMinutes(question.getBody()))")
     QuestionSummaryResponse toSummary(Question question);
 
     @Mapping(target = "acceptedAnswerId", source = "acceptedAnswer.id")
+    @Mapping(target = "readingMinutes", expression = "java(com.hautetech.ndadiee.common.TextUtils.readingTimeMinutes(question.getBody()))")
     QuestionResponse toResponse(Question question);
 }

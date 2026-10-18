@@ -154,7 +154,8 @@
     "settings": "Definições",
     "login": "Entrar",
     "register": "Registo",
-    "notFound": "Página não encontrada"
+    "notFound": "Página não encontrada",
+    "editTopic": "Editar o tópico"
   },
   "enums": {
     "experienceLevel": {
@@ -743,5 +744,52 @@
       "reputation_many": "{{count}} pontos de reputação",
       "reputation_other": "{{count}} pontos de reputação"
     }
+  },
+  "code": {
+    "copy": "Copiar",
+    "copied": "Copiado"
+  },
+  "editor": {
+    "mode": "Modo do editor",
+    "write": "Escrever",
+    "preview": "Pré-visualizar",
+    "toolbar": "Formatação",
+    "tools": {
+      "bold": "Negrito",
+      "italic": "Itálico",
+      "link": "Ligação",
+      "heading": "Título",
+      "quote": "Citação",
+      "code": "Código",
+      "codeBlock": "Bloco de código",
+      "list": "Lista com marcadores",
+      "orderedList": "Lista numerada",
+      "image": "Imagem"
+    },
+    "sample": {
+      "bold": "texto a negrito",
+      "italic": "texto em itálico",
+      "link": "texto da ligação",
+      "code": "código",
+      "word": "texto"
+    },
+    "help": "Ajuda",
+    "helpTitle": "Markdown, o essencial",
+    "emptyPreview": "Ainda nada para pré-visualizar.",
+    "remaining_one": "{{count}} carácter restante",
+    "remaining_many": "{{count}} caracteres restantes",
+    "remaining_other": "{{count}} caracteres restantes",
+    "uploading": "A enviar {{name}}… ({{id}})",
+    "imageAlt": "descrição da imagem",
+    "dropImage": "Larga aqui as tuas imagens",
+    "uploadingStatus_one": "A enviar uma imagem…",
+    "uploadingStatus_many": "A enviar {{count}} imagens…",
+    "uploadingStatus_other": "A enviar {{count}} imagens…",
+    "tooManyImages_one": "{{count}} imagem de cada vez no máximo: a primeira é enviada.",
+    "tooManyImages_many": "{{count}} imagens de cada vez no máximo: as primeiras são enviadas.",
+    "tooManyImages_other": "{{count}} imagens de cada vez no máximo: as primeiras são enviadas.",
+    "imageType": "«{{name}}»: formatos aceites, JPEG, PNG, WebP e GIF.",
+    "imageTooBig": "«{{name}}» ultrapassa {{max}} MB.",
+    "uploadFailed": "Não foi possível enviar «{{name}}»."
   }
 }

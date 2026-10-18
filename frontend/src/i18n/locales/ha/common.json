@@ -149,7 +149,8 @@
     "settings": "Saituna",
     "login": "Shiga",
     "register": "Rajista",
-    "notFound": "Ba a sami shafin ba"
+    "notFound": "Ba a sami shafin ba",
+    "editTopic": "Gyara batu"
   },
   "enums": {
     "experienceLevel": {
@@ -702,5 +703,49 @@
       "reputation_one": "makin suna {{count}}",
       "reputation_other": "makin suna {{count}}"
     }
+  },
+  "code": {
+    "copy": "Kwafa",
+    "copied": "An kwafa"
+  },
+  "editor": {
+    "mode": "Yanayin edita",
+    "write": "Rubuta",
+    "preview": "Samfoti",
+    "toolbar": "Tsarawa",
+    "tools": {
+      "bold": "Mai kauri",
+      "italic": "Mai karkata",
+      "link": "Mahaɗi",
+      "heading": "Take",
+      "quote": "Ƙaulin",
+      "code": "Lamba",
+      "codeBlock": "Akwatin lamba",
+      "list": "Jeri mai digo",
+      "orderedList": "Jeri mai lambobi",
+      "image": "Hoto"
+    },
+    "sample": {
+      "bold": "rubutu mai kauri",
+      "italic": "rubutu mai karkata",
+      "link": "rubutun mahaɗi",
+      "code": "lamba",
+      "word": "rubutu"
+    },
+    "help": "Taimako",
+    "helpTitle": "Tushen Markdown",
+    "emptyPreview": "Babu abin samfoti tukuna.",
+    "remaining_one": "Harafi {{count}} ya rage",
+    "remaining_other": "Haruffa {{count}} sun rage",
+    "uploading": "Ana tura {{name}}… ({{id}})",
+    "imageAlt": "bayanin hoton",
+    "dropImage": "Saki hotunanka a nan",
+    "uploadingStatus_one": "Ana tura hoto…",
+    "uploadingStatus_other": "Ana tura hotuna {{count}}…",
+    "tooManyImages_one": "Hoto {{count}} a lokaci ɗaya: na farko yana tafiya.",
+    "tooManyImages_other": "Hotuna {{count}} a lokaci ɗaya: na farkon suna tafiya.",
+    "imageType": "«{{name}}»: tsarin da ake karɓa, JPEG, PNG, WebP da GIF.",
+    "imageTooBig": "«{{name}}» ya wuce MB {{max}}.",
+    "uploadFailed": "Ba a iya tura «{{name}}» ba."
   }
 }

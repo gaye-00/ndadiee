@@ -26,6 +26,7 @@ import com.hautetech.ndadiee.event.AnswerPostedEvent;
 import com.hautetech.ndadiee.exception.ForbiddenException;
 import com.hautetech.ndadiee.exception.OperationNotAllowedException;
 import com.hautetech.ndadiee.mapper.AnswerMapper;
+import com.hautetech.ndadiee.mapper.CommentMapper;
 import com.hautetech.ndadiee.model.ContentType;
 import com.hautetech.ndadiee.model.content.Answer;
 import com.hautetech.ndadiee.model.content.Question;
@@ -73,6 +74,9 @@ class AnswerServiceTest {
 
     @Mock
     private AnswerMapper answerMapper;
+
+    @Mock
+    private CommentMapper commentMapper;
 
     @Mock
     private ApplicationEventPublisher eventPublisher;

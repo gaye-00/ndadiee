@@ -1,0 +1,440 @@
+{
+  "intro": {
+    "eyebrow": "Forum",
+    "titleAsk": "Pose ta question.",
+    "titleShare": "Partage ce que tu sais.",
+    "lead": "L'entraide des devs du continent : des questions précises, des réponses qui débloquent, des discussions qui font avancer. Chaque réponse utile rapporte de la réputation à son auteur.",
+    "topics_one": "{{count}} sujet",
+    "topics_many": "{{count}} sujets",
+    "topics_other": "{{count}} sujets",
+    "answers_one": "{{count}} réponse",
+    "answers_many": "{{count}} réponses",
+    "answers_other": "{{count}} réponses",
+    "contributors_one": "{{count}} dev y participe",
+    "contributors_many": "{{count}} devs y participent",
+    "contributors_other": "{{count}} devs y participent",
+    "solved_one": "{{count}} résolu",
+    "solved_many": "{{count}} résolus",
+    "solved_other": "{{count}} résolus",
+    "unanswered_one": "{{count}} attend une réponse",
+    "unanswered_many": "{{count}} attendent une réponse",
+    "unanswered_other": "{{count}} attendent une réponse",
+    "ask": "Poser une question"
+  },
+  "nav": {
+    "label": "Navigation du forum",
+    "views": "Vues du forum",
+    "membersOnly": "Réservé aux membres connectés",
+    "followedTags": "Tes tags",
+    "noFollowedTags": "Suis des tags (en haut de la page d'un tag) : leurs sujets composeront ton fil.",
+    "popularTags": "Tags populaires",
+    "removeTag": "Retirer le filtre #{{tag}}"
+  },
+  "views": {
+    "all": "Tous les sujets",
+    "following": "Mon fil",
+    "unanswered": "Sans réponse",
+    "solved": "Résolus",
+    "mine": "Mes sujets",
+    "saved": "Enregistrés"
+  },
+  "join": {
+    "title": "Rejoins la conversation",
+    "text": "Pose tes questions, aide les autres devs et garde les meilleurs sujets dans ta liste de lecture.",
+    "textCount_one": "{{count}} dev du continent partage déjà ce qu'il sait ici. Pose tes questions, réponds, garde les meilleurs sujets.",
+    "textCount_many": "{{count}} devs du continent partagent déjà ce qu'ils savent ici. Pose tes questions, réponds, garde les meilleurs sujets.",
+    "textCount_other": "{{count}} devs du continent partagent déjà ce qu'ils savent ici. Pose tes questions, réponds, garde les meilleurs sujets.",
+    "register": "Créer un compte",
+    "login": "Se connecter"
+  },
+  "filters": {
+    "label": "Filtrer les sujets",
+    "search": "Rechercher dans le forum",
+    "searchPlaceholder": "Un mot-clé, une erreur, une techno…",
+    "tag": "Tag",
+    "anyTag": "Tous les tags",
+    "tagSearch": "Chercher un tag…",
+    "noTag": "Aucun tag ne correspond."
+  },
+  "sort": {
+    "label": "Ordre des sujets",
+    "relevant": "Pertinents",
+    "recent": "Récents",
+    "top": "Top"
+  },
+  "period": {
+    "label": "Période",
+    "week": "Semaine",
+    "month": "Mois",
+    "year": "Année",
+    "all": "Toujours"
+  },
+  "results": {
+    "count_one": "{{count}} sujet",
+    "count_many": "{{count}} sujets",
+    "count_other": "{{count}} sujets",
+    "saved_one": "{{count}} sujet enregistré",
+    "saved_many": "{{count}} sujets enregistrés",
+    "saved_other": "{{count}} sujets enregistrés",
+    "outOf": "sur {{total}}",
+    "loading": "Chargement des sujets",
+    "loadingMore": "Chargement de la suite",
+    "more": "Voir plus de sujets",
+    "moreError": "La suite n'a pas pu se charger.",
+    "errorTitle": "Le forum n'a pas pu se charger",
+    "errorText": "Vérifie ta connexion, puis réessaie.",
+    "noMatchTitle": "Aucun sujet ne correspond",
+    "noMatchText": "Essaie d'autres mots ou retire un filtre. Personne ne l'a encore demandé ? Pose la question : tu aideras aussi ceux qui la chercheront après toi.",
+    "clearFilters": "Effacer les filtres",
+    "askIt": "Poser la question"
+  },
+  "empty": {
+    "browse": "Parcourir tous les sujets",
+    "all": {
+      "title": "Le forum attend son premier sujet",
+      "text": "Une question, un problème qui résiste, un retour d'expérience : ouvre la discussion."
+    },
+    "following": {
+      "title": "Ton fil est encore vide",
+      "text": "Suis des tags et des membres : leurs nouveaux sujets arriveront ici."
+    },
+    "unanswered": {
+      "title": "Chaque question a sa réponse",
+      "text": "Bravo la communauté ! Reviens bientôt : une nouvelle question attendra peut-être ton aide."
+    },
+    "solved": {
+      "title": "Aucun sujet résolu pour l'instant",
+      "text": "Quand l'auteur d'une question accepte une réponse, son sujet arrive ici."
+    },
+    "mine": {
+      "title": "Tu n'as pas encore ouvert de sujet",
+      "text": "Une question, un conseil à demander, une expérience à partager : la communauté t'attend."
+    },
+    "saved": {
+      "title": "Ta liste de lecture est vide",
+      "text": "Enregistre un sujet avec le marque-page : tu le retrouveras ici, sur tous tes appareils."
+    }
+  },
+  "gate": {
+    "following": {
+      "title": "Ton fil, à ta mesure",
+      "text": "Connecte-toi pour suivre des tags et des membres : leurs sujets composeront ton fil."
+    },
+    "mine": {
+      "title": "Tes sujets, au même endroit",
+      "text": "Connecte-toi pour retrouver les sujets que tu as ouverts et suivre leurs réponses."
+    },
+    "saved": {
+      "title": "Ta liste de lecture",
+      "text": "Connecte-toi pour enregistrer des sujets et les retrouver plus tard, sur tous tes appareils."
+    }
+  },
+  "askCard": {
+    "title": "Tu n'as pas trouvé ta réponse ?",
+    "text": "Pose ta question : des devs de tout le continent te répondront."
+  },
+  "card": {
+    "solved": "Résolu",
+    "closed": "Fermé",
+    "new": "Nouveau",
+    "votes_one": "{{count}} vote",
+    "votes_many": "{{count}} votes",
+    "votes_other": "{{count}} votes",
+    "answers_one": "{{count}} réponse",
+    "answers_many": "{{count}} réponses",
+    "answers_other": "{{count}} réponses",
+    "answersSolved_one": "{{count}} réponse, acceptée",
+    "answersSolved_many": "{{count}} réponses, dont une acceptée",
+    "answersSolved_other": "{{count}} réponses, dont une acceptée",
+    "answersWord_one": "réponse",
+    "answersWord_many": "réponses",
+    "answersWord_other": "réponses",
+    "noAnswer": "Sans réponse",
+    "views_one": "{{count}} vue",
+    "views_many": "{{count}} vues",
+    "views_other": "{{count}} vues",
+    "reading_one": "{{count}} min de lecture",
+    "reading_many": "{{count}} min de lecture",
+    "reading_other": "{{count}} min de lecture"
+  },
+  "bookmark": {
+    "save": "Enregistrer",
+    "saved": "Enregistré",
+    "savedToast": "Enregistré dans ta liste de lecture",
+    "removedToast": "Retiré de ta liste de lecture",
+    "open": "Voir la liste",
+    "undo": "Annuler"
+  },
+  "signIn": {
+    "title": "Connecte-toi pour continuer",
+    "close": "Fermer",
+    "login": "Se connecter",
+    "register": "Créer un compte",
+    "free": "Gratuit, sans publicité. Une minute suffit.",
+    "community_one": "{{formatted}} dev participe déjà au forum.",
+    "community_many": "{{formatted}} devs participent déjà au forum.",
+    "community_other": "{{formatted}} devs participent déjà au forum.",
+    "reasons": {
+      "vote": "Vote pour les sujets et les réponses qui t'ont aidé : c'est ainsi que les meilleurs remontent.",
+      "save": "Enregistre les sujets qui t'intéressent pour les retrouver plus tard, sur tous tes appareils.",
+      "answer": "Réponds à ce sujet : ton expérience peut débloquer un autre dev, et te rapporter de la réputation.",
+      "comment": "Rejoins la discussion : demande une précision, réponds à un commentaire.",
+      "ask": "Pose ta question à la communauté : des devs de tout le continent y répondent.",
+      "follow": "Suis des membres et des tags : leurs sujets composeront ton fil.",
+      "feed": "Connecte-toi pour retrouver ton fil, tes sujets et ta liste de lecture."
+    }
+  },
+  "tag": {
+    "follow": "Suivre",
+    "following": "Suivi"
+  },
+  "aside": {
+    "label": "Autour du forum",
+    "helpTitle": "Aide un dev",
+    "helpEmpty": "Toutes les questions ont trouvé une réponse. Bravo !",
+    "trendingTitle": "Tendances de la semaine",
+    "trendingEmpty": "Rien de neuf cette semaine pour l'instant.",
+    "seeAll": "Tout voir",
+    "tipsTitle": "Bien poser sa question",
+    "tips": {
+      "title": "Un titre précis : la techno, et ce qui bloque.",
+      "code": "Le code en cause dans un bloc de code, pas en capture d'écran.",
+      "tried": "Ce que tu as déjà essayé, et le message d'erreur complet.",
+      "accept": "Une réponse t'a aidé ? Accepte-la : le sujet passe en « résolu »."
+    }
+  },
+  "topic": {
+    "back": "Forum",
+    "loading": "Chargement du sujet",
+    "notFoundTitle": "Ce sujet n'existe plus",
+    "notFoundText": "Il a peut-être été supprimé par son auteur ou par un modérateur.",
+    "errorTitle": "Le sujet n'a pas pu se charger",
+    "errorText": "Vérifie ta connexion, puis réessaie.",
+    "actions": "Actions sur le sujet",
+    "toAnswers_one": "Aller à la réponse ({{count}})",
+    "toAnswers_many": "Aller aux réponses ({{count}})",
+    "toAnswers_other": "Aller aux réponses ({{count}})",
+    "posted": "Publié le",
+    "edited": "modifié {{when}}",
+    "reputation_one": "{{count}} point de réputation",
+    "reputation_many": "{{count}} points de réputation",
+    "reputation_other": "{{count}} points de réputation",
+    "reputationShort": "pts",
+    "solved": "Résolu · voir la solution",
+    "closed": "Fermé : plus de nouvelles réponses",
+    "manage": "Gérer le sujet",
+    "close": "Fermer le sujet",
+    "closeHint": "Il n'acceptera plus de nouvelles réponses.",
+    "reopen": "Rouvrir le sujet",
+    "reopenHint": "Il acceptera de nouveau des réponses.",
+    "closedToast": "Sujet fermé",
+    "reopenedToast": "Sujet rouvert",
+    "deleteBlocked": "Il a déjà des réponses : seul un modérateur peut le supprimer.",
+    "deleteTitle": "Supprimer ce sujet ?",
+    "deleteText": "« {{title}} » sera supprimé, avec ses votes et ses commentaires. C'est définitif.",
+    "deleted": "Sujet supprimé"
+  },
+  "menu": {
+    "edit": "Modifier",
+    "delete": "Supprimer"
+  },
+  "vote": {
+    "group": {
+      "topic": "Voter pour ce sujet",
+      "answer": "Voter pour cette réponse"
+    },
+    "up": {
+      "topic": "Ce sujet est utile",
+      "answer": "Cette réponse est utile"
+    },
+    "down": {
+      "topic": "Ce sujet n'est pas clair ou pas utile",
+      "answer": "Cette réponse n'est pas utile"
+    },
+    "own": {
+      "topic": "C'est ton sujet : tu ne peux pas voter pour lui",
+      "answer": "C'est ta réponse : tu ne peux pas voter pour elle"
+    },
+    "score_one": "Score : {{count}}",
+    "score_many": "Score : {{count}}",
+    "score_other": "Score : {{count}}"
+  },
+  "share": {
+    "title": "Partager",
+    "short": "Partager",
+    "copy": "Copier le lien",
+    "copied": "Lien copié",
+    "copyFailed": "Le lien n'a pas pu être copié.",
+    "native": "Partager via…",
+    "on": "Partager sur {{network}}"
+  },
+  "answers": {
+    "title_one": "Réponses ({{count}})",
+    "title_many": "Réponses ({{count}})",
+    "title_other": "Réponses ({{count}})",
+    "sortBest": "Les meilleures",
+    "sortNewest": "Les plus récentes",
+    "sortOldest": "Les plus anciennes",
+    "label": "Ta réponse",
+    "placeholder": "Ajoute ta réponse…",
+    "placeholderOwn": "Une précision, une piste trouvée entre-temps ? Ajoute-la…",
+    "submit": "Publier la réponse",
+    "guideline": "Sois précis et bienveillant : du code, des sources, ton expérience.",
+    "posted": "Réponse publiée",
+    "closed": "Ce sujet est fermé : il n'accepte plus de nouvelles réponses.",
+    "emptyTitle": "Pas encore de réponse",
+    "emptyText": "Sois le premier à aider {{name}} : même une piste peut tout débloquer.",
+    "errorTitle": "Les réponses n'ont pas pu se charger",
+    "errorText": "Vérifie ta connexion, puis réessaie.",
+    "acceptedBy": "Solution acceptée par {{name}}",
+    "accept": "Accepter comme solution",
+    "acceptedShort": "Solution",
+    "unaccept": "Retirer la solution",
+    "acceptedToast": "Réponse acceptée : le sujet est résolu",
+    "unacceptedToast": "Ce n'est plus la solution",
+    "reply": "Répondre",
+    "menu": "Options de la réponse",
+    "editLabel": "Modifier ta réponse",
+    "updated": "Réponse modifiée",
+    "deleteTitle": "Supprimer cette réponse ?",
+    "deleteText": "Elle sera supprimée avec ses votes et ses commentaires. C'est définitif.",
+    "deleteAcceptedText": "C'est la solution acceptée : le sujet ne sera plus résolu. Elle sera supprimée avec ses votes et ses commentaires.",
+    "deleted": "Réponse supprimée"
+  },
+  "thread": {
+    "collapse_one": "Replier la discussion ({{count}})",
+    "collapse_many": "Replier la discussion ({{count}})",
+    "collapse_other": "Replier la discussion ({{count}})",
+    "expand_one": "Déplier la discussion ({{count}})",
+    "expand_many": "Déplier la discussion ({{count}})",
+    "expand_other": "Déplier la discussion ({{count}})",
+    "show_one": "Afficher {{count}} commentaire",
+    "show_many": "Afficher {{count}} commentaires",
+    "show_other": "Afficher {{count}} commentaires",
+    "more_one": "Voir {{count}} autre commentaire",
+    "more_many": "Voir {{count}} autres commentaires",
+    "more_other": "Voir {{count}} autres commentaires"
+  },
+  "comment": {
+    "reply": "Répondre",
+    "author": "Auteur",
+    "edited": "modifié",
+    "menu": "Options du commentaire",
+    "placeholder": "Ton commentaire…",
+    "label": "Répondre à {{name}}",
+    "editLabel": "Modifier ton commentaire",
+    "submit": "Commenter",
+    "delete": "Supprimer",
+    "deleteTitle": "Supprimer ce commentaire ?",
+    "deleteText": "Il sera supprimé définitivement.",
+    "deleted": "Commentaire supprimé"
+  },
+  "clarify": {
+    "title_one": "Précisions ({{count}})",
+    "title_many": "Précisions ({{count}})",
+    "title_other": "Précisions ({{count}})",
+    "ask": "Demander une précision",
+    "placeholder": "Une version, un message d'erreur, un détail qui manque ?",
+    "label": "Demander une précision à l'auteur",
+    "submit": "Envoyer"
+  },
+  "sidebar": {
+    "label": "À propos du sujet",
+    "author": "L'auteur",
+    "follow": "Suivre",
+    "following": "Suivi",
+    "editProfile": "Modifier mon profil",
+    "location": "Lieu",
+    "level": "Niveau",
+    "reputation": "Réputation",
+    "joined": "Membre depuis",
+    "openToWork": "Ouvert aux opportunités",
+    "topics_one": "{{count}} sujet",
+    "topics_many": "{{count}} sujets",
+    "topics_other": "{{count}} sujets",
+    "answers_one": "{{count}} réponse",
+    "answers_many": "{{count}} réponses",
+    "answers_other": "{{count}} réponses",
+    "moreFrom": "Plus de {{name}}",
+    "related": "Sujets liés"
+  },
+  "form": {
+    "newTitle": "Nouveau sujet",
+    "editTitle": "Modifier le sujet",
+    "backToTopic": "Retour au sujet",
+    "mode": "Mode de l'éditeur",
+    "write": "Rédiger",
+    "preview": "Aperçu",
+    "titleLabel": "Titre",
+    "titlePlaceholder": "Le titre de ta question…",
+    "titleHint": "Une phrase précise : la techno, ce que tu veux faire, ce qui bloque.",
+    "tagsLabel": "Tags",
+    "tagsHint_one": "Jusqu'à {{count}} tag : la techno et le thème.",
+    "tagsHint_many": "Jusqu'à {{count}} tags : les technos et le thème.",
+    "tagsHint_other": "Jusqu'à {{count}} tags : les technos et le thème.",
+    "tagsPlaceholder_one": "Ajoute jusqu'à {{count}} tag…",
+    "tagsPlaceholder_many": "Ajoute jusqu'à {{count}} tags…",
+    "tagsPlaceholder_other": "Ajoute jusqu'à {{count}} tags…",
+    "tagsMore": "Un autre tag ?",
+    "tagsFull_one": "{{count}} tag au maximum",
+    "tagsFull_many": "{{count}} tags au maximum",
+    "tagsFull_other": "{{count}} tags au maximum",
+    "tagsChosen": "Tags choisis",
+    "tagSuggestions": "Suggestions de tags",
+    "removeTag": "Retirer le tag {{tag}}",
+    "createTag": "Ajouter « {{tag}} »",
+    "bodyLabel": "Contenu",
+    "bodyPlaceholder": "Décris ton problème : ce que tu veux obtenir, ce qui se passe à la place, le code en cause, ce que tu as déjà essayé…",
+    "publish": "Publier",
+    "save": "Enregistrer",
+    "cancel": "Annuler",
+    "published": "Sujet publié",
+    "updated": "Sujet modifié",
+    "draftSaved": "Brouillon enregistré sur cet appareil",
+    "draftRestored": "Ton brouillon a été retrouvé.",
+    "startOver": "Repartir de zéro",
+    "discard": "Effacer le brouillon",
+    "discardTitle": "Effacer le brouillon ?",
+    "discardText": "Le titre, les tags et le contenu seront effacés.",
+    "discardConfirm": "Effacer",
+    "leaveTitle": "Quitter sans enregistrer ?",
+    "leaveText": "Tes modifications seront perdues.",
+    "leaveConfirm": "Quitter",
+    "leaveCancel": "Rester",
+    "helpLabel": "Aide à la rédaction",
+    "previewNow": "à l'instant",
+    "previewNoTitle": "Ton titre apparaîtra ici",
+    "previewNoBody": "Le contenu de ton sujet apparaîtra ici.",
+    "similarTitle": "Ces sujets répondent peut-être à ta question",
+    "submitHint": "{{mod}} + Entrée pour publier",
+    "commentEmpty": "Écris quelque chose avant d'envoyer.",
+    "imagesPending": "Attends la fin de l'envoi des images."
+  },
+  "guide": {
+    "title": {
+      "title": "Un bon titre",
+      "points": [
+        "Résume ton problème en une phrase : la techno, ce que tu essaies de faire, ce qui bloque.",
+        "« Flutter : la synchro hors-ligne crée des doublons » vaut mieux que « Aide svp ! ».",
+        "Un titre précis attire les bonnes personnes, et aide ceux qui chercheront la même chose après toi."
+      ]
+    },
+    "tags": {
+      "title": "Choisir ses tags",
+      "points": [
+        "Jusqu'à 5 tags : la technologie (React, Spring Boot…) et le thème (Performance, Carrière…).",
+        "Ta question arrive dans le fil des devs qui suivent ces tags.",
+        "Préfère un tag qui existe déjà : il est proposé pendant que tu tapes."
+      ]
+    },
+    "body": {
+      "title": "Décrire son problème",
+      "points": [
+        "Ce que tu veux obtenir, et ce qui se passe à la place.",
+        "Le code en cause dans un bloc ```java (avec le langage) : il sera coloré et copiable.",
+        "Le message d'erreur complet, et ce que tu as déjà essayé.",
+        "Tes versions et ton environnement : téléphone, navigateur, système."
+      ]
+    }
+  }
+}

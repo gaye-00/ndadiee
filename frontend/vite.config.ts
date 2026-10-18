@@ -16,6 +16,11 @@ export default defineConfig({
       { find: /^motion\/react$/, replacement: 'framer-motion' },
     ],
   },
+  optimizeDeps: {
+    // Chargées seulement par les pages du forum (coloration du code) : découvertes en cours de route, elles
+    // forceraient Vite à tout ré-optimiser et à recharger la page à la première visite d'un sujet
+    include: ['lowlight', 'react-markdown', 'remark-gfm'],
+  },
   server: {
     port: 5173,
     // Fichiers transformés dès le démarrage du serveur : premier affichage plus rapide en développement

@@ -149,7 +149,8 @@
     "settings": "ቅንብሮች",
     "login": "ግባ",
     "register": "ተመዝገብ",
-    "notFound": "ገጹ አልተገኘም"
+    "notFound": "ገጹ አልተገኘም",
+    "editTopic": "ርዕሱን አስተካክል"
   },
   "enums": {
     "experienceLevel": {
@@ -702,5 +703,49 @@
       "reputation_one": "{{count}} የዝና ነጥብ",
       "reputation_other": "{{count}} የዝና ነጥቦች"
     }
+  },
+  "code": {
+    "copy": "ቅዳ",
+    "copied": "ተቀድቷል"
+  },
+  "editor": {
+    "mode": "የአርታኢው ሁነታ",
+    "write": "ጻፍ",
+    "preview": "ቅድመ እይታ",
+    "toolbar": "ቅርጸት",
+    "tools": {
+      "bold": "ደማቅ",
+      "italic": "ሰያፍ",
+      "link": "አገናኝ",
+      "heading": "ርዕስ",
+      "quote": "ጥቅስ",
+      "code": "ኮድ",
+      "codeBlock": "የኮድ ሳጥን",
+      "list": "ነጥብ ያለው ዝርዝር",
+      "orderedList": "ቁጥር ያለው ዝርዝር",
+      "image": "ምስል"
+    },
+    "sample": {
+      "bold": "ደማቅ ጽሑፍ",
+      "italic": "ሰያፍ ጽሑፍ",
+      "link": "የአገናኝ ጽሑፍ",
+      "code": "ኮድ",
+      "word": "ጽሑፍ"
+    },
+    "help": "እርዳታ",
+    "helpTitle": "የMarkdown መሠረታዊ ነገሮች",
+    "emptyPreview": "እስካሁን ለቅድመ እይታ ምንም የለም።",
+    "remaining_one": "{{count}} ፊደል ቀርቷል",
+    "remaining_other": "{{count}} ፊደላት ቀርተዋል",
+    "uploading": "{{name}} እየተላከ ነው… ({{id}})",
+    "imageAlt": "የምስሉ መግለጫ",
+    "dropImage": "ምስሎችህን እዚህ ጣል",
+    "uploadingStatus_one": "ምስል እየተላከ ነው…",
+    "uploadingStatus_other": "{{count}} ምስሎች እየተላኩ ነው…",
+    "tooManyImages_one": "በአንድ ጊዜ ቢበዛ {{count}} ምስል፦ የመጀመሪያው ይላካል።",
+    "tooManyImages_other": "በአንድ ጊዜ ቢበዛ {{count}} ምስሎች፦ የመጀመሪያዎቹ ይላካሉ።",
+    "imageType": "«{{name}}»፦ ተቀባይነት ያላቸው ቅርጸቶች JPEG፣ PNG፣ WebP እና GIF ናቸው።",
+    "imageTooBig": "«{{name}}» ከ{{max}} ሜባ ይበልጣል።",
+    "uploadFailed": "«{{name}}» ሊላክ አልቻለም።"
   }
 }

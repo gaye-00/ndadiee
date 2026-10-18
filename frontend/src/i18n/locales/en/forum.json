@@ -1,0 +1,411 @@
+{
+  "intro": {
+    "eyebrow": "Forum",
+    "titleAsk": "Ask your question.",
+    "titleShare": "Share what you know.",
+    "lead": "Where the continent's devs help each other: precise questions, answers that unblock, discussions that move things forward. Every helpful answer earns its author reputation.",
+    "topics_one": "{{count}} topic",
+    "topics_other": "{{count}} topics",
+    "answers_one": "{{count}} answer",
+    "answers_other": "{{count}} answers",
+    "contributors_one": "{{count}} dev taking part",
+    "contributors_other": "{{count}} devs taking part",
+    "solved_one": "{{count}} solved",
+    "solved_other": "{{count}} solved",
+    "unanswered_one": "{{count}} waiting for an answer",
+    "unanswered_other": "{{count}} waiting for an answer",
+    "ask": "Ask a question"
+  },
+  "nav": {
+    "label": "Forum navigation",
+    "views": "Forum views",
+    "membersOnly": "For signed-in members",
+    "followedTags": "Your tags",
+    "noFollowedTags": "Follow tags (at the top of a tag's page): their topics will make up your feed.",
+    "popularTags": "Popular tags",
+    "removeTag": "Remove the #{{tag}} filter"
+  },
+  "views": {
+    "all": "All topics",
+    "following": "My feed",
+    "unanswered": "Unanswered",
+    "solved": "Solved",
+    "mine": "My topics",
+    "saved": "Saved"
+  },
+  "join": {
+    "title": "Join the conversation",
+    "text": "Ask your questions, help other devs and keep the best topics in your reading list.",
+    "textCount_one": "{{count}} dev from across the continent already shares what they know here. Ask, answer, keep the best topics.",
+    "textCount_other": "{{count}} devs from across the continent already share what they know here. Ask, answer, keep the best topics.",
+    "register": "Create an account",
+    "login": "Log in"
+  },
+  "filters": {
+    "label": "Filter topics",
+    "search": "Search the forum",
+    "searchPlaceholder": "A keyword, an error, a tech…",
+    "tag": "Tag",
+    "anyTag": "All tags",
+    "tagSearch": "Find a tag…",
+    "noTag": "No tag matches."
+  },
+  "sort": {
+    "label": "Topic order",
+    "relevant": "Relevant",
+    "recent": "Latest",
+    "top": "Top"
+  },
+  "period": {
+    "label": "Period",
+    "week": "Week",
+    "month": "Month",
+    "year": "Year",
+    "all": "All time"
+  },
+  "results": {
+    "count_one": "{{count}} topic",
+    "count_other": "{{count}} topics",
+    "saved_one": "{{count}} saved topic",
+    "saved_other": "{{count}} saved topics",
+    "outOf": "of {{total}}",
+    "loading": "Loading topics",
+    "loadingMore": "Loading more",
+    "more": "Show more topics",
+    "moreError": "The next topics couldn't load.",
+    "errorTitle": "The forum couldn't load",
+    "errorText": "Check your connection, then try again.",
+    "noMatchTitle": "No topic matches",
+    "noMatchText": "Try other words or remove a filter. Nobody has asked yet? Ask the question: you'll also help whoever looks for it after you.",
+    "clearFilters": "Clear filters",
+    "askIt": "Ask the question"
+  },
+  "empty": {
+    "browse": "Browse all topics",
+    "all": {
+      "title": "The forum is waiting for its first topic",
+      "text": "A question, a stubborn bug, something you learned: start the discussion."
+    },
+    "following": {
+      "title": "Your feed is still empty",
+      "text": "Follow tags and members: their new topics will show up here."
+    },
+    "unanswered": {
+      "title": "Every question has an answer",
+      "text": "Well done, community! Come back soon: a new question may need your help."
+    },
+    "solved": {
+      "title": "No solved topic yet",
+      "text": "When the author of a question accepts an answer, the topic shows up here."
+    },
+    "mine": {
+      "title": "You haven't opened a topic yet",
+      "text": "A question, some advice to ask for, an experience to share: the community is waiting."
+    },
+    "saved": {
+      "title": "Your reading list is empty",
+      "text": "Save a topic with the bookmark: you'll find it here, on all your devices."
+    }
+  },
+  "gate": {
+    "following": {
+      "title": "Your feed, your way",
+      "text": "Log in to follow tags and members: their topics will make up your feed."
+    },
+    "mine": {
+      "title": "Your topics, in one place",
+      "text": "Log in to find the topics you've opened and follow their answers."
+    },
+    "saved": {
+      "title": "Your reading list",
+      "text": "Log in to save topics and come back to them later, on all your devices."
+    }
+  },
+  "askCard": {
+    "title": "Didn't find your answer?",
+    "text": "Ask your question: devs from across the continent will answer."
+  },
+  "card": {
+    "solved": "Solved",
+    "closed": "Closed",
+    "new": "New",
+    "votes_one": "{{count}} vote",
+    "votes_other": "{{count}} votes",
+    "answers_one": "{{count}} answer",
+    "answers_other": "{{count}} answers",
+    "answersSolved_one": "{{count}} answer, accepted",
+    "answersSolved_other": "{{count}} answers, one accepted",
+    "answersWord_one": "answer",
+    "answersWord_other": "answers",
+    "noAnswer": "No answer yet",
+    "views_one": "{{count}} view",
+    "views_other": "{{count}} views",
+    "reading_one": "{{count}} min read",
+    "reading_other": "{{count}} min read"
+  },
+  "bookmark": {
+    "save": "Save",
+    "saved": "Saved",
+    "savedToast": "Saved to your reading list",
+    "removedToast": "Removed from your reading list",
+    "open": "View list",
+    "undo": "Undo"
+  },
+  "signIn": {
+    "title": "Log in to continue",
+    "close": "Close",
+    "login": "Log in",
+    "register": "Create an account",
+    "free": "Free, no ads. It takes a minute.",
+    "community_one": "{{formatted}} dev already takes part in the forum.",
+    "community_other": "{{formatted}} devs already take part in the forum.",
+    "reasons": {
+      "vote": "Vote for the topics and answers that helped you: that's how the best ones rise.",
+      "save": "Save the topics you care about and find them later, on all your devices.",
+      "answer": "Answer this topic: your experience can unblock another dev, and earn you reputation.",
+      "comment": "Join the discussion: ask for details, reply to a comment.",
+      "ask": "Ask the community: devs from across the continent answer.",
+      "follow": "Follow members and tags: their topics will make up your feed.",
+      "feed": "Log in to find your feed, your topics and your reading list."
+    }
+  },
+  "tag": {
+    "follow": "Follow",
+    "following": "Following"
+  },
+  "aside": {
+    "label": "Around the forum",
+    "helpTitle": "Help a dev",
+    "helpEmpty": "Every question has found an answer. Well done!",
+    "trendingTitle": "Trending this week",
+    "trendingEmpty": "Nothing new this week yet.",
+    "seeAll": "See all",
+    "tipsTitle": "Asking a good question",
+    "tips": {
+      "title": "A precise title: the tech, and what's blocking you.",
+      "code": "The code involved in a code block, not a screenshot.",
+      "tried": "What you've already tried, and the full error message.",
+      "accept": "An answer helped you? Accept it: the topic becomes \"solved\"."
+    }
+  },
+  "topic": {
+    "back": "Forum",
+    "loading": "Loading the topic",
+    "notFoundTitle": "This topic no longer exists",
+    "notFoundText": "It may have been deleted by its author or a moderator.",
+    "errorTitle": "The topic couldn't load",
+    "errorText": "Check your connection, then try again.",
+    "actions": "Topic actions",
+    "toAnswers_one": "Go to the answer ({{count}})",
+    "toAnswers_other": "Go to the answers ({{count}})",
+    "posted": "Posted on",
+    "edited": "edited {{when}}",
+    "reputation_one": "{{count}} reputation point",
+    "reputation_other": "{{count}} reputation points",
+    "reputationShort": "pts",
+    "solved": "Solved · see the solution",
+    "closed": "Closed: no new answers",
+    "manage": "Manage the topic",
+    "close": "Close the topic",
+    "closeHint": "It won't accept new answers.",
+    "reopen": "Reopen the topic",
+    "reopenHint": "It will accept answers again.",
+    "closedToast": "Topic closed",
+    "reopenedToast": "Topic reopened",
+    "deleteBlocked": "It already has answers: only a moderator can delete it.",
+    "deleteTitle": "Delete this topic?",
+    "deleteText": "\"{{title}}\" will be deleted along with its votes and comments. This is permanent.",
+    "deleted": "Topic deleted"
+  },
+  "menu": {
+    "edit": "Edit",
+    "delete": "Delete"
+  },
+  "vote": {
+    "group": {
+      "topic": "Vote on this topic",
+      "answer": "Vote on this answer"
+    },
+    "up": {
+      "topic": "This topic is useful",
+      "answer": "This answer is useful"
+    },
+    "down": {
+      "topic": "This topic is unclear or not useful",
+      "answer": "This answer is not useful"
+    },
+    "own": {
+      "topic": "It's your topic: you can't vote on it",
+      "answer": "It's your answer: you can't vote on it"
+    },
+    "score_one": "Score: {{count}}",
+    "score_other": "Score: {{count}}"
+  },
+  "share": {
+    "title": "Share",
+    "short": "Share",
+    "copy": "Copy link",
+    "copied": "Link copied",
+    "copyFailed": "The link couldn't be copied.",
+    "native": "Share via…",
+    "on": "Share on {{network}}"
+  },
+  "answers": {
+    "title_one": "Answer ({{count}})",
+    "title_other": "Answers ({{count}})",
+    "sortBest": "Best",
+    "sortNewest": "Newest",
+    "sortOldest": "Oldest",
+    "label": "Your answer",
+    "placeholder": "Add your answer…",
+    "placeholderOwn": "A detail, a lead you found in the meantime? Add it…",
+    "submit": "Post answer",
+    "guideline": "Be precise and kind: code, sources, your experience.",
+    "posted": "Answer posted",
+    "closed": "This topic is closed: it no longer accepts new answers.",
+    "emptyTitle": "No answer yet",
+    "emptyText": "Be the first to help {{name}}: even a lead can unblock everything.",
+    "errorTitle": "The answers couldn't load",
+    "errorText": "Check your connection, then try again.",
+    "acceptedBy": "Solution accepted by {{name}}",
+    "accept": "Accept as solution",
+    "acceptedShort": "Solution",
+    "unaccept": "Unmark as solution",
+    "acceptedToast": "Answer accepted: the topic is solved",
+    "unacceptedToast": "No longer the solution",
+    "reply": "Reply",
+    "menu": "Answer options",
+    "editLabel": "Edit your answer",
+    "updated": "Answer updated",
+    "deleteTitle": "Delete this answer?",
+    "deleteText": "It will be deleted along with its votes and comments. This is permanent.",
+    "deleteAcceptedText": "It's the accepted solution: the topic will no longer be solved. It will be deleted along with its votes and comments.",
+    "deleted": "Answer deleted"
+  },
+  "thread": {
+    "collapse_one": "Collapse the discussion ({{count}})",
+    "collapse_other": "Collapse the discussion ({{count}})",
+    "expand_one": "Expand the discussion ({{count}})",
+    "expand_other": "Expand the discussion ({{count}})",
+    "show_one": "Show {{count}} comment",
+    "show_other": "Show {{count}} comments",
+    "more_one": "See {{count}} more comment",
+    "more_other": "See {{count}} more comments"
+  },
+  "comment": {
+    "reply": "Reply",
+    "author": "Author",
+    "edited": "edited",
+    "menu": "Comment options",
+    "placeholder": "Your comment…",
+    "label": "Reply to {{name}}",
+    "editLabel": "Edit your comment",
+    "submit": "Comment",
+    "delete": "Delete",
+    "deleteTitle": "Delete this comment?",
+    "deleteText": "It will be permanently deleted.",
+    "deleted": "Comment deleted"
+  },
+  "clarify": {
+    "title_one": "Clarification ({{count}})",
+    "title_other": "Clarifications ({{count}})",
+    "ask": "Ask for clarification",
+    "placeholder": "A version, an error message, a missing detail?",
+    "label": "Ask the author for clarification",
+    "submit": "Send"
+  },
+  "sidebar": {
+    "label": "About this topic",
+    "author": "The author",
+    "follow": "Follow",
+    "following": "Following",
+    "editProfile": "Edit my profile",
+    "location": "Location",
+    "level": "Level",
+    "reputation": "Reputation",
+    "joined": "Member since",
+    "openToWork": "Open to opportunities",
+    "topics_one": "{{count}} topic",
+    "topics_other": "{{count}} topics",
+    "answers_one": "{{count}} answer",
+    "answers_other": "{{count}} answers",
+    "moreFrom": "More from {{name}}",
+    "related": "Related topics"
+  },
+  "form": {
+    "newTitle": "New topic",
+    "editTitle": "Edit the topic",
+    "backToTopic": "Back to the topic",
+    "mode": "Editor mode",
+    "write": "Write",
+    "preview": "Preview",
+    "titleLabel": "Title",
+    "titlePlaceholder": "Your question title…",
+    "titleHint": "One precise sentence: the tech, what you're trying to do, what's blocking you.",
+    "tagsLabel": "Tags",
+    "tagsHint_one": "Up to {{count}} tag: the tech and the topic.",
+    "tagsHint_other": "Up to {{count}} tags: the tech and the topic.",
+    "tagsPlaceholder_one": "Add up to {{count}} tag…",
+    "tagsPlaceholder_other": "Add up to {{count}} tags…",
+    "tagsMore": "Another tag?",
+    "tagsFull_one": "{{count}} tag maximum",
+    "tagsFull_other": "{{count}} tags maximum",
+    "tagsChosen": "Chosen tags",
+    "tagSuggestions": "Tag suggestions",
+    "removeTag": "Remove the {{tag}} tag",
+    "createTag": "Add \"{{tag}}\"",
+    "bodyLabel": "Content",
+    "bodyPlaceholder": "Describe your problem: what you want to achieve, what happens instead, the code involved, what you've already tried…",
+    "publish": "Publish",
+    "save": "Save",
+    "cancel": "Cancel",
+    "published": "Topic published",
+    "updated": "Topic updated",
+    "draftSaved": "Draft saved on this device",
+    "draftRestored": "Your draft was restored.",
+    "startOver": "Start over",
+    "discard": "Discard draft",
+    "discardTitle": "Discard the draft?",
+    "discardText": "The title, tags and content will be cleared.",
+    "discardConfirm": "Discard",
+    "leaveTitle": "Leave without saving?",
+    "leaveText": "Your changes will be lost.",
+    "leaveConfirm": "Leave",
+    "leaveCancel": "Stay",
+    "helpLabel": "Writing help",
+    "previewNow": "just now",
+    "previewNoTitle": "Your title will appear here",
+    "previewNoBody": "Your topic's content will appear here.",
+    "similarTitle": "These topics may already answer your question",
+    "submitHint": "{{mod}} + Enter to publish",
+    "commentEmpty": "Write something before sending.",
+    "imagesPending": "Wait for the images to finish uploading."
+  },
+  "guide": {
+    "title": {
+      "title": "A good title",
+      "points": [
+        "Sum up your problem in one sentence: the tech, what you're trying to do, what's blocking you.",
+        "\"Flutter: offline sync creates duplicates\" beats \"Help pls!\".",
+        "A precise title attracts the right people, and helps whoever searches for the same thing after you."
+      ]
+    },
+    "tags": {
+      "title": "Choosing tags",
+      "points": [
+        "Up to 5 tags: the technology (React, Spring Boot…) and the topic (Performance, Career…).",
+        "Your question lands in the feed of the devs who follow these tags.",
+        "Prefer a tag that already exists: it is suggested as you type."
+      ]
+    },
+    "body": {
+      "title": "Describing the problem",
+      "points": [
+        "What you want to achieve, and what happens instead.",
+        "The code involved in a ```java block (with the language): it will be highlighted and copyable.",
+        "The full error message, and what you've already tried.",
+        "Your versions and environment: phone, browser, system."
+      ]
+    }
+  }
+}

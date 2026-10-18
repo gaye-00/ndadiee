@@ -1,0 +1,411 @@
+{
+  "intro": {
+    "eyebrow": "Jukwaa",
+    "titleAsk": "Uliza swali lako.",
+    "titleShare": "Shiriki unachokijua.",
+    "lead": "Wasanidi programu wa bara wakisaidiana: maswali yaliyo wazi, majibu yanayofungua njia, mijadala inayosonga mbele. Kila jibu lenye manufaa humpa mwandishi wake sifa.",
+    "topics_one": "Mada {{count}}",
+    "topics_other": "Mada {{count}}",
+    "answers_one": "Jibu {{count}}",
+    "answers_other": "Majibu {{count}}",
+    "contributors_one": "Msanidi {{count}} anashiriki",
+    "contributors_other": "Wasanidi {{count}} wanashiriki",
+    "solved_one": "{{count}} imetatuliwa",
+    "solved_other": "{{count}} zimetatuliwa",
+    "unanswered_one": "{{count}} inasubiri jibu",
+    "unanswered_other": "{{count}} zinasubiri jibu",
+    "ask": "Uliza swali"
+  },
+  "nav": {
+    "label": "Urambazaji wa jukwaa",
+    "views": "Mionekano ya jukwaa",
+    "membersOnly": "Kwa wanachama walioingia tu",
+    "followedTags": "Lebo zako",
+    "noFollowedTags": "Fuata lebo (juu ya ukurasa wa lebo): mada zake zitaunda mlisho wako.",
+    "popularTags": "Lebo maarufu",
+    "removeTag": "Ondoa kichujio #{{tag}}"
+  },
+  "views": {
+    "all": "Mada zote",
+    "following": "Mlisho wangu",
+    "unanswered": "Bila jibu",
+    "solved": "Zilizotatuliwa",
+    "mine": "Mada zangu",
+    "saved": "Zilizohifadhiwa"
+  },
+  "join": {
+    "title": "Jiunge na mazungumzo",
+    "text": "Uliza maswali yako, wasaidie wasanidi wengine na uhifadhi mada bora katika orodha yako ya kusoma.",
+    "textCount_one": "Msanidi {{count}} wa bara tayari anashiriki anachokijua hapa. Uliza, jibu, hifadhi mada bora.",
+    "textCount_other": "Wasanidi {{count}} wa bara tayari wanashiriki wanachokijua hapa. Uliza, jibu, hifadhi mada bora.",
+    "register": "Fungua akaunti",
+    "login": "Ingia"
+  },
+  "filters": {
+    "label": "Chuja mada",
+    "search": "Tafuta kwenye jukwaa",
+    "searchPlaceholder": "Neno kuu, hitilafu, teknolojia…",
+    "tag": "Lebo",
+    "anyTag": "Lebo zote",
+    "tagSearch": "Tafuta lebo…",
+    "noTag": "Hakuna lebo inayolingana."
+  },
+  "sort": {
+    "label": "Mpangilio wa mada",
+    "relevant": "Muhimu",
+    "recent": "Mpya",
+    "top": "Bora"
+  },
+  "period": {
+    "label": "Kipindi",
+    "week": "Wiki",
+    "month": "Mwezi",
+    "year": "Mwaka",
+    "all": "Wakati wote"
+  },
+  "results": {
+    "count_one": "Mada {{count}}",
+    "count_other": "Mada {{count}}",
+    "saved_one": "Mada {{count}} iliyohifadhiwa",
+    "saved_other": "Mada {{count}} zilizohifadhiwa",
+    "outOf": "kati ya {{total}}",
+    "loading": "Inapakia mada",
+    "loadingMore": "Inapakia zaidi",
+    "more": "Onyesha mada zaidi",
+    "moreError": "Mada zinazofuata hazikuweza kupakiwa.",
+    "errorTitle": "Jukwaa halikuweza kupakiwa",
+    "errorText": "Angalia muunganisho wako, kisha ujaribu tena.",
+    "noMatchTitle": "Hakuna mada inayolingana",
+    "noMatchText": "Jaribu maneno mengine au ondoa kichujio. Hakuna aliyeuliza bado? Uliza swali: utawasaidia pia watakaolitafuta baada yako.",
+    "clearFilters": "Futa vichujio",
+    "askIt": "Uliza swali"
+  },
+  "empty": {
+    "browse": "Vinjari mada zote",
+    "all": {
+      "title": "Jukwaa linasubiri mada yake ya kwanza",
+      "text": "Swali, tatizo sugu, uzoefu: anzisha mjadala."
+    },
+    "following": {
+      "title": "Mlisho wako bado ni mtupu",
+      "text": "Fuata lebo na wanachama: mada zao mpya zitaonekana hapa."
+    },
+    "unanswered": {
+      "title": "Kila swali lina jibu lake",
+      "text": "Hongera jamii! Rudi hivi karibuni: swali jipya linaweza kuhitaji msaada wako."
+    },
+    "solved": {
+      "title": "Bado hakuna mada iliyotatuliwa",
+      "text": "Mwandishi wa swali akikubali jibu, mada huonekana hapa."
+    },
+    "mine": {
+      "title": "Bado hujafungua mada",
+      "text": "Swali, ushauri wa kuomba, uzoefu wa kushiriki: jamii inakusubiri."
+    },
+    "saved": {
+      "title": "Orodha yako ya kusoma ni tupu",
+      "text": "Hifadhi mada kwa alamisho: utaipata hapa, kwenye vifaa vyako vyote."
+    }
+  },
+  "gate": {
+    "following": {
+      "title": "Mlisho wako, kwa kipimo chako",
+      "text": "Ingia ili kufuata lebo na wanachama: mada zao zitaunda mlisho wako."
+    },
+    "mine": {
+      "title": "Mada zako, mahali pamoja",
+      "text": "Ingia ili kupata mada ulizofungua na kufuatilia majibu yake."
+    },
+    "saved": {
+      "title": "Orodha yako ya kusoma",
+      "text": "Ingia ili kuhifadhi mada na kuzirudia baadaye, kwenye vifaa vyako vyote."
+    }
+  },
+  "askCard": {
+    "title": "Hukupata jibu lako?",
+    "text": "Uliza swali lako: wasanidi kutoka kote barani watakujibu."
+  },
+  "card": {
+    "solved": "Imetatuliwa",
+    "closed": "Imefungwa",
+    "new": "Mpya",
+    "votes_one": "Kura {{count}}",
+    "votes_other": "Kura {{count}}",
+    "answers_one": "Jibu {{count}}",
+    "answers_other": "Majibu {{count}}",
+    "answersSolved_one": "Jibu {{count}}, limekubaliwa",
+    "answersSolved_other": "Majibu {{count}}, moja limekubaliwa",
+    "answersWord_one": "jibu",
+    "answersWord_other": "majibu",
+    "noAnswer": "Bila jibu",
+    "views_one": "Mtazamo {{count}}",
+    "views_other": "Mitazamo {{count}}",
+    "reading_one": "Dakika {{count}} ya kusoma",
+    "reading_other": "Dakika {{count}} za kusoma"
+  },
+  "bookmark": {
+    "save": "Hifadhi",
+    "saved": "Imehifadhiwa",
+    "savedToast": "Imehifadhiwa kwenye orodha yako ya kusoma",
+    "removedToast": "Imeondolewa kwenye orodha yako ya kusoma",
+    "open": "Tazama orodha",
+    "undo": "Tendua"
+  },
+  "signIn": {
+    "title": "Ingia ili kuendelea",
+    "close": "Funga",
+    "login": "Ingia",
+    "register": "Fungua akaunti",
+    "free": "Bure, bila matangazo. Dakika moja inatosha.",
+    "community_one": "Msanidi {{formatted}} tayari anashiriki kwenye jukwaa.",
+    "community_other": "Wasanidi {{formatted}} tayari wanashiriki kwenye jukwaa.",
+    "reasons": {
+      "vote": "Pigia kura mada na majibu yaliyokusaidia: ndivyo bora zaidi zinavyopanda juu.",
+      "save": "Hifadhi mada zinazokuvutia ili uzipate baadaye, kwenye vifaa vyako vyote.",
+      "answer": "Jibu mada hii: uzoefu wako unaweza kumsaidia msanidi mwingine, na kukupa sifa.",
+      "comment": "Jiunge na mjadala: omba ufafanuzi, jibu maoni.",
+      "ask": "Uliza jamii swali lako: wasanidi kutoka kote barani hujibu.",
+      "follow": "Fuata wanachama na lebo: mada zao zitaunda mlisho wako.",
+      "feed": "Ingia ili kupata mlisho wako, mada zako na orodha yako ya kusoma."
+    }
+  },
+  "tag": {
+    "follow": "Fuata",
+    "following": "Unafuata"
+  },
+  "aside": {
+    "label": "Kuhusu jukwaa",
+    "helpTitle": "Msaidie msanidi",
+    "helpEmpty": "Maswali yote yamepata majibu. Hongera!",
+    "trendingTitle": "Zinazovuma wiki hii",
+    "trendingEmpty": "Bado hakuna jipya wiki hii.",
+    "seeAll": "Ona zote",
+    "tipsTitle": "Kuuliza swali zuri",
+    "tips": {
+      "title": "Kichwa kilicho wazi: teknolojia, na kinachokukwamisha.",
+      "code": "Msimbo husika ndani ya kizuizi cha msimbo, si picha ya skrini.",
+      "tried": "Ulichojaribu tayari, na ujumbe kamili wa hitilafu.",
+      "accept": "Jibu limekusaidia? Likubali: mada inakuwa «imetatuliwa»."
+    }
+  },
+  "topic": {
+    "back": "Jukwaa",
+    "loading": "Inapakia mada",
+    "notFoundTitle": "Mada hii haipo tena",
+    "notFoundText": "Huenda ilifutwa na mwandishi wake au na msimamizi.",
+    "errorTitle": "Mada haikuweza kupakiwa",
+    "errorText": "Angalia muunganisho wako, kisha ujaribu tena.",
+    "actions": "Vitendo vya mada",
+    "toAnswers_one": "Nenda kwenye jibu ({{count}})",
+    "toAnswers_other": "Nenda kwenye majibu ({{count}})",
+    "posted": "Ilichapishwa",
+    "edited": "ilihaririwa {{when}}",
+    "reputation_one": "Pointi {{count}} ya sifa",
+    "reputation_other": "Pointi {{count}} za sifa",
+    "reputationShort": "pt",
+    "solved": "Imetatuliwa · ona suluhisho",
+    "closed": "Imefungwa: hakuna majibu mapya",
+    "manage": "Simamia mada",
+    "close": "Funga mada",
+    "closeHint": "Haitapokea majibu mapya.",
+    "reopen": "Fungua mada tena",
+    "reopenHint": "Itapokea majibu tena.",
+    "closedToast": "Mada imefungwa",
+    "reopenedToast": "Mada imefunguliwa tena",
+    "deleteBlocked": "Tayari ina majibu: msimamizi pekee anaweza kuifuta.",
+    "deleteTitle": "Futa mada hii?",
+    "deleteText": "«{{title}}» itafutwa pamoja na kura na maoni yake. Haiwezi kurudishwa.",
+    "deleted": "Mada imefutwa"
+  },
+  "menu": {
+    "edit": "Hariri",
+    "delete": "Futa"
+  },
+  "vote": {
+    "group": {
+      "topic": "Pigia kura mada hii",
+      "answer": "Pigia kura jibu hili"
+    },
+    "up": {
+      "topic": "Mada hii ina manufaa",
+      "answer": "Jibu hili lina manufaa"
+    },
+    "down": {
+      "topic": "Mada hii haiko wazi au haina manufaa",
+      "answer": "Jibu hili halina manufaa"
+    },
+    "own": {
+      "topic": "Ni mada yako: huwezi kuipigia kura",
+      "answer": "Ni jibu lako: huwezi kulipigia kura"
+    },
+    "score_one": "Alama: {{count}}",
+    "score_other": "Alama: {{count}}"
+  },
+  "share": {
+    "title": "Shiriki",
+    "short": "Shiriki",
+    "copy": "Nakili kiungo",
+    "copied": "Kiungo kimenakiliwa",
+    "copyFailed": "Kiungo hakikuweza kunakiliwa.",
+    "native": "Shiriki kupitia…",
+    "on": "Shiriki kwenye {{network}}"
+  },
+  "answers": {
+    "title_one": "Jibu ({{count}})",
+    "title_other": "Majibu ({{count}})",
+    "sortBest": "Bora zaidi",
+    "sortNewest": "Mapya zaidi",
+    "sortOldest": "Ya zamani zaidi",
+    "label": "Jibu lako",
+    "placeholder": "Ongeza jibu lako…",
+    "placeholderOwn": "Ufafanuzi, njia uliyoipata katikati? Iongeze…",
+    "submit": "Chapisha jibu",
+    "guideline": "Kuwa wazi na mwenye adabu: msimbo, vyanzo, uzoefu wako.",
+    "posted": "Jibu limechapishwa",
+    "closed": "Mada hii imefungwa: haipokei majibu mapya tena.",
+    "emptyTitle": "Bado hakuna jibu",
+    "emptyText": "Kuwa wa kwanza kumsaidia {{name}}: hata wazo dogo linaweza kufungua kila kitu.",
+    "errorTitle": "Majibu hayakuweza kupakiwa",
+    "errorText": "Angalia muunganisho wako, kisha ujaribu tena.",
+    "acceptedBy": "Suluhisho lililokubaliwa na {{name}}",
+    "accept": "Kubali kama suluhisho",
+    "acceptedShort": "Suluhisho",
+    "unaccept": "Ondoa suluhisho",
+    "acceptedToast": "Jibu limekubaliwa: mada imetatuliwa",
+    "unacceptedToast": "Si suluhisho tena",
+    "reply": "Jibu",
+    "menu": "Chaguo za jibu",
+    "editLabel": "Hariri jibu lako",
+    "updated": "Jibu limehaririwa",
+    "deleteTitle": "Futa jibu hili?",
+    "deleteText": "Litafutwa pamoja na kura na maoni yake. Haliwezi kurudishwa.",
+    "deleteAcceptedText": "Ni suluhisho lililokubaliwa: mada haitakuwa imetatuliwa tena. Litafutwa pamoja na kura na maoni yake.",
+    "deleted": "Jibu limefutwa"
+  },
+  "thread": {
+    "collapse_one": "Kunja mjadala ({{count}})",
+    "collapse_other": "Kunja mjadala ({{count}})",
+    "expand_one": "Panua mjadala ({{count}})",
+    "expand_other": "Panua mjadala ({{count}})",
+    "show_one": "Onyesha maoni {{count}}",
+    "show_other": "Onyesha maoni {{count}}",
+    "more_one": "Ona maoni mengine {{count}}",
+    "more_other": "Ona maoni mengine {{count}}"
+  },
+  "comment": {
+    "reply": "Jibu",
+    "author": "Mwandishi",
+    "edited": "yamehaririwa",
+    "menu": "Chaguo za maoni",
+    "placeholder": "Maoni yako…",
+    "label": "Mjibu {{name}}",
+    "editLabel": "Hariri maoni yako",
+    "submit": "Toa maoni",
+    "delete": "Futa",
+    "deleteTitle": "Futa maoni haya?",
+    "deleteText": "Yatafutwa kabisa.",
+    "deleted": "Maoni yamefutwa"
+  },
+  "clarify": {
+    "title_one": "Ufafanuzi ({{count}})",
+    "title_other": "Ufafanuzi ({{count}})",
+    "ask": "Omba ufafanuzi",
+    "placeholder": "Toleo, ujumbe wa hitilafu, maelezo yanayokosekana?",
+    "label": "Mwombe mwandishi ufafanuzi",
+    "submit": "Tuma"
+  },
+  "sidebar": {
+    "label": "Kuhusu mada",
+    "author": "Mwandishi",
+    "follow": "Fuata",
+    "following": "Unafuata",
+    "editProfile": "Hariri wasifu wangu",
+    "location": "Mahali",
+    "level": "Kiwango",
+    "reputation": "Sifa",
+    "joined": "Mwanachama tangu",
+    "openToWork": "Yuko wazi kwa fursa",
+    "topics_one": "Mada {{count}}",
+    "topics_other": "Mada {{count}}",
+    "answers_one": "Jibu {{count}}",
+    "answers_other": "Majibu {{count}}",
+    "moreFrom": "Zaidi kutoka kwa {{name}}",
+    "related": "Mada zinazohusiana"
+  },
+  "form": {
+    "newTitle": "Mada mpya",
+    "editTitle": "Hariri mada",
+    "backToTopic": "Rudi kwenye mada",
+    "mode": "Hali ya kihariri",
+    "write": "Andika",
+    "preview": "Hakiki",
+    "titleLabel": "Kichwa",
+    "titlePlaceholder": "Kichwa cha swali lako…",
+    "titleHint": "Sentensi iliyo wazi: teknolojia, unachotaka kufanya, kinachokukwamisha.",
+    "tagsLabel": "Lebo",
+    "tagsHint_one": "Hadi lebo {{count}}: teknolojia na mada.",
+    "tagsHint_other": "Hadi lebo {{count}}: teknolojia na mada.",
+    "tagsPlaceholder_one": "Ongeza hadi lebo {{count}}…",
+    "tagsPlaceholder_other": "Ongeza hadi lebo {{count}}…",
+    "tagsMore": "Lebo nyingine?",
+    "tagsFull_one": "Lebo {{count}} kwa upeo",
+    "tagsFull_other": "Lebo {{count}} kwa upeo",
+    "tagsChosen": "Lebo zilizochaguliwa",
+    "tagSuggestions": "Mapendekezo ya lebo",
+    "removeTag": "Ondoa lebo {{tag}}",
+    "createTag": "Ongeza «{{tag}}»",
+    "bodyLabel": "Maudhui",
+    "bodyPlaceholder": "Eleza tatizo lako: unachotaka kupata, kinachotokea badala yake, msimbo husika, ulichojaribu tayari…",
+    "publish": "Chapisha",
+    "save": "Hifadhi",
+    "cancel": "Ghairi",
+    "published": "Mada imechapishwa",
+    "updated": "Mada imehaririwa",
+    "draftSaved": "Rasimu imehifadhiwa kwenye kifaa hiki",
+    "draftRestored": "Rasimu yako imerejeshwa.",
+    "startOver": "Anza upya",
+    "discard": "Futa rasimu",
+    "discardTitle": "Futa rasimu?",
+    "discardText": "Kichwa, lebo na maudhui yatafutwa.",
+    "discardConfirm": "Futa",
+    "leaveTitle": "Ondoka bila kuhifadhi?",
+    "leaveText": "Mabadiliko yako yatapotea.",
+    "leaveConfirm": "Ondoka",
+    "leaveCancel": "Baki",
+    "helpLabel": "Msaada wa uandishi",
+    "previewNow": "sasa hivi",
+    "previewNoTitle": "Kichwa chako kitaonekana hapa",
+    "previewNoBody": "Maudhui ya mada yako yataonekana hapa.",
+    "similarTitle": "Mada hizi huenda tayari zinajibu swali lako",
+    "submitHint": "{{mod}} + Enter kuchapisha",
+    "commentEmpty": "Andika kitu kabla ya kutuma.",
+    "imagesPending": "Subiri picha zimalize kupakiwa."
+  },
+  "guide": {
+    "title": {
+      "title": "Kichwa kizuri",
+      "points": [
+        "Fupisha tatizo lako kwa sentensi moja: teknolojia, unachojaribu kufanya, kinachokukwamisha.",
+        "«Flutter: usawazishaji nje ya mtandao unaunda nakala» ni bora kuliko «Msaada tafadhali!».",
+        "Kichwa kilicho wazi huvutia watu sahihi, na huwasaidia watakaotafuta jambo hilo baada yako."
+      ]
+    },
+    "tags": {
+      "title": "Kuchagua lebo",
+      "points": [
+        "Hadi lebo 5: teknolojia (React, Spring Boot…) na mada (Utendaji, Kazi…).",
+        "Swali lako linafika kwenye mlisho wa wasanidi wanaofuata lebo hizi.",
+        "Pendelea lebo iliyopo tayari: inapendekezwa unapoandika."
+      ]
+    },
+    "body": {
+      "title": "Kueleza tatizo",
+      "points": [
+        "Unachotaka kupata, na kinachotokea badala yake.",
+        "Msimbo husika ndani ya kizuizi ```java (pamoja na lugha): utapakwa rangi na kunakilika.",
+        "Ujumbe kamili wa hitilafu, na ulichojaribu tayari.",
+        "Matoleo na mazingira yako: simu, kivinjari, mfumo."
+      ]
+    }
+  }
+}

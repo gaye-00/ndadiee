@@ -1,6 +1,7 @@
 package com.hautetech.ndadiee.repository;
 
 import java.util.Collection;
+import java.util.List;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -15,6 +16,9 @@ import com.hautetech.ndadiee.model.interaction.Comment;
 public interface CommentRepository extends JpaRepository<Comment, Long> {
 
     Page<Comment> findByTargetTypeAndTargetIdOrderByCreatedAtAsc(ContentType targetType, Long targetId, Pageable pageable);
+
+    // Les fils de plusieurs contenus d'un coup (les commentaires des réponses d'un sujet) : une seule requête
+    List<Comment> findByTargetTypeAndTargetIdInOrderByCreatedAtAsc(ContentType targetType, Collection<Long> targetIds);
 
     // La cible est polymorphe (pas de clé étrangère) : le nettoyage se fait à la suppression du contenu
     @Modifying

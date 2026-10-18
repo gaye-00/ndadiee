@@ -1,0 +1,411 @@
+{
+  "intro": {
+    "eyebrow": "Izingxoxo",
+    "titleAsk": "Buza umbuzo wakho.",
+    "titleShare": "Yabelana ngalokho okwaziyo.",
+    "lead": "Abathuthukisi bezwekazi besizana: imibuzo ecacile, izimpendulo ezixazulula izinkinga, izingxoxo eziqhubekisela phambili. Impendulo ngayinye ewusizo inika umbhali wayo idumela.",
+    "topics_one": "Isihloko esingu-{{count}}",
+    "topics_other": "Izihloko ezingu-{{count}}",
+    "answers_one": "Impendulo engu-{{count}}",
+    "answers_other": "Izimpendulo ezingu-{{count}}",
+    "contributors_one": "Umthuthukisi o-{{count}} uyabamba iqhaza",
+    "contributors_other": "Abathuthukisi abangu-{{count}} babamba iqhaza",
+    "solved_one": "{{count}} kuxazululiwe",
+    "solved_other": "{{count}} kuxazululiwe",
+    "unanswered_one": "{{count}} silinde impendulo",
+    "unanswered_other": "{{count}} zilinde impendulo",
+    "ask": "Buza umbuzo"
+  },
+  "nav": {
+    "label": "Ukuzulazula ezingxoxweni",
+    "views": "Ukubuka izingxoxo",
+    "membersOnly": "Okwamalungu angenile kuphela",
+    "followedTags": "Omaka bakho",
+    "noFollowedTags": "Landela omaka (phezulu ekhasini lomaka): izihloko zabo zizokwakha okuphakelayo kwakho.",
+    "popularTags": "Omaka abadumile",
+    "removeTag": "Susa isihlungi #{{tag}}"
+  },
+  "views": {
+    "all": "Zonke izihloko",
+    "following": "Okuphakelayo kwami",
+    "unanswered": "Akuphendulwanga",
+    "solved": "Kuxazululiwe",
+    "mine": "Izihloko zami",
+    "saved": "Kugciniwe"
+  },
+  "join": {
+    "title": "Joyina ingxoxo",
+    "text": "Buza imibuzo yakho, siza abanye abathuthukisi, ugcine izihloko ezingcono ohlwini lwakho lokufunda.",
+    "textCount_one": "Umthuthukisi o-{{count}} wezwekazi usevele wabelana ngalokho akwaziyo lapha. Buza, phendula, gcina izihloko ezingcono.",
+    "textCount_other": "Abathuthukisi abangu-{{count}} bezwekazi sebevele babelana ngalokho abakwaziyo lapha. Buza, phendula, gcina izihloko ezingcono.",
+    "register": "Dala i-akhawunti",
+    "login": "Ngena"
+  },
+  "filters": {
+    "label": "Hlunga izihloko",
+    "search": "Sesha ezingxoxweni",
+    "searchPlaceholder": "Igama elingukhiye, iphutha, ubuchwepheshe…",
+    "tag": "Umaka",
+    "anyTag": "Bonke omaka",
+    "tagSearch": "Funa umaka…",
+    "noTag": "Awukho umaka ofanayo."
+  },
+  "sort": {
+    "label": "Uhlelo lwezihloko",
+    "relevant": "Okubalulekile",
+    "recent": "Okusha",
+    "top": "Okuphambili"
+  },
+  "period": {
+    "label": "Isikhathi",
+    "week": "Isonto",
+    "month": "Inyanga",
+    "year": "Unyaka",
+    "all": "Sonke isikhathi"
+  },
+  "results": {
+    "count_one": "Isihloko esingu-{{count}}",
+    "count_other": "Izihloko ezingu-{{count}}",
+    "saved_one": "Isihloko esigciniwe esingu-{{count}}",
+    "saved_other": "Izihloko ezigciniwe ezingu-{{count}}",
+    "outOf": "kwezingu-{{total}}",
+    "loading": "Kulayishwa izihloko",
+    "loadingMore": "Kulayishwa okwengeziwe",
+    "more": "Bonisa izihloko eziningi",
+    "moreError": "Izihloko ezilandelayo azikwazanga ukulayishwa.",
+    "errorTitle": "Izingxoxo azikwazanga ukulayishwa",
+    "errorText": "Hlola uxhumano lwakho, bese uzama futhi.",
+    "noMatchTitle": "Asikho isihloko esifanayo",
+    "noMatchText": "Zama amanye amagama noma ususe isihlungi. Akekho osebuzile? Buza umbuzo: uzosiza nalabo abazowufuna emva kwakho.",
+    "clearFilters": "Sula izihlungi",
+    "askIt": "Buza umbuzo"
+  },
+  "empty": {
+    "browse": "Phequlula zonke izihloko",
+    "all": {
+      "title": "Izingxoxo zilinde isihloko sokuqala",
+      "text": "Umbuzo, inkinga enenkani, isipiliyoni: qala ingxoxo."
+    },
+    "following": {
+      "title": "Okuphakelayo kwakho kusengenalutho",
+      "text": "Landela omaka namalungu: izihloko zabo ezintsha zizovela lapha."
+    },
+    "unanswered": {
+      "title": "Wonke umbuzo unempendulo yawo",
+      "text": "Halala mphakathi! Buya maduze: umbuzo omusha ungadinga usizo lwakho."
+    },
+    "solved": {
+      "title": "Asikho isihloko esixazululiwe okwamanje",
+      "text": "Uma umbhali wombuzo emukela impendulo, isihloko sifika lapha."
+    },
+    "mine": {
+      "title": "Awukavuli isihloko",
+      "text": "Umbuzo, iseluleko ofuna ukusicela, isipiliyoni ofuna ukwabelana ngaso: umphakathi ukulindile."
+    },
+    "saved": {
+      "title": "Uhlu lwakho lokufunda alunalutho",
+      "text": "Gcina isihloko ngobhukumaka: uzosithola lapha, kuwo wonke amadivayisi akho."
+    }
+  },
+  "gate": {
+    "following": {
+      "title": "Okuphakelayo kwakho, ngendlela yakho",
+      "text": "Ngena ukuze ulandele omaka namalungu: izihloko zabo zizokwakha okuphakelayo kwakho."
+    },
+    "mine": {
+      "title": "Izihloko zakho, endaweni eyodwa",
+      "text": "Ngena ukuze uthole izihloko ozivulile futhi ulandele izimpendulo zazo."
+    },
+    "saved": {
+      "title": "Uhlu lwakho lokufunda",
+      "text": "Ngena ukuze ugcine izihloko ubuyele kuzo kamuva, kuwo wonke amadivayisi akho."
+    }
+  },
+  "askCard": {
+    "title": "Awuyitholanga impendulo yakho?",
+    "text": "Buza umbuzo wakho: abathuthukisi bakulo lonke izwekazi bazophendula."
+  },
+  "card": {
+    "solved": "Kuxazululiwe",
+    "closed": "Kuvaliwe",
+    "new": "Okusha",
+    "votes_one": "Ivoti elingu-{{count}}",
+    "votes_other": "Amavoti angu-{{count}}",
+    "answers_one": "Impendulo engu-{{count}}",
+    "answers_other": "Izimpendulo ezingu-{{count}}",
+    "answersSolved_one": "Impendulo engu-{{count}}, yamukelwe",
+    "answersSolved_other": "Izimpendulo ezingu-{{count}}, eyodwa yamukelwe",
+    "answersWord_one": "impendulo",
+    "answersWord_other": "izimpendulo",
+    "noAnswer": "Akuphendulwanga",
+    "views_one": "Ukubukwa oku-{{count}}",
+    "views_other": "Ukubukwa okungu-{{count}}",
+    "reading_one": "Umzuzu o-{{count}} wokufunda",
+    "reading_other": "Imizuzu engu-{{count}} yokufunda"
+  },
+  "bookmark": {
+    "save": "Gcina",
+    "saved": "Kugciniwe",
+    "savedToast": "Kugcinwe ohlwini lwakho lokufunda",
+    "removedToast": "Kususiwe ohlwini lwakho lokufunda",
+    "open": "Buka uhlu",
+    "undo": "Hlehlisa"
+  },
+  "signIn": {
+    "title": "Ngena ukuze uqhubeke",
+    "close": "Vala",
+    "login": "Ngena",
+    "register": "Dala i-akhawunti",
+    "free": "Kumahhala, akukho zikhangiso. Umzuzu owodwa wanele.",
+    "community_one": "Umthuthukisi o-{{formatted}} usevele ubamba iqhaza ezingxoxweni.",
+    "community_other": "Abathuthukisi abangu-{{formatted}} sebevele babamba iqhaza ezingxoxweni.",
+    "reasons": {
+      "vote": "Votela izihloko nezimpendulo ezikusizile: yilokho okwenza ezingcono zikhuphuke.",
+      "save": "Gcina izihloko ezikuthandayo ukuze uzithole kamuva, kuwo wonke amadivayisi akho.",
+      "answer": "Phendula lesi sihloko: isipiliyoni sakho singasiza omunye umthuthukisi, futhi sikunike idumela.",
+      "comment": "Joyina ingxoxo: cela incazelo, phendula ukuphawula.",
+      "ask": "Buza umphakathi umbuzo wakho: abathuthukisi bakulo lonke izwekazi bayaphendula.",
+      "follow": "Landela amalungu nomaka: izihloko zabo zizokwakha okuphakelayo kwakho.",
+      "feed": "Ngena ukuze uthole okuphakelayo kwakho, izihloko zakho nohlu lwakho lokufunda."
+    }
+  },
+  "tag": {
+    "follow": "Landela",
+    "following": "Uyalandela"
+  },
+  "aside": {
+    "label": "Mayelana nezingxoxo",
+    "helpTitle": "Siza umthuthukisi",
+    "helpEmpty": "Yonke imibuzo ithole izimpendulo. Halala!",
+    "trendingTitle": "Okushisayo kuleli sonto",
+    "trendingEmpty": "Akukho okusha kuleli sonto okwamanje.",
+    "seeAll": "Bona konke",
+    "tipsTitle": "Ukubuza umbuzo omuhle",
+    "tips": {
+      "title": "Isihloko esicacile: ubuchwepheshe, nalokho okukuvimbayo.",
+      "code": "Ikhodi ethintekayo ebhulokhini yekhodi, hhayi isithombe-skrini.",
+      "tried": "Lokho osuvele ukuzamile, nomlayezo wephutha ophelele.",
+      "accept": "Impendulo ikusizile? Yamukele: isihloko siba «sixazululiwe»."
+    }
+  },
+  "topic": {
+    "back": "Izingxoxo",
+    "loading": "Kulayishwa isihloko",
+    "notFoundTitle": "Lesi sihloko asisekho",
+    "notFoundText": "Kungenzeka ukuthi sisusiwe ngumbhali waso noma ngumlawuli.",
+    "errorTitle": "Isihloko asikwazanga ukulayishwa",
+    "errorText": "Hlola uxhumano lwakho, bese uzama futhi.",
+    "actions": "Izenzo zesihloko",
+    "toAnswers_one": "Iya empendulweni ({{count}})",
+    "toAnswers_other": "Iya ezimpendulweni ({{count}})",
+    "posted": "Kushicilelwe ngo",
+    "edited": "kuhlelwe {{when}}",
+    "reputation_one": "Iphuzu ledumela elingu-{{count}}",
+    "reputation_other": "Amaphuzu edumela angu-{{count}}",
+    "reputationShort": "amaphuzu",
+    "solved": "Kuxazululiwe · bona isixazululo",
+    "closed": "Kuvaliwe: azikho izimpendulo ezintsha",
+    "manage": "Phatha isihloko",
+    "close": "Vala isihloko",
+    "closeHint": "Ngeke samukele izimpendulo ezintsha.",
+    "reopen": "Vula kabusha isihloko",
+    "reopenHint": "Sizophinda samukele izimpendulo.",
+    "closedToast": "Isihloko sivaliwe",
+    "reopenedToast": "Isihloko sivulwe kabusha",
+    "deleteBlocked": "Sesinezimpendulo: umlawuli kuphela ongasisusa.",
+    "deleteTitle": "Susa lesi sihloko?",
+    "deleteText": "«{{title}}» sizosuswa kanye namavoti nokuphawula kwaso. Akubuyiswa.",
+    "deleted": "Isihloko sisusiwe"
+  },
+  "menu": {
+    "edit": "Hlela",
+    "delete": "Susa"
+  },
+  "vote": {
+    "group": {
+      "topic": "Votela lesi sihloko",
+      "answer": "Votela le mpendulo"
+    },
+    "up": {
+      "topic": "Lesi sihloko siwusizo",
+      "answer": "Le mpendulo iwusizo"
+    },
+    "down": {
+      "topic": "Lesi sihloko asicacile noma asilusizo",
+      "answer": "Le mpendulo ayilusizo"
+    },
+    "own": {
+      "topic": "Yisihloko sakho: awukwazi ukusivotela",
+      "answer": "Yimpendulo yakho: awukwazi ukuyivotela"
+    },
+    "score_one": "Amaphuzu: {{count}}",
+    "score_other": "Amaphuzu: {{count}}"
+  },
+  "share": {
+    "title": "Yabelana",
+    "short": "Yabelana",
+    "copy": "Kopisha isixhumanisi",
+    "copied": "Isixhumanisi sikopishiwe",
+    "copyFailed": "Isixhumanisi asikwazanga ukukopishwa.",
+    "native": "Yabelana nge…",
+    "on": "Yabelana ku-{{network}}"
+  },
+  "answers": {
+    "title_one": "Impendulo ({{count}})",
+    "title_other": "Izimpendulo ({{count}})",
+    "sortBest": "Ezingcono",
+    "sortNewest": "Ezintsha kakhulu",
+    "sortOldest": "Ezindala kakhulu",
+    "label": "Impendulo yakho",
+    "placeholder": "Engeza impendulo yakho…",
+    "placeholderOwn": "Incazelo, indlela oyitholile phakathi naleso sikhathi? Yengeze…",
+    "submit": "Shicilela impendulo",
+    "guideline": "Cacisa futhi ube nomusa: ikhodi, imithombo, isipiliyoni sakho.",
+    "posted": "Impendulo ishicilelwe",
+    "closed": "Lesi sihloko sivaliwe: asisamukeli izimpendulo ezintsha.",
+    "emptyTitle": "Ayikho impendulo okwamanje",
+    "emptyText": "Yiba ngowokuqala ukusiza u-{{name}}: ngisho nomqondo omncane ungaxazulula konke.",
+    "errorTitle": "Izimpendulo azikwazanga ukulayishwa",
+    "errorText": "Hlola uxhumano lwakho, bese uzama futhi.",
+    "acceptedBy": "Isixazululo esamukelwe ngu-{{name}}",
+    "accept": "Yamukela njengesixazululo",
+    "acceptedShort": "Isixazululo",
+    "unaccept": "Susa isixazululo",
+    "acceptedToast": "Impendulo yamukelwe: isihloko sixazululiwe",
+    "unacceptedToast": "Akusesona isixazululo",
+    "reply": "Phendula",
+    "menu": "Okukhethwa kukho kwempendulo",
+    "editLabel": "Hlela impendulo yakho",
+    "updated": "Impendulo ihleliwe",
+    "deleteTitle": "Susa le mpendulo?",
+    "deleteText": "Izosuswa kanye namavoti nokuphawula kwayo. Akubuyiswa.",
+    "deleteAcceptedText": "Yisixazululo esamukelwe: isihloko ngeke kusaba sixazululiwe. Izosuswa kanye namavoti nokuphawula kwayo.",
+    "deleted": "Impendulo isusiwe"
+  },
+  "thread": {
+    "collapse_one": "Goqa ingxoxo ({{count}})",
+    "collapse_other": "Goqa ingxoxo ({{count}})",
+    "expand_one": "Nweba ingxoxo ({{count}})",
+    "expand_other": "Nweba ingxoxo ({{count}})",
+    "show_one": "Bonisa ukuphawula oku-{{count}}",
+    "show_other": "Bonisa ukuphawula okungu-{{count}}",
+    "more_one": "Bona okunye ukuphawula oku-{{count}}",
+    "more_other": "Bona okunye ukuphawula okungu-{{count}}"
+  },
+  "comment": {
+    "reply": "Phendula",
+    "author": "Umbhali",
+    "edited": "kuhleliwe",
+    "menu": "Okukhethwa kukho kokuphawula",
+    "placeholder": "Ukuphawula kwakho…",
+    "label": "Phendula u-{{name}}",
+    "editLabel": "Hlela ukuphawula kwakho",
+    "submit": "Phawula",
+    "delete": "Susa",
+    "deleteTitle": "Susa lokhu kuphawula?",
+    "deleteText": "Kuzosuswa unomphela.",
+    "deleted": "Ukuphawula kususiwe"
+  },
+  "clarify": {
+    "title_one": "Incazelo ({{count}})",
+    "title_other": "Izincazelo ({{count}})",
+    "ask": "Cela incazelo",
+    "placeholder": "Inguqulo, umlayezo wephutha, imininingwane eshodayo?",
+    "label": "Cela umbhali incazelo",
+    "submit": "Thumela"
+  },
+  "sidebar": {
+    "label": "Mayelana nesihloko",
+    "author": "Umbhali",
+    "follow": "Landela",
+    "following": "Uyalandela",
+    "editProfile": "Hlela iphrofayela yami",
+    "location": "Indawo",
+    "level": "Izinga",
+    "reputation": "Idumela",
+    "joined": "Ilungu kusukela",
+    "openToWork": "Uvulekele amathuba",
+    "topics_one": "Isihloko esingu-{{count}}",
+    "topics_other": "Izihloko ezingu-{{count}}",
+    "answers_one": "Impendulo engu-{{count}}",
+    "answers_other": "Izimpendulo ezingu-{{count}}",
+    "moreFrom": "Okwengeziwe ku-{{name}}",
+    "related": "Izihloko ezihlobene"
+  },
+  "form": {
+    "newTitle": "Isihloko esisha",
+    "editTitle": "Hlela isihloko",
+    "backToTopic": "Buyela esihlokweni",
+    "mode": "Imodi yomhleli",
+    "write": "Bhala",
+    "preview": "Buka kuqala",
+    "titleLabel": "Isihloko",
+    "titlePlaceholder": "Isihloko sombuzo wakho…",
+    "titleHint": "Umusho ocacile: ubuchwepheshe, lokho ofuna ukukwenza, lokho okukuvimbayo.",
+    "tagsLabel": "Omaka",
+    "tagsHint_one": "Kuze kube umaka o-{{count}}: ubuchwepheshe nesihloko.",
+    "tagsHint_other": "Kuze kube omaka abangu-{{count}}: ubuchwepheshe nesihloko.",
+    "tagsPlaceholder_one": "Engeza kuze kube umaka o-{{count}}…",
+    "tagsPlaceholder_other": "Engeza kuze kube omaka abangu-{{count}}…",
+    "tagsMore": "Omunye umaka?",
+    "tagsFull_one": "Umaka o-{{count}} ubuningi",
+    "tagsFull_other": "Omaka abangu-{{count}} ubuningi",
+    "tagsChosen": "Omaka abakhethiwe",
+    "tagSuggestions": "Iziphakamiso zomaka",
+    "removeTag": "Susa umaka {{tag}}",
+    "createTag": "Engeza «{{tag}}»",
+    "bodyLabel": "Okuqukethwe",
+    "bodyPlaceholder": "Chaza inkinga yakho: lokho ofuna ukukuthola, okwenzekayo esikhundleni salokho, ikhodi ethintekayo, osuvele ukuzamile…",
+    "publish": "Shicilela",
+    "save": "Londoloza",
+    "cancel": "Khansela",
+    "published": "Isihloko sishicilelwe",
+    "updated": "Isihloko sihleliwe",
+    "draftSaved": "Okusalungiswa kugcinwe kule divayisi",
+    "draftRestored": "Okusalungiswa kwakho kubuyisiwe.",
+    "startOver": "Qala phansi",
+    "discard": "Sula okusalungiswa",
+    "discardTitle": "Sula okusalungiswa?",
+    "discardText": "Isihloko, omaka nokuqukethwe kuzosulwa.",
+    "discardConfirm": "Sula",
+    "leaveTitle": "Phuma ngaphandle kokulondoloza?",
+    "leaveText": "Izinguquko zakho zizolahleka.",
+    "leaveConfirm": "Phuma",
+    "leaveCancel": "Hlala",
+    "helpLabel": "Usizo lokubhala",
+    "previewNow": "manje nje",
+    "previewNoTitle": "Isihloko sakho sizovela lapha",
+    "previewNoBody": "Okuqukethwe kwesihloko sakho kuzovela lapha.",
+    "similarTitle": "Lezi zihloko kungenzeka sezivele ziphendula umbuzo wakho",
+    "submitHint": "{{mod}} + Enter ukushicilela",
+    "commentEmpty": "Bhala okuthile ngaphambi kokuthumela.",
+    "imagesPending": "Linda kuze kuqedwe ukulayishwa kwezithombe."
+  },
+  "guide": {
+    "title": {
+      "title": "Isihloko esihle",
+      "points": [
+        "Fingqa inkinga yakho ngomusho owodwa: ubuchwepheshe, lokho ozama ukukwenza, lokho okukuvimbayo.",
+        "«Flutter: ukuvumelanisa ngaphandle kwe-inthanethi kudala izimpinda» kungcono kuno «Ngisizeni!».",
+        "Isihloko esicacile sidonsa abantu abafanele, futhi sisiza labo abazofuna into efanayo emva kwakho."
+      ]
+    },
+    "tags": {
+      "title": "Ukukhetha omaka",
+      "points": [
+        "Kuze kube omaka abangu-5: ubuchwepheshe (React, Spring Boot…) nesihloko (Ukusebenza, Umsebenzi…).",
+        "Umbuzo wakho ufika kokuphakelayo kwabathuthukisi abalandela lezi zimaka.",
+        "Khetha umaka osuvele ukhona: uyaphakanyiswa njengoba uthayipha."
+      ]
+    },
+    "body": {
+      "title": "Ukuchaza inkinga",
+      "points": [
+        "Lokho ofuna ukukuthola, nalokho okwenzekayo esikhundleni salokho.",
+        "Ikhodi ethintekayo ebhulokhini ```java (nolimi): izofakwa imibala futhi ikopisheke.",
+        "Umlayezo wephutha ophelele, nalokho osuvele ukuzamile.",
+        "Izinguqulo nendawo yakho: ifoni, isiphequluli, isistimu."
+      ]
+    }
+  }
+}

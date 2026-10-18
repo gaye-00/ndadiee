@@ -266,6 +266,58 @@ connecté, il verra sa compatibilité avec chaque rôle.
   ou publier un rôle.
 - Textes : l'espace de noms `openings` des traductions, téléchargé avec la page.
 
+## Forum
+
+Construit comme dev.to, avec le design Kente. Côté backend, un sujet reste une `Question` (`/v1/questions`).
+
+- **Fil** (`/forum`, `pages/forum/ForumPage.tsx`) : l'accroche (`forum/ForumIntro`, le forum en chiffres), puis trois
+  colonnes. À gauche (`forum/ForumNav`) les vues — tous les sujets, « Mon fil » (auteurs et tags suivis), sans réponse,
+  résolus, mes sujets, enregistrés —, les tags suivis et les tags populaires ; un visiteur y trouve l'invitation à
+  rejoindre la communauté, et un cadenas sur les vues des membres. Au centre la recherche, le tag, les onglets
+  « Pertinents », « Récents », « Top » (semaine, mois, année, toujours) (`forum/TopicFilters`), puis les sujets
+  (`forum/TopicList`, `forum/TopicCard`), quinze à la fois, la suite à l'approche du bas. À droite (`forum/ForumAside`)
+  « Aide un dev » (les questions sans réponse), les tendances de la semaine, et comment bien poser sa question. Les
+  marges restent à l'écran pendant la lecture ; sur téléphone, les vues passent en pastilles au-dessus du fil.
+- **URL** (`hooks/useForumFilters.ts`) : `/forum?view=unanswered&tag=react&sort=top&period=month&q=…` se partage.
+  « Forum », depuis un sujet, ramène au fil tel qu'on l'a laissé.
+- **Un tag** : son en-tête (couleur, description) et « Suivre » (`forum/TagHeader`) ; ses sujets entrent dans « Mon fil ».
+  Chaque tag a son fil du kente (or, rouge ou vert), calculé à partir de son slug (`forum/forumUtils.ts`).
+- **Un sujet** (`/forum/:slug`, `pages/forum/TopicPage.tsx`) : le rail des actions qui suit la lecture
+  (`forum/TopicActions` : voter, aller aux réponses, enregistrer, partager — WhatsApp en tête), l'en-tête
+  (`forum/TopicHeader` : auteur, dates, résolu ou fermé, titre, tags ; pour l'auteur, modifier, fermer, supprimer), le
+  contenu et ses précisions (`forum/TopicBody`), puis la discussion (`forum/ReplyList`) : le champ pour répondre, qui
+  s'ouvre en éditeur complet (`forum/ReplyForm`), et les réponses (`forum/ReplyCard`) avec leur vote, « Accepter comme
+  solution » pour l'auteur du sujet, et leur fil de commentaires qui se replie (`forum/ReplyComments`). En marge, la
+  carte de l'auteur et « Suivre », ses autres sujets, des sujets liés (`forum/TopicSidebar`). Un lien
+  `#answer-12` (les notifications) y descend et éclaire la réponse.
+- **Écrire** (`/forum/new`, `/forum/:slug/edit`, `forum/TopicForm`) : le titre en grand, les tags
+  (`forum/TopicTagInput`, suggestions de l'API, cinq au plus), le contenu, l'aperçu ; à côté, des conseils qui suivent
+  le champ en cours et les sujets qui répondent peut-être déjà à la question. Le nouveau sujet et la réponse en cours
+  sont gardés en brouillon sur l'appareil (`hooks/useDraft.ts`) ; quitter une modification non enregistrée demande
+  confirmation.
+- **Réservé aux membres** : voter, enregistrer, répondre, commenter, suivre, poser une question. Un visiteur voit la
+  fenêtre « Connecte-toi pour continuer » (`forum/SignInDialog`, `hooks/useMemberAction.ts`), qui dit ce que la
+  connexion permettra, puis revient sur la page (et sur la discussion pour répondre).
+- **Réactivité** : votes et marque-pages changent tout de suite et reviennent en arrière si l'API refuse ; réponses et
+  commentaires s'ajoutent au cache sans recharger le sujet, qui compterait une vue (`hooks/useQuestions.ts`).
+- Textes : l'espace de noms `forum` des traductions, téléchargé avec les pages.
+
+Briques partagées (`components/shared/`) :
+
+- `MarkdownContent` : le Markdown de GitHub, le code coloré (`lib/rehypeCodeHighlight.ts`, les langages de
+  `lib/codeLanguages.ts`, Dart et Dockerfile compris) avec son bouton « Copier » (`CodeBlock`), des ancres sur les
+  titres. Le HTML écrit n'est jamais interprété ; les liens externes s'ouvrent dans un nouvel onglet (`nofollow ugc`).
+- `MarkdownEditor` : barre d'outils et raccourcis (Ctrl+B, I, K, E), aperçu, listes qui se continuent, coller une
+  adresse sur du texte en fait un lien, Ctrl+Entrée publie. Avec `onUploadImage`, les images : bouton, capture collée,
+  glisser-déposer.
+- `ConfirmDialog` : les suppressions.
+
+**Images** (`hooks/useImageUpload.ts`, `lib/imageUpload.ts`) : avant l'envoi, le navigateur réduit l'image à 1920 px
+et la réencode en WebP, ce qui retire ses métadonnées (position GPS d'une photo) : une photo de téléphone de 4 Mo
+part souvent en moins de 300 Ko. Un repère « Envoi de photo.jpg… » tient sa place dans le texte, puis devient
+l'image, avec une description à compléter. On ne publie pas tant qu'un envoi est en cours. Stockage : Cloudflare R2
+(voir le README du backend).
+
 ## Pied de page
 
 `layout/Footer.tsx` : les liens (Explorer, Contribuer), les dix langues écrites chacune dans sa langue

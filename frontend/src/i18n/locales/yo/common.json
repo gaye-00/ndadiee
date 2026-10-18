@@ -149,7 +149,8 @@
     "settings": "Ètò",
     "login": "Wọlé",
     "register": "Forúkọsílẹ̀",
-    "notFound": "A kò rí ojú-ìwé náà"
+    "notFound": "A kò rí ojú-ìwé náà",
+    "editTopic": "Ṣàtúnṣe kókó"
   },
   "enums": {
     "experienceLevel": {
@@ -702,5 +703,49 @@
       "reputation_one": "àmì òkìkí {{count}}",
       "reputation_other": "àmì òkìkí {{count}}"
     }
+  },
+  "code": {
+    "copy": "Ṣe àdàkọ",
+    "copied": "A ti ṣe àdàkọ"
+  },
+  "editor": {
+    "mode": "Ipò olóòtú",
+    "write": "Kọ",
+    "preview": "Àyẹ̀wò ṣáájú",
+    "toolbar": "Ìṣètò ọ̀rọ̀",
+    "tools": {
+      "bold": "Kíkún",
+      "italic": "Dídàgẹ̀rẹ̀",
+      "link": "Ìjápọ̀",
+      "heading": "Àkọlé",
+      "quote": "Àyọlò",
+      "code": "Kóòdù",
+      "codeBlock": "Àpótí kóòdù",
+      "list": "Àtòjọ oníkókó",
+      "orderedList": "Àtòjọ oníǹọ́mbà",
+      "image": "Àwòrán"
+    },
+    "sample": {
+      "bold": "ọ̀rọ̀ kíkún",
+      "italic": "ọ̀rọ̀ dídàgẹ̀rẹ̀",
+      "link": "ọ̀rọ̀ ìjápọ̀",
+      "code": "kóòdù",
+      "word": "ọ̀rọ̀"
+    },
+    "help": "Ìrànlọ́wọ́",
+    "helpTitle": "Ìpìlẹ̀ Markdown",
+    "emptyPreview": "Kò sí nǹkan láti yẹ̀ wò síbẹ̀.",
+    "remaining_one": "Lẹ́tà {{count}} ló kù",
+    "remaining_other": "Lẹ́tà {{count}} ló kù",
+    "uploading": "Ó ń fi {{name}} ránṣẹ́… ({{id}})",
+    "imageAlt": "àpèjúwe àwòrán",
+    "dropImage": "Ju àwọn àwòrán rẹ síbí",
+    "uploadingStatus_one": "Ó ń fi àwòrán kan ránṣẹ́…",
+    "uploadingStatus_other": "Ó ń fi àwòrán {{count}} ránṣẹ́…",
+    "tooManyImages_one": "Àwòrán {{count}} lẹ́ẹ̀kan ṣoṣo: èyí àkọ́kọ́ ló ń lọ.",
+    "tooManyImages_other": "Àwòrán {{count}} lẹ́ẹ̀kan ṣoṣo: àwọn àkọ́kọ́ ló ń lọ.",
+    "imageType": "«{{name}}»: àwọn ìlànà tí a gbà ni JPEG, PNG, WebP àti GIF.",
+    "imageTooBig": "«{{name}}» ju MB {{max}} lọ.",
+    "uploadFailed": "Kò ṣeé ṣe láti fi «{{name}}» ránṣẹ́."
   }
 }

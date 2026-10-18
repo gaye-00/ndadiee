@@ -1,4 +1,5 @@
 import type common from './locales/fr/common.json';
+import type forum from './locales/fr/forum.json';
 import type hackathons from './locales/fr/hackathons.json';
 import type openings from './locales/fr/openings.json';
 import type showcase from './locales/fr/showcase.json';
@@ -11,6 +12,7 @@ declare module 'i18next' {
     defaultNS: 'common';
     resources: {
       common: typeof common;
+      forum: typeof forum;
       hackathons: typeof hackathons;
       openings: typeof openings;
       showcase: typeof showcase;

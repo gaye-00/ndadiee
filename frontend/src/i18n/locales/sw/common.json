@@ -149,7 +149,8 @@
     "settings": "Mipangilio",
     "login": "Ingia",
     "register": "Jisajili",
-    "notFound": "Ukurasa haupatikani"
+    "notFound": "Ukurasa haupatikani",
+    "editTopic": "Hariri mada"
   },
   "enums": {
     "experienceLevel": {
@@ -702,5 +703,49 @@
       "reputation_one": "pointi {{count}} ya sifa",
       "reputation_other": "pointi {{count}} za sifa"
     }
+  },
+  "code": {
+    "copy": "Nakili",
+    "copied": "Imenakiliwa"
+  },
+  "editor": {
+    "mode": "Hali ya kihariri",
+    "write": "Andika",
+    "preview": "Hakiki",
+    "toolbar": "Muundo",
+    "tools": {
+      "bold": "Herufi nzito",
+      "italic": "Italiki",
+      "link": "Kiungo",
+      "heading": "Kichwa",
+      "quote": "Nukuu",
+      "code": "Msimbo",
+      "codeBlock": "Kizuizi cha msimbo",
+      "list": "Orodha ya vitone",
+      "orderedList": "Orodha ya namba",
+      "image": "Picha"
+    },
+    "sample": {
+      "bold": "maandishi mazito",
+      "italic": "maandishi ya italiki",
+      "link": "maandishi ya kiungo",
+      "code": "msimbo",
+      "word": "maandishi"
+    },
+    "help": "Msaada",
+    "helpTitle": "Misingi ya Markdown",
+    "emptyPreview": "Bado hakuna cha kuhakiki.",
+    "remaining_one": "Herufi {{count}} imebaki",
+    "remaining_other": "Herufi {{count}} zimebaki",
+    "uploading": "Inapakia {{name}}… ({{id}})",
+    "imageAlt": "maelezo ya picha",
+    "dropImage": "Dondosha picha zako hapa",
+    "uploadingStatus_one": "Inapakia picha…",
+    "uploadingStatus_other": "Inapakia picha {{count}}…",
+    "tooManyImages_one": "Picha {{count}} kwa wakati mmoja: ya kwanza inatumwa.",
+    "tooManyImages_other": "Picha {{count}} kwa wakati mmoja: za kwanza zinatumwa.",
+    "imageType": "«{{name}}»: miundo inayokubalika ni JPEG, PNG, WebP na GIF.",
+    "imageTooBig": "«{{name}}» inazidi MB {{max}}.",
+    "uploadFailed": "«{{name}}» haikuweza kupakiwa."
   }
 }

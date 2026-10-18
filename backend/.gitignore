@@ -31,3 +31,6 @@ build/
 
 ### VS Code ###
 .vscode/
+
+### Images des membres gardées sur le disque (développement, sans R2) ###
+uploads/

@@ -11,7 +11,7 @@ export type PageImport = () => Promise<{ default: ComponentType }>;
  * Le code d'une page et les textes de sa fonctionnalité (un espace de noms des traductions, dans la langue
  * de l'interface), téléchargés ensemble : la page s'affiche avec ses textes, sans attente de plus.
  */
-function withTexts(load: PageImport, namespace: 'hackathons' | 'openings' | 'showcase'): PageImport {
+function withTexts(load: PageImport, namespace: 'forum' | 'hackathons' | 'openings' | 'showcase'): PageImport {
   return () => Promise.all([load(), i18n.loadNamespaces(namespace)]).then(([module]) => module);
 }
 
@@ -29,9 +29,10 @@ export const pages = {
   newOpening: () => import('@/pages/openings/NewOpeningPage'),
   hackathons: withTexts(() => import('@/pages/hackathons/HackathonsPage'), 'hackathons'),
   hackathon: withTexts(() => import('@/pages/hackathons/HackathonPage'), 'hackathons'),
-  forum: () => import('@/pages/forum/ForumPage'),
-  topic: () => import('@/pages/forum/TopicPage'),
-  newTopic: () => import('@/pages/forum/NewTopicPage'),
+  forum: withTexts(() => import('@/pages/forum/ForumPage'), 'forum'),
+  topic: withTexts(() => import('@/pages/forum/TopicPage'), 'forum'),
+  newTopic: withTexts(() => import('@/pages/forum/NewTopicPage'), 'forum'),
+  editTopic: withTexts(() => import('@/pages/forum/EditTopicPage'), 'forum'),
   profile: () => import('@/pages/profile/ProfilePage'),
   search: () => import('@/pages/search/SearchPage'),
 

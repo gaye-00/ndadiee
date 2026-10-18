@@ -3,6 +3,8 @@ import type { ApiResponse, PageResponse, PaginationParams } from '@/types/common
 import type {
   Answer,
   AnswerRequest,
+  BookmarkResponse,
+  ForumOverview,
   Question,
   QuestionFilters,
   QuestionRequest,
@@ -15,6 +17,18 @@ const BASE = '/v1/questions';
 export const questionService = {
   getAll: (params?: QuestionFilters) =>
     api.get<ApiResponse<PageResponse<QuestionSummary>>>(BASE, { params }).then((r) => r.data.data),
+
+  /** Le forum en chiffres et ses tags les plus utilisés. */
+  getOverview: () => api.get<ApiResponse<ForumOverview>>(`${BASE}/overview`).then((r) => r.data.data),
+
+  /** Liste de lecture du membre connecté : les derniers enregistrés d'abord. */
+  getSaved: (params?: PaginationParams) =>
+    api.get<ApiResponse<PageResponse<QuestionSummary>>>(`${BASE}/saved`, { params }).then((r) => r.data.data),
+
+  /** Enregistrer (sans effet s'il l'est déjà) ou retirer un sujet de la liste de lecture. */
+  bookmark: (id: number) => api.post<ApiResponse<BookmarkResponse>>(`${BASE}/${id}/bookmark`).then((r) => r.data.data),
+
+  unbookmark: (id: number) => api.delete<ApiResponse<BookmarkResponse>>(`${BASE}/${id}/bookmark`).then((r) => r.data.data),
 
   /** Compte une vue à chaque appel. */
   getBySlug: (slug: string) => api.get<ApiResponse<Question>>(`${BASE}/${slug}`).then((r) => r.data.data),

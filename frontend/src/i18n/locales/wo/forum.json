@@ -1,0 +1,411 @@
+{
+  "intro": {
+    "eyebrow": "Waxtaan",
+    "titleAsk": "Laajal sa laaj.",
+    "titleShare": "Séddoo li nga xam.",
+    "lead": "Développeur yu Afrig ñu ngi jàppalante : laaj yu leer, tontu yuy feral jafe-jafe, waxtaan yuy jëmale kanam. Tontu bu am njariñ bu nekk dina yokk tuddu ki ko bind.",
+    "topics_one": "{{count}} waxtaan",
+    "topics_other": "{{count}} waxtaan",
+    "answers_one": "{{count}} tontu",
+    "answers_other": "{{count}} tontu",
+    "contributors_one": "{{count}} dev bokk na ci",
+    "contributors_other": "{{count}} dev bokk nañu ci",
+    "solved_one": "{{count}} am na saafara",
+    "solved_other": "{{count}} am nañu saafara",
+    "unanswered_one": "{{count}} mu ngi xaar tontu",
+    "unanswered_other": "{{count}} ñu ngi xaar tontu",
+    "ask": "Laaj"
+  },
+  "nav": {
+    "label": "Yoonu waxtaan wi",
+    "views": "Xool yi",
+    "membersOnly": "Ñi dugg rekk",
+    "followedTags": "Sa tag yi",
+    "noFollowedTags": "Toppal ay tag (ci kaw xëtu tag bi) : seeni waxtaan ñooy def sa yoon.",
+    "popularTags": "Tag yi gën a siiw",
+    "removeTag": "Far tag #{{tag}}"
+  },
+  "views": {
+    "all": "Waxtaan yépp",
+    "following": "Sama yoon",
+    "unanswered": "Amul tontu",
+    "solved": "Am na saafara",
+    "mine": "Sama waxtaan yi",
+    "saved": "Yi ma denc"
+  },
+  "join": {
+    "title": "Bokkal ci waxtaan wi",
+    "text": "Laajal sa laaj yi, jàppale yeneen dev yi te denc waxtaan yi gën a baax ci sa limu jàng.",
+    "textCount_one": "{{count}} dev bu Afrig séddoo na fii li mu xam. Laaj, tontu, denc waxtaan yi gën a baax.",
+    "textCount_other": "{{count}} dev yu Afrig séddoo nañu fii li ñu xam. Laaj, tontu, denc waxtaan yi gën a baax.",
+    "register": "Bindu",
+    "login": "Duggu"
+  },
+  "filters": {
+    "label": "Tànn waxtaan yi",
+    "search": "Seet ci waxtaan wi",
+    "searchPlaceholder": "Baat, njuumte, xarala…",
+    "tag": "Tag",
+    "anyTag": "Tag yépp",
+    "tagSearch": "Seet ab tag…",
+    "noTag": "Amul benn tag bu ci dëppoo."
+  },
+  "sort": {
+    "label": "Toftalinu waxtaan yi",
+    "relevant": "Yi gën a am solo",
+    "recent": "Yu bees",
+    "top": "Yi gën"
+  },
+  "period": {
+    "label": "Diir",
+    "week": "Ayubés",
+    "month": "Weer",
+    "year": "At",
+    "all": "Saa su nekk"
+  },
+  "results": {
+    "count_one": "{{count}} waxtaan",
+    "count_other": "{{count}} waxtaan",
+    "saved_one": "{{count}} waxtaan bu ñu denc",
+    "saved_other": "{{count}} waxtaan yu ñu denc",
+    "outOf": "ci {{total}}",
+    "loading": "Waxtaan yi ñu ngi yebu",
+    "loadingMore": "Yeneen yi ñu ngi yebu",
+    "more": "Wone yeneen waxtaan",
+    "moreError": "Mënunu yebu yi ci topp.",
+    "errorTitle": "Mënunu yebu waxtaan wi",
+    "errorText": "Seetal sa internet, te jéemaat.",
+    "noMatchTitle": "Amul benn waxtaan bu ci dëppoo",
+    "noMatchText": "Jéemal yeneen baat walla far benn tànn. Kenn laajagul ? Laajal ko : dinga jàppale itam ñi koy seet sa ginnaaw.",
+    "clearFilters": "Far li nga tànn",
+    "askIt": "Laajal ko"
+  },
+  "empty": {
+    "browse": "Xool waxtaan yépp",
+    "all": {
+      "title": "Waxtaan wi mu ngi xaar waxtaanam bu njëkk",
+      "text": "Ab laaj, ab jafe-jafe bu dëgër, ab xam-xam : tàmbalil waxtaan wi."
+    },
+    "following": {
+      "title": "Sa yoon dafa wéet ba léegi",
+      "text": "Toppal ay tag ak ay nit : seeni waxtaan yu bees dinañu feeñ fii."
+    },
+    "unanswered": {
+      "title": "Laaj bu nekk am na tontoom",
+      "text": "Jërëjëf mbooloo mi ! Dellusil ci kanam : ab laaj bu bees mën na soxla sa ndimbal."
+    },
+    "solved": {
+      "title": "Amagul benn waxtaan bu am saafara",
+      "text": "Bu ki bind laaj bi nangoo ab tontu, waxtaan wi dina fi ñëw."
+    },
+    "mine": {
+      "title": "Ubbiloo benn waxtaan ba léegi",
+      "text": "Ab laaj, ab digal ngay laaj, ab xam-xam ngay séddoo : mbooloo mi mu ngi lay xaar."
+    },
+    "saved": {
+      "title": "Sa limu jàng dafa wéet",
+      "text": "Dencal ab waxtaan ak màndarga bi : dinga ko fi gis, ci sa masin yépp."
+    }
+  },
+  "gate": {
+    "following": {
+      "title": "Sa yoon, ni nga ko bëgge",
+      "text": "Duggal ngir topp ay tag ak ay nit : seeni waxtaan ñooy def sa yoon."
+    },
+    "mine": {
+      "title": "Sa waxtaan yi, ci benn béreb",
+      "text": "Duggal ngir gis waxtaan yi nga ubbi te topp seeni tontu."
+    },
+    "saved": {
+      "title": "Sa limu jàng",
+      "text": "Duggal ngir denc ay waxtaan te dellu ci ñoom ginnaaw, ci sa masin yépp."
+    }
+  },
+  "askCard": {
+    "title": "Gisoo sa tontu ?",
+    "text": "Laajal sa laaj : ay dev yu jóge Afrig gépp dinañu la tontu."
+  },
+  "card": {
+    "solved": "Am na saafara",
+    "closed": "Dañu ko tëj",
+    "new": "Bu bees",
+    "votes_one": "{{count}} bës",
+    "votes_other": "{{count}} bës",
+    "answers_one": "{{count}} tontu",
+    "answers_other": "{{count}} tontu",
+    "answersSolved_one": "{{count}} tontu, nangu nañu ko",
+    "answersSolved_other": "{{count}} tontu, nangu nañu benn",
+    "answersWord_one": "tontu",
+    "answersWord_other": "tontu",
+    "noAnswer": "Amul tontu",
+    "views_one": "{{count}} xool",
+    "views_other": "{{count}} xool",
+    "reading_one": "{{count}} simili jàng",
+    "reading_other": "{{count}} simili jàng"
+  },
+  "bookmark": {
+    "save": "Denc",
+    "saved": "Denc nañu ko",
+    "savedToast": "Denc nañu ko ci sa limu jàng",
+    "removedToast": "Far nañu ko ci sa limu jàng",
+    "open": "Xool lim bi",
+    "undo": "Neenal"
+  },
+  "signIn": {
+    "title": "Duggal ngir wéy",
+    "close": "Tëj",
+    "login": "Duggu",
+    "register": "Bindu",
+    "free": "Dafa dee neen, amul yéenekaay. Benn simili doy na.",
+    "community_one": "{{formatted}} dev bokk na ci waxtaan wi.",
+    "community_other": "{{formatted}} dev bokk nañu ci waxtaan wi.",
+    "reasons": {
+      "vote": "Bësal waxtaan yi ak tontu yi la jàppale : noonu la yi gën a baax di yéege.",
+      "save": "Dencal waxtaan yi la soxal ngir gis leen ginnaaw, ci sa masin yépp.",
+      "answer": "Tontul waxtaan wii : sa xam-xam mën na jàppale beneen dev, te yokk sa tuddu.",
+      "comment": "Bokkal ci waxtaan wi : laajal leeral, tontu ab kàddu.",
+      "ask": "Laajal mbooloo mi : ay dev yu jóge Afrig gépp ñooy tontu.",
+      "follow": "Toppal ay nit ak ay tag : seeni waxtaan ñooy def sa yoon.",
+      "feed": "Duggal ngir gis sa yoon, sa waxtaan yi ak sa limu jàng."
+    }
+  },
+  "tag": {
+    "follow": "Topp",
+    "following": "Ngay topp"
+  },
+  "aside": {
+    "label": "Ci wetu waxtaan wi",
+    "helpTitle": "Jàppale ab dev",
+    "helpEmpty": "Laaj yépp am nañu tontu. Jërëjëf !",
+    "trendingTitle": "Li siiw ayubés bii",
+    "trendingEmpty": "Amagul dara bu bees ayubés bii.",
+    "seeAll": "Gis lépp",
+    "tipsTitle": "Naka lañuy laaj bu baax",
+    "tips": {
+      "title": "Ab tur bu leer : xarala bi, ak li lay tëye.",
+      "code": "Kood bi ci benn kaxu kood, du nataalu ekraan.",
+      "tried": "Li nga jéem ba noppi, ak bataaxalu njuumte bi bépp.",
+      "accept": "Ab tontu jàppale na la ? Nangul ko : waxtaan wi dina « am saafara »."
+    }
+  },
+  "topic": {
+    "back": "Waxtaan",
+    "loading": "Waxtaan wi mu ngi yebu",
+    "notFoundTitle": "Waxtaan wii amatul",
+    "notFoundText": "Xéy na ki ko bind walla ab saytukat far na ko.",
+    "errorTitle": "Mënunu yebu waxtaan wi",
+    "errorText": "Seetal sa internet, te jéemaat.",
+    "actions": "Jëfi waxtaan wi",
+    "toAnswers_one": "Dem ci tontu bi ({{count}})",
+    "toAnswers_other": "Dem ci tontu yi ({{count}})",
+    "posted": "Siiwal nañu ko",
+    "edited": "soppi nañu ko {{when}}",
+    "reputation_one": "{{count}} poñu tuddu",
+    "reputation_other": "{{count}} poñu tuddu",
+    "reputationShort": "poñ",
+    "solved": "Am na saafara · xool saafara bi",
+    "closed": "Dañu ko tëj : tontu yu bees amatuñu",
+    "manage": "Saytu waxtaan wi",
+    "close": "Tëj waxtaan wi",
+    "closeHint": "Du nangu tontu yu bees.",
+    "reopen": "Ubbiwaat waxtaan wi",
+    "reopenHint": "Dina nanguwaat ay tontu.",
+    "closedToast": "Tëj nañu waxtaan wi",
+    "reopenedToast": "Ubbiwaat nañu waxtaan wi",
+    "deleteBlocked": "Am na fi tontu ba noppi : saytukat rekk a ko mën a far.",
+    "deleteTitle": "Far waxtaan wii ?",
+    "deleteText": "« {{title}} » dinañu ko far, ak ay bësam ak ay kàddoom. Duñu ko mën a delloo.",
+    "deleted": "Far nañu waxtaan wi"
+  },
+  "menu": {
+    "edit": "Soppi",
+    "delete": "Far"
+  },
+  "vote": {
+    "group": {
+      "topic": "Bës ci waxtaan wii",
+      "answer": "Bës ci tontu bii"
+    },
+    "up": {
+      "topic": "Waxtaan wii am na njariñ",
+      "answer": "Tontu bii am na njariñ"
+    },
+    "down": {
+      "topic": "Waxtaan wii leerul walla amul njariñ",
+      "answer": "Tontu bii amul njariñ"
+    },
+    "own": {
+      "topic": "Sa waxtaan la : mënuloo ci bës",
+      "answer": "Sa tontu la : mënuloo ci bës"
+    },
+    "score_one": "Poñ : {{count}}",
+    "score_other": "Poñ : {{count}}"
+  },
+  "share": {
+    "title": "Séddoo",
+    "short": "Séddoo",
+    "copy": "Duppi lëkkalekaay bi",
+    "copied": "Duppi nañu lëkkalekaay bi",
+    "copyFailed": "Mënunu duppi lëkkalekaay bi.",
+    "native": "Séddoo ak…",
+    "on": "Séddoo ci {{network}}"
+  },
+  "answers": {
+    "title_one": "Tontu ({{count}})",
+    "title_other": "Tontu yi ({{count}})",
+    "sortBest": "Yi gën",
+    "sortNewest": "Yi gën a bees",
+    "sortOldest": "Yi gën a yàgg",
+    "label": "Sa tontu",
+    "placeholder": "Yokkal sa tontu…",
+    "placeholderOwn": "Ab leeral, ab yoon bu nga gis ci diggante bi ? Yokkal ko…",
+    "submit": "Siiwal tontu bi",
+    "guideline": "Leeral te am yar : kood, ay gëstu, sa xam-xam.",
+    "posted": "Siiwal nañu tontu bi",
+    "closed": "Tëj nañu waxtaan wii : nanguwul tontu yu bees.",
+    "emptyTitle": "Amagul tontu",
+    "emptyText": "Nekkal ki njëkk a jàppale {{name}} : ab xalaat bu ndaw mën na feral lépp.",
+    "errorTitle": "Mënunu yebu tontu yi",
+    "errorText": "Seetal sa internet, te jéemaat.",
+    "acceptedBy": "Saafara bu {{name}} nangu",
+    "accept": "Nangu ko ni saafara",
+    "acceptedShort": "Saafara",
+    "unaccept": "Far saafara bi",
+    "acceptedToast": "Nangu nañu tontu bi : waxtaan wi am na saafara",
+    "unacceptedToast": "Du saafara bi ba tey",
+    "reply": "Tontu",
+    "menu": "Tànneefi tontu bi",
+    "editLabel": "Soppi sa tontu",
+    "updated": "Soppi nañu tontu bi",
+    "deleteTitle": "Far tontu bii ?",
+    "deleteText": "Dinañu ko far ak ay bësam ak ay kàddoom. Duñu ko mën a delloo.",
+    "deleteAcceptedText": "Moo di saafara bi ñu nangu : waxtaan wi du am saafara ba tey. Dinañu ko far ak ay bësam ak ay kàddoom.",
+    "deleted": "Far nañu tontu bi"
+  },
+  "thread": {
+    "collapse_one": "Lemm waxtaan wi ({{count}})",
+    "collapse_other": "Lemm waxtaan wi ({{count}})",
+    "expand_one": "Tasaare waxtaan wi ({{count}})",
+    "expand_other": "Tasaare waxtaan wi ({{count}})",
+    "show_one": "Wone {{count}} kàddu",
+    "show_other": "Wone {{count}} kàddu",
+    "more_one": "Gis {{count}} beneen kàddu",
+    "more_other": "Gis {{count}} yeneen kàddu"
+  },
+  "comment": {
+    "reply": "Tontu",
+    "author": "Ki bind",
+    "edited": "soppi nañu ko",
+    "menu": "Tànneefi kàddu gi",
+    "placeholder": "Sa kàddu…",
+    "label": "Tontu {{name}}",
+    "editLabel": "Soppi sa kàddu",
+    "submit": "Bind kàddu",
+    "delete": "Far",
+    "deleteTitle": "Far kàddu gii ?",
+    "deleteText": "Dinañu ko far ba fàww.",
+    "deleted": "Far nañu kàddu gi"
+  },
+  "clarify": {
+    "title_one": "Leeral ({{count}})",
+    "title_other": "Leeral yi ({{count}})",
+    "ask": "Laaj ab leeral",
+    "placeholder": "Ab sumb, ab bataaxalu njuumte, lu des ?",
+    "label": "Laaj ki bind ab leeral",
+    "submit": "Yónnee"
+  },
+  "sidebar": {
+    "label": "Ci mbirum waxtaan wi",
+    "author": "Ki ko bind",
+    "follow": "Topp",
+    "following": "Ngay topp",
+    "editProfile": "Soppi sama profil",
+    "location": "Béreb",
+    "level": "Tolluwaay",
+    "reputation": "Tuddu",
+    "joined": "Bokk na ci ba",
+    "openToWork": "Ubbeeku na ci liggéey",
+    "topics_one": "{{count}} waxtaan",
+    "topics_other": "{{count}} waxtaan",
+    "answers_one": "{{count}} tontu",
+    "answers_other": "{{count}} tontu",
+    "moreFrom": "Yeneen yu {{name}}",
+    "related": "Waxtaan yu ci jege"
+  },
+  "form": {
+    "newTitle": "Waxtaan wu bees",
+    "editTitle": "Soppi waxtaan wi",
+    "backToTopic": "Dellu ci waxtaan wi",
+    "mode": "Anamu bindukaay bi",
+    "write": "Bind",
+    "preview": "Xool ci kanam",
+    "titleLabel": "Tur",
+    "titlePlaceholder": "Turu sa laaj…",
+    "titleHint": "Benn kàddu gu leer : xarala bi, li nga bëgg a def, li lay tëye.",
+    "tagsLabel": "Tag yi",
+    "tagsHint_one": "Ba {{count}} tag : xarala bi ak tema bi.",
+    "tagsHint_other": "Ba {{count}} tag : xarala yi ak tema bi.",
+    "tagsPlaceholder_one": "Yokkal ba {{count}} tag…",
+    "tagsPlaceholder_other": "Yokkal ba {{count}} tag…",
+    "tagsMore": "Beneen tag ?",
+    "tagsFull_one": "{{count}} tag rekk",
+    "tagsFull_other": "{{count}} tag rekk",
+    "tagsChosen": "Tag yi nga tànn",
+    "tagSuggestions": "Tag yi ñu la digal",
+    "removeTag": "Far tag {{tag}}",
+    "createTag": "Yokk « {{tag}} »",
+    "bodyLabel": "Li ci biir",
+    "bodyPlaceholder": "Leeralal sa jafe-jafe : li nga bëgg a am, li xewoon ci barabam, kood bi, li nga jéem ba noppi…",
+    "publish": "Siiwal",
+    "save": "Denc",
+    "cancel": "Neenal",
+    "published": "Siiwal nañu waxtaan wi",
+    "updated": "Soppi nañu waxtaan wi",
+    "draftSaved": "Denc nañu sa ndaje ci masin bii",
+    "draftRestored": "Gis nañu sa ndaje.",
+    "startOver": "Tàmbaliwaat",
+    "discard": "Far ndaje bi",
+    "discardTitle": "Far ndaje bi ?",
+    "discardText": "Tur bi, tag yi ak li ci biir dinañu far.",
+    "discardConfirm": "Far",
+    "leaveTitle": "Génn te dencul ?",
+    "leaveText": "Say coppite dinañu réer.",
+    "leaveConfirm": "Génn",
+    "leaveCancel": "Des",
+    "helpLabel": "Ndimbal ci bind",
+    "previewNow": "léegi",
+    "previewNoTitle": "Sa tur dina feeñ fii",
+    "previewNoBody": "Li ci biir sa waxtaan dina feeñ fii.",
+    "similarTitle": "Waxtaan yii xéy na tontu nañu sa laaj ba noppi",
+    "submitHint": "{{mod}} + Enter ngir siiwal",
+    "commentEmpty": "Bindal dara balaa ngay yónnee.",
+    "imagesPending": "Xaaral ba nataal yi yónnee jeex."
+  },
+  "guide": {
+    "title": {
+      "title": "Ab tur bu baax",
+      "points": [
+        "Gàttalal sa jafe-jafe ci benn kàddu : xarala bi, li ngay jéem a def, li lay tëye.",
+        "« Flutter : jokkoo bu amul internet dafay ñaaral done yi » moo gën « Jàppale ma !».",
+        "Ab tur bu leer dafay xiir nit ñi war, te jàppale ñiy seet lenn ci sa ginnaaw."
+      ]
+    },
+    "tags": {
+      "title": "Tànn tag yi",
+      "points": [
+        "Ba 5 tag : xarala bi (React, Spring Boot…) ak tema bi (Gaawaay, Liggéey…).",
+        "Sa laaj dina agsi ci yoonu dev yiy topp tag yooyu.",
+        "Tànnal ab tag bu fi nekkoon : ñu ngi la koy digal bu ngay bind."
+      ]
+    },
+    "body": {
+      "title": "Leeral jafe-jafe bi",
+      "points": [
+        "Li nga bëgg a am, ak li xewoon ci barabam.",
+        "Kood bi ci kaxu ```java (ak làkk wi) : dina am ay melo te mën nañu ko duppi.",
+        "Bataaxalu njuumte bi bépp, ak li nga jéem ba noppi.",
+        "Say sumb ak sa barab : telefon, navigatëer, sistem."
+      ]
+    }
+  }
+}

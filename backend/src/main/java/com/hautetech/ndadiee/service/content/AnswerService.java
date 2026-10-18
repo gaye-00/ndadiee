@@ -2,6 +2,7 @@ package com.hautetech.ndadiee.service.content;
 
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.data.domain.Page;
@@ -12,6 +13,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.hautetech.ndadiee.dto.request.AnswerRequest;
 import com.hautetech.ndadiee.dto.response.AnswerResponse;
+import com.hautetech.ndadiee.dto.response.CommentResponse;
 import com.hautetech.ndadiee.dto.response.PageResponse;
 import com.hautetech.ndadiee.event.AnswerAcceptedEvent;
 import com.hautetech.ndadiee.event.AnswerPostedEvent;
@@ -19,10 +21,12 @@ import com.hautetech.ndadiee.exception.ForbiddenException;
 import com.hautetech.ndadiee.exception.OperationNotAllowedException;
 import com.hautetech.ndadiee.exception.ResourceNotFoundException;
 import com.hautetech.ndadiee.mapper.AnswerMapper;
+import com.hautetech.ndadiee.mapper.CommentMapper;
 import com.hautetech.ndadiee.model.ContentType;
 import com.hautetech.ndadiee.model.content.Answer;
 import com.hautetech.ndadiee.model.content.Question;
 import com.hautetech.ndadiee.model.content.QuestionStatus;
+import com.hautetech.ndadiee.model.interaction.Comment;
 import com.hautetech.ndadiee.model.user.Developer;
 import com.hautetech.ndadiee.repository.AnswerRepository;
 import com.hautetech.ndadiee.repository.CommentRepository;
@@ -49,9 +53,13 @@ public class AnswerService {
     private final VoteService voteService;
     private final ReputationService reputationService;
     private final AnswerMapper answerMapper;
+    private final CommentMapper commentMapper;
     private final ApplicationEventPublisher eventPublisher;
 
-    /** Réponses d'une question : la réponse acceptée d'abord, puis les mieux notées. */
+    /**
+     * Réponses d'une question : la réponse acceptée d'abord, puis les mieux notées. Chacune arrive avec son fil de
+     * commentaires, chargé pour toute la page en une requête.
+     */
     @Transactional(readOnly = true)
     public PageResponse<AnswerResponse> getByQuestion(Long questionId, Long currentUserId, Pageable pageable) {
         if (!questionRepository.existsById(questionId)) {
@@ -60,12 +68,17 @@ public class AnswerService {
         Page<Answer> page = answerRepository.findByQuestionIdOrderByAcceptedDescScoreDescCreatedAtAsc(
                 questionId, PageRequest.of(pageable.getPageNumber(), pageable.getPageSize()));
 
-        Map<Long, Integer> votes = voteService.getUserVotes(
-                currentUserId, ContentType.ANSWER, page.getContent().stream().map(Answer::getId).toList());
+        List<Long> answerIds = page.getContent().stream().map(Answer::getId).toList();
+        Map<Long, Integer> votes = voteService.getUserVotes(currentUserId, ContentType.ANSWER, answerIds);
+        Map<Long, List<CommentResponse>> threads = answerIds.isEmpty() ? Map.of() : commentRepository
+                .findByTargetTypeAndTargetIdInOrderByCreatedAtAsc(ContentType.ANSWER, answerIds).stream()
+                .collect(Collectors.groupingBy(Comment::getTargetId,
+                        Collectors.mapping(commentMapper::toResponse, Collectors.toList())));
         List<AnswerResponse> content = page.getContent().stream()
                 .map(answer -> {
                     AnswerResponse response = answerMapper.toResponse(answer);
                     response.setCurrentUserVote(votes.get(answer.getId()));
+                    response.setComments(threads.getOrDefault(answer.getId(), List.of()));
                     return response;
                 })
                 .toList();

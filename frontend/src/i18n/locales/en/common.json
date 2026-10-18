@@ -149,7 +149,8 @@
     "settings": "Settings",
     "login": "Log in",
     "register": "Sign up",
-    "notFound": "Page not found"
+    "notFound": "Page not found",
+    "editTopic": "Edit topic"
   },
   "enums": {
     "experienceLevel": {
@@ -702,5 +703,49 @@
       "reputation_one": "{{count}} reputation point",
       "reputation_other": "{{count}} reputation points"
     }
+  },
+  "code": {
+    "copy": "Copy",
+    "copied": "Copied"
+  },
+  "editor": {
+    "mode": "Editor mode",
+    "write": "Write",
+    "preview": "Preview",
+    "toolbar": "Formatting",
+    "tools": {
+      "bold": "Bold",
+      "italic": "Italic",
+      "link": "Link",
+      "heading": "Heading",
+      "quote": "Quote",
+      "code": "Code",
+      "codeBlock": "Code block",
+      "list": "Bulleted list",
+      "orderedList": "Numbered list",
+      "image": "Image"
+    },
+    "sample": {
+      "bold": "bold text",
+      "italic": "italic text",
+      "link": "link text",
+      "code": "code",
+      "word": "text"
+    },
+    "help": "Help",
+    "helpTitle": "Markdown basics",
+    "emptyPreview": "Nothing to preview yet.",
+    "remaining_one": "{{count}} character left",
+    "remaining_other": "{{count}} characters left",
+    "uploading": "Uploading {{name}}… ({{id}})",
+    "imageAlt": "image description",
+    "dropImage": "Drop your images here",
+    "uploadingStatus_one": "Uploading an image…",
+    "uploadingStatus_other": "Uploading {{count}} images…",
+    "tooManyImages_one": "{{count}} image at a time at most: the first one is sent.",
+    "tooManyImages_other": "{{count}} images at a time at most: the first ones are sent.",
+    "imageType": "\"{{name}}\": accepted formats are JPEG, PNG, WebP and GIF.",
+    "imageTooBig": "\"{{name}}\" is larger than {{max}} MB.",
+    "uploadFailed": "\"{{name}}\" could not be uploaded."
   }
 }

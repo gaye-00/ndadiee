@@ -12,6 +12,7 @@
 @import "./styles/tokens.css";
 @import "./styles/theme.css";
 @import "./styles/effects.css";
+@import "./styles/markdown.css";
 @import "./styles/base.css";
 
 /* Mise en forme des contenus Markdown (sujets du forum, devlog) : classe `prose` */

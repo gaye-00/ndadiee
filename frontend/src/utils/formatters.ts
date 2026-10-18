@@ -3,6 +3,7 @@ import { currentLanguage } from '@/i18n';
 interface Formatters {
   relativeTime: Intl.RelativeTimeFormat;
   fullDate: Intl.DateTimeFormat;
+  month: Intl.DateTimeFormat;
   day: Intl.DateTimeFormat;
   compactNumber: Intl.NumberFormat;
   regionNames: Intl.DisplayNames;
@@ -20,6 +21,7 @@ function formatters(): Formatters {
     entry = {
       relativeTime: new Intl.RelativeTimeFormat(locales, { numeric: 'auto' }),
       fullDate: new Intl.DateTimeFormat(locales, { day: 'numeric', month: 'long', year: 'numeric' }),
+      month: new Intl.DateTimeFormat(locales, { month: 'long', year: 'numeric' }),
       day: new Intl.DateTimeFormat(locales, { weekday: 'long', day: 'numeric', month: 'long' }),
       compactNumber: new Intl.NumberFormat(locales, { notation: 'compact', maximumFractionDigits: 1 }),
       regionNames: new Intl.DisplayNames(locales, { type: 'region' }),
@@ -53,6 +55,11 @@ export function formatRelativeTime(isoDate: string): string {
 /** « 14 octobre 2026 » */
 export function formatDate(isoDate: string): string {
   return formatters().fullDate.format(new Date(isoDate));
+}
+
+/** « octobre 2025 » : depuis quand un membre est là */
+export function formatMonth(isoDate: string): string {
+  return formatters().month.format(new Date(isoDate));
 }
 
 /** « jeudi 16 octobre » : la date du jour, en tête d'un tableau de bord */

@@ -25,6 +25,10 @@ Au démarrage, `initializer/InitializerNdadiee.java` synchronise les badges, pui
 3. `TestAccountsSeeder` : deux comptes d'essai pour se connecter. Ils existent à chaque démarrage,
    même dans une base déjà remplie, et leur mot de passe suit la configuration (le hachage est refait
    s'il a changé). Quelques membres de la vitrine les suivent : leur cloche n'est pas vide.
+4. `ForumSeeder` : 14 sujets de plus sur trois semaines (24 en tout), des fils de commentaires sous les
+   réponses, des sujets encore sans réponse. Ada attend d'accepter une réponse à sa question, Musa a résolu
+   celle de Yassine ; tous deux suivent des tags (« Mon fil ») et ont déjà enregistré des sujets (liste de
+   lecture). Créé une seule fois : si son premier sujet existe, rien n'est refait.
 
 | Compte d'essai | Identifiant | Mot de passe en développement |
 | --- | --- | --- |
@@ -130,6 +134,60 @@ son équipe (`ProjectResponse`).
 - La migration `V3__project_page.sql` tient dans un bloc `DO` : avec `ddl-auto: create-drop`, Hibernate a
   supprimé les tables à l'arrêt précédent et les recrée après Flyway, la migration n'a alors rien à
   modifier ; avec `validate`, elle s'applique entièrement.
+
+## Forum
+
+Un sujet du forum est une `Question` (`/v1/questions`), ses réponses des `Answer`, et les commentaires sous une
+réponse (ou sous le sujet : les « précisions ») des `Comment`.
+
+| Requête | Accès |
+| --- | --- |
+| `GET /v1/questions?q=&tag=&author=&unanswered=&solved=&period=&following=&sort=` | public (`following=true` : membre connecté) : les sujets, avec pour un membre connecté ceux qu'il a enregistrés (`bookmarkedByMe`) |
+| `GET /v1/questions/overview` | public : sujets, résolus, sans réponse, réponses, contributeurs, et les 15 tags les plus utilisés du forum avec leur nombre de sujets |
+| `GET /v1/questions/{slug}` | public, compte une vue : le sujet, son temps de lecture, le vote et l'enregistrement du membre connecté |
+| `GET /v1/questions/{id}/answers` | public : la réponse acceptée, puis les mieux notées ; chacune avec son fil de commentaires (`comments`), chargé en une requête pour toute la page |
+| `GET /v1/questions/saved` | connecté : la liste de lecture, les derniers enregistrés d'abord |
+| `POST /v1/questions/{id}/bookmark`, `DELETE …/bookmark` | connecté : enregistrer, retirer (sans erreur si c'est déjà fait) |
+| `POST /v1/questions`, `PUT /v1/questions/{id}`, `PATCH …/status`, `DELETE …` | connecté ; modifier, fermer, supprimer : auteur ou modérateur (un sujet qui a des réponses : modérateur seulement) |
+
+- **Ordres** (`sort`) : `hotness,desc` (« Pertinents » : votes et réponses pondérés par l'âge, comme Hacker News, calculé
+  par la base : `Question.hotness`, `@Formula`), `createdAt,desc` (récents), `score,desc` (top, avec `period=WEEK`,
+  `MONTH` ou `YEAR`). Départagés par l'identifiant (`common/Pageables`).
+- **Filtres** : `QuestionFilter` et `QuestionSpecifications`. La recherche veut chaque mot dans le titre, le contenu
+  ou un tag ; les tags passent par une sous-requête (EXISTS). `solved` : avec (ou sans) réponse acceptée.
+  `following=true` : les sujets des auteurs et des tags que suit le membre (rien de suivi : un fil vide).
+- **Liste de lecture** : `Bookmark` (membre, sujet, date), unique par membre et par sujet ; l'insertion passe par
+  `ON CONFLICT DO NOTHING`, un double clic ne fait pas d'erreur. Le sujet supprimé, ses enregistrements partent avec
+  lui (`V5__forum_bookmarks.sql`).
+- **Slugs réservés** : `new` (l'application, `/forum/new`), `saved` et `overview` (l'API) ne deviennent jamais
+  l'adresse d'un sujet.
+
+## Images du forum (Cloudflare R2)
+
+`POST /v1/uploads/images` (connecté, `multipart/form-data`, champ `file`) : l'adresse publique de l'image, que le
+frontend écrit dans le Markdown.
+
+- **Contrôles** (`service/media/ImageUploadService`) : JPEG, PNG, WebP ou GIF, reconnus à leurs premiers octets
+  (jamais le nom ni le type annoncé : un SVG renommé est refusé), 5 Mo au plus (`STORAGE_MAX_IMAGE_SIZE`), 40 envois
+  par membre et par heure (`STORAGE_MAX_UPLOADS_PER_HOUR`, compté en mémoire, par serveur). Erreurs : 413, 415, 429.
+- **Clés** : `forum/{membre}/{année}/{mois}/{uuid}.{ext}`, neuves et imprévisibles ; le préfixe du membre permet de
+  retrouver ses fichiers. Un fichier ne change jamais : servi avec `Cache-Control: public, max-age=31536000, immutable`.
+- **Stockage** (`storage/`) : `FileStorage`, deux implémentations. `R2FileStorage` (SDK AWS S3, l'API compatible S3 de
+  R2) dès que ses réglages sont complets ; sinon `LocalFileStorage`, le disque (`backend/uploads`, servi sous
+  `/api/uploads/**`), pour le développement. `STORAGE_PROVIDER=r2` impose R2 : sans ses réglages, l'application refuse
+  de démarrer.
+
+Pour brancher R2 :
+
+1. Tableau de bord Cloudflare > R2 : créer le bucket, puis lui donner une adresse publique (un domaine relié, conseillé
+   en production, ou l'adresse `r2.dev`).
+2. R2 > Gérer les jetons d'API : un jeton « Lecture et écriture d'objets » limité à ce bucket.
+3. Renseigner `R2_ACCOUNT_ID`, `R2_ACCESS_KEY_ID`, `R2_SECRET_ACCESS_KEY`, `R2_BUCKET`, `R2_PUBLIC_URL` (voir
+   `.env.example`), et en production `STORAGE_PROVIDER=r2`. Au démarrage, le journal dit
+   `[Storage] Fichiers des membres : Cloudflare R2 (bucket …)`.
+
+Les images envoyées mais jamais publiées (brouillon abandonné) restent dans le bucket : une règle de cycle de vie, ou
+une tâche de nettoyage, pourra les retirer.
 
 ## Chiffres de la communauté
 

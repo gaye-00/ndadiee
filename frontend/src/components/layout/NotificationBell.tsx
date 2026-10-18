@@ -107,7 +107,11 @@ function linkOf(notification: Notification, me: string | undefined): string | nu
     // Une candidature se lit près des rôles du projet
     return type === 'PROJECT_REQUEST' ? paths.projectRoles(targetSlug) : paths.project(targetSlug);
   }
-  if ((targetType === 'QUESTION' || targetType === 'ANSWER') && targetSlug) {
+  // Une réponse (nouvelle, acceptée, votée, commentée) : la page du sujet descend jusqu'à elle
+  if (targetType === 'ANSWER' && targetSlug && notification.targetId !== null) {
+    return paths.topicAnswer(targetSlug, notification.targetId);
+  }
+  if (targetType === 'QUESTION' && targetSlug) {
     return paths.topic(targetSlug);
   }
   return null;

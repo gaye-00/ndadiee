@@ -27,5 +27,10 @@ public class QuestionSummaryResponse {
     private int answerCount;
     private boolean hasAcceptedAnswer;
     private QuestionStatus status;
+    private int readingMinutes;
+
+    // Le membre connecté l'a-t-il enregistré ? null pour un visiteur anonyme
+    private Boolean bookmarkedByMe;
+
     private Instant createdAt;
 }

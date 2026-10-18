@@ -149,7 +149,8 @@
     "settings": "Izilungiselelo",
     "login": "Ngena",
     "register": "Bhalisa",
-    "notFound": "Ikhasi alitholakali"
+    "notFound": "Ikhasi alitholakali",
+    "editTopic": "Hlela isihloko"
   },
   "enums": {
     "experienceLevel": {
@@ -702,5 +703,49 @@
       "reputation_one": "iphuzu lodumo elingu-{{count}}",
       "reputation_other": "amaphuzu odumo angu-{{count}}"
     }
+  },
+  "code": {
+    "copy": "Kopisha",
+    "copied": "Kukopishiwe"
+  },
+  "editor": {
+    "mode": "Imodi yomhleli",
+    "write": "Bhala",
+    "preview": "Buka kuqala",
+    "toolbar": "Ukufometha",
+    "tools": {
+      "bold": "Okugqamile",
+      "italic": "Okutshekile",
+      "link": "Isixhumanisi",
+      "heading": "Isihloko",
+      "quote": "Ingcaphuno",
+      "code": "Ikhodi",
+      "codeBlock": "Ibhulokhi yekhodi",
+      "list": "Uhlu lwamachashazi",
+      "orderedList": "Uhlu lwezinombolo",
+      "image": "Isithombe"
+    },
+    "sample": {
+      "bold": "umbhalo ogqamile",
+      "italic": "umbhalo otshekile",
+      "link": "umbhalo wesixhumanisi",
+      "code": "ikhodi",
+      "word": "umbhalo"
+    },
+    "help": "Usizo",
+    "helpTitle": "Izisekelo ze-Markdown",
+    "emptyPreview": "Akukho okokubuka kuqala okwamanje.",
+    "remaining_one": "Uhlamvu o-{{count}} olusele",
+    "remaining_other": "Izinhlamvu ezingu-{{count}} ezisele",
+    "uploading": "Kulayishwa {{name}}… ({{id}})",
+    "imageAlt": "incazelo yesithombe",
+    "dropImage": "Faka izithombe zakho lapha",
+    "uploadingStatus_one": "Kulayishwa isithombe…",
+    "uploadingStatus_other": "Kulayishwa izithombe ezingu-{{count}}…",
+    "tooManyImages_one": "Isithombe esingu-{{count}} ngesikhathi esisodwa: kuthunyelwa esokuqala.",
+    "tooManyImages_other": "Izithombe ezingu-{{count}} ngesikhathi esisodwa: kuthunyelwa ezokuqala.",
+    "imageType": "«{{name}}»: amafomethi amukelekayo yi-JPEG, PNG, WebP ne-GIF.",
+    "imageTooBig": "«{{name}}» idlula ama-MB angu-{{max}}.",
+    "uploadFailed": "«{{name}}» ayikwazanga ukulayishwa."
   }
 }

@@ -18,6 +18,7 @@ public class InitializerNdadiee implements CommandLineRunner {
     private final DemoDataSeeder demoDataSeeder;
     private final ShowcaseSeeder showcaseSeeder;
     private final TestAccountsSeeder testAccountsSeeder;
+    private final ForumSeeder forumSeeder;
     private final HackathonSeeder hackathonSeeder;
 
     @Value("${ndadiee.seed.enabled}")
@@ -35,6 +36,8 @@ public class InitializerNdadiee implements CommandLineRunner {
             showcaseSeeder.seed();
             // Les deux comptes d'essai, à chaque démarrage, même dans une base déjà remplie
             testAccountsSeeder.seed();
+            // Le forum : des sujets sur trois semaines, où les comptes d'essai posent, répondent et enregistrent
+            forumSeeder.seed();
             // Les hackathons et leurs équipes : des projets de la vitrine, et une équipe où joue musa
             hackathonSeeder.seed();
         } else {

@@ -96,6 +96,7 @@ const router = createBrowserRouter([
                   { path: paths.reviews, ...page('reviews') },
                   { path: paths.newOpening, ...page('newOpening') },
                   { path: paths.newTopic, ...page('newTopic') },
+                  { path: paths.editTopic(':slug'), ...page('editTopic') },
                   { path: paths.messages, ...page('messages') },
                   { path: paths.notifications, ...page('notifications') },
                   { path: paths.settings, ...page('settings') },

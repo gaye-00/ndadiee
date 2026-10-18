@@ -24,6 +24,7 @@ import com.hautetech.ndadiee.repository.specification.ArticleSpecifications;
 import com.hautetech.ndadiee.repository.specification.DeveloperSpecifications;
 import com.hautetech.ndadiee.repository.specification.ProjectFilter;
 import com.hautetech.ndadiee.repository.specification.ProjectSpecifications;
+import com.hautetech.ndadiee.repository.specification.QuestionFilter;
 import com.hautetech.ndadiee.repository.specification.QuestionSpecifications;
 import com.hautetech.ndadiee.service.project.ProjectService;
 
@@ -60,7 +61,7 @@ public class SearchService {
         SearchResponse.SearchResponseBuilder response = SearchResponse.builder().query(query);
         if (wants(type, SearchType.QUESTIONS)) {
             response.questions(PageResponse.from(questionRepository
-                    .findAll(QuestionSpecifications.filter(query, null, null, null, null),
+                    .findAll(QuestionSpecifications.filter(QuestionFilter.search(query)),
                             sortedBy(pageable, "score", "createdAt"))
                     .map(questionMapper::toSummary)));
         }

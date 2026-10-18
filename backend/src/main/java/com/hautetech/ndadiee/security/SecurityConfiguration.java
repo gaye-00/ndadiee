@@ -57,8 +57,8 @@ public class SecurityConfiguration {
                 ).permitAll()
                 .requestMatchers(HttpMethod.GET, "/v1/auth/username-availability").permitAll()
 
-                // Médias servis par l'API (couvertures des projets de démonstration)
-                .requestMatchers(HttpMethod.GET, "/media/**").permitAll()
+                // Médias servis par l'API (couvertures des projets de démonstration, images des membres sans R2)
+                .requestMatchers(HttpMethod.GET, "/media/**", "/uploads/**").permitAll()
 
                 // Documentation Swagger
                 .requestMatchers(
@@ -67,12 +67,13 @@ public class SecurityConfiguration {
                     "/v3/api-docs/**"
                 ).permitAll()
 
-                // ⚠️ Doivent précéder les règles publiques GET /v1/articles/{slug} et /v1/hackathons/{slug}
-                .requestMatchers(HttpMethod.GET, "/v1/articles/me", "/v1/hackathons/me").authenticated()
+                // ⚠️ Doivent précéder les règles publiques GET /v1/articles/{slug}, /v1/hackathons/{slug}, /v1/questions/{slug}
+                .requestMatchers(HttpMethod.GET, "/v1/articles/me", "/v1/hackathons/me", "/v1/questions/saved").authenticated()
 
                 // Lecture publique du contenu de la communauté
                 .requestMatchers(HttpMethod.GET,
                     "/v1/questions",
+                    "/v1/questions/overview",
                     "/v1/questions/{slug}",
                     "/v1/questions/{id}/answers",
                     "/v1/articles",

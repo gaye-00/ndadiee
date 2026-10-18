@@ -149,7 +149,8 @@
     "settings": "Tànneef yi",
     "login": "Duggu",
     "register": "Bindu",
-    "notFound": "Xët wi amul"
+    "notFound": "Xët wi amul",
+    "editTopic": "Soppi waxtaan wi"
   },
   "enums": {
     "experienceLevel": {
@@ -702,5 +703,49 @@
       "reputation_one": "{{count}} poñu tur",
       "reputation_other": "{{count}} poñu tur"
     }
+  },
+  "code": {
+    "copy": "Duppi",
+    "copied": "Duppi nañu ko"
+  },
+  "editor": {
+    "mode": "Anamu bindukaay bi",
+    "write": "Bind",
+    "preview": "Xool ci kanam",
+    "toolbar": "Melokaanu mbind",
+    "tools": {
+      "bold": "Bu dëgër",
+      "italic": "Bu wengu",
+      "link": "Lëkkalekaay",
+      "heading": "Tur",
+      "quote": "Kàddu gu ñu jële",
+      "code": "Kood",
+      "codeBlock": "Kaxu kood",
+      "list": "Lim ak ay tomb",
+      "orderedList": "Lim ak ay nimero",
+      "image": "Nataal"
+    },
+    "sample": {
+      "bold": "mbind mu dëgër",
+      "italic": "mbind mu wengu",
+      "link": "mbindu lëkkalekaay bi",
+      "code": "kood",
+      "word": "mbind"
+    },
+    "help": "Ndimbal",
+    "helpTitle": "Li gën a am solo ci Markdown",
+    "emptyPreview": "Amagul dara ngir xool ci kanam.",
+    "remaining_one": "{{count}} araf a des",
+    "remaining_other": "{{count}} araf a des",
+    "uploading": "Ñu ngi yónnee {{name}}… ({{id}})",
+    "imageAlt": "melokaanu nataal bi",
+    "dropImage": "Bàyyil say nataal fii",
+    "uploadingStatus_one": "Ñu ngi yónnee benn nataal…",
+    "uploadingStatus_other": "Ñu ngi yónnee {{count}} nataal…",
+    "tooManyImages_one": "{{count}} nataal rekk ci benn yoon : bu njëkk bi dina dem.",
+    "tooManyImages_other": "{{count}} nataal rekk ci benn yoon : yu njëkk yi dinañu dem.",
+    "imageType": "« {{name}} » : JPEG, PNG, WebP ak GIF rekk lañu nangu.",
+    "imageTooBig": "« {{name}} » ëpp na {{max}} Mo.",
+    "uploadFailed": "Mënunu yónnee « {{name}} »."
   }
 }
