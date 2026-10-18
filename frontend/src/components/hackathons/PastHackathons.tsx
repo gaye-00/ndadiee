@@ -2,6 +2,7 @@ import { ArrowRight, ChevronDown } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
 import HackathonMedal from './HackathonMedal';
+import { rankLabel } from './rank';
 import PulsatingDots from '@/components/feedback/PulsatingDots';
 import { usePastHackathons } from '@/hooks/useHackathons';
 import { displayTimeZone, formatInZone } from '@/lib/hackathonTime';
@@ -94,7 +95,12 @@ function PastRow({ hackathon }: { hackathon: Hackathon }) {
         </h3>
         <p className="mt-1 font-mono text-xs text-muted-foreground">
           {t('past.teams', { count: hackathon.teamCount })}
-          {hackathon.prizePool && <> · {hackathon.prizePool}</>}
+          {hackathon.prizePool && (
+            <>
+              {' · '}
+              <bdi>{hackathon.prizePool}</bdi>
+            </>
+          )}
         </p>
       </div>
 
@@ -139,9 +145,4 @@ function Laureate({ team }: { team: HackathonTeam }) {
       </Link>
     </li>
   );
-}
-
-/** « 1er prix », « 2e prix »… : un ordinal, selon les règles de la langue de l'interface (« 2nd prize »). */
-export function rankLabel(t: ReturnType<typeof useTranslation<'hackathons'>>['t'], rank: number): string {
-  return t('past.place', { count: rank, ordinal: true });
 }

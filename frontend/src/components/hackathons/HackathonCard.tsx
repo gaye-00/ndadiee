@@ -65,10 +65,7 @@ export default function HackathonCard({ hackathon, accent = 'jade', className }:
       <HackathonLoom hackathon={hackathon} />
 
       <div className="flex flex-1 flex-col gap-4 p-5.5">
-        <div className="flex items-center gap-3">
-          <HackathonPhaseBadge hackathon={hackathon} />
-          <FormatTag format={hackathon.format} className="ms-auto" />
-        </div>
+        <HackathonPhaseBadge hackathon={hackathon} />
 
         <div className="flex items-start gap-4">
           <DateStamp hackathon={hackathon} zone={zone} />
@@ -85,7 +82,8 @@ export default function HackathonCard({ hackathon, accent = 'jade', className }:
                 {hackathon.title}
               </Link>
             </h3>
-            <p className="mt-1 flex items-center gap-1.5 truncate text-sm text-muted-foreground">
+            {/* Le lieu dit déjà « sur place » ou « en ligne » : le format n'est écrit que pour un hybride */}
+            <p className="mt-1 flex min-w-0 items-center gap-1.5 text-sm text-muted-foreground">
               {hackathon.city ? (
                 <>
                   <MapPin aria-hidden className="size-3.5 shrink-0" />
@@ -93,6 +91,7 @@ export default function HackathonCard({ hackathon, accent = 'jade', className }:
                     {hackathon.city}
                     {hackathon.country && `, ${countryName(hackathon.country)}`}
                   </span>
+                  {hackathon.format === 'HYBRID' && <FormatTag format="HYBRID" className="ms-0.5" />}
                 </>
               ) : (
                 <>
@@ -113,7 +112,8 @@ export default function HackathonCard({ hackathon, accent = 'jade', className }:
         <dl className="mt-auto flex flex-wrap gap-x-4 gap-y-1.5 font-mono text-xs text-muted-foreground">
           {hackathon.prizePool && (
             <Fact icon={<Trophy className="size-3.5 text-gold" />} label={t('card.prize')}>
-              <span className="text-soft-foreground">{hackathon.prizePool}</span>
+              {/* Écrite par l'organisateur : « 4 000 000 NGN » ne doit pas se retourner en arabe */}
+              <bdi className="text-soft-foreground">{hackathon.prizePool}</bdi>
             </Fact>
           )}
           <Fact icon={<Users className="size-3.5" />} label={t('card.teamSizeLabel')}>
@@ -168,13 +168,12 @@ function Fact({ icon, label, children }: { icon: ReactNode; label: string; child
 }
 
 /**
- * Le tampon de date : le jour du coup d'envoi en grand, la fin à côté (« 20 –22 »), le mois dessous, dans
- * la couleur de la carte. Lu dans le fuseau du hackathon (ou celui du visiteur, en ligne).
+ * Le tampon de date : le jour du coup d'envoi en grand, son jour de la semaine au-dessus, le mois dessous
+ * dans la couleur de la carte (la durée est écrite plus bas). Lu dans le fuseau du hackathon, ou celui du
+ * visiteur pour un hackathon en ligne.
  */
 function DateStamp({ hackathon, zone }: { hackathon: Hackathon; zone: string }) {
   const start = dateStamp(hackathon.startsAt, zone);
-  const end = dateStamp(hackathon.endsAt, zone);
-  const sameDay = start.day === end.day && start.month === end.month;
 
   return (
     <span aria-hidden className="flex w-14 shrink-0 flex-col items-center rounded-xl border border-glass-border bg-foreground/[0.03] py-2">
@@ -185,12 +184,6 @@ function DateStamp({ hackathon, zone }: { hackathon: Hackathon; zone: string }) 
       <span className="mt-1 font-mono text-[0.6875rem] leading-none font-medium tracking-[0.06em] text-(--card-accent) uppercase">
         {start.month}
       </span>
-      {!sameDay && (
-        <span className="mt-1.5 border-t border-border-subtle pt-1 font-mono text-[0.625rem] leading-none text-muted-foreground">
-          →{end.day}
-          {end.month !== start.month && ` ${end.month}`}
-        </span>
-      )}
     </span>
   );
 }
@@ -230,35 +223,34 @@ function TeamsLine({ hackathon, recruiting }: { hackathon: Hackathon; recruiting
 
   return (
     <span className="flex min-w-0 items-center gap-2.5">
-      <span className="flex shrink-0 items-center">
-        {teams.map((team, index) => (
-          <TeamMark
-            key={team.id}
-            project={team.project}
-            size="sm"
-            className={cn('ring-2 ring-surface transition-[margin] duration-300 ease-out-expo', index > 0 && '-ms-2 group-hover/card:-ms-1')}
-          />
+      {/* Côte à côte, pas superposées : des initiales coupées ne se liraient plus */}
+      <span className="flex shrink-0 items-center gap-1 transition-[gap] duration-300 ease-out-expo group-hover/card:gap-1.5">
+        {teams.map((team) => (
+          <TeamMark key={team.id} project={team.project} size="sm" />
         ))}
         {recruiting && (
           <span
             aria-hidden
-            className="-ms-2 grid size-7 shrink-0 scale-75 place-items-center rounded-lg border border-dashed border-jade/70 bg-surface text-jade opacity-0 transition-[margin,scale,opacity] duration-300 ease-out-expo group-hover/card:ms-1 group-hover/card:scale-100 group-hover/card:opacity-100"
+            className="-ms-7 grid size-7 shrink-0 scale-75 place-items-center rounded-lg border border-dashed border-jade/70 text-jade opacity-0 transition-[margin,scale,opacity] duration-300 ease-out-expo group-hover/card:ms-0 group-hover/card:scale-100 group-hover/card:opacity-100"
           >
             <Plus className="size-3.5" />
           </span>
         )}
       </span>
-      <span className="min-w-0 truncate text-[0.8125rem] text-soft-foreground">{t('card.teams', { count: hackathon.teamCount })}</span>
-      {recruiting && hackathon.openSeats > 0 && (
-        <span className="flex min-w-0 items-center gap-1.5 text-[0.8125rem] font-semibold text-jade">
-          <span aria-hidden className="flex shrink-0 items-center gap-0.5">
-            {roles.slice(0, ROLES_SHOWN).map((role) => (
-              <WovenMotif key={role.id} motif={role.motif} colors={role.colors} className="h-4 w-auto" />
-            ))}
+      {/* Deux lignes : les équipes, puis ce qu'elles cherchent encore (l'API ne compte que jusqu'au coup d'envoi) */}
+      <span className="flex min-w-0 flex-col leading-tight">
+        <span className="truncate text-xs text-muted-foreground">{t('card.teams', { count: hackathon.teamCount })}</span>
+        {hackathon.openSeats > 0 && (
+          <span className="mt-1 flex min-w-0 items-center gap-1.5 text-[0.8125rem] font-semibold text-jade">
+            <span aria-hidden className="flex shrink-0 items-center gap-0.5">
+              {roles.slice(0, ROLES_SHOWN).map((role) => (
+                <WovenMotif key={role.id} motif={role.motif} colors={role.colors} className="h-3.5 w-auto" />
+              ))}
+            </span>
+            <span className="truncate">{t('card.seats', { count: hackathon.openSeats })}</span>
           </span>
-          <span className="truncate">{t('card.seats', { count: hackathon.openSeats })}</span>
-        </span>
-      )}
+        )}
+      </span>
     </span>
   );
 }

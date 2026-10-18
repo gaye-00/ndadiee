@@ -9,6 +9,7 @@ import { useAuth } from '@/hooks/useAuth';
 import { LIVE_HACKATHONS, UPCOMING_HACKATHONS, useHackathons } from '@/hooks/useHackathons';
 import { useNow } from '@/hooks/useNow';
 import { phaseOf } from '@/lib/hackathonTime';
+import { cn } from '@/lib/utils';
 import { paths } from '@/router/paths';
 import type { Hackathon } from '@/types/hackathon.types';
 
@@ -89,7 +90,8 @@ export default function HackathonList() {
             <h2 id="hackathons-upcoming-title" className="font-display text-h2">
               {t('list.upcomingTitle')}
             </h2>
-            <ul className="mt-6 grid gap-4 md:grid-cols-2 md:gap-5 lg:grid-cols-3">
+            {/* Quatre hackathons : deux rangées de deux plutôt qu'une carte seule sur la seconde rangée */}
+            <ul className={cn('mt-6 grid grid-cols-1 gap-4 md:grid-cols-2 md:gap-5', others.length !== 4 && 'lg:grid-cols-3')}>
               {pending
                 ? Array.from({ length: 3 }, (_, index) => (
                     <li key={index}>

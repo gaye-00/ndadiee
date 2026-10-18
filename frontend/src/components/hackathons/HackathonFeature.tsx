@@ -27,8 +27,11 @@ import { paths } from '@/router/paths';
 import type { Hackathon, HackathonTeam } from '@/types/hackathon.types';
 import { countryName, isolate } from '@/utils/formatters';
 
-// Équipes qui recrutent, citées sous le compte à rebours
+// Équipes qui recrutent, citées sous le compte à rebours ; en direct, les prochains temps forts
 const RECRUITING_SHOWN = 3;
+const UP_NEXT_SHOWN = 2;
+// Marques d'équipes au bas de la colonne de gauche
+const LINE_UP_SHOWN = 4;
 
 const focusRing =
   'outline-none focus-visible:ring-2 focus-visible:ring-ring/70 focus-visible:ring-offset-2 focus-visible:ring-offset-surface';
@@ -61,7 +64,7 @@ export default function HackathonFeature({ hackathon }: { hackathon: Hackathon }
   return (
     <section aria-labelledby="hackathon-feature-title" className="border-kente-spin rounded-[1.75rem] shadow-glow">
       <div className="relative isolate grid gap-9 overflow-hidden rounded-[calc(1.75rem-1px)] bg-surface p-5.5 sm:p-8 lg:grid-cols-[minmax(0,1.1fr)_minmax(0,1fr)] lg:gap-12 lg:p-10">
-        <div aria-hidden className={cn('halo -top-56 -start-48 -z-10 size-[34rem]', live ? 'halo-coral' : 'halo-gold')} />
+        <div aria-hidden className={cn('halo -top-56 -start-48 -z-10 size-[34rem] opacity-60 dark:opacity-100', live ? 'halo-coral' : 'halo-gold')} />
         <div aria-hidden className="halo halo-jade -end-40 -bottom-64 -z-10 size-[30rem] opacity-60" />
 
         {/* ── Ce qu'il faut savoir ── */}
@@ -103,12 +106,12 @@ export default function HackathonFeature({ hackathon }: { hackathon: Hackathon }
             </FactChip>
             {hackathon.prizePool && (
               <FactChip icon={<Trophy className="size-4 text-gold" />} strong>
-                {hackathon.prizePool}
+                <bdi>{hackathon.prizePool}</bdi>
               </FactChip>
             )}
           </ul>
 
-          <div className="mt-auto flex flex-col gap-3 pt-2 sm:flex-row sm:flex-wrap sm:items-center">
+          <div className="flex flex-col gap-3 pt-1 sm:flex-row sm:flex-wrap sm:items-center">
             <Link
               to={href}
               viewTransition
@@ -147,6 +150,8 @@ export default function HackathonFeature({ hackathon }: { hackathon: Hackathon }
               </Link>
             )}
           </div>
+
+          <LineUp hackathon={hackathon} live={live} />
         </div>
 
         {/* ── Le temps qui reste ── */}
@@ -184,6 +189,7 @@ export default function HackathonFeature({ hackathon }: { hackathon: Hackathon }
           </div>
 
           {recruiting.length > 0 && <RecruitingTeams teams={recruiting.slice(0, RECRUITING_SHOWN)} />}
+          {live && <UpNext hackathon={hackathon} now={now} zone={zone} />}
         </div>
       </div>
     </section>
@@ -203,6 +209,37 @@ function FactChip({ icon, strong, children }: { icon: ReactNode; strong?: boolea
       </span>
       {children}
     </li>
+  );
+}
+
+/**
+ * En bas de la colonne : les équipes inscrites (en lice, pendant le hackathon) et qui organise. Les noms
+ * mènent à la liste des équipes du hackathon.
+ */
+function LineUp({ hackathon, live }: { hackathon: Hackathon; live: boolean }) {
+  const { t } = useTranslation('hackathons');
+  const teams = hackathon.teams.slice(0, LINE_UP_SHOWN);
+
+  return (
+    <div className="mt-auto flex flex-wrap items-center gap-x-4 gap-y-3 border-t border-border-subtle pt-5 text-[0.8125rem] text-muted-foreground">
+      {hackathon.teamCount > 0 && (
+        <Link
+          to={`${paths.hackathon(hackathon.slug)}#equipes`}
+          viewTransition
+          className={cn('group/lineup flex min-w-0 items-center gap-2.5 rounded-lg transition-colors hover:text-foreground', focusRing)}
+        >
+          <span className="flex shrink-0 items-center gap-1">
+            {teams.map((team) => (
+              <TeamMark key={team.id} project={team.project} size="sm" />
+            ))}
+          </span>
+          <span className="truncate">
+            {t(live ? 'feature.inPlay' : 'feature.lineUp', { count: hackathon.teamCount })}
+          </span>
+        </Link>
+      )}
+      <span className="truncate">{t('feature.organizer', { name: isolate(hackathon.organizerName) })}</span>
+    </div>
   );
 }
 
@@ -251,6 +288,41 @@ function RecruitingTeams({ teams }: { teams: HackathonTeam[] }) {
           );
         })}
       </ul>
+    </div>
+  );
+}
+
+/** En direct : les deux prochains temps forts du programme, pour savoir quand revenir. */
+function UpNext({ hackathon, now, zone }: { hackathon: Hackathon; now: number; zone: string }) {
+  const { t } = useTranslation('hackathons');
+  const next = hackathon.schedule.filter((milestone) => Date.parse(milestone.scheduledAt) > now).slice(0, UP_NEXT_SHOWN);
+  if (next.length === 0) {
+    return null;
+  }
+
+  return (
+    <div className="mt-2">
+      <p className="font-mono text-[0.6875rem] tracking-[0.08em] text-muted-foreground uppercase">{t('feature.upNext')}</p>
+      <ol className="mt-2.5 flex flex-col gap-2">
+        {next.map((milestone, index) => (
+          <li
+            key={milestone.scheduledAt + milestone.label}
+            className="flex items-start gap-3 rounded-2xl border border-glass-border bg-foreground/[0.03] px-3.5 py-3 sm:items-center"
+          >
+            <span
+              aria-hidden
+              className={cn('mt-1.5 size-2 shrink-0 rounded-full sm:mt-0', index === 0 ? 'bg-coral animate-pulse-dot' : 'bg-foreground/35')}
+            />
+            {/* Sur téléphone, l'heure passe sous l'intitulé plutôt que de le couper */}
+            <span className="flex min-w-0 flex-1 flex-col gap-0.5 sm:flex-row sm:items-center sm:gap-3">
+              <span dir="auto" className="min-w-0 flex-1 text-start text-sm font-semibold text-foreground sm:truncate">
+                {milestone.label}
+              </span>
+              <span className="shrink-0 font-mono text-xs text-muted-foreground">{formatInZone('dayTime', milestone.scheduledAt, zone)}</span>
+            </span>
+          </li>
+        ))}
+      </ol>
     </div>
   );
 }

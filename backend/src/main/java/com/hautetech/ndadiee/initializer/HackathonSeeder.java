@@ -323,7 +323,7 @@ public class HackathonSeeder {
                         prize("2e prix", "1 500 000 FCFA"),
                         prize("3e prix", "1 000 000 FCFA"),
                         prize("Prix des coopératives", "Un pilote dans trois coopératives"))),
-                enter(kumasi, kwame, "Le prix du cacao payé au planteur, affiché en direct dans chaque coopérative."),
+                enter(kumasi, kwame, "Brancher les relevés des coopératives sur un tableau des prix lisible sur n'importe quel téléphone."),
                 enter(agri, jeanPaul, "Le prix du maïs au marché voisin, par SMS, avant de vendre."),
                 enter(solar, aissatou, "Piloter les pompes d'irrigation solaires selon l'humidité du sol."));
 

@@ -35,7 +35,15 @@
     "joinTeam": "Rejoindre une équipe",
     "recruiting": "Elles cherchent encore",
     "seeks": "cherche {{role}}",
-    "apply": "Postuler"
+    "apply": "Postuler",
+    "upNext": "À suivre",
+    "lineUp_one": "{{count}} équipe inscrite",
+    "lineUp_many": "{{count}} équipes inscrites",
+    "lineUp_other": "{{count}} équipes inscrites",
+    "inPlay_one": "{{count}} équipe en lice",
+    "inPlay_many": "{{count}} équipes en lice",
+    "inPlay_other": "{{count}} équipes en lice",
+    "organizer": "Organisé par {{name}}"
   },
   "past": {
     "title": "Palmarès",
@@ -59,7 +67,7 @@
   "format": {
     "REMOTE": "En ligne",
     "ONSITE": "Sur place",
-    "HYBRID": "Sur place et en ligne"
+    "HYBRID": "Hybride"
   },
   "duration": {
     "hours_one": "{{count}} h",
@@ -79,7 +87,6 @@
   },
   "time": {
     "yours": "ton heure",
-    "at": "{{date}} · {{time}}",
     "inZone": "{{time}} ({{zone}})"
   },
   "card": {
@@ -96,5 +103,124 @@
     "seats_other": "{{count}} places à prendre",
     "firstTeam": "Sois la première équipe",
     "winner": "1er prix :"
+  },
+  "detail": {
+    "back": "Tous les hackathons",
+    "loading": "Chargement du hackathon",
+    "notFoundTitle": "Ce hackathon n'existe pas",
+    "notFoundText": "Il a peut-être changé d'adresse, ou n'a jamais été annoncé.",
+    "errorTitle": "Le hackathon n'a pas pu se charger",
+    "seePodium": "Voir le palmarès",
+    "seeTeams_one": "Voir l'équipe",
+    "seeTeams_many": "Voir les {{count}} équipes",
+    "seeTeams_other": "Voir les {{count}} équipes",
+    "loginToRegister": "Connecte-toi pour inscrire ton équipe",
+    "register": "Inscrire mon équipe",
+    "myTeam": "Ton équipe {{team}} est inscrite",
+    "withdraw": "Retirer l'équipe",
+    "confirmWithdraw": "Confirmer le retrait",
+    "withdrawing": "Retrait en cours",
+    "addToCalendar": "Ajouter à mon agenda",
+    "endedOn": "Terminé le {{date}}",
+    "noResults": "Le palmarès n'est pas encore publié.",
+    "dates": "Dates",
+    "hours": "{{start}} → {{end}} ({{zone}})",
+    "place": "Lieu",
+    "formatHint": {
+      "REMOTE": "En ligne, de chez toi",
+      "ONSITE": "Sur place",
+      "HYBRID": "Sur place et en ligne"
+    },
+    "teams": "Équipes",
+    "noLimit": "Pas de limite",
+    "placesLeft_one": "{{count}} place restante",
+    "placesLeft_many": "{{count}} places restantes",
+    "placesLeft_other": "{{count}} places restantes",
+    "teamSize": "Taille des équipes",
+    "sizeRange": "{{min}} à {{max}}",
+    "perTeam": "personnes par équipe",
+    "prize": "Dotation",
+    "prizes_one": "{{count}} prix",
+    "prizes_many": "{{count}} prix",
+    "prizes_other": "{{count}} prix",
+    "programme": "Programme",
+    "zoneHint": {
+      "yours": "À ton heure",
+      "local": "Heure locale ({{zone}})"
+    },
+    "nextMilestone": "Prochain temps fort"
+  },
+  "teams": {
+    "title": "Les équipes",
+    "podiumTitle": "Palmarès",
+    "hint": {
+      "registration": "Elles recrutent jusqu'au coup d'envoi. Pour postuler, prends l'issue « premier pas » du rôle.",
+      "full": "Le hackathon affiche complet, mais les équipes recrutent encore jusqu'au coup d'envoi.",
+      "closed": "Inscriptions closes : les équipes recrutent leurs derniers membres avant le coup d'envoi.",
+      "live": "Elles construisent en ce moment.",
+      "ended": "Les lauréates d'abord, puis toutes les équipes qui ont relevé le défi."
+    },
+    "filterLabel": "Filtrer par rôle recherché",
+    "allRoles": "Tous les rôles",
+    "members_one": "{{count}} membre",
+    "members_many": "{{count}} membres",
+    "members_other": "{{count}} membres",
+    "noneForRole": "Aucune équipe ne cherche ce rôle pour l'instant.",
+    "othersTitle": "Les autres équipes",
+    "podiumLabel": "Podium",
+    "errorTitle": "Les équipes n'ont pas pu se charger",
+    "emptyTitle": "Aucune équipe inscrite pour l'instant",
+    "emptyClosedTitle": "Aucune équipe inscrite",
+    "emptyText": "Sois la première : inscris ton projet comme équipe, et publie les rôles qu'il te manque."
+  },
+  "register": {
+    "title": "Inscrire mon équipe",
+    "intro": "Ton projet devient ton équipe : ses membres participent, ses rôles ouverts recrutent. Équipes de {{min}} à {{max}} personnes, inscriptions jusqu'au {{date}}.",
+    "loading": "Chargement de tes projets",
+    "project": "Avec quel projet ?",
+    "members_one": "{{count}} membre",
+    "members_many": "{{count}} membres",
+    "members_other": "{{count}} membres",
+    "alreadyIn": "Déjà inscrit à ce hackathon",
+    "tooBig": "{{count}} membres : {{max}} au plus pour ce hackathon",
+    "pitch": "Ce que vous allez construire",
+    "optional": "facultatif",
+    "pitchPlaceholder": "En une phrase : le problème, et votre idée pour le résoudre.",
+    "submit": "Choisis un projet",
+    "submitTeam": "Inscrire {{team}}",
+    "sending": "Inscription en cours",
+    "doneTitle": "L'équipe {{team}} est inscrite",
+    "doneText": "Ses membres participent à {{hackathon}}, et ses rôles ouverts recrutent sur la page du hackathon jusqu'au coup d'envoi.",
+    "close": "Fermer",
+    "noProjectTitle": "Il te faut d'abord un projet",
+    "noProjectText": "Une équipe, c'est un projet de la vitrine : publie le tien, puis reviens l'inscrire.",
+    "noProjectAction": "Publier mon projet"
+  },
+  "about": {
+    "prizes": "Prix",
+    "title": "À propos",
+    "organizedBy": "Organisé par {{name}} · annoncé {{time}}"
+  },
+  "spotlight": {
+    "live": "Hackathon · en direct",
+    "daysLeft_one": "Hackathon · J-{{count}}",
+    "daysLeft_many": "Hackathon · J-{{count}}",
+    "daysLeft_other": "Hackathon · J-{{count}}",
+    "titleIn": "{{title}}, {{city}}",
+    "seekingOne_one": "Ton équipe {{team}} cherche encore 1 {{role}}.",
+    "seekingOne_many": "Ton équipe {{team}} cherche encore {{count}} personnes : {{role}}.",
+    "seekingOne_other": "Ton équipe {{team}} cherche encore {{count}} personnes : {{role}}.",
+    "seekingMany_one": "Ton équipe {{team}} cherche encore {{count}} personne : {{roles}}.",
+    "seekingMany_many": "Ton équipe {{team}} cherche encore {{count}} personnes : {{roles}}.",
+    "seekingMany_other": "Ton équipe {{team}} cherche encore {{count}} personnes : {{roles}}.",
+    "manageRoles": "Gérer les rôles",
+    "inPlay": "Ton équipe {{team}} est en lice : fin {{time}}.",
+    "openWorkspace": "Ouvrir l'espace d'équipe",
+    "ready": "Ton équipe {{team}} est au complet. Coup d'envoi le {{date}}.",
+    "joinFirst": "Inscriptions jusqu'au {{date}} : sois la première équipe.",
+    "join_one": "Inscriptions jusqu'au {{date}} : inscris ton projet, ou rejoins l'équipe déjà inscrite.",
+    "join_many": "Inscriptions jusqu'au {{date}} : inscris ton projet, ou rejoins l'une des {{count}} équipes.",
+    "join_other": "Inscriptions jusqu'au {{date}} : inscris ton projet, ou rejoins l'une des {{count}} équipes.",
+    "see": "Voir le hackathon"
   }
 }

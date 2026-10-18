@@ -72,10 +72,13 @@ export function daysUntil(target: string, now: number): number {
   return Math.max(0, Math.ceil((Date.parse(target) - now) / 86_400_000));
 }
 
-/** Durée de l'événement : en heures jusqu'à 4 jours (« 48 h »), en jours au-delà. */
+/**
+ * Durée de l'événement, comme on l'annonce : en heures pour un compte rond de jours pleins jusqu'à 4 jours
+ * (« 48 h », « 72 h »), en jours entamés sinon (du jeudi 9 h au samedi 18 h : « 3 jours »).
+ */
 export function durationOf(hackathon: Pick<Hackathon, 'startsAt' | 'endsAt'>): { unit: 'hours' | 'days'; count: number } {
   const hours = Math.round((Date.parse(hackathon.endsAt) - Date.parse(hackathon.startsAt)) / 3_600_000);
-  return hours <= 96 ? { unit: 'hours', count: hours } : { unit: 'days', count: Math.round(hours / 24) };
+  return hours % 24 === 0 && hours <= 96 ? { unit: 'hours', count: hours } : { unit: 'days', count: Math.ceil(hours / 24) };
 }
 
 // ── Le métier : la bande tissée du hackathon (HackathonLoom) ──

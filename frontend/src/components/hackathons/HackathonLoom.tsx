@@ -19,7 +19,7 @@ const CLOTH_LENGTH = 30;
  * Les bandes de l'étoffe d'un hackathon, toujours les mêmes pour lui : tirées de son slug, comme un kente a
  * son motif. Deux bandes voisines n'ont jamais la même couleur.
  */
-export function clothOf(slug: string): { thread: Thread; from: number; to: number }[] {
+function clothOf(slug: string): { thread: Thread; from: number; to: number }[] {
   let seed = [...slug].reduce((hash, char) => (Math.imul(hash, 31) + char.charCodeAt(0)) >>> 0, 7);
   const random = () => {
     seed = (Math.imul(seed, 1_664_525) + 1_013_904_223) >>> 0;
@@ -83,12 +83,19 @@ export default function HackathonLoom({ hackathon, variant = 'edge', className }
   // Même forme au départ et à l'arrivée (« inset(0 N% 0 0) ») : Motion peut glisser de l'une à l'autre
   const cut = `inset(0 ${((1 - progress) * 100).toFixed(3)}% 0 0)`;
   const weave = { duration: reduced ? 0 : 1.4, ease: [0.16, 1, 0.3, 1] } as const;
+  // L'étoffe et la navette partent du bord, puis vont jusqu'à l'instant présent quand la bande arrive à
+  // l'écran. La bande elle-même est observée : l'étoffe, coupée à zéro au départ, ne serait jamais « visible ».
+  const clothCut = { warp: { clipPath: 'inset(0 100% 0 0)' }, woven: { clipPath: cut } };
+  const shuttleAt = { warp: { left: '0%' }, woven: { left: woven } };
 
   return (
-    <div
+    <m.div
       aria-hidden
       data-live={phase === 'live' ? '' : undefined}
       style={{ '--cloth': cloth } as CSSProperties}
+      initial={reduced ? 'woven' : 'warp'}
+      whileInView="woven"
+      viewport={{ once: true, amount: 0.5 }}
       className={cn('hackathon-loom relative shrink-0', variant === 'edge' ? 'h-1.5' : 'h-3.5 rounded-full', className)}
     >
       <div className={cn('absolute inset-0 overflow-hidden', variant === 'bar' && 'rounded-full bg-foreground/4')}>
@@ -96,11 +103,9 @@ export default function HackathonLoom({ hackathon, variant = 'edge', className }
         <span className="hackathon-loom-warp absolute inset-0" />
         {/* L'étoffe, coupée à l'instant présent */}
         <m.span
-          className="hackathon-loom-cloth absolute inset-0 transition-[filter] duration-500 group-hover/card:brightness-110"
-          initial={{ clipPath: reduced ? cut : 'inset(0 100% 0 0)' }}
-          whileInView={{ clipPath: cut }}
-          viewport={{ once: true, amount: 0.6 }}
+          variants={clothCut}
           transition={weave}
+          className="hackathon-loom-cloth absolute inset-0 transition-[filter] duration-500 group-hover/card:brightness-110"
         />
       </div>
 
@@ -132,16 +137,14 @@ export default function HackathonLoom({ hackathon, variant = 'edge', className }
       {/* La navette : l'instant présent. Plus de navette quand l'étoffe est finie. */}
       {phase !== 'ended' && (
         <m.span
+          variants={shuttleAt}
+          transition={weave}
           className={cn(
             'hackathon-loom-shuttle absolute top-1/2 transition-[scale] duration-500 ease-out-expo group-hover/card:scale-y-125',
             variant === 'edge' ? 'h-3.5 w-[3px]' : 'h-6 w-1',
           )}
-          initial={{ left: reduced ? woven : '0%' }}
-          whileInView={{ left: woven }}
-          viewport={{ once: true, amount: 0.6 }}
-          transition={weave}
         />
       )}
-    </div>
+    </m.div>
   );
 }

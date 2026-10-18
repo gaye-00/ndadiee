@@ -64,7 +64,13 @@ export default function HackathonCountdown({ to, label, onDone, size = 'md', cla
               size === 'lg' ? 'text-[2rem] sm:text-[2.625rem]' : 'text-[1.375rem]',
             )}
           />
-          <span className={cn('font-mono tracking-[0.08em] text-muted-foreground uppercase', size === 'lg' ? 'text-[0.6875rem]' : 'text-[0.625rem]')}>
+          {/* Un libellé long (« imizuzwana ») se coupe proprement plutôt que de déborder de la tuile */}
+          <span
+            className={cn(
+              'max-w-full truncate px-1 font-mono tracking-[0.08em] text-muted-foreground uppercase',
+              size === 'lg' ? 'text-[0.6875rem]' : 'text-[0.625rem]',
+            )}
+          >
             {unit.label}
           </span>
         </div>

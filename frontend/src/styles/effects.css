@@ -1192,6 +1192,16 @@
     0 6px 14px -8px var(--medal);
 }
 
+/* Les marches du podium (HackathonTeams) : une étoffe de la couleur de la place, qui pâlit vers le sol,
+   la trame en travers et la chaîne en long */
+.hackathon-podium-step {
+  background-image:
+    repeating-linear-gradient(90deg, color-mix(in srgb, var(--kente-night) 16%, transparent) 0 1px, transparent 1px 3px),
+    repeating-linear-gradient(180deg, color-mix(in srgb, var(--kente-paper) 14%, transparent) 0 1px, transparent 1px 4px),
+    linear-gradient(180deg, var(--medal), color-mix(in srgb, var(--medal) 25%, transparent));
+  box-shadow: inset 0 1px 0 color-mix(in srgb, var(--kente-paper) 50%, transparent);
+}
+
 /* ── Changement de thème : transitions coupées le temps d'une image (voir store/useThemeStore.ts) ── */
 .theme-switching *,
 .theme-switching *::before,
