@@ -2,7 +2,7 @@ spring:
   application:
     name: ndadiee
   datasource:
-    url: ${SPRING_DATASOURCE_URL:jdbc:postgresql://localhost:5432/ndadiee}
+    url: ${SPRING_DATASOURCE_URL:jdbc:postgresql://localhost:5434/ndadiee}
     username: ${SPRING_DATASOURCE_USERNAME:ndadiee}
     password: ${SPRING_DATASOURCE_PASSWORD:ndadiee}
   jpa:
