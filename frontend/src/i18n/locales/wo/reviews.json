@@ -1,0 +1,155 @@
+{
+  "intro": {
+    "eyebrow": "Xoolu kood",
+    "titleCode": "Kood bi,",
+    "titleTogether": "nu koy xool ànd",
+    "lead": "Pull request yiy xaar sa xool, yu say ekip, ak yu mbooloo mi fu sa bët am solo.",
+    "waiting_one": "{{count}} xool mu ngi lay xaar",
+    "waiting_other": "{{count}} xool ñu ngi lay xaar",
+    "oldest": "bi gën a yàgg dale ko {{time}}",
+    "allClear": "Amul xool buy xaar",
+    "community_one": "{{count}} PR bu mbooloo mu ngi wut xoolkat",
+    "community_other": "{{count}} PR yu mbooloo ñu ngi wut xoolkat"
+  },
+  "tabs": {
+    "label": "Xool",
+    "TO_REVIEW": "Ngir xool",
+    "COMMUNITY": "Mbooloo",
+    "MINE": "Samay PR",
+    "TEAM": "Samay ekip",
+    "DONE": "Yu jeex"
+  },
+  "filters": {
+    "search": "Wut pull request",
+    "searchPlaceholder": "Tur, #nimero, liggéey walla car",
+    "projects": "Liggéeyu say ekip",
+    "allProjects": "Liggéey yépp"
+  },
+  "results": {
+    "loading": "Xool yi ñu ngi yeb…",
+    "TO_REVIEW_one": "{{count}} xool ngir def",
+    "TO_REVIEW_other": "{{count}} xool ngir def",
+    "COMMUNITY_one": "{{count}} PR bu ubbeeku ci mbooloo",
+    "COMMUNITY_other": "{{count}} PR yu ubbeeku ci mbooloo",
+    "MINE_one": "{{count}} pull request",
+    "MINE_other": "{{count}} pull request",
+    "TEAM_one": "{{count}} PR bu ubbeeku ci say ekip",
+    "TEAM_other": "{{count}} PR yu ubbeeku ci say ekip",
+    "DONE_one": "{{count}} PR bu jeex",
+    "DONE_other": "{{count}} PR yu jeex",
+    "errorTitle": "Xool yi mënuñu yeb",
+    "errorText": "Seetal sa lëkkaloo, ba noppi jéemaat.",
+    "more": "Wone yeneen pull request",
+    "loadingMore": "Li ci des mu ngi yeb…",
+    "moreError": "Li ci des mënul yeb."
+  },
+  "empty": {
+    "TO_REVIEW_title": "Dara amul ngir xool",
+    "TO_REVIEW_text": "Amul xool buy xaar. Bu sa ekip laajee xool, dina agsi fii.",
+    "TO_REVIEW_action_one": "Xool PR biy xaar mbooloo mi",
+    "TO_REVIEW_action_other": "Xool benn ci {{count}} PR yu mbooloo",
+    "COMMUNITY_title": "Amul xoolu mbooloo bu ubbeeku",
+    "COMMUNITY_text": "Amul PR ci biti say ekip buy wut xoolkat léegi. Ñibbsil ci kanam.",
+    "MINE_title": "Amoo pull request ba tey",
+    "MINE_text": "Say PR dinañu feeñ fii, ak seen xoolkat ak li des ngir boole.",
+    "MINE_action": "Wut issue « jëmm ju njëkk »",
+    "TEAM_title": "Dara ubbeekul ci say ekip",
+    "TEAM_text": "Amul PR bu ubbeeku ci liggéey yi nga bokk.",
+    "TEAM_action": "Bokk ci ekip",
+    "DONE_title": "Amul PR bu jeex ba tey",
+    "DONE_text": "PR yu say ekip yu ñu boole walla tëj, ak yi nga xool, dinañu feeñ fii."
+  },
+  "noMatch": {
+    "title": "Amul pull request ngir liggéey bii",
+    "titleQuery": "Amul pull request ngir “{{query}}”",
+    "text": "Jéemal beneen baat, nimero (#84), walla dindi filtar liggéey bi.",
+    "clear": "Far lépp"
+  },
+  "phase": {
+    "open": "ubbeeku",
+    "draft": "brouillon",
+    "merged": "boole nañu ko",
+    "closed": "tëj nañu ko"
+  },
+  "item": {
+    "community": "xoolu mbooloo",
+    "firstContribution": "jàppale bu njëkk",
+    "files_one": "{{count}} fichier bu ñu soppi",
+    "files_other": "{{count}} fichier yu ñu soppi",
+    "commits_one": "{{count}} commit",
+    "commits_other": "{{count}} commit",
+    "comments_one": "{{count}} kàddu",
+    "comments_other": "{{count}} kàddu",
+    "yourStack": "Ci say xam-xam",
+    "waiting": "mu ngi xaar sa xool dale ko {{time}}",
+    "required": "ñu soxla ko",
+    "merged": "boole nañu ko {{time}}",
+    "closed": "tëj nañu ko {{time}}",
+    "opened": "ubbi nañu ko {{time}}",
+    "active": "mu ngi dox {{time}}",
+    "branches": "dale {{source}} jëm {{target}}",
+    "diff": "{{additions}} rëdd yu ñu yokk, {{deletions}} yu ñu dindi",
+    "checksFailed_one": "{{count}} saytu bu dañu",
+    "checksFailed_other": "{{count}} saytu yu dañu",
+    "checksRunning": "saytu {{passed}}/{{total}}",
+    "checksPassed": "{{passed}} ci {{total}} saytu yu jaar",
+    "noReviewer": "amul xoolkat",
+    "reviewers": "Xoolkat yi",
+    "reviewerState": "{{name}} · {{state}}",
+    "reviewerState_required": "{{name}} · {{state}} · ñu soxla ko",
+    "reviewerState_community": "{{name}} · {{state}} · mbooloo"
+  },
+  "state": {
+    "REQUESTED": "xool bi ñu ngi koy xaar",
+    "COMMENTED": "bind na kàddu",
+    "APPROVED": "nangu na",
+    "CHANGES_REQUESTED": "laaj na coppite"
+  },
+  "action": {
+    "review": "Xool",
+    "release": "Génn ci",
+    "released": "Doo xoolkatu #{{number}} ba noppi",
+    "claim": "Dinaa xool",
+    "claimed": "#{{number}} bu {{project}} mu ngi ci say xool"
+  },
+  "verdict": {
+    "merged": "Boole nañu ko",
+    "closed": "Tëj nañu ko te boolewuñu ko",
+    "draft": "Brouillon",
+    "changes": "Coppite lañu laaj",
+    "ready": "Mu ngi pare ngir boole",
+    "awaiting_one": "{{count}} xool lañuy xaar",
+    "awaiting_other": "{{count}} xool lañuy xaar",
+    "noReviewer": "Amul xoolkat"
+  },
+  "community": {
+    "eyebrow": "Xoolu mbooloo",
+    "title": "Sa bët am na solo, ba ci biti ekip bi",
+    "text": "Yenn PR dañuy ubbeeku ci developeur yu mbooloo mépp. Xool bu nekk bu am njariñ dina la jox +{{reward}} ci der.",
+    "waiting_one": "PR mu ngi wut xoolkat",
+    "waiting_other": "PR ñu ngi wut xoolkat",
+    "given_one": "xoolu mbooloo boo def",
+    "given_other": "xoolu mbooloo yoo def",
+    "cta": "Xool xoolu mbooloo yi"
+  },
+  "stats": {
+    "title": "Sa njëkk ci xool",
+    "reviewsGiven_one": "xool boo def",
+    "reviewsGiven_other": "xool yoo def",
+    "approved_one": "nangu",
+    "approved_other": "nangu",
+    "changesRequested_one": "coppite bu ñu laaj",
+    "changesRequested_other": "coppite yu ñu laaj",
+    "mergedPullRequests_one": "PR bu ñu boole",
+    "mergedPullRequests_other": "PR yu ñu boole"
+  },
+  "guide": {
+    "title": "Xool bu baax",
+    "readTitle": "Jàngal ngir lan bu njëkk.",
+    "readText": "Melokaanu PR bi ak issue bi dañuy wax li PR bi war a saafara.",
+    "suggestTitle": "Digle, bul sànni.",
+    "suggestText": "Digle kood moo gën yedd.",
+    "decideTitle": "Àtte bu leer.",
+    "decideText": "Nangu bu baaxee, te wax li des bu dul noonu."
+  }
+}

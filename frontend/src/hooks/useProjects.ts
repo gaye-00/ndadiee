@@ -12,9 +12,9 @@ import type {
   FeedbackRequest,
   JoinProjectRequest,
   MemberDecisionRequest,
+  NewProjectRequest,
   ProjectFacetFilters,
   ProjectFilters,
-  ProjectRequest,
 } from '@/types/project.types';
 
 /** Requête d'une liste de projets : partagée par les hooks et le préchargement (LandingPage). */
@@ -91,19 +91,23 @@ function useInvalidateProjects() {
     void qc.invalidateQueries({ queryKey: ['project'] });
     // Les annonces disent les candidatures reçues, et celle du membre connecté
     void qc.invalidateQueries({ queryKey: ['openings'] });
+    // L'atelier montre ses équipes, ses candidatures et celles qu'il doit étudier
+    void qc.invalidateQueries({ queryKey: ['dashboard'] });
     if (projectId !== undefined) {
       void qc.invalidateQueries({ queryKey: ['project-members', projectId] });
     }
   };
 }
 
+/** Publie un projet : sa page, reçue en retour, est déjà en cache quand on y arrive. */
 export function useCreateProject() {
   const qc = useQueryClient();
   const invalidate = useInvalidateProjects();
   return useMutation({
-    mutationFn: (body: ProjectRequest) => projectService.create(body),
-    onSuccess: () => {
+    mutationFn: (body: NewProjectRequest) => projectService.create(body),
+    onSuccess: (project) => {
       invalidate();
+      qc.setQueryData(['project', project.slug], project);
       void qc.invalidateQueries({ queryKey: ['feed'] });
     },
     meta: { handlesError: true },

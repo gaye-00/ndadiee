@@ -11,8 +11,11 @@ export type PageImport = () => Promise<{ default: ComponentType }>;
  * Le code d'une page et les textes de sa fonctionnalité (un espace de noms des traductions, dans la langue
  * de l'interface), téléchargés ensemble : la page s'affiche avec ses textes, sans attente de plus.
  */
-function withTexts(load: PageImport, namespace: 'admin' | 'forum' | 'hackathons' | 'openings' | 'profile' | 'showcase'): PageImport {
-  return () => Promise.all([load(), i18n.loadNamespaces(namespace)]).then(([module]) => module);
+function withTexts(
+  load: PageImport,
+  ...namespaces: Array<'admin' | 'dashboard' | 'forum' | 'hackathons' | 'openings' | 'profile' | 'reviews' | 'showcase'>
+): PageImport {
+  return () => Promise.all([load(), i18n.loadNamespaces(namespaces)]).then(([module]) => module);
 }
 
 /**
@@ -36,8 +39,8 @@ export const pages = {
   profile: withTexts(() => import('@/pages/profile/ProfilePage'), 'profile'),
   search: () => import('@/pages/search/SearchPage'),
 
-  // L'atelier montre le prochain hackathon de l'équipe (HackathonSpotlight)
-  dashboard: withTexts(() => import('@/pages/dashboard/DashboardPage'), 'hackathons'),
+  // L'atelier montre aussi le prochain hackathon de l'équipe (HackathonSpotlight) et des annonces (OpeningCard)
+  dashboard: withTexts(() => import('@/pages/dashboard/DashboardPage'), 'dashboard', 'hackathons', 'openings', 'reviews'),
   myProjects: () => import('@/pages/projects/MyProjectsPage'),
   newProject: () => import('@/pages/projects/NewProjectPage'),
   workspaceBoard: () => import('@/pages/workspace/WorkspaceBoardPage'),
@@ -46,7 +49,7 @@ export const pages = {
   workspaceRoles: () => import('@/pages/workspace/WorkspaceRolesPage'),
   workspaceSettings: () => import('@/pages/workspace/WorkspaceSettingsPage'),
   review: () => import('@/pages/reviews/ReviewPage'),
-  reviews: () => import('@/pages/reviews/ReviewsPage'),
+  reviews: withTexts(() => import('@/pages/reviews/ReviewsPage'), 'reviews'),
   messages: () => import('@/pages/messages/MessagesPage'),
   notifications: () => import('@/pages/notifications/NotificationsPage'),
   settings: () => import('@/pages/settings/SettingsPage'),

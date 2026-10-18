@@ -1,0 +1,155 @@
+{
+  "intro": {
+    "eyebrow": "Bitar lamba",
+    "titleCode": "Lambar,",
+    "titleTogether": "ana duba ta tare",
+    "lead": "Pull requests da ke jiran bitarka, na ƙungiyoyinka, da na al'umma inda idonka ke da muhimmanci.",
+    "waiting_one": "Bita {{count}} na jiranka",
+    "waiting_other": "Bita {{count}} na jiranka",
+    "oldest": "mafi tsufa tun {{time}}",
+    "allClear": "Babu bitar da ke jiranka",
+    "community_one": "PR {{count}} ta al'umma na neman mai bita",
+    "community_other": "PR {{count}} na al'umma na neman mai bita"
+  },
+  "tabs": {
+    "label": "Bita",
+    "TO_REVIEW": "Don dubawa",
+    "COMMUNITY": "Al'umma",
+    "MINE": "PR ɗina",
+    "TEAM": "Ƙungiyoyina",
+    "DONE": "An gama"
+  },
+  "filters": {
+    "search": "Nemi pull request",
+    "searchPlaceholder": "Take, #lamba, aiki ko reshe",
+    "projects": "Ayyukan ƙungiyoyinka",
+    "allProjects": "Duk ayyuka"
+  },
+  "results": {
+    "loading": "Ana loda bita…",
+    "TO_REVIEW_one": "Bita {{count}} da za ka yi",
+    "TO_REVIEW_other": "Bita {{count}} da za ka yi",
+    "COMMUNITY_one": "PR {{count}} a buɗe ga al'umma",
+    "COMMUNITY_other": "PR {{count}} a buɗe ga al'umma",
+    "MINE_one": "pull request {{count}}",
+    "MINE_other": "pull requests {{count}}",
+    "TEAM_one": "PR {{count}} a buɗe a ƙungiyoyinka",
+    "TEAM_other": "PR {{count}} a buɗe a ƙungiyoyinka",
+    "DONE_one": "PR {{count}} da aka gama",
+    "DONE_other": "PR {{count}} da aka gama",
+    "errorTitle": "Ba a iya loda bita ba",
+    "errorText": "Duba haɗinka, sannan ka sake gwadawa.",
+    "more": "Nuna ƙarin pull requests",
+    "loadingMore": "Ana loda sauran…",
+    "moreError": "Ba a iya loda sauran ba."
+  },
+  "empty": {
+    "TO_REVIEW_title": "Babu abin dubawa",
+    "TO_REVIEW_text": "Babu bitar da ke jiranka. Idan ƙungiyarka ta nemi bita, za ta zo nan.",
+    "TO_REVIEW_action_one": "Duba PR da ke jiran al'umma",
+    "TO_REVIEW_action_other": "Duba ɗaya daga cikin PR {{count}} na al'umma",
+    "COMMUNITY_title": "Babu bitar al'umma a buɗe",
+    "COMMUNITY_text": "Babu PR a wajen ƙungiyoyinka da ke neman mai bita yanzu. Dawo nan ba da jimawa ba.",
+    "MINE_title": "Babu pull request tukuna",
+    "MINE_text": "PR ɗinka za su bayyana a nan, tare da masu bita da abin da ya rage kafin haɗawa.",
+    "MINE_action": "Nemi issue ta « matakin farko »",
+    "TEAM_title": "Babu abin da ke buɗe a ƙungiyoyinka",
+    "TEAM_text": "Babu PR a buɗe a ayyukan da kake ciki.",
+    "TEAM_action": "Shiga ƙungiya",
+    "DONE_title": "Babu PR da aka gama tukuna",
+    "DONE_text": "PR da aka haɗa ko aka rufe na ƙungiyoyinka, da waɗanda ka duba, za su bayyana a nan."
+  },
+  "noMatch": {
+    "title": "Babu pull request don wannan aiki",
+    "titleQuery": "Babu pull request don “{{query}}”",
+    "text": "Gwada wata kalma, lamba (#84), ko cire matatar aiki.",
+    "clear": "Share duka"
+  },
+  "phase": {
+    "open": "a buɗe",
+    "draft": "daftari",
+    "merged": "an haɗa",
+    "closed": "an rufe"
+  },
+  "item": {
+    "community": "bitar al'umma",
+    "firstContribution": "gudummawa ta 1",
+    "files_one": "fayil {{count}} da aka canza",
+    "files_other": "fayiloli {{count}} da aka canza",
+    "commits_one": "commit {{count}}",
+    "commits_other": "commits {{count}}",
+    "comments_one": "sharhi {{count}}",
+    "comments_other": "sharhohi {{count}}",
+    "yourStack": "Cikin fasaharka",
+    "waiting": "tana jiran bitarka tun {{time}}",
+    "required": "ana buƙata",
+    "merged": "an haɗa {{time}}",
+    "closed": "an rufe {{time}}",
+    "opened": "an buɗe {{time}}",
+    "active": "tana aiki {{time}}",
+    "branches": "daga {{source}} zuwa {{target}}",
+    "diff": "an ƙara layi {{additions}}, an cire {{deletions}}",
+    "checksFailed_one": "dubawa {{count}} ta kasa",
+    "checksFailed_other": "dubawa {{count}} sun kasa",
+    "checksRunning": "dubawa {{passed}}/{{total}}",
+    "checksPassed": "dubawa {{passed}} cikin {{total}} sun yi nasara",
+    "noReviewer": "babu mai bita",
+    "reviewers": "Masu bita",
+    "reviewerState": "{{name}} · {{state}}",
+    "reviewerState_required": "{{name}} · {{state}} · ana buƙata",
+    "reviewerState_community": "{{name}} · {{state}} · al'umma"
+  },
+  "state": {
+    "REQUESTED": "ana jiran bita",
+    "COMMENTED": "ya yi sharhi",
+    "APPROVED": "ya amince",
+    "CHANGES_REQUESTED": "ya nemi gyara"
+  },
+  "action": {
+    "review": "Duba",
+    "release": "Janye",
+    "released": "Ba kai ne mai bitar #{{number}} ba yanzu",
+    "claim": "Zan duba",
+    "claimed": "#{{number}} ta {{project}} tana cikin bitocinka"
+  },
+  "verdict": {
+    "merged": "An haɗa",
+    "closed": "An rufe ba tare da haɗawa ba",
+    "draft": "Daftari",
+    "changes": "An nemi gyara",
+    "ready": "A shirye don haɗawa",
+    "awaiting_one": "Bita {{count}} ana jira",
+    "awaiting_other": "Bita {{count}} ana jira",
+    "noReviewer": "Babu mai bita"
+  },
+  "community": {
+    "eyebrow": "Bitar al'umma",
+    "title": "Idonka na da muhimmanci, ko a wajen ƙungiya",
+    "text": "Wasu PR suna buɗe ga masu haɓakawa na dukan al'umma. Kowace bita mai amfani na kawo mutunci +{{reward}}.",
+    "waiting_one": "PR na neman mai bita",
+    "waiting_other": "PR na neman mai bita",
+    "given_one": "bitar al'umma da ka yi",
+    "given_other": "bitocin al'umma da ka yi",
+    "cta": "Duba bitocin al'umma"
+  },
+  "stats": {
+    "title": "Tarihinka na mai bita",
+    "reviewsGiven_one": "bitar da ka yi",
+    "reviewsGiven_other": "bitocin da ka yi",
+    "approved_one": "amincewa",
+    "approved_other": "amincewa",
+    "changesRequested_one": "gyaran da aka nema",
+    "changesRequested_other": "gyare-gyaren da aka nema",
+    "mergedPullRequests_one": "PR da aka haɗa",
+    "mergedPullRequests_other": "PR da aka haɗa"
+  },
+  "guide": {
+    "title": "Duba sosai",
+    "readTitle": "Karanta dalilin da farko.",
+    "readText": "Bayani da issue suna faɗin abin da PR ya kamata ta warware.",
+    "suggestTitle": "Ba da shawara, kada ka tilasta.",
+    "suggestText": "Shawarar lamba ta fi zargi.",
+    "decideTitle": "Ba da hukunci bayyananne.",
+    "decideText": "Amince idan ya yi kyau, ka faɗi abin da ya rage idan ba haka ba."
+  }
+}

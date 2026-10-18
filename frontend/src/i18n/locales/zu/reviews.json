@@ -1,0 +1,155 @@
+{
+  "intro": {
+    "eyebrow": "Ukubuyekezwa kwekhodi",
+    "titleCode": "Ikhodi,",
+    "titleTogether": "ibuyekezwa ndawonye",
+    "lead": "Ama-pull request alinde ukubuyekezwa kwakho, awamathimba akho, nawomphakathi lapho iso lakho libalulekile.",
+    "waiting_one": "Ukubuyekezwa okungu-{{count}} kukulindile",
+    "waiting_other": "Ukubuyekezwa okungu-{{count}} kukulindile",
+    "oldest": "okudala kakhulu kusukela {{time}}",
+    "allClear": "Akukho ukubuyekezwa okukulindile",
+    "community_one": "I-PR yomphakathi engu-{{count}} ifuna umbuyekezi",
+    "community_other": "Ama-PR omphakathi angu-{{count}} afuna umbuyekezi"
+  },
+  "tabs": {
+    "label": "Ukubuyekezwa",
+    "TO_REVIEW": "Okokubuyekeza",
+    "COMMUNITY": "Umphakathi",
+    "MINE": "Ama-PR ami",
+    "TEAM": "Amathimba ami",
+    "DONE": "Okuqediwe"
+  },
+  "filters": {
+    "search": "Sesha i-pull request",
+    "searchPlaceholder": "Isihloko, #inombolo, iphrojekthi noma igatsha",
+    "projects": "Amaphrojekthi amathimba akho",
+    "allProjects": "Wonke amaphrojekthi"
+  },
+  "results": {
+    "loading": "Kulayishwa ukubuyekezwa…",
+    "TO_REVIEW_one": "Ukubuyekezwa okungu-{{count}} okufanele ukwenze",
+    "TO_REVIEW_other": "Ukubuyekezwa okungu-{{count}} okufanele ukwenze",
+    "COMMUNITY_one": "I-PR engu-{{count}} evulekele umphakathi",
+    "COMMUNITY_other": "Ama-PR angu-{{count}} avulekele umphakathi",
+    "MINE_one": "i-pull request engu-{{count}}",
+    "MINE_other": "ama-pull request angu-{{count}}",
+    "TEAM_one": "I-PR evulekile engu-{{count}} emathimbeni akho",
+    "TEAM_other": "Ama-PR avulekile angu-{{count}} emathimbeni akho",
+    "DONE_one": "I-PR eqediwe engu-{{count}}",
+    "DONE_other": "Ama-PR aqediwe angu-{{count}}",
+    "errorTitle": "Ukubuyekezwa akukwazanga ukulayishwa",
+    "errorText": "Hlola uxhumano lwakho, bese uzama futhi.",
+    "more": "Bonisa ama-pull request engeziwe",
+    "loadingMore": "Kulayishwa okulandelayo…",
+    "moreError": "Okulandelayo akukwazanga ukulayishwa."
+  },
+  "empty": {
+    "TO_REVIEW_title": "Akukho okokubuyekeza",
+    "TO_REVIEW_text": "Akukho ukubuyekezwa okukulindile. Uma ithimba lakho licela, kuzofika lapha.",
+    "TO_REVIEW_action_one": "Buyekeza i-PR elinde umphakathi",
+    "TO_REVIEW_action_other": "Buyekeza elinye lama-PR omphakathi angu-{{count}}",
+    "COMMUNITY_title": "Akukho ukubuyekezwa komphakathi okuvulekile",
+    "COMMUNITY_text": "Ayikho i-PR ngaphandle kwamathimba akho efuna umbuyekezi okwamanje. Buya maduze.",
+    "MINE_title": "Ayikho i-pull request okwamanje",
+    "MINE_text": "Ama-PR akho azovela lapha, nababuyekezi bawo nalokho okushodayo ngaphambi kokuhlanganisa.",
+    "MINE_action": "Thola i-issue ethi « isinyathelo sokuqala »",
+    "TEAM_title": "Akukho okuvulekile emathimbeni akho",
+    "TEAM_text": "Ayikho i-PR evulekile kumaphrojekthi oyingxenye yawo.",
+    "TEAM_action": "Joyina ithimba",
+    "DONE_title": "Ayikho i-PR eqediwe okwamanje",
+    "DONE_text": "Ama-PR ahlanganisiwe noma avaliwe amathimba akho, nalawo owabuyekezile, azovela lapha."
+  },
+  "noMatch": {
+    "title": "Ayikho i-pull request yale phrojekthi",
+    "titleQuery": "Ayikho i-pull request ka-“{{query}}”",
+    "text": "Zama elinye igama, inombolo (#84), noma ususe isihlungi sephrojekthi.",
+    "clear": "Sula konke"
+  },
+  "phase": {
+    "open": "ivulekile",
+    "draft": "uhlaka",
+    "merged": "ihlanganisiwe",
+    "closed": "ivaliwe"
+  },
+  "item": {
+    "community": "ukubuyekezwa komphakathi",
+    "firstContribution": "umnikelo wokuqala",
+    "files_one": "ifayela elingu-{{count}} elishintshiwe",
+    "files_other": "amafayela angu-{{count}} ashintshiwe",
+    "commits_one": "i-commit engu-{{count}}",
+    "commits_other": "ama-commit angu-{{count}}",
+    "comments_one": "amazwana angu-{{count}}",
+    "comments_other": "amazwana angu-{{count}}",
+    "yourStack": "Kubuchwepheshe bakho",
+    "waiting": "ilinde ukubuyekezwa kwakho kusukela {{time}}",
+    "required": "kuyadingeka",
+    "merged": "ihlanganiswe {{time}}",
+    "closed": "ivalwe {{time}}",
+    "opened": "ivulwe {{time}}",
+    "active": "iyasebenza {{time}}",
+    "branches": "kusuka ku-{{source}} kuya ku-{{target}}",
+    "diff": "imigqa engu-{{additions}} yengeziwe, engu-{{deletions}} isusiwe",
+    "checksFailed_one": "ukuhlolwa okungu-{{count}} kuhlulekile",
+    "checksFailed_other": "ukuhlolwa okungu-{{count}} kuhlulekile",
+    "checksRunning": "ukuhlolwa {{passed}}/{{total}}",
+    "checksPassed": "ukuhlolwa okungu-{{passed}} kwezingu-{{total}} kuphumelele",
+    "noReviewer": "akekho umbuyekezi",
+    "reviewers": "Ababuyekezi",
+    "reviewerState": "{{name}} · {{state}}",
+    "reviewerState_required": "{{name}} · {{state}} · uyadingeka",
+    "reviewerState_community": "{{name}} · {{state}} · umphakathi"
+  },
+  "state": {
+    "REQUESTED": "ukubuyekezwa kulindiwe",
+    "COMMENTED": "uphawule",
+    "APPROVED": "uvumile",
+    "CHANGES_REQUESTED": "ucele izinguquko"
+  },
+  "action": {
+    "review": "Buyekeza",
+    "release": "Hoxa",
+    "released": "Awusewona umbuyekezi we-#{{number}}",
+    "claim": "Ngizobuyekeza",
+    "claimed": "I-#{{number}} ye-{{project}} isekubuyekezweni kwakho"
+  },
+  "verdict": {
+    "merged": "Ihlanganisiwe",
+    "closed": "Ivaliwe ngaphandle kokuhlanganiswa",
+    "draft": "Uhlaka",
+    "changes": "Kucelwe izinguquko",
+    "ready": "Ilungele ukuhlanganiswa",
+    "awaiting_one": "Ukubuyekezwa okungu-{{count}} kulindiwe",
+    "awaiting_other": "Ukubuyekezwa okungu-{{count}} kulindiwe",
+    "noReviewer": "Akekho umbuyekezi"
+  },
+  "community": {
+    "eyebrow": "Ukubuyekezwa komphakathi",
+    "title": "Iso lakho libalulekile, ngisho nangaphandle kwethimba",
+    "text": "Amanye ama-PR avulekele abathuthukisi bomphakathi wonke. Ukubuyekezwa ngakunye okuwusizo kuletha idumela elingu-+{{reward}}.",
+    "waiting_one": "I-PR ifuna umbuyekezi",
+    "waiting_other": "Ama-PR afuna umbuyekezi",
+    "given_one": "ukubuyekezwa komphakathi okwenzile",
+    "given_other": "ukubuyekezwa komphakathi okwenzile",
+    "cta": "Buka ukubuyekezwa komphakathi"
+  },
+  "stats": {
+    "title": "Umlando wakho njengombuyekezi",
+    "reviewsGiven_one": "ukubuyekezwa okwenzile",
+    "reviewsGiven_other": "ukubuyekezwa okwenzile",
+    "approved_one": "isivumelwano",
+    "approved_other": "izivumelwano",
+    "changesRequested_one": "inguquko ecelwe",
+    "changesRequested_other": "izinguquko ezicelwe",
+    "mergedPullRequests_one": "i-PR ehlanganisiwe",
+    "mergedPullRequests_other": "ama-PR ahlanganisiwe"
+  },
+  "guide": {
+    "title": "Buyekeza kahle",
+    "readTitle": "Funda isizathu kuqala.",
+    "readText": "Incazelo ne-issue kusho lokho i-PR okufanele ikuxazulule.",
+    "suggestTitle": "Phakamisa, ungaphoqi.",
+    "suggestText": "Isiphakamiso sekhodi singcono kunokusola.",
+    "decideTitle": "Nikeza isinqumo esicacile.",
+    "decideText": "Vuma uma kuhle, bese usho okushodayo uma kungenjalo."
+  }
+}

@@ -1,0 +1,155 @@
+{
+  "intro": {
+    "eyebrow": "Mapitio ya msimbo",
+    "titleCode": "Msimbo,",
+    "titleTogether": "unapitiwa pamoja",
+    "lead": "Pull requests zinazosubiri pitio lako, zile za timu zako, na za jamii ambapo jicho lako lina maana.",
+    "waiting_one": "Pitio {{count}} linakusubiri",
+    "waiting_other": "Mapitio {{count}} yanakusubiri",
+    "oldest": "la zamani zaidi tangu {{time}}",
+    "allClear": "Hakuna pitio linalokusubiri",
+    "community_one": "PR {{count}} ya jamii inatafuta mpitiaji",
+    "community_other": "PR {{count}} za jamii zinatafuta mpitiaji"
+  },
+  "tabs": {
+    "label": "Mapitio",
+    "TO_REVIEW": "Ya kupitia",
+    "COMMUNITY": "Jamii",
+    "MINE": "PR zangu",
+    "TEAM": "Timu zangu",
+    "DONE": "Zilizokamilika"
+  },
+  "filters": {
+    "search": "Tafuta pull request",
+    "searchPlaceholder": "Kichwa, #namba, mradi au tawi",
+    "projects": "Miradi ya timu zako",
+    "allProjects": "Miradi yote"
+  },
+  "results": {
+    "loading": "Inapakia mapitio…",
+    "TO_REVIEW_one": "Pitio {{count}} la kufanya",
+    "TO_REVIEW_other": "Mapitio {{count}} ya kufanya",
+    "COMMUNITY_one": "PR {{count}} iliyo wazi kwa jamii",
+    "COMMUNITY_other": "PR {{count}} zilizo wazi kwa jamii",
+    "MINE_one": "pull request {{count}}",
+    "MINE_other": "pull requests {{count}}",
+    "TEAM_one": "PR {{count}} iliyo wazi katika timu zako",
+    "TEAM_other": "PR {{count}} zilizo wazi katika timu zako",
+    "DONE_one": "PR {{count}} iliyokamilika",
+    "DONE_other": "PR {{count}} zilizokamilika",
+    "errorTitle": "Mapitio hayakuweza kupakia",
+    "errorText": "Angalia muunganisho wako, kisha ujaribu tena.",
+    "more": "Onyesha pull requests zaidi",
+    "loadingMore": "Inapakia zaidi…",
+    "moreError": "Zinazofuata hazikuweza kupakia."
+  },
+  "empty": {
+    "TO_REVIEW_title": "Hakuna cha kupitia",
+    "TO_REVIEW_text": "Hakuna pitio linalokusubiri. Timu yako ikiomba pitio, litafika hapa.",
+    "TO_REVIEW_action_one": "Pitia PR inayosubiri jamii",
+    "TO_REVIEW_action_other": "Pitia moja ya PR {{count}} za jamii",
+    "COMMUNITY_title": "Hakuna pitio la jamii lililo wazi",
+    "COMMUNITY_text": "Hakuna PR nje ya timu zako inayotafuta mpitiaji kwa sasa. Rudi hivi karibuni.",
+    "MINE_title": "Bado huna pull request",
+    "MINE_text": "PR zako zitaonekana hapa, pamoja na wapitiaji wake na kinachokosekana ili kuunganisha.",
+    "MINE_action": "Tafuta issue ya « hatua ya kwanza »",
+    "TEAM_title": "Hakuna kilicho wazi katika timu zako",
+    "TEAM_text": "Hakuna PR iliyo wazi katika miradi unayoshiriki.",
+    "TEAM_action": "Jiunge na timu",
+    "DONE_title": "Bado hakuna PR iliyokamilika",
+    "DONE_text": "PR za timu zako zilizounganishwa au kufungwa, na ulizopitia, zitaonekana hapa."
+  },
+  "noMatch": {
+    "title": "Hakuna pull request kwa mradi huu",
+    "titleQuery": "Hakuna pull request kwa “{{query}}”",
+    "text": "Jaribu neno lingine, namba (#84), au ondoa kichujio cha mradi.",
+    "clear": "Futa vyote"
+  },
+  "phase": {
+    "open": "wazi",
+    "draft": "rasimu",
+    "merged": "imeunganishwa",
+    "closed": "imefungwa"
+  },
+  "item": {
+    "community": "pitio la jamii",
+    "firstContribution": "mchango wa 1",
+    "files_one": "faili {{count}} limebadilishwa",
+    "files_other": "faili {{count}} zimebadilishwa",
+    "commits_one": "commit {{count}}",
+    "commits_other": "commits {{count}}",
+    "comments_one": "maoni {{count}}",
+    "comments_other": "maoni {{count}}",
+    "yourStack": "Katika teknolojia zako",
+    "waiting": "inasubiri pitio lako tangu {{time}}",
+    "required": "linahitajika",
+    "merged": "imeunganishwa {{time}}",
+    "closed": "imefungwa {{time}}",
+    "opened": "imefunguliwa {{time}}",
+    "active": "hai {{time}}",
+    "branches": "kutoka {{source}} kwenda {{target}}",
+    "diff": "mistari {{additions}} imeongezwa, {{deletions}} imeondolewa",
+    "checksFailed_one": "ukaguzi {{count}} umeshindwa",
+    "checksFailed_other": "ukaguzi {{count}} umeshindwa",
+    "checksRunning": "ukaguzi {{passed}}/{{total}}",
+    "checksPassed": "ukaguzi {{passed}} kati ya {{total}} umefaulu",
+    "noReviewer": "hakuna mpitiaji",
+    "reviewers": "Wapitiaji",
+    "reviewerState": "{{name}} · {{state}}",
+    "reviewerState_required": "{{name}} · {{state}} · anahitajika",
+    "reviewerState_community": "{{name}} · {{state}} · jamii"
+  },
+  "state": {
+    "REQUESTED": "pitio linasubiriwa",
+    "COMMENTED": "ametoa maoni",
+    "APPROVED": "ameidhinisha",
+    "CHANGES_REQUESTED": "ameomba mabadiliko"
+  },
+  "action": {
+    "review": "Pitia",
+    "release": "Jiondoe",
+    "released": "Wewe si mpitiaji wa #{{number}} tena",
+    "claim": "Nitapitia",
+    "claimed": "#{{number}} ya {{project}} iko kwenye mapitio yako"
+  },
+  "verdict": {
+    "merged": "Imeunganishwa",
+    "closed": "Imefungwa bila kuunganishwa",
+    "draft": "Rasimu",
+    "changes": "Mabadiliko yameombwa",
+    "ready": "Tayari kuunganishwa",
+    "awaiting_one": "Pitio {{count}} linasubiriwa",
+    "awaiting_other": "Mapitio {{count}} yanasubiriwa",
+    "noReviewer": "Hakuna mpitiaji"
+  },
+  "community": {
+    "eyebrow": "Pitio la jamii",
+    "title": "Jicho lako lina maana, hata nje ya timu",
+    "text": "Baadhi ya PR ziko wazi kwa wasanidi wa jamii nzima. Kila pitio lenye manufaa linaleta sifa +{{reward}}.",
+    "waiting_one": "PR inatafuta mpitiaji",
+    "waiting_other": "PR zinatafuta mpitiaji",
+    "given_one": "pitio la jamii ulilotoa",
+    "given_other": "mapitio ya jamii uliyotoa",
+    "cta": "Tazama mapitio ya jamii"
+  },
+  "stats": {
+    "title": "Rekodi yako ya mpitiaji",
+    "reviewsGiven_one": "pitio ulilotoa",
+    "reviewsGiven_other": "mapitio uliyotoa",
+    "approved_one": "idhini",
+    "approved_other": "idhini",
+    "changesRequested_one": "badiliko lililoombwa",
+    "changesRequested_other": "mabadiliko yaliyoombwa",
+    "mergedPullRequests_one": "PR iliyounganishwa",
+    "mergedPullRequests_other": "PR zilizounganishwa"
+  },
+  "guide": {
+    "title": "Pitia vizuri",
+    "readTitle": "Soma sababu kwanza.",
+    "readText": "Maelezo na issue yanasema PR inapaswa kutatua nini.",
+    "suggestTitle": "Pendekeza, usilazimishe.",
+    "suggestText": "Pendekezo la msimbo ni bora kuliko lawama.",
+    "decideTitle": "Toa uamuzi wazi.",
+    "decideText": "Idhinisha ikiwa nzuri, na sema kinachokosekana vinginevyo."
+  }
+}

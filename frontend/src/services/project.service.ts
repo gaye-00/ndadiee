@@ -6,6 +6,7 @@ import type {
   FeedbackRequest,
   JoinProjectRequest,
   MemberDecisionRequest,
+  NewProjectRequest,
   Project,
   ProjectFacetFilters,
   ProjectFacets,
@@ -26,7 +27,8 @@ export const projectService = {
 
   getBySlug: (slug: string) => api.get<ApiResponse<Project>>(`${BASE}/${slug}`).then((r) => r.data.data),
 
-  create: (body: ProjectRequest) => api.post<ApiResponse<Project>>(BASE, body).then((r) => r.data.data),
+  /** Publie un projet, avec sa galerie et ses rôles recherchés : la page du projet en retour */
+  create: (body: NewProjectRequest) => api.post<ApiResponse<Project>>(BASE, body).then((r) => r.data.data),
 
   update: (id: number, body: ProjectRequest) =>
     api.put<ApiResponse<Project>>(`${BASE}/${id}`, body).then((r) => r.data.data),

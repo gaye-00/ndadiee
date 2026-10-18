@@ -21,6 +21,8 @@ public class InitializerNdadiee implements CommandLineRunner {
     private final ForumSeeder forumSeeder;
     private final HackathonSeeder hackathonSeeder;
     private final ModerationSeeder moderationSeeder;
+    private final DashboardSeeder dashboardSeeder;
+    private final ReviewSeeder reviewSeeder;
 
     @Value("${ndadiee.seed.enabled}")
     private boolean seedEnabled;
@@ -43,6 +45,10 @@ public class InitializerNdadiee implements CommandLineRunner {
             hackathonSeeder.seed();
             // Le back-office : un compte de spam suspendu, ses contenus masqués, une modératrice nommée
             moderationSeeder.seed();
+            // L'atelier des comptes d'essai : leurs équipes, les candidatures qui les attendent
+            dashboardSeeder.seed();
+            // Les revues de code : des pull requests dans les projets, à relire par l'équipe et la communauté
+            reviewSeeder.seed();
         } else {
             log.info("[Init] Données de démonstration désactivées (ndadiee.seed.enabled=false)");
         }

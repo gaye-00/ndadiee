@@ -1,0 +1,155 @@
+{
+  "intro": {
+    "eyebrow": "Àyẹ̀wò kóòdù",
+    "titleCode": "Kóòdù,",
+    "titleTogether": "tí a jọ ń ṣàyẹ̀wò",
+    "lead": "Àwọn pull request tó ń dúró de àyẹ̀wò rẹ, ti àwọn ẹgbẹ́ rẹ, àti ti àwùjọ níbi tí ojú rẹ ṣe pàtàkì.",
+    "waiting_one": "Àyẹ̀wò {{count}} ń dúró dè ọ́",
+    "waiting_other": "Àyẹ̀wò {{count}} ń dúró dè ọ́",
+    "oldest": "èyí tó pẹ́ jù láti {{time}}",
+    "allClear": "Kò sí àyẹ̀wò tó ń dúró dè ọ́",
+    "community_one": "PR {{count}} ti àwùjọ ń wá olùyẹ̀wò",
+    "community_other": "PR {{count}} ti àwùjọ ń wá olùyẹ̀wò"
+  },
+  "tabs": {
+    "label": "Àyẹ̀wò",
+    "TO_REVIEW": "Láti ṣàyẹ̀wò",
+    "COMMUNITY": "Àwùjọ",
+    "MINE": "PR mi",
+    "TEAM": "Ẹgbẹ́ mi",
+    "DONE": "Tí ó parí"
+  },
+  "filters": {
+    "search": "Wá pull request",
+    "searchPlaceholder": "Àkọlé, #nọ́mbà, iṣẹ́ tàbí ẹ̀ka",
+    "projects": "Iṣẹ́ àwọn ẹgbẹ́ rẹ",
+    "allProjects": "Gbogbo iṣẹ́"
+  },
+  "results": {
+    "loading": "Ń gbé àyẹ̀wò wá…",
+    "TO_REVIEW_one": "Àyẹ̀wò {{count}} láti ṣe",
+    "TO_REVIEW_other": "Àyẹ̀wò {{count}} láti ṣe",
+    "COMMUNITY_one": "PR {{count}} tó ṣí sí àwùjọ",
+    "COMMUNITY_other": "PR {{count}} tó ṣí sí àwùjọ",
+    "MINE_one": "pull request {{count}}",
+    "MINE_other": "pull request {{count}}",
+    "TEAM_one": "PR {{count}} tó ṣí nínú ẹgbẹ́ rẹ",
+    "TEAM_other": "PR {{count}} tó ṣí nínú ẹgbẹ́ rẹ",
+    "DONE_one": "PR {{count}} tó parí",
+    "DONE_other": "PR {{count}} tó parí",
+    "errorTitle": "A kò lè gbé àyẹ̀wò wá",
+    "errorText": "Ṣàyẹ̀wò ìsopọ̀ rẹ, lẹ́yìn náà gbìyànjú lẹ́ẹ̀kan sí i.",
+    "more": "Fi pull request púpọ̀ sí i hàn",
+    "loadingMore": "Ń gbé ìyókù wá…",
+    "moreError": "A kò lè gbé ìyókù wá."
+  },
+  "empty": {
+    "TO_REVIEW_title": "Kò sí nǹkan láti ṣàyẹ̀wò",
+    "TO_REVIEW_text": "Kò sí àyẹ̀wò tó ń dúró dè ọ́. Tí ẹgbẹ́ rẹ bá béèrè, yóò dé síbí.",
+    "TO_REVIEW_action_one": "Ṣàyẹ̀wò PR tó ń dúró de àwùjọ",
+    "TO_REVIEW_action_other": "Ṣàyẹ̀wò ọ̀kan nínú PR {{count}} ti àwùjọ",
+    "COMMUNITY_title": "Kò sí àyẹ̀wò àwùjọ tó ṣí",
+    "COMMUNITY_text": "Kò sí PR ní òde ẹgbẹ́ rẹ tó ń wá olùyẹ̀wò báyìí. Padà wá láìpẹ́.",
+    "MINE_title": "Kò sí pull request síbẹ̀",
+    "MINE_text": "Àwọn PR rẹ yóò hàn níbí, pẹ̀lú àwọn olùyẹ̀wò wọn àti ohun tó kù kí a tó dà wọ́n pọ̀.",
+    "MINE_action": "Wá issue « ìgbésẹ̀ àkọ́kọ́ »",
+    "TEAM_title": "Kò sí nǹkan tó ṣí nínú ẹgbẹ́ rẹ",
+    "TEAM_text": "Kò sí PR tó ṣí nínú àwọn iṣẹ́ tí o wà.",
+    "TEAM_action": "Darapọ̀ mọ́ ẹgbẹ́",
+    "DONE_title": "Kò sí PR tó parí síbẹ̀",
+    "DONE_text": "PR ẹgbẹ́ rẹ tí a dà pọ̀ tàbí tí a pa, àti èyí tí o ṣàyẹ̀wò, yóò hàn níbí."
+  },
+  "noMatch": {
+    "title": "Kò sí pull request fún iṣẹ́ yìí",
+    "titleQuery": "Kò sí pull request fún “{{query}}”",
+    "text": "Gbìyànjú ọ̀rọ̀ míì, nọ́mbà (#84), tàbí yọ àlẹ̀mọ́ iṣẹ́.",
+    "clear": "Pa gbogbo rẹ̀ rẹ́"
+  },
+  "phase": {
+    "open": "ṣí",
+    "draft": "àkọ́pamọ́",
+    "merged": "a dà pọ̀",
+    "closed": "a pa á"
+  },
+  "item": {
+    "community": "àyẹ̀wò àwùjọ",
+    "firstContribution": "ìdásí àkọ́kọ́",
+    "files_one": "fáìlì {{count}} tí a yí padà",
+    "files_other": "fáìlì {{count}} tí a yí padà",
+    "commits_one": "commit {{count}}",
+    "commits_other": "commit {{count}}",
+    "comments_one": "ọ̀rọ̀ {{count}}",
+    "comments_other": "ọ̀rọ̀ {{count}}",
+    "yourStack": "Nínú ìmọ̀ rẹ",
+    "waiting": "ń dúró de àyẹ̀wò rẹ láti {{time}}",
+    "required": "a nílò rẹ̀",
+    "merged": "a dà pọ̀ {{time}}",
+    "closed": "a pa á {{time}}",
+    "opened": "a ṣí i {{time}}",
+    "active": "ń ṣiṣẹ́ {{time}}",
+    "branches": "láti {{source}} sí {{target}}",
+    "diff": "a fi ìlà {{additions}} kún, a yọ {{deletions}}",
+    "checksFailed_one": "àyẹ̀wò aládàáṣe {{count}} kùnà",
+    "checksFailed_other": "àyẹ̀wò aládàáṣe {{count}} kùnà",
+    "checksRunning": "àyẹ̀wò aládàáṣe {{passed}}/{{total}}",
+    "checksPassed": "{{passed}} nínú {{total}} àyẹ̀wò aládàáṣe yege",
+    "noReviewer": "kò sí olùyẹ̀wò",
+    "reviewers": "Olùyẹ̀wò",
+    "reviewerState": "{{name}} · {{state}}",
+    "reviewerState_required": "{{name}} · {{state}} · a nílò",
+    "reviewerState_community": "{{name}} · {{state}} · àwùjọ"
+  },
+  "state": {
+    "REQUESTED": "à ń dúró de àyẹ̀wò",
+    "COMMENTED": "sọ ọ̀rọ̀",
+    "APPROVED": "fọwọ́ sí",
+    "CHANGES_REQUESTED": "béèrè àtúnṣe"
+  },
+  "action": {
+    "review": "Ṣàyẹ̀wò",
+    "release": "Fà sẹ́yìn",
+    "released": "Ìwọ kì í ṣe olùyẹ̀wò #{{number}} mọ́",
+    "claim": "Màá ṣàyẹ̀wò",
+    "claimed": "#{{number}} ti {{project}} wà nínú àyẹ̀wò rẹ báyìí"
+  },
+  "verdict": {
+    "merged": "A dà pọ̀",
+    "closed": "A pa á láìdà pọ̀",
+    "draft": "Àkọ́pamọ́",
+    "changes": "A béèrè àtúnṣe",
+    "ready": "Ó ṣetán láti dà pọ̀",
+    "awaiting_one": "Àyẹ̀wò {{count}} ń dúró",
+    "awaiting_other": "Àyẹ̀wò {{count}} ń dúró",
+    "noReviewer": "Kò sí olùyẹ̀wò"
+  },
+  "community": {
+    "eyebrow": "Àyẹ̀wò àwùjọ",
+    "title": "Ojú rẹ ṣe pàtàkì, kódà ní òde ẹgbẹ́",
+    "text": "Àwọn PR kan ṣí sí àwọn olùgbéjáde gbogbo àwùjọ. Àyẹ̀wò kọ̀ọ̀kan tó wúlò ń mú orúkọ rere +{{reward}} wá.",
+    "waiting_one": "PR ń wá olùyẹ̀wò",
+    "waiting_other": "PR ń wá olùyẹ̀wò",
+    "given_one": "àyẹ̀wò àwùjọ tí o ṣe",
+    "given_other": "àyẹ̀wò àwùjọ tí o ṣe",
+    "cta": "Wo àyẹ̀wò àwùjọ"
+  },
+  "stats": {
+    "title": "Àkọsílẹ̀ rẹ gẹ́gẹ́ bí olùyẹ̀wò",
+    "reviewsGiven_one": "àyẹ̀wò tí o ṣe",
+    "reviewsGiven_other": "àyẹ̀wò tí o ṣe",
+    "approved_one": "ìfọwọ́sí",
+    "approved_other": "ìfọwọ́sí",
+    "changesRequested_one": "àtúnṣe tí a béèrè",
+    "changesRequested_other": "àtúnṣe tí a béèrè",
+    "mergedPullRequests_one": "PR tí a dà pọ̀",
+    "mergedPullRequests_other": "PR tí a dà pọ̀"
+  },
+  "guide": {
+    "title": "Ṣàyẹ̀wò dáradára",
+    "readTitle": "Ka ìdí rẹ̀ kọ́kọ́.",
+    "readText": "Àpèjúwe àti issue sọ ohun tí PR gbọ́dọ̀ yanjú.",
+    "suggestTitle": "Dábàá, má ṣe fipá mú.",
+    "suggestText": "Àbá kóòdù sàn ju ẹ̀sùn lọ.",
+    "decideTitle": "Ṣe ìpinnu tó ṣe kedere.",
+    "decideText": "Fọwọ́ sí tí ó bá dára, kí o sì sọ ohun tó kù tí kò bá rí bẹ́ẹ̀."
+  }
+}

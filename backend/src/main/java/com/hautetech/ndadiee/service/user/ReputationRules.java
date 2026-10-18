@@ -20,4 +20,7 @@ public final class ReputationRules {
 
     // Réponse acceptée par l'auteur de la question
     public static final int ANSWER_ACCEPTED = 15;
+
+    // Revue de code jugée utile par l'équipe du projet (design 3C : « chaque revue jugée utile rapporte +10 »)
+    public static final int REVIEW_HELPFUL = 10;
 }

@@ -1,0 +1,155 @@
+{
+  "intro": {
+    "eyebrow": "Code reviews",
+    "titleCode": "Code,",
+    "titleTogether": "reviewed together",
+    "lead": "Pull requests waiting for your review, those of your teams, and community ones where your eye counts.",
+    "waiting_one": "{{count}} review is waiting for you",
+    "waiting_other": "{{count}} reviews are waiting for you",
+    "oldest": "the oldest since {{time}}",
+    "allClear": "No review is waiting for you",
+    "community_one": "{{count}} community PR needs a reviewer",
+    "community_other": "{{count}} community PRs need a reviewer"
+  },
+  "tabs": {
+    "label": "Reviews",
+    "TO_REVIEW": "To review",
+    "COMMUNITY": "Community",
+    "MINE": "My PRs",
+    "TEAM": "My teams",
+    "DONE": "Done"
+  },
+  "filters": {
+    "search": "Search pull requests",
+    "searchPlaceholder": "Title, #number, project or branch",
+    "projects": "Your teams' projects",
+    "allProjects": "All projects"
+  },
+  "results": {
+    "loading": "Loading reviews…",
+    "TO_REVIEW_one": "{{count}} review to give",
+    "TO_REVIEW_other": "{{count}} reviews to give",
+    "COMMUNITY_one": "{{count}} PR open to the community",
+    "COMMUNITY_other": "{{count}} PRs open to the community",
+    "MINE_one": "{{count}} pull request",
+    "MINE_other": "{{count}} pull requests",
+    "TEAM_one": "{{count}} open PR in your teams",
+    "TEAM_other": "{{count}} open PRs in your teams",
+    "DONE_one": "{{count}} finished PR",
+    "DONE_other": "{{count}} finished PRs",
+    "errorTitle": "Reviews could not load",
+    "errorText": "Check your connection, then try again.",
+    "more": "Show more pull requests",
+    "loadingMore": "Loading more…",
+    "moreError": "The next ones could not load."
+  },
+  "empty": {
+    "TO_REVIEW_title": "Nothing to review",
+    "TO_REVIEW_text": "No review is waiting for you. When your team asks for one, it will land here.",
+    "TO_REVIEW_action_one": "Review the PR waiting for the community",
+    "TO_REVIEW_action_other": "Review one of the {{count}} community PRs",
+    "COMMUNITY_title": "No open community review",
+    "COMMUNITY_text": "No PR outside your teams is looking for a reviewer right now. Check back soon.",
+    "MINE_title": "No pull request yet",
+    "MINE_text": "Your PRs will show up here, with their reviewers and what is missing before merging.",
+    "MINE_action": "Find a “good first issue”",
+    "TEAM_title": "Nothing open in your teams",
+    "TEAM_text": "No PR is open in the projects you belong to.",
+    "TEAM_action": "Join a team",
+    "DONE_title": "No finished PR yet",
+    "DONE_text": "Merged or closed PRs of your teams, and those you reviewed, will show up here."
+  },
+  "noMatch": {
+    "title": "No pull request for this project",
+    "titleQuery": "No pull request for “{{query}}”",
+    "text": "Try another word, a number (#84), or remove the project filter.",
+    "clear": "Clear all"
+  },
+  "phase": {
+    "open": "open",
+    "draft": "draft",
+    "merged": "merged",
+    "closed": "closed"
+  },
+  "item": {
+    "community": "community review",
+    "firstContribution": "1st contribution",
+    "files_one": "{{count}} file changed",
+    "files_other": "{{count}} files changed",
+    "commits_one": "{{count}} commit",
+    "commits_other": "{{count}} commits",
+    "comments_one": "{{count}} comment",
+    "comments_other": "{{count}} comments",
+    "yourStack": "In your stack",
+    "waiting": "waiting for your review since {{time}}",
+    "required": "required",
+    "merged": "merged {{time}}",
+    "closed": "closed {{time}}",
+    "opened": "opened {{time}}",
+    "active": "active {{time}}",
+    "branches": "from {{source}} into {{target}}",
+    "diff": "{{additions}} lines added, {{deletions}} removed",
+    "checksFailed_one": "{{count}} check failing",
+    "checksFailed_other": "{{count}} checks failing",
+    "checksRunning": "checks {{passed}}/{{total}}",
+    "checksPassed": "{{passed}} of {{total}} checks passed",
+    "noReviewer": "no reviewer",
+    "reviewers": "Reviewers",
+    "reviewerState": "{{name}} · {{state}}",
+    "reviewerState_required": "{{name}} · {{state}} · required",
+    "reviewerState_community": "{{name}} · {{state}} · community"
+  },
+  "state": {
+    "REQUESTED": "review pending",
+    "COMMENTED": "commented",
+    "APPROVED": "approved",
+    "CHANGES_REQUESTED": "changes requested"
+  },
+  "action": {
+    "review": "Review",
+    "release": "Step back",
+    "released": "You no longer review #{{number}}",
+    "claim": "I'll review",
+    "claimed": "#{{number}} of {{project}} is now in your reviews to give"
+  },
+  "verdict": {
+    "merged": "Merged",
+    "closed": "Closed without merging",
+    "draft": "Draft",
+    "changes": "Changes requested",
+    "ready": "Ready to merge",
+    "awaiting_one": "{{count}} review pending",
+    "awaiting_other": "{{count}} reviews pending",
+    "noReviewer": "No reviewer"
+  },
+  "community": {
+    "eyebrow": "Community review",
+    "title": "Your eye counts, even outside the team",
+    "text": "Some PRs open up to developers from the whole community. Each review judged helpful earns +{{reward}} reputation.",
+    "waiting_one": "PR needs a reviewer",
+    "waiting_other": "PRs need a reviewer",
+    "given_one": "community review given",
+    "given_other": "community reviews given",
+    "cta": "See community reviews"
+  },
+  "stats": {
+    "title": "Your reviewer record",
+    "reviewsGiven_one": "review given",
+    "reviewsGiven_other": "reviews given",
+    "approved_one": "approval",
+    "approved_other": "approvals",
+    "changesRequested_one": "change request",
+    "changesRequested_other": "change requests",
+    "mergedPullRequests_one": "PR merged",
+    "mergedPullRequests_other": "PRs merged"
+  },
+  "guide": {
+    "title": "Review well",
+    "readTitle": "Read the why first.",
+    "readText": "The description and the issue say what the PR should solve.",
+    "suggestTitle": "Suggest, don't impose.",
+    "suggestText": "A code suggestion beats a reproach.",
+    "decideTitle": "Give a clear verdict.",
+    "decideText": "Approve when it's good, and say what's missing otherwise."
+  }
+}
