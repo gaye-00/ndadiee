@@ -13,6 +13,14 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+/**
+ * DTO utilisé pour créer une annonce de recrutement au sein
+ * d'un projet.
+ *
+ * Permet de définir le rôle recherché, l'intitulé de l'annonce,
+ * sa description, le nombre de places disponibles et, si nécessaire,
+ * une issue de démarrage associée à la contribution attendue.
+ */
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
