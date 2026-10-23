@@ -17,7 +17,17 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-/** Publication ou modification d'un hackathon. L'ordre des dates est vérifié par HackathonService. */
+/**
+ * DTO utilisé pour transmettre les données nécessaires
+ * à la création ou à la modification d'un hackathon.
+ *
+ * Regroupe les informations générales, la localisation,
+ * les dates, les limites des équipes, les tags, le calendrier
+ * et les prix associés à l'événement.
+ *
+ * La cohérence de l'ordre des dates est vérifiée par
+ * HackathonService.
+ */
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
