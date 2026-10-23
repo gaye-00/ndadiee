@@ -1,6 +1,12 @@
 package com.hautetech.ndadiee.dto.request;
 
-/** Filtre des contenus du back-office : visibles du public, ou masqués par l'administration. */
+/**
+ * Énumération représentant l'état de visibilité d'un contenu
+ * dans l'interface d'administration.
+ *
+ * Permet de distinguer les contenus accessibles au public
+ * de ceux qui sont masqués par l'administration.
+ */
 public enum Visibility {
     VISIBLE,
     HIDDEN
