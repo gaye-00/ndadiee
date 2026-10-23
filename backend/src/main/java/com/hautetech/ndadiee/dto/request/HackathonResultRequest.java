@@ -8,7 +8,15 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-/** Résultat d'une équipe au palmarès : sa place, sa distinction, ou les deux ; vides pour les retirer. */
+/**
+ * DTO utilisé pour transmettre les informations d'un résultat
+ * d'équipe dans le palmarès d'un hackathon.
+ *
+ * Permet de renseigner le classement de l'équipe, la distinction
+ * obtenue, ou les deux. Les champs laissés vides peuvent servir
+ * à retirer les informations correspondantes, selon la logique
+ * de traitement appliquée par le service.
+ */
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
