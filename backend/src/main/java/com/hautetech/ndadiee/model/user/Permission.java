@@ -3,6 +3,16 @@ package com.hautetech.ndadiee.model.user;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 
+/**
+ * Énumération des permissions disponibles dans l'application Ndadiee.
+ *
+ * Chaque permission représente une action autorisée pour une catégorie
+ * d'utilisateurs : administrateur, modérateur ou utilisateur standard.
+ *
+ * La valeur associée à chaque constante suit la convention
+ * « rôle:action » et peut être utilisée par le mécanisme
+ * d'autorisation pour contrôler l'accès aux fonctionnalités.
+ */
 @RequiredArgsConstructor
 public enum Permission {
 
