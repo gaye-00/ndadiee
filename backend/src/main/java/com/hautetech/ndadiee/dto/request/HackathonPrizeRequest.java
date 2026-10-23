@@ -7,6 +7,13 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+/**
+ * DTO utilisé pour transmettre les informations d'un prix
+ * attribué dans le cadre d'un hackathon.
+ *
+ * Chaque prix comprend un intitulé et une description
+ * de la récompense associée.
+ */
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
