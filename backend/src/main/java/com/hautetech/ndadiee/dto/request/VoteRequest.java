@@ -10,6 +10,13 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+/**
+ * DTO permettant de transmettre un vote sur un contenu
+ * de la plateforme.
+ *
+ * Identifie le contenu concerné par son type et son identifiant,
+ * puis précise la valeur du vote exprimé par l'utilisateur.
+ */
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
