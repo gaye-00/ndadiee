@@ -13,6 +13,13 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+/**
+ * DTO utilisé pour recevoir les données nécessaires à la création
+ * ou à la soumission d'un article via l'API.
+ *
+ * Les champs sont soumis à des contraintes de validation afin
+ * de garantir la cohérence des données reçues.
+ */
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
