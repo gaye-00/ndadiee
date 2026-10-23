@@ -13,7 +13,14 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-/** Image ajoutée à la galerie d'un projet. */
+/**
+ * DTO permettant de transmettre les informations d'un média
+ * destiné à être ajouté à la galerie d'un projet.
+ *
+ * Contient le type de média, son adresse, une éventuelle miniature,
+ * sa légende, les informations de crédit et de source, ainsi que
+ * ses dimensions lorsqu'elles sont disponibles.
+ */
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
