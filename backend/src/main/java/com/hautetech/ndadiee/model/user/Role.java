@@ -9,6 +9,16 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 
+/**
+ * Définit les rôles attribuables aux utilisateurs de l'application Ndadiee.
+ *
+ * Chaque rôle possède un ensemble de permissions qui détermine les actions
+ * autorisées à son détenteur. Les rôles sont hiérarchisés par les permissions
+ * qu'ils regroupent : USER, MODERATOR et ADMIN.
+ *
+ * Cette énumération fournit également les autorités reconnues par
+ * Spring Security pour appliquer les règles d'autorisation.
+ */
 @RequiredArgsConstructor
 public enum Role {
     USER(
