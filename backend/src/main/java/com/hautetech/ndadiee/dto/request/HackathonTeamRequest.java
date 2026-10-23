@@ -7,7 +7,14 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-/** Inscription d'un projet comme équipe d'un hackathon. */
+/**
+ * DTO utilisé pour transmettre les informations nécessaires
+ * à l'inscription d'un projet comme équipe participante
+ * à un hackathon.
+ *
+ * Le projet est identifié par son ID et peut être accompagné
+ * d'un pitch présentant l'idée que l'équipe souhaite développer.
+ */
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
