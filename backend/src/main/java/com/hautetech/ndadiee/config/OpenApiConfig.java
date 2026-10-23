@@ -9,7 +9,15 @@ import io.swagger.v3.oas.models.info.Info;
 import io.swagger.v3.oas.models.security.SecurityRequirement;
 import io.swagger.v3.oas.models.security.SecurityScheme;
 
-/** Documentation Swagger : disponible sur /api/swagger-ui.html. */
+/**
+ * Classe de configuration de la documentation OpenAPI de l'API Ndadiee.
+ *
+ * Configure les informations générales de l'API ainsi que le mécanisme
+ * d'authentification Bearer utilisant des jetons JWT.
+ *
+ * La documentation interactive est accessible via Swagger UI,
+ * à l'adresse /api/swagger-ui.html selon la configuration de l'application.
+ */
 @Configuration
 public class OpenApiConfig {
 
