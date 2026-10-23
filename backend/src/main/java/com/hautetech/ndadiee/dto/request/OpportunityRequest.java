@@ -17,6 +17,18 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+/**
+ * DTO utilisé pour créer ou transmettre les informations
+ * d'une opportunité professionnelle.
+ *
+ * Une opportunité peut correspondre, par exemple, à un emploi,
+ * un stage ou à un autre type d'offre défini par OpportunityType.
+ * Elle contient les informations de présentation, de localisation,
+ * de rémunération et les modalités de candidature.
+ *
+ * Les contraintes de validation permettent de vérifier la
+ * cohérence élémentaire des données reçues avant leur traitement.
+ */
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
