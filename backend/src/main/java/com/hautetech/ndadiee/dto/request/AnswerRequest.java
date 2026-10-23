@@ -7,6 +7,14 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+/**
+ * DTO de requête utilisé pour transmettre le contenu d'une réponse
+ * depuis le client vers l'API.
+ *
+ * Le contenu est rédigé au format Markdown et soumis à des
+ * contraintes de validation avant son traitement.
+ */
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
