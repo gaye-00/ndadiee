@@ -15,7 +15,18 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-/** Le profil public d'un membre. La photo a ses propres routes (PUT et DELETE /v1/users/me/avatar). */
+/**
+ * DTO utilisé pour transmettre les informations de mise à jour
+ * du profil public d'un membre de la plateforme.
+ *
+ * Il regroupe les informations personnelles affichées sur le profil,
+ * la localisation, la langue préférée, les liens professionnels,
+ * le niveau d'expérience, la disponibilité professionnelle
+ * et les compétences du membre.
+ *
+ * La gestion de la photo de profil est séparée et s'effectue
+ * via les routes PUT et DELETE /v1/users/me/avatar.
+ */
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
