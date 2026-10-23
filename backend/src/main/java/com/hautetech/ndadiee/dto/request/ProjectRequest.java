@@ -11,6 +11,17 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+/**
+ * DTO utilisé pour transmettre les informations nécessaires
+ * à la création ou à la mise à jour d'un projet.
+ *
+ * Regroupe les informations générales du projet, ses liens
+ * externes, ses visuels, les technologies utilisées, la licence
+ * du code et les préférences relatives à la recherche de contributeurs.
+ *
+ * Les contraintes de validation permettent de vérifier certaines
+ * propriétés des données avant leur traitement par l'application.
+ */
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
