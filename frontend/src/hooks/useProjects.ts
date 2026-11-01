@@ -93,6 +93,8 @@ function useInvalidateProjects() {
     void qc.invalidateQueries({ queryKey: ['openings'] });
     // L'atelier montre ses équipes, ses candidatures et celles qu'il doit étudier
     void qc.invalidateQueries({ queryKey: ['dashboard'] });
+    // L'espace d'équipe compte ses membres et les candidatures à étudier
+    void qc.invalidateQueries({ queryKey: ['workspace'] });
     if (projectId !== undefined) {
       void qc.invalidateQueries({ queryKey: ['project-members', projectId] });
     }
@@ -143,6 +145,19 @@ export function useProjectDevlog(projectId: number | undefined) {
     initialPageParam: 0,
     getNextPageParam: (last) => (last.last ? undefined : last.page + 1),
     enabled: projectId !== undefined,
+  });
+}
+
+/** Écrit dans le devlog : l'entrée arrive en tête du journal (page du projet, espace d'équipe, fil de l'atelier). */
+export function useAddDevlogEntry(projectId: number) {
+  const qc = useQueryClient();
+  return useMutation({
+    mutationFn: (body: { version?: string; body: string }) => projectService.addDevlogEntry(projectId, body),
+    onSuccess: () => {
+      void qc.invalidateQueries({ queryKey: ['project-devlog', projectId] });
+      void qc.invalidateQueries({ queryKey: ['dashboard'] });
+    },
+    meta: { handlesError: true },
   });
 }
 

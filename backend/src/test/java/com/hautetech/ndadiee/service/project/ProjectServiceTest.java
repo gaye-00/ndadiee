@@ -24,8 +24,11 @@ import org.springframework.context.ApplicationEventPublisher;
 import com.hautetech.ndadiee.dto.request.JoinProjectRequest;
 import com.hautetech.ndadiee.dto.request.MemberDecisionRequest;
 import com.hautetech.ndadiee.dto.request.ProjectRequest;
+import com.hautetech.ndadiee.dto.request.ProjectSettingsRequest;
 import com.hautetech.ndadiee.dto.response.ProjectResponse;
 import com.hautetech.ndadiee.event.ProjectJoinRequestedEvent;
+import com.hautetech.ndadiee.event.ProjectMemberLeftEvent;
+import com.hautetech.ndadiee.exception.ForbiddenException;
 import com.hautetech.ndadiee.exception.OperationNotAllowedException;
 import com.hautetech.ndadiee.exception.ResourceNotFoundException;
 import com.hautetech.ndadiee.mapper.HackathonMapper;
@@ -252,5 +255,92 @@ class ProjectServiceTest {
         verify(mediaUploadService).attach(PROJECT_ID, Set.of("https://media.example.com/cover.webp"));
         verify(hackathonTeamRepository).findCurrentByProjectIds(eq(List.of(PROJECT_ID)), any());
     }
-}
 
+    // ==================== DÉPARTS DE L'ÉQUIPE ====================
+
+    private ProjectMember teammate(Long memberId, Long userId, ProjectRole role) {
+        return ProjectMember.builder().id(memberId).project(project).user(developer(userId)).role(role)
+                .status(MemberStatus.ACCEPTED).build();
+    }
+
+    @Test
+    void theOwnerRemovesATeammateWhoseTasksAreReleased() {
+        ProjectMember member = teammate(70L, CANDIDATE, ProjectRole.CONTRIBUTOR);
+        when(projectRepository.findById(PROJECT_ID)).thenReturn(Optional.of(project));
+        when(projectMemberRepository.findById(70L)).thenReturn(Optional.of(member));
+
+        projectService.removeMember(OWNER, PROJECT_ID, 70L);
+
+        verify(projectMemberRepository).delete(member);
+        verify(eventPublisher).publishEvent(new ProjectMemberLeftEvent(PROJECT_ID, CANDIDATE));
+    }
+
+    @Test
+    void theOwnerIsNeverRemoved() {
+        ProjectMember owner = teammate(71L, OWNER, ProjectRole.OWNER);
+        when(projectRepository.findById(PROJECT_ID)).thenReturn(Optional.of(project));
+        when(projectMemberRepository.findById(71L)).thenReturn(Optional.of(owner));
+        when(projectMemberRepository.findByProjectIdAndUserId(PROJECT_ID, 5L))
+                .thenReturn(Optional.of(teammate(72L, 5L, ProjectRole.MAINTAINER)));
+
+        assertThatThrownBy(() -> projectService.removeMember(5L, PROJECT_ID, 71L)).isInstanceOf(OperationNotAllowedException.class);
+        verify(projectMemberRepository, never()).delete(any(ProjectMember.class));
+    }
+
+    @Test
+    void aContributorRemovesNobody() {
+        when(projectRepository.findById(PROJECT_ID)).thenReturn(Optional.of(project));
+        when(projectMemberRepository.findByProjectIdAndUserId(PROJECT_ID, CANDIDATE))
+                .thenReturn(Optional.of(teammate(70L, CANDIDATE, ProjectRole.CONTRIBUTOR)));
+
+        assertThatThrownBy(() -> projectService.removeMember(CANDIDATE, PROJECT_ID, 73L)).isInstanceOf(ForbiddenException.class);
+        verify(projectMemberRepository, never()).delete(any(ProjectMember.class));
+    }
+
+    @Test
+    void leavingTheTeamReleasesItsTasks_butCancellingAnApplicationDoesNot() {
+        ProjectMember member = teammate(70L, CANDIDATE, ProjectRole.CONTRIBUTOR);
+        when(projectMemberRepository.findByProjectIdAndUserId(PROJECT_ID, CANDIDATE)).thenReturn(Optional.of(member));
+        projectService.leave(CANDIDATE, PROJECT_ID);
+        verify(eventPublisher).publishEvent(new ProjectMemberLeftEvent(PROJECT_ID, CANDIDATE));
+
+        ProjectMember application = ProjectMember.builder().id(74L).project(project).user(developer(6L))
+                .role(ProjectRole.CONTRIBUTOR).status(MemberStatus.PENDING).build();
+        when(projectMemberRepository.findByProjectIdAndUserId(PROJECT_ID, 6L)).thenReturn(Optional.of(application));
+        projectService.leave(6L, PROJECT_ID);
+        verify(eventPublisher, never()).publishEvent(new ProjectMemberLeftEvent(PROJECT_ID, 6L));
+    }
+
+    // ==================== RÉGLAGES DE L'ESPACE ====================
+
+    @Test
+    void theOwnerChangesTheRepositoryAndRecruitmentOnly() {
+        project.setDescription("Les horaires des danfo.");
+        project.setCoverUrl("media/demo/projects/lagos-transit.webp");
+        when(projectRepository.findById(PROJECT_ID)).thenReturn(Optional.of(project));
+        when(projectRepository.saveAndFlush(project)).thenReturn(project);
+        when(projectMapper.toResponse(project)).thenReturn(new ProjectResponse());
+
+        projectService.updateSettings(OWNER, PROJECT_ID, ProjectSettingsRequest.builder()
+                .repositoryUrl("  https://github.com/lagos/transit  ")
+                .lookingForContributors(false)
+                .build());
+
+        assertThat(project.getRepositoryUrl()).isEqualTo("https://github.com/lagos/transit");
+        assertThat(project.isLookingForContributors()).isFalse();
+        // Le reste du projet ne bouge pas : ni ses textes, ni le chemin de ses images
+        assertThat(project.getDescription()).isEqualTo("Les horaires des danfo.");
+        assertThat(project.getCoverUrl()).isEqualTo("media/demo/projects/lagos-transit.webp");
+    }
+
+    @Test
+    void aTeammateDoesNotChangeTheProjectSettings() {
+        when(projectRepository.findById(PROJECT_ID)).thenReturn(Optional.of(project));
+        when(userService.canModerate(CANDIDATE)).thenReturn(false);
+
+        assertThatThrownBy(() -> projectService.updateSettings(CANDIDATE, PROJECT_ID,
+                ProjectSettingsRequest.builder().repositoryUrl("").lookingForContributors(true).build()))
+                .isInstanceOf(ForbiddenException.class);
+        verify(projectRepository, never()).saveAndFlush(any(Project.class));
+    }
+}

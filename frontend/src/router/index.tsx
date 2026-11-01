@@ -2,7 +2,7 @@ import { createBrowserRouter } from 'react-router-dom';
 import AdminRoute from './AdminRoute';
 import GuestRoute from './GuestRoute';
 import type { RouteHandle } from './handle';
-import { pages, type PageName } from './pages';
+import { layouts, pages, type PageName } from './pages';
 import { paths } from './paths';
 import ProtectedRoute from './ProtectedRoute';
 import PageLoader from '@/components/feedback/PageLoader';
@@ -12,7 +12,6 @@ import AuthLayout from '@/components/layout/AuthLayout';
 import PublicLayout from '@/components/layout/PublicLayout';
 import RootLayout from '@/components/layout/RootLayout';
 import ShellLayout from '@/components/layout/ShellLayout';
-import WorkspaceLayout from '@/components/layout/WorkspaceLayout';
 
 /**
  * Page chargée à la demande : son code n'est téléchargé qu'à la première visite, ou plus tôt au
@@ -113,7 +112,8 @@ const router = createBrowserRouter([
                   { path: paths.newProject, ...page('newProject') },
                   {
                     path: paths.workspace(':slug'),
-                    element: <WorkspaceLayout />,
+                    // Sa coquille aussi est chargée à la demande, avec ses textes
+                    lazy: async () => ({ Component: (await layouts.workspace()).default }),
                     children: [
                       { index: true, ...page('workspaceBoard') },
                       { path: paths.workspaceReviews(':slug'), ...page('workspaceReviews') },

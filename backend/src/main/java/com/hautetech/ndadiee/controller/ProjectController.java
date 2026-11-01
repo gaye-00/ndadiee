@@ -10,6 +10,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -25,6 +26,7 @@ import com.hautetech.ndadiee.dto.request.MemberSpecialtyRequest;
 import com.hautetech.ndadiee.dto.request.NewProjectRequest;
 import com.hautetech.ndadiee.dto.request.ProjectMediaRequest;
 import com.hautetech.ndadiee.dto.request.ProjectRequest;
+import com.hautetech.ndadiee.dto.request.ProjectSettingsRequest;
 import com.hautetech.ndadiee.dto.response.PageResponse;
 import com.hautetech.ndadiee.dto.response.ProjectFacetsResponse;
 import com.hautetech.ndadiee.dto.response.ProjectMediaResponse;
@@ -165,5 +167,18 @@ public class ProjectController extends BaseController {
             @PathVariable Long id, @PathVariable Long memberId, @Valid @RequestBody MemberDecisionRequest request) {
         return ResponseEntity.ok(ApiResponse.success(
                 projectService.decide(getAuthenticatedUserId(), id, memberId, request), "Demande traitée"));
+    }
+
+    @Operation(summary = "Retirer un membre de l'équipe (propriétaire ou mainteneur) ; ses tâches attendent un nouveau preneur")
+    @DeleteMapping("/{id}/members/{memberId}")
+    public ResponseEntity<ApiResponse<Void>> removeMember(@PathVariable Long id, @PathVariable Long memberId) {
+        projectService.removeMember(getAuthenticatedUserId(), id, memberId);
+        return ResponseEntity.ok(ApiResponse.success(null, "Membre retiré de l'équipe"));
+    }
+
+    @Operation(summary = "Réglages du projet depuis son espace d'équipe : son dépôt et s'il recrute (porteur ou modérateur)")
+    @PatchMapping("/{id}/settings")
+    public ResponseEntity<ApiResponse<ProjectResponse>> updateSettings(@PathVariable Long id, @Valid @RequestBody ProjectSettingsRequest request) {
+        return ResponseEntity.ok(ApiResponse.success(projectService.updateSettings(getAuthenticatedUserId(), id, request), "Réglages enregistrés"));
     }
 }

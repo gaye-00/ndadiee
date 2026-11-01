@@ -8,6 +8,7 @@ import type profile from './locales/fr/profile.json';
 import type projectForm from './locales/fr/projectForm.json';
 import type reviews from './locales/fr/reviews.json';
 import type showcase from './locales/fr/showcase.json';
+import type workspace from './locales/fr/workspace.json';
 
 // Clés de traduction typées à partir du français : t('nav.forum') est vérifié à la compilation,
 // et l'éditeur propose les clés existantes. Une fonctionnalité peut avoir son espace de noms, chargé
@@ -26,6 +27,7 @@ declare module 'i18next' {
       projectForm: typeof projectForm;
       reviews: typeof reviews;
       showcase: typeof showcase;
+      workspace: typeof workspace;
     };
   }
 }

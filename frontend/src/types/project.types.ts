@@ -240,6 +240,13 @@ export interface ProjectRequest {
   license?: string;
 }
 
+/** Les réglages d'un projet depuis son espace d'équipe (ProjectSettingsRequest.java) */
+export interface ProjectSettingsRequest {
+  /** Vide : aucun dépôt */
+  repositoryUrl?: string;
+  lookingForContributors: boolean;
+}
+
 /** Image ajoutée à la galerie d'un projet (ProjectMediaRequest.java) */
 export interface ProjectMediaRequest {
   kind: MediaKind;

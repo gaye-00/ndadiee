@@ -7,16 +7,27 @@ import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
+import org.springframework.data.jpa.repository.Lock;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
 import com.hautetech.ndadiee.model.project.Project;
 
+import jakarta.persistence.LockModeType;
+
 public interface ProjectRepository extends JpaRepository<Project, Long>, JpaSpecificationExecutor<Project>,
         ProjectFacetRepository {
 
     Optional<Project> findBySlug(String slug);
+
+    /**
+     * Le projet, verrouillé jusqu'à la fin de la transaction : les gestes de son équipe qui numérotent ou rangent (une
+     * tâche créée, déplacée ; un sprint ouvert, clos) passent l'un après l'autre.
+     */
+    @Lock(LockModeType.PESSIMISTIC_WRITE)
+    @Query("SELECT p FROM Project p WHERE p.id = :id")
+    Optional<Project> findByIdForUpdate(@Param("id") Long id);
 
     boolean existsBySlug(String slug);
 

@@ -13,9 +13,22 @@ export type PageImport = () => Promise<{ default: ComponentType }>;
  */
 function withTexts(
   load: PageImport,
-  ...namespaces: Array<'admin' | 'dashboard' | 'forum' | 'hackathons' | 'openings' | 'profile' | 'projectForm' | 'reviews' | 'showcase'>
+  ...namespaces: Array<'admin' | 'dashboard' | 'forum' | 'hackathons' | 'openings' | 'profile' | 'projectForm' | 'reviews' | 'showcase' | 'workspace'>
 ): PageImport {
   return () => Promise.all([load(), i18n.loadNamespaces(namespaces)]).then(([module]) => module);
+}
+
+/**
+ * Coquilles chargées à la demande, comme les pages. L'espace d'équipe (en-tête, onglets, discussion) n'est téléchargé
+ * qu'à la première visite, avec ses textes et ceux des revues (son onglet Revues, la synchronisation du dépôt).
+ */
+export const layouts = {
+  workspace: withTexts(() => import('@/components/layout/WorkspaceLayout'), 'workspace', 'reviews'),
+} satisfies Record<string, PageImport>;
+
+/** Une page de l'espace d'équipe : précharger la page précharge aussi sa coquille. */
+function inWorkspace(load: PageImport): PageImport {
+  return () => Promise.all([load(), layouts.workspace()]).then(([module]) => module);
 }
 
 /**
@@ -44,11 +57,11 @@ export const pages = {
   dashboard: withTexts(() => import('@/pages/dashboard/DashboardPage'), 'dashboard', 'hackathons', 'openings', 'reviews'),
   myProjects: () => import('@/pages/projects/MyProjectsPage'),
   newProject: withTexts(() => import('@/pages/projects/NewProjectPage'), 'projectForm'),
-  workspaceBoard: () => import('@/pages/workspace/WorkspaceBoardPage'),
-  workspaceReviews: () => import('@/pages/workspace/WorkspaceReviewsPage'),
-  workspaceDevlog: () => import('@/pages/workspace/WorkspaceDevlogPage'),
-  workspaceRoles: () => import('@/pages/workspace/WorkspaceRolesPage'),
-  workspaceSettings: () => import('@/pages/workspace/WorkspaceSettingsPage'),
+  workspaceBoard: inWorkspace(() => import('@/pages/workspace/WorkspaceBoardPage')),
+  workspaceReviews: inWorkspace(() => import('@/pages/workspace/WorkspaceReviewsPage')),
+  workspaceDevlog: inWorkspace(() => import('@/pages/workspace/WorkspaceDevlogPage')),
+  workspaceRoles: inWorkspace(() => import('@/pages/workspace/WorkspaceRolesPage')),
+  workspaceSettings: inWorkspace(() => import('@/pages/workspace/WorkspaceSettingsPage')),
   review: () => import('@/pages/reviews/ReviewPage'),
   reviews: withTexts(() => import('@/pages/reviews/ReviewsPage'), 'reviews'),
   messages: () => import('@/pages/messages/MessagesPage'),

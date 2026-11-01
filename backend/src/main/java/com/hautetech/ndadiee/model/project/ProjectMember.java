@@ -1,5 +1,7 @@
 package com.hautetech.ndadiee.model.project;
 
+import java.time.Instant;
+
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
@@ -67,4 +69,7 @@ public class ProjectMember extends BaseEntity {
     // Le mot de sa candidature, pour le porteur et les mainteneurs
     @Column(length = 500)
     private String motivation;
+
+    // Dernier signe de vie dans l'espace d'équipe (WorkspaceService.pulse) : en ligne s'il est récent
+    private Instant lastSeenAt;
 }

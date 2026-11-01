@@ -1,9 +1,11 @@
 package com.hautetech.ndadiee.repository;
 
+import java.time.Instant;
 import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
 
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
@@ -15,6 +17,20 @@ import com.hautetech.ndadiee.model.review.PullRequestStatus;
 public interface PullRequestRepository extends JpaRepository<PullRequest, Long> {
 
     Optional<PullRequest> findByProjectIdAndNumber(Long projectId, int number);
+
+    long countByProjectIdAndStatus(Long projectId, PullRequestStatus status);
+
+    /**
+     * Les PR qu'une tâche du projet peut livrer : les ouvertes, puis celles qui ont bougé depuis {@code since} (fusionnées,
+     * fermées), les plus récentes d'abord.
+     */
+    @Query("""
+            SELECT pr FROM PullRequest pr
+            WHERE pr.project.id = :projectId AND (pr.status = :open OR pr.lastActivityAt >= :since)
+            ORDER BY CASE WHEN pr.status = :open THEN 0 ELSE 1 END, pr.number DESC
+            """)
+    List<PullRequest> findLinkable(@Param("projectId") Long projectId, @Param("open") PullRequestStatus open,
+            @Param("since") Instant since, Pageable limit);
 
     List<PullRequest> findByProjectIdAndNumberIn(Long projectId, Collection<Integer> numbers);
 

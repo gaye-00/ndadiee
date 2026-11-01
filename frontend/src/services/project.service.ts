@@ -13,6 +13,8 @@ import type {
   ProjectFilters,
   ProjectMember,
   ProjectRequest,
+  ProjectSettingsRequest,
+  TeamRole,
 } from '@/types/project.types';
 
 const BASE = '/v1/projects';
@@ -35,6 +37,10 @@ export const projectService = {
 
   delete: (id: number) => api.delete<ApiResponse<void>>(`${BASE}/${id}`).then((r) => r.data),
 
+  /** Les réglages de l'espace d'équipe : le dépôt (vide : aucun) et le recrutement, sans toucher au reste du projet. */
+  updateSettings: (id: number, body: ProjectSettingsRequest) =>
+    api.patch<ApiResponse<Project>>(`${BASE}/${id}/settings`, body).then((r) => r.data.data),
+
   /** Membres acceptés ; le propriétaire et les mainteneurs reçoivent aussi les demandes en attente. */
   getMembers: (id: number) => api.get<ApiResponse<ProjectMember[]>>(`${BASE}/${id}/members`).then((r) => r.data.data),
 
@@ -48,9 +54,21 @@ export const projectService = {
   decide: (id: number, memberId: number, body: MemberDecisionRequest) =>
     api.put<ApiResponse<ProjectMember>>(`${BASE}/${id}/members/${memberId}`, body).then((r) => r.data.data),
 
+  /** Retire un membre de l'équipe (porteur, mainteneurs) ; ses tâches attendent un nouveau preneur. */
+  removeMember: (id: number, memberId: number) =>
+    api.delete<ApiResponse<void>>(`${BASE}/${id}/members/${memberId}`).then((r) => r.data),
+
+  /** Le rôle qu'on tient dans l'équipe (« mobile »). */
+  updateMySpecialty: (id: number, specialty: TeamRole) =>
+    api.put<ApiResponse<ProjectMember>>(`${BASE}/${id}/members/me`, { specialty }).then((r) => r.data.data),
+
   /** Devlog, les entrées les plus récentes d'abord. */
   getDevlog: (id: number, params?: PaginationParams) =>
     api.get<ApiResponse<PageResponse<DevlogEntry>>>(`${BASE}/${id}/devlog`, { params }).then((r) => r.data.data),
+
+  /** Écrit dans le devlog (équipe du projet) : ce qui vient de changer, avec sa version si c'est une release. */
+  addDevlogEntry: (id: number, body: { version?: string; body: string }) =>
+    api.post<ApiResponse<DevlogEntry>>(`${BASE}/${id}/devlog`, body).then((r) => r.data.data),
 
   /** Demandes de retours ouvertes, avec les retours reçus. */
   getFeedbackCalls: (id: number) =>
