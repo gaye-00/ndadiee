@@ -77,7 +77,7 @@ export default function MatchingOpenings() {
             <EmptyState
               title={t('openings.noSkillsTitle')}
               description={t('openings.noSkillsText')}
-              action={{ to: paths.settings, label: t('openings.noSkillsAction') }}
+              action={{ to: `${paths.settings}#skills`, label: t('openings.noSkillsAction') }}
             />
           ) : (
             <EmptyState

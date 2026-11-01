@@ -97,7 +97,10 @@
     "reviewers": "Wapitiaji",
     "reviewerState": "{{name}} · {{state}}",
     "reviewerState_required": "{{name}} · {{state}} · anahitajika",
-    "reviewerState_community": "{{name}} · {{state}} · jamii"
+    "reviewerState_community": "{{name}} · {{state}} · jamii",
+    "onGithub": "GitHub",
+    "onGithubLabel": "Tazama PR #{{number}} kwenye GitHub",
+    "githubAuthor": "Akaunti ya GitHub, bado haijajiunga na Ndadiee"
   },
   "state": {
     "REQUESTED": "pitio linasubiriwa",
@@ -151,5 +154,22 @@
     "suggestText": "Pendekezo la msimbo ni bora kuliko lawama.",
     "decideTitle": "Toa uamuzi wazi.",
     "decideText": "Idhinisha ikiwa nzuri, na sema kinachokosekana vinginevyo."
+  },
+  "sync": {
+    "title": "Pull requests",
+    "synced": "zimesomwa {{time}}",
+    "open_one": "iliyo wazi kwenye",
+    "open_other": "zilizo wazi kwenye",
+    "first": "Usomaji wa kwanza wa hazina ndani ya dakika moja…",
+    "reviews": "Tazama mapitio",
+    "action": "Sawazisha",
+    "running": "Inasoma…",
+    "done": "Pull requests ziko sawa",
+    "error": {
+      "GITHUB_REPOSITORY_NOT_FOUND": "Hazina haipatikani kwenye GitHub: huenda ni ya faragha, imebadilishwa jina au imefutwa.",
+      "GITHUB_RATE_LIMITED": "GitHub inapunguza maombi kwa sasa: jaribio jipya katika mzunguko ujao.",
+      "GITHUB_UNAVAILABLE": "GitHub haikujibu usomaji wa mwisho: jaribio jipya katika mzunguko ujao.",
+      "GITHUB_NOT_CONFIGURED": "Usomaji wa pull requests haujawekwa kwenye seva hii (tokeni ya GitHub haipo)."
+    }
   }
 }

@@ -97,7 +97,10 @@
     "reviewers": "ገምጋሚዎች",
     "reviewerState": "{{name}} · {{state}}",
     "reviewerState_required": "{{name}} · {{state}} · ያስፈልጋል",
-    "reviewerState_community": "{{name}} · {{state}} · ማህበረሰብ"
+    "reviewerState_community": "{{name}} · {{state}} · ማህበረሰብ",
+    "onGithub": "GitHub",
+    "onGithubLabel": "PR #{{number}}ን በGitHub ላይ ይመልከቱ",
+    "githubAuthor": "የGitHub መለያ፣ ገና በNdadiee አልተመዘገበም"
   },
   "state": {
     "REQUESTED": "ግምገማ ይጠበቃል",
@@ -151,5 +154,22 @@
     "suggestText": "የኮድ ሐሳብ ከወቀሳ ይሻላል።",
     "decideTitle": "ግልጽ ውሳኔ ስጥ።",
     "decideText": "ጥሩ ሲሆን አጽድቅ፣ ካልሆነ የሚጎድለውን ተናገር።"
+  },
+  "sync": {
+    "title": "Pull requests",
+    "synced": "ተነብቧል {{time}}",
+    "open_one": "ክፍት በ",
+    "open_other": "ክፍት በ",
+    "first": "የማከማቻው የመጀመሪያ ንባብ በአንድ ደቂቃ ውስጥ…",
+    "reviews": "ግምገማዎቹን ይመልከቱ",
+    "action": "አመሳስል",
+    "running": "በማንበብ ላይ…",
+    "done": "Pull requestዎቹ ወቅታዊ ናቸው",
+    "error": {
+      "GITHUB_REPOSITORY_NOT_FOUND": "ማከማቻው በGitHub ላይ አልተገኘም፤ የግል ሊሆን፣ ስሙ ተቀይሮ ወይም ተሰርዞ ሊሆን ይችላል።",
+      "GITHUB_RATE_LIMITED": "GitHub ለጊዜው ጥያቄዎችን እየገደበ ነው፤ በሚቀጥለው ዙር እንደገና ይሞከራል።",
+      "GITHUB_UNAVAILABLE": "GitHub ለመጨረሻው ንባብ ምላሽ አልሰጠም፤ በሚቀጥለው ዙር እንደገና ይሞከራል።",
+      "GITHUB_NOT_CONFIGURED": "የpull request ንባብ በዚህ አገልጋይ ላይ አልተዋቀረም (የGitHub ቶከን የለም)።"
+    }
   }
 }

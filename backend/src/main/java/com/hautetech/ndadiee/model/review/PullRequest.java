@@ -35,6 +35,11 @@ import lombok.experimental.SuperBuilder;
  * fusionner 6 commits de feat/redis-cache vers main »). Son numéro est celui du dépôt ; le diff en chiffres et les
  * vérifications sont ceux de la dernière synchronisation.
  *
+ * Une PR synchronisée depuis le dépôt GitHub du projet (PullRequestSyncService) a une adresse GitHub ; son auteur
+ * est un compte GitHub, et le membre de Ndadiee qui a ce compte s'il y en a un. Les données de démonstration n'ont
+ * pas d'adresse GitHub. Les relecteurs, les commentaires et l'ouverture à la communauté appartiennent à Ndadiee : la
+ * synchronisation n'y touche pas.
+ *
  * Une PR « communautaire » s'ouvre aux relecteurs hors de l'équipe : chaque revue jugée utile leur rapporte de la
  * réputation (ReputationRules.REVIEW_HELPFUL).
  */
@@ -67,8 +72,9 @@ public class PullRequest extends BaseEntity {
     @Column(columnDefinition = "TEXT")
     private String body;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "author_id", nullable = false)
+    // Le membre qui l'a ouverte ; null pour une PR de GitHub dont l'auteur n'est pas inscrit (voir authorLogin)
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "author_id")
     @ToString.Exclude
     private Developer author;
 
@@ -131,4 +137,35 @@ public class PullRequest extends BaseEntity {
     // Dernier signe de vie : commit, revue ou commentaire
     @Column(nullable = false)
     private Instant lastActivityAt;
+
+    // ─── Synchronisée depuis GitHub : null pour les données de démonstration ───
+
+    // L'adresse de la PR sur GitHub
+    @Column(length = 500)
+    private String githubUrl;
+
+    // Le dernier commit de sa branche : le diff se lit à ce commit
+    @Column(length = 40)
+    private String headSha;
+
+    // Son auteur sur GitHub
+    @Column(length = 39)
+    private String authorLogin;
+
+    @Column(length = 500)
+    private String authorAvatarUrl;
+
+    // Son lien avec le dépôt selon GitHub : FIRST_TIME_CONTRIBUTOR, CONTRIBUTOR, MEMBER, OWNER…
+    @Column(length = 30)
+    private String authorAssociation;
+
+    // Une PR de GitHub garde sa date d'ouverture, pas celle de sa synchronisation
+    @Override
+    protected void onCreate() {
+        Instant opened = getCreatedAt();
+        super.onCreate();
+        if (opened != null) {
+            setCreatedAt(opened);
+        }
+    }
 }

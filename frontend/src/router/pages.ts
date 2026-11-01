@@ -13,7 +13,7 @@ export type PageImport = () => Promise<{ default: ComponentType }>;
  */
 function withTexts(
   load: PageImport,
-  ...namespaces: Array<'admin' | 'dashboard' | 'forum' | 'hackathons' | 'openings' | 'profile' | 'reviews' | 'showcase'>
+  ...namespaces: Array<'admin' | 'dashboard' | 'forum' | 'hackathons' | 'openings' | 'profile' | 'projectForm' | 'reviews' | 'showcase'>
 ): PageImport {
   return () => Promise.all([load(), i18n.loadNamespaces(namespaces)]).then(([module]) => module);
 }
@@ -27,7 +27,8 @@ export const pages = {
   landing: () => import('@/pages/landing/LandingPage'),
 
   showcase: withTexts(() => import('@/pages/showcase/ShowcasePage'), 'showcase'),
-  project: () => import('@/pages/projects/ProjectPage'),
+  // Les textes des revues : la carte des pull requests du dépôt (RepositorySyncCard)
+  project: withTexts(() => import('@/pages/projects/ProjectPage'), 'reviews'),
   openings: withTexts(() => import('@/pages/openings/OpeningsPage'), 'openings'),
   newOpening: () => import('@/pages/openings/NewOpeningPage'),
   hackathons: withTexts(() => import('@/pages/hackathons/HackathonsPage'), 'hackathons'),
@@ -42,7 +43,7 @@ export const pages = {
   // L'atelier montre aussi le prochain hackathon de l'équipe (HackathonSpotlight) et des annonces (OpeningCard)
   dashboard: withTexts(() => import('@/pages/dashboard/DashboardPage'), 'dashboard', 'hackathons', 'openings', 'reviews'),
   myProjects: () => import('@/pages/projects/MyProjectsPage'),
-  newProject: () => import('@/pages/projects/NewProjectPage'),
+  newProject: withTexts(() => import('@/pages/projects/NewProjectPage'), 'projectForm'),
   workspaceBoard: () => import('@/pages/workspace/WorkspaceBoardPage'),
   workspaceReviews: () => import('@/pages/workspace/WorkspaceReviewsPage'),
   workspaceDevlog: () => import('@/pages/workspace/WorkspaceDevlogPage'),

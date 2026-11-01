@@ -1,6 +1,6 @@
 import { api } from './api';
 import type { ApiResponse, PageResponse } from '@/types/common.types';
-import type { PullRequest, ReviewFilters, ReviewOverview } from '@/types/review.types';
+import type { PullRequest, RepositorySync, ReviewFilters, ReviewOverview } from '@/types/review.types';
 
 const BASE = '/v1/reviews';
 
@@ -18,4 +18,12 @@ export const reviewService = {
 
   /** Se retire d'une revue qu'on avait prise, tant qu'on n'a rien rendu. */
   release: (id: number) => api.delete<ApiResponse<PullRequest>>(`${BASE}/${id}/claim`).then((r) => r.data.data),
+
+  /** Les PR d'un projet et son dépôt GitHub : dernière lecture, erreur, PR ouvertes (RepositorySyncController.java). */
+  getRepositorySync: (slug: string) =>
+    api.get<ApiResponse<RepositorySync>>(`/v1/projects/${slug}/repository-sync`).then((r) => r.data.data),
+
+  /** Relit tout de suite les PR du dépôt GitHub (porteur ou mainteneur). */
+  syncRepository: (slug: string) =>
+    api.post<ApiResponse<RepositorySync>>(`/v1/projects/${slug}/repository-sync`).then((r) => r.data.data),
 };

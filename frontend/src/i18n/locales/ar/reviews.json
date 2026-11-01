@@ -145,7 +145,10 @@
     "reviewers": "المراجعون",
     "reviewerState": "{{name}} · {{state}}",
     "reviewerState_required": "{{name}} · {{state}} · مطلوب",
-    "reviewerState_community": "{{name}} · {{state}} · المجتمع"
+    "reviewerState_community": "{{name}} · {{state}} · المجتمع",
+    "onGithub": "GitHub",
+    "onGithubLabel": "عرض طلب الدمج #{{number}} على GitHub",
+    "githubAuthor": "حساب GitHub، غير مسجّل في Ndadiee بعد"
   },
   "state": {
     "REQUESTED": "مراجعة منتظرة",
@@ -227,5 +230,26 @@
     "suggestText": "اقتراح كود أفضل من لوم.",
     "decideTitle": "أصدر حكمًا واضحًا.",
     "decideText": "وافق حين يكون جيدًا، وقل ما ينقص إن لم يكن."
+  },
+  "sync": {
+    "title": "طلبات الدمج",
+    "synced": "قُرئت {{time}}",
+    "open_zero": "مفتوحة على",
+    "open_one": "مفتوح على",
+    "open_two": "مفتوحان على",
+    "open_few": "مفتوحة على",
+    "open_many": "مفتوحًا على",
+    "open_other": "مفتوح على",
+    "first": "أول قراءة للمستودع خلال دقيقة…",
+    "reviews": "عرض المراجعات",
+    "action": "مزامنة",
+    "running": "جارٍ القراءة…",
+    "done": "طلبات الدمج محدّثة",
+    "error": {
+      "GITHUB_REPOSITORY_NOT_FOUND": "المستودع غير موجود على GitHub: قد يكون خاصًا أو أُعيدت تسميته أو حُذف.",
+      "GITHUB_RATE_LIMITED": "يحدّ GitHub من الطلبات حاليًا: محاولة جديدة في الدورة القادمة.",
+      "GITHUB_UNAVAILABLE": "لم يستجب GitHub للقراءة الأخيرة: محاولة جديدة في الدورة القادمة.",
+      "GITHUB_NOT_CONFIGURED": "قراءة طلبات الدمج غير مهيّأة على هذا الخادم (رمز GitHub مفقود)."
+    }
   }
 }

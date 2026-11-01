@@ -23,6 +23,7 @@ public class InitializerNdadiee implements CommandLineRunner {
     private final ModerationSeeder moderationSeeder;
     private final DashboardSeeder dashboardSeeder;
     private final ReviewSeeder reviewSeeder;
+    private final GithubDemoSeeder githubDemoSeeder;
 
     @Value("${ndadiee.seed.enabled}")
     private boolean seedEnabled;
@@ -49,6 +50,8 @@ public class InitializerNdadiee implements CommandLineRunner {
             dashboardSeeder.seed();
             // Les revues de code : des pull requests dans les projets, à relire par l'équipe et la communauté
             reviewSeeder.seed();
+            // De vrais dépôts GitHub : leurs pull requests arrivent à la première synchronisation
+            githubDemoSeeder.seed();
         } else {
             log.info("[Init] Données de démonstration désactivées (ndadiee.seed.enabled=false)");
         }

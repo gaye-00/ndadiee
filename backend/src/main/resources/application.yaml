@@ -53,12 +53,15 @@ ndadiee:
     # Mot de passe des comptes d'essai Ada et Musa, réservé au développement.
     test-account-password: ${SEED_TEST_ACCOUNT_PASSWORD:passer@123}
   storage:
-    # Images du forum. auto : Cloudflare R2 dès que ses réglages ci-dessous sont complets, le disque sinon
+    # Images du forum et des projets. auto : Cloudflare R2 dès que ses réglages ci-dessous sont complets, le disque sinon
     # (développement, servi sous /api/uploads) ; local ; r2 (l'application refuse de démarrer sans ses réglages).
     provider: ${STORAGE_PROVIDER:auto}
     local-directory: ${STORAGE_LOCAL_DIRECTORY:uploads}
     max-image-size: ${STORAGE_MAX_IMAGE_SIZE:5MB}
     max-uploads-per-hour: ${STORAGE_MAX_UPLOADS_PER_HOUR:40}
+    # Une image de projet que rien ne montre (brouillon jamais publié, couverture remplacée, projet supprimé) est
+    # supprimée après ce délai. Le ménage passe toutes les heures (MediaUploadService).
+    orphan-retention: ${STORAGE_ORPHAN_RETENTION:7d}
     r2:
       # Tableau de bord Cloudflare : R2 > Gérer les jetons d'API (lecture et écriture sur le bucket)
       account-id: ${R2_ACCOUNT_ID:}
@@ -69,6 +72,18 @@ ndadiee:
       public-url: ${R2_PUBLIC_URL:}
       # Seulement si l'API n'est pas https://<compte>.r2.cloudflarestorage.com (juridiction UE : .eu.r2…)
       endpoint: ${R2_ENDPOINT:}
+
+  github:
+    # Import d'un dépôt public dans le formulaire de projet, et pull requests des projets. Sans jeton, GitHub accepte
+    # 60 requêtes par heure pour tout le serveur (trois par import) et refuse l'API GraphQL : les PR ne sont pas lues.
+    # Avec un jeton, 5 000. github.com > Settings > Developer settings > Fine-grained tokens : accès aux dépôts publics
+    # seulement, aucune permission.
+    token: ${GITHUB_TOKEN:}
+    api-url: ${GITHUB_API_URL:https://api.github.com}
+    sync:
+      # Les PR de chaque projet à dépôt GitHub, relues toutes les 10 minutes (PullRequestSyncService)
+      enabled: ${GITHUB_SYNC_ENABLED:true}
+      interval: ${GITHUB_SYNC_INTERVAL:10m}
 
 springdoc:
   swagger-ui:

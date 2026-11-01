@@ -3,11 +3,14 @@ package com.hautetech.ndadiee.service.project;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.Mockito.never;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
+import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -20,9 +23,12 @@ import org.springframework.context.ApplicationEventPublisher;
 
 import com.hautetech.ndadiee.dto.request.JoinProjectRequest;
 import com.hautetech.ndadiee.dto.request.MemberDecisionRequest;
+import com.hautetech.ndadiee.dto.request.ProjectRequest;
+import com.hautetech.ndadiee.dto.response.ProjectResponse;
 import com.hautetech.ndadiee.event.ProjectJoinRequestedEvent;
 import com.hautetech.ndadiee.exception.OperationNotAllowedException;
 import com.hautetech.ndadiee.exception.ResourceNotFoundException;
+import com.hautetech.ndadiee.mapper.HackathonMapper;
 import com.hautetech.ndadiee.mapper.ProjectMapper;
 import com.hautetech.ndadiee.mapper.UserMapper;
 import com.hautetech.ndadiee.model.project.MemberStatus;
@@ -34,6 +40,7 @@ import com.hautetech.ndadiee.model.project.TeamRole;
 import com.hautetech.ndadiee.model.user.Developer;
 import com.hautetech.ndadiee.repository.CommentRepository;
 import com.hautetech.ndadiee.repository.DeveloperRepository;
+import com.hautetech.ndadiee.repository.HackathonTeamRepository;
 import com.hautetech.ndadiee.repository.ProjectGithubActivityRepository;
 import com.hautetech.ndadiee.repository.ProjectMediaRepository;
 import com.hautetech.ndadiee.repository.ProjectMemberRepository;
@@ -43,9 +50,13 @@ import com.hautetech.ndadiee.repository.VoteRepository;
 import com.hautetech.ndadiee.service.SlugService;
 import com.hautetech.ndadiee.service.content.TagService;
 import com.hautetech.ndadiee.service.interaction.VoteService;
+import com.hautetech.ndadiee.service.media.MediaUploadService;
 import com.hautetech.ndadiee.service.user.UserService;
 
-/** Candidatures : on postule à un rôle ouvert du projet ; le rôle se ferme quand ses places sont prises. */
+/**
+ * Candidatures : on postule à un rôle ouvert du projet ; le rôle se ferme quand ses places sont prises. Images : le
+ * projet garde celles qu'il montre, et rend celles qu'il ne montre plus.
+ */
 @ExtendWith(MockitoExtension.class)
 class ProjectServiceTest {
 
@@ -86,6 +97,12 @@ class ProjectServiceTest {
     private UserMapper userMapper;
     @Mock
     private ApplicationEventPublisher eventPublisher;
+    @Mock
+    private HackathonTeamRepository hackathonTeamRepository;
+    @Mock
+    private HackathonMapper hackathonMapper;
+    @Mock
+    private MediaUploadService mediaUploadService;
 
     @InjectMocks
     private ProjectService projectService;
@@ -202,4 +219,38 @@ class ProjectServiceTest {
         assertThat(design.isOpen()).isTrue();
         verify(projectMemberRepository, never()).countByOpeningIdAndStatus(any(), any());
     }
+
+    @Test
+    void replacingTheCoverReleasesTheOldOneAndKeepsTheNewOne() {
+        project.setCoverUrl("https://media.example.com/old.webp");
+        project.setCoverThumbnailUrl("https://media.example.com/old-640.webp");
+        when(projectRepository.findById(PROJECT_ID)).thenReturn(Optional.of(project));
+        when(projectRepository.saveAndFlush(project)).thenReturn(project);
+        when(projectMapper.toResponse(project)).thenReturn(ProjectResponse.builder().id(PROJECT_ID).build());
+
+        projectService.update(OWNER, PROJECT_ID, ProjectRequest.builder().name("Lagos Transit").description("Les bus de Lagos.")
+                .coverUrl("https://media.example.com/new.webp").coverThumbnailUrl("https://media.example.com/old-640.webp").build());
+
+        verify(mediaUploadService).release(PROJECT_ID, Set.of("https://media.example.com/old.webp"));
+        verify(mediaUploadService).attach(PROJECT_ID, Set.of("https://media.example.com/new.webp", "https://media.example.com/old-640.webp"));
+    }
+
+    @Test
+    void aNewProjectKeepsItsCover() {
+        when(userService.getDeveloperOrThrow(OWNER)).thenReturn(project.getOwner());
+        when(slugService.generateUniqueSlug(any(), any())).thenReturn("paperweight");
+        when(projectRepository.save(any(Project.class))).thenAnswer(invocation -> {
+            Project saved = invocation.getArgument(0);
+            saved.setId(PROJECT_ID);
+            return saved;
+        });
+        when(projectMapper.toResponse(any(Project.class))).thenReturn(ProjectResponse.builder().id(PROJECT_ID).build());
+
+        projectService.create(OWNER, ProjectRequest.builder().name("Paperweight").description("Notes hors ligne.")
+                .coverUrl("https://media.example.com/cover.webp").build());
+
+        verify(mediaUploadService).attach(PROJECT_ID, Set.of("https://media.example.com/cover.webp"));
+        verify(hackathonTeamRepository).findCurrentByProjectIds(eq(List.of(PROJECT_ID)), any());
+    }
 }
+

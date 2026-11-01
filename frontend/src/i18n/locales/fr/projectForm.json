@@ -1,0 +1,255 @@
+{
+  "form": {
+    "back": "Mes projets",
+    "title": "Publier un projet",
+    "mode": "Mode d'édition",
+    "write": "Écrire",
+    "preview": "Aperçu",
+    "aside": "Aperçu dans la vitrine et étapes restantes",
+    "draftRestored": "Ton brouillon a été retrouvé, images comprises.",
+    "startOver": "Repartir de zéro",
+    "draftSaved": "Brouillon enregistré sur cet appareil",
+    "uploading_one": "{{count}} image en route…",
+    "uploading_many": "{{count}} images en route…",
+    "uploading_other": "{{count}} images en route…",
+    "imagesPending": "Une image est encore en route : le projet partira dès qu'elle sera arrivée.",
+    "discard": "Effacer",
+    "discardTitle": "Effacer ce brouillon ?",
+    "discardText": "Le projet en cours d'écriture et ses images disparaîtront de cet appareil.",
+    "discardConfirm": "Effacer le brouillon",
+    "publish": "Publier le projet",
+    "publishing": "Publication du projet",
+    "published": "{{name}} est en ligne : bienvenue dans la vitrine !"
+  },
+  "section": {
+    "complete": "étape complète",
+    "essentials": {
+      "title": "L'essentiel",
+      "text": "Ce qu'on lit en premier sur la carte de la vitrine : le nom, une phrase qui donne envie, la stack."
+    },
+    "images": {
+      "title": "Les images",
+      "text": "Une couverture, puis des captures de ce qui marche déjà. C'est ce qui fait cliquer."
+    },
+    "story": {
+      "title": "Le récit",
+      "text": "Le problème que le projet résout, pour qui, où il en est, et ce qui vient ensuite."
+    },
+    "links": {
+      "title": "Liens et licence",
+      "text": "Où lire le code, où l'essayer, et ce que chacun a le droit d'en faire."
+    },
+    "team": {
+      "title": "L'équipe",
+      "text": "Cherches-tu des contributeurs ? Chaque rôle devient une annonce, visible des profils qui lui correspondent."
+    }
+  },
+  "field": {
+    "optional": "facultatif"
+  },
+  "fields": {
+    "name": "Nom du projet",
+    "namePlaceholder": "lagos-transit",
+    "nameHint": "Le nom du dépôt, ou celui que tes utilisateurs connaissent. L'adresse de la page en découle et ne changera plus.",
+    "tagline": "Accroche",
+    "taglinePlaceholder": "Les prochains bus de Lagos, même hors ligne",
+    "taglineHint": "Une phrase, pour la carte de la vitrine : ce que fait le projet, et pour qui.",
+    "tags": "Technologies",
+    "tagsHint": "Langages, frameworks, sujets ({{count}} au plus) : c'est ainsi que les bons profils trouvent le projet.",
+    "cover": "Couverture",
+    "description": "Description",
+    "descriptionPlaceholder": "Le problème, la solution, où en est le projet…\n\n- Ce qui marche déjà\n- Ce qui vient ensuite",
+    "descriptionHint": "Paragraphes, **gras**, `code` et listes : la page du projet les affiche ainsi. {{mod}} + Entrée pour publier.",
+    "repository": "Dépôt du code",
+    "demo": "Démo en ligne",
+    "license": "Licence"
+  },
+  "errors": {
+    "url": "Une adresse complète, en https://",
+    "issueNumber": "Un numéro d'issue : des chiffres seulement"
+  },
+  "github": {
+    "title": "Pars de ton dépôt GitHub",
+    "text": "Nom, accroche, technologies, licence, démo et introduction du README se remplissent en un clic. Tu gardes la main sur tout.",
+    "label": "Adresse du dépôt GitHub",
+    "placeholder": "github.com/compte/depot",
+    "import": "Importer",
+    "reading": "Lecture du dépôt…",
+    "hint": "Colle l'adresse : l'import démarre tout seul. Dépôts publics seulement.",
+    "invalid": "Ce n'est pas une adresse de dépôt GitHub : github.com/compte/depot",
+    "mine": "Tes dépôts récents",
+    "noProfile": "Ajoute ton GitHub à ton profil pour retrouver tes dépôts ici.",
+    "addProfile": "Compléter mon profil",
+    "alreadyListedShort": "Déjà dans la vitrine",
+    "done": "Dépôt importé",
+    "filled": "Champs remplis",
+    "nothingNew": "Tout était déjà rempli : rien n'a été remplacé.",
+    "alreadyListed": "Ce dépôt est déjà dans la vitrine.",
+    "seeProject": "Voir le projet",
+    "archived": "Ce dépôt est archivé sur GitHub.",
+    "fork": "Ce dépôt est une copie (fork) d'un autre projet.",
+    "undo": "Annuler l'import",
+    "another": "Importer un autre dépôt",
+    "fields": {
+      "name": "nom",
+      "tagline": "accroche",
+      "description": "description",
+      "tags_one": "{{count}} technologie",
+      "tags_many": "{{count}} technologies",
+      "tags_other": "{{count}} technologies",
+      "license": "licence",
+      "demo": "démo",
+      "repository": "dépôt"
+    },
+    "errors": {
+      "notFound": "Dépôt introuvable : vérifie l'adresse. Un dépôt privé ne peut pas être importé.",
+      "rateLimited": "GitHub limite les requêtes pour le moment : réessaie dans quelques minutes, ou remplis le projet à la main.",
+      "unavailable": "GitHub ne répond pas pour le moment : réessaie un peu plus tard, ou remplis le projet à la main.",
+      "network": "Pas de connexion : vérifie ton réseau, puis réessaie."
+    }
+  },
+  "stack": {
+    "chosen": "Technologies choisies",
+    "placeholder": "React, Kotlin, Mobile Money…",
+    "more": "Ajouter…",
+    "full_one": "{{count}} technologie au plus",
+    "full_many": "{{count}} technologies au plus",
+    "full_other": "{{count}} technologies au plus",
+    "suggestions": "Technologies proposées",
+    "create": "Créer « {{tag}} »",
+    "remove": "Retirer {{tag}}",
+    "add": "Ajouter {{tag}}",
+    "addAll": "Tout ajouter",
+    "fromRepository": "Dans le dépôt :",
+    "popular": "Populaires :"
+  },
+  "cover": {
+    "empty": "Glisse une image, colle-la, ou choisis-la",
+    "drop": "Lâche l'image ici",
+    "hint": "JPEG, PNG, WebP ou GIF. Tu la cadreras au format de la vitrine (16:10) avant l'envoi.",
+    "alt": "Couverture du projet",
+    "recrop": "Recadrer",
+    "replace": "Remplacer",
+    "remove": "Retirer",
+    "borrowed": "Image empruntée ? Indique son crédit",
+    "creditLabel": "Auteur et licence",
+    "creditPlaceholder": "Amina Diallo · CC BY 4.0",
+    "sourceLabel": "Lien vers la source"
+  },
+  "crop": {
+    "coverTitle": "Cadrer la couverture",
+    "shotTitle": "Cadrer la capture",
+    "help": "Fais glisser l'image sous le cadre, zoome à la molette, en pinçant ou avec le curseur. Au clavier : flèches, + et −.",
+    "frameRole": "zone de cadrage",
+    "frameLabel": "Cadre 16:10, zoom {{zoom}} %",
+    "zoom": "Zoom",
+    "zoomIn": "Zoomer",
+    "zoomOut": "Dézoomer",
+    "output": "{{width}} × {{height}} px",
+    "blurry": "zone petite : l'image risque d'être floue sur grand écran",
+    "reset": "Recentrer",
+    "cancel": "Annuler",
+    "confirm": "Valider le cadrage"
+  },
+  "images": {
+    "sending": "Envoi",
+    "retry": "Réessayer",
+    "errorType": "« {{name}} » n'est pas une image lisible : JPEG, PNG, WebP ou GIF.",
+    "errorSize": "L'image dépasse {{max}} Mo, même réduite : essaie une image moins lourde.",
+    "errorUpload": "L'image n'a pas pu partir : vérifie ta connexion, puis réessaie."
+  },
+  "gallery": {
+    "label": "Galerie",
+    "hint": "Des captures de l'application, des photos du terrain. Chacune est cadrée en 16:10 ; tu peux la recadrer.",
+    "reorderHint": "Fais glisser la poignée pour changer l'ordre",
+    "addFirst": "Ajouter des captures",
+    "add": "Ajouter",
+    "addHint_one": "encore {{count}} possible",
+    "addHint_many": "encore {{count}} possibles",
+    "addHint_other": "encore {{count}} possibles",
+    "full_one": "La galerie compte {{count}} image au plus : les suivantes n'ont pas été ajoutées.",
+    "full_many": "La galerie compte {{count}} images au plus : les suivantes n'ont pas été ajoutées.",
+    "full_other": "La galerie compte {{count}} images au plus : les suivantes n'ont pas été ajoutées.",
+    "item": "Image {{index}} sur {{total}}",
+    "handle": "Déplacer : {{item}}",
+    "handleHint": "Alt + flèche gauche ou droite pour la déplacer",
+    "addCaption": "Ajouter une légende",
+    "captionLabel": "Légende",
+    "captionPlaceholder": "Prochains passages à l'arrêt Obalende",
+    "kindLabel": "Type d'image",
+    "kind": {
+      "SCREENSHOT": "Capture",
+      "PHOTO": "Photo"
+    },
+    "creditLabel": "Crédit (image empruntée)",
+    "moveBefore": "Déplacer avant",
+    "moveAfter": "Déplacer après",
+    "remove": "Retirer",
+    "discard": "Abandonner"
+  },
+  "license": {
+    "none": "Pas encore",
+    "other": "Autre…",
+    "otherLabel": "Identifiant de la licence",
+    "otherPlaceholder": "EUPL-1.2",
+    "about": {
+      "MIT": "MIT : courte et permissive. Chacun peut réutiliser le code, même dans un produit fermé, en citant l'auteur.",
+      "Apache-2.0": "Apache 2.0 : permissive, avec une protection contre les brevets. Le choix courant des entreprises.",
+      "BSD-3-Clause": "BSD 3 : permissive, comme MIT, et interdit d'utiliser ton nom pour promouvoir un dérivé.",
+      "MPL-2.0": "MPL 2.0 : les fichiers modifiés restent ouverts ; le reste d'un produit peut être fermé.",
+      "GPL-3.0": "GPL 3.0 : tout logiciel dérivé distribué doit rester ouvert, sous la même licence.",
+      "AGPL-3.0": "AGPL 3.0 : comme la GPL, et un service en ligne qui l'utilise doit aussi publier son code."
+    },
+    "aboutNone": "Sans licence, personne n'a légalement le droit de réutiliser le code : choisis-en une avant d'accueillir des contributeurs.",
+    "aboutOther": "Son identifiant SPDX : « EUPL-1.2 », « CC-BY-4.0 »…",
+    "help": "Comparer les licences"
+  },
+  "team": {
+    "recruiting": "Je cherche des contributeurs",
+    "recruitingOn": "Le projet apparaîtra parmi ceux qui recrutent. Décris les rôles : les profils qui leur correspondent les verront.",
+    "recruitingOff": "Active-le pour accueillir des contributeurs et publier des rôles. Tu pourras le faire plus tard.",
+    "chosen": "Rôles recherchés",
+    "catalogFirst": "Choisis un premier rôle",
+    "catalog": "Ajouter un rôle",
+    "titleLabel": "Intitulé du rôle",
+    "titlePlaceholder": "Dev mobile React Native",
+    "remove": "Retirer le rôle {{role}}",
+    "descriptionLabel": "Ce qu'on attend",
+    "descriptionPlaceholder": "L'écran trajets hors ligne, avec Jetpack Compose…",
+    "seatsLabel": "Places",
+    "seats_one": "{{count}} place",
+    "seats_many": "{{count}} places",
+    "seats_other": "{{count}} places",
+    "fewerSeats": "Une place de moins",
+    "moreSeats": "Une place de plus",
+    "issueLabel": "Une issue « premier pas » ?",
+    "issueHint": "Une petite tâche du dépôt pour commencer : les candidats sauront par où entrer.",
+    "issueSet": "Issue « premier pas » : #{{number}}",
+    "issueNumber": "Numéro",
+    "issueTitle": "Titre de l'issue",
+    "issueTitlePlaceholder": "Afficher l'heure du prochain bus"
+  },
+  "preview": {
+    "card": "Dans la vitrine",
+    "pageNotice": "Aperçu : la page telle que les visiteurs la verront",
+    "untitled": "nouveau-projet"
+  },
+  "checklist": {
+    "title": "Prêt à {{percent}} %",
+    "text": "Ce qui rend un projet attirant. Seuls le nom et la description sont obligatoires.",
+    "ready": "Prêt à briller",
+    "readyText": "Tout y est : il ne reste qu'à publier.",
+    "done": "fait",
+    "todo": "à faire",
+    "items": {
+      "name": "Un nom",
+      "tagline": "Une accroche qui donne envie",
+      "stack": "Au moins deux technologies",
+      "cover": "Une couverture",
+      "gallery": "Une capture dans la galerie",
+      "story": "Un récit de quelques phrases",
+      "links": "Le dépôt ou la démo",
+      "roles": "Les rôles recherchés"
+    }
+  }
+}

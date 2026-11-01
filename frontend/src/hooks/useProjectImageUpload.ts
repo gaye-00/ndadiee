@@ -5,7 +5,7 @@ import { renderProjectImage, type CropArea, type ProjectImageFiles } from '@/lib
 import { uploadService } from '@/services/upload.service';
 import { getApiErrorMessage } from '@/utils/apiError';
 
-/** Une image de projet envoyée : ses adresses, ses dimensions, et un aperçu local qui s'affiche sans attendre */
+/** Une image de projet envoyée : ses adresses, et les dimensions de la grande */
 export interface UploadedProjectImage {
   url: string;
   thumbnailUrl: string;
@@ -53,7 +53,3 @@ export function useProjectImageUpload() {
   return { prepare, upload };
 }
 
-/** Le message d'une image refusée avant même d'être préparée (format) */
-export function imageErrorMessage(error: unknown, fileName: string, t: (key: 'images.errorType', options: { name: string }) => string) {
-  return error instanceof ImagePreparationError ? t('images.errorType', { name: fileName }) : error instanceof Error ? error.message : String(error);
-}

@@ -6,6 +6,7 @@ import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.Mockito.never;
+import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
@@ -26,13 +27,17 @@ import org.springframework.util.unit.DataSize;
 
 import com.hautetech.ndadiee.dto.response.UploadResponse;
 import com.hautetech.ndadiee.exception.UploadRejectedException;
+import com.hautetech.ndadiee.model.media.UploadPurpose;
 import com.hautetech.ndadiee.service.media.ImageUploadService.ImageType;
 import com.hautetech.ndadiee.service.media.ImageUploadService.StoredImage;
 import com.hautetech.ndadiee.service.user.UserService;
 import com.hautetech.ndadiee.storage.FileStorage;
 import com.hautetech.ndadiee.storage.StorageProperties;
 
-/** Images du forum : seuls les vrais formats d'image passent, dans la limite de taille et d'envois par heure. */
+/**
+ * Images du forum, des projets et des profils : seuls les vrais formats d'image passent, dans la limite de taille et
+ * d'envois par heure ; celles du forum et des projets sont inscrites à l'inventaire.
+ */
 @ExtendWith(MockitoExtension.class)
 class ImageUploadServiceTest {
 
@@ -45,6 +50,9 @@ class ImageUploadServiceTest {
 
     @Mock
     private UserService userService;
+
+    @Mock
+    private MediaUploadService mediaUploadService;
 
     private ImageUploadService service;
 
@@ -60,9 +68,9 @@ class ImageUploadServiceTest {
 
     @BeforeEach
     void setUp() {
-        StorageProperties properties = new StorageProperties(StorageProperties.Provider.LOCAL, "uploads", DataSize.ofKilobytes(1), 2, null);
+        StorageProperties properties = new StorageProperties(StorageProperties.Provider.LOCAL, "uploads", DataSize.ofKilobytes(1), 2, null, null);
         Clock clock = Clock.fixed(Instant.parse("2026-10-18T09:00:00Z"), ZoneOffset.UTC);
-        service = new ImageUploadService(storage, userService, properties, clock);
+        service = new ImageUploadService(storage, userService, mediaUploadService, properties, clock);
     }
 
     @Test
@@ -76,6 +84,48 @@ class ImageUploadServiceTest {
         assertThat(key.getValue()).matches("forum/12/2026/10/[0-9a-f-]{36}\\.webp");
         assertThat(response.getUrl()).isEqualTo("https://media.example.com/" + key.getValue());
         assertThat(response.getContentType()).isEqualTo("image/webp");
+        assertThat(response.getThumbnailUrl()).isNull();
+        verify(mediaUploadService).record(MEMBER, UploadPurpose.FORUM, key.getValue(), response.getUrl(), "image/webp", WEBP.length);
+    }
+
+    @Test
+    void aProjectImageArrivesWithItsThumbnailInOneUpload() {
+        when(storage.store(anyString(), any(), anyString())).thenAnswer(call -> "https://media.example.com/" + call.getArgument(0));
+
+        UploadResponse response = service.uploadProjectImage(MEMBER, file(WEBP, "cover.webp", "image/webp"),
+                new MockMultipartFile("thumbnail", "cover-640.png", "image/png", PNG));
+
+        ArgumentCaptor<String> keys = ArgumentCaptor.forClass(String.class);
+        verify(storage, times(2)).store(keys.capture(), any(), anyString());
+        String full = keys.getAllValues().get(0);
+        assertThat(full).matches("projects/12/2026/10/[0-9a-f-]{36}\\.webp");
+        // La miniature : la même clé, suivie de « -640 », avec l'extension de son propre format
+        assertThat(keys.getAllValues().get(1)).isEqualTo(full.replace(".webp", "-640.png"));
+        assertThat(response.getUrl()).isEqualTo("https://media.example.com/" + full);
+        assertThat(response.getThumbnailUrl()).isEqualTo("https://media.example.com/" + full.replace(".webp", "-640.png"));
+        verify(mediaUploadService).record(eq(MEMBER), eq(UploadPurpose.PROJECT), eq(full), anyString(), eq("image/webp"), eq((long) WEBP.length));
+        verify(mediaUploadService).record(eq(MEMBER), eq(UploadPurpose.PROJECT), eq(full.replace(".webp", "-640.png")), anyString(),
+                eq("image/png"), eq((long) PNG.length));
+    }
+
+    @Test
+    void aProjectImageWithoutAValidThumbnailIsRefusedBeforeAnythingIsStored() {
+        byte[] svg = withHeader("<svg xmlns=".getBytes());
+
+        assertThatThrownBy(() -> service.uploadProjectImage(MEMBER, file(WEBP, "cover.webp", "image/webp"),
+                new MockMultipartFile("thumbnail", "thumb.png", "image/png", svg)))
+                .isInstanceOf(UploadRejectedException.class);
+        verify(storage, never()).store(anyString(), any(), anyString());
+    }
+
+    @Test
+    void aProjectImageCountsAsOneUpload() {
+        when(storage.store(anyString(), any(), anyString())).thenReturn("https://media.example.com/x.webp");
+        service.uploadProjectImage(MEMBER, file(WEBP, "1.webp", "image/webp"), file(WEBP, "1-640.webp", "image/webp"));
+        service.uploadProjectImage(MEMBER, file(WEBP, "2.webp", "image/webp"), file(WEBP, "2-640.webp", "image/webp"));
+
+        assertThatThrownBy(() -> service.uploadProjectImage(MEMBER, file(WEBP, "3.webp", "image/webp"), file(WEBP, "3-640.webp", "image/webp")))
+                .extracting("status").isEqualTo(HttpStatus.TOO_MANY_REQUESTS);
     }
 
     @Test

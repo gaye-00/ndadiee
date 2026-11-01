@@ -30,8 +30,9 @@ public class PullRequestResponse {
     private List<String> labels;
 
     private ProjectBriefResponse project;
+    // Le membre qui l'a ouverte ; null pour une PR de GitHub dont l'auteur n'est pas inscrit (voir github)
     private UserSummaryResponse author;
-    // Sa première PR dans ce projet (design 3C : « sa 1re contribution »)
+    // Sa première PR dans ce projet (design 3C : « sa 1re contribution ») ; selon GitHub pour une PR de GitHub
     private boolean firstContribution;
     private Integer starterIssueNumber;
 
@@ -62,4 +63,19 @@ public class PullRequestResponse {
     private boolean inMyTeam;
     private List<String> sharedSkills;
     private Integer reward;
+
+    // La PR sur GitHub ; null pour les données de démonstration
+    private Github github;
+
+    /** Une PR synchronisée depuis le dépôt GitHub du projet : son adresse, son dernier commit, son auteur sur GitHub */
+    @Data
+    @AllArgsConstructor
+    @NoArgsConstructor
+    @Builder
+    public static class Github {
+        private String url;
+        private String headSha;
+        private String authorLogin;
+        private String authorAvatarUrl;
+    }
 }

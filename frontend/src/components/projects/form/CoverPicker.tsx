@@ -2,27 +2,20 @@ import { Crop, ImagePlus, RefreshCw, Trash2, TriangleAlert, Upload } from 'lucid
 import { AnimatePresence, m } from 'motion/react';
 import { useEffect, useId, useRef, useState, type ClipboardEvent, type DragEvent } from 'react';
 import { useTranslation } from 'react-i18next';
-import { FormField, inputClass } from './FormSection';
-import ImageCropDialog, { type CropSource } from './ImageCropDialog';
+import { FormField } from './FormSection';
+import { inputClass } from './formStyles';
+import ImageCropDialog from './ImageCropDialog';
 import { LIMITS, withScheme, type DraftImage } from './projectDraft';
-import { imageFilesOf, type LocalImages } from './useLocalImages';
+import { imageFilesOf, useCropSession, type CroppedImage, type LocalImages } from './useLocalImages';
 import { useProjectImageUpload } from '@/hooks/useProjectImageUpload';
-import { ImagePreparationError } from '@/lib/imageUpload';
-import { openImage, type CropArea, type ProjectImageFiles } from '@/lib/projectImages';
 import { cn } from '@/lib/utils';
 
 const ORIGINAL_KEY = 'cover';
 
-/** L'original et son cadrage : de quoi recadrer l'image une fois envoyée */
-interface Original {
-  source: CropSource;
-  crop: CropArea;
-}
-
 type Upload =
   | { status: 'idle' }
   | { status: 'sending'; preview: string; progress: number }
-  | { status: 'failed'; preview: string; message: string; files: ProjectImageFiles; original: Original };
+  | { status: 'failed'; preview: string; message: string; image: CroppedImage };
 
 interface CoverPickerProps {
   id: string;
@@ -44,113 +37,71 @@ interface CoverPickerProps {
  */
 export default function CoverPicker({ id, value, credit, sourceUrl, onChange, onCreditChange, errors, images, track }: CoverPickerProps) {
   const { t } = useTranslation('projectForm');
-  const { prepare, upload } = useProjectImageUpload();
+  const { upload } = useProjectImageUpload();
   const picker = useRef<HTMLInputElement>(null);
   const creditId = useId();
   const sourceId = useId();
-  const [cropping, setCropping] = useState<{ source: CropSource; crop: CropArea | null } | null>(null);
-  const [dialogOpen, setDialogOpen] = useState(false);
   const [state, setState] = useState<Upload>({ status: 'idle' });
   const [dragging, setDragging] = useState(false);
   const [creditOpen, setCreditOpen] = useState(() => credit.trim() !== '' || sourceUrl.trim() !== '');
   const [refused, setRefused] = useState<string | null>(null);
+  // La couverture s'affiche en grand : son aperçu est la grande image, pas la miniature
+  const cropper = useCropSession((image) => void send(image, URL.createObjectURL(image.files.full)), setRefused);
 
   // L'aperçu d'un envoi pas encore abouti : libéré si l'envoi est abandonné ; une fois l'image envoyée, il appartient
   // aux images locales du formulaire
   const unsent = useRef<string | null>(null);
-  useEffect(() => () => {
-    if (unsent.current) {
-      URL.revokeObjectURL(unsent.current);
-    }
-  }, []);
-
-  // Les originaux décodés pèsent lourd (une photo de 12 Mpx : 48 Mo) : on ne garde que celui de la couverture
-  const sources = useRef(new Set<CropSource>());
-  useEffect(() => {
-    const owned = sources.current;
-    return () => owned.forEach((source) => {
-      URL.revokeObjectURL(source.url);
-      source.bitmap.close();
-    });
-  }, []);
-
-  function releaseSpareSources() {
-    const kept = images.originalOf(ORIGINAL_KEY)?.source;
-    sources.current.forEach((source) => {
-      if (source !== kept) {
-        URL.revokeObjectURL(source.url);
-        source.bitmap.close();
-        sources.current.delete(source);
+  useEffect(
+    () => () => {
+      if (unsent.current) {
+        URL.revokeObjectURL(unsent.current);
       }
-    });
-  }
+    },
+    [],
+  );
 
-  function forgetUnsent() {
-    if (unsent.current) {
+  function forgetUnsent(keep?: string) {
+    if (unsent.current && unsent.current !== keep) {
       URL.revokeObjectURL(unsent.current);
-      unsent.current = null;
     }
+    unsent.current = keep ?? null;
   }
 
-  async function choose(file: File | undefined) {
-    if (!file || state.status === 'sending') {
-      return;
-    }
+  async function send(image: CroppedImage, preview: string) {
+    forgetUnsent(preview);
     setRefused(null);
-    try {
-      const bitmap = await openImage(file);
-      releaseSpareSources();
-      const source = { bitmap, url: URL.createObjectURL(file), name: file.name };
-      sources.current.add(source);
-      setCropping({ source, crop: null });
-      setDialogOpen(true);
-    } catch (error) {
-      setRefused(error instanceof ImagePreparationError ? t('images.errorType', { name: file.name }) : t('images.errorUpload'));
-    }
-  }
-
-  async function send(files: ProjectImageFiles, preview: string, original: Original) {
     setState({ status: 'sending', preview, progress: 0 });
     try {
-      const uploaded = await track(upload(files, (progress) => setState((current) => (current.status === 'sending' ? { ...current, progress } : current))));
+      const uploaded = await track(
+        upload(image.files, (progress) => setState((current) => (current.status === 'sending' ? { ...current, progress } : current))),
+      );
       unsent.current = null;
       images.keepPreview(uploaded.url, preview);
-      images.keepOriginal(ORIGINAL_KEY, original);
+      images.keepOriginal(ORIGINAL_KEY, image.original);
       onChange(uploaded);
       setState({ status: 'idle' });
     } catch (error) {
-      setState({ status: 'failed', preview, files, original, message: error instanceof Error ? error.message : String(error) });
+      setState({ status: 'failed', preview, image, message: error instanceof Error ? error.message : String(error) });
     }
   }
 
-  async function confirm(crop: CropArea) {
-    if (!cropping) {
-      return;
-    }
-    setDialogOpen(false);
-    const original = { source: cropping.source, crop };
-    try {
-      const files = await prepare(cropping.source.bitmap, crop, cropping.source.name);
-      forgetUnsent();
-      unsent.current = URL.createObjectURL(files.thumbnail);
-      void send(files, unsent.current, original);
-    } catch (error) {
-      setRefused(error instanceof Error ? error.message : String(error));
+  function choose(file: File | undefined) {
+    if (file && state.status !== 'sending') {
+      setRefused(null);
+      void cropper.start(file, ORIGINAL_KEY);
     }
   }
 
   function recrop() {
     const original = images.originalOf(ORIGINAL_KEY);
     if (original) {
-      setCropping({ source: original.source, crop: original.crop });
-      setDialogOpen(true);
+      void cropper.start(original.file, ORIGINAL_KEY, original.crop);
     }
   }
 
   function remove() {
     forgetUnsent();
     images.dropOriginal(ORIGINAL_KEY);
-    releaseSpareSources();
     setState({ status: 'idle' });
     onChange(null);
   }
@@ -158,18 +109,19 @@ export default function CoverPicker({ id, value, credit, sourceUrl, onChange, on
   function onDrop(event: DragEvent<HTMLElement>) {
     event.preventDefault();
     setDragging(false);
-    void choose(imageFilesOf(event.dataTransfer.files)[0]);
+    choose(imageFilesOf(event.dataTransfer.files)[0]);
   }
 
   function onPaste(event: ClipboardEvent<HTMLElement>) {
     const file = imageFilesOf(event.clipboardData.files)[0];
     if (file) {
       event.preventDefault();
-      void choose(file);
+      choose(file);
     }
   }
 
-  const shown = state.status !== 'idle' ? state.preview : value ? (images.previewOf(value.url) ?? value.url) : null;
+  const local = value ? images.previewOf(value.url) : undefined;
+  const shown = state.status !== 'idle' ? state.preview : value ? (local ?? value.url) : null;
   const canRecrop = value !== null && state.status === 'idle' && images.originalOf(ORIGINAL_KEY) !== undefined;
   const error = refused ?? errors.cover;
 
@@ -183,7 +135,7 @@ export default function CoverPicker({ id, value, credit, sourceUrl, onChange, on
         tabIndex={-1}
         aria-hidden
         onChange={(event) => {
-          void choose(event.target.files?.[0]);
+          choose(event.target.files?.[0]);
           event.target.value = '';
         }}
       />
@@ -206,14 +158,14 @@ export default function CoverPicker({ id, value, credit, sourceUrl, onChange, on
           <>
             <img
               src={shown}
-              srcSet={state.status === 'idle' && value && !images.previewOf(value.url) ? `${value.thumbnailUrl} 640w, ${value.url} 1280w` : undefined}
+              srcSet={state.status === 'idle' && value && !local ? `${value.thumbnailUrl} 640w, ${value.url} 1280w` : undefined}
               sizes="(min-width: 1024px) 44rem, 100vw"
               alt={t('cover.alt')}
               className={cn('size-full object-cover transition-[filter,scale] duration-500', state.status !== 'idle' && 'scale-[1.01] brightness-75')}
             />
             {/* Actions : au survol, au focus, et toujours sur un écran tactile */}
             {state.status === 'idle' && (
-              <div className="absolute inset-x-0 bottom-0 flex flex-wrap justify-end gap-2 bg-linear-to-t from-kente-night/80 to-transparent p-3 pt-12 opacity-100 transition-opacity duration-300 [@media(hover:hover)]:opacity-0 [@media(hover:hover)]:group-hover/cover:opacity-100 [@media(hover:hover)]:group-focus-within/cover:opacity-100">
+              <div className="absolute inset-x-0 bottom-0 flex flex-wrap justify-end gap-2 bg-linear-to-t from-kente-night/80 to-transparent p-3 pt-12 transition-opacity duration-300 [@media(hover:hover)]:opacity-0 [@media(hover:hover)]:group-focus-within/cover:opacity-100 [@media(hover:hover)]:group-hover/cover:opacity-100">
                 {canRecrop && (
                   <OverlayButton onClick={recrop} icon={Crop}>
                     {t('cover.recrop')}
@@ -229,22 +181,20 @@ export default function CoverPicker({ id, value, credit, sourceUrl, onChange, on
             )}
             <AnimatePresence>
               {state.status !== 'idle' && (
-                <m.div
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  exit={{ opacity: 0 }}
-                  className="absolute inset-0 grid place-items-center p-4"
-                >
+                <m.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="absolute inset-0 grid place-items-center p-4">
                   {state.status === 'sending' ? (
                     <ProgressBadge progress={state.progress} label={t('images.sending')} />
                   ) : (
-                    <div role="alert" className="flex max-w-sm flex-col items-center gap-3 rounded-2xl bg-kente-night/85 p-4 text-center text-sm text-kente-paper backdrop-blur-md">
+                    <div
+                      role="alert"
+                      className="flex max-w-sm flex-col items-center gap-3 rounded-2xl bg-kente-night/85 p-4 text-center text-sm text-kente-paper backdrop-blur-md saver:backdrop-blur-none"
+                    >
                       <span className="flex items-center gap-2 text-coral">
-                        <TriangleAlert aria-hidden className="size-4" />
+                        <TriangleAlert aria-hidden className="size-4 shrink-0" />
                         {state.message}
                       </span>
                       <div className="flex gap-2">
-                        <OverlayButton onClick={() => void send(state.files, state.preview, state.original)} icon={RefreshCw}>
+                        <OverlayButton onClick={() => void send(state.image, state.preview)} icon={RefreshCw}>
                           {t('images.retry')}
                         </OverlayButton>
                         <OverlayButton onClick={remove} icon={Trash2} tone="danger">
@@ -288,6 +238,7 @@ export default function CoverPicker({ id, value, credit, sourceUrl, onChange, on
           <button
             type="button"
             aria-expanded={creditOpen}
+            aria-controls={`${creditId}-panel`}
             onClick={() => setCreditOpen((open) => !open)}
             className="flex w-full items-center gap-2 rounded-2xl px-4 py-3 text-start text-sm font-semibold text-soft-foreground outline-none transition-colors hover:text-foreground focus-visible:ring-2 focus-visible:ring-ring/70"
           >
@@ -299,6 +250,7 @@ export default function CoverPicker({ id, value, credit, sourceUrl, onChange, on
           <AnimatePresence initial={false}>
             {creditOpen && (
               <m.div
+                id={`${creditId}-panel`}
                 initial={{ height: 0, opacity: 0 }}
                 animate={{ height: 'auto', opacity: 1 }}
                 exit={{ height: 0, opacity: 0 }}
@@ -341,14 +293,7 @@ export default function CoverPicker({ id, value, credit, sourceUrl, onChange, on
         </div>
       )}
 
-      <ImageCropDialog
-        source={cropping?.source ?? null}
-        open={dialogOpen}
-        onOpenChange={setDialogOpen}
-        title={t('crop.coverTitle')}
-        initialCrop={cropping?.crop}
-        onConfirm={(crop) => void confirm(crop)}
-      />
+      <ImageCropDialog {...cropper.dialog} title={t('crop.coverTitle')} />
     </div>
   );
 }

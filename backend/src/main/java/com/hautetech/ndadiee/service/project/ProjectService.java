@@ -2,11 +2,14 @@ package com.hautetech.ndadiee.service.project;
 
 import java.time.Instant;
 import java.util.Comparator;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.data.domain.Page;
@@ -61,6 +64,7 @@ import com.hautetech.ndadiee.repository.specification.ProjectSpecifications;
 import com.hautetech.ndadiee.service.SlugService;
 import com.hautetech.ndadiee.service.content.TagService;
 import com.hautetech.ndadiee.service.interaction.VoteService;
+import com.hautetech.ndadiee.service.media.MediaUploadService;
 import com.hautetech.ndadiee.service.user.UserService;
 
 import lombok.RequiredArgsConstructor;
@@ -91,6 +95,8 @@ public class ProjectService {
     private final TagService tagService;
     private final SlugService slugService;
     private final VoteService voteService;
+    // Les images envoyées pour un projet lui sont rattachées : celles que plus rien ne montre sont supprimées
+    private final MediaUploadService mediaUploadService;
     private final OpeningMatcher openingMatcher;
     private final ProjectMapper projectMapper;
     private final HackathonMapper hackathonMapper;
@@ -172,6 +178,7 @@ public class ProjectService {
                 .build());
 
         Project saved = projectRepository.save(project);
+        mediaUploadService.attach(saved.getId(), imagesOf(saved));
         log.info("[Project] Créé - ID: {} - slug: {}", saved.getId(), saved.getSlug());
         eventPublisher.publishEvent(new ProjectCreatedEvent(saved.getId(), userId));
         return toResponse(saved, userId);
@@ -183,7 +190,12 @@ public class ProjectService {
 
         // Le slug ne suit pas le nom : les liens déjà partagés restent valides
         project.setName(request.getName().trim());
+        Set<String> previousImages = imagesOf(project);
         applyContent(project, request);
+        Set<String> images = imagesOf(project);
+        previousImages.removeAll(images);
+        mediaUploadService.release(projectId, previousImages);
+        mediaUploadService.attach(projectId, images);
         project.setLookingForContributors(Boolean.TRUE.equals(request.getLookingForContributors()));
         tagService.replaceTags(project.getTags(), request.getTags());
 
@@ -438,6 +450,13 @@ public class ProjectService {
         project.setCoverCredit(trimToNull(request.getCoverCredit()));
         project.setCoverSourceUrl(request.getCoverSourceUrl());
         project.setLicense(trimToNull(request.getLicense()));
+    }
+
+    // Les images que le projet montre lui-même : couverture, miniature, logo
+    private static Set<String> imagesOf(Project project) {
+        return Stream.of(project.getCoverUrl(), project.getCoverThumbnailUrl(), project.getLogoUrl())
+                .filter(Objects::nonNull)
+                .collect(Collectors.toCollection(HashSet::new));
     }
 
     // Une annonce ouverte de ce projet

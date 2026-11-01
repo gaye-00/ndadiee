@@ -22,6 +22,16 @@ export interface Reviewer {
   submittedAt: string | null;
 }
 
+/** Une PR lue sur le dépôt GitHub du projet (PullRequestResponse.Github) */
+export interface PullRequestGithub {
+  url: string;
+  /** Le dernier commit de sa branche : le diff se lit à ce commit */
+  headSha: string | null;
+  /** Son auteur sur GitHub ; null si le compte a été supprimé */
+  authorLogin: string | null;
+  authorAvatarUrl: string | null;
+}
+
 /** Une pull request de la liste des revues (PullRequestResponse.java). Design 3B, 3C. */
 export interface PullRequest {
   id: number;
@@ -33,8 +43,9 @@ export interface PullRequest {
   community: boolean;
   labels: string[];
   project: ProjectBrief;
-  author: UserSummary;
-  /** Première contribution de l'auteur au projet */
+  /** Le membre qui l'a ouverte ; null pour une PR de GitHub dont l'auteur n'est pas inscrit (voir github) */
+  author: UserSummary | null;
+  /** Première contribution de l'auteur au projet (selon GitHub pour une PR de GitHub) */
   firstContribution: boolean;
   starterIssueNumber: number | null;
   sourceBranch: string;
@@ -62,6 +73,25 @@ export interface PullRequest {
   sharedSkills: string[];
   /** Réputation qu'une revue communautaire utile lui rapporterait */
   reward: number | null;
+  /** La PR sur GitHub ; null pour les données de démonstration */
+  github: PullRequestGithub | null;
+}
+
+/** Les PR d'un projet et son dépôt GitHub (RepositorySyncResponse.java) */
+export interface RepositorySync {
+  /** « owner/name » ; null si le projet n'a pas de dépôt GitHub */
+  repository: string | null;
+  repositoryUrl: string | null;
+  /** Le serveur sait lire les PR (jeton GitHub configuré) */
+  available: boolean;
+  syncedAt: string | null;
+  attemptedAt: string | null;
+  /** Code d'erreur de la dernière tentative, null si elle a réussi */
+  error: 'GITHUB_REPOSITORY_NOT_FOUND' | 'GITHUB_RATE_LIMITED' | 'GITHUB_UNAVAILABLE' | 'GITHUB_NOT_CONFIGURED' | null;
+  /** PR ouvertes venues du dépôt */
+  openPullRequests: number;
+  /** Le membre connecté peut relancer la lecture (porteur ou mainteneur) */
+  canSync: boolean;
 }
 
 /** Les revues en chiffres (ReviewOverviewResponse.java) */

@@ -7,14 +7,15 @@ import org.hibernate.validator.constraints.URL;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.experimental.SuperBuilder;
 
+/** Ce que le porteur dit de son projet, à la création comme à la modification. À la création : NewProjectRequest. */
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Builder
+@SuperBuilder
 public class ProjectRequest {
 
     @NotBlank(message = "Le nom du projet est requis")

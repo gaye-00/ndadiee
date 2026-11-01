@@ -97,7 +97,10 @@
     "reviewers": "Ababuyekezi",
     "reviewerState": "{{name}} · {{state}}",
     "reviewerState_required": "{{name}} · {{state}} · uyadingeka",
-    "reviewerState_community": "{{name}} · {{state}} · umphakathi"
+    "reviewerState_community": "{{name}} · {{state}} · umphakathi",
+    "onGithub": "GitHub",
+    "onGithubLabel": "Buka i-PR #{{number}} ku-GitHub",
+    "githubAuthor": "I-akhawunti ye-GitHub, ayikabhalisi ku-Ndadiee"
   },
   "state": {
     "REQUESTED": "ukubuyekezwa kulindiwe",
@@ -151,5 +154,22 @@
     "suggestText": "Isiphakamiso sekhodi singcono kunokusola.",
     "decideTitle": "Nikeza isinqumo esicacile.",
     "decideText": "Vuma uma kuhle, bese usho okushodayo uma kungenjalo."
+  },
+  "sync": {
+    "title": "Ama-pull request",
+    "synced": "afundwe {{time}}",
+    "open_one": "evulekile ku-",
+    "open_other": "avulekile ku-",
+    "first": "Ukufundwa kokuqala kwendawo yokugcina phakathi nomzuzu…",
+    "reviews": "Bona ukubuyekezwa",
+    "action": "Vumelanisa",
+    "running": "Iyafunda…",
+    "done": "Ama-pull request asesikhathini",
+    "error": {
+      "GITHUB_REPOSITORY_NOT_FOUND": "Indawo yokugcina ayitholakali ku-GitHub: kungenzeka iyimfihlo, iqanjwe kabusha noma isusiwe.",
+      "GITHUB_RATE_LIMITED": "I-GitHub ikhawulela izicelo okwamanje: umzamo omusha emjikelezweni olandelayo.",
+      "GITHUB_UNAVAILABLE": "I-GitHub ayiphendulanga ukufunda kokugcina: umzamo omusha emjikelezweni olandelayo.",
+      "GITHUB_NOT_CONFIGURED": "Ukufundwa kwama-pull request akuhlelwanga kule seva (ithokheni ye-GitHub ayikho)."
+    }
   }
 }

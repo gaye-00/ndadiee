@@ -1,4 +1,5 @@
 import {
+  ArrowUpRight,
   Check,
   CircleCheck,
   CircleX,
@@ -22,6 +23,8 @@ import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
 import { toast } from 'sonner';
 import PulsatingDots from '@/components/feedback/PulsatingDots';
+import { pullRequestAuthor } from '@/components/reviews/pullRequestAuthor';
+import GithubMark from '@/components/shared/GithubMark';
 import UserAvatar from '@/components/shared/UserAvatar';
 import { useNow } from '@/hooks/useNow';
 import { useReviewClaim } from '@/hooks/useReviews';
@@ -119,6 +122,26 @@ export default function ReviewRequestItem({ pullRequest, tab }: ReviewRequestIte
                   <Sparkles aria-hidden className="size-3" />
                   {t('item.firstContribution')}
                 </Tag>
+              )}
+              {pullRequest.github && (
+                // Au-dessus du lien qui couvre la carte : celui-ci mène à la PR sur GitHub
+                <a
+                  href={pullRequest.github.url}
+                  target="_blank"
+                  rel="noreferrer"
+                  aria-label={t('item.onGithubLabel', { number: pullRequest.number })}
+                  className={cn(
+                    'group/gh relative z-10 ms-auto inline-flex items-center gap-1 rounded-md px-1 text-[0.6875rem] font-semibold text-muted-foreground transition-colors hover:text-foreground',
+                    focusRing,
+                  )}
+                >
+                  <GithubMark className="size-3" />
+                  {t('item.onGithub')}
+                  <ArrowUpRight
+                    aria-hidden
+                    className="size-3 transition-transform group-hover/gh:-translate-y-px group-hover/gh:translate-x-px rtl:-scale-x-100"
+                  />
+                </a>
               )}
             </p>
 
@@ -235,11 +258,20 @@ function Byline({ pullRequest, tab }: { pullRequest: PullRequest; tab: ReviewTab
     return <time dateTime={pullRequest.lastActivityAt}>{t('item.active', { time: formatRelativeTime(pullRequest.lastActivityAt) })}</time>;
   })();
 
+  // Un auteur qui n'est pas inscrit sur Ndadiee : son compte GitHub, marqué comme tel
+  const author = pullRequestAuthor(pullRequest);
+
   // Chaque élément garde son point devant lui : à la ligne, le point part avec lui
   const items = [
     <span key="author" className="inline-flex min-w-0 items-center gap-1.5">
-      <UserAvatar user={pullRequest.author} size="sm" className="size-5 text-[0.5rem]" />
-      <bdi className="truncate font-semibold text-soft-foreground">{pullRequest.author.fullName}</bdi>
+      <UserAvatar user={author.user} size="sm" className="size-5 text-[0.5rem]" />
+      <bdi className="truncate font-semibold text-soft-foreground">{author.user.fullName}</bdi>
+      {author.github && (
+        <span title={t('item.githubAuthor')} className="inline-flex text-faint-foreground">
+          <GithubMark className="size-3" />
+          <span className="sr-only">{t('item.githubAuthor')}</span>
+        </span>
+      )}
     </span>,
     // Les branches gardent leur sens de lecture, même en arabe
     <span key="branches" dir="ltr" className="inline-flex min-w-0 items-center gap-1 font-mono">

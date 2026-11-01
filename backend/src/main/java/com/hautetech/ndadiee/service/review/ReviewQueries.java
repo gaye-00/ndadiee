@@ -51,8 +51,9 @@ class ReviewQueries {
                     pr.status = :open AND pr.draft = false AND EXISTS (
                         SELECT r.id FROM PullRequestReviewer r WHERE r.pullRequest = pr AND r.reviewer.id = :me
                           AND (r.state = :requested OR (r.state = :commented AND r.required = true)))""";
-            case COMMUNITY -> "pr.status = :open AND pr.draft = false AND pr.community = true AND pr.author.id <> :me AND NOT "
-                    + IN_TEAM + " AND NOT " + REVIEWER;
+            // L'auteur d'une PR de GitHub peut n'être pas inscrit (pr.author nul)
+            case COMMUNITY -> "pr.status = :open AND pr.draft = false AND pr.community = true AND (pr.author IS NULL OR pr.author.id <> :me)"
+                    + " AND NOT " + IN_TEAM + " AND NOT " + REVIEWER;
             case MINE -> "pr.author.id = :me";
             case TEAM -> "pr.status = :open AND " + IN_TEAM;
             case DONE -> "pr.status <> :open AND (pr.author.id = :me OR " + IN_TEAM + " OR " + REVIEWER + ")";
@@ -96,10 +97,10 @@ class ReviewQueries {
         return where.toString();
     }
 
-    /** Une page de l'onglet, projet, porteur et auteur chargés. */
+    /** Une page de l'onglet, projet, porteur et auteur (s'il est inscrit) chargés. */
     List<PullRequest> page(Filter filter, int offset, int limit) {
         Map<String, Object> params = new HashMap<>();
-        String jpql = "SELECT pr FROM PullRequest pr JOIN FETCH pr.project p JOIN FETCH p.owner JOIN FETCH pr.author"
+        String jpql = "SELECT pr FROM PullRequest pr JOIN FETCH pr.project p JOIN FETCH p.owner LEFT JOIN FETCH pr.author"
                 + where(filter, params) + " ORDER BY " + order(filter.tab());
         TypedQuery<PullRequest> query = em.createQuery(jpql, PullRequest.class);
         bind(query, jpql, params);

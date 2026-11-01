@@ -97,7 +97,10 @@
     "reviewers": "Xoolkat yi",
     "reviewerState": "{{name}} · {{state}}",
     "reviewerState_required": "{{name}} · {{state}} · ñu soxla ko",
-    "reviewerState_community": "{{name}} · {{state}} · mbooloo"
+    "reviewerState_community": "{{name}} · {{state}} · mbooloo",
+    "onGithub": "GitHub",
+    "onGithubLabel": "Xool PR #{{number}} ci GitHub",
+    "githubAuthor": "Kontu GitHub, bindaagul ci Ndadiee ba leegi"
   },
   "state": {
     "REQUESTED": "xool bi ñu ngi koy xaar",
@@ -151,5 +154,22 @@
     "suggestText": "Digle kood moo gën yedd.",
     "decideTitle": "Àtte bu leer.",
     "decideText": "Nangu bu baaxee, te wax li des bu dul noonu."
+  },
+  "sync": {
+    "title": "Pull request",
+    "synced": "jàng nañu leen {{time}}",
+    "open_one": "bu ubbeeku ci",
+    "open_other": "yu ubbeeku ci",
+    "first": "Jàng bu njëkk bi ci benn simili…",
+    "reviews": "Xool xool yi",
+    "action": "Yeesal",
+    "running": "Mu ngi jàng…",
+    "done": "Pull request yi yeesal nañu",
+    "error": {
+      "GITHUB_REPOSITORY_NOT_FOUND": "Gisuñu dépôt bi ci GitHub : xéj na dafa sutura, soppi nañu turam walla far nañu ko.",
+      "GITHUB_RATE_LIMITED": "GitHub dafa wàññi laaj yi léegi : dinañu jéemaat ci wér gi ci topp.",
+      "GITHUB_UNAVAILABLE": "GitHub tontuwul jàng bi mujj : dinañu jéemaat ci wér gi ci topp.",
+      "GITHUB_NOT_CONFIGURED": "Jàngum pull request yi defaruñu ko ci serwëer bii (token GitHub amul)."
+    }
   }
 }

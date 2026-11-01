@@ -3,14 +3,14 @@
 -- (design 3B « Revues qui t'attendent », 3C « Revue de code communautaire »)
 -- =============================================================================
 --
--- Comme V3 et V4, le script tient dans un bloc DO : avec `ddl-auto: create-drop` (réglage de développement),
+-- Comme V3 à V6, le script tient dans un bloc DO : avec `ddl-auto: create-drop` (réglage de développement),
 -- Hibernate crée le schéma complet après Flyway, sur une base sans tables. Avec `validate` (le réglage prévu, et
 -- celui de la production), les tables sont là et la migration s'applique entièrement.
 
 DO $$
 BEGIN
     IF to_regclass('projects') IS NULL THEN
-        RAISE NOTICE 'V6 : tables absentes (schéma créé par Hibernate), rien à migrer';
+        RAISE NOTICE 'V7 : tables absentes (schéma créé par Hibernate), rien à migrer';
         RETURN;
     END IF;
 

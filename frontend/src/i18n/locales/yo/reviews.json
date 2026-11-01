@@ -97,7 +97,10 @@
     "reviewers": "Olùyẹ̀wò",
     "reviewerState": "{{name}} · {{state}}",
     "reviewerState_required": "{{name}} · {{state}} · a nílò",
-    "reviewerState_community": "{{name}} · {{state}} · àwùjọ"
+    "reviewerState_community": "{{name}} · {{state}} · àwùjọ",
+    "onGithub": "GitHub",
+    "onGithubLabel": "Wo PR #{{number}} lórí GitHub",
+    "githubAuthor": "Àkọọ́lẹ̀ GitHub, kò tíì forúkọ sílẹ̀ lórí Ndadiee"
   },
   "state": {
     "REQUESTED": "à ń dúró de àyẹ̀wò",
@@ -151,5 +154,22 @@
     "suggestText": "Àbá kóòdù sàn ju ẹ̀sùn lọ.",
     "decideTitle": "Ṣe ìpinnu tó ṣe kedere.",
     "decideText": "Fọwọ́ sí tí ó bá dára, kí o sì sọ ohun tó kù tí kò bá rí bẹ́ẹ̀."
+  },
+  "sync": {
+    "title": "Pull requests",
+    "synced": "a kà á {{time}}",
+    "open_one": "tó ṣí lórí",
+    "open_other": "tó ṣí lórí",
+    "first": "Kíkà àkọ́kọ́ ibi ìpamọ́ náà láàárín ìṣẹ́jú kan…",
+    "reviews": "Wo àwọn àyẹ̀wò",
+    "action": "Mú bá ara wọn mu",
+    "running": "Ó ń kà á…",
+    "done": "Àwọn pull request ti di tuntun",
+    "error": {
+      "GITHUB_REPOSITORY_NOT_FOUND": "A kò rí ibi ìpamọ́ náà lórí GitHub: ó lè jẹ́ àdáni, wọ́n ti yí orúkọ rẹ̀ padà tàbí wọ́n ti pa á rẹ́.",
+      "GITHUB_RATE_LIMITED": "GitHub ń dín àwọn ìbéèrè kù báyìí: ìgbìyànjú tuntun ní ìyípo tó ń bọ̀.",
+      "GITHUB_UNAVAILABLE": "GitHub kò dáhùn kíkà tó kẹ́yìn: ìgbìyànjú tuntun ní ìyípo tó ń bọ̀.",
+      "GITHUB_NOT_CONFIGURED": "A kò tíì ṣètò kíkà àwọn pull request lórí sáfà yìí (àmì GitHub kò sí)."
+    }
   }
 }

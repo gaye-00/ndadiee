@@ -85,6 +85,13 @@ export default function ImageCropDialog({ source, open, onOpenChange, title, ini
         <Dialog.Overlay className="fixed inset-0 z-50 bg-kente-night/60 backdrop-blur-sm data-[state=open]:animate-in data-[state=open]:fade-in-0 data-[state=closed]:animate-out data-[state=closed]:fade-out-0 saver:backdrop-blur-none" />
         <Dialog.Content
           aria-describedby={undefined}
+          // Le cadre reçoit le focus : les flèches et + / − marchent aussitôt. Sur un écran tactile, rien : pas d'anneau
+          onOpenAutoFocus={(event) => {
+            event.preventDefault();
+            if (!window.matchMedia('(pointer: coarse)').matches) {
+              (event.currentTarget as HTMLElement).querySelector<HTMLElement>('[aria-roledescription]')?.focus();
+            }
+          }}
           className={cn(
             'fixed inset-x-0 bottom-0 z-50 max-h-[94dvh] overflow-y-auto rounded-t-[1.75rem] border border-border bg-popover text-popover-foreground shadow-float outline-none',
             'pb-[env(safe-area-inset-bottom)] data-[state=open]:animate-in data-[state=open]:slide-in-from-bottom-10 data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=closed]:slide-out-to-bottom-10',

@@ -33,6 +33,10 @@ public interface ProjectRepository extends JpaRepository<Project, Long>, JpaSpec
     @Query("SELECT p.owner.id, COUNT(p) FROM Project p WHERE p.owner.id IN :ownerIds GROUP BY p.owner.id")
     List<Object[]> countByOwners(@Param("ownerIds") Collection<Long> ownerIds);
 
+    /** Les projets visibles qui pointent vers l'un de ces dépôts (adresses en minuscules), les plus anciens d'abord */
+    @Query("SELECT p.slug FROM Project p WHERE LOWER(p.repositoryUrl) IN :urls AND p.hiddenAt IS NULL ORDER BY p.createdAt ASC")
+    List<String> findSlugsByRepositoryUrls(@Param("urls") Collection<String> urls);
+
     @Modifying
     @Query("""
             UPDATE Project p

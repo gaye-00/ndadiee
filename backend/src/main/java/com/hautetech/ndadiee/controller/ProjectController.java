@@ -22,6 +22,7 @@ import com.hautetech.ndadiee.common.ApiResponse;
 import com.hautetech.ndadiee.dto.request.JoinProjectRequest;
 import com.hautetech.ndadiee.dto.request.MemberDecisionRequest;
 import com.hautetech.ndadiee.dto.request.MemberSpecialtyRequest;
+import com.hautetech.ndadiee.dto.request.NewProjectRequest;
 import com.hautetech.ndadiee.dto.request.ProjectMediaRequest;
 import com.hautetech.ndadiee.dto.request.ProjectRequest;
 import com.hautetech.ndadiee.dto.response.PageResponse;
@@ -32,6 +33,7 @@ import com.hautetech.ndadiee.dto.response.ProjectResponse;
 import com.hautetech.ndadiee.model.project.TeamRole;
 import com.hautetech.ndadiee.repository.specification.ProjectFilter;
 import com.hautetech.ndadiee.service.project.ProjectMediaService;
+import com.hautetech.ndadiee.service.project.ProjectPublishingService;
 import com.hautetech.ndadiee.service.project.ProjectService;
 
 import io.swagger.v3.oas.annotations.Operation;
@@ -47,6 +49,7 @@ public class ProjectController extends BaseController {
 
     private final ProjectService projectService;
     private final ProjectMediaService mediaService;
+    private final ProjectPublishingService publishingService;
 
     // ─── PUBLIC ───────────────────────────────────────────────────────────────
 
@@ -96,10 +99,11 @@ public class ProjectController extends BaseController {
 
     // ─── MEMBRE CONNECTÉ ──────────────────────────────────────────────────────
 
+    @Operation(summary = "Publier un projet, avec s'il le faut sa galerie et ses rôles recherchés : tout est créé ensemble, ou rien")
     @PostMapping
-    public ResponseEntity<ApiResponse<ProjectResponse>> create(@Valid @RequestBody ProjectRequest request) {
+    public ResponseEntity<ApiResponse<ProjectResponse>> create(@Valid @RequestBody NewProjectRequest request) {
         return ResponseEntity.status(HttpStatus.CREATED).body(ApiResponse.success(
-                projectService.create(getAuthenticatedUserId(), request), "Projet publié avec succès"));
+                publishingService.publish(getAuthenticatedUserId(), request), "Projet publié avec succès"));
     }
 
     @Operation(summary = "Modifier un projet (propriétaire ou modérateur)")

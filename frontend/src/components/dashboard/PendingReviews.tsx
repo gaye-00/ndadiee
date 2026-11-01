@@ -9,6 +9,7 @@ import DashboardSectionTitle from './DashboardSectionTitle';
 import { DASHBOARD_ANCHORS } from './sections';
 import PulsatingDots from '@/components/feedback/PulsatingDots';
 import { FeedbackForm } from '@/components/projects/FeedbackRequestCard';
+import { pullRequestAuthor } from '@/components/reviews/pullRequestAuthor';
 import { DiffStat } from '@/components/reviews/ReviewRequestItem';
 import Chip from '@/components/shared/Chip';
 import UserAvatar from '@/components/shared/UserAvatar';
@@ -151,7 +152,7 @@ function PullRequestRow({ pullRequest }: { pullRequest: PullRequest }) {
 
   return (
     <Row
-      avatar={<UserAvatar user={pullRequest.author} className="size-9 text-xs" />}
+      avatar={<UserAvatar user={pullRequestAuthor(pullRequest).user} className="size-9 text-xs" />}
       title={
         <>
           <span className="font-mono font-medium text-faint-foreground">#{pullRequest.number}</span> <bdi>{pullRequest.title}</bdi>

@@ -97,7 +97,10 @@
     "reviewers": "Reviewers",
     "reviewerState": "{{name}} · {{state}}",
     "reviewerState_required": "{{name}} · {{state}} · required",
-    "reviewerState_community": "{{name}} · {{state}} · community"
+    "reviewerState_community": "{{name}} · {{state}} · community",
+    "onGithub": "GitHub",
+    "onGithubLabel": "View PR #{{number}} on GitHub",
+    "githubAuthor": "GitHub account, not on Ndadiee yet"
   },
   "state": {
     "REQUESTED": "review pending",
@@ -151,5 +154,22 @@
     "suggestText": "A code suggestion beats a reproach.",
     "decideTitle": "Give a clear verdict.",
     "decideText": "Approve when it's good, and say what's missing otherwise."
+  },
+  "sync": {
+    "title": "Pull requests",
+    "synced": "read {{time}}",
+    "open_one": "open on",
+    "open_other": "open on",
+    "first": "First read of the repository within a minute…",
+    "reviews": "See the reviews",
+    "action": "Sync",
+    "running": "Reading…",
+    "done": "Pull requests up to date",
+    "error": {
+      "GITHUB_REPOSITORY_NOT_FOUND": "Repository not found on GitHub: it may be private, renamed or deleted.",
+      "GITHUB_RATE_LIMITED": "GitHub is rate-limiting requests for now: next try on the next pass.",
+      "GITHUB_UNAVAILABLE": "GitHub did not answer the last read: next try on the next pass.",
+      "GITHUB_NOT_CONFIGURED": "Reading pull requests is not set up on this server (missing GitHub token)."
+    }
   }
 }

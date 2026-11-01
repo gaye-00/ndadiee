@@ -1,0 +1,249 @@
+{
+  "form": {
+    "back": "My projects",
+    "title": "Publish a project",
+    "mode": "Editing mode",
+    "write": "Write",
+    "preview": "Preview",
+    "aside": "Showcase preview and remaining steps",
+    "draftRestored": "Your draft was restored, images included.",
+    "startOver": "Start over",
+    "draftSaved": "Draft saved on this device",
+    "uploading_one": "{{count}} image on its way…",
+    "uploading_other": "{{count}} images on their way…",
+    "imagesPending": "An image is still uploading: the project will go out as soon as it arrives.",
+    "discard": "Clear",
+    "discardTitle": "Clear this draft?",
+    "discardText": "The project you are writing and its images will be removed from this device.",
+    "discardConfirm": "Clear the draft",
+    "publish": "Publish the project",
+    "publishing": "Publishing the project",
+    "published": "{{name}} is live: welcome to the showcase!"
+  },
+  "section": {
+    "complete": "step complete",
+    "essentials": {
+      "title": "The essentials",
+      "text": "What people read first on the showcase card: the name, a sentence that makes them curious, the stack."
+    },
+    "images": {
+      "title": "Images",
+      "text": "A cover, then screenshots of what already works. That is what gets the click."
+    },
+    "story": {
+      "title": "The story",
+      "text": "The problem the project solves, for whom, where it stands, and what comes next."
+    },
+    "links": {
+      "title": "Links and license",
+      "text": "Where to read the code, where to try it, and what everyone is allowed to do with it."
+    },
+    "team": {
+      "title": "The team",
+      "text": "Looking for contributors? Each role becomes an opening, shown to the profiles that match it."
+    }
+  },
+  "field": {
+    "optional": "optional"
+  },
+  "fields": {
+    "name": "Project name",
+    "namePlaceholder": "lagos-transit",
+    "nameHint": "The repository name, or the one your users know. The page address comes from it and will not change.",
+    "tagline": "Tagline",
+    "taglinePlaceholder": "Lagos buses, even offline",
+    "taglineHint": "One sentence for the showcase card: what the project does, and for whom.",
+    "tags": "Technologies",
+    "tagsHint": "Languages, frameworks, topics (up to {{count}}): this is how the right people find the project.",
+    "cover": "Cover",
+    "description": "Description",
+    "descriptionPlaceholder": "The problem, the solution, where the project stands…\n\n- What already works\n- What comes next",
+    "descriptionHint": "Paragraphs, **bold**, `code` and lists: that is how the project page shows them. {{mod}} + Enter to publish.",
+    "repository": "Code repository",
+    "demo": "Live demo",
+    "license": "License"
+  },
+  "errors": {
+    "url": "A full address, starting with https://",
+    "issueNumber": "An issue number: digits only"
+  },
+  "github": {
+    "title": "Start from your GitHub repository",
+    "text": "Name, tagline, technologies, license, demo and the README introduction fill in with one click. You stay in control of everything.",
+    "label": "GitHub repository address",
+    "placeholder": "github.com/account/repo",
+    "import": "Import",
+    "reading": "Reading the repository…",
+    "hint": "Paste the address: the import starts on its own. Public repositories only.",
+    "invalid": "This is not a GitHub repository address: github.com/account/repo",
+    "mine": "Your recent repositories",
+    "noProfile": "Add your GitHub to your profile to find your repositories here.",
+    "addProfile": "Complete my profile",
+    "alreadyListedShort": "Already in the showcase",
+    "done": "Repository imported",
+    "filled": "Filled fields",
+    "nothingNew": "Everything was already filled in: nothing was replaced.",
+    "alreadyListed": "This repository is already in the showcase.",
+    "seeProject": "See the project",
+    "archived": "This repository is archived on GitHub.",
+    "fork": "This repository is a copy (fork) of another project.",
+    "undo": "Undo the import",
+    "another": "Import another repository",
+    "fields": {
+      "name": "name",
+      "tagline": "tagline",
+      "description": "description",
+      "tags_one": "{{count}} technology",
+      "tags_other": "{{count}} technologies",
+      "license": "license",
+      "demo": "demo",
+      "repository": "repository"
+    },
+    "errors": {
+      "notFound": "Repository not found: check the address. A private repository cannot be imported.",
+      "rateLimited": "GitHub is limiting requests right now: try again in a few minutes, or fill in the project by hand.",
+      "unavailable": "GitHub is not responding right now: try again a little later, or fill in the project by hand.",
+      "network": "No connection: check your network, then try again."
+    }
+  },
+  "stack": {
+    "chosen": "Chosen technologies",
+    "placeholder": "React, Kotlin, Mobile Money…",
+    "more": "Add…",
+    "full_one": "{{count}} technology at most",
+    "full_other": "{{count}} technologies at most",
+    "suggestions": "Suggested technologies",
+    "create": "Create “{{tag}}”",
+    "remove": "Remove {{tag}}",
+    "add": "Add {{tag}}",
+    "addAll": "Add all",
+    "fromRepository": "In the repository:",
+    "popular": "Popular:"
+  },
+  "cover": {
+    "empty": "Drop an image, paste it, or choose it",
+    "drop": "Drop the image here",
+    "hint": "JPEG, PNG, WebP or GIF. You will frame it to the showcase format (16:10) before it is sent.",
+    "alt": "Project cover",
+    "recrop": "Reframe",
+    "replace": "Replace",
+    "remove": "Remove",
+    "borrowed": "Borrowed image? Credit it",
+    "creditLabel": "Author and license",
+    "creditPlaceholder": "Amina Diallo · CC BY 4.0",
+    "sourceLabel": "Link to the source"
+  },
+  "crop": {
+    "coverTitle": "Frame the cover",
+    "shotTitle": "Frame the screenshot",
+    "help": "Drag the image under the frame, zoom with the wheel, a pinch or the slider. With the keyboard: arrows, + and −.",
+    "frameRole": "framing area",
+    "frameLabel": "16:10 frame, zoom {{zoom}}%",
+    "zoom": "Zoom",
+    "zoomIn": "Zoom in",
+    "zoomOut": "Zoom out",
+    "output": "{{width}} × {{height}} px",
+    "blurry": "small area: the image may look blurry on a large screen",
+    "reset": "Recenter",
+    "cancel": "Cancel",
+    "confirm": "Use this framing"
+  },
+  "images": {
+    "sending": "Uploading",
+    "retry": "Retry",
+    "errorType": "“{{name}}” is not a readable image: JPEG, PNG, WebP or GIF.",
+    "errorSize": "The image is over {{max}} MB even once reduced: try a lighter one.",
+    "errorUpload": "The image could not be sent: check your connection, then try again."
+  },
+  "gallery": {
+    "label": "Gallery",
+    "hint": "Screenshots of the app, photos from the field. Each one is framed at 16:10; you can reframe it.",
+    "reorderHint": "Drag the handle to change the order",
+    "addFirst": "Add screenshots",
+    "add": "Add",
+    "addHint_one": "{{count}} more possible",
+    "addHint_other": "{{count}} more possible",
+    "full_one": "The gallery holds {{count}} image at most: the next ones were not added.",
+    "full_other": "The gallery holds {{count}} images at most: the next ones were not added.",
+    "item": "Image {{index}} of {{total}}",
+    "handle": "Move: {{item}}",
+    "handleHint": "Alt + left or right arrow to move it",
+    "addCaption": "Add a caption",
+    "captionLabel": "Caption",
+    "captionPlaceholder": "Next departures at the Obalende stop",
+    "kindLabel": "Image type",
+    "kind": {
+      "SCREENSHOT": "Screenshot",
+      "PHOTO": "Photo"
+    },
+    "creditLabel": "Credit (borrowed image)",
+    "moveBefore": "Move earlier",
+    "moveAfter": "Move later",
+    "remove": "Remove",
+    "discard": "Discard"
+  },
+  "license": {
+    "none": "Not yet",
+    "other": "Other…",
+    "otherLabel": "License identifier",
+    "otherPlaceholder": "EUPL-1.2",
+    "about": {
+      "MIT": "MIT: short and permissive. Anyone can reuse the code, even in a closed product, by crediting the author.",
+      "Apache-2.0": "Apache 2.0: permissive, with patent protection. A common choice for companies.",
+      "BSD-3-Clause": "BSD 3: permissive like MIT, and forbids using your name to promote a derivative.",
+      "MPL-2.0": "MPL 2.0: modified files stay open; the rest of a product may be closed.",
+      "GPL-3.0": "GPL 3.0: any distributed derivative software must stay open, under the same license.",
+      "AGPL-3.0": "AGPL 3.0: like the GPL, and an online service using it must publish its code too."
+    },
+    "aboutNone": "Without a license, nobody is legally allowed to reuse the code: pick one before welcoming contributors.",
+    "aboutOther": "Its SPDX identifier: “EUPL-1.2”, “CC-BY-4.0”…",
+    "help": "Compare licenses"
+  },
+  "team": {
+    "recruiting": "I am looking for contributors",
+    "recruitingOn": "The project will appear among those recruiting. Describe the roles: matching profiles will see them.",
+    "recruitingOff": "Turn it on to welcome contributors and publish roles. You can do it later.",
+    "chosen": "Roles sought",
+    "catalogFirst": "Pick a first role",
+    "catalog": "Add a role",
+    "titleLabel": "Role title",
+    "titlePlaceholder": "React Native mobile developer",
+    "remove": "Remove the role {{role}}",
+    "descriptionLabel": "What we expect",
+    "descriptionPlaceholder": "The offline trips screen, with Jetpack Compose…",
+    "seatsLabel": "Seats",
+    "seats_one": "{{count}} seat",
+    "seats_other": "{{count}} seats",
+    "fewerSeats": "One seat less",
+    "moreSeats": "One seat more",
+    "issueLabel": "A “first step” issue?",
+    "issueHint": "A small task from the repository to start with: applicants will know where to begin.",
+    "issueSet": "“First step” issue: #{{number}}",
+    "issueNumber": "Number",
+    "issueTitle": "Issue title",
+    "issueTitlePlaceholder": "Show the next bus time"
+  },
+  "preview": {
+    "card": "In the showcase",
+    "pageNotice": "Preview: the page as visitors will see it",
+    "untitled": "new-project"
+  },
+  "checklist": {
+    "title": "{{percent}}% ready",
+    "text": "What makes a project appealing. Only the name and the description are required.",
+    "ready": "Ready to shine",
+    "readyText": "Everything is there: all that is left is to publish.",
+    "done": "done",
+    "todo": "to do",
+    "items": {
+      "name": "A name",
+      "tagline": "A tagline that makes people curious",
+      "stack": "At least two technologies",
+      "cover": "A cover",
+      "gallery": "A screenshot in the gallery",
+      "story": "A story of a few sentences",
+      "links": "The repository or the demo",
+      "roles": "The roles sought"
+    }
+  }
+}

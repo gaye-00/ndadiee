@@ -109,7 +109,10 @@
     "reviewers": "Revisores",
     "reviewerState": "{{name}} · {{state}}",
     "reviewerState_required": "{{name}} · {{state}} · obrigatório",
-    "reviewerState_community": "{{name}} · {{state}} · comunidade"
+    "reviewerState_community": "{{name}} · {{state}} · comunidade",
+    "onGithub": "GitHub",
+    "onGithubLabel": "Ver a PR #{{number}} no GitHub",
+    "githubAuthor": "Conta do GitHub, ainda não inscrita no Ndadiee"
   },
   "state": {
     "REQUESTED": "revisão pendente",
@@ -170,5 +173,23 @@
     "suggestText": "Uma sugestão de código vale mais do que uma crítica.",
     "decideTitle": "Dá um veredicto claro.",
     "decideText": "Aprova quando está bom, e diz o que falta caso contrário."
+  },
+  "sync": {
+    "title": "Pull requests",
+    "synced": "lidas {{time}}",
+    "open_one": "aberta em",
+    "open_many": "abertas em",
+    "open_other": "abertas em",
+    "first": "Primeira leitura do repositório dentro de um minuto…",
+    "reviews": "Ver as revisões",
+    "action": "Sincronizar",
+    "running": "A ler…",
+    "done": "Pull requests atualizadas",
+    "error": {
+      "GITHUB_REPOSITORY_NOT_FOUND": "Repositório não encontrado no GitHub: pode ser privado, ter mudado de nome ou ter sido apagado.",
+      "GITHUB_RATE_LIMITED": "O GitHub está a limitar os pedidos: nova tentativa na próxima passagem.",
+      "GITHUB_UNAVAILABLE": "O GitHub não respondeu à última leitura: nova tentativa na próxima passagem.",
+      "GITHUB_NOT_CONFIGURED": "A leitura das pull requests não está configurada neste servidor (falta o token do GitHub)."
+    }
   }
 }

@@ -97,7 +97,10 @@
     "reviewers": "Masu bita",
     "reviewerState": "{{name}} · {{state}}",
     "reviewerState_required": "{{name}} · {{state}} · ana buƙata",
-    "reviewerState_community": "{{name}} · {{state}} · al'umma"
+    "reviewerState_community": "{{name}} · {{state}} · al'umma",
+    "onGithub": "GitHub",
+    "onGithubLabel": "Duba PR #{{number}} a GitHub",
+    "githubAuthor": "Asusun GitHub, bai yi rajista a Ndadiee ba tukuna"
   },
   "state": {
     "REQUESTED": "ana jiran bita",
@@ -151,5 +154,22 @@
     "suggestText": "Shawarar lamba ta fi zargi.",
     "decideTitle": "Ba da hukunci bayyananne.",
     "decideText": "Amince idan ya yi kyau, ka faɗi abin da ya rage idan ba haka ba."
+  },
+  "sync": {
+    "title": "Pull requests",
+    "synced": "an karanta {{time}}",
+    "open_one": "a buɗe a",
+    "open_other": "a buɗe a",
+    "first": "Karatun farko na ma'ajiyar cikin minti ɗaya…",
+    "reviews": "Duba bitocin",
+    "action": "Daidaita",
+    "running": "Ana karantawa…",
+    "done": "Pull requests sun daidaita",
+    "error": {
+      "GITHUB_REPOSITORY_NOT_FOUND": "Ba a sami ma'ajiyar a GitHub ba: wataƙila ta sirri ce, an canza mata suna ko an goge ta.",
+      "GITHUB_RATE_LIMITED": "GitHub na taƙaita buƙatu a yanzu: sabon ƙoƙari a zagaye na gaba.",
+      "GITHUB_UNAVAILABLE": "GitHub bai amsa karatun ƙarshe ba: sabon ƙoƙari a zagaye na gaba.",
+      "GITHUB_NOT_CONFIGURED": "Ba a saita karatun pull requests a wannan sabar ba (babu alamar GitHub)."
+    }
   }
 }

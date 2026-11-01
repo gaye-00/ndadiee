@@ -61,7 +61,7 @@ import lombok.extern.slf4j.Slf4j;
  * <li>La revue communautaire : un membre hors de l'équipe se propose comme relecteur d'une PR ouverte à la
  * communauté, ou se retire tant qu'il n'a rien rendu.</li>
  * <li>Les gestes du dépôt (ouvrir une PR, demander une revue, rendre une revue, commenter, fusionner, fermer) :
- * pour les données de démonstration aujourd'hui, pour la synchronisation GitHub demain.</li>
+ * pour les données de démonstration. Les PR des dépôts GitHub arrivent par PullRequestSyncService.</li>
  * </ul>
  */
 @Slf4j
@@ -72,6 +72,8 @@ public class ReviewService {
 
     // Arrivé dans l'équipe depuis moins de tant de jours : sa première PR est une « première contribution »
     private static final int NEWCOMER_DAYS = 30;
+    // Ce que GitHub dit de l'auteur d'une première contribution : jamais contribué au dépôt, ou à GitHub
+    private static final Set<String> FIRST_CONTRIBUTIONS = Set.of("FIRST_TIME_CONTRIBUTOR", "FIRST_TIMER");
 
     private final ReviewQueries queries;
     private final PullRequestRepository pullRequestRepository;
@@ -177,7 +179,7 @@ public class ReviewService {
         if (pullRequest.getStatus() != PullRequestStatus.OPEN || pullRequest.isDraft()) {
             throw new OperationNotAllowedException("Cette pull request n'attend plus de revue");
         }
-        if (pullRequest.getAuthor().getId().equals(userId)) {
+        if (isAuthor(pullRequest, userId)) {
             throw new OperationNotAllowedException("On ne relit pas sa propre pull request");
         }
         boolean inTeam = projectService.isTeamMember(pullRequest.getProject(), userId);
@@ -328,7 +330,7 @@ public class ReviewService {
                 .map(pr -> {
                     List<ReviewerResponse> prReviewers = reviewers.getOrDefault(pr.getId(), List.of());
                     boolean inTeam = teams.contains(pr.getProject().getId());
-                    boolean outsider = viewerId != null && !inTeam && !pr.getAuthor().getId().equals(viewerId);
+                    boolean outsider = viewerId != null && !inTeam && !isAuthor(pr, viewerId);
                     return PullRequestResponse.builder()
                             .id(pr.getId())
                             .number(pr.getNumber())
@@ -338,8 +340,11 @@ public class ReviewService {
                             .community(pr.isCommunity())
                             .labels(List.copyOf(pr.getLabels()))
                             .project(projectMapper.toBrief(pr.getProject()))
-                            .author(userMapper.toSummary(pr.getAuthor()))
-                            .firstContribution(first.contains(pr.getId()))
+                            .author(pr.getAuthor() == null ? null : userMapper.toSummary(pr.getAuthor()))
+                            // GitHub sait si c'est la première contribution au dépôt ; pour les autres, l'équipe le dit
+                            .firstContribution(pr.getGithubUrl() != null
+                                    ? FIRST_CONTRIBUTIONS.contains(String.valueOf(pr.getAuthorAssociation()))
+                                    : first.contains(pr.getId()))
                             .starterIssueNumber(pr.getStarterIssueNumber())
                             .sourceBranch(pr.getSourceBranch())
                             .targetBranch(pr.getTargetBranch())
@@ -366,6 +371,12 @@ public class ReviewService {
                             .reward(outsider && pr.isCommunity() && pr.getStatus() == PullRequestStatus.OPEN
                                     ? ReputationRules.REVIEW_HELPFUL
                                     : null)
+                            .github(pr.getGithubUrl() == null ? null : PullRequestResponse.Github.builder()
+                                    .url(pr.getGithubUrl())
+                                    .headSha(pr.getHeadSha())
+                                    .authorLogin(pr.getAuthorLogin())
+                                    .authorAvatarUrl(pr.getAuthorAvatarUrl())
+                                    .build())
                             .build();
                 })
                 .toList();
@@ -411,6 +422,10 @@ public class ReviewService {
                 })
                 .map(PullRequest::getId)
                 .collect(Collectors.toSet());
+    }
+
+    private static boolean isAuthor(PullRequest pullRequest, Long userId) {
+        return pullRequest.getAuthor() != null && pullRequest.getAuthor().getId().equals(userId);
     }
 
     private PullRequest findOrThrow(Long pullRequestId) {

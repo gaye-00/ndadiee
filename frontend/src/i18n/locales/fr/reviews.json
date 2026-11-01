@@ -109,7 +109,10 @@
     "reviewers": "Relecteurs",
     "reviewerState": "{{name}} · {{state}}",
     "reviewerState_required": "{{name}} · {{state}} · requis",
-    "reviewerState_community": "{{name}} · {{state}} · communauté"
+    "reviewerState_community": "{{name}} · {{state}} · communauté",
+    "onGithub": "GitHub",
+    "onGithubLabel": "Voir la PR #{{number}} sur GitHub",
+    "githubAuthor": "Compte GitHub, pas encore inscrit sur Ndadiee"
   },
   "state": {
     "REQUESTED": "revue attendue",
@@ -170,5 +173,23 @@
     "suggestText": "Une suggestion de code vaut mieux qu'un reproche.",
     "decideTitle": "Rends un verdict clair.",
     "decideText": "Approuve quand c'est bon, et dis ce qui manque sinon."
+  },
+  "sync": {
+    "title": "Pull requests",
+    "synced": "lues {{time}}",
+    "open_one": "ouverte sur",
+    "open_many": "ouvertes sur",
+    "open_other": "ouvertes sur",
+    "first": "Première lecture du dépôt dans la minute…",
+    "reviews": "Voir les revues",
+    "action": "Synchroniser",
+    "running": "Lecture…",
+    "done": "Pull requests à jour",
+    "error": {
+      "GITHUB_REPOSITORY_NOT_FOUND": "Dépôt introuvable sur GitHub : il est peut-être privé, renommé ou supprimé.",
+      "GITHUB_RATE_LIMITED": "GitHub limite les requêtes pour le moment : nouvel essai au prochain passage.",
+      "GITHUB_UNAVAILABLE": "GitHub n'a pas répondu à la dernière lecture : nouvel essai au prochain passage.",
+      "GITHUB_NOT_CONFIGURED": "La lecture des pull requests n'est pas configurée sur ce serveur (jeton GitHub manquant)."
+    }
   }
 }

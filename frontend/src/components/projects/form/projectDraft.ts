@@ -2,6 +2,7 @@ import { z } from 'zod';
 import i18n from '@/i18n';
 import type { UserResponse } from '@/types/auth.types';
 import type { MediaKind, NewProjectRequest, Project, TeamRole } from '@/types/project.types';
+import { tagSlug } from '@/utils/tags';
 // Les messages d'erreur des schémas, dans la langue de l'interface (z.config)
 import '@/utils/validators';
 
@@ -130,7 +131,8 @@ const text = (max: number) => z.string().trim().max(max);
 
 /** Mêmes règles que le backend : le formulaire les signale tout de suite, le serveur reste la référence. */
 export const projectDraftSchema = z.object({
-  name: z.string().trim().min(3).max(LIMITS.name),
+  // Vide : « obligatoire » ; trop court : « 3 caractères minimum »
+  name: z.string().trim().min(1).min(3).max(LIMITS.name),
   tagline: text(LIMITS.tagline),
   tags: z.array(z.string().trim().min(1).max(LIMITS.tag)).max(LIMITS.tags),
   description: z.string().trim().min(1).max(LIMITS.description),
@@ -254,6 +256,9 @@ export function checklistOf(draft: ProjectDraft): Array<{ item: ChecklistItem; d
   return items;
 }
 
+/** La part faite de la liste, de 0 à 1 */
+export const progressOf = (items: ReadonlyArray<{ done: boolean }>) => (items.length ? items.filter((entry) => entry.done).length / items.length : 0);
+
 /**
  * Le projet tel que la vitrine et sa page le montreront, pour l'aperçu : les champs qui ne viennent pas du
  * formulaire (étoiles, équipe, activité GitHub) prennent la valeur d'un projet qui vient de naître.
@@ -288,7 +293,7 @@ export function previewProjectOf(draft: ProjectDraft, user: UserResponse | null)
     tags: draft.tags.map((name, index) => ({
       id: -(index + 1),
       name,
-      slug: name.toLowerCase().replace(/[^a-z\d+#.]+/g, '-'),
+      slug: tagSlug(name),
       description: null,
       usageCount: 0,
       followedByMe: null,

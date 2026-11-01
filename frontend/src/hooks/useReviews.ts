@@ -33,6 +33,37 @@ export function useReviewOverview() {
   });
 }
 
+/** Les PR d'un projet et son dépôt GitHub (page projet) ; pour les membres connectés. */
+export function useRepositorySync(slug: string | undefined) {
+  const { isAuthenticated } = useAuth();
+  return useQuery({
+    queryKey: ['reviews', 'repository-sync', slug],
+    queryFn: () => reviewService.getRepositorySync(slug!),
+    enabled: isAuthenticated && !!slug,
+    // En attendant la première lecture du dépôt (dans la minute après qu'il est indiqué), on revient voir
+    refetchInterval: (query) => {
+      const sync = query.state.data;
+      return sync?.repository && sync.available && !sync.syncedAt && !sync.error ? 10_000 : false;
+    },
+  });
+}
+
+/** Relit le dépôt GitHub d'un projet ; les listes de revues et l'atelier se rechargent avec ses PR. */
+export function useSyncRepository(slug: string) {
+  const qc = useQueryClient();
+  return useMutation({
+    mutationFn: () => reviewService.syncRepository(slug),
+    onSuccess: (sync) => {
+      qc.setQueryData(['reviews', 'repository-sync', slug], sync);
+      void qc.invalidateQueries({ queryKey: ['reviews', 'list'] });
+      void qc.invalidateQueries({ queryKey: ['reviews', 'overview'] });
+      void qc.invalidateQueries({ queryKey: ['dashboard'] });
+    },
+    // Une erreur de GitHub est notée : l'état affiché la montre
+    onError: () => void qc.invalidateQueries({ queryKey: ['reviews', 'repository-sync', slug] }),
+  });
+}
+
 /**
  * Se propose comme relecteur d'une PR (claim = true), ou se retire (claim = false). Les onglets, leurs totaux et
  * l'atelier se rechargent : la PR change d'onglet.

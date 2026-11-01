@@ -90,7 +90,14 @@ export function useCropSession(onCropped: (image: CroppedImage, key: string) => 
     current.current = session;
   });
 
-  useEffect(() => () => current.current && release(current.current.source), []);
+  useEffect(
+    () => () => {
+      if (current.current) {
+        release(current.current.source);
+      }
+    },
+    [],
+  );
 
   /** Ouvre le cadreur sur un fichier, avec le cadrage d'avant pour un recadrage ; `key` désigne l'image cadrée */
   const start = useCallback(
