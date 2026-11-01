@@ -1,4 +1,4 @@
-import { CalendarDays, Check, ExternalLink, Globe, MapPin, Share2, ShieldCheck, Sparkles, UserPlus } from 'lucide-react';
+import { CalendarDays, Check, ExternalLink, Globe, Mail, MapPin, Share2, ShieldCheck, Sparkles, UserPlus } from 'lucide-react';
 import { m, type Variants } from 'motion/react';
 import type { ReactNode } from 'react';
 import { Trans, useTranslation } from 'react-i18next';
@@ -103,6 +103,7 @@ export default function ProfileHeader({ profile }: { profile: UserProfile }) {
 
         <div className="flex flex-wrap items-center gap-2 sm:pt-5">
           {!own && <FollowButton profile={profile} />}
+          {!own && <MessageButton profile={profile} />}
           <ShareButton profile={profile} own={own} />
         </div>
       </div>
@@ -262,6 +263,23 @@ function FollowButton({ profile }: { profile: UserProfile }) {
       {following ? <Check aria-hidden className="size-4" strokeWidth={3} /> : <UserPlus aria-hidden className="size-4" />}
       {following ? t('header.followingThem') : t('header.follow', { name: firstName })}
     </button>
+  );
+}
+
+/** Écrire au membre : la messagerie s'ouvre sur sa conversation (créée s'il le faut). Pour les membres connectés. */
+function MessageButton({ profile }: { profile: UserProfile }) {
+  const { t } = useTranslation();
+  const { isDeveloper } = useAuth();
+
+  if (!isDeveloper) {
+    return null;
+  }
+
+  return (
+    <Link to={paths.messageTo(profile.username)} viewTransition className={OUTLINE}>
+      <Mail aria-hidden className="size-4" />
+      {t('actions.sendMessage')}
+    </Link>
   );
 }
 

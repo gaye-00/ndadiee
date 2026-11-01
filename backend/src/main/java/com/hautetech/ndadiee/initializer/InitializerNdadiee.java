@@ -26,6 +26,7 @@ public class InitializerNdadiee implements CommandLineRunner {
     private final ReviewSeeder reviewSeeder;
     private final WorkspaceSeeder workspaceSeeder;
     private final GithubDemoSeeder githubDemoSeeder;
+    private final MessageSeeder messageSeeder;
 
     @Value("${ndadiee.seed.enabled}")
     private boolean seedEnabled;
@@ -58,6 +59,8 @@ public class InitializerNdadiee implements CommandLineRunner {
             workspaceSeeder.seed();
             // De vrais dépôts GitHub : leurs pull requests arrivent à la première synchronisation
             githubDemoSeeder.seed();
+            // La messagerie des comptes d'essai : des conversations avec leurs équipes, des messages qui les attendent
+            messageSeeder.seed();
         } else {
             log.info("[Init] Données de démonstration désactivées (ndadiee.seed.enabled=false)");
         }

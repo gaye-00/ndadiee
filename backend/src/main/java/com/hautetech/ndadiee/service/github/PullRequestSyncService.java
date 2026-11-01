@@ -86,9 +86,6 @@ public class PullRequestSyncService {
     /** Un dépôt GitHub : « https://github.com/owner/name », avec ou sans www ni « .git », suivi ou non d'un chemin (/tree/main) */
     private static final Pattern REPOSITORY_URL = Pattern.compile(
             "^(?:https?://)?(?:www\\.)?github\\.com/([^/?#\\s]+)/([^/?#\\s]+?)(?:\\.git)?(?:[/?#].*)?$", Pattern.CASE_INSENSITIVE);
-    /** L'étiquette d'une issue « premier pas » : good first issue, first-timers-only, beginner… */
-    private static final Pattern STARTER_LABEL = Pattern.compile(".*(good[ -]?first|first[ -]?timers?|beginner|starter).*",
-            Pattern.CASE_INSENSITIVE);
     // États des check runs (CheckRunState) et des statuts (StatusState) ; les autres tournent encore
     private static final Set<String> PASSED = Set.of("SUCCESS", "NEUTRAL", "SKIPPED", "COMPLETED");
     private static final Set<String> FAILED = Set.of("FAILURE", "ERROR", "TIMED_OUT", "CANCELLED", "ACTION_REQUIRED",
@@ -448,7 +445,7 @@ public class PullRequestSyncService {
         return node.closingIssuesReferences().nodes().stream()
                 .filter(issue -> issue != null && issue.labels() != null && issue.labels().nodes() != null
                         && issue.labels().nodes().stream()
-                                .anyMatch(label -> label != null && label.name() != null && STARTER_LABEL.matcher(label.name()).matches()))
+                                .anyMatch(label -> label != null && StarterLabels.isStarter(label.name())))
                 .map(GithubClient.Issue::number)
                 .findFirst()
                 .orElse(null);

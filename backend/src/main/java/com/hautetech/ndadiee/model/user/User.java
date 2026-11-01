@@ -11,14 +11,17 @@ import com.hautetech.ndadiee.model.Language;
 
 import org.hibernate.annotations.DynamicUpdate;
 
+import jakarta.persistence.CheckConstraint;
 import jakarta.persistence.Column;
 import jakarta.persistence.DiscriminatorColumn;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
+import jakarta.persistence.Index;
 import jakarta.persistence.Inheritance;
 import jakarta.persistence.InheritanceType;
 import jakarta.persistence.Table;
+import jakarta.persistence.UniqueConstraint;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -38,15 +41,33 @@ import lombok.experimental.SuperBuilder;
 @SuperBuilder
 @Entity
 @DynamicUpdate
-@Table(name = "users")
+@Table(
+    name = "users",
+    uniqueConstraints = {
+        @UniqueConstraint(name = "uk_users_username", columnNames = "username"),
+        @UniqueConstraint(name = "uk_users_email", columnNames = "email")
+    },
+    indexes = {
+        @Index(name = "idx_users_country", columnList = "country"),
+        @Index(name = "idx_users_reputation", columnList = "reputation DESC"),
+        // Les comptes suspendus, que le back-office liste : une poignée, indexée seule
+        @Index(name = "idx_users_blocked", columnList = "blocked_at", options = "where blocked_at is not null")
+    },
+    check = {
+        @CheckConstraint(name = "ck_users_type", constraint = "user_type in ('developer', 'admin')"),
+        // Les colonnes propres aux développeurs, vides pour les admins, sont remplies pour chaque développeur
+        @CheckConstraint(name = "ck_users_developer",
+            constraint = "user_type <> 'developer' or (reputation is not null and open_to_work is not null)")
+    }
+)
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn(name = "user_type")
 public abstract class User extends BaseEntity implements UserDetails {
 
-    @Column(unique = true, nullable = false, length = 30)
+    @Column(nullable = false, length = 30)
     private String username;
 
-    @Column(unique = true, nullable = false)
+    @Column(nullable = false)
     private String email;
 
     // Haché en BCrypt
@@ -64,6 +85,11 @@ public abstract class User extends BaseEntity implements UserDetails {
     @Column(nullable = false)
     @Builder.Default
     private Language preferredLanguage = Language.FR;
+
+    // E-mails des revues de code (un commentaire sur sa PR, un verdict, sa revue jugée utile) : activés par défaut
+    @Column(nullable = false)
+    @Builder.Default
+    private boolean reviewEmails = true;
 
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)

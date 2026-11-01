@@ -145,4 +145,56 @@ class GithubClientPullRequestsTest {
                 .isInstanceOfSatisfying(GithubException.class, e -> assertThat(e.getErrorCode()).isEqualTo("GITHUB_NOT_CONFIGURED"));
         assertThat(requestPath.get()).isNull();
     }
+
+    @Test
+    void theChecksAndClosingIssuesOfAPullRequestAreReadInOneQuery() {
+        reply.set("""
+                {"data":{"repository":{"pullRequest":{
+                  "closingIssuesReferences":{"nodes":[{"number":3700,"title":"Vitals: save errors","url":"https://github.com/o/r/issues/3700",
+                    "state":"OPEN","labels":{"nodes":[{"name":"good first issue"}]}}]},
+                  "statusCheckRollup":{"contexts":{"totalCount":2,"nodes":[
+                    {"__typename":"CheckRun","name":"unit","status":"COMPLETED","conclusion":"SUCCESS","detailsUrl":"https://github.com/o/r/runs/1",
+                     "startedAt":"2026-10-15T08:00:00Z","completedAt":"2026-10-15T08:02:00Z",
+                     "checkSuite":{"app":{"name":"GitHub Actions"},"workflowRun":{"workflow":{"name":"CI"}}}},
+                    {"__typename":"StatusContext","context":"ci/sonar","state":"PENDING","targetUrl":null,"description":"Analyse",
+                     "createdAt":"2026-10-15T08:01:00Z"}]}}}}}}
+                """);
+
+        GithubClient.PullRequestChecks checks = client("secret-token").pullRequestChecks("o", "r", 3809, 50);
+
+        assertThat(requestBody.get()).contains("\"number\":3809", "\"checks\":50", "closingIssuesReferences");
+        assertThat(checks.total()).isEqualTo(2);
+        assertThat(checks.checks()).extracting(GithubClient.CheckContext::name).containsExactly("unit", "ci/sonar");
+        assertThat(checks.checks().getFirst().workflow()).isEqualTo("CI");
+        assertThat(checks.checks().getFirst().completedAt()).isEqualTo(Instant.parse("2026-10-15T08:02:00Z"));
+        assertThat(checks.checks().get(1).type()).isEqualTo(GithubClient.CheckContext.STATUS);
+        assertThat(checks.checks().get(1).conclusion()).isEqualTo("PENDING");
+        assertThat(checks.issues()).singleElement().satisfies(issue -> assertThat(issue.title()).isEqualTo("Vitals: save errors"));
+    }
+
+    @Test
+    void aMissingPullRequestIsNotFound() {
+        reply.set("""
+                {"data":{"repository":{"pullRequest":null}},"errors":[{"type":"NOT_FOUND","message":"Could not resolve"}]}
+                """);
+
+        assertThatThrownBy(() -> client("secret-token").pullRequestChecks("o", "r", 1, 50))
+                .isInstanceOfSatisfying(GithubException.class, e -> assertThat(e.getStatus()).isEqualTo(HttpStatus.NOT_FOUND));
+    }
+
+    @Test
+    void theFilesOfAPullRequestAreReadPageByPage() {
+        reply.set("""
+                [{"filename":"src/a.ts","status":"modified","additions":3,"deletions":1,"changes":4,"patch":"@@ -1 +1 @@\\n-a\\n+b"},
+                 {"filename":"logo.png","status":"added","additions":0,"deletions":0,"changes":0}]
+                """);
+
+        List<GithubClient.PullRequestFile> files = client(null).pullRequestFiles("o", "r", 84, 3);
+
+        // Moins de 100 fichiers : une seule page suffit
+        assertThat(requestPath.get()).isEqualTo("GET /repos/o/r/pulls/84/files?per_page=100&page=1");
+        assertThat(files).hasSize(2);
+        assertThat(files.getFirst().patch()).isEqualTo("@@ -1 +1 @@\n-a\n+b");
+        assertThat(files.get(1).patch()).isNull();
+    }
 }

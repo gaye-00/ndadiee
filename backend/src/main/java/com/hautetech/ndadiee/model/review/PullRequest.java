@@ -13,11 +13,13 @@ import com.hautetech.ndadiee.common.BaseEntity;
 import com.hautetech.ndadiee.model.project.Project;
 import com.hautetech.ndadiee.model.user.Developer;
 
+import jakarta.persistence.CheckConstraint;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
 import jakarta.persistence.FetchType;
+import jakarta.persistence.Index;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
@@ -51,7 +53,12 @@ import lombok.experimental.SuperBuilder;
 @Entity
 @Table(
     name = "pull_requests",
-    uniqueConstraints = @UniqueConstraint(name = "uk_pull_requests_project_number", columnNames = {"project_id", "number"})
+    uniqueConstraints = @UniqueConstraint(name = "uk_pull_requests_project_number", columnNames = {"project_id", "number"}),
+    indexes = {
+        @Index(name = "idx_pull_requests_author", columnList = "author_id"),
+        @Index(name = "idx_pull_requests_open", columnList = "status, last_activity_at DESC")
+    },
+    check = @CheckConstraint(name = "ck_pull_requests_checks", constraint = "checks_passed + checks_failed <= checks_total")
 )
 public class PullRequest extends BaseEntity {
 

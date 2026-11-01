@@ -171,5 +171,214 @@
       "GITHUB_UNAVAILABLE": "I-GitHub ayiphendulanga ukufunda kokugcina: umzamo omusha emjikelezweni olandelayo.",
       "GITHUB_NOT_CONFIGURED": "Ukufundwa kwama-pull request akuhlelwanga kule seva (ithokheni ye-GitHub ayikho)."
     }
+  },
+  "page": {
+    "loading": "Kulayishwa ukubuyekeza…",
+    "documentTitle": "#{{number}} {{title}}",
+    "aside": "Ababuyekezi, ukuhlola nomsebenzi oxhunyiwe",
+    "notFoundTitle": "I-pull request ayitholakalanga",
+    "notFoundText": "Ayikho kule phrojekthi, noma iphrojekthi ayisabonakali.",
+    "backToReviews": "Buyela ekubuyekezweni",
+    "errorTitle": "Ukubuyekeza akukwazanga ukulayisha",
+    "errorText": "Hlola uxhumano lwakho, bese uzama futhi."
+  },
+  "header": {
+    "wants_one": "ufuna ukuhlanganisa <b>i-commit engu-{{count}}</b> isuka ku-<branch>{{source}}</branch> iya ku-<branch>{{target}}</branch>",
+    "wants_other": "ufuna ukuhlanganisa <b>ama-commit angu-{{count}}</b> asuka ku-<branch>{{source}}</branch> aya ku-<branch>{{target}}</branch>",
+    "merged_one": "uhlanganise <b>i-commit engu-{{count}}</b> isuka ku-<branch>{{source}}</branch> iya ku-<branch>{{target}}</branch>",
+    "merged_other": "uhlanganise <b>ama-commit angu-{{count}}</b> asuka ku-<branch>{{source}}</branch> aya ku-<branch>{{target}}</branch>",
+    "closed_one": "uphakamise <b>i-commit engu-{{count}}</b> isuka ku-<branch>{{source}}</branch> iya ku-<branch>{{target}}</branch>",
+    "closed_other": "uphakamise <b>ama-commit angu-{{count}}</b> asuka ku-<branch>{{source}}</branch> aya ku-<branch>{{target}}</branch>",
+    "readDescription": "Funda incazelo",
+    "onGithub": "Buka ku-GitHub",
+    "review": "Thumela ukubuyekeza kwami",
+    "reviewAgain": "Buyekeza isinqumo sami",
+    "mergeOnGithub": "Hlanganisa ku-GitHub",
+    "yours": "I-pull request yakho",
+    "myVerdict": {
+      "COMMENTED": "Uphawulile",
+      "APPROVED": "Uvumile",
+      "CHANGES_REQUESTED": "Ucele izinguquko"
+    }
+  },
+  "pageTabs": {
+    "label": "Izingxenye zokubuyekeza",
+    "files": "Amafayela ashintshiwe",
+    "conversation": "Ingxoxo"
+  },
+  "files": {
+    "title": "Amafayela ashintshiwe",
+    "viewed": "{{seen}}/{{total}} abonwe",
+    "viewedLabel": "Amafayela angu-{{seen}} kwangu-{{total}} abonwe",
+    "viewedFile": "Libonwe",
+    "collapse": "Fihla uhlu lwamafayela",
+    "expand": "Bonisa uhlu lwamafayela",
+    "filter": "Thola ifayela",
+    "clearFilter": "Sula ukusesha",
+    "noMatch": "Alikho ifayela le-“{{query}}”",
+    "status": {
+      "ADDED": "lingeziwe",
+      "MODIFIED": "lishintshiwe",
+      "REMOVED": "lisusiwe",
+      "RENAMED": "liqanjwe kabusha",
+      "COPIED": "likopishiwe"
+    }
+  },
+  "diff": {
+    "label": "I-diff ye-pull request",
+    "loading": "Kufundwa i-diff…",
+    "errorTitle": "I-diff ayikwazanga ukulayisha",
+    "errorText": "I-GitHub ayiphendulanga. Zama futhi emva kwesikhashana.",
+    "unavailableTitle": "I-diff ayitholakali",
+    "unavailableText_one": "Le pull request yokubonisa ishintsha ifayela elingu-{{count}}, kodwa i-diff yayo ayinakubukwa lapha.",
+    "unavailableText_other": "Le pull request yokubonisa ishintsha amafayela angu-{{count}}, kodwa i-diff yayo ayinakubukwa lapha.",
+    "expandAll": "Vula konke",
+    "collapseAll": "Goqa konke",
+    "expandFile": "Vula {{path}}",
+    "collapseFile": "Goqa {{path}}",
+    "copyPath": "Kopisha indlela",
+    "pathCopied": "Indlela ikopishiwe",
+    "viewOnGithub": "Buka {{path}} ku-GitHub",
+    "viewed": "Libonwe",
+    "readOnly": "Le pull request ibuyekezwa yithimba lephrojekthi nababuyekezi bayo: ungayifunda, kodwa ungaphawuli.",
+    "commentLine": "Phawula emgqeni {{line}}",
+    "added": "Umugqa ongeziwe:",
+    "removed": "Umugqa osusiwe:",
+    "noNewline": "Awukho umugqa omusha ekugcineni kwefayela",
+    "noPatch": "I-diff ayiboniswa: ifayela le-binary, noma likhulu kakhulu.",
+    "renamedOnly": "Ifayela liqanjwe kabusha, akukho okunye okushintshile.",
+    "openOnGithub": "Vula ku-GitHub",
+    "outdated": "Amazwana emigqeni engaphandle kwe-diff",
+    "lineLabel": "Umugqa {{line}}",
+    "moreOnGithub_one": "Ifayela elingu-{{count}} elengeziwe ongalifunda ku-GitHub",
+    "moreOnGithub_other": "Amafayela angu-{{count}} engeziwe ongawafunda ku-GitHub"
+  },
+  "thread": {
+    "placeholder": "Umbono, umbuzo, umqondo…",
+    "replyPlaceholder": "Phendula…",
+    "replyLabel": "Phendula ingxoxo ku-{{path}}, umugqa {{line}}",
+    "newLabel": "Phawula ku-{{path}}, umugqa {{line}}",
+    "editLabel": "Hlela amazwana",
+    "newOnLine": "Amazwana amasha · umugqa {{line}}",
+    "hint": "{{mod}} + Enter ukuze ushicilele",
+    "comment": "Phawula",
+    "reply": "Phendula",
+    "save": "Londoloza",
+    "cancel": "Khansela",
+    "empty": "Bhala amazwana akho.",
+    "explainSuggestion": "Chaza ngomusho owodwa ukuthi kungani uphakamisa le khodi.",
+    "addSuggestion": "Phakamisa ikhodi",
+    "removeSuggestion": "Susa isiphakamiso",
+    "edited": "kuhleliwe",
+    "menu": "Izenzo zamazwana",
+    "edit": "Hlela",
+    "delete": "Susa",
+    "deleteTitle": "Susa la mazwana?",
+    "deleteText": "Azonyamalala engxoxweni. Lokhu akunakuhlehliswa.",
+    "deleted": "Amazwana asusiwe",
+    "roles": {
+      "author": "Umbhali",
+      "required": "Kuyadingeka",
+      "community": "Umphakathi",
+      "reviewer": "Umbuyekezi"
+    }
+  },
+  "suggestion": {
+    "title": "Isiphakamiso",
+    "copy": "Kopisha",
+    "copied": "Kukopishiwe",
+    "empty": "Susa umugqa"
+  },
+  "reviewers": {
+    "title": "Ababuyekezi",
+    "empty": "Akekho okwamanje obuyekeza le pull request.",
+    "required_one": "Ukubuyekeza okudingekayo okungu-{{approved}} kokungu-{{count}} kuvunyiwe",
+    "required_other": "Ukubuyekeza okudingekayo okungu-{{approved}} kokungu-{{count}} kuvunyiwe",
+    "requiredTag": "Kuyadingeka",
+    "communityTag": "Umphakathi",
+    "claim": "Zinikele njengombuyekezi",
+    "claimHint": "Ukubuyekeza ithimba elikubona kuwusizo kukunika idumela elingu-+{{reward}}.",
+    "judge": "Ukubuyekeza okuwusizo · +{{reward}}",
+    "helpful": "Kubonwe kuwusizo",
+    "helpfulFor": "Kubonwe kuwusizo · idumela elingu-+{{reward}}",
+    "judged": "Ukubuyekeza kuka-{{name}} kumnika idumela elingu-+{{reward}}",
+    "unjudged": "Ukubuyekeza kuka-{{name}} akusabonwa kuwusizo"
+  },
+  "checks": {
+    "title": "Ukuhlola",
+    "onGithub": "Buka ukuhlola ku-GitHub",
+    "none": "Akukho kuhlola ku-commit yokugcina.",
+    "passed_one": "Ukuhlola okungu-{{count}} kuphumelele",
+    "passed_other": "Konke ukuhlola okungu-{{count}} kuyaphumelela",
+    "running_one": "Ukuhlola okungu-{{count}} kuyaqhubeka",
+    "running_other": "Ukuhlola okungu-{{count}} kuyaqhubeka",
+    "error": "Imininingwane yokuhlola ayikwazanga ukulayisha.",
+    "details": "Buka irekhodi lika-{{name}}",
+    "state": {
+      "SUCCESS": "Kuphumelele:",
+      "FAILURE": "Kuhlulekile:",
+      "PENDING": "Kuyaqhubeka:",
+      "SKIPPED": "Kweqiwe:"
+    }
+  },
+  "task": {
+    "title": "Umsebenzi oxhunyiwe",
+    "none": "Ayikho i-issue exhunyiwe. I-PR ebhala “Closes #12” encazelweni yayo ivela lapha.",
+    "error": "Ama-issue axhunyiwe awakwazanga ukulayisha.",
+    "untitled": "I-issue #{{number}}",
+    "open": "Ivuliwe · le PR izoyivala uma ihlanganiswa",
+    "closed": "Ivaliwe",
+    "willClose": "Le PR izoyivala uma ihlanganiswa",
+    "starter": "isinyathelo sokuqala"
+  },
+  "conversation": {
+    "label": "Ingxoxo ye-pull request",
+    "opened": "uvule le pull request",
+    "noDescription": "Ayikho incazelo.",
+    "empty": "Awekho amazwana okwamanje: qala ingxoxo.",
+    "placeholder": "Phawula nge-pull request…",
+    "composerLabel": "Phawula nge-pull request",
+    "send": "Phawula",
+    "sent": "Amazwana ashicilelwe",
+    "reviewHint": "Uqedile ukubuyekeza?",
+    "verdict": {
+      "COMMENTED": "uphawulile",
+      "APPROVED": "uvume lezi zinguquko",
+      "CHANGES_REQUESTED": "ucele izinguquko"
+    }
+  },
+  "submit": {
+    "eyebrow": "I-pull request #{{number}}",
+    "title": "Thumela ukubuyekeza kwami",
+    "text": "Isinqumo sakho nomlayezo wakho kujoyina ingxoxo; umbhali ukubona ngokushesha.",
+    "close": "Vala",
+    "verdict": "Isinqumo",
+    "verdicts": {
+      "COMMENTED": "Phawula",
+      "APPROVED": "Vuma",
+      "CHANGES_REQUESTED": "Cela izinguquko"
+    },
+    "verdictHints": {
+      "COMMENTED": "Imibono, ngaphandle kwesinqumo.",
+      "APPROVED": "Kuhle kuwe: ingahlanganiswa.",
+      "CHANGES_REQUESTED": "Kufanele ilungiswe ngaphambi kokuhlanganiswa."
+    },
+    "message": "Umlayezo wokubuyekeza kwakho",
+    "placeholder": "Yisho okuhle, nokushodayo…",
+    "placeholderOptional": "Igama elilodwa kumbhali (akuphoqelekile)",
+    "hint": "{{mod}} + Enter ukuze uthumele",
+    "explain": "Yisho okushodayo: umlayezo uyadingeka, ngaphandle uma uvuma.",
+    "reward": "Ukubuyekeza komphakathi: uma ithimba likubona kuwusizo, kukunika idumela elingu-+{{reward}}.",
+    "cancel": "Khansela",
+    "send": {
+      "COMMENTED": "Thumela amazwana ami",
+      "APPROVED": "Vuma",
+      "CHANGES_REQUESTED": "Cela izinguquko"
+    },
+    "done": {
+      "COMMENTED": "Ukubuyekeza kwakho kwe-#{{number}} kuthunyelwe",
+      "APPROVED": "Uvume i-#{{number}}",
+      "CHANGES_REQUESTED": "Kucelwe izinguquko ku-#{{number}}"
+    }
   }
 }

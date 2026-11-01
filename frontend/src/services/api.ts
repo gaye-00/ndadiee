@@ -45,6 +45,57 @@ async function refreshAccessToken(): Promise<string> {
   return session.accessToken;
 }
 
+// Secondes avant son expiration où un access token est déjà « trop vieux » pour ouvrir une connexion durable
+const TOKEN_MARGIN_SECONDS = 60;
+
+/** Date d'expiration (en secondes) écrite dans un JWT, sans en vérifier la signature : seul le serveur le fait. */
+function expiresAt(token: string): number | null {
+  try {
+    const payload = token.split('.')[1]?.replace(/-/g, '+').replace(/_/g, '/');
+    if (!payload) {
+      return null;
+    }
+    const claims = JSON.parse(atob(payload.padEnd(payload.length + ((4 - (payload.length % 4)) % 4), '='))) as { exp?: number };
+    return typeof claims.exp === 'number' ? claims.exp : null;
+  } catch {
+    return null;
+  }
+}
+
+/**
+ * Un access token valable encore au moins une minute, pour une connexion qui ne passe pas par axios (le WebSocket de la
+ * messagerie). Renouvelle la session s'il le faut, avec le même rafraîchissement unique que les requêtes.
+ *
+ * @param force renouveler même si le jeton semble valable (le serveur vient de le refuser)
+ * @returns null sans session, ou si elle n'a pas pu être renouvelée. Refusée par le serveur, la session est fermée ;
+ *   injoignable (réseau coupé), elle reste ouverte : la prochaine tentative la renouvellera.
+ */
+export async function getFreshAccessToken({ force = false }: { force?: boolean } = {}): Promise<string | null> {
+  const token = storage.getAccessToken();
+  const expiry = token ? expiresAt(token) : null;
+  if (token && !force && expiry !== null && expiry - Date.now() / 1000 > TOKEN_MARGIN_SECONDS) {
+    return token;
+  }
+  if (!storage.getRefreshToken()) {
+    return null;
+  }
+  try {
+    refreshInProgress ??= refreshAccessToken().finally(() => {
+      refreshInProgress = null;
+    });
+    return await refreshInProgress;
+  } catch (refreshError) {
+    const status = axios.isAxiosError(refreshError) ? refreshError.response?.status : undefined;
+    if (status === 401 || status === 403) {
+      if (getApiError(refreshError)?.errorCode === 'ACCOUNT_BLOCKED') {
+        toast.error(i18n.t('auth.sessionBlocked'));
+      }
+      useAuthStore.getState().logout();
+    }
+    return null;
+  }
+}
+
 api.interceptors.response.use(
   (response) => response,
   async (error: AxiosError) => {

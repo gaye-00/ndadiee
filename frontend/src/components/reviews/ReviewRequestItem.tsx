@@ -1,6 +1,5 @@
 import {
   ArrowUpRight,
-  Check,
   CircleCheck,
   CircleX,
   Clock,
@@ -9,9 +8,6 @@ import {
   GitBranch,
   GitCommitHorizontal,
   GitMerge,
-  GitPullRequestArrow,
-  GitPullRequestClosed,
-  GitPullRequestDraft,
   MessageSquare,
   Sparkles,
   UserRoundMinus,
@@ -24,6 +20,7 @@ import { Link } from 'react-router-dom';
 import { toast } from 'sonner';
 import PulsatingDots from '@/components/feedback/PulsatingDots';
 import { pullRequestAuthor } from '@/components/reviews/pullRequestAuthor';
+import { mergeStatusOf, PHASES, phaseOf, STATE_BADGES } from '@/components/reviews/reviewVisuals';
 import GithubMark from '@/components/shared/GithubMark';
 import UserAvatar from '@/components/shared/UserAvatar';
 import { useNow } from '@/hooks/useNow';
@@ -32,7 +29,7 @@ import { prefetch } from '@/lib/prefetch';
 import { cn } from '@/lib/utils';
 import { pages } from '@/router/pages';
 import { paths } from '@/router/paths';
-import type { PullRequest, Reviewer, ReviewState, ReviewTab } from '@/types/review.types';
+import type { PullRequest, Reviewer, ReviewTab } from '@/types/review.types';
 import { formatCount, formatRelativeTime, isolate } from '@/utils/formatters';
 
 const HOUR = 3_600_000;
@@ -45,26 +42,6 @@ const DIFF_SQUARES = 5;
 const LABELS_SHOWN = 3;
 
 const focusRing = 'outline-none focus-visible:ring-2 focus-visible:ring-ring/70';
-
-/** L'état d'une PR : ouverte, brouillon, fusionnée, fermée ; son pictogramme et sa couleur */
-type Phase = 'open' | 'draft' | 'merged' | 'closed';
-
-const PHASES: Record<Phase, { icon: LucideIcon; tone: string; accent: string }> = {
-  open: { icon: GitPullRequestArrow, tone: 'bg-jade/12 text-jade ring-jade/25', accent: 'var(--kente-jade)' },
-  draft: { icon: GitPullRequestDraft, tone: 'bg-foreground/6 text-muted-foreground ring-foreground/10', accent: 'var(--faint-foreground)' },
-  merged: { icon: GitMerge, tone: 'bg-gold/12 text-gold ring-gold/25', accent: 'var(--kente-gold)' },
-  closed: { icon: GitPullRequestClosed, tone: 'bg-coral/10 text-coral ring-coral/25', accent: 'var(--kente-coral)' },
-};
-
-function phaseOf(pullRequest: Pick<PullRequest, 'status' | 'draft'>): Phase {
-  if (pullRequest.status === 'MERGED') {
-    return 'merged';
-  }
-  if (pullRequest.status === 'CLOSED') {
-    return 'closed';
-  }
-  return pullRequest.draft ? 'draft' : 'open';
-}
 
 interface ReviewRequestItemProps {
   pullRequest: PullRequest;
@@ -315,14 +292,14 @@ function Fact({ icon: Icon, label, children }: { icon: LucideIcon; label: string
 }
 
 /** « +214 −38 » et cinq carrés : la part des ajouts en vert, celle des suppressions en rouge. */
-export function DiffStat({ additions, deletions }: { additions: number; deletions: number }) {
+export function DiffStat({ additions, deletions, className }: { additions: number; deletions: number; className?: string }) {
   const { t } = useTranslation('reviews');
   const total = additions + deletions;
   const green = total === 0 ? 0 : Math.round((additions / total) * DIFF_SQUARES);
   const red = total === 0 ? 0 : Math.min(DIFF_SQUARES - green, Math.max(deletions > 0 ? 1 : 0, Math.round((deletions / total) * DIFF_SQUARES)));
 
   return (
-    <span className="inline-flex items-center gap-2" title={t('item.diff', { additions, deletions })}>
+    <span className={cn('inline-flex items-center gap-2', className)} title={t('item.diff', { additions, deletions })}>
       <span aria-hidden dir="ltr" className="tabular-nums">
         <span className="text-jade">+{formatCount(additions)}</span> <span className="text-coral">−{formatCount(deletions)}</span>
       </span>
@@ -376,13 +353,6 @@ function Checks({ pullRequest }: { pullRequest: PullRequest }) {
 }
 
 // ==================== RELECTEURS ====================
-
-const STATE_BADGES: Record<ReviewState, { icon: LucideIcon; tone: string }> = {
-  APPROVED: { icon: Check, tone: 'bg-kente-jade text-kente-night' },
-  CHANGES_REQUESTED: { icon: FileDiff, tone: 'bg-kente-coral text-white' },
-  COMMENTED: { icon: MessageSquare, tone: 'bg-kente-gold text-kente-night' },
-  REQUESTED: { icon: Clock, tone: 'bg-surface text-faint-foreground ring-1 ring-border-strong' },
-};
 
 /**
  * Les relecteurs (design 3C : « Chinedu · changements demandés, Tunde · approuvé, Wanjiru · communauté ») : chaque
@@ -516,47 +486,40 @@ function Action({ pullRequest, tab, href }: { pullRequest: PullRequest; tab: Rev
  */
 function Verdict({ pullRequest }: { pullRequest: PullRequest }) {
   const { t } = useTranslation('reviews');
-  const required = pullRequest.reviewers.filter((reviewer) => reviewer.required);
-  const changes = pullRequest.reviewers.some((reviewer) => reviewer.state === 'CHANGES_REQUESTED');
-  const awaited = pullRequest.reviewers.filter((reviewer) => reviewer.state === 'REQUESTED').length;
-  const approved = required.length > 0 && required.every((reviewer) => reviewer.state === 'APPROVED');
+  const status = mergeStatusOf(pullRequest);
   const label = 'inline-flex items-center gap-1.5 text-xs font-bold whitespace-nowrap';
 
-  if (pullRequest.status === 'MERGED') {
-    return (
-      <span className={cn(label, 'text-gold')}>
-        <GitMerge aria-hidden className="size-3.5" />
-        {t('verdict.merged')}
-      </span>
-    );
+  switch (status.kind) {
+    case 'merged':
+      return (
+        <span className={cn(label, 'text-gold')}>
+          <GitMerge aria-hidden className="size-3.5" />
+          {t('verdict.merged')}
+        </span>
+      );
+    case 'closed':
+      return <span className={cn(label, 'text-muted-foreground')}>{t('verdict.closed')}</span>;
+    case 'draft':
+      return <span className={cn(label, 'font-semibold text-muted-foreground')}>{t('verdict.draft')}</span>;
+    case 'changes':
+      return (
+        <span className={cn(label, 'text-coral')}>
+          <FileDiff aria-hidden className="size-3.5" />
+          {t('verdict.changes')}
+        </span>
+      );
+    case 'ready':
+      return (
+        <span className={cn(label, 'text-jade')}>
+          <CircleCheck aria-hidden className="size-3.5" />
+          {t('verdict.ready')}
+        </span>
+      );
+    case 'awaiting':
+      return <span className={cn(label, 'font-semibold text-muted-foreground')}>{t('verdict.awaiting', { count: status.count })}</span>;
+    case 'noReviewer':
+      return <span className={cn(label, 'font-semibold text-muted-foreground')}>{t('verdict.noReviewer')}</span>;
   }
-  if (pullRequest.status === 'CLOSED') {
-    return <span className={cn(label, 'text-muted-foreground')}>{t('verdict.closed')}</span>;
-  }
-  if (pullRequest.draft) {
-    return <span className={cn(label, 'font-semibold text-muted-foreground')}>{t('verdict.draft')}</span>;
-  }
-  if (changes) {
-    return (
-      <span className={cn(label, 'text-coral')}>
-        <FileDiff aria-hidden className="size-3.5" />
-        {t('verdict.changes')}
-      </span>
-    );
-  }
-  if (approved) {
-    return (
-      <span className={cn(label, 'text-jade')}>
-        <CircleCheck aria-hidden className="size-3.5" />
-        {t('verdict.ready')}
-      </span>
-    );
-  }
-  return (
-    <span className={cn(label, 'font-semibold text-muted-foreground')}>
-      {awaited > 0 ? t('verdict.awaiting', { count: awaited }) : t('verdict.noReviewer')}
-    </span>
-  );
 }
 
 const TAG_TONES = {

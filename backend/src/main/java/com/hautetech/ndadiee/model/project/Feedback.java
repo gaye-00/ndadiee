@@ -6,6 +6,7 @@ import org.hibernate.annotations.OnDeleteAction;
 import com.hautetech.ndadiee.common.BaseEntity;
 import com.hautetech.ndadiee.model.user.Developer;
 
+import jakarta.persistence.CheckConstraint;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -28,7 +29,8 @@ import lombok.experimental.SuperBuilder;
 @Entity
 @Table(
     name = "feedback",
-    uniqueConstraints = @UniqueConstraint(name = "uk_feedback_call_author", columnNames = {"call_id", "author_id"})
+    uniqueConstraints = @UniqueConstraint(name = "uk_feedback_call_author", columnNames = {"call_id", "author_id"}),
+    check = @CheckConstraint(name = "ck_feedback_rating", constraint = "rating between 1 and 5")
 )
 public class Feedback extends BaseEntity {
 

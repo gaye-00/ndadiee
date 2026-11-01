@@ -13,7 +13,7 @@ export type PageImport = () => Promise<{ default: ComponentType }>;
  */
 function withTexts(
   load: PageImport,
-  ...namespaces: Array<'admin' | 'dashboard' | 'forum' | 'hackathons' | 'openings' | 'profile' | 'projectForm' | 'reviews' | 'showcase' | 'workspace'>
+  ...namespaces: Array<'admin' | 'dashboard' | 'forum' | 'hackathons' | 'messages' | 'openings' | 'profile' | 'projectForm' | 'reviews' | 'showcase' | 'workspace'>
 ): PageImport {
   return () => Promise.all([load(), i18n.loadNamespaces(namespaces)]).then(([module]) => module);
 }
@@ -43,7 +43,8 @@ export const pages = {
   // Les textes des revues : la carte des pull requests du dépôt (RepositorySyncCard)
   project: withTexts(() => import('@/pages/projects/ProjectPage'), 'reviews'),
   openings: withTexts(() => import('@/pages/openings/OpeningsPage'), 'openings'),
-  newOpening: () => import('@/pages/openings/NewOpeningPage'),
+  // Les champs d'un rôle sont ceux du formulaire de projet ; l'aperçu est une carte de la page des annonces
+  newOpening: withTexts(() => import('@/pages/openings/NewOpeningPage'), 'openings', 'projectForm'),
   hackathons: withTexts(() => import('@/pages/hackathons/HackathonsPage'), 'hackathons'),
   hackathon: withTexts(() => import('@/pages/hackathons/HackathonPage'), 'hackathons'),
   forum: withTexts(() => import('@/pages/forum/ForumPage'), 'forum'),
@@ -62,9 +63,9 @@ export const pages = {
   workspaceDevlog: inWorkspace(() => import('@/pages/workspace/WorkspaceDevlogPage')),
   workspaceRoles: inWorkspace(() => import('@/pages/workspace/WorkspaceRolesPage')),
   workspaceSettings: inWorkspace(() => import('@/pages/workspace/WorkspaceSettingsPage')),
-  review: () => import('@/pages/reviews/ReviewPage'),
+  review: withTexts(() => import('@/pages/reviews/ReviewPage'), 'reviews'),
   reviews: withTexts(() => import('@/pages/reviews/ReviewsPage'), 'reviews'),
-  messages: () => import('@/pages/messages/MessagesPage'),
+  messages: withTexts(() => import('@/pages/messages/MessagesPage'), 'messages'),
   notifications: () => import('@/pages/notifications/NotificationsPage'),
   settings: () => import('@/pages/settings/SettingsPage'),
 

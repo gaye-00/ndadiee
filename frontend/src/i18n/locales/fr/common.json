@@ -53,8 +53,28 @@
       "projects": "Projets",
       "people": "Devs",
       "topics": "Forum",
-      "actions": "Actions"
-    }
+      "actions": "Actions",
+      "pages": "Pages"
+    },
+    "all": "Tout",
+    "seeAllFor": "Voir tous les résultats pour « {{query}} »",
+    "resultCount_one": "{{count}} résultat",
+    "resultCount_many": "{{count}} résultats",
+    "resultCount_other": "{{count}} résultats",
+    "seats_one": "{{count}} place",
+    "seats_many": "{{count}} places",
+    "seats_other": "{{count}} places",
+    "tooShort": "Écris au moins 2 caractères.",
+    "promptTitle": "Que cherches-tu ?",
+    "promptText": "Un rôle, un projet, un dev ou un sujet du forum.",
+    "noResultsText": "Vérifie l'orthographe, ou essaie un mot plus court.",
+    "askForum": "Poser la question sur le forum",
+    "failed": "La recherche n'a pas abouti.",
+    "more": "Voir plus de résultats",
+    "loadingMore": "Chargement de la suite",
+    "moreFailed": "La suite n'a pas pu se charger.",
+    "clear": "Effacer la recherche",
+    "dialogDescription": "Cherche un rôle, un projet, un dev ou un sujet, ou ouvre une page."
   },
   "kanban": {
     "todo": "À faire",
@@ -104,6 +124,16 @@
     "network": "Impossible de joindre le serveur. Vérifie ta connexion.",
     "notFound": "Cette page n'existe pas, ou a été déplacée."
   },
+  "errorPages": {
+    "notFoundTitle": "Ce fil ne mène nulle part.",
+    "crashTitle": "Cette page n'a pas pu s'afficher.",
+    "crashText": "Recharge-la pour réessayer. Si le problème revient, repars de l'accueil.",
+    "updateTitle": "Une nouvelle version de Ndadiee est en ligne.",
+    "updateText": "Recharge la page pour passer à cette version.",
+    "offlineText": "Cette page n'est pas encore sur ton appareil. Reconnecte-toi, puis recharge-la.",
+    "reload": "Recharger la page",
+    "home": "Retour à l'accueil"
+  },
   "settingsPage": {
     "eyebrow": "ESPACE PERSONNEL · NDADIEE",
     "pageTitle": "Un espace à ton image.",
@@ -143,6 +173,12 @@
     "website": "Site personnel",
     "openToWork": "Ouvert aux collaborations",
     "openToWorkDescription": "Indique aux équipes que tu es partant pour de nouveaux projets.",
+    "emailsTitle": "E-mails",
+    "emailsDescription": "Ce que Ndadiee t’envoie à {{email}}.",
+    "reviewEmails": "Activité de mes revues de code",
+    "reviewEmailsDescription": "Un commentaire sur ta pull request ou dans une discussion où tu as écrit, un verdict, quelqu’un qui se propose pour relire, ta revue jugée utile.",
+    "reviewEmailsOn": "Tu recevras les e-mails de tes revues de code",
+    "reviewEmailsOff": "Plus d’e-mails de revue de code",
     "publicProfile": "Voir mon profil",
     "memberSince": "Membre depuis {{date}}",
     "profileSaving": "Enregistrement du profil…",
@@ -186,7 +222,7 @@
     "showcase": "Vitrine",
     "project": "Projet",
     "openings": "Annonces",
-    "newOpening": "Publier une annonce",
+    "newOpening": "Publier un rôle",
     "hackathons": "Hackathons",
     "hackathon": "Hackathon",
     "forum": "Forum",
@@ -788,6 +824,18 @@
       "seeAll": "Tout voir",
       "empty": "Rien de neuf pour l'instant.",
       "unread": "non lue",
+      "unreadCount_one": "{{count}} non lue",
+      "unreadCount_many": "{{count}} non lues",
+      "unreadCount_other": "{{count}} non lues",
+      "allRead": "Tout est lu.",
+      "today": "Aujourd'hui",
+      "yesterday": "Hier",
+      "emptyText": "Les réponses à tes sujets, les candidatures et les nouveaux abonnés arriveront ici.",
+      "failed": "Les notifications n'ont pas pu se charger.",
+      "more": "Voir les plus anciennes",
+      "loadingMore": "Chargement des plus anciennes",
+      "moreFailed": "Les plus anciennes n'ont pas pu se charger.",
+      "manageEmails": "Gérer mes e-mails",
       "types": {
         "NEW_ANSWER": "<b>{{actor}}</b> a répondu à « {{target}} »",
         "ANSWER_ACCEPTED": "<b>{{actor}}</b> a accepté ta réponse à « {{target}} »",
@@ -805,6 +853,12 @@
       "reputation_one": "{{count}} point de réputation",
       "reputation_many": "{{count}} points de réputation",
       "reputation_other": "{{count}} points de réputation"
+    },
+    "messages": {
+      "unread_one": "{{count}} conversation non lue",
+      "unread_many": "{{count}} conversations non lues",
+      "unread_other": "{{count}} conversations non lues",
+      "newMessage": "Nouveau message"
     }
   },
   "code": {

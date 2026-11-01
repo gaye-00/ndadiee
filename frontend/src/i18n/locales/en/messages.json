@@ -1,0 +1,92 @@
+{
+  "list": {
+    "title": "Messages",
+    "search": "Search your conversations",
+    "searchPlaceholder": "Search…",
+    "clearSearch": "Clear search",
+    "filter": "Filter conversations",
+    "all": "All",
+    "unread": "Unread",
+    "you": "You: {{text}}",
+    "deleted": "Message deleted",
+    "noMessage": "New conversation",
+    "unreadCount_one": "{{count}} unread message",
+    "unreadCount_other": "{{count}} unread messages",
+    "emptyTitle": "No conversations yet",
+    "emptyDescription": "Write to a member: a question about their project, a team idea, a helping hand.",
+    "noMatch": "No conversation matches “{{query}}”.",
+    "allRead": "All caught up. Nice work!",
+    "error": "Couldn't load your conversations."
+  },
+  "status": {
+    "live": "Live",
+    "connecting": "Connecting…",
+    "reconnecting": "Reconnecting…",
+    "offline": "Offline"
+  },
+  "thread": {
+    "label": "Conversation with {{name}}",
+    "back": "Back to conversations",
+    "online": "Online",
+    "typing": "typing…",
+    "typingLabel": "{{name}} is typing",
+    "profile": "View profile",
+    "start": "This is the beginning of your conversation with {{name}}.",
+    "private": "Private messages: only the two of you can see them.",
+    "newMessages": "New messages",
+    "loadingOlder": "Loading earlier messages…",
+    "loading": "Loading conversation…",
+    "jumpToLatest": "Jump to latest messages",
+    "unseen_one": "{{count}} new message, jump to bottom",
+    "unseen_other": "{{count}} new messages, jump to bottom",
+    "notFound": "Conversation not found",
+    "notFoundHint": "It doesn't exist, or you're not part of it.",
+    "error": "Couldn't load the messages.",
+    "backToList": "All conversations"
+  },
+  "message": {
+    "you": "You",
+    "edited": "edited",
+    "deleted": "Message deleted",
+    "sending": "Sending",
+    "sent": "Sent",
+    "seen": "Seen",
+    "failed": "Not sent",
+    "retry": "Retry",
+    "discard": "Discard",
+    "actions": "Message actions",
+    "copy": "Copy text",
+    "copied": "Text copied",
+    "edit": "Edit",
+    "delete": "Delete",
+    "deleteTitle": "Delete this message?",
+    "deleteDescription": "It will disappear for both of you. This can't be undone.",
+    "deleteConfirm": "Delete"
+  },
+  "composer": {
+    "label": "Your message",
+    "placeholder": "Message {{name}}…",
+    "send": "Send",
+    "save": "Save changes",
+    "editing": "Editing",
+    "cancelEdit": "Cancel editing",
+    "hint": "<k>Enter</k> to send · <k>Shift</k> + <k>Enter</k> for a new line · <k>↑</k> to edit your last message",
+    "editHint": "<k>Enter</k> to save · <k>Esc</k> to cancel",
+    "remaining_one": "{{count}} character left",
+    "remaining_other": "{{count}} characters left"
+  },
+  "newConversation": {
+    "title": "New message",
+    "description": "Write to a member of the community.",
+    "search": "A member's name or username",
+    "suggestions": "Community members",
+    "results": "Results",
+    "empty": "No member matches “{{query}}”.",
+    "error": "The search didn't go through. Try again in a moment."
+  },
+  "empty": {
+    "title": "Your conversations",
+    "description": "Pick a conversation, or write to a member of the community: a question, a team idea, a helping hand.",
+    "action": "New message"
+  }
+}

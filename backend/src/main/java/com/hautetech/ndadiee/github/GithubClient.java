@@ -3,6 +3,8 @@ package com.hautetech.ndadiee.github;
 import java.io.IOException;
 import java.net.http.HttpClient;
 import java.time.Instant;
+import java.time.format.DateTimeParseException;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -31,8 +33,9 @@ import tools.jackson.databind.JsonNode;
 import tools.jackson.databind.json.JsonMapper;
 
 /**
- * Lecture de l'API publique de GitHub : un dépôt, ses langages, son README, les dépôts d'un compte (REST) ; les pull
- * requests d'un dépôt (GraphQL, avec jeton). Rien d'autre : ni écriture, ni dépôt privé. Les erreurs de GitHub
+ * Lecture de l'API publique de GitHub : un dépôt, ses langages, son README, les dépôts d'un compte, les fichiers
+ * modifiés d'une pull request et leur diff (REST) ; les pull requests d'un dépôt, les vérifications d'une PR et les
+ * issues qu'elle ferme (GraphQL, avec jeton). Rien d'autre : ni écriture, ni dépôt privé. Les erreurs de GitHub
  * deviennent des GithubException (introuvable, quota atteint, injoignable), que le formulaire sait expliquer.
  */
 @Slf4j
@@ -67,6 +70,31 @@ public class GithubClient {
               }
             }
             """ + PULL_REQUEST_FIELDS;
+    // Les vérifications du dernier commit d'une PR, une par une, et les issues qu'elle fermera en fusionnant
+    private static final String PULL_REQUEST_CHECKS = """
+            query($owner: String!, $name: String!, $number: Int!, $checks: Int!) {
+              repository(owner: $owner, name: $name) {
+                pullRequest(number: $number) {
+                  closingIssuesReferences(first: 5) { nodes { number title url state labels(first: 10) { nodes { name } } } }
+                  statusCheckRollup {
+                    contexts(first: $checks) {
+                      totalCount
+                      nodes {
+                        __typename
+                        ... on CheckRun {
+                          name status conclusion detailsUrl startedAt completedAt
+                          checkSuite { app { name } workflowRun { workflow { name } } }
+                        }
+                        ... on StatusContext { context state targetUrl description createdAt }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+            """;
+    // Fichiers modifiés lus par page de l'API REST (le maximum qu'elle accepte)
+    private static final int FILES_PER_PAGE = 100;
     private static final JsonMapper MAPPER = JsonMapper.builder().build();
 
     private final RestClient client;
@@ -172,6 +200,84 @@ public class GithubClient {
             }
         });
         return found;
+    }
+
+    /**
+     * Les fichiers modifiés d'une pull request et leur diff, dans l'ordre de GitHub, `maxPages` pages de 100 au plus.
+     * Le diff d'un fichier binaire ou trop gros manque (patch nul), comme sur GitHub. GithubException.notFound si la
+     * PR ou le dépôt n'existe pas.
+     */
+    public List<PullRequestFile> pullRequestFiles(String owner, String name, int number, int maxPages) {
+        List<PullRequestFile> files = new ArrayList<>();
+        for (int page = 1; page <= maxPages; page++) {
+            int current = page;
+            List<PullRequestFile> batch = call(() -> client.get()
+                    .uri("/repos/{owner}/{name}/pulls/{number}/files?per_page={size}&page={page}", owner, name, number, FILES_PER_PAGE, current)
+                    .retrieve()
+                    .body(new ParameterizedTypeReference<List<PullRequestFile>>() {
+                    }));
+            if (batch == null || batch.isEmpty()) {
+                break;
+            }
+            files.addAll(batch);
+            if (batch.size() < FILES_PER_PAGE) {
+                break;
+            }
+        }
+        return files;
+    }
+
+    /**
+     * Les vérifications du dernier commit d'une pull request (`maxChecks` au plus) et les issues qu'elle fermera en
+     * fusionnant. Une requête GraphQL ; GithubException.notFound si le dépôt ou la PR n'existe pas.
+     */
+    public PullRequestChecks pullRequestChecks(String owner, String name, int number, int maxChecks) {
+        JsonNode repository = graphql(PULL_REQUEST_CHECKS, Map.of("owner", owner, "name", name, "number", number, "checks", maxChecks));
+        JsonNode pullRequest = repository.path("pullRequest");
+        if (!pullRequest.isObject()) {
+            throw GithubException.notFound();
+        }
+        JsonNode contexts = pullRequest.path("statusCheckRollup").path("contexts");
+        List<CheckContext> checks = contexts.path("nodes").isArray()
+                ? contexts.path("nodes").valueStream().filter(JsonNode::isObject).map(GithubClient::checkOf).toList()
+                : List.of();
+        List<ClosingIssue> issues = pullRequest.path("closingIssuesReferences").path("nodes").isArray()
+                ? pullRequest.path("closingIssuesReferences").path("nodes").valueStream()
+                        .filter(JsonNode::isObject)
+                        .map(node -> MAPPER.treeToValue(node, ClosingIssue.class))
+                        .toList()
+                : List.of();
+        return new PullRequestChecks(checks, contexts.path("totalCount").asInt(checks.size()), issues);
+    }
+
+    // Une vérification : un check run (GitHub Actions, une application) ou un statut (un service extérieur)
+    private static CheckContext checkOf(JsonNode node) {
+        if ("StatusContext".equals(node.path("__typename").asString(""))) {
+            return new CheckContext(CheckContext.STATUS, textOf(node.path("context")), null, textOf(node.path("state")),
+                    textOf(node.path("targetUrl")), instantOf(node.path("createdAt")), null, null, null,
+                    textOf(node.path("description")));
+        }
+        JsonNode suite = node.path("checkSuite");
+        return new CheckContext(CheckContext.CHECK_RUN, textOf(node.path("name")), textOf(node.path("status")),
+                textOf(node.path("conclusion")), textOf(node.path("detailsUrl")), instantOf(node.path("startedAt")),
+                instantOf(node.path("completedAt")), textOf(suite.path("app").path("name")),
+                textOf(suite.path("workflowRun").path("workflow").path("name")), null);
+    }
+
+    private static String textOf(JsonNode node) {
+        return node.isString() && !node.asString().isBlank() ? node.asString() : null;
+    }
+
+    private static Instant instantOf(JsonNode node) {
+        String text = textOf(node);
+        if (text == null) {
+            return null;
+        }
+        try {
+            return Instant.parse(text);
+        } catch (DateTimeParseException e) {
+            return null;
+        }
     }
 
     // Le dépôt d'une réponse GraphQL. GitHub répond 200 même en cas d'erreur : elles arrivent dans « errors »
@@ -380,5 +486,55 @@ public class GithubClient {
 
     @JsonIgnoreProperties(ignoreUnknown = true)
     public record StateCount(String state, int count) {
+    }
+
+    // ==================== LA PAGE D'UNE PULL REQUEST ====================
+
+    /**
+     * Un fichier modifié par une pull request (REST).
+     *
+     * @param status           added, removed, modified, renamed, copied, changed ou unchanged
+     * @param patch            son diff unifié, sans en-tête de fichier ; null pour un fichier binaire ou trop gros
+     * @param previousFilename son ancien chemin, s'il a été renommé
+     */
+    @JsonIgnoreProperties(ignoreUnknown = true)
+    public record PullRequestFile(
+            String filename,
+            String status,
+            int additions,
+            int deletions,
+            String patch,
+            @JsonProperty("previous_filename") String previousFilename) {
+    }
+
+    /**
+     * Les vérifications du dernier commit d'une PR et les issues qu'elle ferme.
+     *
+     * @param total toutes ses vérifications, même au-delà de celles lues
+     */
+    public record PullRequestChecks(List<CheckContext> checks, int total, List<ClosingIssue> issues) {
+    }
+
+    /**
+     * Une vérification du dernier commit.
+     *
+     * @param type        CHECK_RUN (GitHub Actions, une application) ou STATUS (un service extérieur)
+     * @param status      check run : QUEUED, IN_PROGRESS, COMPLETED, WAITING, PENDING, REQUESTED ; null pour un statut
+     * @param conclusion  check run terminé : SUCCESS, FAILURE, NEUTRAL, SKIPPED… ; statut : SUCCESS, PENDING, FAILURE,
+     *                    ERROR, EXPECTED
+     * @param app         l'application qui l'a lancée (« GitHub Actions »)
+     * @param workflow    le workflow d'Actions dont elle fait partie
+     * @param description ce qu'un statut dit de lui-même
+     */
+    public record CheckContext(String type, String name, String status, String conclusion, String url, Instant startedAt,
+            Instant completedAt, String app, String workflow, String description) {
+
+        public static final String CHECK_RUN = "CHECK_RUN";
+        public static final String STATUS = "STATUS";
+    }
+
+    /** Une issue que la PR fermera en fusionnant : son titre, son adresse, OPEN ou CLOSED, ses étiquettes */
+    @JsonIgnoreProperties(ignoreUnknown = true)
+    public record ClosingIssue(int number, String title, String url, String state, Nodes<Label> labels) {
     }
 }

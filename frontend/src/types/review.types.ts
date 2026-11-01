@@ -20,6 +20,8 @@ export interface Reviewer {
   community: boolean;
   requestedAt: string;
   submittedAt: string | null;
+  /** Revue communautaire jugée utile par l'équipe : elle lui a rapporté de la réputation */
+  helpful: boolean;
 }
 
 /** Une PR lue sur le dépôt GitHub du projet (PullRequestResponse.Github) */
@@ -120,4 +122,128 @@ export interface ReviewFilters extends PaginationParams {
   q?: string;
   /** Slug d'un projet */
   project?: string;
+}
+
+// ==================== LA PAGE D'UNE REVUE (design 3C) ====================
+
+/** Un verdict rendu : jamais « demandée » */
+export type SubmittedReviewState = Exclude<ReviewState, 'REQUESTED'>;
+
+/**
+ * Un commentaire de revue (ReviewCommentResponse.java) : dans la conversation, ou sur une ligne d'un fichier du diff,
+ * avec peut-être le code proposé à sa place. Une revue rendue en est un aussi : elle porte son verdict.
+ */
+export interface ReviewComment {
+  id: number;
+  author: UserSummary;
+  /** Markdown ; null pour un verdict rendu sans message */
+  body: string | null;
+  /** Sur une ligne du diff : le fichier et la ligne de sa nouvelle version ; null dans la conversation */
+  path: string | null;
+  line: number | null;
+  /** Le code proposé à la place de la ligne */
+  suggestion: string | null;
+  verdict: SubmittedReviewState | null;
+  createdAt: string;
+  updatedAt: string;
+}
+
+/** Ce que le membre connecté peut faire de la PR (PullRequestDetailResponse.Viewer) */
+export interface PullRequestViewer {
+  author: boolean;
+  canComment: boolean;
+  canReview: boolean;
+  canClaim: boolean;
+  canRelease: boolean;
+  /** Juger utile la revue d'un relecteur de la communauté : l'équipe du projet */
+  canJudge: boolean;
+}
+
+/** La page d'une revue (PullRequestDetailResponse.java) */
+export interface PullRequestDetail {
+  pullRequest: PullRequest;
+  /** Description en Markdown ; null si l'auteur n'en a pas écrit */
+  body: string | null;
+  /** Conversation, commentaires de ligne et revues rendues : les plus anciens d'abord */
+  comments: ReviewComment[];
+  viewer: PullRequestViewer;
+  /** Réputation que rapporte une revue communautaire jugée utile */
+  helpfulReward: number;
+}
+
+export type PullRequestFileStatus = 'ADDED' | 'MODIFIED' | 'REMOVED' | 'RENAMED' | 'COPIED';
+
+/** Un fichier modifié et son diff (PullRequestFileResponse.java) */
+export interface PullRequestFile {
+  path: string;
+  /** Son ancien chemin, s'il a été renommé ou copié */
+  previousPath: string | null;
+  status: PullRequestFileStatus;
+  additions: number;
+  deletions: number;
+  /** Diff unifié à partir du premier « @@ » ; null pour un fichier binaire ou trop gros */
+  patch: string | null;
+}
+
+/** Les fichiers modifiés d'une PR (PullRequestFilesResponse.java) */
+export interface PullRequestFiles {
+  /** Faux pour une PR de démonstration sans diff */
+  available: boolean;
+  files: PullRequestFile[];
+  /** Fichiers que la PR modifie en tout ; au-delà de ceux lus, ils sont sur GitHub */
+  total: number;
+  truncated: boolean;
+  url: string | null;
+}
+
+export type CheckState = 'SUCCESS' | 'FAILURE' | 'PENDING' | 'SKIPPED';
+
+/** Une vérification du dernier commit (PullRequestCheckResponse.java) */
+export interface PullRequestCheck {
+  name: string;
+  /** Le workflow ou l'application dont elle fait partie */
+  context: string | null;
+  state: CheckState;
+  description: string | null;
+  url: string | null;
+  startedAt: string | null;
+  completedAt: string | null;
+}
+
+/** Les vérifications, en échec d'abord (PullRequestChecksResponse.java) */
+export interface PullRequestChecks {
+  /** Faux pour une PR de démonstration sans détail : seuls les totaux de la PR sont connus */
+  available: boolean;
+  checks: PullRequestCheck[];
+  total: number;
+  url: string | null;
+}
+
+/** Une issue que la PR fermera en fusionnant : la tâche à laquelle elle répond (LinkedIssueResponse.java) */
+export interface LinkedIssue {
+  number: number;
+  /** null quand seul son numéro est connu */
+  title: string | null;
+  state: 'OPEN' | 'CLOSED' | null;
+  labels: string[];
+  /** Une issue « premier pas », pensée pour une première contribution */
+  starter: boolean;
+  url: string | null;
+}
+
+export interface ReviewCommentInput {
+  body: string;
+  path?: string;
+  line?: number;
+  suggestion?: string;
+}
+
+export interface ReviewCommentUpdate {
+  body: string;
+  suggestion?: string | null;
+}
+
+export interface ReviewSubmission {
+  state: SubmittedReviewState;
+  body?: string;
 }

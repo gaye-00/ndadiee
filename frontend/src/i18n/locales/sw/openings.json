@@ -63,5 +63,25 @@
     "openIssue": "Fungua kazi kwenye GitHub",
     "matchScore": "{{score}}%",
     "yourTeam": "Timu yako"
+  },
+  "form": {
+    "projectTitle": "Mradi",
+    "projectText": "Timu unayoajiria.",
+    "roleTitle": "Nafasi",
+    "roleText": "Taaluma unayotafuta: matangazo huchujwa kwayo.",
+    "detailsTitle": "Tangazo",
+    "detailsText": "Mtu huyu atafanya nini, na anaweza kuanzia wapi.",
+    "projectRequired": "Chagua mradi unaoajiri.",
+    "roleRequired": "Chagua nafasi.",
+    "noProjectTitle": "Kwanza unahitaji mradi.",
+    "noProjectText": "Nafasi huchapishwa kwa jina la mradi unaomiliki au unaotunza.",
+    "loadFailed": "Miradi yako haikuweza kupakiwa.",
+    "previewHint": "Tangazo kama litakavyoonekana kwenye ukurasa wa matangazo.",
+    "previewEmpty": "Chagua mradi na nafasi: tangazo litajitokeza hapa.",
+    "draftRestored": "Rasimu yako imerejeshwa.",
+    "discardText": "Tangazo unaloandika litaondolewa kwenye kifaa hiki.",
+    "publish": "Chapisha nafasi",
+    "publishing": "Inachapisha nafasi",
+    "published": "{{title}} imechapishwa."
   }
 }

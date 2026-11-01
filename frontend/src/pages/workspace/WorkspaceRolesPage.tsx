@@ -17,10 +17,10 @@ export default function WorkspaceRolesPage() {
   const { data: project } = useProject(slug);
   return (
     <div className="flex max-w-4xl flex-col gap-4">
-      {workspace.canManage && (
+      {workspace.canManage && slug && (
         <div className="flex justify-end">
           <Link
-            to={paths.newOpening}
+            to={paths.newOpeningFor(slug)}
             viewTransition
             onPointerEnter={() => prefetch(pages.newOpening)}
             onFocus={() => prefetch(pages.newOpening)}

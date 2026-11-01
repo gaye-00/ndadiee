@@ -53,8 +53,26 @@
       "projects": "Miradi",
       "people": "Wasanidi",
       "topics": "Jukwaa",
-      "actions": "Vitendo"
-    }
+      "actions": "Vitendo",
+      "pages": "Kurasa"
+    },
+    "all": "Zote",
+    "seeAllFor": "Ona matokeo yote ya “{{query}}”",
+    "resultCount_one": "tokeo {{count}}",
+    "resultCount_other": "matokeo {{count}}",
+    "seats_one": "nafasi {{count}}",
+    "seats_other": "nafasi {{count}}",
+    "tooShort": "Andika angalau herufi 2.",
+    "promptTitle": "Unatafuta nini?",
+    "promptText": "Nafasi, mradi, msanidi au mada ya jukwaa.",
+    "noResultsText": "Angalia tahajia, au jaribu neno fupi zaidi.",
+    "askForum": "Uliza kwenye jukwaa",
+    "failed": "Utafutaji haukukamilika.",
+    "more": "Ona matokeo zaidi",
+    "loadingMore": "Inapakia zaidi",
+    "moreFailed": "Yaliyobaki hayakuweza kupakiwa.",
+    "clear": "Futa utafutaji",
+    "dialogDescription": "Tafuta nafasi, mradi, msanidi au mada, au fungua ukurasa."
   },
   "kanban": {
     "todo": "Za kufanya",
@@ -103,6 +121,16 @@
     "network": "Imeshindwa kufikia seva. Angalia muunganisho wako.",
     "notFound": "Ukurasa huu haupo au umehamishwa."
   },
+  "errorPages": {
+    "notFoundTitle": "Uzi huu hauelekei popote.",
+    "crashTitle": "Ukurasa huu haukuweza kuonyeshwa.",
+    "crashText": "Upakie tena ili kujaribu tena. Tatizo likirudi, anza upya kutoka ukurasa wa mwanzo.",
+    "updateTitle": "Toleo jipya la Ndadiee limetoka.",
+    "updateText": "Pakia ukurasa tena ili kuhamia toleo hili.",
+    "offlineText": "Ukurasa huu bado haujafika kwenye kifaa chako. Unganisha tena, kisha uupakie tena.",
+    "reload": "Pakia ukurasa tena",
+    "home": "Rudi mwanzo"
+  },
   "settingsPage": {
     "eyebrow": "NAFASI YAKO · NDADIEE",
     "pageTitle": "Fanya nafasi hii iwe yako.",
@@ -142,6 +170,12 @@
     "website": "Tovuti binafsi",
     "openToWork": "Niko tayari kushirikiana",
     "openToWorkDescription": "Ijulishe timu kuwa uko tayari kujiunga na miradi mipya.",
+    "emailsTitle": "Barua pepe",
+    "emailsDescription": "Kile Ndadiee inachotuma kwa {{email}}.",
+    "reviewEmails": "Shughuli za mapitio yangu ya msimbo",
+    "reviewEmailsDescription": "Maoni kwenye pull request yako au kwenye mjadala uliouandikia, uamuzi, mtu anayejitolea kupitia, pitio lako likionekana lina msaada.",
+    "reviewEmailsOn": "Utapokea barua pepe za mapitio yako ya msimbo",
+    "reviewEmailsOff": "Hakuna tena barua pepe za mapitio ya msimbo",
     "publicProfile": "Tazama wasifu",
     "memberSince": "Mwanachama tangu {{date}}",
     "profileSaving": "Wasifu unahifadhiwa…",
@@ -181,7 +215,7 @@
     "showcase": "Onyesho",
     "project": "Mradi",
     "openings": "Matangazo",
-    "newOpening": "Chapisha tangazo",
+    "newOpening": "Chapisha nafasi",
     "hackathons": "Hackathoni",
     "hackathon": "Hackathoni",
     "forum": "Jukwaa",
@@ -748,6 +782,17 @@
       "seeAll": "Ona zote",
       "empty": "Hakuna jipya kwa sasa.",
       "unread": "haijasomwa",
+      "unreadCount_one": "{{count}} haijasomwa",
+      "unreadCount_other": "{{count}} hazijasomwa",
+      "allRead": "Umesoma zote.",
+      "today": "Leo",
+      "yesterday": "Jana",
+      "emptyText": "Majibu ya mada zako, maombi na wafuasi wapya yatafika hapa.",
+      "failed": "Arifa hazikuweza kupakiwa.",
+      "more": "Ona za zamani",
+      "loadingMore": "Inapakia za zamani",
+      "moreFailed": "Za zamani hazikuweza kupakiwa.",
+      "manageEmails": "Dhibiti barua pepe zangu",
       "types": {
         "NEW_ANSWER": "<b>{{actor}}</b> amejibu “{{target}}”",
         "ANSWER_ACCEPTED": "<b>{{actor}}</b> amekubali jibu lako kwa “{{target}}”",
@@ -764,6 +809,11 @@
       "explore": "Gundua",
       "reputation_one": "pointi {{count}} ya sifa",
       "reputation_other": "pointi {{count}} za sifa"
+    },
+    "messages": {
+      "unread_one": "Mazungumzo {{count}} hayajasomwa",
+      "unread_other": "Mazungumzo {{count}} hayajasomwa",
+      "newMessage": "Ujumbe mpya"
     }
   },
   "code": {

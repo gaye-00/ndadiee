@@ -28,7 +28,7 @@ const router = createBrowserRouter([
   {
     element: <RootLayout />,
     // Erreur dans une coquille elle-même ; les erreurs de page s'affichent plus bas, dans la coquille
-    errorElement: <RouteErrorBoundary />,
+    errorElement: <RouteErrorBoundary standalone />,
     // Premier chargement : code de la page demandée
     hydrateFallbackElement: <PageLoader />,
     children: [
@@ -126,7 +126,8 @@ const router = createBrowserRouter([
                   { path: paths.reviews, ...page('reviews') },
                   { path: paths.newOpening, ...page('newOpening') },
                   { path: paths.newTopic, ...page('newTopic') },
-                  { path: paths.messages, ...page('messages') },
+                  // /messages et /messages/12 : la même page, qui garde sa liste en ouvrant une conversation
+                  { path: paths.conversation(':conversationId?'), ...page('messages') },
                   { path: paths.notifications, ...page('notifications') },
                   { path: paths.settings, ...page('settings') },
                 ],

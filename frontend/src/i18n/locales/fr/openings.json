@@ -72,5 +72,25 @@
     "openIssue": "Ouvrir l'issue sur GitHub",
     "matchScore": "{{score}} %",
     "yourTeam": "Ton équipe"
+  },
+  "form": {
+    "projectTitle": "Le projet",
+    "projectText": "L'équipe pour laquelle tu recrutes.",
+    "roleTitle": "Le rôle",
+    "roleText": "Le métier que tu cherches : c'est par lui qu'on filtre les annonces.",
+    "detailsTitle": "L'annonce",
+    "detailsText": "Ce que fera cette personne, et par où elle peut commencer.",
+    "projectRequired": "Choisis le projet qui recrute.",
+    "roleRequired": "Choisis un rôle.",
+    "noProjectTitle": "Il te faut d'abord un projet.",
+    "noProjectText": "Un rôle se publie au nom d'un projet que tu portes ou que tu maintiens.",
+    "loadFailed": "Tes projets n'ont pas pu se charger.",
+    "previewHint": "L'annonce telle qu'elle apparaîtra sur la page des annonces.",
+    "previewEmpty": "Choisis un projet et un rôle : l'annonce prendra forme ici.",
+    "draftRestored": "Ton brouillon a été retrouvé.",
+    "discardText": "L'annonce en cours d'écriture disparaîtra de cet appareil.",
+    "publish": "Publier le rôle",
+    "publishing": "Publication du rôle",
+    "published": "{{title}} est en ligne."
   }
 }

@@ -24,4 +24,6 @@ public class ReviewerResponse {
     // Demande de revue, et sa dernière revue
     private Instant requestedAt;
     private Instant submittedAt;
+    // Revue communautaire jugée utile par l'équipe : elle lui a rapporté de la réputation
+    private boolean helpful;
 }

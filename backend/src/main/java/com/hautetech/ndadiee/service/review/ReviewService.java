@@ -16,6 +16,7 @@ import java.util.stream.Stream;
 
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
+import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -23,6 +24,7 @@ import com.hautetech.ndadiee.dto.response.PageResponse;
 import com.hautetech.ndadiee.dto.response.PullRequestResponse;
 import com.hautetech.ndadiee.dto.response.ReviewOverviewResponse;
 import com.hautetech.ndadiee.dto.response.ReviewerResponse;
+import com.hautetech.ndadiee.event.ReviewActivityEvent;
 import com.hautetech.ndadiee.exception.ForbiddenException;
 import com.hautetech.ndadiee.exception.OperationNotAllowedException;
 import com.hautetech.ndadiee.exception.ResourceNotFoundException;
@@ -85,6 +87,7 @@ public class ReviewService {
     private final UserService userService;
     private final ProjectMapper projectMapper;
     private final UserMapper userMapper;
+    private final ApplicationEventPublisher events;
 
     // ==================== LECTURE ====================
 
@@ -195,6 +198,7 @@ public class ReviewService {
                 .community(!inTeam)
                 .build());
         log.info("[Review] {} se propose pour relire la PR {}", userId, pullRequestId);
+        events.publishEvent(ReviewActivityEvent.claimed(pullRequestId, userId));
         return toResponses(List.of(pullRequest), userId).get(0);
     }
 
@@ -262,8 +266,11 @@ public class ReviewService {
                         .build()));
     }
 
-    /** Rend une revue : commentée, approuvée, ou avec des changements demandés. */
-    public PullRequestReviewer submitReview(Long pullRequestId, Long reviewerId, ReviewState state) {
+    /**
+     * Rend une revue : commentée, approuvée, ou avec des changements demandés. Le verdict et son message (facultatif)
+     * rejoignent la conversation ; le relecteur qui n'était pas encore demandé le devient.
+     */
+    public ReviewComment submitReview(Long pullRequestId, Long reviewerId, ReviewState state, String body) {
         if (state == ReviewState.REQUESTED) {
             throw new OperationNotAllowedException("Une revue rendue est commentée, approuvée ou demande des changements");
         }
@@ -272,7 +279,12 @@ public class ReviewService {
         review.setState(state);
         review.setSubmittedAt(now);
         review.getPullRequest().setLastActivityAt(now);
-        return review;
+        return commentRepository.save(ReviewComment.builder()
+                .pullRequest(review.getPullRequest())
+                .author(review.getReviewer())
+                .body(body == null || body.isBlank() ? null : body.strip())
+                .verdict(state)
+                .build());
     }
 
     public ReviewComment comment(Long pullRequestId, Long authorId, String body, String path, Integer line, String suggestion) {
@@ -382,7 +394,7 @@ public class ReviewService {
                 .toList();
     }
 
-    private ReviewerResponse toReviewer(PullRequestReviewer review) {
+    ReviewerResponse toReviewer(PullRequestReviewer review) {
         return ReviewerResponse.builder()
                 .user(userMapper.toSummary(review.getReviewer()))
                 .state(review.getState())
@@ -390,6 +402,7 @@ public class ReviewService {
                 .community(review.isCommunity())
                 .requestedAt(review.getCreatedAt())
                 .submittedAt(review.getSubmittedAt())
+                .helpful(review.getHelpfulAt() != null)
                 .build();
     }
 
@@ -424,7 +437,7 @@ public class ReviewService {
                 .collect(Collectors.toSet());
     }
 
-    private static boolean isAuthor(PullRequest pullRequest, Long userId) {
+    static boolean isAuthor(PullRequest pullRequest, Long userId) {
         return pullRequest.getAuthor() != null && pullRequest.getAuthor().getId().equals(userId);
     }
 

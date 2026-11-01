@@ -53,8 +53,26 @@
       "projects": "Projects",
       "people": "Developers",
       "topics": "Forum",
-      "actions": "Actions"
-    }
+      "actions": "Actions",
+      "pages": "Pages"
+    },
+    "all": "All",
+    "seeAllFor": "See all results for “{{query}}”",
+    "resultCount_one": "{{count}} result",
+    "resultCount_other": "{{count}} results",
+    "seats_one": "{{count}} seat",
+    "seats_other": "{{count}} seats",
+    "tooShort": "Type at least 2 characters.",
+    "promptTitle": "What are you looking for?",
+    "promptText": "A role, a project, a developer or a forum topic.",
+    "noResultsText": "Check the spelling, or try a shorter word.",
+    "askForum": "Ask on the forum",
+    "failed": "The search didn't go through.",
+    "more": "Show more results",
+    "loadingMore": "Loading more",
+    "moreFailed": "The rest couldn't load.",
+    "clear": "Clear the search",
+    "dialogDescription": "Search for a role, a project, a developer or a topic, or open a page."
   },
   "kanban": {
     "todo": "To do",
@@ -103,6 +121,16 @@
     "network": "Can't reach the server. Check your connection.",
     "notFound": "This page doesn't exist or has been moved."
   },
+  "errorPages": {
+    "notFoundTitle": "This thread leads nowhere.",
+    "crashTitle": "This page couldn't be displayed.",
+    "crashText": "Reload it to try again. If the problem comes back, start again from the home page.",
+    "updateTitle": "A new version of Ndadiee is live.",
+    "updateText": "Reload the page to switch to it.",
+    "offlineText": "This page isn't on your device yet. Reconnect, then reload it.",
+    "reload": "Reload the page",
+    "home": "Back to home"
+  },
   "settingsPage": {
     "eyebrow": "YOUR SPACE · NDADIEE",
     "pageTitle": "Make this space yours.",
@@ -142,6 +170,12 @@
     "website": "Personal website",
     "openToWork": "Open to collaboration",
     "openToWorkDescription": "Let teams know you're ready to join new projects.",
+    "emailsTitle": "E-mails",
+    "emailsDescription": "What Ndadiee sends to {{email}}.",
+    "reviewEmails": "Activity on my code reviews",
+    "reviewEmailsDescription": "A comment on your pull request or in a discussion you wrote in, a verdict, someone volunteering to review, your review marked helpful.",
+    "reviewEmailsOn": "You’ll get e-mails about your code reviews",
+    "reviewEmailsOff": "No more code review e-mails",
     "publicProfile": "View profile",
     "memberSince": "Member since {{date}}",
     "profileSaving": "Saving profile…",
@@ -181,7 +215,7 @@
     "showcase": "Showcase",
     "project": "Project",
     "openings": "Openings",
-    "newOpening": "Post an opening",
+    "newOpening": "Post a role",
     "hackathons": "Hackathons",
     "hackathon": "Hackathon",
     "forum": "Forum",
@@ -748,6 +782,17 @@
       "seeAll": "See all",
       "empty": "Nothing new for now.",
       "unread": "unread",
+      "unreadCount_one": "{{count}} unread",
+      "unreadCount_other": "{{count}} unread",
+      "allRead": "You're all caught up.",
+      "today": "Today",
+      "yesterday": "Yesterday",
+      "emptyText": "Replies to your topics, applications and new followers will show up here.",
+      "failed": "Notifications couldn't load.",
+      "more": "Show older ones",
+      "loadingMore": "Loading older ones",
+      "moreFailed": "Older ones couldn't load.",
+      "manageEmails": "Manage my emails",
       "types": {
         "NEW_ANSWER": "<b>{{actor}}</b> answered “{{target}}”",
         "ANSWER_ACCEPTED": "<b>{{actor}}</b> accepted your answer to “{{target}}”",
@@ -764,6 +809,11 @@
       "explore": "Explore",
       "reputation_one": "{{count}} reputation point",
       "reputation_other": "{{count}} reputation points"
+    },
+    "messages": {
+      "unread_one": "{{count}} unread conversation",
+      "unread_other": "{{count}} unread conversations",
+      "newMessage": "New message"
     }
   },
   "code": {

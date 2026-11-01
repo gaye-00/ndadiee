@@ -171,5 +171,214 @@
       "GITHUB_UNAVAILABLE": "GitHub kò dáhùn kíkà tó kẹ́yìn: ìgbìyànjú tuntun ní ìyípo tó ń bọ̀.",
       "GITHUB_NOT_CONFIGURED": "A kò tíì ṣètò kíkà àwọn pull request lórí sáfà yìí (àmì GitHub kò sí)."
     }
+  },
+  "page": {
+    "loading": "Ó ń gbé àyẹ̀wò wọlé…",
+    "documentTitle": "#{{number}} {{title}}",
+    "aside": "Àwọn olùṣàyẹ̀wò, àwọn àyẹ̀wò aládàáṣe àti iṣẹ́ tó so mọ́ ọn",
+    "notFoundTitle": "A kò rí pull request náà",
+    "notFoundText": "Kò sí nínú iṣẹ́ àkànṣe yìí, tàbí iṣẹ́ àkànṣe náà kò hàn mọ́.",
+    "backToReviews": "Padà sí àwọn àyẹ̀wò",
+    "errorTitle": "Àyẹ̀wò náà kò lè wọlé",
+    "errorText": "Ṣàyẹ̀wò ìsopọ̀ rẹ, lẹ́yìn náà gbìyànjú lẹ́ẹ̀kan sí i."
+  },
+  "header": {
+    "wants_one": "fẹ́ dà <b>commit {{count}}</b> láti <branch>{{source}}</branch> pọ̀ mọ́ <branch>{{target}}</branch>",
+    "wants_other": "fẹ́ dà <b>commit {{count}}</b> láti <branch>{{source}}</branch> pọ̀ mọ́ <branch>{{target}}</branch>",
+    "merged_one": "ti da <b>commit {{count}}</b> láti <branch>{{source}}</branch> pọ̀ mọ́ <branch>{{target}}</branch>",
+    "merged_other": "ti da <b>commit {{count}}</b> láti <branch>{{source}}</branch> pọ̀ mọ́ <branch>{{target}}</branch>",
+    "closed_one": "dábàá <b>commit {{count}}</b> láti <branch>{{source}}</branch> sí <branch>{{target}}</branch>",
+    "closed_other": "dábàá <b>commit {{count}}</b> láti <branch>{{source}}</branch> sí <branch>{{target}}</branch>",
+    "readDescription": "Ka àpèjúwe náà",
+    "onGithub": "Wò ó lórí GitHub",
+    "review": "Fi àyẹ̀wò mi sílẹ̀",
+    "reviewAgain": "Tún ìdájọ́ mi wò",
+    "mergeOnGithub": "Dà á pọ̀ lórí GitHub",
+    "yours": "Pull request rẹ",
+    "myVerdict": {
+      "COMMENTED": "O sọ ọ̀rọ̀",
+      "APPROVED": "O fọwọ́ sí i",
+      "CHANGES_REQUESTED": "O béèrè àtúnṣe"
+    }
+  },
+  "pageTabs": {
+    "label": "Àwọn apá àyẹ̀wò",
+    "files": "Àwọn fáìlì tí a yí padà",
+    "conversation": "Ìjíròrò"
+  },
+  "files": {
+    "title": "Àwọn fáìlì tí a yí padà",
+    "viewed": "{{seen}}/{{total}} ti rí",
+    "viewedLabel": "A ti rí fáìlì {{seen}} nínú {{total}}",
+    "viewedFile": "Ti rí",
+    "collapse": "Fi àkójọ fáìlì pamọ́",
+    "expand": "Fi àkójọ fáìlì hàn",
+    "filter": "Wá fáìlì kan",
+    "clearFilter": "Pa ìwádìí rẹ́",
+    "noMatch": "Kò sí fáìlì fún “{{query}}”",
+    "status": {
+      "ADDED": "a fi kún un",
+      "MODIFIED": "a yí i padà",
+      "REMOVED": "a pa á rẹ́",
+      "RENAMED": "a tún un sọ lórúkọ",
+      "COPIED": "a ṣe ẹ̀dà rẹ̀"
+    }
+  },
+  "diff": {
+    "label": "Diff pull request",
+    "loading": "Ó ń ka diff…",
+    "errorTitle": "Diff náà kò lè wọlé",
+    "errorText": "GitHub kò dáhùn. Gbìyànjú lẹ́ẹ̀kan sí i láìpẹ́.",
+    "unavailableTitle": "Diff kò sí",
+    "unavailableText_one": "Pull request àfihàn yìí yí fáìlì {{count}} padà, ṣùgbọ́n a kò lè wo diff rẹ̀ níbí.",
+    "unavailableText_other": "Pull request àfihàn yìí yí fáìlì {{count}} padà, ṣùgbọ́n a kò lè wo diff rẹ̀ níbí.",
+    "expandAll": "Ṣí gbogbo rẹ̀",
+    "collapseAll": "Ká gbogbo rẹ̀",
+    "expandFile": "Ṣí {{path}}",
+    "collapseFile": "Ká {{path}}",
+    "copyPath": "Ṣe ẹ̀dà ọ̀nà náà",
+    "pathCopied": "A ti ṣe ẹ̀dà ọ̀nà náà",
+    "viewOnGithub": "Wo {{path}} lórí GitHub",
+    "viewed": "Ti rí",
+    "readOnly": "Ẹgbẹ́ iṣẹ́ àkànṣe náà àti àwọn olùṣàyẹ̀wò rẹ̀ ló ń ṣàyẹ̀wò pull request yìí: o lè kà á, láìsọ ọ̀rọ̀ lé e.",
+    "commentLine": "Sọ ọ̀rọ̀ lórí ìlà {{line}}",
+    "added": "Ìlà tí a fi kún:",
+    "removed": "Ìlà tí a pa rẹ́:",
+    "noNewline": "Kò sí ìlà tuntun ní ìparí fáìlì",
+    "noPatch": "A kò fi diff hàn: fáìlì binary, tàbí ó tóbi jù.",
+    "renamedOnly": "A tún fáìlì náà sọ lórúkọ, láìsí àyípadà mìíràn.",
+    "openOnGithub": "Ṣí i lórí GitHub",
+    "outdated": "Ọ̀rọ̀ lórí àwọn ìlà tó wà lóde diff",
+    "lineLabel": "Ìlà {{line}}",
+    "moreOnGithub_one": "Fáìlì {{count}} mìíràn láti kà lórí GitHub",
+    "moreOnGithub_other": "Fáìlì {{count}} mìíràn láti kà lórí GitHub"
+  },
+  "thread": {
+    "placeholder": "Àkíyèsí kan, ìbéèrè kan, èrò kan…",
+    "replyPlaceholder": "Fèsì…",
+    "replyLabel": "Fèsì sí ìjíròrò lórí {{path}}, ìlà {{line}}",
+    "newLabel": "Sọ ọ̀rọ̀ lórí {{path}}, ìlà {{line}}",
+    "editLabel": "Ṣàtúnṣe ọ̀rọ̀ náà",
+    "newOnLine": "Ọ̀rọ̀ tuntun · ìlà {{line}}",
+    "hint": "{{mod}} + Enter láti tẹ̀ ẹ́ jáde",
+    "comment": "Sọ ọ̀rọ̀",
+    "reply": "Fèsì",
+    "save": "Fi pamọ́",
+    "cancel": "Fagilé",
+    "empty": "Kọ ọ̀rọ̀ rẹ.",
+    "explainSuggestion": "Sọ ní gbólóhùn kan ìdí tí o fi dábàá kóòdù yìí.",
+    "addSuggestion": "Dábàá kóòdù",
+    "removeSuggestion": "Yọ àbá náà kúrò",
+    "edited": "a ti ṣàtúnṣe",
+    "menu": "Àwọn ìgbésẹ̀ ọ̀rọ̀",
+    "edit": "Ṣàtúnṣe",
+    "delete": "Pa rẹ́",
+    "deleteTitle": "Pa ọ̀rọ̀ yìí rẹ́?",
+    "deleteText": "Yóò pòórá kúrò nínú ìjíròrò. A kò lè yí èyí padà.",
+    "deleted": "A ti pa ọ̀rọ̀ náà rẹ́",
+    "roles": {
+      "author": "Òǹkọ̀wé",
+      "required": "Dandan",
+      "community": "Àwùjọ",
+      "reviewer": "Olùṣàyẹ̀wò"
+    }
+  },
+  "suggestion": {
+    "title": "Àbá",
+    "copy": "Ṣe ẹ̀dà",
+    "copied": "A ti ṣe ẹ̀dà",
+    "empty": "Pa ìlà náà rẹ́"
+  },
+  "reviewers": {
+    "title": "Àwọn olùṣàyẹ̀wò",
+    "empty": "Kò sí ẹni tó ń ṣàyẹ̀wò pull request yìí síbẹ̀.",
+    "required_one": "A ti fọwọ́ sí àyẹ̀wò dandan {{approved}} nínú {{count}}",
+    "required_other": "A ti fọwọ́ sí àyẹ̀wò dandan {{approved}} nínú {{count}}",
+    "requiredTag": "Dandan",
+    "communityTag": "Àwùjọ",
+    "claim": "Yọ̀ǹda ara mi gẹ́gẹ́ bí olùṣàyẹ̀wò",
+    "claimHint": "Àyẹ̀wò tí ẹgbẹ́ rí pé ó wúlò ń fún ọ ní òkìkí +{{reward}}.",
+    "judge": "Àyẹ̀wò tó wúlò · +{{reward}}",
+    "helpful": "A rí i pé ó wúlò",
+    "helpfulFor": "A rí i pé ó wúlò · òkìkí +{{reward}}",
+    "judged": "Àyẹ̀wò {{name}} fún un ní òkìkí +{{reward}}",
+    "unjudged": "A kò ka àyẹ̀wò {{name}} sí èyí tó wúlò mọ́"
+  },
+  "checks": {
+    "title": "Àwọn àyẹ̀wò aládàáṣe",
+    "onGithub": "Wo àwọn àyẹ̀wò lórí GitHub",
+    "none": "Kò sí àyẹ̀wò lórí commit tó kẹ́yìn.",
+    "passed_one": "Àyẹ̀wò {{count}} yege",
+    "passed_other": "Gbogbo àyẹ̀wò {{count}} yege",
+    "running_one": "Àyẹ̀wò {{count}} ń lọ lọ́wọ́",
+    "running_other": "Àyẹ̀wò {{count}} ń lọ lọ́wọ́",
+    "error": "Kúlẹ̀kúlẹ̀ àwọn àyẹ̀wò kò lè wọlé.",
+    "details": "Wo àkọsílẹ̀ {{name}}",
+    "state": {
+      "SUCCESS": "Yege:",
+      "FAILURE": "Kùnà:",
+      "PENDING": "Ń lọ lọ́wọ́:",
+      "SKIPPED": "A fò ó:"
+    }
+  },
+  "task": {
+    "title": "Iṣẹ́ tó so mọ́ ọn",
+    "none": "Kò sí issue tó so mọ́ ọn. PR tó kọ “Closes #12” nínú àpèjúwe rẹ̀ máa hàn níbí.",
+    "error": "Àwọn issue tó so mọ́ ọn kò lè wọlé.",
+    "untitled": "Issue #{{number}}",
+    "open": "Ó ṣí · PR yìí yóò tì í nígbà tí a bá dà á pọ̀",
+    "closed": "A ti tì í",
+    "willClose": "PR yìí yóò tì í nígbà tí a bá dà á pọ̀",
+    "starter": "ìgbésẹ̀ àkọ́kọ́"
+  },
+  "conversation": {
+    "label": "Ìjíròrò pull request",
+    "opened": "ṣí pull request yìí",
+    "noDescription": "Kò sí àpèjúwe.",
+    "empty": "Kò sí ọ̀rọ̀ síbẹ̀: bẹ̀rẹ̀ ìjíròrò.",
+    "placeholder": "Sọ ọ̀rọ̀ lórí pull request…",
+    "composerLabel": "Sọ ọ̀rọ̀ lórí pull request",
+    "send": "Sọ ọ̀rọ̀",
+    "sent": "A ti tẹ ọ̀rọ̀ náà jáde",
+    "reviewHint": "Ṣé o ti parí àyẹ̀wò?",
+    "verdict": {
+      "COMMENTED": "sọ ọ̀rọ̀",
+      "APPROVED": "fọwọ́ sí àwọn àyípadà yìí",
+      "CHANGES_REQUESTED": "béèrè àtúnṣe"
+    }
+  },
+  "submit": {
+    "eyebrow": "Pull request #{{number}}",
+    "title": "Fi àyẹ̀wò mi sílẹ̀",
+    "text": "Ìdájọ́ rẹ àti ọ̀rọ̀ rẹ darapọ̀ mọ́ ìjíròrò; òǹkọ̀wé rí wọn lẹ́sẹ̀kẹsẹ̀.",
+    "close": "Pa á dé",
+    "verdict": "Ìdájọ́",
+    "verdicts": {
+      "COMMENTED": "Sọ ọ̀rọ̀",
+      "APPROVED": "Fọwọ́ sí i",
+      "CHANGES_REQUESTED": "Béèrè àtúnṣe"
+    },
+    "verdictHints": {
+      "COMMENTED": "Àkíyèsí, láìsí ìdájọ́.",
+      "APPROVED": "Ó dára lójú rẹ: a lè dà á pọ̀.",
+      "CHANGES_REQUESTED": "Kí a tún un ṣe kí a tó dà á pọ̀."
+    },
+    "message": "Ọ̀rọ̀ àyẹ̀wò rẹ",
+    "placeholder": "Sọ ohun tó dára, àti ohun tó kù…",
+    "placeholderOptional": "Ọ̀rọ̀ kan fún òǹkọ̀wé (kò pọn dandan)",
+    "hint": "{{mod}} + Enter láti fi ránṣẹ́",
+    "explain": "Sọ ohun tó kù: ọ̀rọ̀ jẹ́ dandan, àyàfi fún ìfọwọ́sí.",
+    "reward": "Àyẹ̀wò àwùjọ: bí ẹgbẹ́ bá rí i pé ó wúlò, ó ń fún ọ ní òkìkí +{{reward}}.",
+    "cancel": "Fagilé",
+    "send": {
+      "COMMENTED": "Fi ọ̀rọ̀ mi ránṣẹ́",
+      "APPROVED": "Fọwọ́ sí i",
+      "CHANGES_REQUESTED": "Béèrè àtúnṣe"
+    },
+    "done": {
+      "COMMENTED": "A ti fi àyẹ̀wò rẹ fún #{{number}} sílẹ̀",
+      "APPROVED": "O fọwọ́ sí #{{number}}",
+      "CHANGES_REQUESTED": "A béèrè àtúnṣe lórí #{{number}}"
+    }
   }
 }

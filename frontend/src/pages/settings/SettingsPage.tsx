@@ -6,6 +6,7 @@ import { useTranslation } from 'react-i18next';
 import { useLocation } from 'react-router-dom';
 import AccountSettings from '@/components/settings/AccountSettings';
 import AppearanceSettings from '@/components/settings/AppearanceSettings';
+import EmailSettings from '@/components/settings/EmailSettings';
 import LanguageSettings from '@/components/settings/LanguageSettings';
 import { useLanguage } from '@/hooks/useLanguage';
 import { useReducedMotion } from '@/hooks/useReducedMotion';
@@ -21,8 +22,9 @@ const SECTIONS = [
 
 type SectionId = (typeof SECTIONS)[number]['id'];
 
-// Les champs qu'un lien peut viser (/settings#skills, depuis l'atelier), et l'onglet qui les contient
-const ANCHORS: Record<string, SectionId> = { skills: 'account' };
+// Les champs qu'un lien peut viser (/settings#skills depuis l'atelier, #review-emails depuis un e-mail), et l'onglet
+// qui les contient
+const ANCHORS: Record<string, SectionId> = { skills: 'account', 'review-emails': 'account' };
 
 /** L'onglet demandé par l'adresse (?tab=appearance, ou un champ visé : #skills) ; « Mon compte » par défaut */
 const tabOf = ({ search, hash }: { search: string; hash: string }): SectionId => {
@@ -218,7 +220,12 @@ export default function SettingsPage() {
   // Les panneaux ne dépendent pas de l'onglet ouvert : changer d'onglet ne les refait pas
   const panels = useMemo(
     () => ({
-      account: <AccountSettings onDirtyChange={setAccountDirty} />,
+      account: (
+        <div className="flex flex-col gap-6">
+          <AccountSettings onDirtyChange={setAccountDirty} />
+          <EmailSettings />
+        </div>
+      ),
       appearance: <AppearanceSettings />,
       language: <LanguageSettings />,
     }),

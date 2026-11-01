@@ -171,5 +171,214 @@
       "GITHUB_UNAVAILABLE": "GitHub haikujibu usomaji wa mwisho: jaribio jipya katika mzunguko ujao.",
       "GITHUB_NOT_CONFIGURED": "Usomaji wa pull requests haujawekwa kwenye seva hii (tokeni ya GitHub haipo)."
     }
+  },
+  "page": {
+    "loading": "Inapakia pitio…",
+    "documentTitle": "#{{number}} {{title}}",
+    "aside": "Wapitiaji, ukaguzi na kazi iliyounganishwa",
+    "notFoundTitle": "Pull request haikupatikana",
+    "notFoundText": "Haipo katika mradi huu, au mradi hauonekani tena.",
+    "backToReviews": "Rudi kwenye mapitio",
+    "errorTitle": "Pitio halikuweza kupakia",
+    "errorText": "Angalia muunganisho wako, kisha jaribu tena."
+  },
+  "header": {
+    "wants_one": "anataka kuunganisha <b>commit {{count}}</b> kutoka <branch>{{source}}</branch> kwenda <branch>{{target}}</branch>",
+    "wants_other": "anataka kuunganisha <b>commit {{count}}</b> kutoka <branch>{{source}}</branch> kwenda <branch>{{target}}</branch>",
+    "merged_one": "ameunganisha <b>commit {{count}}</b> kutoka <branch>{{source}}</branch> kwenda <branch>{{target}}</branch>",
+    "merged_other": "ameunganisha <b>commit {{count}}</b> kutoka <branch>{{source}}</branch> kwenda <branch>{{target}}</branch>",
+    "closed_one": "alipendekeza <b>commit {{count}}</b> kutoka <branch>{{source}}</branch> kwenda <branch>{{target}}</branch>",
+    "closed_other": "alipendekeza <b>commit {{count}}</b> kutoka <branch>{{source}}</branch> kwenda <branch>{{target}}</branch>",
+    "readDescription": "Soma maelezo",
+    "onGithub": "Tazama kwenye GitHub",
+    "review": "Wasilisha pitio langu",
+    "reviewAgain": "Rudia uamuzi wangu",
+    "mergeOnGithub": "Unganisha kwenye GitHub",
+    "yours": "Pull request yako",
+    "myVerdict": {
+      "COMMENTED": "Umetoa maoni",
+      "APPROVED": "Umeidhinisha",
+      "CHANGES_REQUESTED": "Umeomba mabadiliko"
+    }
+  },
+  "pageTabs": {
+    "label": "Sehemu za pitio",
+    "files": "Faili zilizobadilishwa",
+    "conversation": "Mazungumzo"
+  },
+  "files": {
+    "title": "Faili zilizobadilishwa",
+    "viewed": "{{seen}}/{{total}} zimeonwa",
+    "viewedLabel": "Faili {{seen}} kati ya {{total}} zimeonwa",
+    "viewedFile": "Imeonwa",
+    "collapse": "Ficha orodha ya faili",
+    "expand": "Onyesha orodha ya faili",
+    "filter": "Tafuta faili",
+    "clearFilter": "Futa utafutaji",
+    "noMatch": "Hakuna faili ya “{{query}}”",
+    "status": {
+      "ADDED": "imeongezwa",
+      "MODIFIED": "imebadilishwa",
+      "REMOVED": "imefutwa",
+      "RENAMED": "imepewa jina jipya",
+      "COPIED": "imenakiliwa"
+    }
+  },
+  "diff": {
+    "label": "Diff ya pull request",
+    "loading": "Inasoma diff…",
+    "errorTitle": "Diff haikuweza kupakia",
+    "errorText": "GitHub haijajibu. Jaribu tena baada ya muda mfupi.",
+    "unavailableTitle": "Diff haipatikani",
+    "unavailableText_one": "Pull request hii ya maonyesho inabadilisha faili {{count}}, lakini diff yake haiwezi kuonwa hapa.",
+    "unavailableText_other": "Pull request hii ya maonyesho inabadilisha faili {{count}}, lakini diff yake haiwezi kuonwa hapa.",
+    "expandAll": "Fungua zote",
+    "collapseAll": "Kunja zote",
+    "expandFile": "Fungua {{path}}",
+    "collapseFile": "Kunja {{path}}",
+    "copyPath": "Nakili njia",
+    "pathCopied": "Njia imenakiliwa",
+    "viewOnGithub": "Tazama {{path}} kwenye GitHub",
+    "viewed": "Imeonwa",
+    "readOnly": "Pull request hii inapitiwa na timu ya mradi na wapitiaji wake: unaweza kuisoma, bila kutoa maoni.",
+    "commentLine": "Toa maoni kwenye mstari {{line}}",
+    "added": "Mstari ulioongezwa:",
+    "removed": "Mstari uliofutwa:",
+    "noNewline": "Hakuna mstari mpya mwishoni mwa faili",
+    "noPatch": "Diff haionyeshwi: faili ya binary, au kubwa mno.",
+    "renamedOnly": "Faili imepewa jina jipya, bila mabadiliko mengine.",
+    "openOnGithub": "Fungua kwenye GitHub",
+    "outdated": "Maoni kwenye mistari iliyo nje ya diff",
+    "lineLabel": "Mstari {{line}}",
+    "moreOnGithub_one": "Faili {{count}} zaidi ya kusoma kwenye GitHub",
+    "moreOnGithub_other": "Faili {{count}} zaidi za kusoma kwenye GitHub"
+  },
+  "thread": {
+    "placeholder": "Maoni, swali, wazo…",
+    "replyPlaceholder": "Jibu…",
+    "replyLabel": "Jibu mjadala kwenye {{path}}, mstari {{line}}",
+    "newLabel": "Toa maoni kwenye {{path}}, mstari {{line}}",
+    "editLabel": "Hariri maoni",
+    "newOnLine": "Maoni mapya · mstari {{line}}",
+    "hint": "{{mod}} + Enter kuchapisha",
+    "comment": "Toa maoni",
+    "reply": "Jibu",
+    "save": "Hifadhi",
+    "cancel": "Ghairi",
+    "empty": "Andika maoni yako.",
+    "explainSuggestion": "Eleza kwa sentensi moja kwa nini unapendekeza msimbo huu.",
+    "addSuggestion": "Pendekeza msimbo",
+    "removeSuggestion": "Ondoa pendekezo",
+    "edited": "imehaririwa",
+    "menu": "Vitendo vya maoni",
+    "edit": "Hariri",
+    "delete": "Futa",
+    "deleteTitle": "Futa maoni haya?",
+    "deleteText": "Yataondoka kwenye mjadala. Hatua hii haiwezi kutenduliwa.",
+    "deleted": "Maoni yamefutwa",
+    "roles": {
+      "author": "Mwandishi",
+      "required": "Lazima",
+      "community": "Jamii",
+      "reviewer": "Mpitiaji"
+    }
+  },
+  "suggestion": {
+    "title": "Pendekezo",
+    "copy": "Nakili",
+    "copied": "Imenakiliwa",
+    "empty": "Futa mstari"
+  },
+  "reviewers": {
+    "title": "Wapitiaji",
+    "empty": "Bado hakuna anayepitia pull request hii.",
+    "required_one": "Pitio la lazima {{approved}} kati ya {{count}} limeidhinishwa",
+    "required_other": "Mapitio ya lazima {{approved}} kati ya {{count}} yameidhinishwa",
+    "requiredTag": "Lazima",
+    "communityTag": "Jamii",
+    "claim": "Jitolee kuwa mpitiaji",
+    "claimHint": "Pitio ambalo timu inaona lina msaada linakupa sifa +{{reward}}.",
+    "judge": "Pitio lenye msaada · +{{reward}}",
+    "helpful": "Limeonekana lina msaada",
+    "helpfulFor": "Limeonekana lina msaada · sifa +{{reward}}",
+    "judged": "Pitio la {{name}} linampa sifa +{{reward}}",
+    "unjudged": "Pitio la {{name}} halionekani tena kuwa na msaada"
+  },
+  "checks": {
+    "title": "Ukaguzi",
+    "onGithub": "Tazama ukaguzi kwenye GitHub",
+    "none": "Hakuna ukaguzi kwenye commit ya mwisho.",
+    "passed_one": "Ukaguzi {{count}} umefaulu",
+    "passed_other": "Ukaguzi wote {{count}} umefaulu",
+    "running_one": "Ukaguzi {{count}} unaendelea",
+    "running_other": "Ukaguzi {{count}} unaendelea",
+    "error": "Maelezo ya ukaguzi hayakuweza kupakia.",
+    "details": "Tazama kumbukumbu za {{name}}",
+    "state": {
+      "SUCCESS": "Umefaulu:",
+      "FAILURE": "Umeshindwa:",
+      "PENDING": "Unaendelea:",
+      "SKIPPED": "Umerukwa:"
+    }
+  },
+  "task": {
+    "title": "Kazi iliyounganishwa",
+    "none": "Hakuna issue iliyounganishwa. PR inayoandika “Closes #12” kwenye maelezo yake inaonekana hapa.",
+    "error": "Issue zilizounganishwa hazikuweza kupakia.",
+    "untitled": "Issue #{{number}}",
+    "open": "Iko wazi · PR hii itaifunga ikiunganishwa",
+    "closed": "Imefungwa",
+    "willClose": "PR hii itaifunga ikiunganishwa",
+    "starter": "hatua ya kwanza"
+  },
+  "conversation": {
+    "label": "Mazungumzo ya pull request",
+    "opened": "alifungua pull request hii",
+    "noDescription": "Hakuna maelezo.",
+    "empty": "Bado hakuna maoni: anzisha mjadala.",
+    "placeholder": "Toa maoni kuhusu pull request…",
+    "composerLabel": "Toa maoni kuhusu pull request",
+    "send": "Toa maoni",
+    "sent": "Maoni yamechapishwa",
+    "reviewHint": "Umemaliza kupitia?",
+    "verdict": {
+      "COMMENTED": "ametoa maoni",
+      "APPROVED": "ameidhinisha mabadiliko haya",
+      "CHANGES_REQUESTED": "ameomba mabadiliko"
+    }
+  },
+  "submit": {
+    "eyebrow": "Pull request #{{number}}",
+    "title": "Wasilisha pitio langu",
+    "text": "Uamuzi wako na ujumbe wako vinajiunga na mazungumzo; mwandishi anaviona mara moja.",
+    "close": "Funga",
+    "verdict": "Uamuzi",
+    "verdicts": {
+      "COMMENTED": "Toa maoni",
+      "APPROVED": "Idhinisha",
+      "CHANGES_REQUESTED": "Omba mabadiliko"
+    },
+    "verdictHints": {
+      "COMMENTED": "Maoni, bila uamuzi.",
+      "APPROVED": "Ni nzuri kwako: inaweza kuunganishwa.",
+      "CHANGES_REQUESTED": "Irekebishwe kabla ya kuunganishwa."
+    },
+    "message": "Ujumbe wa pitio lako",
+    "placeholder": "Sema kilicho sawa, na kinachokosekana…",
+    "placeholderOptional": "Neno kwa mwandishi (hiari)",
+    "hint": "{{mod}} + Enter kutuma",
+    "explain": "Sema kinachokosekana: ujumbe unahitajika, isipokuwa kwa uidhinishaji.",
+    "reward": "Pitio la jamii: timu ikiona lina msaada, linakupa sifa +{{reward}}.",
+    "cancel": "Ghairi",
+    "send": {
+      "COMMENTED": "Tuma maoni yangu",
+      "APPROVED": "Idhinisha",
+      "CHANGES_REQUESTED": "Omba mabadiliko"
+    },
+    "done": {
+      "COMMENTED": "Pitio lako la #{{number}} limewasilishwa",
+      "APPROVED": "Umeidhinisha #{{number}}",
+      "CHANGES_REQUESTED": "Mabadiliko yameombwa kwenye #{{number}}"
+    }
   }
 }

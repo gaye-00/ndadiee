@@ -63,5 +63,25 @@
     "openIssue": "Ubbi liggéey bi ci GitHub",
     "matchScore": "{{score}} %",
     "yourTeam": "Sa ekip"
+  },
+  "form": {
+    "projectTitle": "Projet bi",
+    "projectText": "Ekip bi ngay wutal ñenn.",
+    "roleTitle": "Palaas bi",
+    "roleText": "Liggéey bi ngay seet: moom lañuy jëfandikoo ngir tànn yéenekaay yi.",
+    "detailsTitle": "Yéenekaay bi",
+    "detailsText": "Li nit kooku di def, ak fu mu mën a tàmbalee.",
+    "projectRequired": "Tànnal projet biy wut nit.",
+    "roleRequired": "Tànnal ab palaas.",
+    "noProjectTitle": "Soxla nga ab projet balaa loolu.",
+    "noProjectText": "Ab palaas, ci turu projet bi nga yor walla ngay topptoo lañu koy siiwale.",
+    "loadFailed": "Say projet mënuñu ñëw.",
+    "previewHint": "Yéenekaay bi ni muy feeñe ci xëtu yéenekaay yi.",
+    "previewEmpty": "Tànnal ab projet ak ab palaas: yéenekaay bi fii lay feeñ.",
+    "draftRestored": "Sa brouillon delsi na.",
+    "discardText": "Yéenekaay bi ngay bind dina réer ci jumtukaay bii.",
+    "publish": "Siiwal palaas bi",
+    "publishing": "Palaas bi di siiwal",
+    "published": "{{title}} génn na."
   }
 }

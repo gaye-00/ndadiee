@@ -1,0 +1,10 @@
+{
+  "checks": [
+    { "name": "go test ./...", "context": "CI", "state": "SUCCESS", "description": "Flux GTFS du jour, 63 tests", "afterMinutes": 1, "seconds": 96 },
+    { "name": "golangci-lint", "context": "CI", "state": "SUCCESS", "afterMinutes": 1, "seconds": 38 },
+    { "name": "docker build", "context": "CI", "state": "SUCCESS", "description": "Image de 18 Mo", "afterMinutes": 2, "seconds": 142 }
+  ],
+  "issues": [
+    { "number": 77, "title": "La page d'un arrêt met près de 2 s à s'ouvrir aux heures de pointe", "state": "OPEN", "labels": ["good first issue", "performance"] }
+  ]
+}

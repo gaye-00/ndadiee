@@ -9,6 +9,7 @@ import com.hautetech.ndadiee.model.user.Developer;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
+import jakarta.persistence.Index;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
@@ -28,7 +29,7 @@ import lombok.experimental.SuperBuilder;
 @NoArgsConstructor
 @SuperBuilder
 @Entity
-@Table(name = "devlog_entries")
+@Table(name = "devlog_entries", indexes = @Index(name = "idx_devlog_entries_project", columnList = "project_id, created_at DESC"))
 public class DevlogEntry extends BaseEntity {
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)

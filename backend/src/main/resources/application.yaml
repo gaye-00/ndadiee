@@ -7,8 +7,8 @@ spring:
     password: ${SPRING_DATASOURCE_PASSWORD:ndadiee}
   jpa:
     hibernate:
-      # Le schéma appartient à Flyway (db/migration) : Hibernate se contente de le vérifier.
-      # ddl-auto: ${SPRING_JPA_HIBERNATE_DDL_AUTO:validate}
+      # Le schéma vient des entités (index, contraintes et cascades compris) ; les données, des seeders
+      # (initializer/InitializerNdadiee). En local, il est recréé à chaque démarrage.
       ddl-auto: ${SPRING_JPA_HIBERNATE_DDL_AUTO:create-drop}
     open-in-view: false
     show-sql: false
@@ -16,8 +16,6 @@ spring:
       hibernate:
         # Charge les relations LAZY par lots (évite le N+1 sur les listes)
         default_batch_fetch_size: 50
-  flyway:
-    enabled: ${SPRING_FLYWAY_ENABLED:true}
   servlet:
     multipart:
       # Au-delà, la requête n'est pas lue ; en deçà, l'application applique sa propre limite (ndadiee.storage)
@@ -72,6 +70,14 @@ ndadiee:
       public-url: ${R2_PUBLIC_URL:}
       # Seulement si l'API n'est pas https://<compte>.r2.cloudflarestorage.com (juridiction UE : .eu.r2…)
       endpoint: ${R2_ENDPOINT:}
+
+  mail:
+    # E-mails de notification des revues de code (un commentaire, un verdict, une revue jugée utile). Coupés ici :
+    # seul le profil prod les envoie (application-prod.yaml, serveur SMTP). Hors production, chaque e-mail qui serait
+    # parti est seulement noté dans le journal.
+    enabled: false
+    # L'expéditeur : le serveur SMTP n'accepte que l'adresse du compte qui s'y connecte
+    from: ${MAIL_FROM:Ndadiee <${MAIL_USERNAME:no-reply@hautetech.org}>}
 
   github:
     # Import d'un dépôt public dans le formulaire de projet, et pull requests des projets. Sans jeton, GitHub accepte

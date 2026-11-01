@@ -5,10 +5,13 @@ import java.util.List;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Component;
 
+import com.hautetech.ndadiee.dto.response.PullRequestCheckResponse;
+import com.hautetech.ndadiee.dto.response.PullRequestFileResponse;
 import com.hautetech.ndadiee.model.project.Project;
 import com.hautetech.ndadiee.model.review.ReviewState;
 import com.hautetech.ndadiee.repository.ProjectRepository;
 import com.hautetech.ndadiee.repository.PullRequestRepository;
+import com.hautetech.ndadiee.service.review.DemoPullRequestContent;
 import com.hautetech.ndadiee.service.review.ReviewService;
 
 import lombok.RequiredArgsConstructor;
@@ -26,6 +29,9 @@ import lombok.extern.slf4j.Slf4j;
  * <li>musa doit relire le client Kotlin de momo-sdk ; sa PR de Tontine Cloud attend Kofi.</li>
  * </ul>
  *
+ * Trois PR ont aussi leur diff, leurs vérifications et leurs issues (DemoPullRequestContent) : la #12 de Paperweight,
+ * les #84 et #90 de lagos-transit. Leurs chiffres (fichiers, lignes, vérifications) viennent de ce diff.
+ *
  * Tout passe par ReviewService, puis les dates sont étalées sur les derniers jours. Ne s'exécute que si aucune PR
  * n'existe, après la vitrine, les hackathons et l'atelier des comptes d'essai.
  */
@@ -38,6 +44,7 @@ public class ReviewSeeder {
     private final ProjectRepository projectRepository;
     private final PullRequestRepository pullRequestRepository;
     private final ReviewService reviewService;
+    private final DemoPullRequestContent demoContent;
     private final JdbcTemplate jdbcTemplate;
 
     public void seed() {
@@ -64,12 +71,13 @@ public class ReviewSeeder {
 
                 Résout #77, mon issue « premier pas ».
                 """, "feat/redis-cache", 6, 4, 214, 38, 3, 3, 0, 77, true, false, 50, "go", "redis");
-        review(redis, "chinedu_okafor", true, ReviewState.CHANGES_REQUESTED, 50, 30);
-        review(redis, "tunde_adeyemi", false, ReviewState.APPROVED, 50, 26);
-        review(redis, "wanjiru_kamau", false, ReviewState.COMMENTED, 22, 20);
         comment(redis, "chinedu_okafor", 30,
                 "Expiration à 0 : les horaires ne seront jamais rafraîchis. Le BRT change ses horaires à 5 h, je propose 10 minutes et une erreur gérée :",
-                "internal/schedule/cache.go", 24, "if err == nil { c.rdb.Set(ctx, key, encode(deps), 10*time.Minute) }");
+                "internal/schedule/cache.go", 24, "\tif err == nil { c.rdb.Set(ctx, key, encode(deps), 10*time.Minute) }");
+        review(redis, "chinedu_okafor", true, ReviewState.CHANGES_REQUESTED, 50, 30,
+                "Le gain est net, bravo pour une première PR. Avant de fusionner : l'expiration du cache, et ne pas garder en cache la réponse d'une source en erreur.");
+        review(redis, "tunde_adeyemi", false, ReviewState.APPROVED, 50, 26, "Lu et testé en local avec le flux de ce matin : la page arrêt répond en 110 ms chez moi.");
+        review(redis, "wanjiru_kamau", false, ReviewState.COMMENTED, 22, 20, null);
         comment(redis, "ama_owusu", 28, "Bien vu, merci ! Je rends la durée configurable dans `config.yaml`.", "internal/schedule/cache.go", 24, null);
         comment(redis, "wanjiru_kamau", 20,
                 "À Nairobi on a eu le même souci : ajoute un jitter pour éviter que toutes les clés expirent en même temps.",
@@ -94,11 +102,12 @@ public class ReviewSeeder {
                 Chaque trajet s'annonce en une phrase (« BRT Ikorodu–CMS, dans 4 minutes, quai 2 ») et la liste garde le focus
                 quand elle se rafraîchit.
                 """, "feat/a11y-trips", 4, 6, 156, 62, 3, 3, 0, null, false, false, 6, "react", "accessibility");
-        review(a11y, "tunde_adeyemi", true, ReviewState.CHANGES_REQUESTED, 6, 3);
+        review(a11y, "tunde_adeyemi", true, ReviewState.CHANGES_REQUESTED, 6, 3,
+                "Les phrases sont parfaites. Il reste les annonces répétées à chaque rafraîchissement, voir ma suggestion.");
         review(a11y, "chinedu_okafor", false, ReviewState.REQUESTED, 6, null);
         comment(a11y, "tunde_adeyemi", 3,
                 "Les annonces se répètent à chaque rafraîchissement de la liste : coupe la région live pendant la mise à jour.",
-                "web/src/trips/TripList.tsx", 42, "<ol aria-live={refreshing ? 'off' : 'polite'}>");
+                "web/src/trips/TripList.tsx", 42, "      <ol aria-live={refreshing ? 'off' : 'polite'} ref={list}>");
 
         Long gtfs = pr("lagos-transit", "kwame_asante", 81, "Validation du flux GTFS en intégration continue", null,
                 "ci/gtfs-validate", 2, 3, 64, 5, 2, 2, 0, null, false, false, 8 * 24, "gtfs", "ci");
@@ -126,6 +135,9 @@ public class ReviewSeeder {
                 """, "feat/virtual-list", 7, 8, 486, 58, 3, 3, 0, 6, false, false, 26, "react", "performance");
         review(virtual, "ada", true, ReviewState.REQUESTED, 26, null);
         comment(virtual, "tunde_adeyemi", 25, "Le composant pèse 2,1 ko compressé : on reste sous le budget.", null, null, null);
+        comment(virtual, "tunde_adeyemi", 25,
+                "J'ai gardé 6 lignes de marge : en dessous, on voit des blancs pendant un défilement rapide sur Android Go.",
+                "src/components/VirtualList/useVirtualRange.ts", 4, null);
 
         Long budget = pr("paperweight", "ada", 9, "Budget de poids vérifié à chaque pull request", null,
                 "ci/size-budget", 3, 4, 96, 2, 2, 2, 0, null, false, false, 10 * 24, "ci", "performance");
@@ -218,6 +230,20 @@ public class ReviewSeeder {
         if (projectId == null) {
             return null;
         }
+        // Une PR qui a son diff de démonstration en tire ses chiffres : la page et la liste disent la même chose
+        List<PullRequestFileResponse> diff = demoContent.files(slug, number).orElse(null);
+        if (diff != null) {
+            files = diff.size();
+            additions = diff.stream().mapToInt(PullRequestFileResponse::getAdditions).sum();
+            deletions = diff.stream().mapToInt(PullRequestFileResponse::getDeletions).sum();
+        }
+        List<DemoPullRequestContent.Check> details = demoContent.details(slug, number).map(DemoPullRequestContent.Details::checks).orElse(null);
+        if (details != null) {
+            checks = details.size();
+            passed = (int) details.stream().filter(check -> check.state() != PullRequestCheckResponse.State.FAILURE
+                    && check.state() != PullRequestCheckResponse.State.PENDING).count();
+            failed = (int) details.stream().filter(check -> check.state() == PullRequestCheckResponse.State.FAILURE).count();
+        }
         Long id = reviewService.open(ReviewService.Opening.builder()
                 .projectId(projectId)
                 .authorId(accounts.id(author))
@@ -245,13 +271,24 @@ public class ReviewSeeder {
     // Une revue demandée il y a quelques heures, rendue (ou non) depuis
     private void review(Long pullRequestId, String reviewer, boolean required, ReviewState state, int requestedHoursAgo,
             Integer submittedHoursAgo) {
+        review(pullRequestId, reviewer, required, state, requestedHoursAgo, submittedHoursAgo, null);
+    }
+
+    // Une revue rendue avec son message : il rejoint la conversation à l'heure de la revue
+    private void review(Long pullRequestId, String reviewer, boolean required, ReviewState state, int requestedHoursAgo,
+            Integer submittedHoursAgo, String message) {
         if (pullRequestId == null) {
             return;
         }
         Long reviewerId = accounts.id(reviewer);
         Long id = reviewService.requestReview(pullRequestId, reviewerId, required).getId();
         if (state != ReviewState.REQUESTED) {
-            reviewService.submitReview(pullRequestId, reviewerId, state);
+            Long verdict = reviewService.submitReview(pullRequestId, reviewerId, state, message).getId();
+            int hoursAgo = submittedHoursAgo == null ? requestedHoursAgo : submittedHoursAgo;
+            jdbcTemplate.update("""
+                    UPDATE review_comments SET created_at = now() - make_interval(hours => ?), updated_at = now() - make_interval(hours => ?)
+                    WHERE id = ?
+                    """, hoursAgo, hoursAgo, verdict);
         }
         jdbcTemplate.update("""
                 UPDATE pull_request_reviewers SET created_at = now() - make_interval(hours => ?),

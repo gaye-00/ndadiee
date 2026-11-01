@@ -53,8 +53,26 @@
       "projects": "Iṣẹ́ àkànṣe",
       "people": "Àwọn olùgbéejáde",
       "topics": "Àpéjọ",
-      "actions": "Àwọn ìgbésẹ̀"
-    }
+      "actions": "Àwọn ìgbésẹ̀",
+      "pages": "Àwọn ojú-ìwé"
+    },
+    "all": "Gbogbo",
+    "seeAllFor": "Wo gbogbo èsì fún “{{query}}”",
+    "resultCount_one": "èsì {{count}}",
+    "resultCount_other": "èsì {{count}}",
+    "seats_one": "àyè {{count}}",
+    "seats_other": "àyè {{count}}",
+    "tooShort": "Kọ ó kéré tán lẹ́tà 2.",
+    "promptTitle": "Kí ni ò ń wá?",
+    "promptText": "Ipa kan, iṣẹ́ àkànṣe kan, olùgbéejáde kan tàbí kókó àpéjọ kan.",
+    "noResultsText": "Ṣàyẹ̀wò bí o ṣe kọ ọ́, tàbí gbìyànjú ọ̀rọ̀ kúkúrú.",
+    "askForum": "Béèrè ní àpéjọ",
+    "failed": "Ìṣàwárí náà kò yọrí.",
+    "more": "Wo èsì mìíràn",
+    "loadingMore": "Ó ń gbé àwọn mìíràn wá",
+    "moreFailed": "A kò lè gbé èyí tó kù wá.",
+    "clear": "Pa ìṣàwárí rẹ́",
+    "dialogDescription": "Wá ipa kan, iṣẹ́ àkànṣe kan, olùgbéejáde kan tàbí kókó kan, tàbí ṣí ojú-ìwé kan."
   },
   "kanban": {
     "todo": "Láti ṣe",
@@ -103,6 +121,16 @@
     "network": "A kò lè dé ọ̀dọ̀ sáfà. Ṣàyẹ̀wò ìsopọ̀ rẹ.",
     "notFound": "Ojú-ìwé yìí kò sí, tàbí a ti gbé e lọ."
   },
+  "errorPages": {
+    "notFoundTitle": "Òwú yìí kò já sí ibìkan.",
+    "crashTitle": "A kò lè fi ojú-ìwé yìí hàn.",
+    "crashText": "Tún un gbé láti gbìyànjú lẹ́ẹ̀kan sí i. Bí ìṣòro náà bá padà, bẹ̀rẹ̀ láti ojú-ìwé àkọ́kọ́.",
+    "updateTitle": "Ẹ̀dà tuntun ti Ndadiee ti jáde.",
+    "updateText": "Tún ojú-ìwé náà gbé láti lọ sí ẹ̀dà yìí.",
+    "offlineText": "Ojú-ìwé yìí kò tíì sí lórí ẹ̀rọ rẹ. Tún so pọ̀, lẹ́yìn náà tún un gbé.",
+    "reload": "Tún ojú-ìwé gbé",
+    "home": "Padà sí ojú-ìwé àkọ́kọ́"
+  },
   "settingsPage": {
     "eyebrow": "ÀYÈ ÌWỌ́ · NDADIEE",
     "pageTitle": "Ṣe àyè yìí di tìrẹ.",
@@ -142,6 +170,12 @@
     "website": "Ojú-òpó wẹ́ẹ̀bù tìrẹ",
     "openToWork": "Mo ṣetán fún ìfọwọ́sowọ́pọ̀",
     "openToWorkDescription": "Jẹ́ kí àwọn ẹgbẹ́ mọ̀ pé o ṣetán fún àwọn iṣẹ́ tuntun.",
+    "emailsTitle": "Ímeèlì",
+    "emailsDescription": "Ohun tí Ndadiee ń fi ránṣẹ́ sí {{email}}.",
+    "reviewEmails": "Ìgbòkègbodò àwọn àyẹ̀wò kóòdù mi",
+    "reviewEmailsDescription": "Ọ̀rọ̀ lórí pull request rẹ tàbí nínú ìjíròrò tí o kọ sí, ìdájọ́ kan, ẹni tó yọ̀ǹda láti ṣàyẹ̀wò, àyẹ̀wò rẹ tí a rí pé ó wúlò.",
+    "reviewEmailsOn": "Wàá máa gba ímeèlì àwọn àyẹ̀wò kóòdù rẹ",
+    "reviewEmailsOff": "Kò sí ímeèlì àyẹ̀wò kóòdù mọ́",
     "publicProfile": "Wo àkọọlẹ",
     "memberSince": "Ọmọ ẹgbẹ́ láti {{date}}",
     "profileSaving": "Ń fi àkọọlẹ pamọ́…",
@@ -748,6 +782,17 @@
       "seeAll": "Wo gbogbo",
       "empty": "Kò sí ohun tuntun báyìí.",
       "unread": "a kò kà á",
+      "unreadCount_one": "{{count}} tí a kò kà",
+      "unreadCount_other": "{{count}} tí a kò kà",
+      "allRead": "O ti ka gbogbo rẹ̀.",
+      "today": "Lónìí",
+      "yesterday": "Lánàá",
+      "emptyText": "Àwọn ìdáhùn sí kókó rẹ, àwọn ìbéèrè àti àwọn olùtẹ̀lé tuntun yóò dé síbí.",
+      "failed": "A kò lè gbé àwọn ìfitónilétí wá.",
+      "more": "Wo àwọn tó ti pẹ́",
+      "loadingMore": "Ó ń gbé àwọn tó ti pẹ́ wá",
+      "moreFailed": "A kò lè gbé àwọn tó ti pẹ́ wá.",
+      "manageEmails": "Ṣàkóso àwọn ímeèlì mi",
       "types": {
         "NEW_ANSWER": "<b>{{actor}}</b> dáhùn “{{target}}”",
         "ANSWER_ACCEPTED": "<b>{{actor}}</b> gba ìdáhùn rẹ sí “{{target}}”",
@@ -764,6 +809,11 @@
       "explore": "Ṣàwárí",
       "reputation_one": "àmì òkìkí {{count}}",
       "reputation_other": "àmì òkìkí {{count}}"
+    },
+    "messages": {
+      "unread_one": "Ìjíròrò {{count}} tí a kò kà",
+      "unread_other": "Ìjíròrò {{count}} tí a kò kà",
+      "newMessage": "Ìfiránṣẹ́ tuntun"
     }
   },
   "code": {

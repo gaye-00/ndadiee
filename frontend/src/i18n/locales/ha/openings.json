@@ -63,5 +63,25 @@
     "openIssue": "Buɗe aikin a GitHub",
     "matchScore": "{{score}}%",
     "yourTeam": "Ƙungiyarka"
+  },
+  "form": {
+    "projectTitle": "Aikin",
+    "projectText": "Ƙungiyar da kake ɗaukar ma'aikata mata.",
+    "roleTitle": "Gurbin",
+    "roleText": "Sana'ar da kake nema: da ita ake tace tallace-tallace.",
+    "detailsTitle": "Tallan",
+    "detailsText": "Abin da mutumin zai yi, da inda zai iya farawa.",
+    "projectRequired": "Zaɓi aikin da ke ɗaukar ma'aikata.",
+    "roleRequired": "Zaɓi gurbi.",
+    "noProjectTitle": "Da farko kana buƙatar aiki.",
+    "noProjectText": "Ana wallafa gurbi da sunan aikin da kake jagoranta ko kake kula da shi.",
+    "loadFailed": "Ba a iya loda ayyukanka ba.",
+    "previewHint": "Tallan kamar yadda zai bayyana a shafin tallace-tallace.",
+    "previewEmpty": "Zaɓi aiki da gurbi: tallan zai fara bayyana a nan.",
+    "draftRestored": "An dawo da daftarinka.",
+    "discardText": "Tallan da kake rubutawa zai ɓace daga wannan na'ura.",
+    "publish": "Wallafa gurbin",
+    "publishing": "Ana wallafa gurbin",
+    "published": "{{title}} ya fito."
   }
 }

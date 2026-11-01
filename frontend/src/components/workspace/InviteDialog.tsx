@@ -174,7 +174,7 @@ function OpenRoles({ project }: { project: Project }) {
       {project.openings.length === 0 ? (
         <div className="mt-3 flex flex-wrap items-center gap-3 rounded-2xl border border-dashed border-border-strong p-4">
           <p className="min-w-0 flex-1 basis-48 text-[0.8125rem] leading-relaxed text-muted-foreground">{t('invite.noRoles')}</p>
-          <Link to={paths.newOpening} viewTransition className={cn(outlineButton, 'h-9 px-3 text-[0.8125rem]')}>
+          <Link to={paths.newOpeningFor(slug)} viewTransition className={cn(outlineButton, 'h-9 px-3 text-[0.8125rem]')}>
             <Plus aria-hidden className="size-4" />
             {t('invite.publishRole')}
           </Link>

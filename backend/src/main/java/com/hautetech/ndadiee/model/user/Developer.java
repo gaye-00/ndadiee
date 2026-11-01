@@ -7,11 +7,13 @@ import com.hautetech.ndadiee.model.content.Tag;
 
 import org.hibernate.annotations.DynamicUpdate;
 
+import jakarta.persistence.CheckConstraint;
 import jakarta.persistence.Column;
 import jakarta.persistence.DiscriminatorValue;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
+import jakarta.persistence.Index;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
@@ -71,7 +73,8 @@ public class Developer extends User {
     @JoinTable(
         name = "user_skills",
         joinColumns = @JoinColumn(name = "user_id"),
-        inverseJoinColumns = @JoinColumn(name = "tag_id")
+        inverseJoinColumns = @JoinColumn(name = "tag_id"),
+        indexes = @Index(name = "idx_user_skills_tag", columnList = "tag_id")
     )
     @ToString.Exclude
     @Builder.Default
@@ -82,7 +85,8 @@ public class Developer extends User {
     @JoinTable(
         name = "user_followed_tags",
         joinColumns = @JoinColumn(name = "user_id"),
-        inverseJoinColumns = @JoinColumn(name = "tag_id")
+        inverseJoinColumns = @JoinColumn(name = "tag_id"),
+        indexes = @Index(name = "idx_user_followed_tags_tag", columnList = "tag_id")
     )
     @ToString.Exclude
     @Builder.Default
@@ -92,7 +96,9 @@ public class Developer extends User {
     @JoinTable(
         name = "user_follows",
         joinColumns = @JoinColumn(name = "follower_id"),
-        inverseJoinColumns = @JoinColumn(name = "following_id")
+        inverseJoinColumns = @JoinColumn(name = "following_id"),
+        indexes = @Index(name = "idx_user_follows_following", columnList = "following_id"),
+        check = @CheckConstraint(name = "ck_user_follows_not_self", constraint = "follower_id <> following_id")
     )
     @ToString.Exclude
     @Builder.Default

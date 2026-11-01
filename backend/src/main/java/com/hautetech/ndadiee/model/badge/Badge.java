@@ -5,6 +5,7 @@ import com.hautetech.ndadiee.common.BaseEntity;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Table;
+import jakarta.persistence.UniqueConstraint;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -17,10 +18,10 @@ import lombok.experimental.SuperBuilder;
 @NoArgsConstructor
 @SuperBuilder
 @Entity
-@Table(name = "badges")
+@Table(name = "badges", uniqueConstraints = @UniqueConstraint(name = "uk_badges_name", columnNames = "name"))
 public class Badge extends BaseEntity {
 
-    @Column(nullable = false, unique = true)
+    @Column(nullable = false)
     private String name;
 
     @Column(columnDefinition = "TEXT")

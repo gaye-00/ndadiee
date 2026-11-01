@@ -6,6 +6,7 @@ import {
   useQuery,
   useQueryClient,
 } from '@tanstack/react-query';
+import { openingService } from '@/services/opening.service';
 import { projectService } from '@/services/project.service';
 import type {
   FeedbackCall,
@@ -15,6 +16,7 @@ import type {
   NewProjectRequest,
   ProjectFacetFilters,
   ProjectFilters,
+  ProjectOpeningRequest,
 } from '@/types/project.types';
 
 /** Requête d'une liste de projets : partagée par les hooks et le préchargement (LandingPage). */
@@ -112,6 +114,16 @@ export function useCreateProject() {
       qc.setQueryData(['project', project.slug], project);
       void qc.invalidateQueries({ queryKey: ['feed'] });
     },
+    meta: { handlesError: true },
+  });
+}
+
+/** Publie un rôle pour un projet : les annonces, le projet et l'atelier se rechargent. */
+export function useCreateOpening() {
+  const invalidate = useInvalidateProjects();
+  return useMutation({
+    mutationFn: ({ projectId, body }: { projectId: number; body: ProjectOpeningRequest }) => openingService.create(projectId, body),
+    onSuccess: () => invalidate(),
     meta: { handlesError: true },
   });
 }

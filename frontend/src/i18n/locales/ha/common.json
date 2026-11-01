@@ -53,8 +53,26 @@
       "projects": "Shirye-shirye",
       "people": "Masu haɓaka manhaja",
       "topics": "Tattaunawa",
-      "actions": "Umarni"
-    }
+      "actions": "Umarni",
+      "pages": "Shafuka"
+    },
+    "all": "Duka",
+    "seeAllFor": "Duba duk sakamakon “{{query}}”",
+    "resultCount_one": "sakamako {{count}}",
+    "resultCount_other": "sakamako {{count}}",
+    "seats_one": "wuri {{count}}",
+    "seats_other": "wurare {{count}}",
+    "tooShort": "Rubuta aƙalla haruffa 2.",
+    "promptTitle": "Me kake nema?",
+    "promptText": "Gurbi, aiki, mai haɓaka manhaja ko batun tattaunawa.",
+    "noResultsText": "Duba rubutun, ko gwada gajeriyar kalma.",
+    "askForum": "Yi tambaya a dandalin tattaunawa",
+    "failed": "Binciken bai yi nasara ba.",
+    "more": "Duba ƙarin sakamako",
+    "loadingMore": "Ana loda ƙari",
+    "moreFailed": "Ba a iya loda sauran ba.",
+    "clear": "Share binciken",
+    "dialogDescription": "Nemi gurbi, aiki, mai haɓaka manhaja ko batu, ko ka buɗe shafi."
   },
   "kanban": {
     "todo": "Abin yi",
@@ -103,6 +121,16 @@
     "network": "Ba a iya isa ga sabar ba. Duba haɗinka.",
     "notFound": "Wannan shafin babu shi, ko an matsar da shi."
   },
+  "errorPages": {
+    "notFoundTitle": "Wannan zaren ba ya kai ko'ina.",
+    "crashTitle": "Ba a iya nuna wannan shafin ba.",
+    "crashText": "Sake loda shi don sake gwadawa. Idan matsalar ta dawo, ka sake farawa daga shafin farko.",
+    "updateTitle": "Sabon sigar Ndadiee ya fito.",
+    "updateText": "Sake loda shafin don komawa zuwa wannan sigar.",
+    "offlineText": "Wannan shafin bai riga ya shiga na'urarka ba. Sake haɗawa, sannan ka sake loda shi.",
+    "reload": "Sake loda shafin",
+    "home": "Koma shafin farko"
+  },
   "settingsPage": {
     "eyebrow": "WURIN KA NA KANKA · NDADIEE",
     "pageTitle": "Ka tsara wannan wuri yadda kake so.",
@@ -142,6 +170,12 @@
     "website": "Shafin yanar gizanka",
     "openToWork": "A shirye nake don haɗin gwiwa",
     "openToWorkDescription": "Ka sanar da ƙungiyoyi cewa kana shirye don sababbin ayyuka.",
+    "emailsTitle": "Imel",
+    "emailsDescription": "Abin da Ndadiee ke aikawa zuwa {{email}}.",
+    "reviewEmails": "Ayyukan bitar lambobina",
+    "reviewEmailsDescription": "Sharhi a kan pull request ɗinka ko a tattaunawar da ka rubuta, hukunci, wani da ya ba da kansa don bita, bitarka da aka ga tana da amfani.",
+    "reviewEmailsOn": "Za ka karɓi imel na bitar lambobinka",
+    "reviewEmailsOff": "Babu sauran imel na bitar lamba",
     "publicProfile": "Duba bayanan martaba",
     "memberSince": "Memba tun {{date}}",
     "profileSaving": "Ana adana bayanan martaba…",
@@ -748,6 +782,17 @@
       "seeAll": "Duba duka",
       "empty": "Babu sabon abu a yanzu.",
       "unread": "ba a karanta ba",
+      "unreadCount_one": "{{count}} ba a karanta ba",
+      "unreadCount_other": "{{count}} ba a karanta ba",
+      "allRead": "Ka karanta duka.",
+      "today": "Yau",
+      "yesterday": "Jiya",
+      "emptyText": "Amsoshin batutuwanka, neman shiga da sababbin mabiya za su zo nan.",
+      "failed": "Ba a iya loda sanarwar ba.",
+      "more": "Duba tsofaffin",
+      "loadingMore": "Ana loda tsofaffin",
+      "moreFailed": "Ba a iya loda tsofaffin ba.",
+      "manageEmails": "Sarrafa imel ɗina",
       "types": {
         "NEW_ANSWER": "<b>{{actor}}</b> ya amsa “{{target}}”",
         "ANSWER_ACCEPTED": "<b>{{actor}}</b> ya karɓi amsarka ga “{{target}}”",
@@ -764,6 +809,11 @@
       "explore": "Bincika",
       "reputation_one": "makin suna {{count}}",
       "reputation_other": "makin suna {{count}}"
+    },
+    "messages": {
+      "unread_one": "Tattaunawa {{count}} ba a karanta ba",
+      "unread_other": "Tattaunawa {{count}} ba a karanta ba",
+      "newMessage": "Sabon saƙo"
     }
   },
   "code": {

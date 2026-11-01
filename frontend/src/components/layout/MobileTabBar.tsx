@@ -1,33 +1,17 @@
-import { FolderPlus, MessageSquarePlus, Plus, Sparkles, type LucideIcon } from 'lucide-react';
+import { Plus } from 'lucide-react';
 import { AnimatePresence, m } from 'motion/react';
 import { useCallback, useEffect, useId, useRef, useState, type Ref } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Link, useLocation } from 'react-router-dom';
-import { ADMIN_MOBILE_TABS, isCurrentPath, MOBILE_TABS, type NavItem } from '@/config/navigation';
+import UnreadMessagesBadge from '@/components/messages/UnreadMessagesBadge';
+import { ADMIN_MOBILE_TABS, CREATE_ACTIONS, isCurrentPath, MOBILE_TABS, type NavItem } from '@/config/navigation';
 import { useAuth } from '@/hooks/useAuth';
 import { useHideOnScroll } from '@/hooks/useHideOnScroll';
 import { prefetch } from '@/lib/prefetch';
 import { cn } from '@/lib/utils';
-import { pages, type PageImport } from '@/router/pages';
-import { paths } from '@/router/paths';
 
 // La pastille de l'onglet ouvert glisse d'un onglet à l'autre
 const slide = { type: 'spring', stiffness: 420, damping: 36 } as const;
-
-interface CreateAction {
-  label: 'actions.newProject' | 'actions.publishRole' | 'actions.newTopic';
-  to: string;
-  icon: LucideIcon;
-  load: PageImport;
-  tone: string;
-}
-
-// Ce qu'on crée depuis le bouton central
-const CREATE_ACTIONS: readonly CreateAction[] = [
-  { label: 'actions.newProject', to: paths.newProject, icon: FolderPlus, load: pages.newProject, tone: 'bg-kente-gold' },
-  { label: 'actions.publishRole', to: paths.newOpening, icon: Sparkles, load: pages.newOpening, tone: 'bg-kente-coral' },
-  { label: 'actions.newTopic', to: paths.newTopic, icon: MessageSquarePlus, load: pages.newTopic, tone: 'bg-kente-jade' },
-];
 
 /**
  * Barre d'onglets fixée en bas sur téléphone, avec le bouton central de création. Design 3G.
@@ -138,6 +122,7 @@ function TabLink({ item, current }: { item: NavItem; current: boolean }) {
         </m.span>
       )}
       <Icon aria-hidden className={cn('relative size-5.5', current && 'text-kente-gold')} strokeWidth={current ? 2.3 : 2} />
+      {item.labelKey === 'messages' && <UnreadMessagesBadge className="start-[calc(50%+0.25rem)] top-1.5 ring-surface [.dark_&]:ring-surface-raised" />}
       <span className="relative max-w-full truncate">{t(`nav.${item.labelKey}`)}</span>
     </Link>
   );

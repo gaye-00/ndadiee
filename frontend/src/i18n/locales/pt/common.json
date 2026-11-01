@@ -53,8 +53,28 @@
       "projects": "Projetos",
       "people": "Devs",
       "topics": "Fórum",
-      "actions": "Ações"
-    }
+      "actions": "Ações",
+      "pages": "Páginas"
+    },
+    "all": "Tudo",
+    "seeAllFor": "Ver todos os resultados para «{{query}}»",
+    "resultCount_one": "{{count}} resultado",
+    "resultCount_many": "{{count}} resultados",
+    "resultCount_other": "{{count}} resultados",
+    "seats_one": "{{count}} vaga",
+    "seats_many": "{{count}} vagas",
+    "seats_other": "{{count}} vagas",
+    "tooShort": "Escreve pelo menos 2 caracteres.",
+    "promptTitle": "O que procuras?",
+    "promptText": "Uma função, um projeto, um dev ou um tópico do fórum.",
+    "noResultsText": "Verifica a ortografia ou experimenta uma palavra mais curta.",
+    "askForum": "Perguntar no fórum",
+    "failed": "A pesquisa não foi concluída.",
+    "more": "Ver mais resultados",
+    "loadingMore": "A carregar mais",
+    "moreFailed": "Não foi possível carregar o resto.",
+    "clear": "Limpar a pesquisa",
+    "dialogDescription": "Procura uma função, um projeto, um dev ou um tópico, ou abre uma página."
   },
   "kanban": {
     "todo": "A fazer",
@@ -104,6 +124,16 @@
     "network": "Não foi possível contactar o servidor. Verifica a tua ligação.",
     "notFound": "Esta página não existe ou foi movida."
   },
+  "errorPages": {
+    "notFoundTitle": "Este fio não leva a lado nenhum.",
+    "crashTitle": "Não foi possível mostrar esta página.",
+    "crashText": "Recarrega-a para tentar novamente. Se o problema voltar, recomeça a partir do início.",
+    "updateTitle": "Há uma nova versão da Ndadiee online.",
+    "updateText": "Recarrega a página para passar a esta versão.",
+    "offlineText": "Esta página ainda não está no teu aparelho. Volta a ligar-te e recarrega-a.",
+    "reload": "Recarregar a página",
+    "home": "Voltar ao início"
+  },
   "settingsPage": {
     "eyebrow": "O TEU ESPAÇO · NDADIEE",
     "pageTitle": "Um espaço à tua medida.",
@@ -143,6 +173,12 @@
     "website": "Site pessoal",
     "openToWork": "Disponível para colaborar",
     "openToWorkDescription": "Mostra às equipas que estás disponível para novos projetos.",
+    "emailsTitle": "E-mails",
+    "emailsDescription": "O que o Ndadiee te envia para {{email}}.",
+    "reviewEmails": "Atividade das minhas revisões de código",
+    "reviewEmailsDescription": "Um comentário no teu pull request ou numa discussão onde escreveste, um veredicto, alguém que se propõe para rever, a tua revisão considerada útil.",
+    "reviewEmailsOn": "Vais receber os e-mails das tuas revisões de código",
+    "reviewEmailsOff": "Sem mais e-mails de revisão de código",
     "publicProfile": "Ver perfil",
     "memberSince": "Membro desde {{date}}",
     "profileSaving": "A guardar o perfil…",
@@ -186,7 +222,7 @@
     "showcase": "Montra",
     "project": "Projeto",
     "openings": "Anúncios",
-    "newOpening": "Publicar um anúncio",
+    "newOpening": "Publicar uma função",
     "hackathons": "Hackathons",
     "hackathon": "Hackathon",
     "forum": "Fórum",
@@ -788,6 +824,18 @@
       "seeAll": "Ver tudo",
       "empty": "Nada de novo por agora.",
       "unread": "por ler",
+      "unreadCount_one": "{{count}} por ler",
+      "unreadCount_many": "{{count}} por ler",
+      "unreadCount_other": "{{count}} por ler",
+      "allRead": "Está tudo lido.",
+      "today": "Hoje",
+      "yesterday": "Ontem",
+      "emptyText": "As respostas aos teus tópicos, as candidaturas e os novos seguidores vão aparecer aqui.",
+      "failed": "Não foi possível carregar as notificações.",
+      "more": "Ver as mais antigas",
+      "loadingMore": "A carregar as mais antigas",
+      "moreFailed": "Não foi possível carregar as mais antigas.",
+      "manageEmails": "Gerir os meus e-mails",
       "types": {
         "NEW_ANSWER": "<b>{{actor}}</b> respondeu a «{{target}}»",
         "ANSWER_ACCEPTED": "<b>{{actor}}</b> aceitou a tua resposta a «{{target}}»",
@@ -805,6 +853,12 @@
       "reputation_one": "{{count}} ponto de reputação",
       "reputation_many": "{{count}} pontos de reputação",
       "reputation_other": "{{count}} pontos de reputação"
+    },
+    "messages": {
+      "unread_one": "{{count}} conversa por ler",
+      "unread_many": "{{count}} conversas por ler",
+      "unread_other": "{{count}} conversas por ler",
+      "newMessage": "Nova mensagem"
     }
   },
   "code": {

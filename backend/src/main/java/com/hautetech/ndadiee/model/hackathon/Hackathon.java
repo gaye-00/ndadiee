@@ -7,6 +7,8 @@ import java.util.List;
 import java.util.Set;
 
 import org.hibernate.annotations.DynamicUpdate;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
 import com.hautetech.ndadiee.common.BaseEntity;
 import com.hautetech.ndadiee.model.content.Tag;
@@ -14,6 +16,7 @@ import com.hautetech.ndadiee.model.opportunity.WorkMode;
 import com.hautetech.ndadiee.model.user.User;
 
 import jakarta.persistence.CascadeType;
+import jakarta.persistence.CheckConstraint;
 import jakarta.persistence.CollectionTable;
 import jakarta.persistence.Column;
 import jakarta.persistence.ElementCollection;
@@ -21,6 +24,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
 import jakarta.persistence.FetchType;
+import jakarta.persistence.Index;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
@@ -29,6 +33,7 @@ import jakarta.persistence.OneToMany;
 import jakarta.persistence.OrderBy;
 import jakarta.persistence.OrderColumn;
 import jakarta.persistence.Table;
+import jakarta.persistence.UniqueConstraint;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -49,13 +54,25 @@ import lombok.experimental.SuperBuilder;
 @SuperBuilder
 @Entity
 @DynamicUpdate
-@Table(name = "hackathons")
+@Table(
+    name = "hackathons",
+    uniqueConstraints = @UniqueConstraint(name = "uk_hackathons_slug", columnNames = "slug"),
+    indexes = {
+        @Index(name = "idx_hackathons_starts_at", columnList = "starts_at"),
+        @Index(name = "idx_hackathons_ends_at", columnList = "ends_at")
+    },
+    check = {
+        @CheckConstraint(name = "ck_hackathons_dates", constraint = "starts_at < ends_at and registration_closes_at <= starts_at"),
+        @CheckConstraint(name = "ck_hackathons_team_size",
+            constraint = "min_team_size between 1 and max_team_size and max_team_size <= 20")
+    }
+)
 public class Hackathon extends BaseEntity {
 
     @Column(nullable = false, length = 120)
     private String title;
 
-    @Column(nullable = false, unique = true, length = 140)
+    @Column(nullable = false, length = 140)
     private String slug;
 
     // Accroche d'une ligne, pour les cartes
@@ -116,7 +133,8 @@ public class Hackathon extends BaseEntity {
     @JoinTable(
         name = "hackathon_tags",
         joinColumns = @JoinColumn(name = "hackathon_id"),
-        inverseJoinColumns = @JoinColumn(name = "tag_id")
+        inverseJoinColumns = @JoinColumn(name = "tag_id"),
+        indexes = @Index(name = "idx_hackathon_tags_tag", columnList = "tag_id")
     )
     @ToString.Exclude
     @Builder.Default
@@ -129,7 +147,9 @@ public class Hackathon extends BaseEntity {
 
     // Programme : les temps forts, dans l'ordre chronologique
     @ElementCollection
-    @CollectionTable(name = "hackathon_milestones", joinColumns = @JoinColumn(name = "hackathon_id"))
+    @CollectionTable(name = "hackathon_milestones", joinColumns = @JoinColumn(name = "hackathon_id"),
+        indexes = @Index(name = "idx_hackathon_milestones_hackathon", columnList = "hackathon_id, scheduled_at"))
+    @OnDelete(action = OnDeleteAction.CASCADE)
     @OrderBy("scheduledAt ASC")
     @ToString.Exclude
     @Builder.Default
@@ -138,6 +158,7 @@ public class Hackathon extends BaseEntity {
     // Prix, dans l'ordre où l'organisateur les présente
     @ElementCollection
     @CollectionTable(name = "hackathon_prizes", joinColumns = @JoinColumn(name = "hackathon_id"))
+    @OnDelete(action = OnDeleteAction.CASCADE)
     @OrderColumn(name = "position")
     @ToString.Exclude
     @Builder.Default

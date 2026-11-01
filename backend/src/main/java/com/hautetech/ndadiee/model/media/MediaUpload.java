@@ -15,6 +15,7 @@ import jakarta.persistence.FetchType;
 import jakarta.persistence.Index;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
+import jakarta.persistence.UniqueConstraint;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -34,10 +35,17 @@ import lombok.experimental.SuperBuilder;
 @NoArgsConstructor
 @SuperBuilder
 @Entity
-@Table(name = "media_uploads", indexes = {
-    @Index(name = "idx_media_uploads_url", columnList = "url"),
-    @Index(name = "idx_media_uploads_owner", columnList = "owner_id")
-})
+@Table(
+    name = "media_uploads",
+    uniqueConstraints = @UniqueConstraint(name = "uk_media_uploads_storage_key", columnNames = "storage_key"),
+    indexes = {
+        @Index(name = "idx_media_uploads_url", columnList = "url"),
+        @Index(name = "idx_media_uploads_owner", columnList = "owner_id"),
+        @Index(name = "idx_media_uploads_project", columnList = "project_id"),
+        // Le ménage des images de projet que plus rien ne montre (MediaUploadService)
+        @Index(name = "idx_media_uploads_orphans", columnList = "updated_at", options = "where project_id is null and purpose = 'PROJECT'")
+    }
+)
 public class MediaUpload extends BaseEntity {
 
     // Le membre qui l'a envoyé. Son compte supprimé, le fichier reste à l'inventaire
@@ -51,7 +59,7 @@ public class MediaUpload extends BaseEntity {
     private UploadPurpose purpose;
 
     // Chemin dans le stockage : « projects/12/2026/10/3f2a….webp »
-    @Column(nullable = false, unique = true, length = 300)
+    @Column(nullable = false, length = 300)
     private String storageKey;
 
     // Adresse publique, telle que les contenus l'écrivent

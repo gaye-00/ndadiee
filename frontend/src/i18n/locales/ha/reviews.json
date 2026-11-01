@@ -171,5 +171,214 @@
       "GITHUB_UNAVAILABLE": "GitHub bai amsa karatun ƙarshe ba: sabon ƙoƙari a zagaye na gaba.",
       "GITHUB_NOT_CONFIGURED": "Ba a saita karatun pull requests a wannan sabar ba (babu alamar GitHub)."
     }
+  },
+  "page": {
+    "loading": "Ana loda bitar…",
+    "documentTitle": "#{{number}} {{title}}",
+    "aside": "Masu bita, gwaje-gwaje da aikin da aka haɗa",
+    "notFoundTitle": "Ba a sami pull request ba",
+    "notFoundText": "Babu shi a wannan aikin, ko kuma ba a ganin aikin yanzu.",
+    "backToReviews": "Koma ga bita",
+    "errorTitle": "Bitar ba ta loda ba",
+    "errorText": "Duba haɗin intanet ɗinka, sannan ka sake gwadawa."
+  },
+  "header": {
+    "wants_one": "yana son haɗa <b>commit {{count}}</b> daga <branch>{{source}}</branch> zuwa <branch>{{target}}</branch>",
+    "wants_other": "yana son haɗa <b>commit {{count}}</b> daga <branch>{{source}}</branch> zuwa <branch>{{target}}</branch>",
+    "merged_one": "ya haɗa <b>commit {{count}}</b> daga <branch>{{source}}</branch> zuwa <branch>{{target}}</branch>",
+    "merged_other": "ya haɗa <b>commit {{count}}</b> daga <branch>{{source}}</branch> zuwa <branch>{{target}}</branch>",
+    "closed_one": "ya gabatar da <b>commit {{count}}</b> daga <branch>{{source}}</branch> zuwa <branch>{{target}}</branch>",
+    "closed_other": "ya gabatar da <b>commit {{count}}</b> daga <branch>{{source}}</branch> zuwa <branch>{{target}}</branch>",
+    "readDescription": "Karanta bayanin",
+    "onGithub": "Duba a GitHub",
+    "review": "Miƙa bitata",
+    "reviewAgain": "Sake duba hukuncina",
+    "mergeOnGithub": "Haɗa a GitHub",
+    "yours": "Pull request ɗinka",
+    "myVerdict": {
+      "COMMENTED": "Ka yi sharhi",
+      "APPROVED": "Ka amince",
+      "CHANGES_REQUESTED": "Ka nemi gyara"
+    }
+  },
+  "pageTabs": {
+    "label": "Sassan bitar",
+    "files": "Fayilolin da aka canza",
+    "conversation": "Tattaunawa"
+  },
+  "files": {
+    "title": "Fayilolin da aka canza",
+    "viewed": "{{seen}}/{{total}} an gani",
+    "viewedLabel": "An ga fayiloli {{seen}} cikin {{total}}",
+    "viewedFile": "An gani",
+    "collapse": "Ɓoye jerin fayiloli",
+    "expand": "Nuna jerin fayiloli",
+    "filter": "Nemi fayil",
+    "clearFilter": "Share bincike",
+    "noMatch": "Babu fayil don “{{query}}”",
+    "status": {
+      "ADDED": "an ƙara",
+      "MODIFIED": "an canza",
+      "REMOVED": "an goge",
+      "RENAMED": "an sake suna",
+      "COPIED": "an kwafa"
+    }
+  },
+  "diff": {
+    "label": "Diff na pull request",
+    "loading": "Ana karanta diff…",
+    "errorTitle": "Diff bai loda ba",
+    "errorText": "GitHub bai amsa ba. Sake gwadawa nan da ɗan lokaci.",
+    "unavailableTitle": "Babu diff",
+    "unavailableText_one": "Wannan pull request na nuni yana canza fayil {{count}}, amma ba za a iya duba diff ɗinsa a nan ba.",
+    "unavailableText_other": "Wannan pull request na nuni yana canza fayiloli {{count}}, amma ba za a iya duba diff ɗinsa a nan ba.",
+    "expandAll": "Buɗe duka",
+    "collapseAll": "Ninke duka",
+    "expandFile": "Buɗe {{path}}",
+    "collapseFile": "Ninke {{path}}",
+    "copyPath": "Kwafi hanya",
+    "pathCopied": "An kwafi hanya",
+    "viewOnGithub": "Duba {{path}} a GitHub",
+    "viewed": "An gani",
+    "readOnly": "Ƙungiyar aikin da masu bitarsa ne ke bitar wannan pull request: za ka iya karanta shi, ba tare da sharhi ba.",
+    "commentLine": "Yi sharhi a layi {{line}}",
+    "added": "Layin da aka ƙara:",
+    "removed": "Layin da aka goge:",
+    "noNewline": "Babu sabon layi a ƙarshen fayil",
+    "noPatch": "Ba a nuna diff ba: fayil na binary, ko ya yi girma sosai.",
+    "renamedOnly": "An sake sunan fayil, ba tare da wani canji ba.",
+    "openOnGithub": "Buɗe a GitHub",
+    "outdated": "Sharhi a kan layukan da ke wajen diff",
+    "lineLabel": "Layi {{line}}",
+    "moreOnGithub_one": "Ƙarin fayil {{count}} don karantawa a GitHub",
+    "moreOnGithub_other": "Ƙarin fayiloli {{count}} don karantawa a GitHub"
+  },
+  "thread": {
+    "placeholder": "Lura, tambaya, shawara…",
+    "replyPlaceholder": "Amsa…",
+    "replyLabel": "Amsa tattaunawar a {{path}}, layi {{line}}",
+    "newLabel": "Yi sharhi a {{path}}, layi {{line}}",
+    "editLabel": "Gyara sharhin",
+    "newOnLine": "Sabon sharhi · layi {{line}}",
+    "hint": "{{mod}} + Enter don wallafawa",
+    "comment": "Yi sharhi",
+    "reply": "Amsa",
+    "save": "Ajiye",
+    "cancel": "Soke",
+    "empty": "Rubuta sharhinka.",
+    "explainSuggestion": "Faɗi a jimla ɗaya dalilin da ka ba da shawarar wannan lambar.",
+    "addSuggestion": "Ba da shawarar lamba",
+    "removeSuggestion": "Cire shawarar",
+    "edited": "an gyara",
+    "menu": "Ayyukan sharhi",
+    "edit": "Gyara",
+    "delete": "Goge",
+    "deleteTitle": "Goge wannan sharhin?",
+    "deleteText": "Zai ɓace daga tattaunawar. Ba za a iya mayar da wannan ba.",
+    "deleted": "An goge sharhi",
+    "roles": {
+      "author": "Marubuci",
+      "required": "Wajibi",
+      "community": "Al'umma",
+      "reviewer": "Mai bita"
+    }
+  },
+  "suggestion": {
+    "title": "Shawara",
+    "copy": "Kwafa",
+    "copied": "An kwafa",
+    "empty": "Goge layin"
+  },
+  "reviewers": {
+    "title": "Masu bita",
+    "empty": "Har yanzu babu wanda ke bitar wannan pull request.",
+    "required_one": "An amince da bitar wajibi {{approved}} cikin {{count}}",
+    "required_other": "An amince da bitocin wajibi {{approved}} cikin {{count}}",
+    "requiredTag": "Wajibi",
+    "communityTag": "Al'umma",
+    "claim": "Ba da kaina a matsayin mai bita",
+    "claimHint": "Bitar da ƙungiyar ta ga tana da amfani tana ba ka suna +{{reward}}.",
+    "judge": "Bita mai amfani · +{{reward}}",
+    "helpful": "An ga tana da amfani",
+    "helpfulFor": "An ga tana da amfani · suna +{{reward}}",
+    "judged": "Bitar {{name}} tana ba shi suna +{{reward}}",
+    "unjudged": "Ba a ƙara ganin bitar {{name}} tana da amfani ba"
+  },
+  "checks": {
+    "title": "Gwaje-gwaje",
+    "onGithub": "Duba gwaje-gwaje a GitHub",
+    "none": "Babu gwaji a commit na ƙarshe.",
+    "passed_one": "Gwaji {{count}} ya yi nasara",
+    "passed_other": "Duk gwaje-gwaje {{count}} sun yi nasara",
+    "running_one": "Gwaji {{count}} yana gudana",
+    "running_other": "Gwaje-gwaje {{count}} suna gudana",
+    "error": "Bayanan gwaje-gwaje ba su loda ba.",
+    "details": "Duba tarihin {{name}}",
+    "state": {
+      "SUCCESS": "Ya yi nasara:",
+      "FAILURE": "Ya kasa:",
+      "PENDING": "Yana gudana:",
+      "SKIPPED": "An tsallake:"
+    }
+  },
+  "task": {
+    "title": "Aikin da aka haɗa",
+    "none": "Babu issue da aka haɗa. PR da ta rubuta “Closes #12” a bayaninta tana bayyana a nan.",
+    "error": "Issues da aka haɗa ba su loda ba.",
+    "untitled": "Issue #{{number}}",
+    "open": "A buɗe · wannan PR za ta rufe ta idan aka haɗa",
+    "closed": "A rufe",
+    "willClose": "Wannan PR za ta rufe ta idan aka haɗa",
+    "starter": "mataki na farko"
+  },
+  "conversation": {
+    "label": "Tattaunawar pull request",
+    "opened": "ya buɗe wannan pull request",
+    "noDescription": "Babu bayani.",
+    "empty": "Babu sharhi tukuna: fara tattaunawa.",
+    "placeholder": "Yi sharhi a kan pull request…",
+    "composerLabel": "Yi sharhi a kan pull request",
+    "send": "Yi sharhi",
+    "sent": "An wallafa sharhi",
+    "reviewHint": "Ka gama bita?",
+    "verdict": {
+      "COMMENTED": "ya yi sharhi",
+      "APPROVED": "ya amince da waɗannan canje-canje",
+      "CHANGES_REQUESTED": "ya nemi gyara"
+    }
+  },
+  "submit": {
+    "eyebrow": "Pull request #{{number}}",
+    "title": "Miƙa bitata",
+    "text": "Hukuncinka da saƙonka suna shiga tattaunawar; marubucin yana ganin su nan take.",
+    "close": "Rufe",
+    "verdict": "Hukunci",
+    "verdicts": {
+      "COMMENTED": "Yi sharhi",
+      "APPROVED": "Amince",
+      "CHANGES_REQUESTED": "Nemi gyara"
+    },
+    "verdictHints": {
+      "COMMENTED": "Lura, ba tare da hukunci ba.",
+      "APPROVED": "Tana da kyau a gare ka: za a iya haɗa ta.",
+      "CHANGES_REQUESTED": "A gyara kafin a haɗa."
+    },
+    "message": "Saƙon bitarka",
+    "placeholder": "Faɗi abin da ke da kyau, da abin da ya rage…",
+    "placeholderOptional": "Kalma ga marubucin (ba dole ba)",
+    "hint": "{{mod}} + Enter don aikawa",
+    "explain": "Faɗi abin da ya rage: saƙo wajibi ne, sai dai don amincewa.",
+    "reward": "Bitar al'umma: idan ƙungiyar ta ga tana da amfani, tana ba ka suna +{{reward}}.",
+    "cancel": "Soke",
+    "send": {
+      "COMMENTED": "Aika sharhina",
+      "APPROVED": "Amince",
+      "CHANGES_REQUESTED": "Nemi gyara"
+    },
+    "done": {
+      "COMMENTED": "An miƙa bitarka ta #{{number}}",
+      "APPROVED": "Ka amince da #{{number}}",
+      "CHANGES_REQUESTED": "An nemi gyara a #{{number}}"
+    }
   }
 }

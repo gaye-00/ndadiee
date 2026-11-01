@@ -12,6 +12,9 @@ const GITHUB_LOGIN_KEY = 'ndadiee_github_login';
 const ROLES_PAUSED_KEY = 'ndadiee_roles_paused';
 // Brouillons du forum : ndadiee_draft_topic, ndadiee_draft_answer-12…
 const DRAFT_PREFIX = 'ndadiee_draft_';
+// Fichiers vus d'une revue : ndadiee_viewed_paperweight#12
+const VIEWED_PREFIX = 'ndadiee_viewed_';
+const REVIEW_TREE_KEY = 'ndadiee_review_tree';
 
 /** Choix de thème ; « system » suit le réglage clair/sombre de l'appareil. */
 export type ThemePreference = 'light' | 'dark' | 'system';
@@ -42,9 +45,9 @@ export const storage = {
     localStorage.removeItem(ACCESS_TOKEN_KEY);
     localStorage.removeItem(REFRESH_TOKEN_KEY);
     localStorage.removeItem(USER_KEY);
-    // Les brouillons appartiennent au compte : le suivant sur cet appareil ne les voit pas
+    // Les brouillons et les fichiers vus appartiennent au compte : le suivant sur cet appareil ne les voit pas
     Object.keys(localStorage)
-      .filter((key) => key.startsWith(DRAFT_PREFIX))
+      .filter((key) => key.startsWith(DRAFT_PREFIX) || key.startsWith(VIEWED_PREFIX))
       .forEach((key) => localStorage.removeItem(key));
   },
 
@@ -65,6 +68,45 @@ export const storage = {
     }
   },
   clearDraft: (key: string): void => localStorage.removeItem(DRAFT_PREFIX + key),
+
+  // ── Revues de code (hooks/useViewedFiles.ts, reviews/ChangedFilesTree.tsx) ──
+  /** Les fichiers vus d'une PR : chemin → empreinte de leur diff quand ils ont été vus */
+  getViewedFiles: (key: string): Record<string, string> => {
+    try {
+      const raw = localStorage.getItem(VIEWED_PREFIX + key);
+      const parsed: unknown = raw ? JSON.parse(raw) : null;
+      return parsed && typeof parsed === 'object' ? (parsed as Record<string, string>) : {};
+    } catch {
+      return {};
+    }
+  },
+  setViewedFiles: (key: string, viewed: Record<string, string>): void => {
+    try {
+      if (Object.keys(viewed).length === 0) {
+        localStorage.removeItem(VIEWED_PREFIX + key);
+      } else {
+        localStorage.setItem(VIEWED_PREFIX + key, JSON.stringify(viewed));
+      }
+    } catch {
+      // Stockage plein ou refusé : les fichiers vus ne sont gardés que le temps de la page
+    }
+  },
+  /** L'arbre des fichiers d'une revue, ouvert ou replié ; null : pas encore choisi */
+  getReviewTreeOpen: (): boolean | null => {
+    try {
+      const saved = localStorage.getItem(REVIEW_TREE_KEY);
+      return saved === 'open' ? true : saved === 'closed' ? false : null;
+    } catch {
+      return null;
+    }
+  },
+  setReviewTreeOpen: (open: boolean): void => {
+    try {
+      localStorage.setItem(REVIEW_TREE_KEY, open ? 'open' : 'closed');
+    } catch {
+      // Refusé : le choix vaut pour la page
+    }
+  },
 
   // ── Thème ────────────────────────────────────────────────
   getTheme: (): ThemePreference | null => {

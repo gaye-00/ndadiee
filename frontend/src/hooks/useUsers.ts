@@ -100,6 +100,20 @@ export function useUpdateProfile() {
   });
 }
 
+/** Les e-mails qu'on reçoit : le compte se met à jour dès la réponse (réglages, « E-mails »). */
+export function useUpdateEmailPreferences() {
+  const qc = useQueryClient();
+  const setUser = useAuthStore((s) => s.setUser);
+  return useMutation({
+    mutationFn: (reviewEmails: boolean) => userService.updateEmailPreferences({ reviewEmails }),
+    onSuccess: (user) => {
+      setUser(user);
+      // Le compte relu au chargement (useSessionSync) ne ramène pas l'ancien choix
+      qc.setQueryData(['me'], user);
+    },
+  });
+}
+
 /**
  * Le compte après un changement de photo : le profil la montre tout de suite. La photo paraît aussi ailleurs (un
  * auteur, une équipe, un coéquipier) : tout ce qui est en cache est à relire, la page affichée tout de suite, les

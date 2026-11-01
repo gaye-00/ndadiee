@@ -99,5 +99,25 @@
     "openIssue": "فتح المهمة على GitHub",
     "matchScore": "{{score}}٪",
     "yourTeam": "فريقك"
+  },
+  "form": {
+    "projectTitle": "المشروع",
+    "projectText": "الفريق الذي توظّف له.",
+    "roleTitle": "الدور",
+    "roleText": "التخصص الذي تبحث عنه: به تُصفّى الإعلانات.",
+    "detailsTitle": "الإعلان",
+    "detailsText": "ما سيقوم به هذا الشخص، ومن أين يمكنه أن يبدأ.",
+    "projectRequired": "اختر المشروع الذي يوظّف.",
+    "roleRequired": "اختر دورًا.",
+    "noProjectTitle": "تحتاج أولًا إلى مشروع.",
+    "noProjectText": "يُنشر الدور باسم مشروع تملكه أو تشرف على صيانته.",
+    "loadFailed": "تعذّر تحميل مشاريعك.",
+    "previewHint": "الإعلان كما سيظهر في صفحة الإعلانات.",
+    "previewEmpty": "اختر مشروعًا ودورًا: سيتشكّل الإعلان هنا.",
+    "draftRestored": "تمت استعادة مسودتك.",
+    "discardText": "سيختفي الإعلان قيد الكتابة من هذا الجهاز.",
+    "publish": "نشر الدور",
+    "publishing": "جارٍ نشر الدور",
+    "published": "{{title}} متاح الآن."
   }
 }

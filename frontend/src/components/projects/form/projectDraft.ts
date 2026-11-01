@@ -1,7 +1,7 @@
 import { z } from 'zod';
 import i18n from '@/i18n';
 import type { UserResponse } from '@/types/auth.types';
-import type { MediaKind, NewProjectRequest, Project, TeamRole } from '@/types/project.types';
+import type { MediaKind, NewProjectRequest, Project, ProjectOpeningRequest, TeamRole } from '@/types/project.types';
 import { tagSlug } from '@/utils/tags';
 // Les messages d'erreur des schémas, dans la langue de l'interface (z.config)
 import '@/utils/validators';
@@ -129,6 +129,15 @@ const optionalUrl = z
 
 const text = (max: number) => z.string().trim().max(max);
 
+/** Un rôle recherché (ProjectOpeningRequest.java) : seul dans une annonce, ou dans le formulaire de projet */
+export const roleDraftSchema = z.object({
+  title: z.string().trim().min(1).max(LIMITS.roleTitle),
+  description: text(LIMITS.roleDescription),
+  seats: z.number().int().min(1).max(LIMITS.seats),
+  starterIssueNumber: z.string().trim().regex(/^\d{0,9}$/, { error: () => i18n.t('projectForm:errors.issueNumber') }),
+  starterIssueTitle: text(LIMITS.issueTitle),
+});
+
 /** Mêmes règles que le backend : le formulaire les signale tout de suite, le serveur reste la référence. */
 export const projectDraftSchema = z.object({
   // Vide : « obligatoire » ; trop court : « 3 caractères minimum »
@@ -144,17 +153,7 @@ export const projectDraftSchema = z.object({
   gallery: z
     .array(z.object({ caption: text(LIMITS.caption), credit: text(LIMITS.credit), sourceUrl: optionalUrl }))
     .max(LIMITS.gallery),
-  roles: z
-    .array(
-      z.object({
-        title: z.string().trim().min(1).max(LIMITS.roleTitle),
-        description: text(LIMITS.roleDescription),
-        seats: z.number().int().min(1).max(LIMITS.seats),
-        starterIssueNumber: z.string().trim().regex(/^\d{0,9}$/, { error: () => i18n.t('projectForm:errors.issueNumber') }),
-        starterIssueTitle: text(LIMITS.issueTitle),
-      }),
-    )
-    .max(LIMITS.roles),
+  roles: z.array(roleDraftSchema).max(LIMITS.roles),
 });
 
 /** Les erreurs du formulaire, par chemin : « name », « gallery.2.caption », « roles.0.title », « form » */
@@ -193,6 +192,18 @@ export function draftErrorsOf(validationErrors: Record<string, string>): DraftEr
 
 const orUndefined = (value: string) => value.trim() || undefined;
 
+/** Un rôle, tel que le backend le publie : avec son projet, ou seul (POST /v1/projects/{id}/openings) */
+export function toOpeningRequest(role: Omit<DraftRole, 'id'>): ProjectOpeningRequest {
+  return {
+    role: role.role,
+    title: role.title.trim(),
+    description: orUndefined(role.description),
+    seats: role.seats,
+    starterIssueNumber: role.starterIssueNumber.trim() ? Number(role.starterIssueNumber) : undefined,
+    starterIssueTitle: role.starterIssueNumber.trim() ? orUndefined(role.starterIssueTitle) : undefined,
+  };
+}
+
 /** Le brouillon, tel que le backend le publie (POST /v1/projects) */
 export function toProjectRequest(draft: ProjectDraft): NewProjectRequest {
   return {
@@ -218,16 +229,7 @@ export function toProjectRequest(draft: ProjectDraft): NewProjectRequest {
       width: shot.width,
       height: shot.height,
     })),
-    openings: draft.recruiting
-      ? draft.roles.map((role) => ({
-          role: role.role,
-          title: role.title.trim(),
-          description: orUndefined(role.description),
-          seats: role.seats,
-          starterIssueNumber: role.starterIssueNumber.trim() ? Number(role.starterIssueNumber) : undefined,
-          starterIssueTitle: role.starterIssueNumber.trim() ? orUndefined(role.starterIssueTitle) : undefined,
-        }))
-      : [],
+    openings: draft.recruiting ? draft.roles.map(toOpeningRequest) : [],
   };
 }
 

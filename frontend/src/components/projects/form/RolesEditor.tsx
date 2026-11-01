@@ -1,14 +1,11 @@
-import { ArrowUpRight, CircleDot, Minus, Plus, Trash2, UsersRound } from 'lucide-react';
+import { Plus, Trash2, UsersRound } from 'lucide-react';
 import { AnimatePresence, m } from 'motion/react';
-import { useId, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { FormField } from './FormSection';
-import { inputClass } from './formStyles';
 import { draftId, LIMITS, type DraftErrors, type DraftRole } from './projectDraft';
+import RoleFields from './RoleFields';
 import WovenMotif from '@/components/shared/WovenMotif';
 import { roleOf, teamRoles, type RoleDefinition } from '@/config/roles';
 import { cn } from '@/lib/utils';
-import { parseGithubRepository } from '@/services/github.service';
 import type { TeamRole } from '@/types/project.types';
 
 interface RolesEditorProps {
@@ -185,19 +182,14 @@ interface RoleCardProps {
 function RoleCard({ role, index, repositoryUrl, errors, onChange, onRemove }: RoleCardProps) {
   const { t } = useTranslation('projectForm');
   const { t: tc } = useTranslation();
-  const fieldId = useId();
   const definition = roleOf(role.role);
   const prefix = `roles.${index}`;
+  const titleError = errors[`${prefix}.title`];
   const fieldErrors = {
-    title: errors[`${prefix}.title`],
     description: errors[`${prefix}.description`],
-    seats: errors[`${prefix}.seats`],
     starterIssueNumber: errors[`${prefix}.starterIssueNumber`],
     starterIssueTitle: errors[`${prefix}.starterIssueTitle`],
   };
-  const [issueOpen, setIssueOpen] = useState(() => role.starterIssueNumber !== '' || fieldErrors.starterIssueNumber !== undefined);
-  const repository = parseGithubRepository(repositoryUrl);
-  const issueUrl = repository && /^\d+$/.test(role.starterIssueNumber) ? `https://github.com/${repository.owner}/${repository.name}/issues/${role.starterIssueNumber}` : null;
   const titleId = `role-${role.id}-title`;
 
   return (
@@ -228,17 +220,17 @@ function RoleCard({ role, index, repositoryUrl, errors, onChange, onRemove }: Ro
               onChange={(event) => onChange({ title: event.target.value })}
               placeholder={t('team.titlePlaceholder')}
               maxLength={LIMITS.roleTitle + 20}
-              aria-invalid={fieldErrors.title ? true : undefined}
-              aria-describedby={fieldErrors.title ? `${titleId}-help` : undefined}
+              aria-invalid={titleError ? true : undefined}
+              aria-describedby={titleError ? `${titleId}-help` : undefined}
               dir="auto"
               className={cn(
                 'mt-1 w-full rounded-lg bg-transparent font-display text-[1.125rem] text-foreground outline-none placeholder:text-faint-foreground/70',
                 'focus-visible:ring-2 focus-visible:ring-ring/50 focus-visible:ring-offset-4 focus-visible:ring-offset-surface',
               )}
             />
-            {fieldErrors.title && (
+            {titleError && (
               <p id={`${titleId}-help`} role="alert" className="mt-1 text-xs text-coral">
-                {fieldErrors.title}
+                {titleError}
               </p>
             )}
           </div>
@@ -252,136 +244,12 @@ function RoleCard({ role, index, repositoryUrl, errors, onChange, onRemove }: Ro
           </button>
         </div>
 
-        <div className="grid gap-4 sm:grid-cols-[minmax(0,1fr)_auto]">
-          <FormField id={`${fieldId}-description`} label={t('team.descriptionLabel')} optional error={fieldErrors.description} count={[role.description.length, LIMITS.roleDescription]}>
-            <textarea
-              id={`${fieldId}-description`}
-              value={role.description}
-              onChange={(event) => onChange({ description: event.target.value })}
-              placeholder={t('team.descriptionPlaceholder')}
-              rows={2}
-              maxLength={LIMITS.roleDescription + 50}
-              aria-invalid={fieldErrors.description ? true : undefined}
-              aria-describedby={`${fieldId}-description-help`}
-              dir="auto"
-              className={cn(inputClass(fieldErrors.description !== undefined), 'h-auto min-h-20 resize-y py-3 leading-relaxed')}
-            />
-          </FormField>
-          <div className="flex flex-col gap-2">
-            <span id={`${fieldId}-seats`} className="eyebrow">
-              {t('team.seatsLabel')}
-            </span>
-            <div role="group" aria-labelledby={`${fieldId}-seats`} className="inline-flex h-12 items-center gap-1 self-start rounded-[0.875rem] border border-border bg-surface/60 p-1">
-              <button
-                type="button"
-                onClick={() => onChange({ seats: Math.max(1, role.seats - 1) })}
-                disabled={role.seats <= 1}
-                aria-label={t('team.fewerSeats')}
-                className="grid size-9 place-items-center rounded-[0.625rem] text-soft-foreground outline-none transition-colors hover:bg-foreground/7 hover:text-foreground focus-visible:ring-2 focus-visible:ring-ring/70 disabled:opacity-35"
-              >
-                <Minus aria-hidden className="size-4" />
-              </button>
-              <output aria-live="polite" className="w-16 text-center text-sm font-semibold tabular-nums">
-                {t('team.seats', { count: role.seats })}
-              </output>
-              <button
-                type="button"
-                onClick={() => onChange({ seats: Math.min(LIMITS.seats, role.seats + 1) })}
-                disabled={role.seats >= LIMITS.seats}
-                aria-label={t('team.moreSeats')}
-                className="grid size-9 place-items-center rounded-[0.625rem] text-soft-foreground outline-none transition-colors hover:bg-foreground/7 hover:text-foreground focus-visible:ring-2 focus-visible:ring-ring/70 disabled:opacity-35"
-              >
-                <Plus aria-hidden className="size-4" />
-              </button>
-            </div>
-          </div>
-        </div>
-
-        {/* ── L'issue « premier pas » ── */}
-        <div className="rounded-xl border border-gold/20 bg-gold/5">
-          <button
-            type="button"
-            aria-expanded={issueOpen}
-            aria-controls={`${fieldId}-issue`}
-            onClick={() => setIssueOpen((open) => !open)}
-            className="flex w-full items-center gap-2.5 rounded-xl px-3.5 py-2.5 text-start outline-none focus-visible:ring-2 focus-visible:ring-ring/70"
-          >
-            <CircleDot aria-hidden className="size-4 shrink-0 text-gold" />
-            <span className="min-w-0 flex-1">
-              <span className="block text-[0.8125rem] font-semibold text-foreground">
-                {role.starterIssueNumber ? t('team.issueSet', { number: role.starterIssueNumber }) : t('team.issueLabel')}
-              </span>
-              {!issueOpen && !role.starterIssueNumber && <span className="block text-xs text-muted-foreground">{t('team.issueHint')}</span>}
-            </span>
-            <span aria-hidden className={cn('text-lg leading-none text-muted-foreground transition-transform duration-300', issueOpen && 'rotate-45')}>
-              +
-            </span>
-          </button>
-          <AnimatePresence initial={false}>
-            {issueOpen && (
-              <m.div
-                id={`${fieldId}-issue`}
-                initial={{ height: 0, opacity: 0 }}
-                animate={{ height: 'auto', opacity: 1 }}
-                exit={{ height: 0, opacity: 0 }}
-                transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
-                className="overflow-hidden"
-              >
-                <div className="grid gap-3 px-3.5 pb-3.5 sm:grid-cols-[8rem_minmax(0,1fr)]">
-                  <FormField id={`${fieldId}-number`} label={t('team.issueNumber')} error={fieldErrors.starterIssueNumber}>
-                    <div className="relative">
-                      <span aria-hidden className="pointer-events-none absolute inset-y-0 start-3.5 grid place-items-center font-mono text-sm text-faint-foreground">
-                        #
-                      </span>
-                      <input
-                        id={`${fieldId}-number`}
-                        inputMode="numeric"
-                        value={role.starterIssueNumber}
-                        onChange={(event) => onChange({ starterIssueNumber: event.target.value.replace(/[^\d]/g, '').slice(0, 9) })}
-                        placeholder="12"
-                        aria-invalid={fieldErrors.starterIssueNumber ? true : undefined}
-                        aria-describedby={`${fieldId}-number-help`}
-                        dir="ltr"
-                        className={cn(inputClass(fieldErrors.starterIssueNumber !== undefined), 'ps-8 font-mono')}
-                      />
-                    </div>
-                  </FormField>
-                  <FormField
-                    id={`${fieldId}-issue-title`}
-                    label={t('team.issueTitle')}
-                    error={fieldErrors.starterIssueTitle}
-                    hint={
-                      issueUrl ? (
-                        <a
-                          href={issueUrl}
-                          target="_blank"
-                          rel="noreferrer"
-                          className="inline-flex items-center gap-1 rounded-sm font-mono text-gold underline-offset-4 outline-none hover:underline focus-visible:ring-2 focus-visible:ring-ring/70"
-                        >
-                          {issueUrl.replace('https://', '')}
-                          <ArrowUpRight aria-hidden className="size-3 rtl:-scale-x-100" />
-                        </a>
-                      ) : undefined
-                    }
-                  >
-                    <input
-                      id={`${fieldId}-issue-title`}
-                      value={role.starterIssueTitle}
-                      onChange={(event) => onChange({ starterIssueTitle: event.target.value })}
-                      placeholder={t('team.issueTitlePlaceholder')}
-                      maxLength={LIMITS.issueTitle + 20}
-                      disabled={!role.starterIssueNumber}
-                      aria-invalid={fieldErrors.starterIssueTitle ? true : undefined}
-                      aria-describedby={`${fieldId}-issue-title-help`}
-                      dir="auto"
-                      className={cn(inputClass(fieldErrors.starterIssueTitle !== undefined), 'disabled:opacity-50')}
-                    />
-                  </FormField>
-                </div>
-              </m.div>
-            )}
-          </AnimatePresence>
-        </div>
+        <RoleFields
+          values={role}
+          errors={fieldErrors}
+          repositoryUrl={repositoryUrl}
+          onChange={onChange}
+        />
       </div>
     </m.li>
   );

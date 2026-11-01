@@ -1,6 +1,13 @@
 # Ndadiee — backend
 
-Spring Boot 4, Java 21, PostgreSQL (Flyway), JWT.
+Spring Boot 4, Java 21, PostgreSQL, JWT.
+
+**Schéma et données.** Pas de migrations : le schéma vient des entités JPA, que Hibernate crée au démarrage
+(`ddl-auto: create-drop` en local). Les entités portent tout ce que la base doit garantir : index (y compris les index
+partiels, `@Index(options = "where …")`), contraintes uniques et `CHECK` nommées (`uk_…`, `ck_…`), suppressions en
+cascade (`@OnDelete`). Le seul index que JPA ne sait pas décrire (un index unique partiel : un sprint ouvert par
+projet) est créé par `initializer/DatabaseConstraints`, au début du démarrage. Les données de démonstration viennent
+ensuite des seeders, dans l'ordre d'`initializer/InitializerNdadiee`.
 
 Base attendue : le PostgreSQL local (`localhost:5432`, base, utilisateur et mot de passe `ndadiee`).
 
@@ -86,7 +93,6 @@ par défaut).
   libellé de sa cible au moment de l'action (la cible a pu être supprimée depuis). Il ne s'efface pas.
 - **Démonstration** (`ModerationSeeder`) : un compte de spam (`cash_rapide`) suspendu, son sujet et sa réponse
   masqués, et `thandiwe_ndlovu` nommée modératrice ; le journal porte ces décisions.
-- Migration `V6__administration.sql` (bloc `DO`, comme V3 à V5).
 
 ## Inscription et connexion
 
@@ -169,9 +175,6 @@ son équipe (`ProjectResponse`).
 - **Activité GitHub** : un relevé par projet (`project_github_activity`), remplacé à chaque synchronisation
   (`GithubActivityService.record`). Pas encore de synchronisation réelle : seules les données de
   démonstration en écrivent.
-- La migration `V3__project_page.sql` tient dans un bloc `DO` : avec `ddl-auto: create-drop`, Hibernate a
-  supprimé les tables à l'arrêt précédent et les recrée après Flyway, la migration n'a alors rien à
-  modifier ; avec `validate`, elle s'applique entièrement.
 
 ## Espace d'équipe (design 3E)
 
@@ -244,7 +247,7 @@ réponse (ou sous le sujet : les « précisions ») des `Comment`.
   `following=true` : les sujets des auteurs et des tags que suit le membre (rien de suivi : un fil vide).
 - **Liste de lecture** : `Bookmark` (membre, sujet, date), unique par membre et par sujet ; l'insertion passe par
   `ON CONFLICT DO NOTHING`, un double clic ne fait pas d'erreur. Le sujet supprimé, ses enregistrements partent avec
-  lui (`V5__forum_bookmarks.sql`).
+  lui (`@OnDelete` sur `Bookmark`).
 - **Slugs réservés** : `new` (l'application, `/forum/new`), `saved` et `overview` (l'API) ne deviennent jamais
   l'adresse d'un sujet.
 

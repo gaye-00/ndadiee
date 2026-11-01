@@ -17,12 +17,14 @@ import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
+import jakarta.persistence.Index;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
+import jakarta.persistence.UniqueConstraint;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -38,13 +40,22 @@ import lombok.experimental.SuperBuilder;
 @SuperBuilder
 @Entity
 @DynamicUpdate
-@Table(name = "projects")
+@Table(
+    name = "projects",
+    uniqueConstraints = @UniqueConstraint(name = "uk_projects_slug", columnNames = "slug"),
+    indexes = {
+        @Index(name = "idx_projects_owner", columnList = "owner_id"),
+        @Index(name = "idx_projects_created_at", columnList = "created_at DESC"),
+        @Index(name = "idx_projects_stars", columnList = "stars_count DESC"),
+        @Index(name = "idx_projects_hidden", columnList = "hidden_at", options = "where hidden_at is not null")
+    }
+)
 public class Project extends BaseEntity implements Hideable {
 
     @Column(nullable = false)
     private String name;
 
-    @Column(nullable = false, unique = true)
+    @Column(nullable = false)
     private String slug;
 
     // Accroche d'une ligne, pour les cartes de la vitrine
@@ -91,7 +102,8 @@ public class Project extends BaseEntity implements Hideable {
     @JoinTable(
         name = "project_tags",
         joinColumns = @JoinColumn(name = "project_id"),
-        inverseJoinColumns = @JoinColumn(name = "tag_id")
+        inverseJoinColumns = @JoinColumn(name = "tag_id"),
+        indexes = @Index(name = "idx_project_tags_tag", columnList = "tag_id")
     )
     @ToString.Exclude
     @Builder.Default
