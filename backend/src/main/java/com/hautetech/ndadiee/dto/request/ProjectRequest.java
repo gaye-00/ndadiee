@@ -11,7 +11,17 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.experimental.SuperBuilder;
 
-/** Ce que le porteur dit de son projet, à la création comme à la modification. À la création : NewProjectRequest. */
+/**
+ * DTO utilisé pour transmettre les informations nécessaires
+ * à la création ou à la mise à jour d'un projet.
+ *
+ * Regroupe les informations générales du projet, ses liens
+ * externes, ses visuels, les technologies utilisées, la licence
+ * du code et les préférences relatives à la recherche de contributeurs.
+ *
+ * Les contraintes de validation permettent de vérifier certaines
+ * propriétés des données avant leur traitement par l'application.
+ */
 @Data
 @AllArgsConstructor
 @NoArgsConstructor

@@ -10,6 +10,13 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+/**
+ * DTO utilisé pour transmettre les données nécessaires
+ * à la création d'un commentaire sur un contenu de la plateforme.
+ *
+ * Le contenu concerné est identifié par son type et son identifiant.
+ * Le texte du commentaire est obligatoire et limité à 2 000 caractères.
+ */
 @Data
 @AllArgsConstructor
 @NoArgsConstructor

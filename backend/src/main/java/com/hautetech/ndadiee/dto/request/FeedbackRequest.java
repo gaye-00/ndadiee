@@ -9,7 +9,13 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-/** Un avis sur une demande de retours : une note facultative, et ce qu'on en pense. */
+/**
+ * DTO utilisé pour transmettre l'avis d'un utilisateur
+ * concernant une demande de feedback.
+ *
+ * L'utilisateur peut attribuer une note facultative de 1 à 5
+ * et doit obligatoirement fournir un commentaire.
+ */
 @Data
 @AllArgsConstructor
 @NoArgsConstructor

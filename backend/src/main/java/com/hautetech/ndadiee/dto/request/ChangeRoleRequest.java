@@ -8,7 +8,17 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-/** Nouveau rôle d'un membre de la communauté : USER ou MODERATOR (le rôle ADMIN ne s'attribue pas). */
+/**
+ * DTO utilisé pour transmettre une demande de changement de rôle
+ * d'un membre de la communauté.
+ *
+ * Les rôles USER et MODERATOR peuvent être attribués par cette
+ * fonctionnalité. Le rôle ADMIN ne peut pas être attribué
+ * par ce mécanisme.
+ *
+ * Les autorisations et les règles d'attribution doivent également
+ * être vérifiées par la couche métier.
+ */
 @Data
 @AllArgsConstructor
 @NoArgsConstructor

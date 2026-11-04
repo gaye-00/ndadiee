@@ -10,6 +10,18 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+/**
+ * DTO utilisé pour transmettre les informations nécessaires
+ * à la création d'une question sur la plateforme.
+ *
+ * Une question comprend un titre, un contenu rédigé en Markdown
+ * et une liste de tags permettant de catégoriser le sujet
+ * et de faciliter sa recherche.
+ *
+ * Les contraintes de validation permettent de vérifier que
+ * les données fournies respectent les exigences définies
+ * avant leur traitement par l'application.
+ */
 @Data
 @AllArgsConstructor
 @NoArgsConstructor

@@ -15,6 +15,14 @@ import com.hautetech.ndadiee.storage.LocalFileStorage;
 
 import lombok.RequiredArgsConstructor;
 
+/**
+ * Classe de configuration Spring MVC de l'application Ndadiee.
+ *
+ * Configure la mise à disposition des ressources statiques,
+ * définit les politiques de mise en cache des médias et ajoute
+ * un convertisseur permettant de traiter les paramètres d'URL
+ * correspondant aux énumérations sans tenir compte de la casse.
+ */
 @Configuration
 @RequiredArgsConstructor
 public class WebConfig implements WebMvcConfigurer {

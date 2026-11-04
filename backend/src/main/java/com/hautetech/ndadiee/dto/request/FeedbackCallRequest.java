@@ -7,6 +7,12 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+/**
+ * DTO utilisé pour transmettre les données d'une demande
+ * de feedback ou de retour sur un sujet donné.
+ *
+ * Le titre est obligatoire, tandis que la consigne est facultative.
+ */
 @Data
 @AllArgsConstructor
 @NoArgsConstructor

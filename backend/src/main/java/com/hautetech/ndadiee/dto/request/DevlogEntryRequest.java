@@ -7,6 +7,13 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+/**
+ * DTO utilisé pour transmettre les données nécessaires
+ * à la création d'une entrée dans le journal de développement.
+ *
+ * Une entrée peut être associée à une version du projet
+ * afin de documenter les évolutions et les changements apportés.
+ */
 @Data
 @AllArgsConstructor
 @NoArgsConstructor

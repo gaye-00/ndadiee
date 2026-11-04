@@ -10,6 +10,13 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+/**
+ * DTO utilisé pour transmettre les informations d'un temps fort
+ * du calendrier d'un hackathon.
+ *
+ * Chaque temps fort est défini par une date et une heure planifiées,
+ * ainsi que par un intitulé permettant de l'identifier.
+ */
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
