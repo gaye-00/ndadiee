@@ -1,0 +1,92 @@
+{
+  "list": {
+    "title": "Ujumbe",
+    "search": "Tafuta katika mazungumzo yako",
+    "searchPlaceholder": "Tafuta…",
+    "clearSearch": "Futa utafutaji",
+    "filter": "Chuja mazungumzo",
+    "all": "Yote",
+    "unread": "Hayajasomwa",
+    "you": "Wewe: {{text}}",
+    "deleted": "Ujumbe umefutwa",
+    "noMessage": "Mazungumzo mapya",
+    "unreadCount_one": "Ujumbe {{count}} haujasomwa",
+    "unreadCount_other": "Jumbe {{count}} hazijasomwa",
+    "emptyTitle": "Bado hakuna mazungumzo",
+    "emptyDescription": "Mwandikie mwanachama: swali kuhusu mradi wake, wazo la timu, au msaada.",
+    "noMatch": "Hakuna mazungumzo yanayolingana na “{{query}}”.",
+    "allRead": "Umesoma kila kitu. Kazi nzuri!",
+    "error": "Imeshindikana kupakia mazungumzo yako."
+  },
+  "status": {
+    "live": "Moja kwa moja",
+    "connecting": "Inaunganisha…",
+    "reconnecting": "Inaunganisha upya…",
+    "offline": "Nje ya mtandao"
+  },
+  "thread": {
+    "label": "Mazungumzo na {{name}}",
+    "back": "Rudi kwenye mazungumzo",
+    "online": "Yuko mtandaoni",
+    "typing": "anaandika…",
+    "typingLabel": "{{name}} anaandika",
+    "profile": "Tazama wasifu",
+    "start": "Huu ni mwanzo wa mazungumzo yako na {{name}}.",
+    "private": "Ujumbe wa faragha: ninyi wawili tu mnauona.",
+    "newMessages": "Ujumbe mpya",
+    "loadingOlder": "Inapakia ujumbe wa awali…",
+    "loading": "Inapakia mazungumzo…",
+    "jumpToLatest": "Nenda kwenye ujumbe wa hivi karibuni",
+    "unseen_one": "Ujumbe mpya {{count}}, nenda chini",
+    "unseen_other": "Jumbe mpya {{count}}, nenda chini",
+    "notFound": "Mazungumzo hayakupatikana",
+    "notFoundHint": "Hayapo, au wewe si sehemu yake.",
+    "error": "Imeshindikana kupakia ujumbe.",
+    "backToList": "Mazungumzo yote"
+  },
+  "message": {
+    "you": "Wewe",
+    "edited": "imehaririwa",
+    "deleted": "Ujumbe umefutwa",
+    "sending": "Inatuma",
+    "sent": "Imetumwa",
+    "seen": "Imeonekana",
+    "failed": "Haikutumwa",
+    "retry": "Jaribu tena",
+    "discard": "Achana nao",
+    "actions": "Vitendo vya ujumbe",
+    "copy": "Nakili maandishi",
+    "copied": "Maandishi yamenakiliwa",
+    "edit": "Hariri",
+    "delete": "Futa",
+    "deleteTitle": "Ufute ujumbe huu?",
+    "deleteDescription": "Utatoweka kwa nyote wawili. Hatua hii haiwezi kutenduliwa.",
+    "deleteConfirm": "Futa"
+  },
+  "composer": {
+    "label": "Ujumbe wako",
+    "placeholder": "Mwandikie {{name}}…",
+    "send": "Tuma",
+    "save": "Hifadhi mabadiliko",
+    "editing": "Unahariri",
+    "cancelEdit": "Ghairi uhariri",
+    "hint": "<k>Enter</k> kutuma · <k>Shift</k> + <k>Enter</k> kwa mstari mpya · <k>↑</k> kuhariri ujumbe wako wa mwisho",
+    "editHint": "<k>Enter</k> kuhifadhi · <k>Esc</k> kughairi",
+    "remaining_one": "Herufi {{count}} imebaki",
+    "remaining_other": "Herufi {{count}} zimebaki"
+  },
+  "newConversation": {
+    "title": "Ujumbe mpya",
+    "description": "Mwandikie mwanachama wa jumuiya.",
+    "search": "Jina au jina la mtumiaji",
+    "suggestions": "Wanachama wa jumuiya",
+    "results": "Matokeo",
+    "empty": "Hakuna mwanachama anayelingana na “{{query}}”.",
+    "error": "Utafutaji haukufaulu. Jaribu tena baada ya muda mfupi."
+  },
+  "empty": {
+    "title": "Mazungumzo yako",
+    "description": "Chagua mazungumzo, au mwandikie mwanachama wa jumuiya: swali, wazo la timu, au msaada.",
+    "action": "Ujumbe mpya"
+  }
+}

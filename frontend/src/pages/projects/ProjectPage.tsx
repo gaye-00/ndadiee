@@ -10,6 +10,7 @@ import GithubActivityCard from '@/components/projects/GithubActivityCard';
 import OpenRolesList, { type RolesFocus } from '@/components/projects/OpenRolesList';
 import ProjectGallery from '@/components/projects/ProjectGallery';
 import ProjectHero from '@/components/projects/ProjectHero';
+import RepositorySyncCard from '@/components/projects/RepositorySyncCard';
 import { FOCUS_ROLES_EVENT } from '@/components/projects/projectEvents';
 import TeamMembersCard from '@/components/projects/TeamMembersCard';
 import HiddenNotice from '@/components/shared/HiddenNotice';
@@ -181,6 +182,7 @@ export default function ProjectPage() {
             <TeamMembersCard project={data} />
             <FeedbackRequestCard project={data} />
             <GithubActivityCard project={data} />
+            <RepositorySyncCard project={data} />
           </aside>
           <DevlogTimeline project={data} className="lg:col-start-1 lg:row-start-2" />
         </div>

@@ -63,5 +63,25 @@
     "openIssue": "Vula umsebenzi ku-GitHub",
     "matchScore": "{{score}}%",
     "yourTeam": "Ithimba lakho"
+  },
+  "form": {
+    "projectTitle": "Iphrojekthi",
+    "projectText": "Ithimba oliqashelayo.",
+    "roleTitle": "Indima",
+    "roleText": "Umsebenzi owufunayo: yiwo ohlunga izikhangiso.",
+    "detailsTitle": "Isikhangiso",
+    "detailsText": "Lo muntu azokwenzani, nokuthi angaqala kuphi.",
+    "projectRequired": "Khetha iphrojekthi eqashayo.",
+    "roleRequired": "Khetha indima.",
+    "noProjectTitle": "Kuqala udinga iphrojekthi.",
+    "noProjectText": "Indima ishicilelwa egameni lephrojekthi oyiphethe noma oyinakekelayo.",
+    "loadFailed": "Amaphrojekthi akho awakwazanga ukulayisha.",
+    "previewHint": "Isikhangiso njengoba sizovela ekhasini lezikhangiso.",
+    "previewEmpty": "Khetha iphrojekthi nendima: isikhangiso sizovela lapha.",
+    "draftRestored": "Okusalungiswa kwakho kubuyisiwe.",
+    "discardText": "Isikhangiso osibhalayo sizosuka kule divayisi.",
+    "publish": "Shicilela indima",
+    "publishing": "Kushicilelwa indima",
+    "published": "{{title}} sesishicilelwe."
   }
 }

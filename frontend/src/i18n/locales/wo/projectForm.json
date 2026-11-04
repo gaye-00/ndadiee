@@ -1,0 +1,249 @@
+{
+  "form": {
+    "back": "Sama projet yi",
+    "title": "Siiwal ab projet",
+    "mode": "Anamu bindukaay bi",
+    "write": "Bind",
+    "preview": "Xool ci kanam",
+    "aside": "Xool ci vitrine bi ak jëf yi des",
+    "draftRestored": "Sa brouillon delsi na, ak nataal yi.",
+    "startOver": "Tàmbali ci kanam",
+    "draftSaved": "Brouillon bi denc nañu ko ci jumtukaay bii",
+    "uploading_one": "{{count}} nataal ngi ci yoon…",
+    "uploading_other": "{{count}} nataal ñoo ngi ci yoon…",
+    "imagesPending": "Am na nataal bu agagul : projet bi dina dem bu nataal bi agsee.",
+    "discard": "Far",
+    "discardTitle": "Far brouillon bii ?",
+    "discardText": "Projet bi ngay bind ak ay nataalam dinañu réer ci jumtukaay bii.",
+    "discardConfirm": "Far brouillon bi",
+    "publish": "Siiwal projet bi",
+    "publishing": "Ñu ngi siiwal projet bi",
+    "published": "{{name}} génn na : dalal jàmm ci vitrine bi !"
+  },
+  "section": {
+    "complete": "jëf ji mat na",
+    "essentials": {
+      "title": "Li gën a am solo",
+      "text": "Li ñuy jëkk a jàng ci kàrtu vitrine bi : tur bi, benn kàddu gu neex, xarala yi."
+    },
+    "images": {
+      "title": "Nataal yi",
+      "text": "Benn nataalu kaw, ginaaw gi ay nataalu ekraan yu li jëm ba noppi. Loolu lay tax ñu bës."
+    },
+    "story": {
+      "title": "Nettali bi",
+      "text": "Jafe-jafe bi projet bi di saafara, ñan la jagleel, fan la tollu, ak li ciy topp."
+    },
+    "links": {
+      "title": "Lëkkalekaay ak ndigël",
+      "text": "Fan lañuy jàngee kood bi, fan lañuy jéeme, ak li ku nekk mën a def ak moom."
+    },
+    "team": {
+      "title": "Ekip bi",
+      "text": "Yaa ngi wut ay naatalkat ? Wàll wu nekk dina nekk benn yégle, ñi ko méngoo dinañu ko gis."
+    }
+  },
+  "field": {
+    "optional": "du lu war"
+  },
+  "fields": {
+    "name": "Turu projet bi",
+    "namePlaceholder": "lagos-transit",
+    "nameHint": "Turu dépôt bi, walla bi say jëfandikukat xam. Adresu xët wi ci lay jóge te du soppiku.",
+    "tagline": "Kàddu gu gàtt",
+    "taglinePlaceholder": "Bus yi di ñëw ci Lagos, ba ci lu internet amul",
+    "taglineHint": "Benn kàddu ngir kàrtu vitrine bi : li projet bi di def, ak ñan la jagleel.",
+    "tags": "Xarala yi",
+    "tagsHint": "Làkk yi, framework yi, tema yi (ba {{count}}) : nii la nit ñi war a gis projet bi.",
+    "cover": "Nataalu kaw",
+    "description": "Melokaan",
+    "descriptionPlaceholder": "Jafe-jafe bi, saafara bi, fan la projet bi tollu…\n\n- Li jëm ba noppi\n- Li ciy topp",
+    "descriptionHint": "Paragraf yi, **bind bu dëgër**, `kood` ak lim yi : nii la xëtu projet bi di leen wone. {{mod}} + Enter ngir siiwal.",
+    "repository": "Dépôtu kood bi",
+    "demo": "Démo ci internet",
+    "license": "Ndigël"
+  },
+  "errors": {
+    "url": "Adres bu mat, buy tàmbalee ak https://",
+    "issueNumber": "Nimeerou issue : ay siifar rekk"
+  },
+  "github": {
+    "title": "Tàmbalee ci sa dépôt GitHub",
+    "text": "Tur bi, kàddu gi, xarala yi, ndigël gi, démo bi ak njëlbéenu README bi dinañu fees ci benn bës. Yaa ngi yore lépp.",
+    "label": "Adresu dépôt GitHub bi",
+    "placeholder": "github.com/kont/depot",
+    "import": "Indi",
+    "reading": "Ñu ngi jàng dépôt bi…",
+    "hint": "Taqal adres bi : indi gi dina tàmbali boppam. Dépôt yu ubbeeku rekk.",
+    "invalid": "Lii du adresu dépôt GitHub : github.com/kont/depot",
+    "mine": "Sa dépôt yu mujj yi",
+    "noProfile": "Yokkal sa GitHub ci sa profil ngir gis say dépôt fii.",
+    "addProfile": "Matal sama profil",
+    "alreadyListedShort": "Mu ngi ci vitrine bi ba noppi",
+    "done": "Dépôt bi indi nañu ko",
+    "filled": "Barab yi fees",
+    "nothingNew": "Lépp feesoon na : dara wuutuwul.",
+    "alreadyListed": "Dépôt bii mu ngi ci vitrine bi ba noppi.",
+    "seeProject": "Xool projet bi",
+    "archived": "Dépôt bii dañu ko denc ci archive GitHub.",
+    "fork": "Dépôt bii ab duppite (fork) la ci beneen projet.",
+    "undo": "Neenal indi gi",
+    "another": "Indi beneen dépôt",
+    "fields": {
+      "name": "tur",
+      "tagline": "kàddu",
+      "description": "melokaan",
+      "tags_one": "{{count}} xarala",
+      "tags_other": "{{count}} xarala",
+      "license": "ndigël",
+      "demo": "démo",
+      "repository": "dépôt"
+    },
+    "errors": {
+      "notFound": "Gisuñu dépôt bi : seetal adres bi. Dépôt bu sutura mënul a indiwu.",
+      "rateLimited": "GitHub dafay digal laaj yi léegi : jéemaatal ci ay simili, walla nga fees projet bi ak sa loxo.",
+      "unavailable": "GitHub tontuwul léegi : jéemaatal ci kanam, walla nga fees projet bi ak sa loxo.",
+      "network": "Amul lëkkalekaay : seetal sa réseau, ba noppi jéemaat."
+    }
+  },
+  "stack": {
+    "chosen": "Xarala yi nga tànn",
+    "placeholder": "React, Kotlin, Mobile Money…",
+    "more": "Yokk…",
+    "full_one": "{{count}} xarala rekk",
+    "full_other": "{{count}} xarala rekk",
+    "suggestions": "Xarala yi ñu la digal",
+    "create": "Sos « {{tag}} »",
+    "remove": "Far {{tag}}",
+    "add": "Yokk {{tag}}",
+    "addAll": "Yokk lépp",
+    "fromRepository": "Ci dépôt bi :",
+    "popular": "Yi siiw :"
+  },
+  "cover": {
+    "empty": "Jéggal benn nataal, taqal ko, walla tànn ko",
+    "drop": "Bàyyil nataal bi fii",
+    "hint": "JPEG, PNG, WebP walla GIF. Dinga ko yemale ak natt vitrine bi (16:10) laata ngay yónni.",
+    "alt": "Nataalu kaw bu projet bi",
+    "recrop": "Defaraat kadar bi",
+    "replace": "Wuutu",
+    "remove": "Far",
+    "borrowed": "Nataal bu ñu leble ? Wax ki ko def",
+    "creditLabel": "Ki ko def ak ndigël",
+    "creditPlaceholder": "Amina Diallo · CC BY 4.0",
+    "sourceLabel": "Lëkkalekaay bu cosaan bi"
+  },
+  "crop": {
+    "coverTitle": "Yemale nataalu kaw bi",
+    "shotTitle": "Yemale nataalu ekraan bi",
+    "help": "Jéggal nataal bi ci suufu kadar bi, mag ko ak wërtu jinax bi, ak ñaari baaraam walla curseur bi. Ak klawie bi : fetal yi, + ak −.",
+    "frameRole": "barabu kadar",
+    "frameLabel": "Kadar 16:10, zoom {{zoom}} %",
+    "zoom": "Zoom",
+    "zoomIn": "Mag ko",
+    "zoomOut": "Tuuti ko",
+    "output": "{{width}} × {{height}} px",
+    "blurry": "barab bu ndaw : nataal bi mën na lëndëm ci ekraan bu mag",
+    "reset": "Delloo ko ci digg bi",
+    "cancel": "Neenal",
+    "confirm": "Nangu kadar bi"
+  },
+  "images": {
+    "sending": "Yónni",
+    "retry": "Jéemaat",
+    "errorType": "« {{name}} » du nataal bu ñu mën a jàng : JPEG, PNG, WebP walla GIF.",
+    "errorSize": "Nataal bi weesu na {{max}} Mo ba ci ginaaw bi ñu ko wàññi : jéemal nataal bu woyof.",
+    "errorUpload": "Nataal bi mënul a dem : seetal sa lëkkalekaay, ba noppi jéemaat."
+  },
+  "gallery": {
+    "label": "Galeri",
+    "hint": "Nataalu ekraanu aplikasioŋ bi, nataal yu ñu jël ci tool bi. Bu nekk dañu ko yemale ci 16:10 ; mën nga ko defaraat.",
+    "reorderHint": "Jéggal jàppukaay bi ngir soppi toftal gi",
+    "addFirst": "Yokk ay nataalu ekraan",
+    "add": "Yokk",
+    "addHint_one": "{{count}} des na",
+    "addHint_other": "{{count}} des na",
+    "full_one": "Galeri bi {{count}} nataal rekk lay jël : yi ciy topp yokkuñu leen.",
+    "full_other": "Galeri bi {{count}} nataal rekk lay jël : yi ciy topp yokkuñu leen.",
+    "item": "Nataal {{index}} ci {{total}}",
+    "handle": "Toxal : {{item}}",
+    "handleHint": "Alt + fetal càmmooñ walla ndeyjoor ngir toxal ko",
+    "addCaption": "Yokk benn leeral",
+    "captionLabel": "Leeral",
+    "captionPlaceholder": "Bus yi di ñëw ci arrêt Obalende",
+    "kindLabel": "Xeetu nataal",
+    "kind": {
+      "SCREENSHOT": "Ekraan",
+      "PHOTO": "Nataal"
+    },
+    "creditLabel": "Ki ko def (nataal bu ñu leble)",
+    "moveBefore": "Jiital ko",
+    "moveAfter": "Gannaawal ko",
+    "remove": "Far",
+    "discard": "Bàyyi ko"
+  },
+  "license": {
+    "none": "Ba léegi deet",
+    "other": "Beneen…",
+    "otherLabel": "Màndargaru ndigël gi",
+    "otherPlaceholder": "EUPL-1.2",
+    "about": {
+      "MIT": "MIT : gàtt te yomb. Ku nekk mën na jëfandikoowaat kood bi, ba ci ab njaay bu tëju, su tudd ki ko bind.",
+      "Apache-2.0": "Apache 2.0 : yomb, ak aar ci brevet yi. Li ëttu liggéey yi gën a tànn.",
+      "BSD-3-Clause": "BSD 3 : yomb ni MIT, te tere ñu jëfandikoo sa tur ngir yëkkati liggéey bu ci jóge.",
+      "MPL-2.0": "MPL 2.0 : fichier yi ñu soppi dinañu des ubbeeku ; li des ci njaay bi mën na tëju.",
+      "GPL-3.0": "GPL 3.0 : lojisiel bu ci jóge bu ñu séddale war na des ubbeeku, ci benn ndigël gi.",
+      "AGPL-3.0": "AGPL 3.0 : ni GPL, te sarwiis bu internet buy jëfandikoo war na siiwal kood bam itam."
+    },
+    "aboutNone": "Su amul ndigël, kenn amul sañ-sañ ci yoon ngir jëfandikoowaat kood bi : tànnal benn laata ngay dalal naatalkat yi.",
+    "aboutOther": "Màndargaam SPDX : « EUPL-1.2 », « CC-BY-4.0 »…",
+    "help": "Méngale ndigël yi"
+  },
+  "team": {
+    "recruiting": "Maa ngi wut ay naatalkat",
+    "recruitingOn": "Projet bi dina feeñ ci biir yi di wut nit. Melokaanal wàll yi : profil yi ko méngoo dinañu leen gis.",
+    "recruitingOff": "Taalal ko ngir dalal naatalkat yi te siiwal ay wàll. Mën nga ko def ci kanam.",
+    "chosen": "Wàll yi ñuy wut",
+    "catalogFirst": "Tànnal wàll wu njëkk",
+    "catalog": "Yokk benn wàll",
+    "titleLabel": "Turu wàll wi",
+    "titlePlaceholder": "Dev mobile React Native",
+    "remove": "Far wàll wi {{role}}",
+    "descriptionLabel": "Li ñuy séentu",
+    "descriptionPlaceholder": "Ekraanu tukki yi bu amul internet, ak Jetpack Compose…",
+    "seatsLabel": "Palaas yi",
+    "seats_one": "{{count}} palaas",
+    "seats_other": "{{count}} palaas",
+    "fewerSeats": "Wàññi benn palaas",
+    "moreSeats": "Yokk benn palaas",
+    "issueLabel": "Ab issue « jëf ju njëkk » ?",
+    "issueHint": "Benn liggéey bu ndaw ci dépôt bi ngir tàmbali : ñi bëgg a bokk dinañu xam fan lañuy dugge.",
+    "issueSet": "Issue « jëf ju njëkk » : #{{number}}",
+    "issueNumber": "Nimeero",
+    "issueTitle": "Turu issue bi",
+    "issueTitlePlaceholder": "Wone waxtu bus bi di ñëw"
+  },
+  "preview": {
+    "card": "Ci vitrine bi",
+    "pageNotice": "Xool ci kanam : xët wi ni ñi koy seetsi dinañu ko gise",
+    "untitled": "projet-bu-bees"
+  },
+  "checklist": {
+    "title": "Pare na ci {{percent}} %",
+    "text": "Li tax projet di neex. Tur bi ak melokaan bi rekk ñoo war.",
+    "ready": "Pare na ngir leer",
+    "readyText": "Lépp a ngi fi : siiwal rekk a des.",
+    "done": "def nañu ko",
+    "todo": "ñu war koo def",
+    "items": {
+      "name": "Benn tur",
+      "tagline": "Benn kàddu gu neex",
+      "stack": "Lu néew ñaari xarala",
+      "cover": "Benn nataalu kaw",
+      "gallery": "Benn nataalu ekraan ci galeri bi",
+      "story": "Nettali bu am ay kàddu",
+      "links": "Dépôt bi walla démo bi",
+      "roles": "Wàll yi ñuy wut"
+    }
+  }
+}

@@ -1,5 +1,8 @@
 package com.hautetech.ndadiee.service.project;
 
+import java.util.Arrays;
+import java.util.List;
+
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -12,6 +15,7 @@ import com.hautetech.ndadiee.mapper.ProjectMapper;
 import com.hautetech.ndadiee.model.project.Project;
 import com.hautetech.ndadiee.model.project.ProjectMedia;
 import com.hautetech.ndadiee.repository.ProjectMediaRepository;
+import com.hautetech.ndadiee.service.media.MediaUploadService;
 import com.hautetech.ndadiee.service.user.UserService;
 
 import lombok.RequiredArgsConstructor;
@@ -33,6 +37,7 @@ public class ProjectMediaService {
     private final ProjectMediaRepository mediaRepository;
     private final ProjectService projectService;
     private final UserService userService;
+    private final MediaUploadService mediaUploadService;
     private final ProjectMapper projectMapper;
 
     /** Ajoute une image à la fin de la galerie. */
@@ -55,6 +60,7 @@ public class ProjectMediaService {
                 .width(request.getWidth())
                 .height(request.getHeight())
                 .build());
+        mediaUploadService.attach(projectId, imagesOf(saved));
         log.info("[Media] Image {} ajoutée au projet {} par {}", saved.getId(), projectId, userId);
         return projectMapper.toMediaResponse(saved);
     }
@@ -65,6 +71,7 @@ public class ProjectMediaService {
                 .orElseThrow(() -> new ResourceNotFoundException("Image", mediaId));
         requireManager(media.getProject(), userId);
         mediaRepository.delete(media);
+        mediaUploadService.release(projectId, imagesOf(media));
         log.info("[Media] Image {} retirée du projet {} par {}", mediaId, projectId, userId);
     }
 
@@ -72,6 +79,11 @@ public class ProjectMediaService {
         if (!projectService.canManage(project, userId) && !userService.canModerate(userId)) {
             throw new ForbiddenException("Seuls le porteur du projet et ses mainteneurs gèrent sa galerie");
         }
+    }
+
+    // La grande image et sa miniature
+    private static List<String> imagesOf(ProjectMedia media) {
+        return Arrays.asList(media.getUrl(), media.getThumbnailUrl());
     }
 
     private static String blankToNull(String value) {

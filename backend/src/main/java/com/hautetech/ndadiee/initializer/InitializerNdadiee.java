@@ -14,6 +14,7 @@ import lombok.extern.slf4j.Slf4j;
 @RequiredArgsConstructor
 public class InitializerNdadiee implements CommandLineRunner {
 
+    private final DatabaseConstraints databaseConstraints;
     private final BadgeService badgeService;
     private final DemoDataSeeder demoDataSeeder;
     private final ShowcaseSeeder showcaseSeeder;
@@ -21,13 +22,20 @@ public class InitializerNdadiee implements CommandLineRunner {
     private final ForumSeeder forumSeeder;
     private final HackathonSeeder hackathonSeeder;
     private final ModerationSeeder moderationSeeder;
+    private final DashboardSeeder dashboardSeeder;
+    private final ReviewSeeder reviewSeeder;
+    private final WorkspaceSeeder workspaceSeeder;
+    private final GithubDemoSeeder githubDemoSeeder;
+    private final MessageSeeder messageSeeder;
 
     @Value("${ndadiee.seed.enabled}")
     private boolean seedEnabled;
 
     @Override
     public void run(String... args) {
-        // Données de référence : nécessaires dans tous les environnements
+        // Ce que les entités ne savent pas décrire, avant toute donnée ; puis les données de référence, nécessaires dans
+        // tous les environnements
+        databaseConstraints.apply();
         badgeService.syncCatalog();
 
         if (seedEnabled) {
@@ -43,6 +51,16 @@ public class InitializerNdadiee implements CommandLineRunner {
             hackathonSeeder.seed();
             // Le back-office : un compte de spam suspendu, ses contenus masqués, une modératrice nommée
             moderationSeeder.seed();
+            // L'atelier des comptes d'essai : leurs équipes, les candidatures qui les attendent
+            dashboardSeeder.seed();
+            // Les revues de code : des pull requests dans les projets, à relire par l'équipe et la communauté
+            reviewSeeder.seed();
+            // Les espaces d'équipe : tableaux, sprints et discussions (le sprint 7 de lagos-transit, design 3E)
+            workspaceSeeder.seed();
+            // De vrais dépôts GitHub : leurs pull requests arrivent à la première synchronisation
+            githubDemoSeeder.seed();
+            // La messagerie des comptes d'essai : des conversations avec leurs équipes, des messages qui les attendent
+            messageSeeder.seed();
         } else {
             log.info("[Init] Données de démonstration désactivées (ndadiee.seed.enabled=false)");
         }

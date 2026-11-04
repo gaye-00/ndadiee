@@ -2,6 +2,7 @@ import { Outlet } from 'react-router-dom';
 import MobileTabBar from './MobileTabBar';
 import Sidebar from './Sidebar';
 import Topbar from './Topbar';
+import ChatRealtime from '@/components/messages/ChatRealtime';
 import { ADMIN_APP_NAV, APP_NAV } from '@/config/navigation';
 import { useAuth } from '@/hooks/useAuth';
 import { usePrefetchWhenIdle } from '@/hooks/usePrefetchWhenIdle';
@@ -30,6 +31,8 @@ export default function AppLayout() {
         <div aria-hidden className="h-[calc(6.5rem+env(safe-area-inset-bottom))] md:hidden" />
       </div>
       <MobileTabBar />
+      {/* Messagerie en temps réel : WebSocket, pastille, nouveaux messages signalés partout */}
+      <ChatRealtime />
     </div>
   );
 }

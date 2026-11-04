@@ -44,6 +44,8 @@ export interface UserResponse {
   role: Role;
   userType: 'developer' | 'admin';
   preferredLanguage: Language;
+  /** Reçoit les e-mails des revues de code : un commentaire sur sa PR, un verdict, sa revue jugée utile */
+  reviewEmails: boolean;
   createdAt: string;
 
   // Profil développeur : null pour un compte Admin

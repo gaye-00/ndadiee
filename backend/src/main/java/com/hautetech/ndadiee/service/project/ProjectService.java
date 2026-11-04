@@ -2,11 +2,14 @@ package com.hautetech.ndadiee.service.project;
 
 import java.time.Instant;
 import java.util.Comparator;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.data.domain.Page;
@@ -20,6 +23,7 @@ import com.hautetech.ndadiee.dto.request.JoinProjectRequest;
 import com.hautetech.ndadiee.dto.request.MemberDecisionRequest;
 import com.hautetech.ndadiee.dto.request.MemberSpecialtyRequest;
 import com.hautetech.ndadiee.dto.request.ProjectRequest;
+import com.hautetech.ndadiee.dto.request.ProjectSettingsRequest;
 import com.hautetech.ndadiee.dto.response.HackathonBriefResponse;
 import com.hautetech.ndadiee.dto.response.PageResponse;
 import com.hautetech.ndadiee.dto.response.ProjectFacetsResponse;
@@ -32,6 +36,7 @@ import com.hautetech.ndadiee.dto.response.ProjectResponse;
 import com.hautetech.ndadiee.dto.response.UserSummaryResponse;
 import com.hautetech.ndadiee.event.ProjectCreatedEvent;
 import com.hautetech.ndadiee.event.ProjectJoinRequestedEvent;
+import com.hautetech.ndadiee.event.ProjectMemberLeftEvent;
 import com.hautetech.ndadiee.exception.ForbiddenException;
 import com.hautetech.ndadiee.exception.OperationNotAllowedException;
 import com.hautetech.ndadiee.exception.ResourceNotFoundException;
@@ -61,6 +66,7 @@ import com.hautetech.ndadiee.repository.specification.ProjectSpecifications;
 import com.hautetech.ndadiee.service.SlugService;
 import com.hautetech.ndadiee.service.content.TagService;
 import com.hautetech.ndadiee.service.interaction.VoteService;
+import com.hautetech.ndadiee.service.media.MediaUploadService;
 import com.hautetech.ndadiee.service.user.UserService;
 
 import lombok.RequiredArgsConstructor;
@@ -91,6 +97,8 @@ public class ProjectService {
     private final TagService tagService;
     private final SlugService slugService;
     private final VoteService voteService;
+    // Les images envoyées pour un projet lui sont rattachées : celles que plus rien ne montre sont supprimées
+    private final MediaUploadService mediaUploadService;
     private final OpeningMatcher openingMatcher;
     private final ProjectMapper projectMapper;
     private final HackathonMapper hackathonMapper;
@@ -172,6 +180,7 @@ public class ProjectService {
                 .build());
 
         Project saved = projectRepository.save(project);
+        mediaUploadService.attach(saved.getId(), imagesOf(saved));
         log.info("[Project] Créé - ID: {} - slug: {}", saved.getId(), saved.getSlug());
         eventPublisher.publishEvent(new ProjectCreatedEvent(saved.getId(), userId));
         return toResponse(saved, userId);
@@ -183,12 +192,32 @@ public class ProjectService {
 
         // Le slug ne suit pas le nom : les liens déjà partagés restent valides
         project.setName(request.getName().trim());
+        Set<String> previousImages = imagesOf(project);
         applyContent(project, request);
+        Set<String> images = imagesOf(project);
+        previousImages.removeAll(images);
+        mediaUploadService.release(projectId, previousImages);
+        mediaUploadService.attach(projectId, images);
         project.setLookingForContributors(Boolean.TRUE.equals(request.getLookingForContributors()));
         tagService.replaceTags(project.getTags(), request.getTags());
 
         log.info("[Project] ID: {} mis à jour par {}", projectId, userId);
         // saveAndFlush : la réponse doit porter la nouvelle date de modification
+        return toResponse(projectRepository.saveAndFlush(project), userId);
+    }
+
+    /**
+     * Les réglages de l'espace d'équipe : le dépôt et le recrutement, sans toucher au reste du projet. Un nouveau dépôt
+     * est relu à la synchronisation suivante (PullRequestSyncService).
+     */
+    public ProjectResponse updateSettings(Long userId, Long projectId, ProjectSettingsRequest request) {
+        Project project = findProjectOrThrow(projectId);
+        requireOwnerOrModerator(project, userId, "Seul le porteur du projet change ses réglages");
+
+        project.setRepositoryUrl(trimToNull(request.getRepositoryUrl()));
+        project.setLookingForContributors(request.getLookingForContributors());
+        log.info("[Project] ID: {} réglages mis à jour par {} (dépôt : {}, recrute : {})", projectId, userId,
+                project.getRepositoryUrl(), project.isLookingForContributors());
         return toResponse(projectRepository.saveAndFlush(project), userId);
     }
 
@@ -258,8 +287,37 @@ public class ProjectService {
         if (member.getRole() == ProjectRole.OWNER) {
             throw new OperationNotAllowedException("Le propriétaire ne peut pas quitter son projet");
         }
+        boolean wasInTeam = member.getStatus() == MemberStatus.ACCEPTED;
         projectMemberRepository.delete(member);
         log.info("[Project] Membre {} a quitté le projet {}", userId, projectId);
+        if (wasInTeam) {
+            eventPublisher.publishEvent(new ProjectMemberLeftEvent(projectId, userId));
+        }
+    }
+
+    /** Retire un membre de l'équipe : le porteur et les mainteneurs, jamais le porteur, jamais soi-même (quitter). */
+    public void removeMember(Long userId, Long projectId, Long memberId) {
+        Project project = findProjectOrThrow(projectId);
+        if (!canManage(project, userId)) {
+            throw new ForbiddenException("Seuls le propriétaire et les mainteneurs retirent un membre de l'équipe");
+        }
+        ProjectMember member = projectMemberRepository.findById(memberId)
+                .filter(candidate -> candidate.getProject().getId().equals(projectId))
+                .orElseThrow(() -> new ResourceNotFoundException("Membre du projet", memberId));
+        if (member.getRole() == ProjectRole.OWNER) {
+            throw new OperationNotAllowedException("Le propriétaire ne peut pas être retiré de son projet");
+        }
+        if (member.getUser().getId().equals(userId)) {
+            throw new OperationNotAllowedException("Pour partir de l'équipe, quitte le projet");
+        }
+
+        Long removedId = member.getUser().getId();
+        boolean wasInTeam = member.getStatus() == MemberStatus.ACCEPTED;
+        projectMemberRepository.delete(member);
+        log.info("[Project] Membre {} retiré du projet {} par {}", removedId, projectId, userId);
+        if (wasInTeam) {
+            eventPublisher.publishEvent(new ProjectMemberLeftEvent(projectId, removedId));
+        }
     }
 
     /** Membres acceptés ; le propriétaire et les mainteneurs voient aussi les demandes en attente ou refusées. */
@@ -309,6 +367,7 @@ public class ProjectService {
             throw new OperationNotAllowedException("La décision doit être ACCEPTED ou REJECTED");
         }
 
+        boolean leavesTeam = member.getStatus() == MemberStatus.ACCEPTED && request.getStatus() == MemberStatus.REJECTED;
         member.setStatus(request.getStatus());
         if (request.getRole() != null) {
             member.setRole(request.getRole());
@@ -320,6 +379,9 @@ public class ProjectService {
         log.info("[Project] Membre {} du projet {} : {} par {}", memberId, projectId, request.getStatus(), userId);
         if (saved.getStatus() == MemberStatus.ACCEPTED && saved.getOpening() != null) {
             closeWhenFilled(saved.getOpening());
+        }
+        if (leavesTeam) {
+            eventPublisher.publishEvent(new ProjectMemberLeftEvent(projectId, saved.getUser().getId()));
         }
         return projectMapper.toMemberResponse(saved);
     }
@@ -438,6 +500,13 @@ public class ProjectService {
         project.setCoverCredit(trimToNull(request.getCoverCredit()));
         project.setCoverSourceUrl(request.getCoverSourceUrl());
         project.setLicense(trimToNull(request.getLicense()));
+    }
+
+    // Les images que le projet montre lui-même : couverture, miniature, logo
+    private static Set<String> imagesOf(Project project) {
+        return Stream.of(project.getCoverUrl(), project.getCoverThumbnailUrl(), project.getLogoUrl())
+                .filter(Objects::nonNull)
+                .collect(Collectors.toCollection(HashSet::new));
     }
 
     // Une annonce ouverte de ce projet

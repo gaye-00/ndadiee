@@ -1,0 +1,384 @@
+{
+  "intro": {
+    "eyebrow": "Code reviews",
+    "titleCode": "Code,",
+    "titleTogether": "reviewed together",
+    "lead": "Pull requests waiting for your review, those of your teams, and community ones where your eye counts.",
+    "waiting_one": "{{count}} review is waiting for you",
+    "waiting_other": "{{count}} reviews are waiting for you",
+    "oldest": "the oldest since {{time}}",
+    "allClear": "No review is waiting for you",
+    "community_one": "{{count}} community PR needs a reviewer",
+    "community_other": "{{count}} community PRs need a reviewer"
+  },
+  "tabs": {
+    "label": "Reviews",
+    "TO_REVIEW": "To review",
+    "COMMUNITY": "Community",
+    "MINE": "My PRs",
+    "TEAM": "My teams",
+    "DONE": "Done"
+  },
+  "filters": {
+    "search": "Search pull requests",
+    "searchPlaceholder": "Title, #number, project or branch",
+    "projects": "Your teams' projects",
+    "allProjects": "All projects"
+  },
+  "results": {
+    "loading": "Loading reviews…",
+    "TO_REVIEW_one": "{{count}} review to give",
+    "TO_REVIEW_other": "{{count}} reviews to give",
+    "COMMUNITY_one": "{{count}} PR open to the community",
+    "COMMUNITY_other": "{{count}} PRs open to the community",
+    "MINE_one": "{{count}} pull request",
+    "MINE_other": "{{count}} pull requests",
+    "TEAM_one": "{{count}} open PR in your teams",
+    "TEAM_other": "{{count}} open PRs in your teams",
+    "DONE_one": "{{count}} finished PR",
+    "DONE_other": "{{count}} finished PRs",
+    "errorTitle": "Reviews could not load",
+    "errorText": "Check your connection, then try again.",
+    "more": "Show more pull requests",
+    "loadingMore": "Loading more…",
+    "moreError": "The next ones could not load."
+  },
+  "empty": {
+    "TO_REVIEW_title": "Nothing to review",
+    "TO_REVIEW_text": "No review is waiting for you. When your team asks for one, it will land here.",
+    "TO_REVIEW_action_one": "Review the PR waiting for the community",
+    "TO_REVIEW_action_other": "Review one of the {{count}} community PRs",
+    "COMMUNITY_title": "No open community review",
+    "COMMUNITY_text": "No PR outside your teams is looking for a reviewer right now. Check back soon.",
+    "MINE_title": "No pull request yet",
+    "MINE_text": "Your PRs will show up here, with their reviewers and what is missing before merging.",
+    "MINE_action": "Find a “good first issue”",
+    "TEAM_title": "Nothing open in your teams",
+    "TEAM_text": "No PR is open in the projects you belong to.",
+    "TEAM_action": "Join a team",
+    "DONE_title": "No finished PR yet",
+    "DONE_text": "Merged or closed PRs of your teams, and those you reviewed, will show up here."
+  },
+  "noMatch": {
+    "title": "No pull request for this project",
+    "titleQuery": "No pull request for “{{query}}”",
+    "text": "Try another word, a number (#84), or remove the project filter.",
+    "clear": "Clear all"
+  },
+  "phase": {
+    "open": "open",
+    "draft": "draft",
+    "merged": "merged",
+    "closed": "closed"
+  },
+  "item": {
+    "community": "community review",
+    "firstContribution": "1st contribution",
+    "files_one": "{{count}} file changed",
+    "files_other": "{{count}} files changed",
+    "commits_one": "{{count}} commit",
+    "commits_other": "{{count}} commits",
+    "comments_one": "{{count}} comment",
+    "comments_other": "{{count}} comments",
+    "yourStack": "In your stack",
+    "waiting": "waiting for your review since {{time}}",
+    "required": "required",
+    "merged": "merged {{time}}",
+    "closed": "closed {{time}}",
+    "opened": "opened {{time}}",
+    "active": "active {{time}}",
+    "branches": "from {{source}} into {{target}}",
+    "diff": "{{additions}} lines added, {{deletions}} removed",
+    "checksFailed_one": "{{count}} check failing",
+    "checksFailed_other": "{{count}} checks failing",
+    "checksRunning": "checks {{passed}}/{{total}}",
+    "checksPassed": "{{passed}} of {{total}} checks passed",
+    "noReviewer": "no reviewer",
+    "reviewers": "Reviewers",
+    "reviewerState": "{{name}} · {{state}}",
+    "reviewerState_required": "{{name}} · {{state}} · required",
+    "reviewerState_community": "{{name}} · {{state}} · community",
+    "onGithub": "GitHub",
+    "onGithubLabel": "View PR #{{number}} on GitHub",
+    "githubAuthor": "GitHub account, not on Ndadiee yet"
+  },
+  "state": {
+    "REQUESTED": "review pending",
+    "COMMENTED": "commented",
+    "APPROVED": "approved",
+    "CHANGES_REQUESTED": "changes requested"
+  },
+  "action": {
+    "review": "Review",
+    "release": "Step back",
+    "released": "You no longer review #{{number}}",
+    "claim": "I'll review",
+    "claimed": "#{{number}} of {{project}} is now in your reviews to give"
+  },
+  "verdict": {
+    "merged": "Merged",
+    "closed": "Closed without merging",
+    "draft": "Draft",
+    "changes": "Changes requested",
+    "ready": "Ready to merge",
+    "awaiting_one": "{{count}} review pending",
+    "awaiting_other": "{{count}} reviews pending",
+    "noReviewer": "No reviewer"
+  },
+  "community": {
+    "eyebrow": "Community review",
+    "title": "Your eye counts, even outside the team",
+    "text": "Some PRs open up to developers from the whole community. Each review judged helpful earns +{{reward}} reputation.",
+    "waiting_one": "PR needs a reviewer",
+    "waiting_other": "PRs need a reviewer",
+    "given_one": "community review given",
+    "given_other": "community reviews given",
+    "cta": "See community reviews"
+  },
+  "stats": {
+    "title": "Your reviewer record",
+    "reviewsGiven_one": "review given",
+    "reviewsGiven_other": "reviews given",
+    "approved_one": "approval",
+    "approved_other": "approvals",
+    "changesRequested_one": "change request",
+    "changesRequested_other": "change requests",
+    "mergedPullRequests_one": "PR merged",
+    "mergedPullRequests_other": "PRs merged"
+  },
+  "guide": {
+    "title": "Review well",
+    "readTitle": "Read the why first.",
+    "readText": "The description and the issue say what the PR should solve.",
+    "suggestTitle": "Suggest, don't impose.",
+    "suggestText": "A code suggestion beats a reproach.",
+    "decideTitle": "Give a clear verdict.",
+    "decideText": "Approve when it's good, and say what's missing otherwise."
+  },
+  "sync": {
+    "title": "Pull requests",
+    "synced": "read {{time}}",
+    "open_one": "open on",
+    "open_other": "open on",
+    "first": "First read of the repository within a minute…",
+    "reviews": "See the reviews",
+    "action": "Sync",
+    "running": "Reading…",
+    "done": "Pull requests up to date",
+    "error": {
+      "GITHUB_REPOSITORY_NOT_FOUND": "Repository not found on GitHub: it may be private, renamed or deleted.",
+      "GITHUB_RATE_LIMITED": "GitHub is rate-limiting requests for now: next try on the next pass.",
+      "GITHUB_UNAVAILABLE": "GitHub did not answer the last read: next try on the next pass.",
+      "GITHUB_NOT_CONFIGURED": "Reading pull requests is not set up on this server (missing GitHub token)."
+    }
+  },
+  "page": {
+    "loading": "Loading the review…",
+    "documentTitle": "#{{number}} {{title}}",
+    "aside": "Reviewers, checks and linked task",
+    "notFoundTitle": "Pull request not found",
+    "notFoundText": "It doesn't exist in this project, or the project is no longer visible.",
+    "backToReviews": "Back to reviews",
+    "errorTitle": "The review couldn't load",
+    "errorText": "Check your connection, then try again."
+  },
+  "header": {
+    "wants_one": "wants to merge <b>{{count}} commit</b> from <branch>{{source}}</branch> into <branch>{{target}}</branch>",
+    "wants_other": "wants to merge <b>{{count}} commits</b> from <branch>{{source}}</branch> into <branch>{{target}}</branch>",
+    "merged_one": "merged <b>{{count}} commit</b> from <branch>{{source}}</branch> into <branch>{{target}}</branch>",
+    "merged_other": "merged <b>{{count}} commits</b> from <branch>{{source}}</branch> into <branch>{{target}}</branch>",
+    "closed_one": "proposed <b>{{count}} commit</b> from <branch>{{source}}</branch> into <branch>{{target}}</branch>",
+    "closed_other": "proposed <b>{{count}} commits</b> from <branch>{{source}}</branch> into <branch>{{target}}</branch>",
+    "readDescription": "Read the description",
+    "onGithub": "View on GitHub",
+    "review": "Submit my review",
+    "reviewAgain": "Revisit my verdict",
+    "mergeOnGithub": "Merge on GitHub",
+    "yours": "Your pull request",
+    "myVerdict": {
+      "COMMENTED": "You commented",
+      "APPROVED": "You approved",
+      "CHANGES_REQUESTED": "You requested changes"
+    }
+  },
+  "pageTabs": {
+    "label": "Parts of the review",
+    "files": "Files changed",
+    "conversation": "Conversation"
+  },
+  "files": {
+    "title": "Files changed",
+    "viewed": "{{seen}}/{{total}} viewed",
+    "viewedLabel": "{{seen}} of {{total}} files viewed",
+    "viewedFile": "Viewed",
+    "collapse": "Hide the file list",
+    "expand": "Show the file list",
+    "filter": "Find a file",
+    "clearFilter": "Clear the search",
+    "noMatch": "No file for “{{query}}”",
+    "status": {
+      "ADDED": "added",
+      "MODIFIED": "modified",
+      "REMOVED": "deleted",
+      "RENAMED": "renamed",
+      "COPIED": "copied"
+    }
+  },
+  "diff": {
+    "label": "Pull request diff",
+    "loading": "Reading the diff…",
+    "errorTitle": "The diff couldn't load",
+    "errorText": "GitHub didn't answer. Try again in a moment.",
+    "unavailableTitle": "Diff unavailable",
+    "unavailableText_one": "This demo pull request changes {{count}} file, but its diff can't be browsed here.",
+    "unavailableText_other": "This demo pull request changes {{count}} files, but its diff can't be browsed here.",
+    "expandAll": "Expand all",
+    "collapseAll": "Collapse all",
+    "expandFile": "Expand {{path}}",
+    "collapseFile": "Collapse {{path}}",
+    "copyPath": "Copy the path",
+    "pathCopied": "Path copied",
+    "viewOnGithub": "View {{path}} on GitHub",
+    "viewed": "Viewed",
+    "readOnly": "This pull request is reviewed by the project team and its reviewers: you can read it, but not comment.",
+    "commentLine": "Comment on line {{line}}",
+    "added": "Added line:",
+    "removed": "Removed line:",
+    "noNewline": "No newline at end of file",
+    "noPatch": "Diff not shown: binary file, or too large.",
+    "renamedOnly": "File renamed, with no other change.",
+    "openOnGithub": "Open on GitHub",
+    "outdated": "Comments on lines outside the diff",
+    "lineLabel": "Line {{line}}",
+    "moreOnGithub_one": "{{count}} more file to read on GitHub",
+    "moreOnGithub_other": "{{count}} more files to read on GitHub"
+  },
+  "thread": {
+    "placeholder": "A remark, a question, an idea…",
+    "replyPlaceholder": "Reply…",
+    "replyLabel": "Reply to the discussion on {{path}}, line {{line}}",
+    "newLabel": "Comment on {{path}}, line {{line}}",
+    "editLabel": "Edit the comment",
+    "newOnLine": "New comment · line {{line}}",
+    "hint": "{{mod}} + Enter to post",
+    "comment": "Comment",
+    "reply": "Reply",
+    "save": "Save",
+    "cancel": "Cancel",
+    "empty": "Write your comment.",
+    "explainSuggestion": "Say in one sentence why you suggest this code.",
+    "addSuggestion": "Suggest code",
+    "removeSuggestion": "Remove the suggestion",
+    "edited": "edited",
+    "menu": "Comment actions",
+    "edit": "Edit",
+    "delete": "Delete",
+    "deleteTitle": "Delete this comment?",
+    "deleteText": "It will disappear from the discussion. This cannot be undone.",
+    "deleted": "Comment deleted",
+    "roles": {
+      "author": "Author",
+      "required": "Required",
+      "community": "Community",
+      "reviewer": "Reviewer"
+    }
+  },
+  "suggestion": {
+    "title": "Suggestion",
+    "copy": "Copy",
+    "copied": "Copied",
+    "empty": "Delete the line"
+  },
+  "reviewers": {
+    "title": "Reviewers",
+    "empty": "Nobody is reviewing this pull request yet.",
+    "required_one": "{{approved}} of {{count}} required review approved",
+    "required_other": "{{approved}} of {{count}} required reviews approved",
+    "requiredTag": "Required",
+    "communityTag": "Community",
+    "claim": "Volunteer as a reviewer",
+    "claimHint": "A review the team finds helpful earns you +{{reward}} reputation.",
+    "judge": "Helpful review · +{{reward}}",
+    "helpful": "Marked helpful",
+    "helpfulFor": "Marked helpful · +{{reward}} reputation",
+    "judged": "{{name}}'s review earns them +{{reward}} reputation",
+    "unjudged": "{{name}}'s review is no longer marked helpful"
+  },
+  "checks": {
+    "title": "Checks",
+    "onGithub": "View checks on GitHub",
+    "none": "No checks on the latest commit.",
+    "passed_one": "{{count}} check passed",
+    "passed_other": "All {{count}} checks pass",
+    "running_one": "{{count}} check running",
+    "running_other": "{{count}} checks running",
+    "error": "The check details couldn't load.",
+    "details": "View the log of {{name}}",
+    "state": {
+      "SUCCESS": "Passed:",
+      "FAILURE": "Failed:",
+      "PENDING": "Running:",
+      "SKIPPED": "Skipped:"
+    }
+  },
+  "task": {
+    "title": "Linked task",
+    "none": "No linked issue. A PR that writes “Closes #12” in its description shows it here.",
+    "error": "Linked issues couldn't load.",
+    "untitled": "Issue #{{number}}",
+    "open": "Open · this PR will close it when merged",
+    "closed": "Closed",
+    "willClose": "This PR will close it when merged",
+    "starter": "first step"
+  },
+  "conversation": {
+    "label": "Pull request conversation",
+    "opened": "opened this pull request",
+    "noDescription": "No description.",
+    "empty": "No comments yet: start the discussion.",
+    "placeholder": "Comment on the pull request…",
+    "composerLabel": "Comment on the pull request",
+    "send": "Comment",
+    "sent": "Comment posted",
+    "reviewHint": "Done reviewing?",
+    "verdict": {
+      "COMMENTED": "commented",
+      "APPROVED": "approved these changes",
+      "CHANGES_REQUESTED": "requested changes"
+    }
+  },
+  "submit": {
+    "eyebrow": "Pull request #{{number}}",
+    "title": "Submit my review",
+    "text": "Your verdict and message join the conversation; the author sees them right away.",
+    "close": "Close",
+    "verdict": "Verdict",
+    "verdicts": {
+      "COMMENTED": "Comment",
+      "APPROVED": "Approve",
+      "CHANGES_REQUESTED": "Request changes"
+    },
+    "verdictHints": {
+      "COMMENTED": "Remarks, without a verdict.",
+      "APPROVED": "Good to go: it can be merged.",
+      "CHANGES_REQUESTED": "Needs fixing before merging."
+    },
+    "message": "Your review message",
+    "placeholder": "Say what works, and what's missing…",
+    "placeholderOptional": "A word for the author (optional)",
+    "hint": "{{mod}} + Enter to send",
+    "explain": "Say what's missing: a message is required, except for an approval.",
+    "reward": "Community review: if the team finds it helpful, it earns you +{{reward}} reputation.",
+    "cancel": "Cancel",
+    "send": {
+      "COMMENTED": "Send my comment",
+      "APPROVED": "Approve",
+      "CHANGES_REQUESTED": "Request changes"
+    },
+    "done": {
+      "COMMENTED": "Your review of #{{number}} is submitted",
+      "APPROVED": "You approved #{{number}}",
+      "CHANGES_REQUESTED": "Changes requested on #{{number}}"
+    }
+  }
+}

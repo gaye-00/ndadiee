@@ -36,6 +36,7 @@ const focusRing = 'outline-none focus-visible:ring-2 focus-visible:ring-ring/70'
 
 /** Mise en forme proposée par la barre d'outils */
 type Format = 'bold' | 'italic' | 'link' | 'heading' | 'quote' | 'code' | 'codeBlock' | 'list' | 'orderedList';
+export type MarkdownFormat = Format;
 
 interface Tool {
   format: Format;
@@ -125,6 +126,11 @@ interface MarkdownEditorProps {
    * de la barre d'outils, le collage d'une capture, le glisser-déposer.
    */
   onUploadImage?: (file: File) => Promise<string>;
+  /**
+   * Les seules mises en forme proposées (barre d'outils, raccourcis, aide), quand le texte sera affiché avec moins
+   * de Markdown : une description de projet n'a que le gras, le code et les listes. Toutes par défaut
+   */
+  formats?: readonly MarkdownFormat[];
   ref?: Ref<MarkdownEditorHandle>;
   className?: string;
 }
@@ -156,6 +162,7 @@ export default function MarkdownEditor({
   variant = 'full',
   hint,
   onUploadImage,
+  formats,
   ref,
   className,
 }: MarkdownEditorProps) {
@@ -175,6 +182,7 @@ export default function MarkdownEditor({
   const [dragging, setDragging] = useState(false);
   const modifier = isApple ? '⌘' : 'Ctrl';
   const full = variant === 'full';
+  const tools = formats ? TOOLS.filter((tool) => formats.includes(tool.format)) : TOOLS;
 
   useImperativeHandle(ref, () => ({
     focus: () => {
@@ -282,7 +290,7 @@ export default function MarkdownEditor({
       return;
     }
     if (mod && !event.shiftKey && !event.altKey) {
-      const tool = TOOLS.find((candidate) => candidate.key === event.key.toLowerCase());
+      const tool = tools.find((candidate) => candidate.key === event.key.toLowerCase());
       if (tool) {
         event.preventDefault();
         apply(tool.format);
@@ -462,7 +470,7 @@ export default function MarkdownEditor({
           <>
             <span aria-hidden className="mx-1 h-5 w-px shrink-0 bg-border" />
             <div role="toolbar" aria-label={t('editor.toolbar')} aria-controls={areaId} className="flex min-w-0 items-center gap-0.5 overflow-x-auto">
-              {TOOLS.map(({ format, icon: Icon, key }) => {
+              {tools.map(({ format, icon: Icon, key }) => {
                 const name = t(`editor.tools.${format}`);
                 const title = key ? `${name} (${modifier}+${key.toUpperCase()})` : name;
                 return (
@@ -488,7 +496,7 @@ export default function MarkdownEditor({
           </>
         )}
         {!full && mode === 'write' && imageButton}
-        <MarkdownHelp className="ms-auto" />
+        <MarkdownHelp formats={formats} className="ms-auto" />
       </div>
 
       <div id={panelId} role="tabpanel">
@@ -558,7 +566,7 @@ const CHEATSHEET: readonly [Format, (word: string) => string][] = [
 ];
 
 /** « Aide » : un mémo des bases du Markdown, dans une bulle. */
-function MarkdownHelp({ className }: { className?: string }) {
+function MarkdownHelp({ formats, className }: { formats?: readonly MarkdownFormat[]; className?: string }) {
   const { t } = useTranslation();
   const word = t('editor.sample.word');
 
@@ -586,7 +594,7 @@ function MarkdownHelp({ className }: { className?: string }) {
         >
           <p className="eyebrow mb-2">{t('editor.helpTitle')}</p>
           <dl className="grid grid-cols-[auto_1fr] gap-x-4 gap-y-1.5 text-xs">
-            {CHEATSHEET.map(([format, syntax]) => (
+            {CHEATSHEET.filter(([format]) => !formats || formats.includes(format)).map(([format, syntax]) => (
               <div key={format} className="contents">
                 <dt dir="auto" className="font-mono text-soft-foreground">
                   {syntax(word)}

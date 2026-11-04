@@ -7,10 +7,13 @@ import com.hautetech.ndadiee.model.Hideable;
 import com.hautetech.ndadiee.model.user.Developer;
 
 import org.hibernate.annotations.DynamicUpdate;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
+import jakarta.persistence.Index;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
@@ -28,7 +31,14 @@ import lombok.experimental.SuperBuilder;
 @SuperBuilder
 @Entity
 @DynamicUpdate
-@Table(name = "answers")
+@Table(
+    name = "answers",
+    indexes = {
+        @Index(name = "idx_answers_question", columnList = "question_id"),
+        @Index(name = "idx_answers_author", columnList = "author_id"),
+        @Index(name = "idx_answers_hidden", columnList = "hidden_at", options = "where hidden_at is not null")
+    }
+)
 public class Answer extends BaseEntity implements Hideable {
 
     // Markdown
@@ -36,6 +46,7 @@ public class Answer extends BaseEntity implements Hideable {
     private String body;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @OnDelete(action = OnDeleteAction.CASCADE)
     @ToString.Exclude
     private Question question;
 

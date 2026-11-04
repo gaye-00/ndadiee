@@ -1,0 +1,92 @@
+{
+  "list": {
+    "title": "Bataaxal yi",
+    "search": "Seet ci say waxtaan",
+    "searchPlaceholder": "Seet…",
+    "clearSearch": "Far li nga seet",
+    "filter": "Tànn waxtaan yi",
+    "all": "Yépp",
+    "unread": "Yu ñu jàngagul",
+    "you": "Yow : {{text}}",
+    "deleted": "Bataaxal bi dañu ko far",
+    "noMessage": "Waxtaan bu bees",
+    "unreadCount_one": "{{count}} bataaxal bu ñu jàngagul",
+    "unreadCount_other": "{{count}} bataaxal yu ñu jàngagul",
+    "emptyTitle": "Amoo benn waxtaan fi mu nekk",
+    "emptyDescription": "Bindal benn mbokk : laaj ci liggéeyam, xalaat ci benn mbooloo, walla ndimbal.",
+    "noMatch": "Amul benn waxtaan bu dëppoo ak « {{query}} ».",
+    "allRead": "Jàng nga lépp. Liggéey bu baax !",
+    "error": "Mënuñu yebu say waxtaan."
+  },
+  "status": {
+    "live": "Ci saa si",
+    "connecting": "Mu ngi lëkkaloo…",
+    "reconnecting": "Mu ngi lëkkaloowaat…",
+    "offline": "Amuloo internet"
+  },
+  "thread": {
+    "label": "Waxtaan ak {{name}}",
+    "back": "Dellu ci waxtaan yi",
+    "online": "Mu ngi ci internet",
+    "typing": "mu ngi bind…",
+    "typingLabel": "{{name}} mu ngi bind",
+    "profile": "Xool profil bi",
+    "start": "Lii mooy njàlbéenu sa waxtaan ak {{name}}.",
+    "private": "Bataaxal yu sutura : yeen ñaar rekk ay gis.",
+    "newMessages": "Bataaxal yu bees",
+    "loadingOlder": "Mu ngi yebu bataaxal yu jiitu…",
+    "loading": "Mu ngi yebu waxtaan bi…",
+    "jumpToLatest": "Dem ci bataaxal yu mujj yi",
+    "unseen_one": "{{count}} bataaxal bu bees, wàcc ci suuf",
+    "unseen_other": "{{count}} bataaxal yu bees, wàcc ci suuf",
+    "notFound": "Gisuñu waxtaan bi",
+    "notFoundHint": "Amul, walla bokkoo ci.",
+    "error": "Mënuñu yebu bataaxal yi.",
+    "backToList": "Waxtaan yépp"
+  },
+  "message": {
+    "you": "Yow",
+    "edited": "soppi nañu ko",
+    "deleted": "Bataaxal bi dañu ko far",
+    "sending": "Mu ngi yónnee",
+    "sent": "Yónnee nañu ko",
+    "seen": "Gis nañu ko",
+    "failed": "Yónneewuñu ko",
+    "retry": "Jéemaatal",
+    "discard": "Bàyyi ko",
+    "actions": "Jëf yi ci bataaxal bi",
+    "copy": "Duppi mbind mi",
+    "copied": "Duppi nañu mbind mi",
+    "edit": "Soppi",
+    "delete": "Far",
+    "deleteTitle": "Far bataaxal bii ?",
+    "deleteDescription": "Dina réer ci yeen ñaar. Mënuloo ko delloo.",
+    "deleteConfirm": "Far"
+  },
+  "composer": {
+    "label": "Sa bataaxal",
+    "placeholder": "Bindal {{name}}…",
+    "send": "Yónnee",
+    "save": "Denc coppite gi",
+    "editing": "Coppite",
+    "cancelEdit": "Neenal coppite gi",
+    "hint": "<k>Enter</k> ngir yónnee · <k>Shift</k> + <k>Enter</k> ngir dem ci beneen rëdd · <k>↑</k> ngir soppi sa bataaxal bu mujj",
+    "editHint": "<k>Enter</k> ngir denc · <k>Esc</k> ngir neenal",
+    "remaining_one": "{{count}} araf moo des",
+    "remaining_other": "{{count}} araf ñoo des"
+  },
+  "newConversation": {
+    "title": "Bataaxal bu bees",
+    "description": "Bindal benn mbokk ci askan wi.",
+    "search": "Turu mbokk mi walla turu jëfandikukat bi",
+    "suggestions": "Mbokki askan wi",
+    "results": "Li ñu gis",
+    "empty": "Amul benn mbokk bu dëppoo ak « {{query}} ».",
+    "error": "Seet gi antuwul. Jéemaatal ci kanam tuuti."
+  },
+  "empty": {
+    "title": "Say waxtaan",
+    "description": "Tànnal benn waxtaan, walla bindal benn mbokk ci askan wi : laaj, xalaat ci mbooloo, walla ndimbal.",
+    "action": "Bataaxal bu bees"
+  }
+}

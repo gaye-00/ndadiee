@@ -1,0 +1,99 @@
+diff --git a/web/src/trips/TripList.tsx b/web/src/trips/TripList.tsx
+index cdf92b4..e1275cf 100644
+--- a/web/src/trips/TripList.tsx
++++ b/web/src/trips/TripList.tsx
+@@ -1,4 +1,4 @@
+-import { useEffect, useState } from 'react';
++import { useEffect, useRef, useState } from 'react';
+ import { fetchTrips, type Trip } from '../api/trips';
+ import { TripRow } from './TripRow';
+ import './TripList.css';
+@@ -7,17 +7,27 @@ const REFRESH_MS = 30_000;
+ 
+ interface TripListProps {
+   stopId: string;
++  stopName: string;
+ }
+ 
+-export function TripList({ stopId }: TripListProps) {
++export function TripList({ stopId, stopName }: TripListProps) {
+   const [trips, setTrips] = useState<Trip[]>([]);
++  const [refreshing, setRefreshing] = useState(false);
++  const list = useRef<HTMLOListElement>(null);
+ 
+   useEffect(() => {
+     let cancelled = false;
+-    const load = () =>
+-      fetchTrips(stopId).then((next) => {
+-        if (!cancelled) setTrips(next);
++    const load = () => {
++      setRefreshing(true);
++      // Keep focus on the same trip when the list refreshes under the reader
++      const focused = document.activeElement?.closest('[data-trip-id]')?.getAttribute('data-trip-id');
++      return fetchTrips(stopId).then((next) => {
++        if (cancelled) return;
++        setTrips(next);
++        setRefreshing(false);
++        if (focused) list.current?.querySelector<HTMLElement>(`[data-trip-id="${focused}"]`)?.focus();
+       });
++    };
+     load();
+     const timer = setInterval(load, REFRESH_MS);
+     return () => {
+@@ -27,12 +37,13 @@ export function TripList({ stopId }: TripListProps) {
+   }, [stopId]);
+ 
+   return (
+-    <div className="trips">
+-      <ol>
++    <section className="trips" aria-labelledby="trips-title">
++      <h2 id="trips-title">Prochains départs · {stopName}</h2>
++      <ol aria-live="polite" ref={list}>
+         {trips.map((trip) => (
+           <TripRow key={trip.id} trip={trip} />
+         ))}
+       </ol>
+-    </div>
++    </section>
+   );
+ }
+diff --git a/web/src/trips/TripRow.tsx b/web/src/trips/TripRow.tsx
+index 079572b..230ce22 100644
+--- a/web/src/trips/TripRow.tsx
++++ b/web/src/trips/TripRow.tsx
+@@ -1,11 +1,18 @@
+ import type { Trip } from '../api/trips';
++import { announceTrip } from './announce';
+ 
+ export function TripRow({ trip }: { trip: Trip }) {
+   return (
+-    <li className="trip">
+-      <span className="trip__route">{trip.route}</span>
+-      <span className="trip__time">{trip.minutes} min</span>
+-      <span className="trip__platform">Quai {trip.platform}</span>
++    <li className="trip" data-trip-id={trip.id} tabIndex={-1} aria-label={announceTrip(trip)}>
++      <span className="trip__route" aria-hidden>
++        {trip.route}
++      </span>
++      <span className="trip__time" aria-hidden>
++        {trip.minutes} min
++      </span>
++      <span className="trip__platform" aria-hidden>
++        Quai {trip.platform}
++      </span>
+     </li>
+   );
+ }
+diff --git a/web/src/trips/announce.ts b/web/src/trips/announce.ts
+new file mode 100644
+index 0000000..db65a73
+--- /dev/null
++++ b/web/src/trips/announce.ts
+@@ -0,0 +1,7 @@
++import type { Trip } from '../api/trips';
++
++/** One sentence per trip, as a rider would say it: « BRT Ikorodu–CMS, dans 4 minutes, quai 2 ». */
++export function announceTrip(trip: Trip): string {
++  const when = trip.minutes <= 0 ? 'à quai' : trip.minutes === 1 ? 'dans 1 minute' : `dans ${trip.minutes} minutes`;
++  return `${trip.route}, ${when}, quai ${trip.platform}`;
++}

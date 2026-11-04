@@ -1,0 +1,304 @@
+diff --git a/.size-limit.json b/.size-limit.json
+index 6cfa1c6..bb4d58a 100644
+--- a/.size-limit.json
++++ b/.size-limit.json
+@@ -8,5 +8,11 @@
+     "name": "forms",
+     "path": "dist/forms.js",
+     "limit": "4 kB"
++  },
++  {
++    "name": "virtual-list",
++    "path": "dist/virtual-list.js",
++    "import": "{ VirtualList }",
++    "limit": "3 kB"
+   }
+ ]
+diff --git a/docs/components/virtual-list.md b/docs/components/virtual-list.md
+new file mode 100644
+index 0000000..f93e5fc
+--- /dev/null
++++ b/docs/components/virtual-list.md
+@@ -0,0 +1,27 @@
++# VirtualList
++
++Une liste qui ne rend que les lignes visibles, plus quelques lignes de marge (`overscan`). Pensée pour les longues
++listes sur les téléphones d'entrée de gamme : 5 000 lignes défilent à 58 images par seconde sur un Tecno Spark 8.
++
++## Utilisation
++
++```tsx
++<VirtualList
++  items={articles}
++  rowHeight={48}
++  height="70vh"
++  label="Inventaire"
++  getKey={(article) => article.sku}
++  renderRow={(article) => <ArticleRow article={article} />}
++/>
++```
++
++## Règles
++
++- Toutes les lignes ont la même hauteur (`rowHeight`) : rien à mesurer, aucun saut de mise en page.
++- Une image dans une ligne a toujours ses dimensions.
++- Au-delà de 200 lignes, préfère `VirtualList` à un `.map()`.
++
++## Poids
++
++2,1 ko compressé, pour un budget de 3 ko vérifié par `size-limit` à chaque pull request.
+diff --git a/src/components/VirtualList/VirtualList.css b/src/components/VirtualList/VirtualList.css
+new file mode 100644
+index 0000000..e67920b
+--- /dev/null
++++ b/src/components/VirtualList/VirtualList.css
+@@ -0,0 +1,24 @@
++.pw-virtual-list {
++  overflow-y: auto;
++  overscroll-behavior: contain;
++  contain: strict;
++}
++
++.pw-virtual-list ul {
++  margin: 0;
++  padding-inline: 0;
++  list-style: none;
++}
++
++.pw-virtual-list__row {
++  display: flex;
++  align-items: center;
++  box-sizing: border-box;
++  border-bottom: 1px solid var(--pw-border, #e7e5df);
++  contain: layout paint;
++}
++
++.pw-virtual-list:focus-visible {
++  outline: 2px solid var(--pw-focus, #ffb547);
++  outline-offset: 2px;
++}
+diff --git a/src/components/VirtualList/VirtualList.test.tsx b/src/components/VirtualList/VirtualList.test.tsx
+new file mode 100644
+index 0000000..abbb4b3
+--- /dev/null
++++ b/src/components/VirtualList/VirtualList.test.tsx
+@@ -0,0 +1,39 @@
++import { render, screen } from '@testing-library/react';
++import { describe, expect, it } from 'vitest';
++import { VirtualList } from './VirtualList';
++import { computeRange } from './useVirtualRange';
++
++const items = Array.from({ length: 5000 }, (_, index) => ({ id: index, name: `Article ${index + 1}` }));
++
++describe('computeRange', () => {
++  it('renders the visible rows and the overscan', () => {
++    expect(computeRange(0, 400, { count: 5000, rowHeight: 40, overscan: 6 })).toEqual({
++      start: 0,
++      end: 16,
++      offsetTop: 0,
++      offsetBottom: 4984 * 40,
++    });
++  });
++
++  it('keeps the overscan above the first visible row', () => {
++    const range = computeRange(4000, 400, { count: 5000, rowHeight: 40, overscan: 6 });
++    expect(range.start).toBe(94);
++    expect(range.end).toBe(116);
++  });
++
++  it('never goes past the last row', () => {
++    const range = computeRange(199_800, 400, { count: 5000, rowHeight: 40 });
++    expect(range.end).toBe(5000);
++    expect(range.offsetBottom).toBe(0);
++  });
++});
++
++describe('VirtualList', () => {
++  it('mounts a few dozen rows for 5 000 items', () => {
++    render(
++      <VirtualList items={items} rowHeight={40} height={400} label="Inventaire" getKey={(item) => item.id} renderRow={(item) => item.name} />,
++    );
++    expect(screen.getByRole('list', { name: 'Inventaire' })).toBeInTheDocument();
++    expect(screen.getAllByRole('listitem').length).toBeLessThan(30);
++  });
++});
+diff --git a/src/components/VirtualList/VirtualList.tsx b/src/components/VirtualList/VirtualList.tsx
+new file mode 100644
+index 0000000..6911511
+--- /dev/null
++++ b/src/components/VirtualList/VirtualList.tsx
+@@ -0,0 +1,45 @@
++import type { ReactNode } from 'react';
++import { useVirtualRange } from './useVirtualRange';
++import './VirtualList.css';
++
++export interface VirtualListProps<T> {
++  items: readonly T[];
++  /** Every row has the same height, in pixels: nothing to measure, no layout shift. */
++  rowHeight: number;
++  /** Height of the scrolling area: pixels, or any CSS length. */
++  height: number | string;
++  renderRow: (item: T, index: number) => ReactNode;
++  getKey: (item: T, index: number) => string | number;
++  overscan?: number;
++  /** Accessible name of the list. */
++  label: string;
++}
++
++/** A list that only mounts its visible rows: thousands of items, a few dozen nodes. */
++export function VirtualList<T>({ items, rowHeight, height, renderRow, getKey, overscan, label }: VirtualListProps<T>) {
++  const { container, range } = useVirtualRange<HTMLDivElement>({ count: items.length, rowHeight, overscan });
++
++  const rows: ReactNode[] = [];
++  for (let index = range.start; index < range.end; index++) {
++    const item = items[index];
++    rows.push(
++      <li
++        key={getKey(item, index)}
++        className="pw-virtual-list__row"
++        style={{ height: rowHeight }}
++        aria-setsize={items.length}
++        aria-posinset={index + 1}
++      >
++        {renderRow(item, index)}
++      </li>,
++    );
++  }
++
++  return (
++    <div ref={container} className="pw-virtual-list" style={{ height }} tabIndex={0}>
++      <ul aria-label={label} style={{ paddingTop: range.offsetTop, paddingBottom: range.offsetBottom }}>
++        {rows}
++      </ul>
++    </div>
++  );
++}
+diff --git a/src/components/VirtualList/index.ts b/src/components/VirtualList/index.ts
+new file mode 100644
+index 0000000..b477b05
+--- /dev/null
++++ b/src/components/VirtualList/index.ts
+@@ -0,0 +1,3 @@
++export { VirtualList } from './VirtualList';
++export type { VirtualListProps } from './VirtualList';
++export { computeRange, useVirtualRange } from './useVirtualRange';
+diff --git a/src/components/VirtualList/useVirtualRange.ts b/src/components/VirtualList/useVirtualRange.ts
+new file mode 100644
+index 0000000..5859232
+--- /dev/null
++++ b/src/components/VirtualList/useVirtualRange.ts
+@@ -0,0 +1,69 @@
++import { useCallback, useEffect, useRef, useState } from 'react';
++
++/** Rows rendered above and below the viewport, so a fast fling never shows blank space. */
++const DEFAULT_OVERSCAN = 6;
++
++export interface VirtualRange {
++  /** Rows to render: from start (included) to end (excluded). */
++  start: number;
++  end: number;
++  /** Space kept above and below the rendered rows, in pixels. */
++  offsetTop: number;
++  offsetBottom: number;
++}
++
++interface Options {
++  count: number;
++  rowHeight: number;
++  overscan?: number;
++}
++
++/** The rows worth rendering for a scroll position: the visible ones, plus the overscan on each side. */
++export function computeRange(scrollTop: number, viewport: number, { count, rowHeight, overscan = DEFAULT_OVERSCAN }: Options): VirtualRange {
++  const first = Math.floor(scrollTop / rowHeight);
++  const visible = Math.ceil(viewport / rowHeight);
++  const start = Math.max(0, first - overscan);
++  const end = Math.min(count, first + visible + overscan);
++  return {
++    start,
++    end,
++    offsetTop: start * rowHeight,
++    offsetBottom: (count - end) * rowHeight,
++  };
++}
++
++/**
++ * Follows the scroll position of `container` and returns the rows worth rendering.
++ * Scroll events are coalesced to one update per animation frame.
++ */
++export function useVirtualRange<T extends HTMLElement>(options: Options) {
++  const container = useRef<T>(null);
++  const frame = useRef(0);
++  const [range, setRange] = useState(() => computeRange(0, 0, options));
++
++  const measure = useCallback(() => {
++    const element = container.current;
++    if (!element) return;
++    setRange(computeRange(element.scrollTop, element.clientHeight, options));
++  }, [options.count, options.rowHeight, options.overscan]);
++
++  useEffect(() => {
++    const element = container.current;
++    if (!element) return;
++    measure();
++    const onScroll = () => {
++      cancelAnimationFrame(frame.current);
++      frame.current = requestAnimationFrame(measure);
++    };
++    const resize = new ResizeObserver(measure);
++    element.addEventListener('scroll', onScroll, { passive: true });
++    resize.observe(element);
++    return () => {
++      cancelAnimationFrame(frame.current);
++      element.removeEventListener('scroll', onScroll);
++      resize.disconnect();
++    };
++  }, [measure]);
++
++  return { container, range };
++}
+diff --git a/src/pages/Inventory.tsx b/src/pages/Inventory.tsx
+index 2060057..0401441 100644
+--- a/src/pages/Inventory.tsx
++++ b/src/pages/Inventory.tsx
+@@ -1,9 +1,13 @@
+ import { useMemo, useState } from 'react';
+ import { SearchField } from '../components/SearchField';
++import { VirtualList } from '../components/VirtualList';
+ import { useInventory } from '../data/useInventory';
+ import { formatPrice } from '../lib/format';
+ import './Inventory.css';
+ 
++// Must match .inventory__row in Inventory.css
++const ROW_HEIGHT = 48;
++
+ export default function Inventory() {
+   const { items, isLoading } = useInventory();
+   const [query, setQuery] = useState('');
+@@ -24,15 +28,20 @@ export default function Inventory() {
+         <SearchField value={query} onChange={setQuery} label="Rechercher un article" />
+       </header>
+       <p className="inventory__count">{filtered.length} articles</p>
+-      <ul className="inventory__list">
+-        {filtered.map((item) => (
+-          <li key={item.sku} className="inventory__row">
++      <VirtualList
++        items={filtered}
++        rowHeight={ROW_HEIGHT}
++        height="70vh"
++        label="Articles de l'inventaire"
++        getKey={(item) => item.sku}
++        renderRow={(item) => (
++          <div className="inventory__row">
+             <span className="inventory__name">{item.name}</span>
+             <span className="inventory__stock">{item.stock}</span>
+             <span className="inventory__price">{formatPrice(item.price)}</span>
+-          </li>
+-        ))}
+-      </ul>
++          </div>
++        )}
++      />
+     </section>
+   );
+ }

@@ -22,6 +22,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.hautetech.ndadiee.common.ApiResponse;
 import com.hautetech.ndadiee.authentication.UserResponse;
+import com.hautetech.ndadiee.dto.request.EmailPreferencesRequest;
 import com.hautetech.ndadiee.dto.request.UpdateProfileRequest;
 import com.hautetech.ndadiee.dto.response.CollaboratorResponse;
 import com.hautetech.ndadiee.dto.response.ContributionDayResponse;
@@ -116,6 +117,13 @@ public class UserController extends BaseController {
     public ResponseEntity<ApiResponse<UserResponse>> updateProfile(@Valid @RequestBody UpdateProfileRequest request) {
         return ResponseEntity.ok(ApiResponse.success(
                 userService.updateProfile(getAuthenticatedUserId(), request), "Profil mis à jour avec succès"));
+    }
+
+    @Operation(summary = "Choisir les e-mails qu'on reçoit : ceux des revues de code (commentaires, verdicts, revues utiles)")
+    @PutMapping("/me/email-preferences")
+    public ResponseEntity<ApiResponse<UserResponse>> updateEmailPreferences(@Valid @RequestBody EmailPreferencesRequest request) {
+        return ResponseEntity.ok(ApiResponse.success(
+                userService.updateEmailPreferences(getAuthenticatedUserId(), request), "Préférences d'e-mail enregistrées"));
     }
 
     @Operation(summary = "Changer sa photo de profil (JPEG, PNG ou WebP, 1 Mo au plus) ; l'ancienne est supprimée du "

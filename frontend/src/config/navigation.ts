@@ -1,11 +1,13 @@
 import {
   FolderKanban,
+  FolderPlus,
   GitPullRequestArrow,
   House,
   Layers,
   LayoutDashboard,
   LayoutGrid,
   Mail,
+  MessageSquarePlus,
   MessagesSquare,
   Plus,
   ScrollText,
@@ -57,6 +59,21 @@ export const MOBILE_TABS: readonly NavItem[] = [dashboard, projects, reviews, me
  */
 export const ADMIN_APP_NAV: readonly NavItem[] = [backOffice, showcase, openings, hackathons, forum];
 export const ADMIN_MOBILE_TABS: readonly NavItem[] = [backOffice, showcase, forum, hackathons];
+
+/** Ce qu'un membre peut créer : bouton central de la barre mobile, palette de recherche */
+export interface CreateAction {
+  label: 'actions.newProject' | 'actions.publishRole' | 'actions.newTopic';
+  to: string;
+  icon: LucideIcon;
+  load: PageImport;
+  tone: string;
+}
+
+export const CREATE_ACTIONS: readonly CreateAction[] = [
+  { label: 'actions.newProject', to: paths.newProject, icon: FolderPlus, load: pages.newProject, tone: 'bg-kente-gold' },
+  { label: 'actions.publishRole', to: paths.newOpening, icon: Sparkles, load: pages.newOpening, tone: 'bg-kente-coral' },
+  { label: 'actions.newTopic', to: paths.newTopic, icon: MessageSquarePlus, load: pages.newTopic, tone: 'bg-kente-jade' },
+];
 
 /** Une section du back-office. Libellé : `shell.sections` de l'espace de noms `admin`. */
 export interface AdminSection {

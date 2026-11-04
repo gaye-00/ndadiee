@@ -1,5 +1,5 @@
 import { Plus } from 'lucide-react';
-import { m, useScroll, useSpring } from 'motion/react';
+import { m, useScroll, useSpring, useTransform } from 'motion/react';
 import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
 import Breadcrumbs from './Breadcrumbs';
@@ -84,7 +84,8 @@ export default function Topbar() {
 /** Fil kente sous la barre, qui avance avec la lecture de la page. */
 function ReadingThread() {
   const { scrollYProgress } = useScroll();
-  const progress = useSpring(scrollYProgress, { stiffness: 200, damping: 32, restDelta: 0.001 });
+  // Bornée : une page qui raccourcit donne un instant plus de 100 %, et la ligne dépasserait de l'écran
+  const progress = useSpring(useTransform(scrollYProgress, [0, 1], [0, 1]), { stiffness: 200, damping: 32, restDelta: 0.001 });
 
   return (
     <m.span

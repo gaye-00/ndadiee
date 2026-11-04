@@ -18,7 +18,8 @@ export default function GithubActivityCard({ project }: { project: Project }) {
   const github = project.github;
 
   if (!github) {
-    return project.repositoryUrl ? (
+    // Un dépôt GitHub sans relevé d'activité : la carte des pull requests (RepositorySyncCard) dit déjà où il en est
+    return project.repositoryUrl && !/github\.com\//i.test(project.repositoryUrl) ? (
       <section className="glass flex flex-col gap-2 rounded-[1.375rem] p-5 font-mono text-xs text-muted-foreground">
         <h2 className="eyebrow flex items-center gap-2">
           <GithubMark className="size-3.5" />

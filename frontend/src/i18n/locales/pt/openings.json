@@ -72,5 +72,25 @@
     "openIssue": "Abrir a issue no GitHub",
     "matchScore": "{{score}} %",
     "yourTeam": "A tua equipa"
+  },
+  "form": {
+    "projectTitle": "O projeto",
+    "projectText": "A equipa para a qual estás a recrutar.",
+    "roleTitle": "A função",
+    "roleText": "A profissão que procuras: é por ela que os anúncios se filtram.",
+    "detailsTitle": "O anúncio",
+    "detailsText": "O que esta pessoa vai fazer e por onde pode começar.",
+    "projectRequired": "Escolhe o projeto que está a recrutar.",
+    "roleRequired": "Escolhe uma função.",
+    "noProjectTitle": "Primeiro precisas de um projeto.",
+    "noProjectText": "Uma função é publicada em nome de um projeto de que és responsável ou que manténs.",
+    "loadFailed": "Não foi possível carregar os teus projetos.",
+    "previewHint": "O anúncio tal como vai aparecer na página de anúncios.",
+    "previewEmpty": "Escolhe um projeto e uma função: o anúncio vai ganhar forma aqui.",
+    "draftRestored": "O teu rascunho foi recuperado.",
+    "discardText": "O anúncio em escrita vai desaparecer deste aparelho.",
+    "publish": "Publicar a função",
+    "publishing": "A publicar a função",
+    "published": "{{title}} está online."
   }
 }

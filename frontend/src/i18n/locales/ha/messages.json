@@ -1,0 +1,92 @@
+{
+  "list": {
+    "title": "Saƙonni",
+    "search": "Bincika a cikin tattaunawarka",
+    "searchPlaceholder": "Bincika…",
+    "clearSearch": "Share bincike",
+    "filter": "Tace tattaunawa",
+    "all": "Duka",
+    "unread": "Ba a karanta ba",
+    "you": "Kai: {{text}}",
+    "deleted": "An goge saƙo",
+    "noMessage": "Sabuwar tattaunawa",
+    "unreadCount_one": "Saƙo {{count}} ba a karanta ba",
+    "unreadCount_other": "Saƙonni {{count}} ba a karanta ba",
+    "emptyTitle": "Babu tattaunawa tukuna",
+    "emptyDescription": "Rubuta wa wani memba: tambaya game da aikinsa, ra'ayin ƙungiya, ko taimako.",
+    "noMatch": "Babu tattaunawar da ta dace da “{{query}}”.",
+    "allRead": "Ka karanta komai. Madalla!",
+    "error": "Ba a iya loda tattaunawarka ba."
+  },
+  "status": {
+    "live": "Kai tsaye",
+    "connecting": "Ana haɗawa…",
+    "reconnecting": "Ana sake haɗawa…",
+    "offline": "Ba a kan layi"
+  },
+  "thread": {
+    "label": "Tattaunawa da {{name}}",
+    "back": "Koma ga tattaunawa",
+    "online": "Yana kan layi",
+    "typing": "yana rubutu…",
+    "typingLabel": "{{name}} yana rubutu",
+    "profile": "Duba bayanan martaba",
+    "start": "Wannan shi ne farkon tattaunawarka da {{name}}.",
+    "private": "Saƙonni na sirri: ku biyu kaɗai kuke ganinsu.",
+    "newMessages": "Sabbin saƙonni",
+    "loadingOlder": "Ana loda saƙonnin baya…",
+    "loading": "Ana loda tattaunawa…",
+    "jumpToLatest": "Je zuwa sabbin saƙonni",
+    "unseen_one": "Sabon saƙo {{count}}, je ƙasa",
+    "unseen_other": "Sabbin saƙonni {{count}}, je ƙasa",
+    "notFound": "Ba a sami tattaunawar ba",
+    "notFoundHint": "Babu ita, ko kuma ba ka cikinta.",
+    "error": "Ba a iya loda saƙonni ba.",
+    "backToList": "Duk tattaunawa"
+  },
+  "message": {
+    "you": "Kai",
+    "edited": "an gyara",
+    "deleted": "An goge saƙo",
+    "sending": "Ana aikawa",
+    "sent": "An aika",
+    "seen": "An gani",
+    "failed": "Ba a aika ba",
+    "retry": "Sake gwadawa",
+    "discard": "Yi watsi",
+    "actions": "Ayyukan saƙo",
+    "copy": "Kwafi rubutu",
+    "copied": "An kwafi rubutu",
+    "edit": "Gyara",
+    "delete": "Goge",
+    "deleteTitle": "A goge wannan saƙon?",
+    "deleteDescription": "Zai ɓace muku duka biyu. Ba za a iya maido da shi ba.",
+    "deleteConfirm": "Goge"
+  },
+  "composer": {
+    "label": "Saƙonka",
+    "placeholder": "Rubuta wa {{name}}…",
+    "send": "Aika",
+    "save": "Ajiye gyara",
+    "editing": "Ana gyarawa",
+    "cancelEdit": "Soke gyara",
+    "hint": "<k>Enter</k> don aikawa · <k>Shift</k> + <k>Enter</k> don sabon layi · <k>↑</k> don gyara saƙonka na ƙarshe",
+    "editHint": "<k>Enter</k> don ajiyewa · <k>Esc</k> don sokewa",
+    "remaining_one": "Harafi {{count}} ya rage",
+    "remaining_other": "Haruffa {{count}} sun rage"
+  },
+  "newConversation": {
+    "title": "Sabon saƙo",
+    "description": "Rubuta wa memba na al'umma.",
+    "search": "Sunan memba ko sunan mai amfani",
+    "suggestions": "Membobin al'umma",
+    "results": "Sakamako",
+    "empty": "Babu memban da ya dace da “{{query}}”.",
+    "error": "Binciken bai yi nasara ba. Sake gwadawa nan da ɗan lokaci."
+  },
+  "empty": {
+    "title": "Tattaunawarka",
+    "description": "Zaɓi tattaunawa, ko rubuta wa memba na al'umma: tambaya, ra'ayin ƙungiya, ko taimako.",
+    "action": "Sabon saƙo"
+  }
+}

@@ -20,21 +20,32 @@ import lombok.NoArgsConstructor;
 import lombok.ToString;
 import lombok.experimental.SuperBuilder;
 
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
+
 @EqualsAndHashCode(callSuper = true, onlyExplicitlyIncluded = true)
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @SuperBuilder
 @Entity
-@Table(name = "notifications", indexes = @Index(name = "idx_notifications_recipient_read", columnList = "recipient_id, is_read"))
+@Table(
+    name = "notifications",
+    indexes = {
+        @Index(name = "idx_notifications_recipient_read", columnList = "recipient_id, is_read"),
+        @Index(name = "idx_notifications_recipient_created_at", columnList = "recipient_id, created_at DESC")
+    }
+)
 public class Notification extends BaseEntity {
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @OnDelete(action = OnDeleteAction.CASCADE)
     @ToString.Exclude
     private User recipient;
 
     // Auteur de l'action ; null pour les notifications système (BADGE_EARNED)
     @ManyToOne(fetch = FetchType.LAZY)
+    @OnDelete(action = OnDeleteAction.SET_NULL)
     @ToString.Exclude
     private User actor;
 

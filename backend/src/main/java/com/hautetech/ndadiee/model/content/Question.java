@@ -10,18 +10,23 @@ import com.hautetech.ndadiee.model.user.Developer;
 
 import org.hibernate.annotations.DynamicUpdate;
 import org.hibernate.annotations.Formula;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
 import jakarta.persistence.FetchType;
+import jakarta.persistence.ForeignKey;
+import jakarta.persistence.Index;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
+import jakarta.persistence.UniqueConstraint;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -39,13 +44,23 @@ import lombok.experimental.SuperBuilder;
 @SuperBuilder
 @Entity
 @DynamicUpdate
-@Table(name = "questions")
+@Table(
+    name = "questions",
+    uniqueConstraints = @UniqueConstraint(name = "uk_questions_slug", columnNames = "slug"),
+    indexes = {
+        @Index(name = "idx_questions_author", columnList = "author_id"),
+        @Index(name = "idx_questions_created_at", columnList = "created_at DESC"),
+        // L'onglet « Sans réponse » du forum, et les sujets masqués que la modération retrouve
+        @Index(name = "idx_questions_unanswered", columnList = "created_at DESC", options = "where answer_count = 0"),
+        @Index(name = "idx_questions_hidden", columnList = "hidden_at", options = "where hidden_at is not null")
+    }
+)
 public class Question extends BaseEntity implements Hideable {
 
     @Column(nullable = false)
     private String title;
 
-    @Column(nullable = false, unique = true)
+    @Column(nullable = false)
     private String slug;
 
     // Markdown
@@ -60,7 +75,8 @@ public class Question extends BaseEntity implements Hideable {
     @JoinTable(
         name = "question_tags",
         joinColumns = @JoinColumn(name = "question_id"),
-        inverseJoinColumns = @JoinColumn(name = "tag_id")
+        inverseJoinColumns = @JoinColumn(name = "tag_id"),
+        indexes = @Index(name = "idx_question_tags_tag", columnList = "tag_id")
     )
     @ToString.Exclude
     @Builder.Default
@@ -80,6 +96,8 @@ public class Question extends BaseEntity implements Hideable {
     private int answerCount = 0;
 
     @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "accepted_answer_id", foreignKey = @ForeignKey(name = "fk_questions_accepted_answer"))
+    @OnDelete(action = OnDeleteAction.SET_NULL)
     @ToString.Exclude
     private Answer acceptedAnswer;
 

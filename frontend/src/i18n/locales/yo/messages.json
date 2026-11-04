@@ -1,0 +1,92 @@
+{
+  "list": {
+    "title": "Ìfiránṣẹ́",
+    "search": "Wá nínú àwọn ìjíròrò rẹ",
+    "searchPlaceholder": "Wá…",
+    "clearSearch": "Pa ìwákiri rẹ́",
+    "filter": "Ṣe àlẹ̀mọ́ àwọn ìjíròrò",
+    "all": "Gbogbo rẹ̀",
+    "unread": "Tí a kò kà",
+    "you": "Ìwọ: {{text}}",
+    "deleted": "A ti pa ìfiránṣẹ́ rẹ́",
+    "noMessage": "Ìjíròrò tuntun",
+    "unreadCount_one": "Ìfiránṣẹ́ {{count}} tí a kò kà",
+    "unreadCount_other": "Ìfiránṣẹ́ {{count}} tí a kò kà",
+    "emptyTitle": "Kò sí ìjíròrò kankan síbẹ̀",
+    "emptyDescription": "Kọ̀wé sí ọmọ ẹgbẹ́ kan: ìbéèrè nípa iṣẹ́ rẹ̀, èrò fún ẹgbẹ́, tàbí ìrànlọ́wọ́.",
+    "noMatch": "Kò sí ìjíròrò tó bá “{{query}}” mu.",
+    "allRead": "O ti ka gbogbo rẹ̀. Iṣẹ́ takuntakun!",
+    "error": "A kò lè gbé àwọn ìjíròrò rẹ wọlé."
+  },
+  "status": {
+    "live": "Ní tààrà",
+    "connecting": "Ó ń sopọ̀…",
+    "reconnecting": "Ó ń tún sopọ̀…",
+    "offline": "Kò sí lórí ayélujára"
+  },
+  "thread": {
+    "label": "Ìjíròrò pẹ̀lú {{name}}",
+    "back": "Padà sí àwọn ìjíròrò",
+    "online": "Wà lórí ayélujára",
+    "typing": "ń kọ̀wé…",
+    "typingLabel": "{{name}} ń kọ̀wé",
+    "profile": "Wo àkọsílẹ̀ rẹ̀",
+    "start": "Èyí ni ìbẹ̀rẹ̀ ìjíròrò rẹ pẹ̀lú {{name}}.",
+    "private": "Ìfiránṣẹ́ àṣírí: ẹ̀yin méjèèjì nìkan ló ń rí wọn.",
+    "newMessages": "Ìfiránṣẹ́ tuntun",
+    "loadingOlder": "Ó ń gbé àwọn ìfiránṣẹ́ àtẹ̀yìnwá wọlé…",
+    "loading": "Ó ń gbé ìjíròrò wọlé…",
+    "jumpToLatest": "Lọ sí àwọn ìfiránṣẹ́ tó kẹ́yìn",
+    "unseen_one": "Ìfiránṣẹ́ tuntun {{count}}, lọ sí ìsàlẹ̀",
+    "unseen_other": "Ìfiránṣẹ́ tuntun {{count}}, lọ sí ìsàlẹ̀",
+    "notFound": "A kò rí ìjíròrò náà",
+    "notFoundHint": "Kò sí, tàbí o kò sí nínú rẹ̀.",
+    "error": "A kò lè gbé àwọn ìfiránṣẹ́ wọlé.",
+    "backToList": "Gbogbo ìjíròrò"
+  },
+  "message": {
+    "you": "Ìwọ",
+    "edited": "a ti ṣàtúnṣe",
+    "deleted": "A ti pa ìfiránṣẹ́ rẹ́",
+    "sending": "Ó ń fi ránṣẹ́",
+    "sent": "A ti fi ránṣẹ́",
+    "seen": "A ti rí i",
+    "failed": "A kò fi ránṣẹ́",
+    "retry": "Gbìyànjú lẹ́ẹ̀kan sí i",
+    "discard": "Jù ú sílẹ̀",
+    "actions": "Àwọn ìgbésẹ̀ ìfiránṣẹ́",
+    "copy": "Ṣe ẹ̀dà ọ̀rọ̀ náà",
+    "copied": "A ti ṣe ẹ̀dà ọ̀rọ̀ náà",
+    "edit": "Ṣàtúnṣe",
+    "delete": "Pa á rẹ́",
+    "deleteTitle": "Pa ìfiránṣẹ́ yìí rẹ́?",
+    "deleteDescription": "Yóò pòórá fún ẹ̀yin méjèèjì. A kò lè dá a padà.",
+    "deleteConfirm": "Pa á rẹ́"
+  },
+  "composer": {
+    "label": "Ìfiránṣẹ́ rẹ",
+    "placeholder": "Kọ̀wé sí {{name}}…",
+    "send": "Fi ránṣẹ́",
+    "save": "Fi àtúnṣe pamọ́",
+    "editing": "Àtúnṣe",
+    "cancelEdit": "Fagilé àtúnṣe",
+    "hint": "<k>Enter</k> láti fi ránṣẹ́ · <k>Shift</k> + <k>Enter</k> fún ìlà tuntun · <k>↑</k> láti ṣàtúnṣe ìfiránṣẹ́ rẹ tó kẹ́yìn",
+    "editHint": "<k>Enter</k> láti fi pamọ́ · <k>Esc</k> láti fagilé",
+    "remaining_one": "Lẹ́tà {{count}} ló kù",
+    "remaining_other": "Lẹ́tà {{count}} ló kù"
+  },
+  "newConversation": {
+    "title": "Ìfiránṣẹ́ tuntun",
+    "description": "Kọ̀wé sí ọmọ ẹgbẹ́ àwùjọ.",
+    "search": "Orúkọ tàbí orúkọ olùmúlò ọmọ ẹgbẹ́",
+    "suggestions": "Àwọn ọmọ ẹgbẹ́ àwùjọ",
+    "results": "Àwọn àbájáde",
+    "empty": "Kò sí ọmọ ẹgbẹ́ tó bá “{{query}}” mu.",
+    "error": "Ìwákiri kò yọrí sí rere. Gbìyànjú lẹ́ẹ̀kan sí i láìpẹ́."
+  },
+  "empty": {
+    "title": "Àwọn ìjíròrò rẹ",
+    "description": "Yan ìjíròrò kan, tàbí kọ̀wé sí ọmọ ẹgbẹ́ àwùjọ: ìbéèrè, èrò fún ẹgbẹ́, tàbí ìrànlọ́wọ́.",
+    "action": "Ìfiránṣẹ́ tuntun"
+  }
+}

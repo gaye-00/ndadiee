@@ -63,5 +63,25 @@
     "openIssue": "Ṣí iṣẹ́ náà lórí GitHub",
     "matchScore": "{{score}}%",
     "yourTeam": "Ẹgbẹ́ rẹ"
+  },
+  "form": {
+    "projectTitle": "Iṣẹ́ àkànṣe náà",
+    "projectText": "Ẹgbẹ́ tí o ń gba ènìyàn fún.",
+    "roleTitle": "Ipa náà",
+    "roleText": "Iṣẹ́ tí o ń wá: òun ni a fi ń ṣàsẹ́ àwọn ìkéde.",
+    "detailsTitle": "Ìkéde náà",
+    "detailsText": "Ohun tí ẹni yìí yóò ṣe, àti ibi tí ó ti lè bẹ̀rẹ̀.",
+    "projectRequired": "Yan iṣẹ́ àkànṣe tó ń gba ènìyàn.",
+    "roleRequired": "Yan ipa kan.",
+    "noProjectTitle": "O nílò iṣẹ́ àkànṣe kan lákọ̀ọ́kọ́.",
+    "noProjectText": "A ń kéde ipa ní orúkọ iṣẹ́ àkànṣe tí o ni tàbí tí o ń tọ́jú.",
+    "loadFailed": "A kò lè gbé àwọn iṣẹ́ àkànṣe rẹ wá.",
+    "previewHint": "Ìkéde náà bí yóò ṣe hàn lórí ojú-ìwé àwọn ìkéde.",
+    "previewEmpty": "Yan iṣẹ́ àkànṣe àti ipa kan: ìkéde náà yóò ṣe àgbékalẹ̀ níbí.",
+    "draftRestored": "A ti dá àkọsílẹ̀ rẹ padà.",
+    "discardText": "Ìkéde tí o ń kọ yóò pòórá lórí ẹ̀rọ yìí.",
+    "publish": "Kéde ipa náà",
+    "publishing": "Ó ń kéde ipa náà",
+    "published": "{{title}} ti jáde."
   }
 }

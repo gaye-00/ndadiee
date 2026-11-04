@@ -236,6 +236,38 @@ export interface ProjectRequest {
   coverSourceUrl?: string;
   tags?: string[];
   lookingForContributors?: boolean;
+  /** Licence du code, identifiant SPDX : « MIT » */
+  license?: string;
+}
+
+/** Les réglages d'un projet depuis son espace d'équipe (ProjectSettingsRequest.java) */
+export interface ProjectSettingsRequest {
+  /** Vide : aucun dépôt */
+  repositoryUrl?: string;
+  lookingForContributors: boolean;
+}
+
+/** Image ajoutée à la galerie d'un projet (ProjectMediaRequest.java) */
+export interface ProjectMediaRequest {
+  kind: MediaKind;
+  url: string;
+  thumbnailUrl?: string;
+  caption?: string;
+  credit?: string;
+  sourceUrl?: string;
+  width?: number;
+  height?: number;
+}
+
+/**
+ * Un projet publié d'un seul coup, avec sa galerie et ses rôles recherchés (NewProjectRequest.java) : tout est créé
+ * ensemble, ou rien.
+ */
+export interface NewProjectRequest extends ProjectRequest {
+  /** Dans l'ordre de la galerie, 12 au plus */
+  gallery?: ProjectMediaRequest[];
+  /** 8 au plus */
+  openings?: ProjectOpeningRequest[];
 }
 
 export interface ProjectOpeningRequest {
@@ -285,6 +317,8 @@ export interface OpeningFacets {
 export interface MemberDecisionRequest {
   status: 'ACCEPTED' | 'REJECTED';
   role?: 'MAINTAINER' | 'CONTRIBUTOR';
+  /** Rôle tenu dans l'équipe : celui de l'annonce, pour une candidature acceptée */
+  specialty?: TeamRole;
 }
 
 export interface ProjectFilters extends PaginationParams {

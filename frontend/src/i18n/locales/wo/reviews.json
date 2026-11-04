@@ -1,0 +1,384 @@
+{
+  "intro": {
+    "eyebrow": "Xoolu kood",
+    "titleCode": "Kood bi,",
+    "titleTogether": "nu koy xool ànd",
+    "lead": "Pull request yiy xaar sa xool, yu say ekip, ak yu mbooloo mi fu sa bët am solo.",
+    "waiting_one": "{{count}} xool mu ngi lay xaar",
+    "waiting_other": "{{count}} xool ñu ngi lay xaar",
+    "oldest": "bi gën a yàgg dale ko {{time}}",
+    "allClear": "Amul xool buy xaar",
+    "community_one": "{{count}} PR bu mbooloo mu ngi wut xoolkat",
+    "community_other": "{{count}} PR yu mbooloo ñu ngi wut xoolkat"
+  },
+  "tabs": {
+    "label": "Xool",
+    "TO_REVIEW": "Ngir xool",
+    "COMMUNITY": "Mbooloo",
+    "MINE": "Samay PR",
+    "TEAM": "Samay ekip",
+    "DONE": "Yu jeex"
+  },
+  "filters": {
+    "search": "Wut pull request",
+    "searchPlaceholder": "Tur, #nimero, liggéey walla car",
+    "projects": "Liggéeyu say ekip",
+    "allProjects": "Liggéey yépp"
+  },
+  "results": {
+    "loading": "Xool yi ñu ngi yeb…",
+    "TO_REVIEW_one": "{{count}} xool ngir def",
+    "TO_REVIEW_other": "{{count}} xool ngir def",
+    "COMMUNITY_one": "{{count}} PR bu ubbeeku ci mbooloo",
+    "COMMUNITY_other": "{{count}} PR yu ubbeeku ci mbooloo",
+    "MINE_one": "{{count}} pull request",
+    "MINE_other": "{{count}} pull request",
+    "TEAM_one": "{{count}} PR bu ubbeeku ci say ekip",
+    "TEAM_other": "{{count}} PR yu ubbeeku ci say ekip",
+    "DONE_one": "{{count}} PR bu jeex",
+    "DONE_other": "{{count}} PR yu jeex",
+    "errorTitle": "Xool yi mënuñu yeb",
+    "errorText": "Seetal sa lëkkaloo, ba noppi jéemaat.",
+    "more": "Wone yeneen pull request",
+    "loadingMore": "Li ci des mu ngi yeb…",
+    "moreError": "Li ci des mënul yeb."
+  },
+  "empty": {
+    "TO_REVIEW_title": "Dara amul ngir xool",
+    "TO_REVIEW_text": "Amul xool buy xaar. Bu sa ekip laajee xool, dina agsi fii.",
+    "TO_REVIEW_action_one": "Xool PR biy xaar mbooloo mi",
+    "TO_REVIEW_action_other": "Xool benn ci {{count}} PR yu mbooloo",
+    "COMMUNITY_title": "Amul xoolu mbooloo bu ubbeeku",
+    "COMMUNITY_text": "Amul PR ci biti say ekip buy wut xoolkat léegi. Ñibbsil ci kanam.",
+    "MINE_title": "Amoo pull request ba tey",
+    "MINE_text": "Say PR dinañu feeñ fii, ak seen xoolkat ak li des ngir boole.",
+    "MINE_action": "Wut issue « jëmm ju njëkk »",
+    "TEAM_title": "Dara ubbeekul ci say ekip",
+    "TEAM_text": "Amul PR bu ubbeeku ci liggéey yi nga bokk.",
+    "TEAM_action": "Bokk ci ekip",
+    "DONE_title": "Amul PR bu jeex ba tey",
+    "DONE_text": "PR yu say ekip yu ñu boole walla tëj, ak yi nga xool, dinañu feeñ fii."
+  },
+  "noMatch": {
+    "title": "Amul pull request ngir liggéey bii",
+    "titleQuery": "Amul pull request ngir “{{query}}”",
+    "text": "Jéemal beneen baat, nimero (#84), walla dindi filtar liggéey bi.",
+    "clear": "Far lépp"
+  },
+  "phase": {
+    "open": "ubbeeku",
+    "draft": "brouillon",
+    "merged": "boole nañu ko",
+    "closed": "tëj nañu ko"
+  },
+  "item": {
+    "community": "xoolu mbooloo",
+    "firstContribution": "jàppale bu njëkk",
+    "files_one": "{{count}} fichier bu ñu soppi",
+    "files_other": "{{count}} fichier yu ñu soppi",
+    "commits_one": "{{count}} commit",
+    "commits_other": "{{count}} commit",
+    "comments_one": "{{count}} kàddu",
+    "comments_other": "{{count}} kàddu",
+    "yourStack": "Ci say xam-xam",
+    "waiting": "mu ngi xaar sa xool dale ko {{time}}",
+    "required": "ñu soxla ko",
+    "merged": "boole nañu ko {{time}}",
+    "closed": "tëj nañu ko {{time}}",
+    "opened": "ubbi nañu ko {{time}}",
+    "active": "mu ngi dox {{time}}",
+    "branches": "dale {{source}} jëm {{target}}",
+    "diff": "{{additions}} rëdd yu ñu yokk, {{deletions}} yu ñu dindi",
+    "checksFailed_one": "{{count}} saytu bu dañu",
+    "checksFailed_other": "{{count}} saytu yu dañu",
+    "checksRunning": "saytu {{passed}}/{{total}}",
+    "checksPassed": "{{passed}} ci {{total}} saytu yu jaar",
+    "noReviewer": "amul xoolkat",
+    "reviewers": "Xoolkat yi",
+    "reviewerState": "{{name}} · {{state}}",
+    "reviewerState_required": "{{name}} · {{state}} · ñu soxla ko",
+    "reviewerState_community": "{{name}} · {{state}} · mbooloo",
+    "onGithub": "GitHub",
+    "onGithubLabel": "Xool PR #{{number}} ci GitHub",
+    "githubAuthor": "Kontu GitHub, bindaagul ci Ndadiee ba leegi"
+  },
+  "state": {
+    "REQUESTED": "xool bi ñu ngi koy xaar",
+    "COMMENTED": "bind na kàddu",
+    "APPROVED": "nangu na",
+    "CHANGES_REQUESTED": "laaj na coppite"
+  },
+  "action": {
+    "review": "Xool",
+    "release": "Génn ci",
+    "released": "Doo xoolkatu #{{number}} ba noppi",
+    "claim": "Dinaa xool",
+    "claimed": "#{{number}} bu {{project}} mu ngi ci say xool"
+  },
+  "verdict": {
+    "merged": "Boole nañu ko",
+    "closed": "Tëj nañu ko te boolewuñu ko",
+    "draft": "Brouillon",
+    "changes": "Coppite lañu laaj",
+    "ready": "Mu ngi pare ngir boole",
+    "awaiting_one": "{{count}} xool lañuy xaar",
+    "awaiting_other": "{{count}} xool lañuy xaar",
+    "noReviewer": "Amul xoolkat"
+  },
+  "community": {
+    "eyebrow": "Xoolu mbooloo",
+    "title": "Sa bët am na solo, ba ci biti ekip bi",
+    "text": "Yenn PR dañuy ubbeeku ci developeur yu mbooloo mépp. Xool bu nekk bu am njariñ dina la jox +{{reward}} ci der.",
+    "waiting_one": "PR mu ngi wut xoolkat",
+    "waiting_other": "PR ñu ngi wut xoolkat",
+    "given_one": "xoolu mbooloo boo def",
+    "given_other": "xoolu mbooloo yoo def",
+    "cta": "Xool xoolu mbooloo yi"
+  },
+  "stats": {
+    "title": "Sa njëkk ci xool",
+    "reviewsGiven_one": "xool boo def",
+    "reviewsGiven_other": "xool yoo def",
+    "approved_one": "nangu",
+    "approved_other": "nangu",
+    "changesRequested_one": "coppite bu ñu laaj",
+    "changesRequested_other": "coppite yu ñu laaj",
+    "mergedPullRequests_one": "PR bu ñu boole",
+    "mergedPullRequests_other": "PR yu ñu boole"
+  },
+  "guide": {
+    "title": "Xool bu baax",
+    "readTitle": "Jàngal ngir lan bu njëkk.",
+    "readText": "Melokaanu PR bi ak issue bi dañuy wax li PR bi war a saafara.",
+    "suggestTitle": "Digle, bul sànni.",
+    "suggestText": "Digle kood moo gën yedd.",
+    "decideTitle": "Àtte bu leer.",
+    "decideText": "Nangu bu baaxee, te wax li des bu dul noonu."
+  },
+  "sync": {
+    "title": "Pull request",
+    "synced": "jàng nañu leen {{time}}",
+    "open_one": "bu ubbeeku ci",
+    "open_other": "yu ubbeeku ci",
+    "first": "Jàng bu njëkk bi ci benn simili…",
+    "reviews": "Xool xool yi",
+    "action": "Yeesal",
+    "running": "Mu ngi jàng…",
+    "done": "Pull request yi yeesal nañu",
+    "error": {
+      "GITHUB_REPOSITORY_NOT_FOUND": "Gisuñu dépôt bi ci GitHub : xéj na dafa sutura, soppi nañu turam walla far nañu ko.",
+      "GITHUB_RATE_LIMITED": "GitHub dafa wàññi laaj yi léegi : dinañu jéemaat ci wér gi ci topp.",
+      "GITHUB_UNAVAILABLE": "GitHub tontuwul jàng bi mujj : dinañu jéemaat ci wér gi ci topp.",
+      "GITHUB_NOT_CONFIGURED": "Jàngum pull request yi defaruñu ko ci serwëer bii (token GitHub amul)."
+    }
+  },
+  "page": {
+    "loading": "Xool bi mu ngi yeb…",
+    "documentTitle": "#{{number}} {{title}}",
+    "aside": "Ñiy xool, saytu yi ak liggéey bi ñu ko boole",
+    "notFoundTitle": "Pull request bi gisuñu ko",
+    "notFoundText": "Nekkul ci porojee bii, walla porojee bi gisatul.",
+    "backToReviews": "Dellu ci xool yi",
+    "errorTitle": "Xool bi mënul a yeb",
+    "errorText": "Seetal sa connexion, te jéemaat."
+  },
+  "header": {
+    "wants_one": "bëgg na boole <b>{{count}} commit</b> ci <branch>{{source}}</branch> ba ci <branch>{{target}}</branch>",
+    "wants_other": "bëgg na boole <b>{{count}} commit</b> ci <branch>{{source}}</branch> ba ci <branch>{{target}}</branch>",
+    "merged_one": "boole na <b>{{count}} commit</b> ci <branch>{{source}}</branch> ba ci <branch>{{target}}</branch>",
+    "merged_other": "boole na <b>{{count}} commit</b> ci <branch>{{source}}</branch> ba ci <branch>{{target}}</branch>",
+    "closed_one": "digle woon na <b>{{count}} commit</b> ci <branch>{{source}}</branch> ba ci <branch>{{target}}</branch>",
+    "closed_other": "digle woon na <b>{{count}} commit</b> ci <branch>{{source}}</branch> ba ci <branch>{{target}}</branch>",
+    "readDescription": "Jàng melo mi",
+    "onGithub": "Xool ko ci GitHub",
+    "review": "Yónnee sama xool",
+    "reviewAgain": "Xoolaat sama àtte",
+    "mergeOnGithub": "Boole ko ci GitHub",
+    "yours": "Sa pull request",
+    "myVerdict": {
+      "COMMENTED": "Bind nga kàddu",
+      "APPROVED": "Nangu nga",
+      "CHANGES_REQUESTED": "Laaj nga coppite"
+    }
+  },
+  "pageTabs": {
+    "label": "Pàcci xool bi",
+    "files": "Fichier yu ñu soppi",
+    "conversation": "Waxtaan"
+  },
+  "files": {
+    "title": "Fichier yu ñu soppi",
+    "viewed": "{{seen}}/{{total}} gis nañu",
+    "viewedLabel": "{{seen}} ci {{total}} fichier gis nañu",
+    "viewedFile": "Gis nañu",
+    "collapse": "Nëbb limu fichier yi",
+    "expand": "Wone limu fichier yi",
+    "filter": "Seet benn fichier",
+    "clearFilter": "Far seet bi",
+    "noMatch": "Amul fichier bu dëppoo ak “{{query}}”",
+    "status": {
+      "ADDED": "yokk nañu ko",
+      "MODIFIED": "soppi nañu ko",
+      "REMOVED": "far nañu ko",
+      "RENAMED": "soppi nañu turam",
+      "COPIED": "duppi nañu ko"
+    }
+  },
+  "diff": {
+    "label": "Diff bu pull request bi",
+    "loading": "Diff bi mu ngi jàng…",
+    "errorTitle": "Diff bi mënul a yeb",
+    "errorText": "GitHub tontuwul. Jéemaat ci kanam tuuti.",
+    "unavailableTitle": "Diff bi amul",
+    "unavailableText_one": "Pull request bu wone bii dafay soppi {{count}} fichier, waaye diff bi mënuñu koo xool fii.",
+    "unavailableText_other": "Pull request bu wone bii dafay soppi {{count}} fichier, waaye diff bi mënuñu koo xool fii.",
+    "expandAll": "Ubbi lépp",
+    "collapseAll": "Lemmi lépp",
+    "expandFile": "Ubbi {{path}}",
+    "collapseFile": "Lemmi {{path}}",
+    "copyPath": "Duppi yoon wi",
+    "pathCopied": "Yoon wi duppi nañu ko",
+    "viewOnGithub": "Xool {{path}} ci GitHub",
+    "viewed": "Gis nañu",
+    "readOnly": "Ekipu porojee bi ak ñi koy xool ñoo koy xool: mën nga koo jàng, waaye doo ci bind kàddu.",
+    "commentLine": "Bind kàddu ci rëdd {{line}}",
+    "added": "Rëdd bu ñu yokk:",
+    "removed": "Rëdd bu ñu far:",
+    "noNewline": "Amul rëdd bu bees ci mujjug fichier bi",
+    "noPatch": "Diff bi wonewuñu ko: fichier binaire, walla bu réy lool.",
+    "renamedOnly": "Fichier bi soppi nañu turam rekk.",
+    "openOnGithub": "Ubbi ko ci GitHub",
+    "outdated": "Kàddu ci rëdd yu nekkul ci diff bi",
+    "lineLabel": "Rëdd {{line}}",
+    "moreOnGithub_one": "{{count}} fichier bu des ngir jàng ci GitHub",
+    "moreOnGithub_other": "{{count}} fichier yu des ngir jàng ci GitHub"
+  },
+  "thread": {
+    "placeholder": "Benn xalaat, benn laaj, benn yoon…",
+    "replyPlaceholder": "Tontu…",
+    "replyLabel": "Tontu waxtaan bi ci {{path}}, rëdd {{line}}",
+    "newLabel": "Bind kàddu ci {{path}}, rëdd {{line}}",
+    "editLabel": "Soppi kàddu gi",
+    "newOnLine": "Kàddu gu bees · rëdd {{line}}",
+    "hint": "{{mod}} + Enter ngir siiwal",
+    "comment": "Bind kàddu",
+    "reply": "Tontu",
+    "save": "Denc",
+    "cancel": "Neenal",
+    "empty": "Bindal sa kàddu.",
+    "explainSuggestion": "Waxal ci benn kàddu lu tax nga digle code bii.",
+    "addSuggestion": "Digle code",
+    "removeSuggestion": "Far digle bi",
+    "edited": "soppi nañu ko",
+    "menu": "Jëf yu kàddu gi",
+    "edit": "Soppi",
+    "delete": "Far",
+    "deleteTitle": "Far kàddu gii?",
+    "deleteText": "Dina réer ci waxtaan bi. Mënuñu koo dellu.",
+    "deleted": "Kàddu gi far nañu ko",
+    "roles": {
+      "author": "Bindkat",
+      "required": "Laaj nañu ko",
+      "community": "Mbooloo",
+      "reviewer": "Xoolkat"
+    }
+  },
+  "suggestion": {
+    "title": "Digle",
+    "copy": "Duppi",
+    "copied": "Duppi nañu ko",
+    "empty": "Far rëdd bi"
+  },
+  "reviewers": {
+    "title": "Xoolkat yi",
+    "empty": "Kenn xoolagul pull request bii.",
+    "required_one": "{{approved}} ci {{count}} xool bu ñu laaj nangu nañu ko",
+    "required_other": "{{approved}} ci {{count}} xool yu ñu laaj nangu nañu leen",
+    "requiredTag": "Laaj nañu ko",
+    "communityTag": "Mbooloo",
+    "claim": "Jox sama bopp ngir xool",
+    "claimHint": "Xool bu ekip bi gis ne am na njariñ dina la jox +{{reward}} ci sa der.",
+    "judge": "Xool bu am njariñ · +{{reward}}",
+    "helpful": "Am na njariñ",
+    "helpfulFor": "Am na njariñ · +{{reward}} ci der",
+    "judged": "Xoolu {{name}} dina ko jox +{{reward}} ci deram",
+    "unjudged": "Xoolu {{name}} jàppatuñu ko ni lu am njariñ"
+  },
+  "checks": {
+    "title": "Saytu yi",
+    "onGithub": "Xool saytu yi ci GitHub",
+    "none": "Amul benn saytu ci commit bu mujj bi.",
+    "passed_one": "{{count}} saytu jàll na",
+    "passed_other": "Saytu yépp ({{count}}) jàll nañu",
+    "running_one": "{{count}} saytu mu ngi dox",
+    "running_other": "{{count}} saytu ñu ngi dox",
+    "error": "Leeral saytu yi mënul a yeb.",
+    "details": "Xool téereb {{name}}",
+    "state": {
+      "SUCCESS": "Jàll na:",
+      "FAILURE": "Jàllul:",
+      "PENDING": "Mu ngi dox:",
+      "SKIPPED": "Bàyyi nañu ko:"
+    }
+  },
+  "task": {
+    "title": "Liggéey bi ñu ko boole",
+    "none": "Amul issue bu ñu ko boole. PR bu bind “Closes #12” ci melo mi dina feeñ fii.",
+    "error": "Issue yi ñu boole mënuñoo yeb.",
+    "untitled": "Issue #{{number}}",
+    "open": "Ubbeeku na · PR bii dina ko tëj bu ñu ko boolee",
+    "closed": "Tëj nañu ko",
+    "willClose": "PR bii dina ko tëj bu ñu ko boolee",
+    "starter": "jëmm ju jëkk"
+  },
+  "conversation": {
+    "label": "Waxtaanu pull request bi",
+    "opened": "ubbi na pull request bii",
+    "noDescription": "Amul melo.",
+    "empty": "Amagul kàddu: tàmbalil waxtaan bi.",
+    "placeholder": "Bind kàddu ci pull request bi…",
+    "composerLabel": "Bind kàddu ci pull request bi",
+    "send": "Bind kàddu",
+    "sent": "Kàddu gi siiwal nañu ko",
+    "reviewHint": "Pare nga xool?",
+    "verdict": {
+      "COMMENTED": "bind na kàddu",
+      "APPROVED": "nangu na coppite yii",
+      "CHANGES_REQUESTED": "laaj na coppite"
+    }
+  },
+  "submit": {
+    "eyebrow": "Pull request #{{number}}",
+    "title": "Yónnee sama xool",
+    "text": "Sa àtte ak sa bataaxal dañuy dugg ci waxtaan bi; bindkat bi dina leen gis ci saa si.",
+    "close": "Tëj",
+    "verdict": "Àtte",
+    "verdicts": {
+      "COMMENTED": "Bind kàddu",
+      "APPROVED": "Nangu",
+      "CHANGES_REQUESTED": "Laaj coppite"
+    },
+    "verdictHints": {
+      "COMMENTED": "Ay xalaat, te amul àtte.",
+      "APPROVED": "Baax na ci yaw: mën nañu koo boole.",
+      "CHANGES_REQUESTED": "Fàww ñu defar ko balaa ñuy boole."
+    },
+    "message": "Bataaxalu sa xool",
+    "placeholder": "Waxal li baax, ak li des…",
+    "placeholderOptional": "Benn kàddu ngir bindkat bi (du lu war)",
+    "hint": "{{mod}} + Enter ngir yónnee",
+    "explain": "Waxal li des: bataaxal war na, ba mu dul nangu.",
+    "reward": "Xoolu mbooloo: su ekip bi gisee ne am na njariñ, dina la jox +{{reward}} ci sa der.",
+    "cancel": "Neenal",
+    "send": {
+      "COMMENTED": "Yónnee sama kàddu",
+      "APPROVED": "Nangu",
+      "CHANGES_REQUESTED": "Laaj coppite"
+    },
+    "done": {
+      "COMMENTED": "Sa xoolu #{{number}} yónnee nañu ko",
+      "APPROVED": "Nangu nga #{{number}}",
+      "CHANGES_REQUESTED": "Laaj nañu coppite ci #{{number}}"
+    }
+  }
+}

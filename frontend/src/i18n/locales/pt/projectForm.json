@@ -1,0 +1,255 @@
+{
+  "form": {
+    "back": "Os meus projetos",
+    "title": "Publicar um projeto",
+    "mode": "Modo de edição",
+    "write": "Escrever",
+    "preview": "Pré-visualizar",
+    "aside": "Pré-visualização na montra e etapas em falta",
+    "draftRestored": "O teu rascunho foi recuperado, imagens incluídas.",
+    "startOver": "Recomeçar do zero",
+    "draftSaved": "Rascunho guardado neste aparelho",
+    "uploading_one": "{{count}} imagem a caminho…",
+    "uploading_many": "{{count}} imagens a caminho…",
+    "uploading_other": "{{count}} imagens a caminho…",
+    "imagesPending": "Uma imagem ainda está a ser enviada: o projeto parte assim que ela chegar.",
+    "discard": "Apagar",
+    "discardTitle": "Apagar este rascunho?",
+    "discardText": "O projeto em escrita e as suas imagens vão desaparecer deste aparelho.",
+    "discardConfirm": "Apagar o rascunho",
+    "publish": "Publicar o projeto",
+    "publishing": "A publicar o projeto",
+    "published": "{{name}} está online: bem-vindo à montra!"
+  },
+  "section": {
+    "complete": "etapa concluída",
+    "essentials": {
+      "title": "O essencial",
+      "text": "O que se lê primeiro no cartão da montra: o nome, uma frase que dá vontade, a stack."
+    },
+    "images": {
+      "title": "As imagens",
+      "text": "Uma capa e depois capturas do que já funciona. É isso que faz clicar."
+    },
+    "story": {
+      "title": "A história",
+      "text": "O problema que o projeto resolve, para quem, em que ponto está e o que vem a seguir."
+    },
+    "links": {
+      "title": "Ligações e licença",
+      "text": "Onde ler o código, onde experimentá-lo e o que cada um pode fazer com ele."
+    },
+    "team": {
+      "title": "A equipa",
+      "text": "Procuras contribuidores? Cada papel torna-se um anúncio, visível para os perfis que lhe correspondem."
+    }
+  },
+  "field": {
+    "optional": "opcional"
+  },
+  "fields": {
+    "name": "Nome do projeto",
+    "namePlaceholder": "lagos-transit",
+    "nameHint": "O nome do repositório, ou o que os teus utilizadores conhecem. O endereço da página vem dele e não muda mais.",
+    "tagline": "Frase de apresentação",
+    "taglinePlaceholder": "Os próximos autocarros de Lagos, mesmo offline",
+    "taglineHint": "Uma frase para o cartão da montra: o que o projeto faz e para quem.",
+    "tags": "Tecnologias",
+    "tagsHint": "Linguagens, frameworks, temas (até {{count}}): é assim que os perfis certos encontram o projeto.",
+    "cover": "Capa",
+    "description": "Descrição",
+    "descriptionPlaceholder": "O problema, a solução, em que ponto está o projeto…\n\n- O que já funciona\n- O que vem a seguir",
+    "descriptionHint": "Parágrafos, **negrito**, `código` e listas: é assim que a página do projeto os mostra. {{mod}} + Enter para publicar.",
+    "repository": "Repositório do código",
+    "demo": "Demonstração online",
+    "license": "Licença"
+  },
+  "errors": {
+    "url": "Um endereço completo, com https://",
+    "issueNumber": "Um número de issue: só algarismos"
+  },
+  "github": {
+    "title": "Parte do teu repositório GitHub",
+    "text": "Nome, frase, tecnologias, licença, demonstração e introdução do README preenchem-se num clique. Continuas a decidir tudo.",
+    "label": "Endereço do repositório GitHub",
+    "placeholder": "github.com/conta/repositorio",
+    "import": "Importar",
+    "reading": "A ler o repositório…",
+    "hint": "Cola o endereço: a importação começa sozinha. Só repositórios públicos.",
+    "invalid": "Não é um endereço de repositório GitHub: github.com/conta/repositorio",
+    "mine": "Os teus repositórios recentes",
+    "noProfile": "Adiciona o teu GitHub ao perfil para encontrares aqui os teus repositórios.",
+    "addProfile": "Completar o meu perfil",
+    "alreadyListedShort": "Já está na montra",
+    "done": "Repositório importado",
+    "filled": "Campos preenchidos",
+    "nothingNew": "Já estava tudo preenchido: nada foi substituído.",
+    "alreadyListed": "Este repositório já está na montra.",
+    "seeProject": "Ver o projeto",
+    "archived": "Este repositório está arquivado no GitHub.",
+    "fork": "Este repositório é uma cópia (fork) de outro projeto.",
+    "undo": "Anular a importação",
+    "another": "Importar outro repositório",
+    "fields": {
+      "name": "nome",
+      "tagline": "frase",
+      "description": "descrição",
+      "tags_one": "{{count}} tecnologia",
+      "tags_many": "{{count}} tecnologias",
+      "tags_other": "{{count}} tecnologias",
+      "license": "licença",
+      "demo": "demonstração",
+      "repository": "repositório"
+    },
+    "errors": {
+      "notFound": "Repositório não encontrado: verifica o endereço. Um repositório privado não pode ser importado.",
+      "rateLimited": "O GitHub está a limitar os pedidos: tenta de novo daqui a alguns minutos, ou preenche o projeto à mão.",
+      "unavailable": "O GitHub não responde de momento: tenta mais tarde, ou preenche o projeto à mão.",
+      "network": "Sem ligação: verifica a tua rede e tenta de novo."
+    }
+  },
+  "stack": {
+    "chosen": "Tecnologias escolhidas",
+    "placeholder": "React, Kotlin, Mobile Money…",
+    "more": "Adicionar…",
+    "full_one": "{{count}} tecnologia no máximo",
+    "full_many": "{{count}} tecnologias no máximo",
+    "full_other": "{{count}} tecnologias no máximo",
+    "suggestions": "Tecnologias sugeridas",
+    "create": "Criar «{{tag}}»",
+    "remove": "Retirar {{tag}}",
+    "add": "Adicionar {{tag}}",
+    "addAll": "Adicionar todas",
+    "fromRepository": "No repositório:",
+    "popular": "Populares:"
+  },
+  "cover": {
+    "empty": "Arrasta uma imagem, cola-a ou escolhe-a",
+    "drop": "Larga a imagem aqui",
+    "hint": "JPEG, PNG, WebP ou GIF. Vais enquadrá-la no formato da montra (16:10) antes do envio.",
+    "alt": "Capa do projeto",
+    "recrop": "Reenquadrar",
+    "replace": "Substituir",
+    "remove": "Retirar",
+    "borrowed": "Imagem emprestada? Indica o crédito",
+    "creditLabel": "Autor e licença",
+    "creditPlaceholder": "Amina Diallo · CC BY 4.0",
+    "sourceLabel": "Ligação para a fonte"
+  },
+  "crop": {
+    "coverTitle": "Enquadrar a capa",
+    "shotTitle": "Enquadrar a captura",
+    "help": "Arrasta a imagem sob o quadro, faz zoom com a roda, com dois dedos ou com o cursor. No teclado: setas, + e −.",
+    "frameRole": "zona de enquadramento",
+    "frameLabel": "Quadro 16:10, zoom {{zoom}} %",
+    "zoom": "Zoom",
+    "zoomIn": "Aproximar",
+    "zoomOut": "Afastar",
+    "output": "{{width}} × {{height}} px",
+    "blurry": "zona pequena: a imagem pode ficar desfocada num ecrã grande",
+    "reset": "Recentrar",
+    "cancel": "Cancelar",
+    "confirm": "Validar o enquadramento"
+  },
+  "images": {
+    "sending": "Envio",
+    "retry": "Tentar de novo",
+    "errorType": "«{{name}}» não é uma imagem legível: JPEG, PNG, WebP ou GIF.",
+    "errorSize": "A imagem ultrapassa {{max}} MB mesmo reduzida: experimenta uma mais leve.",
+    "errorUpload": "Não foi possível enviar a imagem: verifica a ligação e tenta de novo."
+  },
+  "gallery": {
+    "label": "Galeria",
+    "hint": "Capturas da aplicação, fotos do terreno. Cada uma é enquadrada em 16:10; podes reenquadrá-la.",
+    "reorderHint": "Arrasta a pega para mudar a ordem",
+    "addFirst": "Adicionar capturas",
+    "add": "Adicionar",
+    "addHint_one": "ainda {{count}} possível",
+    "addHint_many": "ainda {{count}} possíveis",
+    "addHint_other": "ainda {{count}} possíveis",
+    "full_one": "A galeria tem no máximo {{count}} imagem: as seguintes não foram adicionadas.",
+    "full_many": "A galeria tem no máximo {{count}} imagens: as seguintes não foram adicionadas.",
+    "full_other": "A galeria tem no máximo {{count}} imagens: as seguintes não foram adicionadas.",
+    "item": "Imagem {{index}} de {{total}}",
+    "handle": "Mover: {{item}}",
+    "handleHint": "Alt + seta esquerda ou direita para a mover",
+    "addCaption": "Adicionar uma legenda",
+    "captionLabel": "Legenda",
+    "captionPlaceholder": "Próximas passagens na paragem de Obalende",
+    "kindLabel": "Tipo de imagem",
+    "kind": {
+      "SCREENSHOT": "Captura",
+      "PHOTO": "Foto"
+    },
+    "creditLabel": "Crédito (imagem emprestada)",
+    "moveBefore": "Mover para antes",
+    "moveAfter": "Mover para depois",
+    "remove": "Retirar",
+    "discard": "Abandonar"
+  },
+  "license": {
+    "none": "Ainda não",
+    "other": "Outra…",
+    "otherLabel": "Identificador da licença",
+    "otherPlaceholder": "EUPL-1.2",
+    "about": {
+      "MIT": "MIT: curta e permissiva. Qualquer pessoa pode reutilizar o código, mesmo num produto fechado, citando o autor.",
+      "Apache-2.0": "Apache 2.0: permissiva, com proteção contra patentes. A escolha habitual das empresas.",
+      "BSD-3-Clause": "BSD 3: permissiva como a MIT, e proíbe usar o teu nome para promover um derivado.",
+      "MPL-2.0": "MPL 2.0: os ficheiros modificados ficam abertos; o resto de um produto pode ser fechado.",
+      "GPL-3.0": "GPL 3.0: qualquer software derivado distribuído deve ficar aberto, com a mesma licença.",
+      "AGPL-3.0": "AGPL 3.0: como a GPL, e um serviço online que a use também deve publicar o seu código."
+    },
+    "aboutNone": "Sem licença, ninguém tem legalmente o direito de reutilizar o código: escolhe uma antes de acolher contribuidores.",
+    "aboutOther": "O seu identificador SPDX: «EUPL-1.2», «CC-BY-4.0»…",
+    "help": "Comparar as licenças"
+  },
+  "team": {
+    "recruiting": "Procuro contribuidores",
+    "recruitingOn": "O projeto vai aparecer entre os que recrutam. Descreve os papéis: os perfis correspondentes vão vê-los.",
+    "recruitingOff": "Ativa-o para acolher contribuidores e publicar papéis. Podes fazê-lo mais tarde.",
+    "chosen": "Papéis procurados",
+    "catalogFirst": "Escolhe um primeiro papel",
+    "catalog": "Adicionar um papel",
+    "titleLabel": "Título do papel",
+    "titlePlaceholder": "Dev mobile React Native",
+    "remove": "Retirar o papel {{role}}",
+    "descriptionLabel": "O que se espera",
+    "descriptionPlaceholder": "O ecrã de trajetos offline, com Jetpack Compose…",
+    "seatsLabel": "Vagas",
+    "seats_one": "{{count}} vaga",
+    "seats_many": "{{count}} vagas",
+    "seats_other": "{{count}} vagas",
+    "fewerSeats": "Menos uma vaga",
+    "moreSeats": "Mais uma vaga",
+    "issueLabel": "Uma issue «primeiro passo»?",
+    "issueHint": "Uma pequena tarefa do repositório para começar: os candidatos saberão por onde entrar.",
+    "issueSet": "Issue «primeiro passo»: #{{number}}",
+    "issueNumber": "Número",
+    "issueTitle": "Título da issue",
+    "issueTitlePlaceholder": "Mostrar a hora do próximo autocarro"
+  },
+  "preview": {
+    "card": "Na montra",
+    "pageNotice": "Pré-visualização: a página tal como os visitantes a verão",
+    "untitled": "novo-projeto"
+  },
+  "checklist": {
+    "title": "Pronto a {{percent}} %",
+    "text": "O que torna um projeto atraente. Só o nome e a descrição são obrigatórios.",
+    "ready": "Pronto para brilhar",
+    "readyText": "Está tudo: só falta publicar.",
+    "done": "feito",
+    "todo": "por fazer",
+    "items": {
+      "name": "Um nome",
+      "tagline": "Uma frase que dá vontade",
+      "stack": "Pelo menos duas tecnologias",
+      "cover": "Uma capa",
+      "gallery": "Uma captura na galeria",
+      "story": "Uma história de algumas frases",
+      "links": "O repositório ou a demonstração",
+      "roles": "Os papéis procurados"
+    }
+  }
+}

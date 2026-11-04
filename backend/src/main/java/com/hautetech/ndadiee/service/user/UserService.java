@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.hautetech.ndadiee.authentication.UserResponse;
+import com.hautetech.ndadiee.dto.request.EmailPreferencesRequest;
 import com.hautetech.ndadiee.dto.request.UpdateProfileRequest;
 import com.hautetech.ndadiee.dto.response.PageResponse;
 import com.hautetech.ndadiee.dto.response.UserProfileResponse;
@@ -118,6 +119,14 @@ public class UserService {
 
         log.info("[User] Profil mis à jour - ID: {}", userId);
         return userMapper.toUserResponse(developer);
+    }
+
+    /** Les e-mails qu'il veut recevoir : ceux des revues de code, pour l'instant. */
+    public UserResponse updateEmailPreferences(Long userId, EmailPreferencesRequest request) {
+        User user = userRepository.findById(userId).orElseThrow(() -> new ResourceNotFoundException("Utilisateur", userId));
+        user.setReviewEmails(request.getReviewEmails());
+        log.info("[User] E-mails de revue {} - ID: {}", user.isReviewEmails() ? "activés" : "coupés", userId);
+        return userMapper.toUserResponse(user);
     }
 
     // ==================== ABONNEMENTS ====================

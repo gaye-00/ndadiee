@@ -29,6 +29,8 @@ public class UserResponse {
     // "developer" ou "admin"
     private String userType;
     private Language preferredLanguage;
+    // Reçoit les e-mails des revues de code
+    private boolean reviewEmails;
     private Instant createdAt;
 
     // Profil développeur : null pour un compte Admin

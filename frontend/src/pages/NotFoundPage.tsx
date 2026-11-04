@@ -1,4 +1,6 @@
+import NotFoundContent from '@/components/feedback/NotFoundContent';
+
 /** Page introuvable : adresse inconnue. */
 export default function NotFoundPage() {
-  return <div>NotFoundPage</div>;
+  return <NotFoundContent />;
 }

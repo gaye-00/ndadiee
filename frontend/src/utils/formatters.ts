@@ -10,6 +10,8 @@ interface Formatters {
   shortDay: Intl.DateTimeFormat;
   dateTime: Intl.DateTimeFormat;
   regionNames: Intl.DisplayNames;
+  minutes: Intl.NumberFormat;
+  seconds: Intl.NumberFormat;
 }
 
 // Un jeu de formateurs par langue, créé à la première utilisation : Intl est coûteux à instancier
@@ -32,6 +34,8 @@ function formatters(): Formatters {
       shortDay: new Intl.DateTimeFormat(locales, { day: 'numeric', month: 'short', timeZone: 'UTC' }),
       dateTime: new Intl.DateTimeFormat(locales, { dateStyle: 'long', timeStyle: 'short' }),
       regionNames: new Intl.DisplayNames(locales, { type: 'region' }),
+      minutes: new Intl.NumberFormat(locales, { style: 'unit', unit: 'minute', unitDisplay: 'narrow' }),
+      seconds: new Intl.NumberFormat(locales, { style: 'unit', unit: 'second', unitDisplay: 'narrow' }),
     };
     formattersByLanguage.set(language.code, entry);
   }
@@ -57,6 +61,18 @@ export function formatRelativeTime(isoDate: string): string {
     }
   }
   return relativeTime.format(0, 'second');
+}
+
+/** Une durée courte : « 1 min 14 s », « 41 s » (la durée d'une vérification) */
+export function formatDuration(totalSeconds: number): string {
+  const { minutes, seconds } = formatters();
+  const whole = Math.max(0, Math.round(totalSeconds));
+  const minutePart = Math.floor(whole / 60);
+  const secondPart = whole % 60;
+  if (minutePart === 0) {
+    return seconds.format(secondPart);
+  }
+  return secondPart === 0 ? minutes.format(minutePart) : `${minutes.format(minutePart)} ${seconds.format(secondPart)}`;
 }
 
 /** « 14 octobre 2026 » */

@@ -21,6 +21,8 @@ export const paths = {
   topic: (slug: string) => `/forum/${slug}`,
   profile: (username: string) => `/u/${username}`,
   search: '/search',
+  /** Les résultats complets d'une recherche */
+  searchFor: (query: string) => `/search?q=${encodeURIComponent(query)}`,
 
   // ── Membres connectés ──
   /** Atelier : tableau de bord du jour (design 3B) */
@@ -37,12 +39,18 @@ export const paths = {
   review: (slug: string, number: number | string) => `/projects/${slug}/reviews/${number}`,
   reviews: '/reviews',
   newOpening: '/openings/new',
+  /** Publier un rôle pour un projet, déjà choisi dans le formulaire */
+  newOpeningFor: (slug: string) => `/openings/new?project=${encodeURIComponent(slug)}`,
   newTopic: '/forum/new',
   /** Modifier un sujet (son auteur, un modérateur) */
   editTopic: (slug: string) => `/forum/${slug}/edit`,
   /** Une réponse d'un sujet : la page y descend et l'éclaire */
   topicAnswer: (slug: string, answerId: number) => `/forum/${slug}#answer-${answerId}`,
   messages: '/messages',
+  /** Une conversation privée, ouverte dans la messagerie */
+  conversation: (id: number | string) => `/messages/${id}`,
+  /** Écrire à un membre : ouvre (ou crée) la conversation avec lui (bouton « Envoyer un message » d'un profil) */
+  messageTo: (username: string) => `/messages?to=${encodeURIComponent(username)}`,
   notifications: '/notifications',
   settings: '/settings',
 

@@ -32,4 +32,13 @@ public class UploadController extends BaseController {
         return ResponseEntity.status(HttpStatus.CREATED).body(ApiResponse.success(
                 imageUploadService.uploadImage(getAuthenticatedUserId(), file), "Image envoyée"));
     }
+
+    @Operation(summary = "Envoyer une couverture ou une capture de projet (1280 px de côté au plus) avec sa miniature "
+            + "(640 px) : leurs adresses publiques. Une image qu'aucun projet ne montre est supprimée après quelques jours")
+    @PostMapping(value = "/project-images", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+    public ResponseEntity<ApiResponse<UploadResponse>> uploadProjectImage(
+            @RequestPart("file") MultipartFile file, @RequestPart("thumbnail") MultipartFile thumbnail) {
+        return ResponseEntity.status(HttpStatus.CREATED).body(ApiResponse.success(
+                imageUploadService.uploadProjectImage(getAuthenticatedUserId(), file, thumbnail), "Image envoyée"));
+    }
 }

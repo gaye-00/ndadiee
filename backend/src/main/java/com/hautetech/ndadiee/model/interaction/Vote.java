@@ -4,6 +4,7 @@ import com.hautetech.ndadiee.common.BaseEntity;
 import com.hautetech.ndadiee.model.ContentType;
 import com.hautetech.ndadiee.model.user.Developer;
 
+import jakarta.persistence.CheckConstraint;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
@@ -20,6 +21,9 @@ import lombok.NoArgsConstructor;
 import lombok.ToString;
 import lombok.experimental.SuperBuilder;
 
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
+
 /**
  * Vote polymorphe : la cible est désignée par (targetType, targetId),
  * sans clé étrangère en base. Un seul vote par personne et par contenu.
@@ -33,11 +37,13 @@ import lombok.experimental.SuperBuilder;
 @Table(
     name = "votes",
     uniqueConstraints = @UniqueConstraint(name = "uk_votes_user_target", columnNames = {"user_id", "target_type", "target_id"}),
-    indexes = @Index(name = "idx_votes_target", columnList = "target_type, target_id")
+    indexes = @Index(name = "idx_votes_target", columnList = "target_type, target_id"),
+    check = @CheckConstraint(name = "ck_votes_value", constraint = "value in (-1, 1)")
 )
 public class Vote extends BaseEntity {
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @OnDelete(action = OnDeleteAction.CASCADE)
     @ToString.Exclude
     private Developer user;
 

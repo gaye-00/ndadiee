@@ -29,7 +29,13 @@ import lombok.experimental.SuperBuilder;
 @NoArgsConstructor
 @SuperBuilder
 @Entity
-@Table(name = "comments", indexes = @Index(name = "idx_comments_target", columnList = "target_type, target_id"))
+@Table(
+    name = "comments",
+    indexes = {
+        @Index(name = "idx_comments_target", columnList = "target_type, target_id"),
+        @Index(name = "idx_comments_author", columnList = "author_id")
+    }
+)
 public class Comment extends BaseEntity {
 
     @Column(nullable = false, columnDefinition = "TEXT")
