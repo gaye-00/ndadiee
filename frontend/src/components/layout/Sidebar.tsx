@@ -2,6 +2,7 @@ import { m } from 'motion/react';
 import { useTranslation } from 'react-i18next';
 import { Link, useLocation } from 'react-router-dom';
 import UserMenu from './UserMenu';
+import UnreadMessagesBadge from '@/components/messages/UnreadMessagesBadge';
 import { ADMIN_APP_NAV, APP_NAV, isCurrentPath, type NavItem } from '@/config/navigation';
 import { site } from '@/config/site';
 import { useAuth } from '@/hooks/useAuth';
@@ -99,6 +100,7 @@ function RailLink({ item, current }: { item: NavItem; current: boolean }) {
         strokeWidth={current ? 2.25 : 2}
         className="relative size-5 transition-transform duration-300 ease-out-expo group-hover/rail:scale-110 group-active/rail:scale-95"
       />
+      {item.labelKey === 'messages' && <UnreadMessagesBadge className="-end-0.5 -top-0.5" />}
 
       {/* Le nom de la section, hors du rail */}
       <span

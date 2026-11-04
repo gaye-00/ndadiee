@@ -1,24 +1,21 @@
-import { ArrowRight, Award, Bell, BellOff } from 'lucide-react';
+import { ArrowRight, Bell, BellOff } from 'lucide-react';
 import { AnimatePresence, m, useAnimate } from 'motion/react';
 import { Popover } from 'radix-ui';
 import { useEffect, useRef, useState } from 'react';
-import { Trans, useTranslation } from 'react-i18next';
-import { Link, useNavigate } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
+import { Link } from 'react-router-dom';
 import PulsatingDots from '@/components/feedback/PulsatingDots';
-import UserAvatar from '@/components/shared/UserAvatar';
-import { useAuth } from '@/hooks/useAuth';
+import NotificationItem from '@/components/notifications/NotificationItem';
 import { useLanguage } from '@/hooks/useLanguage';
 import {
   useMarkAllNotificationsAsRead,
-  useMarkNotificationAsRead,
   useNotifications,
+  useOpenNotification,
   useUnreadNotificationCount,
 } from '@/hooks/useNotifications';
 import { useReducedMotion } from '@/hooks/useReducedMotion';
 import { cn } from '@/lib/utils';
 import { paths } from '@/router/paths';
-import type { Notification } from '@/types/notification.types';
-import { formatRelativeTime, isolate } from '@/utils/formatters';
 
 // Dernières notifications montrées sous la cloche ; les autres sur la page des notifications
 const SHOWN = 6;
@@ -94,49 +91,13 @@ export default function NotificationBell() {
   );
 }
 
-/** Où mène une notification : le projet, le sujet du forum, le profil… */
-function linkOf(notification: Notification, me: string | undefined): string | null {
-  const { type, targetType, targetSlug, actor } = notification;
-  if (type === 'NEW_FOLLOWER') {
-    return actor ? paths.profile(actor.username) : null;
-  }
-  if (type === 'BADGE_EARNED') {
-    return me ? paths.profile(me) : null;
-  }
-  if (targetType === 'PROJECT' && targetSlug) {
-    // Une candidature se lit près des rôles du projet
-    return type === 'PROJECT_REQUEST' ? paths.projectRoles(targetSlug) : paths.project(targetSlug);
-  }
-  // Une réponse (nouvelle, acceptée, votée, commentée) : la page du sujet descend jusqu'à elle
-  if (targetType === 'ANSWER' && targetSlug && notification.targetId !== null) {
-    return paths.topicAnswer(targetSlug, notification.targetId);
-  }
-  if (targetType === 'QUESTION' && targetSlug) {
-    return paths.topic(targetSlug);
-  }
-  return null;
-}
-
 function NotificationPanel({ open, onNavigate }: { open: boolean; onNavigate: () => void }) {
   const { t } = useTranslation();
-  const navigate = useNavigate();
-  const { user } = useAuth();
   const { data, isPending } = useNotifications({ size: SHOWN }, { enabled: open });
-  const markOne = useMarkNotificationAsRead();
+  const select = useOpenNotification(onNavigate);
   const markAll = useMarkAllNotificationsAsRead();
   const items = data?.content ?? [];
   const hasUnread = items.some((notification) => !notification.read);
-
-  function select(notification: Notification) {
-    if (!notification.read) {
-      markOne.mutate(notification.id);
-    }
-    const to = linkOf(notification, user?.username);
-    onNavigate();
-    if (to) {
-      void navigate(to, { viewTransition: true });
-    }
-  }
 
   return (
     <div>
@@ -171,7 +132,7 @@ function NotificationPanel({ open, onNavigate }: { open: boolean; onNavigate: ()
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: index * 0.035, duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
             >
-              <NotificationRow notification={notification} onSelect={() => select(notification)} />
+              <NotificationItem compact notification={notification} onSelect={() => select(notification)} />
             </m.li>
           ))
         )}
@@ -187,47 +148,5 @@ function NotificationPanel({ open, onNavigate }: { open: boolean; onNavigate: ()
         <ArrowRight aria-hidden className="size-4 transition-transform group-hover/all:translate-x-0.5 rtl:-scale-x-100 rtl:group-hover/all:-translate-x-0.5" />
       </Link>
     </div>
-  );
-}
-
-function NotificationRow({ notification, onSelect }: { notification: Notification; onSelect: () => void }) {
-  const { t } = useTranslation();
-  const { actor, read } = notification;
-  // Un vote sur un projet est une étoile
-  const type = notification.type === 'NEW_VOTE' && notification.targetType === 'PROJECT' ? 'NEW_STAR' : notification.type;
-
-  return (
-    <button
-      type="button"
-      onClick={onSelect}
-      className={cn(
-        'flex w-full items-start gap-3 rounded-xl px-2.5 py-2.5 text-start outline-none transition-colors',
-        'hover:bg-foreground/5 focus-visible:bg-foreground/5 focus-visible:ring-2 focus-visible:ring-ring/70',
-        !read && 'bg-gold/[0.06]',
-      )}
-    >
-      {actor ? (
-        <UserAvatar user={actor} size="md" />
-      ) : (
-        <span aria-hidden className="grid size-9 shrink-0 place-items-center rounded-full bg-gold/15 text-gold">
-          <Award className="size-4.5" />
-        </span>
-      )}
-      <span className="min-w-0 flex-1">
-        <span className="line-clamp-2 text-[0.8125rem] leading-snug text-soft-foreground">
-          <Trans
-            i18nKey={`shell.notifications.types.${type}`}
-            values={{ actor: isolate(actor?.fullName ?? ''), target: isolate(notification.targetTitle ?? '') }}
-            components={{ b: <strong className="font-semibold text-foreground" /> }}
-          />
-        </span>
-        <span className="mt-0.5 block font-mono text-[0.6875rem] text-faint-foreground">{formatRelativeTime(notification.createdAt)}</span>
-      </span>
-      {!read && (
-        <span className="mt-1.5 size-2 shrink-0 rounded-full bg-kente-gold shadow-[0_0_0_3px_color-mix(in_srgb,var(--kente-gold)_20%,transparent)]">
-          <span className="sr-only">{t('shell.notifications.unread')}</span>
-        </span>
-      )}
-    </button>
   );
 }

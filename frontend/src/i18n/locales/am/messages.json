@@ -1,0 +1,92 @@
+{
+  "list": {
+    "title": "መልዕክቶች",
+    "search": "በውይይቶችህ ውስጥ ፈልግ",
+    "searchPlaceholder": "ፈልግ…",
+    "clearSearch": "ፍለጋውን አጽዳ",
+    "filter": "ውይይቶችን አጣራ",
+    "all": "ሁሉም",
+    "unread": "ያልተነበቡ",
+    "you": "አንተ፦ {{text}}",
+    "deleted": "መልዕክቱ ተሰርዟል",
+    "noMessage": "አዲስ ውይይት",
+    "unreadCount_one": "{{count}} ያልተነበበ መልዕክት",
+    "unreadCount_other": "{{count}} ያልተነበቡ መልዕክቶች",
+    "emptyTitle": "እስካሁን ምንም ውይይት የለም",
+    "emptyDescription": "ለአንድ አባል ጻፍ፦ ስለ ፕሮጀክቱ ጥያቄ፣ የቡድን ሀሳብ፣ ወይም እርዳታ።",
+    "noMatch": "ከ«{{query}}» ጋር የሚዛመድ ውይይት የለም።",
+    "allRead": "ሁሉንም አንብበሃል። ጥሩ ሥራ!",
+    "error": "ውይይቶችህን መጫን አልተቻለም።"
+  },
+  "status": {
+    "live": "በቀጥታ",
+    "connecting": "በመገናኘት ላይ…",
+    "reconnecting": "እንደገና በመገናኘት ላይ…",
+    "offline": "ከመስመር ውጭ"
+  },
+  "thread": {
+    "label": "ከ{{name}} ጋር ውይይት",
+    "back": "ወደ ውይይቶች ተመለስ",
+    "online": "በመስመር ላይ",
+    "typing": "እየጻፈ ነው…",
+    "typingLabel": "{{name}} እየጻፈ ነው",
+    "profile": "መገለጫውን ተመልከት",
+    "start": "ይህ ከ{{name}} ጋር ያለህ ውይይት መጀመሪያ ነው።",
+    "private": "የግል መልዕክቶች፦ እናንተ ሁለታችሁ ብቻ ታዩአቸዋላችሁ።",
+    "newMessages": "አዲስ መልዕክቶች",
+    "loadingOlder": "ቀደምት መልዕክቶችን በመጫን ላይ…",
+    "loading": "ውይይቱን በመጫን ላይ…",
+    "jumpToLatest": "ወደ የቅርብ ጊዜ መልዕክቶች ሂድ",
+    "unseen_one": "{{count}} አዲስ መልዕክት፣ ወደ ታች ሂድ",
+    "unseen_other": "{{count}} አዲስ መልዕክቶች፣ ወደ ታች ሂድ",
+    "notFound": "ውይይቱ አልተገኘም",
+    "notFoundHint": "የለም፣ ወይም አንተ የሱ አካል አይደለህም።",
+    "error": "መልዕክቶቹን መጫን አልተቻለም።",
+    "backToList": "ሁሉም ውይይቶች"
+  },
+  "message": {
+    "you": "አንተ",
+    "edited": "ተስተካክሏል",
+    "deleted": "መልዕክቱ ተሰርዟል",
+    "sending": "በመላክ ላይ",
+    "sent": "ተልኳል",
+    "seen": "ታይቷል",
+    "failed": "አልተላከም",
+    "retry": "እንደገና ሞክር",
+    "discard": "ተው",
+    "actions": "የመልዕክት እርምጃዎች",
+    "copy": "ጽሑፉን ቅዳ",
+    "copied": "ጽሑፉ ተቀድቷል",
+    "edit": "አስተካክል",
+    "delete": "ሰርዝ",
+    "deleteTitle": "ይህ መልዕክት ይሰረዝ?",
+    "deleteDescription": "ለሁለታችሁም ይጠፋል። ይህን መመለስ አይቻልም።",
+    "deleteConfirm": "ሰርዝ"
+  },
+  "composer": {
+    "label": "መልዕክትህ",
+    "placeholder": "ለ{{name}} ጻፍ…",
+    "send": "ላክ",
+    "save": "ለውጡን አስቀምጥ",
+    "editing": "በማስተካከል ላይ",
+    "cancelEdit": "ማስተካከሉን ሰርዝ",
+    "hint": "ለመላክ <k>Enter</k> · ለአዲስ መስመር <k>Shift</k> + <k>Enter</k> · የመጨረሻ መልዕክትህን ለማስተካከል <k>↑</k>",
+    "editHint": "ለማስቀመጥ <k>Enter</k> · ለመሰረዝ <k>Esc</k>",
+    "remaining_one": "{{count}} ፊደል ቀርቷል",
+    "remaining_other": "{{count}} ፊደሎች ቀርተዋል"
+  },
+  "newConversation": {
+    "title": "አዲስ መልዕክት",
+    "description": "ለማህበረሰቡ አባል ጻፍ።",
+    "search": "የአባል ስም ወይም የተጠቃሚ ስም",
+    "suggestions": "የማህበረሰቡ አባላት",
+    "results": "ውጤቶች",
+    "empty": "ከ«{{query}}» ጋር የሚዛመድ አባል የለም።",
+    "error": "ፍለጋው አልተሳካም። ትንሽ ቆይተህ እንደገና ሞክር።"
+  },
+  "empty": {
+    "title": "ውይይቶችህ",
+    "description": "ውይይት ምረጥ፣ ወይም ለማህበረሰቡ አባል ጻፍ፦ ጥያቄ፣ የቡድን ሀሳብ፣ ወይም እርዳታ።",
+    "action": "አዲስ መልዕክት"
+  }
+}

@@ -1,17 +1,20 @@
-import { useThemeStore, type ResolvedTheme } from '@/store/useThemeStore';
+import { useThemeStore } from '@/store/useThemeStore';
+import type { ThemePreference } from '@/utils/storage';
 
 /**
  * Change de thème en ouvrant la nouvelle palette en cercle depuis un point de l'écran, comme la
  * lumière d'une lampe qu'on allume (corde du thème : components/layout/ThemePullCord.tsx).
  *
- * API View Transitions. Sans elle, ou quand les animations sont coupées, le thème change d'un coup.
+ * API View Transitions. Sans elle, quand les animations sont coupées, ou quand la palette affichée ne
+ * change pas (« comme l'appareil » alors que l'appareil est déjà dans ce thème), le thème change d'un coup.
  *
  * @param from centre du cercle, en pixels depuis le coin haut gauche de l'écran
  */
-export function revealTheme(theme: ResolvedTheme, from: { x: number; y: number }, animate: boolean): void {
-  const { setTheme } = useThemeStore.getState();
+export function revealTheme(theme: ThemePreference, from: { x: number; y: number }, animate: boolean): void {
+  const { setTheme, resolved } = useThemeStore.getState();
+  const next = theme === 'system' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme;
 
-  if (!animate || typeof document.startViewTransition !== 'function') {
+  if (!animate || next === resolved || typeof document.startViewTransition !== 'function') {
     setTheme(theme);
     return;
   }

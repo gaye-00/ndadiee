@@ -9,6 +9,7 @@ import com.hautetech.ndadiee.model.user.Developer;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
+import jakarta.persistence.Index;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
@@ -30,7 +31,7 @@ import lombok.experimental.SuperBuilder;
 @NoArgsConstructor
 @SuperBuilder
 @Entity
-@Table(name = "feedback_calls")
+@Table(name = "feedback_calls", indexes = @Index(name = "idx_feedback_calls_project", columnList = "project_id, is_open"))
 public class FeedbackCall extends BaseEntity {
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)

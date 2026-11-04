@@ -1,5 +1,4 @@
-import { createLowlight } from 'lowlight';
-import { CODE_LANGUAGES } from './codeLanguages';
+import { lowlight } from './lowlight';
 
 // Ce qu'il faut de l'arbre HTML produit par le Markdown (hast) pour trouver les blocs de code
 interface HastNode {
@@ -9,8 +8,6 @@ interface HastNode {
   properties?: { className?: unknown };
   children?: HastNode[];
 }
-
-const lowlight = createLowlight(CODE_LANGUAGES);
 
 const textOf = (node: HastNode): string => (node.type === 'text' ? (node.value ?? '') : (node.children ?? []).map(textOf).join(''));
 

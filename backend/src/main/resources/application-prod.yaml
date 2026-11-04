@@ -1,0 +1,28 @@
+# =============================================================================
+# Production : SPRING_PROFILES_ACTIVE=prod. Ne contient que ce qui diffère du développement (application.yaml).
+# =============================================================================
+
+spring:
+  # Le serveur SMTP des e-mails de notification. Le mot de passe vient de l'environnement (MAIL_PASSWORD), jamais d'ici.
+  mail:
+    host: smtp.hostinger.com
+    port: 465
+    username: ${MAIL_USERNAME:no-reply@hautetech.org}
+    password: ${MAIL_PASSWORD:}
+    default-encoding: UTF-8
+    properties:
+      mail:
+        smtp:
+          auth: true
+          ssl:
+            enable: true
+          starttls:
+            enable: false
+          # Un serveur qui ne répond plus ne bloque pas les fils d'envoi : 10 s pour se connecter, lire ou écrire
+          connectiontimeout: 10000
+          timeout: 10000
+          writetimeout: 10000
+
+ndadiee:
+  mail:
+    enabled: true

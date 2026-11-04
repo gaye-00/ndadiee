@@ -1,0 +1,249 @@
+{
+  "form": {
+    "back": "Ayyukana",
+    "title": "Wallafa aiki",
+    "mode": "Yanayin gyara",
+    "write": "Rubuta",
+    "preview": "Duba kafin",
+    "aside": "Dubawa a baje koli da matakan da suka rage",
+    "draftRestored": "An dawo da daftarinka, tare da hotuna.",
+    "startOver": "Fara daga farko",
+    "draftSaved": "An adana daftari a wannan na'ura",
+    "uploading_one": "Hoto {{count}} yana kan hanya…",
+    "uploading_other": "Hotuna {{count}} suna kan hanya…",
+    "imagesPending": "Akwai hoton da ake aikawa har yanzu: za a wallafa aikin da zarar ya iso.",
+    "discard": "Goge",
+    "discardTitle": "Goge wannan daftarin?",
+    "discardText": "Aikin da kake rubutawa da hotunansa za su ɓace daga wannan na'ura.",
+    "discardConfirm": "Goge daftarin",
+    "publish": "Wallafa aikin",
+    "publishing": "Ana wallafa aikin",
+    "published": "{{name}} ya fito: barka da zuwa baje koli!"
+  },
+  "section": {
+    "complete": "an kammala mataki",
+    "essentials": {
+      "title": "Muhimman abubuwa",
+      "text": "Abin da ake karantawa da farko a katin baje koli: suna, jumla mai jan hankali, fasahohi."
+    },
+    "images": {
+      "title": "Hotuna",
+      "text": "Hoton bango, sannan hotunan allo na abin da ke aiki tuni. Shi ne ke sa a danna."
+    },
+    "story": {
+      "title": "Labari",
+      "text": "Matsalar da aikin ke warwarewa, ga wa, inda ya kai, da abin da zai biyo baya."
+    },
+    "links": {
+      "title": "Hanyoyi da lasisi",
+      "text": "Inda za a karanta lambar, inda za a gwada ta, da abin da kowa ke da izinin yi da ita."
+    },
+    "team": {
+      "title": "Ƙungiya",
+      "text": "Kana neman masu ba da gudummawa? Kowane matsayi ya zama sanarwa, da bayanan martaba masu dacewa ke gani."
+    }
+  },
+  "field": {
+    "optional": "ba dole ba"
+  },
+  "fields": {
+    "name": "Sunan aikin",
+    "namePlaceholder": "lagos-transit",
+    "nameHint": "Sunan ma'ajiyar, ko wanda masu amfani da shi suka sani. Adireshin shafin ya samo asali daga gare shi kuma ba zai canza ba.",
+    "tagline": "Taken aiki",
+    "taglinePlaceholder": "Motocin bas na Lagos masu zuwa, ko babu intanet",
+    "taglineHint": "Jumla ɗaya don katin baje koli: me aikin ke yi, kuma ga wa.",
+    "tags": "Fasahohi",
+    "tagsHint": "Harsuna, tsare-tsare, batutuwa (har {{count}}): haka mutanen da suka dace ke samun aikin.",
+    "cover": "Hoton bango",
+    "description": "Bayani",
+    "descriptionPlaceholder": "Matsalar, mafita, inda aikin ya kai…\n\n- Abin da ke aiki tuni\n- Abin da zai biyo baya",
+    "descriptionHint": "Sakin layi, **rubutu mai kauri**, `lamba` da jeri: haka shafin aikin ke nuna su. {{mod}} + Enter don wallafawa.",
+    "repository": "Ma'ajiyar lamba",
+    "demo": "Gwaji kai tsaye",
+    "license": "Lasisi"
+  },
+  "errors": {
+    "url": "Cikakken adireshi, mai farawa da https://",
+    "issueNumber": "Lambar issue: lambobi kawai"
+  },
+  "github": {
+    "title": "Fara daga ma'ajiyarka ta GitHub",
+    "text": "Suna, take, fasahohi, lasisi, gwaji da gabatarwar README suna cika da danna ɗaya. Kai ne ke da iko a kan komai.",
+    "label": "Adireshin ma'ajiyar GitHub",
+    "placeholder": "github.com/asusu/ma'ajiya",
+    "import": "Shigo da shi",
+    "reading": "Ana karanta ma'ajiyar…",
+    "hint": "Liƙa adireshin: shigowa za ta fara da kanta. Ma'ajiyoyin jama'a kawai.",
+    "invalid": "Wannan ba adireshin ma'ajiyar GitHub ba ne: github.com/asusu/ma'ajiya",
+    "mine": "Ma'ajiyoyinka na baya-bayan nan",
+    "noProfile": "Ƙara GitHub ɗinka a bayanin martabarka don samun ma'ajiyoyinka a nan.",
+    "addProfile": "Kammala bayanin martabata",
+    "alreadyListedShort": "Yana cikin baje koli tuni",
+    "done": "An shigo da ma'ajiyar",
+    "filled": "Filayen da aka cika",
+    "nothingNew": "An riga an cika komai: ba a maye gurbin komai ba.",
+    "alreadyListed": "Wannan ma'ajiyar tana cikin baje koli tuni.",
+    "seeProject": "Duba aikin",
+    "archived": "An adana wannan ma'ajiyar a ma'ajin tarihi na GitHub.",
+    "fork": "Wannan ma'ajiyar kwafi ce (fork) ta wani aiki.",
+    "undo": "Soke shigowar",
+    "another": "Shigo da wata ma'ajiya",
+    "fields": {
+      "name": "suna",
+      "tagline": "take",
+      "description": "bayani",
+      "tags_one": "fasaha {{count}}",
+      "tags_other": "fasahohi {{count}}",
+      "license": "lasisi",
+      "demo": "gwaji",
+      "repository": "ma'ajiya"
+    },
+    "errors": {
+      "notFound": "Ba a sami ma'ajiyar ba: duba adireshin. Ba za a iya shigo da ma'ajiya ta sirri ba.",
+      "rateLimited": "GitHub yana takaita buƙatu a yanzu: sake gwadawa bayan 'yan mintuna, ko cike aikin da hannu.",
+      "unavailable": "GitHub baya amsawa a yanzu: sake gwadawa nan gaba kaɗan, ko cike aikin da hannu.",
+      "network": "Babu haɗi: duba hanyar sadarwarka, sannan sake gwadawa."
+    }
+  },
+  "stack": {
+    "chosen": "Fasahohin da aka zaɓa",
+    "placeholder": "React, Kotlin, Mobile Money…",
+    "more": "Ƙara…",
+    "full_one": "Fasaha {{count}} kawai",
+    "full_other": "Fasahohi {{count}} kawai",
+    "suggestions": "Fasahohin da ake ba da shawara",
+    "create": "Ƙirƙiri «{{tag}}»",
+    "remove": "Cire {{tag}}",
+    "add": "Ƙara {{tag}}",
+    "addAll": "Ƙara duka",
+    "fromRepository": "A cikin ma'ajiyar:",
+    "popular": "Shahararru:"
+  },
+  "cover": {
+    "empty": "Ja hoto, liƙa shi, ko zaɓe shi",
+    "drop": "Saki hoton a nan",
+    "hint": "JPEG, PNG, WebP ko GIF. Za ka daidaita shi zuwa tsarin baje koli (16:10) kafin aikawa.",
+    "alt": "Hoton bangon aikin",
+    "recrop": "Sake daidaitawa",
+    "replace": "Maye gurbi",
+    "remove": "Cire",
+    "borrowed": "Hoton aro? Ambaci asalinsa",
+    "creditLabel": "Marubuci da lasisi",
+    "creditPlaceholder": "Amina Diallo · CC BY 4.0",
+    "sourceLabel": "Hanyar zuwa asali"
+  },
+  "crop": {
+    "coverTitle": "Daidaita hoton bango",
+    "shotTitle": "Daidaita hoton allo",
+    "help": "Ja hoton ƙarƙashin firam, zuƙo da ƙafafun linzami, da yatsu biyu ko da mai zamewa. Da madannai: kibiyoyi, + da −.",
+    "frameRole": "yankin firam",
+    "frameLabel": "Firam 16:10, zuƙowa {{zoom}}%",
+    "zoom": "Zuƙowa",
+    "zoomIn": "Zuƙo kusa",
+    "zoomOut": "Zuƙo nesa",
+    "output": "{{width}} × {{height}} px",
+    "blurry": "ƙaramin yanki: hoton zai iya bayyana ba sarai a babban allo",
+    "reset": "Mayar tsakiya",
+    "cancel": "Soke",
+    "confirm": "Tabbatar da firam"
+  },
+  "images": {
+    "sending": "Ana aikawa",
+    "retry": "Sake gwadawa",
+    "errorType": "«{{name}}» ba hoto ne da ake iya karantawa ba: JPEG, PNG, WebP ko GIF.",
+    "errorSize": "Hoton ya wuce MB {{max}} ko bayan an rage shi: gwada hoto mai sauƙi.",
+    "errorUpload": "Ba a iya aika hoton ba: duba haɗinka, sannan sake gwadawa."
+  },
+  "gallery": {
+    "label": "Taskar hotuna",
+    "hint": "Hotunan allo na manhajar, hotuna daga filin aiki. Kowanne an daidaita shi a 16:10; za ka iya sake daidaita shi.",
+    "reorderHint": "Ja maƙallin don canza tsari",
+    "addFirst": "Ƙara hotunan allo",
+    "add": "Ƙara",
+    "addHint_one": "saura {{count}}",
+    "addHint_other": "saura {{count}}",
+    "full_one": "Taskar hotuna tana ɗaukar hoto {{count}} kawai: ba a ƙara na gaba ba.",
+    "full_other": "Taskar hotuna tana ɗaukar hotuna {{count}} kawai: ba a ƙara na gaba ba.",
+    "item": "Hoto {{index}} cikin {{total}}",
+    "handle": "Matsar: {{item}}",
+    "handleHint": "Alt + kibiyar hagu ko dama don matsar da shi",
+    "addCaption": "Ƙara taken hoto",
+    "captionLabel": "Taken hoto",
+    "captionPlaceholder": "Motocin da ke zuwa tashar Obalende",
+    "kindLabel": "Nau'in hoto",
+    "kind": {
+      "SCREENSHOT": "Hoton allo",
+      "PHOTO": "Hoto"
+    },
+    "creditLabel": "Asali (hoton aro)",
+    "moveBefore": "Matsar gaba",
+    "moveAfter": "Matsar baya",
+    "remove": "Cire",
+    "discard": "Bari"
+  },
+  "license": {
+    "none": "Tukuna",
+    "other": "Wani…",
+    "otherLabel": "Alamar lasisi",
+    "otherPlaceholder": "EUPL-1.2",
+    "about": {
+      "MIT": "MIT: gajere kuma mai sassauci. Kowa zai iya sake amfani da lambar, ko a cikin samfurin da aka rufe, idan ya ambaci marubucin.",
+      "Apache-2.0": "Apache 2.0: mai sassauci, tare da kariya daga haƙƙin mallaka. Zaɓin da kamfanoni suka saba.",
+      "BSD-3-Clause": "BSD 3: mai sassauci kamar MIT, kuma ta hana amfani da sunanka don tallata aikin da aka samo.",
+      "MPL-2.0": "MPL 2.0: fayilolin da aka gyara suna kasancewa a buɗe; sauran samfurin zai iya kasancewa a rufe.",
+      "GPL-3.0": "GPL 3.0: duk wata manhaja da aka samo kuma aka rarraba dole ta kasance a buɗe, ƙarƙashin lasisi ɗaya.",
+      "AGPL-3.0": "AGPL 3.0: kamar GPL, kuma sabis ɗin intanet da ke amfani da ita dole ya wallafa lambarsa ma."
+    },
+    "aboutNone": "Ba tare da lasisi ba, babu wanda ke da haƙƙin doka na sake amfani da lambar: zaɓi ɗaya kafin karɓar masu ba da gudummawa.",
+    "aboutOther": "Alamar SPDX ɗinsa: «EUPL-1.2», «CC-BY-4.0»…",
+    "help": "Kwatanta lasisi"
+  },
+  "team": {
+    "recruiting": "Ina neman masu ba da gudummawa",
+    "recruitingOn": "Aikin zai bayyana cikin waɗanda ke ɗaukar mutane. Bayyana matsayai: bayanan martaba masu dacewa za su gan su.",
+    "recruitingOff": "Kunna shi don karɓar masu ba da gudummawa da wallafa matsayai. Za ka iya yin hakan daga baya.",
+    "chosen": "Matsayan da ake nema",
+    "catalogFirst": "Zaɓi matsayi na farko",
+    "catalog": "Ƙara matsayi",
+    "titleLabel": "Sunan matsayi",
+    "titlePlaceholder": "Mai haɓaka wayar hannu React Native",
+    "remove": "Cire matsayin {{role}}",
+    "descriptionLabel": "Abin da ake tsammani",
+    "descriptionPlaceholder": "Allon tafiye-tafiye ba tare da intanet ba, da Jetpack Compose…",
+    "seatsLabel": "Gurbi",
+    "seats_one": "gurbi {{count}}",
+    "seats_other": "gurbi {{count}}",
+    "fewerSeats": "Rage gurbi ɗaya",
+    "moreSeats": "Ƙara gurbi ɗaya",
+    "issueLabel": "Issue ta «matakin farko»?",
+    "issueHint": "Ƙaramin aiki daga ma'ajiyar don farawa: masu nema za su san ta inda za su shiga.",
+    "issueSet": "Issue ta «matakin farko»: #{{number}}",
+    "issueNumber": "Lamba",
+    "issueTitle": "Taken issue",
+    "issueTitlePlaceholder": "Nuna lokacin bas mai zuwa"
+  },
+  "preview": {
+    "card": "A baje koli",
+    "pageNotice": "Dubawa: shafin kamar yadda baƙi za su gan shi",
+    "untitled": "sabon-aiki"
+  },
+  "checklist": {
+    "title": "A shirye {{percent}}%",
+    "text": "Abin da ke sa aiki ya ja hankali. Suna da bayani ne kawai dole.",
+    "ready": "A shirye don haskakawa",
+    "readyText": "Komai yana nan: abin da ya rage shi ne wallafawa.",
+    "done": "an yi",
+    "todo": "don yi",
+    "items": {
+      "name": "Suna",
+      "tagline": "Take mai jan hankali",
+      "stack": "Aƙalla fasahohi biyu",
+      "cover": "Hoton bango",
+      "gallery": "Hoton allo a taskar hotuna",
+      "story": "Labari na jumloli kaɗan",
+      "links": "Ma'ajiyar ko gwajin",
+      "roles": "Matsayan da ake nema"
+    }
+  }
+}

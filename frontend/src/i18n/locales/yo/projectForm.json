@@ -1,0 +1,249 @@
+{
+  "form": {
+    "back": "Àwọn iṣẹ́ àkànṣe mi",
+    "title": "Ṣe àtẹ̀jáde iṣẹ́ àkànṣe",
+    "mode": "Ipò àtúnṣe",
+    "write": "Kọ",
+    "preview": "Wòye",
+    "aside": "Ìwòye nínú àfihàn àti àwọn ìgbésẹ̀ tó kù",
+    "draftRestored": "A ti dá àkọsílẹ̀ rẹ padà, pẹ̀lú àwọn àwòrán.",
+    "startOver": "Bẹ̀rẹ̀ láti ìbẹ̀rẹ̀",
+    "draftSaved": "A ti fi àkọsílẹ̀ pamọ́ sórí ẹ̀rọ yìí",
+    "uploading_one": "Àwòrán {{count}} ń lọ…",
+    "uploading_other": "Àwòrán {{count}} ń lọ…",
+    "imagesPending": "Àwòrán kan ṣì ń lọ: iṣẹ́ àkànṣe náà yóò jáde ní kété tí ó bá dé.",
+    "discard": "Pa rẹ́",
+    "discardTitle": "Pa àkọsílẹ̀ yìí rẹ́?",
+    "discardText": "Iṣẹ́ àkànṣe tí o ń kọ àti àwọn àwòrán rẹ̀ yóò pòórá lórí ẹ̀rọ yìí.",
+    "discardConfirm": "Pa àkọsílẹ̀ rẹ́",
+    "publish": "Ṣe àtẹ̀jáde iṣẹ́ àkànṣe",
+    "publishing": "A ń ṣe àtẹ̀jáde iṣẹ́ àkànṣe",
+    "published": "{{name}} ti jáde: ẹ kú àbọ̀ sí àfihàn!"
+  },
+  "section": {
+    "complete": "ìgbésẹ̀ ti parí",
+    "essentials": {
+      "title": "Àwọn kókó",
+      "text": "Ohun tí a kọ́kọ́ ń kà lórí káàdì àfihàn: orúkọ, gbólóhùn tó ń fani mọ́ra, àwọn ìmọ̀-ẹ̀rọ."
+    },
+    "images": {
+      "title": "Àwọn àwòrán",
+      "text": "Àwòrán ìbòrí, lẹ́yìn náà àwọn àwòrán ojú-ìbojú ohun tó ti ń ṣiṣẹ́. Ìyẹn ló ń jẹ́ kí wọ́n tẹ̀ ẹ́."
+    },
+    "story": {
+      "title": "Ìtàn",
+      "text": "Ìṣòro tí iṣẹ́ àkànṣe náà ń yanjú, fún ta ni, ibi tó dé, àti ohun tó kàn."
+    },
+    "links": {
+      "title": "Àwọn ìjápọ̀ àti ìwé-àṣẹ",
+      "text": "Ibi tí a ti lè ka kóòdù, ibi tí a ti lè dán an wò, àti ohun tí ẹnikẹ́ni lè ṣe pẹ̀lú rẹ̀."
+    },
+    "team": {
+      "title": "Ẹgbẹ́",
+      "text": "Ṣé o ń wá àwọn olùkópa? Ipa kọ̀ọ̀kan di ìkéde, tí àwọn profaili tó bá a mu yóò rí."
+    }
+  },
+  "field": {
+    "optional": "kò pọn dandan"
+  },
+  "fields": {
+    "name": "Orúkọ iṣẹ́ àkànṣe",
+    "namePlaceholder": "lagos-transit",
+    "nameHint": "Orúkọ ibi ìpamọ́ kóòdù, tàbí èyí tí àwọn olùlò rẹ mọ̀. Àdírẹ́sì ojú-ìwé náà ti wá láti ibẹ̀, kò sì ní yí padà.",
+    "tagline": "Gbólóhùn ìfihàn",
+    "taglinePlaceholder": "Àwọn bọ́ọ̀sì Èkó tó ń bọ̀, kódà láìsí ìkànnì",
+    "taglineHint": "Gbólóhùn kan fún káàdì àfihàn: ohun tí iṣẹ́ àkànṣe ń ṣe, àti fún ta ni.",
+    "tags": "Àwọn ìmọ̀-ẹ̀rọ",
+    "tagsHint": "Àwọn èdè, àwọn ìlànà, àwọn kókó-ọ̀rọ̀ (títí dé {{count}}): báyìí ni àwọn ènìyàn tó yẹ ṣe ń rí iṣẹ́ àkànṣe náà.",
+    "cover": "Àwòrán ìbòrí",
+    "description": "Àpèjúwe",
+    "descriptionPlaceholder": "Ìṣòro náà, ojútùú, ibi tí iṣẹ́ àkànṣe dé…\n\n- Ohun tó ti ń ṣiṣẹ́\n- Ohun tó kàn",
+    "descriptionHint": "Ìpínrọ̀, **ọ̀rọ̀ tó nípọn**, `kóòdù` àti àtòjọ: báyìí ni ojú-ìwé iṣẹ́ àkànṣe ṣe ń fi wọ́n hàn. {{mod}} + Enter láti ṣe àtẹ̀jáde.",
+    "repository": "Ibi ìpamọ́ kóòdù",
+    "demo": "Àfihàn tààrà",
+    "license": "Ìwé-àṣẹ"
+  },
+  "errors": {
+    "url": "Àdírẹ́sì kíkún, tó bẹ̀rẹ̀ pẹ̀lú https://",
+    "issueNumber": "Nọ́mbà issue: àwọn díjíìtì nìkan"
+  },
+  "github": {
+    "title": "Bẹ̀rẹ̀ láti ibi ìpamọ́ GitHub rẹ",
+    "text": "Orúkọ, gbólóhùn, àwọn ìmọ̀-ẹ̀rọ, ìwé-àṣẹ, àfihàn àti ìfihàn README ń kún pẹ̀lú títẹ̀ kan. Ìwọ ni o ṣì ń darí ohun gbogbo.",
+    "label": "Àdírẹ́sì ibi ìpamọ́ GitHub",
+    "placeholder": "github.com/akaunti/ibi-ipamo",
+    "import": "Mú wọlé",
+    "reading": "A ń ka ibi ìpamọ́ náà…",
+    "hint": "Lẹ àdírẹ́sì náà mọ́: ìmúwọlé yóò bẹ̀rẹ̀ fúnra rẹ̀. Àwọn ibi ìpamọ́ gbangba nìkan.",
+    "invalid": "Èyí kì í ṣe àdírẹ́sì ibi ìpamọ́ GitHub: github.com/akaunti/ibi-ipamo",
+    "mine": "Àwọn ibi ìpamọ́ rẹ tuntun",
+    "noProfile": "Fi GitHub rẹ kún profaili rẹ láti rí àwọn ibi ìpamọ́ rẹ níbí.",
+    "addProfile": "Parí profaili mi",
+    "alreadyListedShort": "Ó ti wà nínú àfihàn",
+    "done": "A ti mú ibi ìpamọ́ wọlé",
+    "filled": "Àwọn àyè tí a kún",
+    "nothingNew": "Gbogbo rẹ̀ ti kún tẹ́lẹ̀: a kò rọ́pò ohunkóhun.",
+    "alreadyListed": "Ibi ìpamọ́ yìí ti wà nínú àfihàn tẹ́lẹ̀.",
+    "seeProject": "Wo iṣẹ́ àkànṣe náà",
+    "archived": "A ti fi ibi ìpamọ́ yìí sí àpamọ́ lórí GitHub.",
+    "fork": "Ibi ìpamọ́ yìí jẹ́ ẹ̀dà (fork) iṣẹ́ àkànṣe mìíràn.",
+    "undo": "Fagilé ìmúwọlé",
+    "another": "Mú ibi ìpamọ́ mìíràn wọlé",
+    "fields": {
+      "name": "orúkọ",
+      "tagline": "gbólóhùn",
+      "description": "àpèjúwe",
+      "tags_one": "ìmọ̀-ẹ̀rọ {{count}}",
+      "tags_other": "ìmọ̀-ẹ̀rọ {{count}}",
+      "license": "ìwé-àṣẹ",
+      "demo": "àfihàn",
+      "repository": "ibi ìpamọ́"
+    },
+    "errors": {
+      "notFound": "A kò rí ibi ìpamọ́ náà: ṣàyẹ̀wò àdírẹ́sì. A kò lè mú ibi ìpamọ́ àdáni wọlé.",
+      "rateLimited": "GitHub ń dín àwọn ìbéèrè kù báyìí: gbìyànjú lẹ́ẹ̀kan sí i ní ìṣẹ́jú díẹ̀, tàbí kún iṣẹ́ àkànṣe náà fúnra rẹ.",
+      "unavailable": "GitHub kò dáhùn báyìí: gbìyànjú díẹ̀ lẹ́yìn náà, tàbí kún iṣẹ́ àkànṣe náà fúnra rẹ.",
+      "network": "Kò sí ìsopọ̀: ṣàyẹ̀wò nẹ́tíwọ̀ọ̀kì rẹ, lẹ́yìn náà gbìyànjú lẹ́ẹ̀kan sí i."
+    }
+  },
+  "stack": {
+    "chosen": "Àwọn ìmọ̀-ẹ̀rọ tí a yàn",
+    "placeholder": "React, Kotlin, Mobile Money…",
+    "more": "Fi kún…",
+    "full_one": "Ìmọ̀-ẹ̀rọ {{count}} nìkan",
+    "full_other": "Ìmọ̀-ẹ̀rọ {{count}} nìkan",
+    "suggestions": "Àwọn ìmọ̀-ẹ̀rọ tí a dámọ̀ràn",
+    "create": "Ṣẹ̀dá «{{tag}}»",
+    "remove": "Yọ {{tag}} kúrò",
+    "add": "Fi {{tag}} kún",
+    "addAll": "Fi gbogbo rẹ̀ kún",
+    "fromRepository": "Nínú ibi ìpamọ́:",
+    "popular": "Gbajúmọ̀:"
+  },
+  "cover": {
+    "empty": "Fa àwòrán kan wá, lẹ̀ ẹ́ mọ́, tàbí yàn án",
+    "drop": "Jù àwòrán náà síbí",
+    "hint": "JPEG, PNG, WebP tàbí GIF. Wàá ṣe fireemu rẹ̀ ní ìwọ̀n àfihàn (16:10) kí o tó fi ránṣẹ́.",
+    "alt": "Àwòrán ìbòrí iṣẹ́ àkànṣe",
+    "recrop": "Tún fireemu ṣe",
+    "replace": "Rọ́pò",
+    "remove": "Yọ kúrò",
+    "borrowed": "Àwòrán tí a yá? Sọ orísun rẹ̀",
+    "creditLabel": "Òǹkọ̀wé àti ìwé-àṣẹ",
+    "creditPlaceholder": "Amina Diallo · CC BY 4.0",
+    "sourceLabel": "Ìjápọ̀ sí orísun"
+  },
+  "crop": {
+    "coverTitle": "Ṣe fireemu àwòrán ìbòrí",
+    "shotTitle": "Ṣe fireemu àwòrán ojú-ìbojú",
+    "help": "Fa àwòrán sábẹ́ fireemu, sún mọ́ pẹ̀lú kẹ̀kẹ́ eku, ìka méjì tàbí afàyàn. Pẹ̀lú bọ́tìnnì: àwọn ọfà, + àti −.",
+    "frameRole": "agbègbè fireemu",
+    "frameLabel": "Fireemu 16:10, ìsúnmọ́ {{zoom}}%",
+    "zoom": "Ìsúnmọ́",
+    "zoomIn": "Sún mọ́",
+    "zoomOut": "Sún jìnnà",
+    "output": "{{width}} × {{height}} px",
+    "blurry": "agbègbè kékeré: àwòrán náà lè ṣú lórí ojú-ìbojú ńlá",
+    "reset": "Dá padà sí àárín",
+    "cancel": "Fagilé",
+    "confirm": "Fọwọ́sí fireemu"
+  },
+  "images": {
+    "sending": "Ń fi ránṣẹ́",
+    "retry": "Gbìyànjú lẹ́ẹ̀kan sí i",
+    "errorType": "«{{name}}» kì í ṣe àwòrán tí a lè kà: JPEG, PNG, WebP tàbí GIF.",
+    "errorSize": "Àwòrán náà ju MB {{max}} lọ kódà lẹ́yìn tí a dín in kù: gbìyànjú àwòrán tó fúyẹ́.",
+    "errorUpload": "A kò lè fi àwòrán náà ránṣẹ́: ṣàyẹ̀wò ìsopọ̀ rẹ, lẹ́yìn náà gbìyànjú lẹ́ẹ̀kan sí i."
+  },
+  "gallery": {
+    "label": "Àkójọ àwòrán",
+    "hint": "Àwọn àwòrán ojú-ìbojú ohun èlò, àwọn fọ́tò láti pápá. A ṣe fireemu ọ̀kọ̀ọ̀kan ní 16:10; o lè tún un ṣe.",
+    "reorderHint": "Fa ọwọ́ ìdìmú láti yí ètò padà",
+    "addFirst": "Fi àwọn àwòrán ojú-ìbojú kún",
+    "add": "Fi kún",
+    "addHint_one": "ó ṣì ṣeé ṣe {{count}}",
+    "addHint_other": "ó ṣì ṣeé ṣe {{count}}",
+    "full_one": "Àkójọ àwòrán gbà àwòrán {{count}} nìkan: a kò fi àwọn tó tẹ̀lé e kún.",
+    "full_other": "Àkójọ àwòrán gbà àwòrán {{count}} nìkan: a kò fi àwọn tó tẹ̀lé e kún.",
+    "item": "Àwòrán {{index}} nínú {{total}}",
+    "handle": "Gbé: {{item}}",
+    "handleHint": "Alt + ọfà òsì tàbí ọ̀tún láti gbé e",
+    "addCaption": "Fi àkọlé kún",
+    "captionLabel": "Àkọlé",
+    "captionPlaceholder": "Àwọn bọ́ọ̀sì tó ń bọ̀ ní ibùdókọ̀ Obalende",
+    "kindLabel": "Irú àwòrán",
+    "kind": {
+      "SCREENSHOT": "Ojú-ìbojú",
+      "PHOTO": "Fọ́tò"
+    },
+    "creditLabel": "Orísun (àwòrán tí a yá)",
+    "moveBefore": "Gbé síwájú",
+    "moveAfter": "Gbé sẹ́yìn",
+    "remove": "Yọ kúrò",
+    "discard": "Fi sílẹ̀"
+  },
+  "license": {
+    "none": "Kò tíì sí",
+    "other": "Òmíràn…",
+    "otherLabel": "Àmì ìwé-àṣẹ",
+    "otherPlaceholder": "EUPL-1.2",
+    "about": {
+      "MIT": "MIT: kúkúrú àti ọ̀làwọ́. Ẹnikẹ́ni lè tún kóòdù lò, kódà nínú ọjà tí a tì, tí ó bá dárúkọ òǹkọ̀wé.",
+      "Apache-2.0": "Apache 2.0: ọ̀làwọ́, pẹ̀lú ààbò lọ́wọ́ ẹ̀tọ́ ìṣẹ̀dá. Àṣàyàn tí àwọn ilé-iṣẹ́ sábà máa ń ṣe.",
+      "BSD-3-Clause": "BSD 3: ọ̀làwọ́ bí MIT, ó sì kọ̀ láti lo orúkọ rẹ láti polówó iṣẹ́ tí a mú jáde láti inú rẹ̀.",
+      "MPL-2.0": "MPL 2.0: àwọn fáìlì tí a yí padà ń wà ní ṣíṣí; ìyókù ọjà lè wà ní títì.",
+      "GPL-3.0": "GPL 3.0: sọ́fítíwià èyíkéyìí tí a mú jáde tí a sì pín gbọ́dọ̀ wà ní ṣíṣí, lábẹ́ ìwé-àṣẹ kan náà.",
+      "AGPL-3.0": "AGPL 3.0: bí GPL, iṣẹ́ orí ayélujára tó ń lò ó sì gbọ́dọ̀ ṣe àtẹ̀jáde kóòdù rẹ̀ pẹ̀lú."
+    },
+    "aboutNone": "Láìsí ìwé-àṣẹ, kò sí ẹni tó ní ẹ̀tọ́ lábẹ́ òfin láti tún kóòdù lò: yan ọ̀kan kí o tó gba àwọn olùkópa.",
+    "aboutOther": "Àmì SPDX rẹ̀: «EUPL-1.2», «CC-BY-4.0»…",
+    "help": "Fi àwọn ìwé-àṣẹ wé ara wọn"
+  },
+  "team": {
+    "recruiting": "Mo ń wá àwọn olùkópa",
+    "recruitingOn": "Iṣẹ́ àkànṣe náà yóò hàn láàrin àwọn tó ń gba ènìyàn. Ṣàpèjúwe àwọn ipa: àwọn profaili tó bá a mu yóò rí wọn.",
+    "recruitingOff": "Tàn án láti gba àwọn olùkópa àti láti ṣe àtẹ̀jáde àwọn ipa. O lè ṣe é lẹ́yìn náà.",
+    "chosen": "Àwọn ipa tí a ń wá",
+    "catalogFirst": "Yan ipa àkọ́kọ́",
+    "catalog": "Fi ipa kún",
+    "titleLabel": "Orúkọ ipa",
+    "titlePlaceholder": "Olùgbéejáde fóònù React Native",
+    "remove": "Yọ ipa {{role}} kúrò",
+    "descriptionLabel": "Ohun tí a retí",
+    "descriptionPlaceholder": "Ojú-ìbojú ìrìn-àjò láìsí ìkànnì, pẹ̀lú Jetpack Compose…",
+    "seatsLabel": "Àyè",
+    "seats_one": "àyè {{count}}",
+    "seats_other": "àyè {{count}}",
+    "fewerSeats": "Dín àyè kan kù",
+    "moreSeats": "Fi àyè kan kún",
+    "issueLabel": "Issue «ìgbésẹ̀ àkọ́kọ́»?",
+    "issueHint": "Iṣẹ́ kékeré kan láti ibi ìpamọ́ láti bẹ̀rẹ̀: àwọn olùbéèrè yóò mọ ibi tí wọ́n ti lè wọlé.",
+    "issueSet": "Issue «ìgbésẹ̀ àkọ́kọ́»: #{{number}}",
+    "issueNumber": "Nọ́mbà",
+    "issueTitle": "Àkọlé issue",
+    "issueTitlePlaceholder": "Fi àkókò bọ́ọ̀sì tó ń bọ̀ hàn"
+  },
+  "preview": {
+    "card": "Nínú àfihàn",
+    "pageNotice": "Ìwòye: ojú-ìwé bí àwọn àlejò yóò ṣe rí i",
+    "untitled": "ise-akanse-tuntun"
+  },
+  "checklist": {
+    "title": "Ó ti ṣetán {{percent}}%",
+    "text": "Ohun tó ń mú kí iṣẹ́ àkànṣe fani mọ́ra. Orúkọ àti àpèjúwe nìkan ló pọn dandan.",
+    "ready": "Ó ṣetán láti tàn",
+    "readyText": "Gbogbo rẹ̀ wà níbẹ̀: àtẹ̀jáde nìkan ló kù.",
+    "done": "ó ti parí",
+    "todo": "láti ṣe",
+    "items": {
+      "name": "Orúkọ kan",
+      "tagline": "Gbólóhùn tó ń fani mọ́ra",
+      "stack": "Ó kéré tán ìmọ̀-ẹ̀rọ méjì",
+      "cover": "Àwòrán ìbòrí",
+      "gallery": "Àwòrán ojú-ìbojú kan nínú àkójọ",
+      "story": "Ìtàn gbólóhùn díẹ̀",
+      "links": "Ibi ìpamọ́ tàbí àfihàn",
+      "roles": "Àwọn ipa tí a ń wá"
+    }
+  }
+}

@@ -1,6 +1,13 @@
 # Ndadiee — backend
 
-Spring Boot 4, Java 21, PostgreSQL (Flyway), JWT.
+Spring Boot 4, Java 21, PostgreSQL, JWT.
+
+**Schéma et données.** Pas de migrations : le schéma vient des entités JPA, que Hibernate crée au démarrage
+(`ddl-auto: create-drop` en local). Les entités portent tout ce que la base doit garantir : index (y compris les index
+partiels, `@Index(options = "where …")`), contraintes uniques et `CHECK` nommées (`uk_…`, `ck_…`), suppressions en
+cascade (`@OnDelete`). Le seul index que JPA ne sait pas décrire (un index unique partiel : un sprint ouvert par
+projet) est créé par `initializer/DatabaseConstraints`, au début du démarrage. Les données de démonstration viennent
+ensuite des seeders, dans l'ordre d'`initializer/InitializerNdadiee`.
 
 Base attendue : le PostgreSQL local (`localhost:5432`, base, utilisateur et mot de passe `ndadiee`).
 
@@ -86,7 +93,6 @@ par défaut).
   libellé de sa cible au moment de l'action (la cible a pu être supprimée depuis). Il ne s'efface pas.
 - **Démonstration** (`ModerationSeeder`) : un compte de spam (`cash_rapide`) suspendu, son sujet et sa réponse
   masqués, et `thandiwe_ndlovu` nommée modératrice ; le journal porte ces décisions.
-- Migration `V6__administration.sql` (bloc `DO`, comme V3 à V5).
 
 ## Inscription et connexion
 
@@ -169,9 +175,54 @@ son équipe (`ProjectResponse`).
 - **Activité GitHub** : un relevé par projet (`project_github_activity`), remplacé à chaque synchronisation
   (`GithubActivityService.record`). Pas encore de synchronisation réelle : seules les données de
   démonstration en écrivent.
-- La migration `V3__project_page.sql` tient dans un bloc `DO` : avec `ddl-auto: create-drop`, Hibernate a
-  supprimé les tables à l'arrêt précédent et les recrée après Flyway, la migration n'a alors rien à
-  modifier ; avec `validate`, elle s'applique entièrement.
+
+## Espace d'équipe (design 3E)
+
+L'espace d'un projet (`/v1/projects/{slug}/workspace`, `WorkspaceController`) est réservé à son équipe : le porteur
+et les membres acceptés (403 sinon ; un projet masqué n'existe que pour son équipe, 404 pour les autres). Code :
+`model/workspace`, `service/workspace`.
+
+| Requête | Accès |
+| --- | --- |
+| `GET …/workspace` | l'équipe et qui est en ligne, le sprint en cours et son avancement, le dernier numéro de sprint, les PR ouvertes, les rôles ouverts, les candidatures à étudier (pour qui gère l'équipe) |
+| `POST …/workspace/pulse` | le pouls : note la présence du membre ; rend qui est en ligne et trois révisions (`board`, `team`, `chat`) |
+| `GET …/workspace/tasks`, `GET …/tasks/{number}` | le tableau (tâches pas encore livrées), ou une tâche, même livrée |
+| `POST …/workspace/tasks` `{ title, description, role, assigneeId, pullRequestNumber, status }` | une tâche, numérotée à la suite, en bas de sa colonne |
+| `PUT …/tasks/{number}` (même corps) | la modifier ; une autre colonne l'y envoie, en bas |
+| `PUT …/tasks/{number}/position` `{ status, position }` | la glisser à une place d'une colonne ; le tableau entier en retour |
+| `DELETE …/tasks/{number}` | son auteur, ou qui gère l'équipe |
+| `GET …/workspace/pull-requests` | les PR qu'une tâche peut livrer (ouvertes, puis fusionnées ou fermées depuis un mois) |
+| `POST …/workspace/sprints` `{ goal, weeks }`, `POST …/sprints/current/close` | porteur, mainteneurs |
+| `GET …/workspace/messages?before=&size=` | la discussion, du plus ancien au plus récent, page par page, et le rendez-vous épinglé |
+| `POST …/workspace/messages` `{ body }`, `POST …/workspace/events` `{ title, startsAt, durationMinutes, link }` | un message, un rendez-vous (celui qui le propose y sera) |
+| `PUT` / `DELETE …/messages/{id}/attendance` | « J'y serai », ou plus (tant que le rendez-vous n'est pas fini) |
+| `DELETE …/messages/{id}` | son auteur, ou qui gère l'équipe |
+| `PATCH /v1/projects/{id}/settings` `{ repositoryUrl, lookingForContributors }` | porteur, modérateurs : le dépôt et le recrutement, sans toucher au reste du projet |
+| `DELETE /v1/projects/{id}/members/{memberId}` | porteur, mainteneurs : retirer un membre (jamais le porteur, jamais soi-même) |
+
+- **Tâches** (`Task`) : un numéro par projet, qui ne change jamais (« #38 », celui qu'on écrit dans la discussion) ; un
+  métier du catalogue (`TeamRole`), une personne de l'équipe, la PR qui la livre (`TaskPullRequests` en donne le
+  verdict : changements demandés, approuvée, revue attendue). Les places d'une colonne se suivent sans trou ; chaque
+  geste renumérote les colonnes qu'il touche. Changer de colonne note quand et qui (`statusChangedAt`, `movedBy`).
+- **Gestes concurrents** : créer, déplacer, supprimer une tâche, ouvrir ou clore un sprint verrouillent la ligne du
+  projet (`ProjectRepository.findByIdForUpdate`) : deux membres qui glissent des cartes en même temps passent l'un après
+  l'autre, sans doublon de numéro ni de place.
+- **Sprints** (`Sprint`) : un seul en cours (index unique partiel, `DatabaseConstraints`). Le clore range les tâches
+  terminées (`Task.sprint`) : elles quittent le tableau, livrées pendant ce sprint, et se lisent encore (lecture seule).
+- **Discussion** (`TeamMessage`, `TeamEventAttendee`) : messages et rendez-vous dans un même fil, paginé par
+  identifiant (un message arrivé entre deux pages ne décale rien). Le prochain rendez-vous (ou celui en cours) est
+  rendu à part, pour rester épinglé.
+- **Le pouls** : chaque onglet ouvert le demande toutes les quatre secondes (quinze en économie de données, rien en
+  arrière-plan). La présence s'écrit au plus toutes les 20 s (`ProjectMember.lastSeenAt`, requête directe : la date de
+  modification de la participation ne bouge pas) ; en ligne = vu dans la dernière minute. Chaque révision est un
+  compte et une dernière modification (`Revision`) : le frontend ne relit que la partie qui a changé. Pas de connexion
+  permanente à tenir.
+- **Départs** : quitter l'équipe, en être retiré ou refusé après coup publie `ProjectMemberLeftEvent` ; ses tâches
+  attendent un nouveau preneur (`TaskService.onMemberLeft`).
+- **Démonstration** (`WorkspaceSeeder`, après les revues) : lagos-transit au sprint 7 (« Notifications de départ », six
+  jours restants), ses tâches dans les quatre colonnes, les issues « premier pas » de ses annonces (#33, #40, #45), la
+  #77 d'Ama liée à sa PR #84, et une discussion où Tunde propose un pair programming à 15 h (heure de Lagos) ; Paperweight
+  (Ada et Tunde, sans sprint) ; momo-sdk au sprint 3 (musa). Le dossier patient d'OpenMRS, d'Ada, reste vide.
 
 ## Forum
 
@@ -196,7 +247,7 @@ réponse (ou sous le sujet : les « précisions ») des `Comment`.
   `following=true` : les sujets des auteurs et des tags que suit le membre (rien de suivi : un fil vide).
 - **Liste de lecture** : `Bookmark` (membre, sujet, date), unique par membre et par sujet ; l'insertion passe par
   `ON CONFLICT DO NOTHING`, un double clic ne fait pas d'erreur. Le sujet supprimé, ses enregistrements partent avec
-  lui (`V5__forum_bookmarks.sql`).
+  lui (`@OnDelete` sur `Bookmark`).
 - **Slugs réservés** : `new` (l'application, `/forum/new`), `saved` et `overview` (l'API) ne deviennent jamais
   l'adresse d'un sujet.
 

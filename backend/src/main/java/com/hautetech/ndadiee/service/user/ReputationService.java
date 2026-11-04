@@ -12,7 +12,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
 /**
- * Met à jour la réputation des membres lors des votes et des réponses acceptées,
+ * Met à jour la réputation des membres lors des votes, des réponses acceptées et des revues de code jugées utiles,
  * selon le barème de {@link ReputationRules}.
  */
 @Slf4j
@@ -58,6 +58,15 @@ public class ReputationService {
 
     public void onAnswerUnaccepted(Long answerAuthorId) {
         applyDelta(answerAuthorId, -ReputationRules.ANSWER_ACCEPTED);
+    }
+
+    /** L'équipe d'un projet juge utile la revue d'un relecteur de la communauté (design 3C). */
+    public void onReviewJudgedHelpful(Long reviewerId) {
+        applyDelta(reviewerId, ReputationRules.REVIEW_HELPFUL);
+    }
+
+    public void onReviewHelpfulWithdrawn(Long reviewerId) {
+        applyDelta(reviewerId, -ReputationRules.REVIEW_HELPFUL);
     }
 
     // ==================== HELPERS ====================

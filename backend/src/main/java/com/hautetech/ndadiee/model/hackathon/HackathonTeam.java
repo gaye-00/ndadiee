@@ -7,9 +7,11 @@ import com.hautetech.ndadiee.common.BaseEntity;
 import com.hautetech.ndadiee.model.project.Project;
 import com.hautetech.ndadiee.model.user.Developer;
 
+import jakarta.persistence.CheckConstraint;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
+import jakarta.persistence.Index;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import jakarta.persistence.UniqueConstraint;
@@ -36,7 +38,9 @@ import lombok.experimental.SuperBuilder;
     uniqueConstraints = {
         @UniqueConstraint(name = "uk_hackathon_teams_hackathon_project", columnNames = {"hackathon_id", "project_id"}),
         @UniqueConstraint(name = "uk_hackathon_teams_hackathon_rank", columnNames = {"hackathon_id", "rank"})
-    }
+    },
+    indexes = @Index(name = "idx_hackathon_teams_project", columnList = "project_id"),
+    check = @CheckConstraint(name = "ck_hackathon_teams_rank", constraint = "rank between 1 and 10")
 )
 public class HackathonTeam extends BaseEntity {
 

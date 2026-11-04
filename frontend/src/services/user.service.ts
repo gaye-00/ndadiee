@@ -43,6 +43,10 @@ export const userService = {
   updateProfile: (body: UpdateProfileRequest) =>
     api.put<ApiResponse<UserResponse>>(`${BASE}/me`, body).then((r) => r.data.data),
 
+  /** Les e-mails qu'on reçoit : ceux des revues de code (UserController.updateEmailPreferences). */
+  updateEmailPreferences: (body: { reviewEmails: boolean }) =>
+    api.put<ApiResponse<UserResponse>>(`${BASE}/me/email-preferences`, body).then((r) => r.data.data),
+
   /**
    * Change sa photo de profil : l'image déjà recadrée et réduite (lib/avatarImage.ts). Rend le compte à jour.
    *

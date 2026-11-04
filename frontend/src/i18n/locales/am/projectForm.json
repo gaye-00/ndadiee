@@ -1,0 +1,249 @@
+{
+  "form": {
+    "back": "ፕሮጀክቶቼ",
+    "title": "ፕሮጀክት አትም",
+    "mode": "የአርትዖት ሁነታ",
+    "write": "ጻፍ",
+    "preview": "ቅድመ እይታ",
+    "aside": "በማሳያው ላይ ቅድመ እይታ እና የቀሩ ደረጃዎች",
+    "draftRestored": "ረቂቅህ ከምስሎቹ ጋር ተመልሷል።",
+    "startOver": "ከመጀመሪያ ጀምር",
+    "draftSaved": "ረቂቁ በዚህ መሣሪያ ላይ ተቀምጧል",
+    "uploading_one": "{{count}} ምስል በመላክ ላይ…",
+    "uploading_other": "{{count}} ምስሎች በመላክ ላይ…",
+    "imagesPending": "አንድ ምስል ገና በመላክ ላይ ነው፤ እንደደረሰ ፕሮጀክቱ ይታተማል።",
+    "discard": "አጥፋ",
+    "discardTitle": "ይህን ረቂቅ ይጥፋ?",
+    "discardText": "እየጻፍክ ያለው ፕሮጀክት እና ምስሎቹ ከዚህ መሣሪያ ይጠፋሉ።",
+    "discardConfirm": "ረቂቁን አጥፋ",
+    "publish": "ፕሮጀክቱን አትም",
+    "publishing": "ፕሮጀክቱ በመታተም ላይ",
+    "published": "{{name}} ታትሟል፤ እንኳን ወደ ማሳያው በደህና መጣህ!"
+  },
+  "section": {
+    "complete": "ደረጃው ተጠናቋል",
+    "essentials": {
+      "title": "ዋና ዋናዎቹ",
+      "text": "በማሳያው ካርድ ላይ መጀመሪያ የሚነበበው፦ ስሙ፣ የሚስብ አንድ ዓረፍተ ነገር፣ ቴክኖሎጂዎቹ።"
+    },
+    "images": {
+      "title": "ምስሎች",
+      "text": "የሽፋን ምስል፣ ከዚያም አስቀድሞ የሚሠራውን የሚያሳዩ የማያ ገጽ ምስሎች። ጠቅ የሚያስደርገው ይህ ነው።"
+    },
+    "story": {
+      "title": "ታሪኩ",
+      "text": "ፕሮጀክቱ የሚፈታው ችግር፣ ለማን፣ የት እንደደረሰ፣ እና ቀጥሎ የሚመጣው።"
+    },
+    "links": {
+      "title": "ማገናኛዎች እና ፈቃድ",
+      "text": "ኮዱ የት እንደሚነበብ፣ የት እንደሚሞከር፣ እና ማንም በእሱ ምን ማድረግ እንደሚፈቀድለት።"
+    },
+    "team": {
+      "title": "ቡድኑ",
+      "text": "አስተዋጽኦ አድራጊዎችን ትፈልጋለህ? እያንዳንዱ ሚና ለሚመጥኑት መገለጫዎች የሚታይ ማስታወቂያ ይሆናል።"
+    }
+  },
+  "field": {
+    "optional": "አማራጭ"
+  },
+  "fields": {
+    "name": "የፕሮጀክቱ ስም",
+    "namePlaceholder": "lagos-transit",
+    "nameHint": "የማከማቻው ስም፣ ወይም ተጠቃሚዎችህ የሚያውቁት። የገጹ አድራሻ ከእሱ ይወጣል፣ ከዚያም አይቀየርም።",
+    "tagline": "አጭር መግለጫ",
+    "taglinePlaceholder": "የሌጎስ ቀጣይ አውቶቡሶች፣ ያለ ኢንተርኔትም ቢሆን",
+    "taglineHint": "ለማሳያው ካርድ አንድ ዓረፍተ ነገር፦ ፕሮጀክቱ ምን እንደሚሠራ፣ እና ለማን።",
+    "tags": "ቴክኖሎጂዎች",
+    "tagsHint": "ቋንቋዎች፣ ማዕቀፎች፣ ርዕሶች (እስከ {{count}})፦ ትክክለኛዎቹ ሰዎች ፕሮጀክቱን የሚያገኙት በዚህ ነው።",
+    "cover": "የሽፋን ምስል",
+    "description": "መግለጫ",
+    "descriptionPlaceholder": "ችግሩ፣ መፍትሔው፣ ፕሮጀክቱ የደረሰበት…\n\n- አስቀድሞ የሚሠራው\n- ቀጥሎ የሚመጣው",
+    "descriptionHint": "አንቀጾች፣ **ደማቅ ጽሑፍ**፣ `ኮድ` እና ዝርዝሮች፦ የፕሮጀክቱ ገጽ የሚያሳያቸው በዚህ መልኩ ነው። {{mod}} + Enter ለማተም።",
+    "repository": "የኮድ ማከማቻ",
+    "demo": "የቀጥታ ማሳያ",
+    "license": "ፈቃድ"
+  },
+  "errors": {
+    "url": "ሙሉ አድራሻ፣ በ https:// የሚጀምር",
+    "issueNumber": "የ issue ቁጥር፦ አሃዞች ብቻ"
+  },
+  "github": {
+    "title": "ከ GitHub ማከማቻህ ጀምር",
+    "text": "ስም፣ አጭር መግለጫ፣ ቴክኖሎጂዎች፣ ፈቃድ፣ ማሳያ እና የ README መግቢያ በአንድ ጠቅታ ይሞላሉ። ሁሉንም የምትቆጣጠረው አንተው ነህ።",
+    "label": "የ GitHub ማከማቻ አድራሻ",
+    "placeholder": "github.com/መለያ/ማከማቻ",
+    "import": "አስገባ",
+    "reading": "ማከማቻው በመነበብ ላይ…",
+    "hint": "አድራሻውን ለጥፍ፤ ማስገባቱ በራሱ ይጀምራል። ይፋዊ ማከማቻዎች ብቻ።",
+    "invalid": "ይህ የ GitHub ማከማቻ አድራሻ አይደለም፦ github.com/መለያ/ማከማቻ",
+    "mine": "የቅርብ ጊዜ ማከማቻዎችህ",
+    "noProfile": "ማከማቻዎችህን እዚህ ለማግኘት GitHubህን ወደ መገለጫህ አክል።",
+    "addProfile": "መገለጫዬን አጠናቅቅ",
+    "alreadyListedShort": "አስቀድሞ በማሳያው ውስጥ አለ",
+    "done": "ማከማቻው ገብቷል",
+    "filled": "የተሞሉ መስኮች",
+    "nothingNew": "ሁሉም አስቀድሞ ተሞልቶ ነበር፤ ምንም አልተተካም።",
+    "alreadyListed": "ይህ ማከማቻ አስቀድሞ በማሳያው ውስጥ አለ።",
+    "seeProject": "ፕሮጀክቱን ተመልከት",
+    "archived": "ይህ ማከማቻ በ GitHub ላይ በማህደር ተቀምጧል።",
+    "fork": "ይህ ማከማቻ የሌላ ፕሮጀክት ቅጂ (fork) ነው።",
+    "undo": "ማስገባቱን ቀልብስ",
+    "another": "ሌላ ማከማቻ አስገባ",
+    "fields": {
+      "name": "ስም",
+      "tagline": "አጭር መግለጫ",
+      "description": "መግለጫ",
+      "tags_one": "{{count}} ቴክኖሎጂ",
+      "tags_other": "{{count}} ቴክኖሎጂዎች",
+      "license": "ፈቃድ",
+      "demo": "ማሳያ",
+      "repository": "ማከማቻ"
+    },
+    "errors": {
+      "notFound": "ማከማቻው አልተገኘም፤ አድራሻውን አረጋግጥ። የግል ማከማቻ ሊገባ አይችልም።",
+      "rateLimited": "GitHub አሁን ጥያቄዎችን እየገደበ ነው፤ ከጥቂት ደቂቃዎች በኋላ እንደገና ሞክር፣ ወይም ፕሮጀክቱን በእጅ ሙላ።",
+      "unavailable": "GitHub አሁን ምላሽ አይሰጥም፤ ትንሽ ቆይተህ እንደገና ሞክር፣ ወይም ፕሮጀክቱን በእጅ ሙላ።",
+      "network": "ግንኙነት የለም፤ አውታረ መረብህን አረጋግጥ፣ ከዚያም እንደገና ሞክር።"
+    }
+  },
+  "stack": {
+    "chosen": "የተመረጡ ቴክኖሎጂዎች",
+    "placeholder": "React፣ Kotlin፣ Mobile Money…",
+    "more": "አክል…",
+    "full_one": "ቢበዛ {{count}} ቴክኖሎጂ",
+    "full_other": "ቢበዛ {{count}} ቴክኖሎጂዎች",
+    "suggestions": "የተጠቆሙ ቴክኖሎጂዎች",
+    "create": "«{{tag}}» ፍጠር",
+    "remove": "{{tag}}ን አስወግድ",
+    "add": "{{tag}}ን አክል",
+    "addAll": "ሁሉንም አክል",
+    "fromRepository": "በማከማቻው ውስጥ፦",
+    "popular": "ታዋቂዎች፦"
+  },
+  "cover": {
+    "empty": "ምስል ጎትተህ አምጣ፣ ለጥፈው፣ ወይም ምረጠው",
+    "drop": "ምስሉን እዚህ ልቀቀው",
+    "hint": "JPEG፣ PNG፣ WebP ወይም GIF። ከመላክህ በፊት በማሳያው ቅርጸት (16:10) ታስተካክለዋለህ።",
+    "alt": "የፕሮጀክቱ የሽፋን ምስል",
+    "recrop": "እንደገና አስተካክል",
+    "replace": "ተካ",
+    "remove": "አስወግድ",
+    "borrowed": "የተዋሰ ምስል ነው? ምንጩን ጥቀስ",
+    "creditLabel": "ደራሲ እና ፈቃድ",
+    "creditPlaceholder": "Amina Diallo · CC BY 4.0",
+    "sourceLabel": "ወደ ምንጩ የሚወስድ ማገናኛ"
+  },
+  "crop": {
+    "coverTitle": "የሽፋን ምስሉን አስተካክል",
+    "shotTitle": "የማያ ገጽ ምስሉን አስተካክል",
+    "help": "ምስሉን ከክፈፉ ስር ጎትት፣ በመዳፊት ጎማ፣ በሁለት ጣቶች ወይም በተንሸራታቹ አጉላ። በቁልፍ ሰሌዳ፦ ቀስቶች፣ + እና −።",
+    "frameRole": "የክፈፍ ቦታ",
+    "frameLabel": "ክፈፍ 16:10፣ ማጉያ {{zoom}}%",
+    "zoom": "ማጉያ",
+    "zoomIn": "አጉላ",
+    "zoomOut": "አሳንስ",
+    "output": "{{width}} × {{height}} px",
+    "blurry": "ትንሽ ቦታ፦ ምስሉ በትልቅ ማያ ገጽ ላይ ሊደበዝዝ ይችላል",
+    "reset": "ወደ መሃል መልስ",
+    "cancel": "ሰርዝ",
+    "confirm": "ክፈፉን አጽድቅ"
+  },
+  "images": {
+    "sending": "በመላክ ላይ",
+    "retry": "እንደገና ሞክር",
+    "errorType": "«{{name}}» ሊነበብ የሚችል ምስል አይደለም፦ JPEG፣ PNG፣ WebP ወይም GIF።",
+    "errorSize": "ምስሉ ቢቀነስም ከ {{max}} MB ይበልጣል፤ ቀለል ያለ ምስል ሞክር።",
+    "errorUpload": "ምስሉ ሊላክ አልቻለም፤ ግንኙነትህን አረጋግጥ፣ ከዚያም እንደገና ሞክር።"
+  },
+  "gallery": {
+    "label": "የምስል ማዕከል",
+    "hint": "የመተግበሪያው የማያ ገጽ ምስሎች፣ ከሜዳ የተነሱ ፎቶዎች። እያንዳንዱ በ 16:10 ይስተካከላል፤ እንደገና ልታስተካክለው ትችላለህ።",
+    "reorderHint": "ቅደም ተከተሉን ለመቀየር መያዣውን ጎትት",
+    "addFirst": "የማያ ገጽ ምስሎችን አክል",
+    "add": "አክል",
+    "addHint_one": "ገና {{count}} ይቻላል",
+    "addHint_other": "ገና {{count}} ይቻላሉ",
+    "full_one": "የምስል ማዕከሉ ቢበዛ {{count}} ምስል ይይዛል፤ ቀጣዮቹ አልተጨመሩም።",
+    "full_other": "የምስል ማዕከሉ ቢበዛ {{count}} ምስሎች ይይዛል፤ ቀጣዮቹ አልተጨመሩም።",
+    "item": "ምስል {{index}} ከ {{total}}",
+    "handle": "አንቀሳቅስ፦ {{item}}",
+    "handleHint": "ለማንቀሳቀስ Alt + የግራ ወይም የቀኝ ቀስት",
+    "addCaption": "መግለጫ ጽሑፍ አክል",
+    "captionLabel": "መግለጫ ጽሑፍ",
+    "captionPlaceholder": "በኦባሌንዴ ማቆሚያ የሚቀጥሉ አውቶቡሶች",
+    "kindLabel": "የምስል ዓይነት",
+    "kind": {
+      "SCREENSHOT": "የማያ ገጽ ምስል",
+      "PHOTO": "ፎቶ"
+    },
+    "creditLabel": "ምንጭ (የተዋሰ ምስል)",
+    "moveBefore": "ወደፊት አንቀሳቅስ",
+    "moveAfter": "ወደኋላ አንቀሳቅስ",
+    "remove": "አስወግድ",
+    "discard": "ተወው"
+  },
+  "license": {
+    "none": "ገና የለም",
+    "other": "ሌላ…",
+    "otherLabel": "የፈቃዱ መለያ",
+    "otherPlaceholder": "EUPL-1.2",
+    "about": {
+      "MIT": "MIT፦ አጭር እና ፈቃጅ። ማንም ደራሲውን ጠቅሶ ኮዱን በዝግ ምርት ውስጥም ቢሆን እንደገና መጠቀም ይችላል።",
+      "Apache-2.0": "Apache 2.0፦ ፈቃጅ፣ ከፓተንት ጥበቃ ጋር። የኩባንያዎች የተለመደ ምርጫ።",
+      "BSD-3-Clause": "BSD 3፦ እንደ MIT ፈቃጅ፣ እና ስምህን የተገኘን ሥራ ለማስተዋወቅ መጠቀምን ይከለክላል።",
+      "MPL-2.0": "MPL 2.0፦ የተሻሻሉ ፋይሎች ክፍት ሆነው ይቆያሉ፤ የቀረው የምርቱ ክፍል ዝግ ሊሆን ይችላል።",
+      "GPL-3.0": "GPL 3.0፦ የሚሰራጭ ማንኛውም የተገኘ ሶፍትዌር በተመሳሳይ ፈቃድ ክፍት ሆኖ መቆየት አለበት።",
+      "AGPL-3.0": "AGPL 3.0፦ እንደ GPL፣ እና የሚጠቀመው የመስመር ላይ አገልግሎትም ኮዱን ማተም አለበት።"
+    },
+    "aboutNone": "ያለ ፈቃድ ማንም ኮዱን እንደገና ለመጠቀም ሕጋዊ መብት የለውም፤ አስተዋጽኦ አድራጊዎችን ከመቀበልህ በፊት አንዱን ምረጥ።",
+    "aboutOther": "የ SPDX መለያው፦ «EUPL-1.2»፣ «CC-BY-4.0»…",
+    "help": "ፈቃዶችን አወዳድር"
+  },
+  "team": {
+    "recruiting": "አስተዋጽኦ አድራጊዎችን እፈልጋለሁ",
+    "recruitingOn": "ፕሮጀክቱ ሰው ከሚቀጥሩት መካከል ይታያል። ሚናዎቹን ግለጽ፤ የሚመጥኑት መገለጫዎች ያዩዋቸዋል።",
+    "recruitingOff": "አስተዋጽኦ አድራጊዎችን ለመቀበል እና ሚናዎችን ለማተም አብራው። በኋላም ማድረግ ትችላለህ።",
+    "chosen": "የሚፈለጉ ሚናዎች",
+    "catalogFirst": "የመጀመሪያ ሚና ምረጥ",
+    "catalog": "ሚና አክል",
+    "titleLabel": "የሚናው ርዕስ",
+    "titlePlaceholder": "React Native የሞባይል ገንቢ",
+    "remove": "ሚናውን {{role}} አስወግድ",
+    "descriptionLabel": "የሚጠበቀው",
+    "descriptionPlaceholder": "ያለ ኢንተርኔት የሚሠራ የጉዞ ማያ ገጽ፣ በ Jetpack Compose…",
+    "seatsLabel": "ቦታዎች",
+    "seats_one": "{{count}} ቦታ",
+    "seats_other": "{{count}} ቦታዎች",
+    "fewerSeats": "አንድ ቦታ ቀንስ",
+    "moreSeats": "አንድ ቦታ ጨምር",
+    "issueLabel": "የ«መጀመሪያ እርምጃ» issue?",
+    "issueHint": "ለመጀመር ከማከማቻው ትንሽ ተግባር፦ አመልካቾች ከየት እንደሚገቡ ያውቃሉ።",
+    "issueSet": "የ«መጀመሪያ እርምጃ» issue፦ #{{number}}",
+    "issueNumber": "ቁጥር",
+    "issueTitle": "የ issue ርዕስ",
+    "issueTitlePlaceholder": "የሚቀጥለውን አውቶቡስ ሰዓት አሳይ"
+  },
+  "preview": {
+    "card": "በማሳያው ውስጥ",
+    "pageNotice": "ቅድመ እይታ፦ ጎብኚዎች እንደሚያዩት ገጹ",
+    "untitled": "new-project"
+  },
+  "checklist": {
+    "title": "{{percent}}% ዝግጁ",
+    "text": "ፕሮጀክትን የሚስብ የሚያደርገው። ስሙ እና መግለጫው ብቻ ግዴታ ናቸው።",
+    "ready": "ለመድመቅ ዝግጁ",
+    "readyText": "ሁሉም አለ፤ የቀረው ማተም ብቻ ነው።",
+    "done": "ተሠርቷል",
+    "todo": "የሚሠራ",
+    "items": {
+      "name": "ስም",
+      "tagline": "የሚስብ አጭር መግለጫ",
+      "stack": "ቢያንስ ሁለት ቴክኖሎጂዎች",
+      "cover": "የሽፋን ምስል",
+      "gallery": "በምስል ማዕከሉ ውስጥ አንድ የማያ ገጽ ምስል",
+      "story": "የጥቂት ዓረፍተ ነገሮች ታሪክ",
+      "links": "ማከማቻው ወይም ማሳያው",
+      "roles": "የሚፈለጉ ሚናዎች"
+    }
+  }
+}

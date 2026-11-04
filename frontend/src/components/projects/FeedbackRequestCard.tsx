@@ -115,7 +115,7 @@ function FeedbackCallCard({ project, call }: { project: Project; call: FeedbackC
           ) : writing ? (
             <FeedbackForm
               key="form"
-              project={project}
+              projectId={project.id}
               call={call}
               onCancel={() => setWriting(false)}
               onSent={() => {
@@ -162,17 +162,17 @@ function StarRow({ value }: { value: number }) {
 }
 
 interface FeedbackFormProps {
-  project: Project;
+  projectId: number;
   call: FeedbackCall;
   onCancel: () => void;
   onSent: () => void;
 }
 
-/** L'avis : une note (facultative) et quelques mots. */
-function FeedbackForm({ project, call, onCancel, onSent }: FeedbackFormProps) {
+/** L'avis : une note (facultative) et quelques mots. Aussi dans l'atelier (dashboard/PendingReviews). */
+export function FeedbackForm({ projectId, call, onCancel, onSent }: FeedbackFormProps) {
   const { t } = useTranslation();
   const { language } = useLanguage();
-  const give = useGiveFeedback(project.id);
+  const give = useGiveFeedback(projectId);
   const [rating, setRating] = useState(0);
   const [hover, setHover] = useState(0);
   const [body, setBody] = useState('');

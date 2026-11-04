@@ -63,5 +63,25 @@
     "openIssue": "Open the issue on GitHub",
     "matchScore": "{{score}}%",
     "yourTeam": "Your team"
+  },
+  "form": {
+    "projectTitle": "The project",
+    "projectText": "The team you're recruiting for.",
+    "roleTitle": "The role",
+    "roleText": "The job you're looking for: openings are filtered by it.",
+    "detailsTitle": "The opening",
+    "detailsText": "What this person will do, and where they can start.",
+    "projectRequired": "Choose the project that's recruiting.",
+    "roleRequired": "Choose a role.",
+    "noProjectTitle": "You need a project first.",
+    "noProjectText": "A role is posted on behalf of a project you own or maintain.",
+    "loadFailed": "Your projects couldn't load.",
+    "previewHint": "The opening as it will appear on the openings page.",
+    "previewEmpty": "Choose a project and a role: the opening will take shape here.",
+    "draftRestored": "Your draft was restored.",
+    "discardText": "The opening you are writing will be removed from this device.",
+    "publish": "Post the role",
+    "publishing": "Posting the role",
+    "published": "{{title}} is live."
   }
 }

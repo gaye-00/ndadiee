@@ -1,19 +1,24 @@
 package com.hautetech.ndadiee.storage;
 
+import java.time.Duration;
+
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.util.unit.DataSize;
 
 /**
- * Où vont les fichiers envoyés par les membres (images du forum), et leurs limites (ndadiee.storage).
+ * Où vont les fichiers envoyés par les membres (images du forum et des projets), et leurs limites (ndadiee.storage).
  *
  * @param provider          AUTO : R2 dès que ses réglages sont complets, le disque sinon ; LOCAL ; R2
  * @param localDirectory    dossier des fichiers sur le disque (développement), servi sous /api/uploads/**
  * @param maxImageSize      taille maximale d'une image
  * @param maxUploadsPerHour envois d'images par membre et par heure, au plus
+ * @param orphanRetention   combien de temps une image de projet que rien ne montre est gardée avant d'être supprimée :
+ *                          le brouillon d'un projet pas encore publié, une couverture remplacée, un projet supprimé
  * @param r2                le bucket Cloudflare R2
  */
 @ConfigurationProperties(prefix = "ndadiee.storage")
-public record StorageProperties(Provider provider, String localDirectory, DataSize maxImageSize, int maxUploadsPerHour, R2 r2) {
+public record StorageProperties(Provider provider, String localDirectory, DataSize maxImageSize, int maxUploadsPerHour,
+        Duration orphanRetention, R2 r2) {
 
     public enum Provider {
         AUTO,
@@ -26,6 +31,7 @@ public record StorageProperties(Provider provider, String localDirectory, DataSi
         localDirectory = localDirectory == null || localDirectory.isBlank() ? "uploads" : localDirectory;
         maxImageSize = maxImageSize == null ? DataSize.ofMegabytes(5) : maxImageSize;
         maxUploadsPerHour = maxUploadsPerHour <= 0 ? 40 : maxUploadsPerHour;
+        orphanRetention = orphanRetention == null || orphanRetention.isNegative() ? Duration.ofDays(7) : orphanRetention;
         r2 = r2 == null ? new R2(null, null, null, null, null, null) : r2;
     }
 

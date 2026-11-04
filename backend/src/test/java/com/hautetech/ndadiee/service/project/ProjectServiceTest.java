@@ -3,11 +3,14 @@ package com.hautetech.ndadiee.service.project;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.Mockito.never;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
+import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -20,9 +23,15 @@ import org.springframework.context.ApplicationEventPublisher;
 
 import com.hautetech.ndadiee.dto.request.JoinProjectRequest;
 import com.hautetech.ndadiee.dto.request.MemberDecisionRequest;
+import com.hautetech.ndadiee.dto.request.ProjectRequest;
+import com.hautetech.ndadiee.dto.request.ProjectSettingsRequest;
+import com.hautetech.ndadiee.dto.response.ProjectResponse;
 import com.hautetech.ndadiee.event.ProjectJoinRequestedEvent;
+import com.hautetech.ndadiee.event.ProjectMemberLeftEvent;
+import com.hautetech.ndadiee.exception.ForbiddenException;
 import com.hautetech.ndadiee.exception.OperationNotAllowedException;
 import com.hautetech.ndadiee.exception.ResourceNotFoundException;
+import com.hautetech.ndadiee.mapper.HackathonMapper;
 import com.hautetech.ndadiee.mapper.ProjectMapper;
 import com.hautetech.ndadiee.mapper.UserMapper;
 import com.hautetech.ndadiee.model.project.MemberStatus;
@@ -34,6 +43,7 @@ import com.hautetech.ndadiee.model.project.TeamRole;
 import com.hautetech.ndadiee.model.user.Developer;
 import com.hautetech.ndadiee.repository.CommentRepository;
 import com.hautetech.ndadiee.repository.DeveloperRepository;
+import com.hautetech.ndadiee.repository.HackathonTeamRepository;
 import com.hautetech.ndadiee.repository.ProjectGithubActivityRepository;
 import com.hautetech.ndadiee.repository.ProjectMediaRepository;
 import com.hautetech.ndadiee.repository.ProjectMemberRepository;
@@ -43,9 +53,13 @@ import com.hautetech.ndadiee.repository.VoteRepository;
 import com.hautetech.ndadiee.service.SlugService;
 import com.hautetech.ndadiee.service.content.TagService;
 import com.hautetech.ndadiee.service.interaction.VoteService;
+import com.hautetech.ndadiee.service.media.MediaUploadService;
 import com.hautetech.ndadiee.service.user.UserService;
 
-/** Candidatures : on postule à un rôle ouvert du projet ; le rôle se ferme quand ses places sont prises. */
+/**
+ * Candidatures : on postule à un rôle ouvert du projet ; le rôle se ferme quand ses places sont prises. Images : le
+ * projet garde celles qu'il montre, et rend celles qu'il ne montre plus.
+ */
 @ExtendWith(MockitoExtension.class)
 class ProjectServiceTest {
 
@@ -86,6 +100,12 @@ class ProjectServiceTest {
     private UserMapper userMapper;
     @Mock
     private ApplicationEventPublisher eventPublisher;
+    @Mock
+    private HackathonTeamRepository hackathonTeamRepository;
+    @Mock
+    private HackathonMapper hackathonMapper;
+    @Mock
+    private MediaUploadService mediaUploadService;
 
     @InjectMocks
     private ProjectService projectService;
@@ -201,5 +221,126 @@ class ProjectServiceTest {
 
         assertThat(design.isOpen()).isTrue();
         verify(projectMemberRepository, never()).countByOpeningIdAndStatus(any(), any());
+    }
+
+    @Test
+    void replacingTheCoverReleasesTheOldOneAndKeepsTheNewOne() {
+        project.setCoverUrl("https://media.example.com/old.webp");
+        project.setCoverThumbnailUrl("https://media.example.com/old-640.webp");
+        when(projectRepository.findById(PROJECT_ID)).thenReturn(Optional.of(project));
+        when(projectRepository.saveAndFlush(project)).thenReturn(project);
+        when(projectMapper.toResponse(project)).thenReturn(ProjectResponse.builder().id(PROJECT_ID).build());
+
+        projectService.update(OWNER, PROJECT_ID, ProjectRequest.builder().name("Lagos Transit").description("Les bus de Lagos.")
+                .coverUrl("https://media.example.com/new.webp").coverThumbnailUrl("https://media.example.com/old-640.webp").build());
+
+        verify(mediaUploadService).release(PROJECT_ID, Set.of("https://media.example.com/old.webp"));
+        verify(mediaUploadService).attach(PROJECT_ID, Set.of("https://media.example.com/new.webp", "https://media.example.com/old-640.webp"));
+    }
+
+    @Test
+    void aNewProjectKeepsItsCover() {
+        when(userService.getDeveloperOrThrow(OWNER)).thenReturn(project.getOwner());
+        when(slugService.generateUniqueSlug(any(), any())).thenReturn("paperweight");
+        when(projectRepository.save(any(Project.class))).thenAnswer(invocation -> {
+            Project saved = invocation.getArgument(0);
+            saved.setId(PROJECT_ID);
+            return saved;
+        });
+        when(projectMapper.toResponse(any(Project.class))).thenReturn(ProjectResponse.builder().id(PROJECT_ID).build());
+
+        projectService.create(OWNER, ProjectRequest.builder().name("Paperweight").description("Notes hors ligne.")
+                .coverUrl("https://media.example.com/cover.webp").build());
+
+        verify(mediaUploadService).attach(PROJECT_ID, Set.of("https://media.example.com/cover.webp"));
+        verify(hackathonTeamRepository).findCurrentByProjectIds(eq(List.of(PROJECT_ID)), any());
+    }
+
+    // ==================== DÉPARTS DE L'ÉQUIPE ====================
+
+    private ProjectMember teammate(Long memberId, Long userId, ProjectRole role) {
+        return ProjectMember.builder().id(memberId).project(project).user(developer(userId)).role(role)
+                .status(MemberStatus.ACCEPTED).build();
+    }
+
+    @Test
+    void theOwnerRemovesATeammateWhoseTasksAreReleased() {
+        ProjectMember member = teammate(70L, CANDIDATE, ProjectRole.CONTRIBUTOR);
+        when(projectRepository.findById(PROJECT_ID)).thenReturn(Optional.of(project));
+        when(projectMemberRepository.findById(70L)).thenReturn(Optional.of(member));
+
+        projectService.removeMember(OWNER, PROJECT_ID, 70L);
+
+        verify(projectMemberRepository).delete(member);
+        verify(eventPublisher).publishEvent(new ProjectMemberLeftEvent(PROJECT_ID, CANDIDATE));
+    }
+
+    @Test
+    void theOwnerIsNeverRemoved() {
+        ProjectMember owner = teammate(71L, OWNER, ProjectRole.OWNER);
+        when(projectRepository.findById(PROJECT_ID)).thenReturn(Optional.of(project));
+        when(projectMemberRepository.findById(71L)).thenReturn(Optional.of(owner));
+        when(projectMemberRepository.findByProjectIdAndUserId(PROJECT_ID, 5L))
+                .thenReturn(Optional.of(teammate(72L, 5L, ProjectRole.MAINTAINER)));
+
+        assertThatThrownBy(() -> projectService.removeMember(5L, PROJECT_ID, 71L)).isInstanceOf(OperationNotAllowedException.class);
+        verify(projectMemberRepository, never()).delete(any(ProjectMember.class));
+    }
+
+    @Test
+    void aContributorRemovesNobody() {
+        when(projectRepository.findById(PROJECT_ID)).thenReturn(Optional.of(project));
+        when(projectMemberRepository.findByProjectIdAndUserId(PROJECT_ID, CANDIDATE))
+                .thenReturn(Optional.of(teammate(70L, CANDIDATE, ProjectRole.CONTRIBUTOR)));
+
+        assertThatThrownBy(() -> projectService.removeMember(CANDIDATE, PROJECT_ID, 73L)).isInstanceOf(ForbiddenException.class);
+        verify(projectMemberRepository, never()).delete(any(ProjectMember.class));
+    }
+
+    @Test
+    void leavingTheTeamReleasesItsTasks_butCancellingAnApplicationDoesNot() {
+        ProjectMember member = teammate(70L, CANDIDATE, ProjectRole.CONTRIBUTOR);
+        when(projectMemberRepository.findByProjectIdAndUserId(PROJECT_ID, CANDIDATE)).thenReturn(Optional.of(member));
+        projectService.leave(CANDIDATE, PROJECT_ID);
+        verify(eventPublisher).publishEvent(new ProjectMemberLeftEvent(PROJECT_ID, CANDIDATE));
+
+        ProjectMember application = ProjectMember.builder().id(74L).project(project).user(developer(6L))
+                .role(ProjectRole.CONTRIBUTOR).status(MemberStatus.PENDING).build();
+        when(projectMemberRepository.findByProjectIdAndUserId(PROJECT_ID, 6L)).thenReturn(Optional.of(application));
+        projectService.leave(6L, PROJECT_ID);
+        verify(eventPublisher, never()).publishEvent(new ProjectMemberLeftEvent(PROJECT_ID, 6L));
+    }
+
+    // ==================== RÉGLAGES DE L'ESPACE ====================
+
+    @Test
+    void theOwnerChangesTheRepositoryAndRecruitmentOnly() {
+        project.setDescription("Les horaires des danfo.");
+        project.setCoverUrl("media/demo/projects/lagos-transit.webp");
+        when(projectRepository.findById(PROJECT_ID)).thenReturn(Optional.of(project));
+        when(projectRepository.saveAndFlush(project)).thenReturn(project);
+        when(projectMapper.toResponse(project)).thenReturn(new ProjectResponse());
+
+        projectService.updateSettings(OWNER, PROJECT_ID, ProjectSettingsRequest.builder()
+                .repositoryUrl("  https://github.com/lagos/transit  ")
+                .lookingForContributors(false)
+                .build());
+
+        assertThat(project.getRepositoryUrl()).isEqualTo("https://github.com/lagos/transit");
+        assertThat(project.isLookingForContributors()).isFalse();
+        // Le reste du projet ne bouge pas : ni ses textes, ni le chemin de ses images
+        assertThat(project.getDescription()).isEqualTo("Les horaires des danfo.");
+        assertThat(project.getCoverUrl()).isEqualTo("media/demo/projects/lagos-transit.webp");
+    }
+
+    @Test
+    void aTeammateDoesNotChangeTheProjectSettings() {
+        when(projectRepository.findById(PROJECT_ID)).thenReturn(Optional.of(project));
+        when(userService.canModerate(CANDIDATE)).thenReturn(false);
+
+        assertThatThrownBy(() -> projectService.updateSettings(CANDIDATE, PROJECT_ID,
+                ProjectSettingsRequest.builder().repositoryUrl("").lookingForContributors(true).build()))
+                .isInstanceOf(ForbiddenException.class);
+        verify(projectRepository, never()).saveAndFlush(any(Project.class));
     }
 }

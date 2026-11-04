@@ -74,6 +74,10 @@ public class SecurityConfiguration {
                 // Médias servis par l'API (couvertures des projets de démonstration, images des membres sans R2)
                 .requestMatchers(HttpMethod.GET, "/media/**", "/uploads/**").permitAll()
 
+                // Poignée de main du WebSocket de la messagerie : le navigateur n'y pose pas d'en-tête, le JWT est
+                // vérifié dans la trame STOMP CONNECT (StompAuthenticationInterceptor)
+                .requestMatchers("/ws", "/ws/**").permitAll()
+
                 // Documentation Swagger
                 .requestMatchers(
                     "/swagger-ui.html",

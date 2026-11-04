@@ -63,5 +63,25 @@
     "openIssue": "ተግባሩን በGitHub ላይ ክፈት",
     "matchScore": "{{score}}%",
     "yourTeam": "ቡድንህ"
+  },
+  "form": {
+    "projectTitle": "ፕሮጀክቱ",
+    "projectText": "የምትቀጥርለት ቡድን።",
+    "roleTitle": "ሚናው",
+    "roleText": "የምትፈልገው ሙያ፦ ማስታወቂያዎች የሚጣሩት በዚህ ነው።",
+    "detailsTitle": "ማስታወቂያው",
+    "detailsText": "ይህ ሰው የሚሠራው እና ከየት መጀመር እንደሚችል።",
+    "projectRequired": "የሚቀጥረውን ፕሮጀክት ምረጥ።",
+    "roleRequired": "ሚና ምረጥ።",
+    "noProjectTitle": "መጀመሪያ ፕሮጀክት ያስፈልግሃል።",
+    "noProjectText": "ሚና የሚለጠፈው በባለቤትነት ወይም በጠባቂነት በምትይዘው ፕሮጀክት ስም ነው።",
+    "loadFailed": "ፕሮጀክቶችህ ሊጫኑ አልቻሉም።",
+    "previewHint": "ማስታወቂያው በማስታወቂያዎች ገጽ ላይ የሚታየው በዚህ መልኩ ነው።",
+    "previewEmpty": "ፕሮጀክት እና ሚና ምረጥ፦ ማስታወቂያው እዚህ ቅርጽ ይይዛል።",
+    "draftRestored": "ረቂቅህ ተመልሷል።",
+    "discardText": "እየጻፍክ ያለው ማስታወቂያ ከዚህ መሣሪያ ይጠፋል።",
+    "publish": "ሚናውን ለጥፍ",
+    "publishing": "ሚናውን በመለጠፍ ላይ",
+    "published": "{{title}} ወጥቷል።"
   }
 }

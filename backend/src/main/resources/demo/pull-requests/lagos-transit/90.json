@@ -1,0 +1,8 @@
+{
+  "checks": [
+    { "name": "Tests", "context": "CI", "state": "SUCCESS", "description": "212 tests réussis", "afterMinutes": 1, "seconds": 81 },
+    { "name": "Accessibilité (axe)", "context": "CI", "state": "SUCCESS", "description": "0 violation sur 14 écrans", "afterMinutes": 2, "seconds": 57 },
+    { "name": "Lint et types", "context": "CI", "state": "SUCCESS", "afterMinutes": 1, "seconds": 33 }
+  ],
+  "issues": []
+}

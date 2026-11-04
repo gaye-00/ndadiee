@@ -1,0 +1,384 @@
+{
+  "intro": {
+    "eyebrow": "የኮድ ግምገማዎች",
+    "titleCode": "ኮዱ፣",
+    "titleTogether": "በጋራ ይገመገማል",
+    "lead": "ግምገማህን የሚጠብቁ pull requestዎች፣ የቡድኖችህ፣ እና ዓይንህ የሚያስፈልግባቸው የማህበረሰቡ።",
+    "waiting_one": "{{count}} ግምገማ ይጠብቅሃል",
+    "waiting_other": "{{count}} ግምገማዎች ይጠብቁሃል",
+    "oldest": "በጣም የቆየው ከ{{time}} ጀምሮ",
+    "allClear": "የሚጠብቅህ ግምገማ የለም",
+    "community_one": "{{count}} የማህበረሰብ PR ገምጋሚ ይፈልጋል",
+    "community_other": "{{count}} የማህበረሰብ PRዎች ገምጋሚ ይፈልጋሉ"
+  },
+  "tabs": {
+    "label": "ግምገማዎች",
+    "TO_REVIEW": "የሚገመገሙ",
+    "COMMUNITY": "ማህበረሰብ",
+    "MINE": "የእኔ PRዎች",
+    "TEAM": "ቡድኖቼ",
+    "DONE": "የተጠናቀቁ"
+  },
+  "filters": {
+    "search": "pull request ፈልግ",
+    "searchPlaceholder": "ርዕስ፣ #ቁጥር፣ ፕሮጀክት ወይም ቅርንጫፍ",
+    "projects": "የቡድኖችህ ፕሮጀክቶች",
+    "allProjects": "ሁሉም ፕሮጀክቶች"
+  },
+  "results": {
+    "loading": "ግምገማዎች በመጫን ላይ…",
+    "TO_REVIEW_one": "የሚቀርብ {{count}} ግምገማ",
+    "TO_REVIEW_other": "የሚቀርቡ {{count}} ግምገማዎች",
+    "COMMUNITY_one": "ለማህበረሰቡ ክፍት {{count}} PR",
+    "COMMUNITY_other": "ለማህበረሰቡ ክፍት {{count}} PRዎች",
+    "MINE_one": "{{count}} pull request",
+    "MINE_other": "{{count}} pull requests",
+    "TEAM_one": "በቡድኖችህ ክፍት {{count}} PR",
+    "TEAM_other": "በቡድኖችህ ክፍት {{count}} PRዎች",
+    "DONE_one": "የተጠናቀቀ {{count}} PR",
+    "DONE_other": "የተጠናቀቁ {{count}} PRዎች",
+    "errorTitle": "ግምገማዎቹ ሊጫኑ አልቻሉም",
+    "errorText": "ግንኙነትህን አረጋግጥ፣ ከዚያ እንደገና ሞክር።",
+    "more": "ተጨማሪ pull requests አሳይ",
+    "loadingMore": "ቀሪው በመጫን ላይ…",
+    "moreError": "ቀሪው ሊጫን አልቻለም።"
+  },
+  "empty": {
+    "TO_REVIEW_title": "የሚገመገም የለም",
+    "TO_REVIEW_text": "የሚጠብቅህ ግምገማ የለም። ቡድንህ ሲጠይቅ እዚህ ይደርሳል።",
+    "TO_REVIEW_action_one": "ማህበረሰቡን የሚጠብቀውን PR ገምግም",
+    "TO_REVIEW_action_other": "ከ{{count}} የማህበረሰብ PRዎች አንዱን ገምግም",
+    "COMMUNITY_title": "ክፍት የማህበረሰብ ግምገማ የለም",
+    "COMMUNITY_text": "ከቡድኖችህ ውጭ ገምጋሚ የሚፈልግ PR አሁን የለም። በቅርቡ ተመለስ።",
+    "MINE_title": "ገና pull request የለም",
+    "MINE_text": "PRዎችህ ከገምጋሚዎቻቸው እና ከማዋሃድ በፊት ከሚጎድለው ጋር እዚህ ይታያሉ።",
+    "MINE_action": "«የመጀመሪያ እርምጃ» issue ፈልግ",
+    "TEAM_title": "በቡድኖችህ ክፍት የሆነ የለም",
+    "TEAM_text": "በምትሳተፍባቸው ፕሮጀክቶች ውስጥ ክፍት PR የለም።",
+    "TEAM_action": "ቡድን ተቀላቀል",
+    "DONE_title": "ገና የተጠናቀቀ PR የለም",
+    "DONE_text": "የቡድኖችህ የተዋሃዱ ወይም የተዘጉ PRዎች፣ እና የገመገምካቸው እዚህ ይታያሉ።"
+  },
+  "noMatch": {
+    "title": "ለዚህ ፕሮጀክት pull request የለም",
+    "titleQuery": "ለ«{{query}}» pull request የለም",
+    "text": "ሌላ ቃል፣ ቁጥር (#84) ሞክር፣ ወይም የፕሮጀክት ማጣሪያውን አስወግድ።",
+    "clear": "ሁሉንም አጽዳ"
+  },
+  "phase": {
+    "open": "ክፍት",
+    "draft": "ረቂቅ",
+    "merged": "ተዋህዷል",
+    "closed": "ተዘግቷል"
+  },
+  "item": {
+    "community": "የማህበረሰብ ግምገማ",
+    "firstContribution": "የመጀመሪያ አስተዋጽኦ",
+    "files_one": "{{count}} የተቀየረ ፋይል",
+    "files_other": "{{count}} የተቀየሩ ፋይሎች",
+    "commits_one": "{{count}} commit",
+    "commits_other": "{{count}} commits",
+    "comments_one": "{{count}} አስተያየት",
+    "comments_other": "{{count}} አስተያየቶች",
+    "yourStack": "በቴክኖሎጂዎችህ ውስጥ",
+    "waiting": "ከ{{time}} ጀምሮ ግምገማህን ይጠብቃል",
+    "required": "ያስፈልጋል",
+    "merged": "ተዋህዷል {{time}}",
+    "closed": "ተዘግቷል {{time}}",
+    "opened": "ተከፍቷል {{time}}",
+    "active": "ንቁ {{time}}",
+    "branches": "ከ{{source}} ወደ {{target}}",
+    "diff": "{{additions}} መስመሮች ተጨምረዋል፣ {{deletions}} ተወግደዋል",
+    "checksFailed_one": "{{count}} ፍተሻ አልተሳካም",
+    "checksFailed_other": "{{count}} ፍተሻዎች አልተሳኩም",
+    "checksRunning": "ፍተሻዎች {{passed}}/{{total}}",
+    "checksPassed": "ከ{{total}} ፍተሻዎች {{passed}} ተሳክተዋል",
+    "noReviewer": "ገምጋሚ የለም",
+    "reviewers": "ገምጋሚዎች",
+    "reviewerState": "{{name}} · {{state}}",
+    "reviewerState_required": "{{name}} · {{state}} · ያስፈልጋል",
+    "reviewerState_community": "{{name}} · {{state}} · ማህበረሰብ",
+    "onGithub": "GitHub",
+    "onGithubLabel": "PR #{{number}}ን በGitHub ላይ ይመልከቱ",
+    "githubAuthor": "የGitHub መለያ፣ ገና በNdadiee አልተመዘገበም"
+  },
+  "state": {
+    "REQUESTED": "ግምገማ ይጠበቃል",
+    "COMMENTED": "አስተያየት ሰጥቷል",
+    "APPROVED": "አጽድቋል",
+    "CHANGES_REQUESTED": "ለውጦችን ጠይቋል"
+  },
+  "action": {
+    "review": "ገምግም",
+    "release": "ራቅ",
+    "released": "ከእንግዲህ የ#{{number}} ገምጋሚ አይደለህም",
+    "claim": "እገመግማለሁ",
+    "claimed": "የ{{project}} #{{number}} አሁን በግምገማዎችህ ውስጥ ነው"
+  },
+  "verdict": {
+    "merged": "ተዋህዷል",
+    "closed": "ሳይዋሃድ ተዘግቷል",
+    "draft": "ረቂቅ",
+    "changes": "ለውጦች ተጠይቀዋል",
+    "ready": "ለመዋሃድ ዝግጁ",
+    "awaiting_one": "{{count}} ግምገማ ይጠበቃል",
+    "awaiting_other": "{{count}} ግምገማዎች ይጠበቃሉ",
+    "noReviewer": "ገምጋሚ የለም"
+  },
+  "community": {
+    "eyebrow": "የማህበረሰብ ግምገማ",
+    "title": "ዓይንህ ይጠቅማል፣ ከቡድኑ ውጭም ቢሆን",
+    "text": "አንዳንድ PRዎች ለመላው ማህበረሰብ ገንቢዎች ክፍት ናቸው። ጠቃሚ የተባለ እያንዳንዱ ግምገማ +{{reward}} ዝና ያስገኛል።",
+    "waiting_one": "PR ገምጋሚ ይፈልጋል",
+    "waiting_other": "PRዎች ገምጋሚ ይፈልጋሉ",
+    "given_one": "የሰጠኸው የማህበረሰብ ግምገማ",
+    "given_other": "የሰጠሃቸው የማህበረሰብ ግምገማዎች",
+    "cta": "የማህበረሰብ ግምገማዎችን እይ"
+  },
+  "stats": {
+    "title": "የገምጋሚነት መዝገብህ",
+    "reviewsGiven_one": "የሰጠኸው ግምገማ",
+    "reviewsGiven_other": "የሰጠሃቸው ግምገማዎች",
+    "approved_one": "ማጽደቅ",
+    "approved_other": "ማጽደቂያዎች",
+    "changesRequested_one": "የተጠየቀ ለውጥ",
+    "changesRequested_other": "የተጠየቁ ለውጦች",
+    "mergedPullRequests_one": "የተዋሃደ PR",
+    "mergedPullRequests_other": "የተዋሃዱ PRዎች"
+  },
+  "guide": {
+    "title": "በደንብ ገምግም",
+    "readTitle": "መጀመሪያ ምክንያቱን አንብብ።",
+    "readText": "መግለጫው እና issueው PRው ምን መፍታት እንዳለበት ይናገራሉ።",
+    "suggestTitle": "ሐሳብ አቅርብ፣ አታስገድድ።",
+    "suggestText": "የኮድ ሐሳብ ከወቀሳ ይሻላል።",
+    "decideTitle": "ግልጽ ውሳኔ ስጥ።",
+    "decideText": "ጥሩ ሲሆን አጽድቅ፣ ካልሆነ የሚጎድለውን ተናገር።"
+  },
+  "sync": {
+    "title": "Pull requests",
+    "synced": "ተነብቧል {{time}}",
+    "open_one": "ክፍት በ",
+    "open_other": "ክፍት በ",
+    "first": "የማከማቻው የመጀመሪያ ንባብ በአንድ ደቂቃ ውስጥ…",
+    "reviews": "ግምገማዎቹን ይመልከቱ",
+    "action": "አመሳስል",
+    "running": "በማንበብ ላይ…",
+    "done": "Pull requestዎቹ ወቅታዊ ናቸው",
+    "error": {
+      "GITHUB_REPOSITORY_NOT_FOUND": "ማከማቻው በGitHub ላይ አልተገኘም፤ የግል ሊሆን፣ ስሙ ተቀይሮ ወይም ተሰርዞ ሊሆን ይችላል።",
+      "GITHUB_RATE_LIMITED": "GitHub ለጊዜው ጥያቄዎችን እየገደበ ነው፤ በሚቀጥለው ዙር እንደገና ይሞከራል።",
+      "GITHUB_UNAVAILABLE": "GitHub ለመጨረሻው ንባብ ምላሽ አልሰጠም፤ በሚቀጥለው ዙር እንደገና ይሞከራል።",
+      "GITHUB_NOT_CONFIGURED": "የpull request ንባብ በዚህ አገልጋይ ላይ አልተዋቀረም (የGitHub ቶከን የለም)።"
+    }
+  },
+  "page": {
+    "loading": "ግምገማው እየተጫነ ነው…",
+    "documentTitle": "#{{number}} {{title}}",
+    "aside": "ገምጋሚዎች፣ ፍተሻዎች እና የተያያዘ ተግባር",
+    "notFoundTitle": "የመዋሃድ ጥያቄው አልተገኘም",
+    "notFoundText": "በዚህ ፕሮጀክት ውስጥ የለም፣ ወይም ፕሮጀክቱ ከእንግዲህ አይታይም።",
+    "backToReviews": "ወደ ግምገማዎች ተመለስ",
+    "errorTitle": "ግምገማው ሊጫን አልቻለም",
+    "errorText": "ግንኙነትህን አረጋግጥ፣ ከዚያ እንደገና ሞክር።"
+  },
+  "header": {
+    "wants_one": "<b>{{count}} commit</b> ከ<branch>{{source}}</branch> ወደ <branch>{{target}}</branch> ማዋሃድ ይፈልጋል",
+    "wants_other": "<b>{{count}} commits</b> ከ<branch>{{source}}</branch> ወደ <branch>{{target}}</branch> ማዋሃድ ይፈልጋል",
+    "merged_one": "<b>{{count}} commit</b> ከ<branch>{{source}}</branch> ወደ <branch>{{target}}</branch> አዋህዷል",
+    "merged_other": "<b>{{count}} commits</b> ከ<branch>{{source}}</branch> ወደ <branch>{{target}}</branch> አዋህዷል",
+    "closed_one": "<b>{{count}} commit</b> ከ<branch>{{source}}</branch> ወደ <branch>{{target}}</branch> አቅርቦ ነበር",
+    "closed_other": "<b>{{count}} commits</b> ከ<branch>{{source}}</branch> ወደ <branch>{{target}}</branch> አቅርቦ ነበር",
+    "readDescription": "መግለጫውን አንብብ",
+    "onGithub": "በGitHub ላይ ተመልከት",
+    "review": "ግምገማዬን አስገባ",
+    "reviewAgain": "ውሳኔዬን እንደገና ተመልከት",
+    "mergeOnGithub": "በGitHub ላይ አዋህድ",
+    "yours": "የአንተ የመዋሃድ ጥያቄ",
+    "myVerdict": {
+      "COMMENTED": "አስተያየት ሰጥተሃል",
+      "APPROVED": "አጽድቀሃል",
+      "CHANGES_REQUESTED": "ለውጦችን ጠይቀሃል"
+    }
+  },
+  "pageTabs": {
+    "label": "የግምገማው ክፍሎች",
+    "files": "የተቀየሩ ፋይሎች",
+    "conversation": "ውይይት"
+  },
+  "files": {
+    "title": "የተቀየሩ ፋይሎች",
+    "viewed": "{{seen}}/{{total}} ታይተዋል",
+    "viewedLabel": "ከ{{total}} ፋይሎች {{seen}} ታይተዋል",
+    "viewedFile": "ታይቷል",
+    "collapse": "የፋይሎች ዝርዝርን ደብቅ",
+    "expand": "የፋይሎች ዝርዝርን አሳይ",
+    "filter": "ፋይል ፈልግ",
+    "clearFilter": "ፍለጋውን አጽዳ",
+    "noMatch": "ለ«{{query}}» ምንም ፋይል የለም",
+    "status": {
+      "ADDED": "ታክሏል",
+      "MODIFIED": "ተቀይሯል",
+      "REMOVED": "ተሰርዟል",
+      "RENAMED": "ስሙ ተቀይሯል",
+      "COPIED": "ተቀድቷል"
+    }
+  },
+  "diff": {
+    "label": "የመዋሃድ ጥያቄው ልዩነቶች",
+    "loading": "ልዩነቶቹ እየተነበቡ ነው…",
+    "errorTitle": "ልዩነቶቹ ሊጫኑ አልቻሉም",
+    "errorText": "GitHub ምላሽ አልሰጠም። ትንሽ ቆይተህ እንደገና ሞክር።",
+    "unavailableTitle": "ልዩነቶቹ አይገኙም",
+    "unavailableText_one": "ይህ የማሳያ የመዋሃድ ጥያቄ {{count}} ፋይል ይቀይራል፣ ነገር ግን ልዩነቶቹን እዚህ ማየት አይቻልም።",
+    "unavailableText_other": "ይህ የማሳያ የመዋሃድ ጥያቄ {{count}} ፋይሎችን ይቀይራል፣ ነገር ግን ልዩነቶቹን እዚህ ማየት አይቻልም።",
+    "expandAll": "ሁሉንም ዘርጋ",
+    "collapseAll": "ሁሉንም አጥፍ",
+    "expandFile": "{{path}}ን ዘርጋ",
+    "collapseFile": "{{path}}ን አጥፍ",
+    "copyPath": "መንገዱን ቅዳ",
+    "pathCopied": "መንገዱ ተቀድቷል",
+    "viewOnGithub": "{{path}}ን በGitHub ላይ ተመልከት",
+    "viewed": "ታይቷል",
+    "readOnly": "ይህን የመዋሃድ ጥያቄ የፕሮጀክቱ ቡድን እና ገምጋሚዎቹ ይገመግሙታል፦ ልታነበው ትችላለህ፣ አስተያየት ግን መስጠት አትችልም።",
+    "commentLine": "በመስመር {{line}} ላይ አስተያየት ስጥ",
+    "added": "የታከለ መስመር፦",
+    "removed": "የተሰረዘ መስመር፦",
+    "noNewline": "በፋይሉ መጨረሻ አዲስ መስመር የለም",
+    "noPatch": "ልዩነቶቹ አልታዩም፦ ባይነሪ ፋይል ወይም በጣም ትልቅ ነው።",
+    "renamedOnly": "የፋይሉ ስም ብቻ ተቀይሯል።",
+    "openOnGithub": "በGitHub ላይ ክፈት",
+    "outdated": "ከልዩነቶቹ ውጭ ባሉ መስመሮች ላይ ያሉ አስተያየቶች",
+    "lineLabel": "መስመር {{line}}",
+    "moreOnGithub_one": "በGitHub ላይ የሚነበብ ተጨማሪ {{count}} ፋይል",
+    "moreOnGithub_other": "በGitHub ላይ የሚነበቡ ተጨማሪ {{count}} ፋይሎች"
+  },
+  "thread": {
+    "placeholder": "አስተያየት፣ ጥያቄ፣ ሐሳብ…",
+    "replyPlaceholder": "መልስ…",
+    "replyLabel": "በ{{path}}፣ መስመር {{line}} ላይ ላለው ውይይት መልስ",
+    "newLabel": "በ{{path}}፣ መስመር {{line}} ላይ አስተያየት ስጥ",
+    "editLabel": "አስተያየቱን አርትዕ",
+    "newOnLine": "አዲስ አስተያየት · መስመር {{line}}",
+    "hint": "ለማተም {{mod}} + Enter",
+    "comment": "አስተያየት ስጥ",
+    "reply": "መልስ",
+    "save": "አስቀምጥ",
+    "cancel": "ሰርዝ",
+    "empty": "አስተያየትህን ጻፍ።",
+    "explainSuggestion": "ይህን ኮድ ለምን እንደምታቀርብ በአንድ ዓረፍተ ነገር ተናገር።",
+    "addSuggestion": "ኮድ አቅርብ",
+    "removeSuggestion": "ሐሳቡን አስወግድ",
+    "edited": "ተስተካክሏል",
+    "menu": "የአስተያየት እርምጃዎች",
+    "edit": "አርትዕ",
+    "delete": "ሰርዝ",
+    "deleteTitle": "ይህ አስተያየት ይሰረዝ?",
+    "deleteText": "ከውይይቱ ይጠፋል። ይህ ሊቀለበስ አይችልም።",
+    "deleted": "አስተያየቱ ተሰርዟል",
+    "roles": {
+      "author": "ጸሐፊ",
+      "required": "አስፈላጊ",
+      "community": "ማህበረሰብ",
+      "reviewer": "ገምጋሚ"
+    }
+  },
+  "suggestion": {
+    "title": "ሐሳብ",
+    "copy": "ቅዳ",
+    "copied": "ተቀድቷል",
+    "empty": "መስመሩን ሰርዝ"
+  },
+  "reviewers": {
+    "title": "ገምጋሚዎች",
+    "empty": "እስካሁን ይህን የመዋሃድ ጥያቄ የሚገመግም የለም።",
+    "required_one": "ከ{{count}} አስፈላጊ ግምገማ {{approved}} ጸድቋል",
+    "required_other": "ከ{{count}} አስፈላጊ ግምገማዎች {{approved}} ጸድቀዋል",
+    "requiredTag": "አስፈላጊ",
+    "communityTag": "ማህበረሰብ",
+    "claim": "ራሴን እንደ ገምጋሚ አቅርብ",
+    "claimHint": "ቡድኑ ጠቃሚ ያለው ግምገማ +{{reward}} ዝና ያስገኝልሃል።",
+    "judge": "ጠቃሚ ግምገማ · +{{reward}}",
+    "helpful": "ጠቃሚ ተብሏል",
+    "helpfulFor": "ጠቃሚ ተብሏል · +{{reward}} ዝና",
+    "judged": "የ{{name}} ግምገማ +{{reward}} ዝና ያስገኝለታል",
+    "unjudged": "የ{{name}} ግምገማ ከእንግዲህ ጠቃሚ ተብሎ አይቆጠርም"
+  },
+  "checks": {
+    "title": "ፍተሻዎች",
+    "onGithub": "ፍተሻዎቹን በGitHub ላይ ተመልከት",
+    "none": "በመጨረሻው commit ላይ ምንም ፍተሻ የለም።",
+    "passed_one": "{{count}} ፍተሻ አልፏል",
+    "passed_other": "ሁሉም {{count}} ፍተሻዎች አልፈዋል",
+    "running_one": "{{count}} ፍተሻ በሂደት ላይ",
+    "running_other": "{{count}} ፍተሻዎች በሂደት ላይ",
+    "error": "የፍተሻዎቹ ዝርዝር ሊጫን አልቻለም።",
+    "details": "የ{{name}}ን መዝገብ ተመልከት",
+    "state": {
+      "SUCCESS": "አልፏል፦",
+      "FAILURE": "አልተሳካም፦",
+      "PENDING": "በሂደት ላይ፦",
+      "SKIPPED": "ተዘሏል፦"
+    }
+  },
+  "task": {
+    "title": "የተያያዘ ተግባር",
+    "none": "የተያያዘ ጉዳይ የለም። በመግለጫው «Closes #12» የሚጽፍ PR እዚህ ይታያል።",
+    "error": "የተያያዙ ጉዳዮች ሊጫኑ አልቻሉም።",
+    "untitled": "ጉዳይ #{{number}}",
+    "open": "ክፍት ነው · ይህ PR ሲዋሃድ ይዘጋዋል",
+    "closed": "ተዘግቷል",
+    "willClose": "ይህ PR ሲዋሃድ ይዘጋዋል",
+    "starter": "የመጀመሪያ እርምጃ"
+  },
+  "conversation": {
+    "label": "የመዋሃድ ጥያቄው ውይይት",
+    "opened": "ይህን የመዋሃድ ጥያቄ ከፍቷል",
+    "noDescription": "መግለጫ የለም።",
+    "empty": "እስካሁን አስተያየት የለም፦ ውይይቱን ጀምር።",
+    "placeholder": "በመዋሃድ ጥያቄው ላይ አስተያየት ስጥ…",
+    "composerLabel": "በመዋሃድ ጥያቄው ላይ አስተያየት ስጥ",
+    "send": "አስተያየት ስጥ",
+    "sent": "አስተያየቱ ታትሟል",
+    "reviewHint": "መገምገም ጨረስክ?",
+    "verdict": {
+      "COMMENTED": "አስተያየት ሰጥቷል",
+      "APPROVED": "እነዚህን ለውጦች አጽድቋል",
+      "CHANGES_REQUESTED": "ለውጦችን ጠይቋል"
+    }
+  },
+  "submit": {
+    "eyebrow": "የመዋሃድ ጥያቄ #{{number}}",
+    "title": "ግምገማዬን አስገባ",
+    "text": "ውሳኔህ እና መልእክትህ ውይይቱን ይቀላቀላሉ፤ ጸሐፊው ወዲያውኑ ያያቸዋል።",
+    "close": "ዝጋ",
+    "verdict": "ውሳኔ",
+    "verdicts": {
+      "COMMENTED": "አስተያየት",
+      "APPROVED": "አጽድቅ",
+      "CHANGES_REQUESTED": "ለውጦችን ጠይቅ"
+    },
+    "verdictHints": {
+      "COMMENTED": "ያለ ውሳኔ አስተያየቶች።",
+      "APPROVED": "ለአንተ ጥሩ ነው፦ ሊዋሃድ ይችላል።",
+      "CHANGES_REQUESTED": "ከመዋሃዱ በፊት መስተካከል አለበት።"
+    },
+    "message": "የግምገማህ መልእክት",
+    "placeholder": "ጥሩውን እና የጎደለውን ተናገር…",
+    "placeholderOptional": "ለጸሐፊው አንድ ቃል (አማራጭ)",
+    "hint": "ለመላክ {{mod}} + Enter",
+    "explain": "የጎደለውን ተናገር፦ ከማጽደቅ በስተቀር መልእክት ያስፈልጋል።",
+    "reward": "የማህበረሰብ ግምገማ፦ ቡድኑ ጠቃሚ ካለው +{{reward}} ዝና ያስገኝልሃል።",
+    "cancel": "ሰርዝ",
+    "send": {
+      "COMMENTED": "አስተያየቴን ላክ",
+      "APPROVED": "አጽድቅ",
+      "CHANGES_REQUESTED": "ለውጦችን ጠይቅ"
+    },
+    "done": {
+      "COMMENTED": "የ#{{number}} ግምገማህ ገብቷል",
+      "APPROVED": "#{{number}}ን አጽድቀሃል",
+      "CHANGES_REQUESTED": "በ#{{number}} ላይ ለውጦች ተጠይቀዋል"
+    }
+  }
+}

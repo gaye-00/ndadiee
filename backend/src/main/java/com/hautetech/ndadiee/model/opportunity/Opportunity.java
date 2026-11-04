@@ -13,6 +13,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
 import jakarta.persistence.FetchType;
+import jakarta.persistence.Index;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
@@ -32,7 +33,13 @@ import lombok.experimental.SuperBuilder;
 @NoArgsConstructor
 @SuperBuilder
 @Entity
-@Table(name = "opportunities")
+@Table(
+    name = "opportunities",
+    indexes = {
+        @Index(name = "idx_opportunities_posted_by", columnList = "posted_by_id"),
+        @Index(name = "idx_opportunities_active_created_at", columnList = "active, created_at DESC")
+    }
+)
 public class Opportunity extends BaseEntity {
 
     @Column(nullable = false)
@@ -78,7 +85,8 @@ public class Opportunity extends BaseEntity {
     @JoinTable(
         name = "opportunity_tags",
         joinColumns = @JoinColumn(name = "opportunity_id"),
-        inverseJoinColumns = @JoinColumn(name = "tag_id")
+        inverseJoinColumns = @JoinColumn(name = "tag_id"),
+        indexes = @Index(name = "idx_opportunity_tags_tag", columnList = "tag_id")
     )
     @ToString.Exclude
     @Builder.Default

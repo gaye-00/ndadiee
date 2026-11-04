@@ -1,0 +1,249 @@
+{
+  "form": {
+    "back": "Amaphrojekthi ami",
+    "title": "Shicilela iphrojekthi",
+    "mode": "Imodi yokuhlela",
+    "write": "Bhala",
+    "preview": "Buka kuqala",
+    "aside": "Ukubuka kuqala embukisweni nezinyathelo ezisele",
+    "draftRestored": "Okusalungiswa kwakho kubuyisiwe, kanye nezithombe.",
+    "startOver": "Qala phansi",
+    "draftSaved": "Okusalungiswa kugcinwe kule divayisi",
+    "uploading_one": "Isithombe esingu-{{count}} sisendleleni…",
+    "uploading_other": "Izithombe ezingu-{{count}} zisendleleni…",
+    "imagesPending": "Isithombe esisodwa sisathunyelwa: iphrojekthi izohamba lapho sesifikile.",
+    "discard": "Sula",
+    "discardTitle": "Sula lokhu okusalungiswa?",
+    "discardText": "Iphrojekthi oyibhalayo nezithombe zayo kuzosuka kule divayisi.",
+    "discardConfirm": "Sula okusalungiswa",
+    "publish": "Shicilela iphrojekthi",
+    "publishing": "Iphrojekthi iyashicilelwa",
+    "published": "I-{{name}} isiku-inthanethi: wamukelekile embukisweni!"
+  },
+  "section": {
+    "complete": "isinyathelo siphelile",
+    "essentials": {
+      "title": "Okubalulekile",
+      "text": "Okufundwa kuqala ekhadini lombukiso: igama, umusho okhangayo, ubuchwepheshe."
+    },
+    "images": {
+      "title": "Izithombe",
+      "text": "Isithombe sesembozo, bese izithombe-skrini zalokho okusebenza kakade. Yilokho okwenza abantu bachofoze."
+    },
+    "story": {
+      "title": "Indaba",
+      "text": "Inkinga iphrojekthi eyixazululayo, ngobani, lapho isifike khona, nokulandelayo."
+    },
+    "links": {
+      "title": "Izixhumanisi nelayisensi",
+      "text": "Lapho kufundwa khona ikhodi, lapho ingazanywa khona, nalokho wonke umuntu avunyelwe ukukwenza ngayo."
+    },
+    "team": {
+      "title": "Ithimba",
+      "text": "Ufuna abanikeli? Indima ngayinye iba isikhangiso, esibonwa amaphrofayela afanelekile."
+    }
+  },
+  "field": {
+    "optional": "akuphoqelekile"
+  },
+  "fields": {
+    "name": "Igama lephrojekthi",
+    "namePlaceholder": "lagos-transit",
+    "nameHint": "Igama lendawo yokugcina ikhodi, noma lelo abasebenzisi bakho abalaziyo. Ikheli lekhasi lisuselwa kulo futhi ngeke lishintshe.",
+    "tagline": "Isiqubulo",
+    "taglinePlaceholder": "Amabhasi alandelayo eLagos, ngisho ngaphandle kwe-inthanethi",
+    "taglineHint": "Umusho owodwa wekhadi lombukiso: lokho iphrojekthi ekwenzayo, nokuthi ngobani.",
+    "tags": "Ubuchwepheshe",
+    "tagsHint": "Izilimi, izinhlaka, izihloko (kufika ku-{{count}}): yilokhu abantu abafanele abathola ngakho iphrojekthi.",
+    "cover": "Isithombe sesembozo",
+    "description": "Incazelo",
+    "descriptionPlaceholder": "Inkinga, isixazululo, lapho iphrojekthi isifike khona…\n\n- Okusebenza kakade\n- Okulandelayo",
+    "descriptionHint": "Izigaba, **umbhalo ogqamile**, `ikhodi` nezinhlu: yilokhu ikhasi lephrojekthi elikubonisa ngakho. {{mod}} + Enter ukuze ushicilele.",
+    "repository": "Indawo yokugcina ikhodi",
+    "demo": "Umboniso obukhoma",
+    "license": "Ilayisensi"
+  },
+  "errors": {
+    "url": "Ikheli eliphelele, eliqala ngo-https://",
+    "issueNumber": "Inombolo ye-issue: izinombolo kuphela"
+  },
+  "github": {
+    "title": "Qala endaweni yakho ye-GitHub",
+    "text": "Igama, isiqubulo, ubuchwepheshe, ilayisensi, umboniso nesingeniso se-README kugcwaliswa ngokuchofoza kanye. Usaphethe konke.",
+    "label": "Ikheli lendawo ye-GitHub",
+    "placeholder": "github.com/i-akhawunti/indawo",
+    "import": "Ngenisa",
+    "reading": "Ifunda indawo…",
+    "hint": "Namathisela ikheli: ukungenisa kuqala ngokwako. Izindawo zomphakathi kuphela.",
+    "invalid": "Leli akulona ikheli lendawo ye-GitHub: github.com/i-akhawunti/indawo",
+    "mine": "Izindawo zakho zakamuva",
+    "noProfile": "Engeza i-GitHub yakho kuphrofayela yakho ukuze uthole izindawo zakho lapha.",
+    "addProfile": "Qedela iphrofayela yami",
+    "alreadyListedShort": "Isivele isembukisweni",
+    "done": "Indawo ingenisiwe",
+    "filled": "Izinkambu ezigcwalisiwe",
+    "nothingNew": "Konke bekuvele kugcwalisiwe: akukho okushintshiwe.",
+    "alreadyListed": "Le ndawo isivele isembukisweni.",
+    "seeProject": "Buka iphrojekthi",
+    "archived": "Le ndawo igcinwe kungobo yomlando ku-GitHub.",
+    "fork": "Le ndawo iyikhophi (fork) yenye iphrojekthi.",
+    "undo": "Hlehlisa ukungenisa",
+    "another": "Ngenisa enye indawo",
+    "fields": {
+      "name": "igama",
+      "tagline": "isiqubulo",
+      "description": "incazelo",
+      "tags_one": "ubuchwepheshe obungu-{{count}}",
+      "tags_other": "ubuchwepheshe obungu-{{count}}",
+      "license": "ilayisensi",
+      "demo": "umboniso",
+      "repository": "indawo"
+    },
+    "errors": {
+      "notFound": "Indawo ayitholakalanga: hlola ikheli. Indawo eyimfihlo ayikwazi ukungeniswa.",
+      "rateLimited": "I-GitHub ikhawulela izicelo okwamanje: zama futhi emizuzwini embalwa, noma ugcwalise iphrojekthi ngesandla.",
+      "unavailable": "I-GitHub ayiphenduli okwamanje: zama futhi kamuva, noma ugcwalise iphrojekthi ngesandla.",
+      "network": "Akukho ukuxhumana: hlola inethiwekhi yakho, bese uzama futhi."
+    }
+  },
+  "stack": {
+    "chosen": "Ubuchwepheshe obukhethiwe",
+    "placeholder": "React, Kotlin, Mobile Money…",
+    "more": "Engeza…",
+    "full_one": "Ubuchwepheshe obungu-{{count}} kuphela",
+    "full_other": "Ubuchwepheshe obungu-{{count}} kuphela",
+    "suggestions": "Ubuchwepheshe obuphakanyisiwe",
+    "create": "Dala «{{tag}}»",
+    "remove": "Susa i-{{tag}}",
+    "add": "Engeza i-{{tag}}",
+    "addAll": "Engeza konke",
+    "fromRepository": "Endaweni:",
+    "popular": "Okuthandwayo:"
+  },
+  "cover": {
+    "empty": "Hudula isithombe, sinamathisele, noma usikhethe",
+    "drop": "Yekela isithombe lapha",
+    "hint": "JPEG, PNG, WebP noma GIF. Uzosilungisa ngefomethi yombukiso (16:10) ngaphambi kokuthumela.",
+    "alt": "Isithombe sesembozo sephrojekthi",
+    "recrop": "Lungisa kabusha",
+    "replace": "Faka esinye",
+    "remove": "Susa",
+    "borrowed": "Isithombe esibolekiwe? Sho umthombo waso",
+    "creditLabel": "Umbhali nelayisensi",
+    "creditPlaceholder": "Amina Diallo · CC BY 4.0",
+    "sourceLabel": "Isixhumanisi somthombo"
+  },
+  "crop": {
+    "coverTitle": "Lungisa isithombe sesembozo",
+    "shotTitle": "Lungisa isithombe-skrini",
+    "help": "Hudula isithombe ngaphansi kohlaka, sondeza ngesondo, ngeminwe emibili noma ngesilayida. Ngekhibhodi: imicibisholo, + no −.",
+    "frameRole": "indawo yohlaka",
+    "frameLabel": "Uhlaka 16:10, ukusondeza {{zoom}}%",
+    "zoom": "Ukusondeza",
+    "zoomIn": "Sondeza",
+    "zoomOut": "Qhelisa",
+    "output": "{{width}} × {{height}} px",
+    "blurry": "indawo encane: isithombe singase sibe fiphele esikrinini esikhulu",
+    "reset": "Buyisela phakathi",
+    "cancel": "Khansela",
+    "confirm": "Qinisekisa uhlaka"
+  },
+  "images": {
+    "sending": "Iyathumela",
+    "retry": "Zama futhi",
+    "errorType": "«{{name}}» akusona isithombe esifundekayo: JPEG, PNG, WebP noma GIF.",
+    "errorSize": "Isithombe sidlula u-{{max}} MB ngisho sesincishisiwe: zama isithombe esilula.",
+    "errorUpload": "Isithombe asikwazanga ukuthunyelwa: hlola ukuxhumana kwakho, bese uzama futhi."
+  },
+  "gallery": {
+    "label": "Igalari",
+    "hint": "Izithombe-skrini zohlelo lokusebenza, izithombe zasenkundleni. Ngasinye silungiswa ku-16:10; ungasilungisa kabusha.",
+    "reorderHint": "Hudula isibambo ukuze ushintshe ukulandelana",
+    "addFirst": "Engeza izithombe-skrini",
+    "add": "Engeza",
+    "addHint_one": "kusengenzeka okungu-{{count}}",
+    "addHint_other": "kusengenzeka okungu-{{count}}",
+    "full_one": "Igalari ithatha isithombe esingu-{{count}} kuphela: ezilandelayo azengezwanga.",
+    "full_other": "Igalari ithatha izithombe ezingu-{{count}} kuphela: ezilandelayo azengezwanga.",
+    "item": "Isithombe {{index}} kwezingu-{{total}}",
+    "handle": "Hambisa: {{item}}",
+    "handleHint": "Alt + umcibisholo wesobunxele noma wesokudla ukuze usihambise",
+    "addCaption": "Engeza incazelo emfushane",
+    "captionLabel": "Incazelo emfushane",
+    "captionPlaceholder": "Amabhasi alandelayo esitobhini sase-Obalende",
+    "kindLabel": "Uhlobo lwesithombe",
+    "kind": {
+      "SCREENSHOT": "Isikrini",
+      "PHOTO": "Isithombe"
+    },
+    "creditLabel": "Umthombo (isithombe esibolekiwe)",
+    "moveBefore": "Hambisa phambili",
+    "moveAfter": "Hambisa emuva",
+    "remove": "Susa",
+    "discard": "Yeka"
+  },
+  "license": {
+    "none": "Okwamanje cha",
+    "other": "Okunye…",
+    "otherLabel": "Isihlonzi selayisensi",
+    "otherPlaceholder": "EUPL-1.2",
+    "about": {
+      "MIT": "MIT: imfushane futhi ivumelekile. Noma ubani angasebenzisa kabusha ikhodi, ngisho nasemkhiqizweni ovaliwe, uma ebalula umbhali.",
+      "Apache-2.0": "Apache 2.0: ivumelekile, inokuvikelwa kwamalungelo obunikazi. Ukukhetha okuvamile kwezinkampani.",
+      "BSD-3-Clause": "BSD 3: ivumelekile njenge-MIT, futhi ivimbela ukusebenzisa igama lakho ukukhangisa umsebenzi osuselwe kuyo.",
+      "MPL-2.0": "MPL 2.0: amafayela ashintshiwe ahlala evulekile; umkhiqizo osele ungavalwa.",
+      "GPL-3.0": "GPL 3.0: noma iyiphi isofthiwe esuselwe kuyo esabalaliswayo kufanele ihlale ivulekile, ngelayisensi efanayo.",
+      "AGPL-3.0": "AGPL 3.0: njenge-GPL, futhi isevisi ye-inthanethi eyisebenzisayo kufanele ishicilele ikhodi yayo nayo."
+    },
+    "aboutNone": "Ngaphandle kwelayisensi, akekho onelungelo ngokomthetho lokusebenzisa kabusha ikhodi: khetha eyodwa ngaphambi kokwamukela abanikeli.",
+    "aboutOther": "Isihlonzi sayo se-SPDX: «EUPL-1.2», «CC-BY-4.0»…",
+    "help": "Qhathanisa amalayisensi"
+  },
+  "team": {
+    "recruiting": "Ngifuna abanikeli",
+    "recruitingOn": "Iphrojekthi izovela phakathi kwalezo eziqasha. Chaza izindima: amaphrofayela afanelekile azozibona.",
+    "recruitingOff": "Kuvule ukuze wamukele abanikeli futhi ushicilele izindima. Ungakwenza kamuva.",
+    "chosen": "Izindima ezifunwayo",
+    "catalogFirst": "Khetha indima yokuqala",
+    "catalog": "Engeza indima",
+    "titleLabel": "Isihloko sendima",
+    "titlePlaceholder": "Unjiniyela wamaselula we-React Native",
+    "remove": "Susa indima {{role}}",
+    "descriptionLabel": "Okulindelekile",
+    "descriptionPlaceholder": "Isikrini sohambo ngaphandle kwe-inthanethi, nge-Jetpack Compose…",
+    "seatsLabel": "Izikhala",
+    "seats_one": "isikhala esingu-{{count}}",
+    "seats_other": "izikhala ezingu-{{count}}",
+    "fewerSeats": "Isikhala esisodwa ngaphansi",
+    "moreSeats": "Isikhala esisodwa ngaphezulu",
+    "issueLabel": "I-issue «yesinyathelo sokuqala»?",
+    "issueHint": "Umsebenzi omncane wendawo ongaqala ngawo: abafakizicelo bazokwazi ukuthi bangena kuphi.",
+    "issueSet": "I-issue «yesinyathelo sokuqala»: #{{number}}",
+    "issueNumber": "Inombolo",
+    "issueTitle": "Isihloko se-issue",
+    "issueTitlePlaceholder": "Bonisa isikhathi sebhasi elilandelayo"
+  },
+  "preview": {
+    "card": "Embukisweni",
+    "pageNotice": "Ukubuka kuqala: ikhasi njengoba izivakashi zizolibona",
+    "untitled": "iphrojekthi-entsha"
+  },
+  "checklist": {
+    "title": "Ilungele ngo-{{percent}}%",
+    "text": "Okwenza iphrojekthi ikhange. Igama nencazelo kuphela okuphoqelekile.",
+    "ready": "Ilungele ukukhanya",
+    "readyText": "Konke kukhona: okusele ukushicilela kuphela.",
+    "done": "kwenziwe",
+    "todo": "okuzokwenziwa",
+    "items": {
+      "name": "Igama",
+      "tagline": "Isiqubulo esikhangayo",
+      "stack": "Okungenani ubuchwepheshe obubili",
+      "cover": "Isithombe sesembozo",
+      "gallery": "Isithombe-skrini egalarini",
+      "story": "Indaba yemisho embalwa",
+      "links": "Indawo noma umboniso",
+      "roles": "Izindima ezifunwayo"
+    }
+  }
+}

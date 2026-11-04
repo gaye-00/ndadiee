@@ -1,0 +1,10 @@
+{
+  "checks": [
+    { "name": "Tests", "context": "CI", "state": "SUCCESS", "description": "148 tests réussis", "afterMinutes": 1, "seconds": 74 },
+    { "name": "Lint et types", "context": "CI", "state": "SUCCESS", "description": "oxlint et tsc sans erreur", "afterMinutes": 1, "seconds": 41 },
+    { "name": "Budget de poids", "context": "size-limit", "state": "SUCCESS", "description": "virtual-list : 2,1 ko sur 3 ko", "afterMinutes": 2, "seconds": 23 }
+  ],
+  "issues": [
+    { "number": 6, "title": "Inventaire : la liste saccade au-delà de 1 000 articles", "state": "OPEN", "labels": ["good first issue", "performance"] }
+  ]
+}

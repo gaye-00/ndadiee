@@ -1,0 +1,249 @@
+{
+  "form": {
+    "back": "Miradi yangu",
+    "title": "Chapisha mradi",
+    "mode": "Hali ya kuhariri",
+    "write": "Andika",
+    "preview": "Hakiki",
+    "aside": "Hakiki kwenye onyesho na hatua zilizobaki",
+    "draftRestored": "Rasimu yako imerejeshwa, pamoja na picha.",
+    "startOver": "Anza upya",
+    "draftSaved": "Rasimu imehifadhiwa kwenye kifaa hiki",
+    "uploading_one": "Picha {{count}} inatumwa…",
+    "uploading_other": "Picha {{count}} zinatumwa…",
+    "imagesPending": "Picha moja bado inatumwa: mradi utachapishwa mara itakapofika.",
+    "discard": "Futa",
+    "discardTitle": "Futa rasimu hii?",
+    "discardText": "Mradi unaoandika na picha zake vitaondolewa kwenye kifaa hiki.",
+    "discardConfirm": "Futa rasimu",
+    "publish": "Chapisha mradi",
+    "publishing": "Mradi unachapishwa",
+    "published": "{{name}} iko hewani: karibu kwenye onyesho!"
+  },
+  "section": {
+    "complete": "hatua imekamilika",
+    "essentials": {
+      "title": "Mambo muhimu",
+      "text": "Kinachosomwa kwanza kwenye kadi ya onyesho: jina, sentensi inayovutia, teknolojia."
+    },
+    "images": {
+      "title": "Picha",
+      "text": "Picha ya jalada, kisha picha za skrini za kinachofanya kazi tayari. Hicho ndicho kinachofanya watu wabofye."
+    },
+    "story": {
+      "title": "Simulizi",
+      "text": "Tatizo ambalo mradi unatatua, kwa ajili ya nani, umefika wapi, na kinachofuata."
+    },
+    "links": {
+      "title": "Viungo na leseni",
+      "text": "Mahali pa kusoma msimbo, mahali pa kuujaribu, na kile kila mtu anaruhusiwa kufanya nao."
+    },
+    "team": {
+      "title": "Timu",
+      "text": "Unatafuta wachangiaji? Kila jukumu linakuwa tangazo, linaloonekana kwa wasifu unaolingana nalo."
+    }
+  },
+  "field": {
+    "optional": "si lazima"
+  },
+  "fields": {
+    "name": "Jina la mradi",
+    "namePlaceholder": "lagos-transit",
+    "nameHint": "Jina la hazina, au lile watumiaji wako wanalolijua. Anwani ya ukurasa inatokana nalo na haitabadilika.",
+    "tagline": "Kauli fupi",
+    "taglinePlaceholder": "Mabasi yajayo ya Lagos, hata bila mtandao",
+    "taglineHint": "Sentensi moja kwa kadi ya onyesho: mradi unafanya nini, na kwa ajili ya nani.",
+    "tags": "Teknolojia",
+    "tagsHint": "Lugha, mifumo, mada (hadi {{count}}): hivi ndivyo watu sahihi wanavyoupata mradi.",
+    "cover": "Picha ya jalada",
+    "description": "Maelezo",
+    "descriptionPlaceholder": "Tatizo, suluhisho, mradi umefika wapi…\n\n- Kinachofanya kazi tayari\n- Kinachofuata",
+    "descriptionHint": "Aya, **herufi nzito**, `msimbo` na orodha: ndivyo ukurasa wa mradi unavyoonyesha. {{mod}} + Enter kuchapisha.",
+    "repository": "Hazina ya msimbo",
+    "demo": "Onyesho la moja kwa moja",
+    "license": "Leseni"
+  },
+  "errors": {
+    "url": "Anwani kamili, inayoanza na https://",
+    "issueNumber": "Namba ya issue: tarakimu tu"
+  },
+  "github": {
+    "title": "Anza na hazina yako ya GitHub",
+    "text": "Jina, kauli fupi, teknolojia, leseni, onyesho na utangulizi wa README vinajazwa kwa mbofyo mmoja. Unabaki na udhibiti wa kila kitu.",
+    "label": "Anwani ya hazina ya GitHub",
+    "placeholder": "github.com/akaunti/hazina",
+    "import": "Leta",
+    "reading": "Inasoma hazina…",
+    "hint": "Bandika anwani: uletaji unaanza wenyewe. Hazina za umma tu.",
+    "invalid": "Hii si anwani ya hazina ya GitHub: github.com/akaunti/hazina",
+    "mine": "Hazina zako za hivi karibuni",
+    "noProfile": "Ongeza GitHub yako kwenye wasifu ili kupata hazina zako hapa.",
+    "addProfile": "Kamilisha wasifu wangu",
+    "alreadyListedShort": "Tayari kwenye onyesho",
+    "done": "Hazina imeletwa",
+    "filled": "Sehemu zilizojazwa",
+    "nothingNew": "Kila kitu kilikuwa kimejazwa tayari: hakuna kilichobadilishwa.",
+    "alreadyListed": "Hazina hii tayari iko kwenye onyesho.",
+    "seeProject": "Tazama mradi",
+    "archived": "Hazina hii imehifadhiwa kwenye kumbukumbu za GitHub.",
+    "fork": "Hazina hii ni nakala (fork) ya mradi mwingine.",
+    "undo": "Tendua uletaji",
+    "another": "Leta hazina nyingine",
+    "fields": {
+      "name": "jina",
+      "tagline": "kauli fupi",
+      "description": "maelezo",
+      "tags_one": "teknolojia {{count}}",
+      "tags_other": "teknolojia {{count}}",
+      "license": "leseni",
+      "demo": "onyesho",
+      "repository": "hazina"
+    },
+    "errors": {
+      "notFound": "Hazina haijapatikana: kagua anwani. Hazina binafsi haiwezi kuletwa.",
+      "rateLimited": "GitHub inapunguza maombi kwa sasa: jaribu tena baada ya dakika chache, au jaza mradi kwa mkono.",
+      "unavailable": "GitHub haijibu kwa sasa: jaribu tena baadaye kidogo, au jaza mradi kwa mkono.",
+      "network": "Hakuna muunganisho: kagua mtandao wako, kisha ujaribu tena."
+    }
+  },
+  "stack": {
+    "chosen": "Teknolojia zilizochaguliwa",
+    "placeholder": "React, Kotlin, Mobile Money…",
+    "more": "Ongeza…",
+    "full_one": "Teknolojia {{count}} tu",
+    "full_other": "Teknolojia {{count}} tu",
+    "suggestions": "Teknolojia zinazopendekezwa",
+    "create": "Unda «{{tag}}»",
+    "remove": "Ondoa {{tag}}",
+    "add": "Ongeza {{tag}}",
+    "addAll": "Ongeza zote",
+    "fromRepository": "Kwenye hazina:",
+    "popular": "Maarufu:"
+  },
+  "cover": {
+    "empty": "Buruta picha, ibandike, au ichague",
+    "drop": "Iachie picha hapa",
+    "hint": "JPEG, PNG, WebP au GIF. Utaiweka kwenye fremu ya onyesho (16:10) kabla ya kutuma.",
+    "alt": "Picha ya jalada ya mradi",
+    "recrop": "Panga upya fremu",
+    "replace": "Badilisha",
+    "remove": "Ondoa",
+    "borrowed": "Picha ya kuazima? Taja chanzo chake",
+    "creditLabel": "Mwandishi na leseni",
+    "creditPlaceholder": "Amina Diallo · CC BY 4.0",
+    "sourceLabel": "Kiungo cha chanzo"
+  },
+  "crop": {
+    "coverTitle": "Panga fremu ya jalada",
+    "shotTitle": "Panga fremu ya picha ya skrini",
+    "help": "Buruta picha chini ya fremu, kuza kwa gurudumu, kwa vidole viwili au kwa kitelezi. Kwa kibodi: mishale, + na −.",
+    "frameRole": "eneo la fremu",
+    "frameLabel": "Fremu 16:10, ukuzaji {{zoom}}%",
+    "zoom": "Ukuzaji",
+    "zoomIn": "Kuza",
+    "zoomOut": "Punguza",
+    "output": "{{width}} × {{height}} px",
+    "blurry": "eneo dogo: picha inaweza kuonekana na ukungu kwenye skrini kubwa",
+    "reset": "Rudisha katikati",
+    "cancel": "Ghairi",
+    "confirm": "Thibitisha fremu"
+  },
+  "images": {
+    "sending": "Inatuma",
+    "retry": "Jaribu tena",
+    "errorType": "«{{name}}» si picha inayosomeka: JPEG, PNG, WebP au GIF.",
+    "errorSize": "Picha inazidi MB {{max}} hata ikipunguzwa: jaribu picha nyepesi zaidi.",
+    "errorUpload": "Picha haikuweza kutumwa: kagua muunganisho wako, kisha ujaribu tena."
+  },
+  "gallery": {
+    "label": "Matunzio",
+    "hint": "Picha za skrini za programu, picha za uwanjani. Kila moja imewekwa kwenye fremu 16:10; unaweza kuipanga upya.",
+    "reorderHint": "Buruta kishikio ili kubadilisha mpangilio",
+    "addFirst": "Ongeza picha za skrini",
+    "add": "Ongeza",
+    "addHint_one": "zinawezekana {{count}} zaidi",
+    "addHint_other": "zinawezekana {{count}} zaidi",
+    "full_one": "Matunzio yana picha {{count}} tu: zinazofuata hazikuongezwa.",
+    "full_other": "Matunzio yana picha {{count}} tu: zinazofuata hazikuongezwa.",
+    "item": "Picha {{index}} kati ya {{total}}",
+    "handle": "Hamisha: {{item}}",
+    "handleHint": "Alt + mshale wa kushoto au kulia kuihamisha",
+    "addCaption": "Ongeza maelezo mafupi",
+    "captionLabel": "Maelezo mafupi",
+    "captionPlaceholder": "Mabasi yajayo kituo cha Obalende",
+    "kindLabel": "Aina ya picha",
+    "kind": {
+      "SCREENSHOT": "Skrini",
+      "PHOTO": "Picha"
+    },
+    "creditLabel": "Chanzo (picha ya kuazima)",
+    "moveBefore": "Sogeza mbele",
+    "moveAfter": "Sogeza nyuma",
+    "remove": "Ondoa",
+    "discard": "Achana nayo"
+  },
+  "license": {
+    "none": "Bado",
+    "other": "Nyingine…",
+    "otherLabel": "Kitambulisho cha leseni",
+    "otherPlaceholder": "EUPL-1.2",
+    "about": {
+      "MIT": "MIT: fupi na huru. Yeyote anaweza kutumia msimbo tena, hata kwenye bidhaa iliyofungwa, akimtaja mwandishi.",
+      "Apache-2.0": "Apache 2.0: huru, pamoja na ulinzi dhidi ya hataza. Chaguo la kawaida la makampuni.",
+      "BSD-3-Clause": "BSD 3: huru kama MIT, na inakataza kutumia jina lako kutangaza kazi inayotokana nayo.",
+      "MPL-2.0": "MPL 2.0: faili zilizobadilishwa zinabaki wazi; sehemu nyingine ya bidhaa inaweza kufungwa.",
+      "GPL-3.0": "GPL 3.0: programu yoyote inayotokana nayo ikisambazwa lazima ibaki wazi, chini ya leseni ileile.",
+      "AGPL-3.0": "AGPL 3.0: kama GPL, na huduma ya mtandaoni inayoitumia lazima pia ichapishe msimbo wake."
+    },
+    "aboutNone": "Bila leseni, hakuna mtu mwenye haki kisheria ya kutumia msimbo tena: chagua moja kabla ya kukaribisha wachangiaji.",
+    "aboutOther": "Kitambulisho chake cha SPDX: «EUPL-1.2», «CC-BY-4.0»…",
+    "help": "Linganisha leseni"
+  },
+  "team": {
+    "recruiting": "Natafuta wachangiaji",
+    "recruitingOn": "Mradi utaonekana kati ya ile inayoajiri. Eleza majukumu: wasifu unaolingana utayaona.",
+    "recruitingOff": "Iwashe ili kukaribisha wachangiaji na kuchapisha majukumu. Unaweza kufanya hivyo baadaye.",
+    "chosen": "Majukumu yanayotafutwa",
+    "catalogFirst": "Chagua jukumu la kwanza",
+    "catalog": "Ongeza jukumu",
+    "titleLabel": "Jina la jukumu",
+    "titlePlaceholder": "Msanidi wa simu React Native",
+    "remove": "Ondoa jukumu {{role}}",
+    "descriptionLabel": "Kinachotarajiwa",
+    "descriptionPlaceholder": "Skrini ya safari bila mtandao, kwa Jetpack Compose…",
+    "seatsLabel": "Nafasi",
+    "seats_one": "nafasi {{count}}",
+    "seats_other": "nafasi {{count}}",
+    "fewerSeats": "Nafasi moja pungufu",
+    "moreSeats": "Nafasi moja zaidi",
+    "issueLabel": "Issue ya «hatua ya kwanza»?",
+    "issueHint": "Kazi ndogo ya hazina ya kuanzia: waombaji watajua pa kuingilia.",
+    "issueSet": "Issue ya «hatua ya kwanza»: #{{number}}",
+    "issueNumber": "Namba",
+    "issueTitle": "Kichwa cha issue",
+    "issueTitlePlaceholder": "Onyesha saa ya basi lijalo"
+  },
+  "preview": {
+    "card": "Kwenye onyesho",
+    "pageNotice": "Hakiki: ukurasa kama wageni watakavyouona",
+    "untitled": "mradi-mpya"
+  },
+  "checklist": {
+    "title": "Tayari kwa {{percent}}%",
+    "text": "Kinachofanya mradi uvutie. Jina na maelezo pekee ndivyo vya lazima.",
+    "ready": "Tayari kung'aa",
+    "readyText": "Kila kitu kipo: kilichobaki ni kuchapisha tu.",
+    "done": "imekamilika",
+    "todo": "ya kufanya",
+    "items": {
+      "name": "Jina",
+      "tagline": "Kauli fupi inayovutia",
+      "stack": "Angalau teknolojia mbili",
+      "cover": "Picha ya jalada",
+      "gallery": "Picha ya skrini kwenye matunzio",
+      "story": "Simulizi ya sentensi chache",
+      "links": "Hazina au onyesho",
+      "roles": "Majukumu yanayotafutwa"
+    }
+  }
+}

@@ -318,6 +318,46 @@ part souvent en moins de 300 Ko. Un repère « Envoi de photo.jpg… » tient sa
 l'image, avec une description à compléter. On ne publie pas tant qu'un envoi est en cours. Stockage : Cloudflare R2
 (voir le README du backend).
 
+## Espace d'équipe
+
+`/projects/:slug/workspace` (design 3E, 3G sur téléphone) : `layout/WorkspaceLayout.tsx`, `pages/workspace/`,
+`components/workspace/`. Réservé à l'équipe : un visiteur de passage y apprend comment entrer (les rôles ouverts, ou sa
+candidature en attente). La coquille, chargée à la demande avec ses textes (`layouts.workspace`, `router/pages.ts`),
+pose l'espace dans un contexte (`workspaceContext.ts`) lu par tous ses composants.
+
+- **En-tête** (`WorkspaceHeader`) : le projet et ta place, l'équipe et qui est en ligne (point vert, liste au clic),
+  « Inviter » et « + Tâche » (raccourci `N`, de n'importe quel onglet). Dessous, le sprint : son objectif, son échéance
+  (en rouge une fois passée) et une bande tissée d'un fil par tâche du tableau, de la couleur de sa colonne. Le porteur
+  et les mainteneurs ouvrent et closent les sprints (`SprintDialog` : ce qui est livré, ce qui continue, le suivant
+  dans la foulée).
+- **Onglets** (`WorkspaceTabs`) : une adresse par onglet, ce qui attend s'y compte (PR ouvertes, rôles ouverts).
+- **Tableau** (`KanbanBoard`, `KanbanColumn`, `TaskCard`, logique pure dans `board.ts`) : quatre colonnes, chacune son
+  fil du kente. Glisser-déposer avec dnd-kit : à la souris, au doigt (appui long, la page défile encore), au clavier
+  (Espace soulève, flèches, Espace pose, Échap annule), annoncé au lecteur d'écran dans la langue de l'interface. Le
+  geste se voit tout de suite et revient en arrière si l'API refuse (`useMoveTask`). Filtres : un mot ou « #38 »,
+  « les miennes », « sans preneur ». « Ajouter une tâche » écrit en bas d'une colonne sans quitter le tableau. Le
+  dernier geste de l'équipe s'affiche au-dessus (« Tunde a déplacé #38 vers En revue »).
+- **Téléphone** (`KanbanColumnSwitcher`) : une colonne à la fois, que le sélecteur collant ou un balayage change.
+- **Fiche d'une tâche** (`TaskDialog`, `hooks/useTaskDialog.ts`) : ouverte par l'adresse (`?task=38`, se partage ;
+  `?task=new&column=IN_REVIEW`), Précédent la ferme. Titre, colonne, métier, personne (« Je la prends »), PR liée et
+  son verdict, détail ; Ctrl+Entrée enregistre, quitter avec des modifications demande confirmation. Une tâche livrée
+  pendant un sprint clos se lit seulement.
+- **Discussion** (`TeamChatPanel`, `ChatMessage`, `ChatComposer`, `ChatEventCard`, `EventDialog`) : à droite sur grand
+  écran, en feuille ailleurs (un bouton compte les messages arrivés). Le prochain rendez-vous est épinglé (« J'y serai »,
+  « Rejoindre » un quart d'heure avant, fil kente qui tourne pendant). Dans un message : `**gras**`, `` `code` ``,
+  mentions, adresses, et « #38 », qui ouvre la tâche, teinté de sa colonne. En écrivant, `#` propose les tâches et `@`
+  l'équipe. Le message s'affiche en route, et revient dans le champ si l'envoi échoue. Remonter charge les messages
+  d'avant sans que la lecture saute.
+- **Temps réel** (`useWorkspacePulse`) : le pouls de l'espace, toutes les quatre secondes (quinze en économie de
+  données, rien quand l'onglet est caché), met à jour qui est en ligne et ne relit que ce qui a changé (tableau, équipe,
+  discussion). Retiré de l'équipe entre-temps, on voit l'espace se fermer.
+- **Inviter** (`InviteDialog`) : on rejoint une équipe par un rôle ; on partage donc le lien des rôles ouverts (copie,
+  WhatsApp, partage du téléphone). Les candidatures en attente s'acceptent ou se refusent sur place.
+- **Autres onglets** : Revues (les PR du projet : ouvertes, à relire, terminées, et la lecture du dépôt), Devlog (on y
+  note un progrès, `DevlogComposer`), Rôles ouverts, Réglages (`WorkspaceSettingsForm` : ton métier, l'équipe et ses
+  mainteneurs, le dépôt GitHub et le recrutement, quitter l'équipe).
+- Textes : l'espace de noms `workspace` des traductions (et `reviews`), téléchargé avec la coquille.
+
 ## Pied de page
 
 `layout/Footer.tsx` : les liens (Explorer, Contribuer), les dix langues écrites chacune dans sa langue

@@ -7,6 +7,7 @@ import org.hibernate.annotations.DynamicUpdate;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Table;
+import jakarta.persistence.UniqueConstraint;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -25,13 +26,19 @@ import lombok.experimental.SuperBuilder;
 @SuperBuilder
 @Entity
 @DynamicUpdate
-@Table(name = "tags")
+@Table(
+    name = "tags",
+    uniqueConstraints = {
+        @UniqueConstraint(name = "uk_tags_name", columnNames = "name"),
+        @UniqueConstraint(name = "uk_tags_slug", columnNames = "slug")
+    }
+)
 public class Tag extends BaseEntity {
 
-    @Column(nullable = false, unique = true, length = 50)
+    @Column(nullable = false, length = 50)
     private String name;
 
-    @Column(nullable = false, unique = true, length = 60)
+    @Column(nullable = false, length = 60)
     private String slug;
 
     @Column(columnDefinition = "TEXT")

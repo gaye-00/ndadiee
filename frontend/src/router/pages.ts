@@ -11,8 +11,24 @@ export type PageImport = () => Promise<{ default: ComponentType }>;
  * Le code d'une page et les textes de sa fonctionnalité (un espace de noms des traductions, dans la langue
  * de l'interface), téléchargés ensemble : la page s'affiche avec ses textes, sans attente de plus.
  */
-function withTexts(load: PageImport, namespace: 'admin' | 'forum' | 'hackathons' | 'openings' | 'profile' | 'showcase'): PageImport {
-  return () => Promise.all([load(), i18n.loadNamespaces(namespace)]).then(([module]) => module);
+function withTexts(
+  load: PageImport,
+  ...namespaces: Array<'admin' | 'dashboard' | 'forum' | 'hackathons' | 'messages' | 'openings' | 'profile' | 'projectForm' | 'reviews' | 'showcase' | 'workspace'>
+): PageImport {
+  return () => Promise.all([load(), i18n.loadNamespaces(namespaces)]).then(([module]) => module);
+}
+
+/**
+ * Coquilles chargées à la demande, comme les pages. L'espace d'équipe (en-tête, onglets, discussion) n'est téléchargé
+ * qu'à la première visite, avec ses textes et ceux des revues (son onglet Revues, la synchronisation du dépôt).
+ */
+export const layouts = {
+  workspace: withTexts(() => import('@/components/layout/WorkspaceLayout'), 'workspace', 'reviews'),
+} satisfies Record<string, PageImport>;
+
+/** Une page de l'espace d'équipe : précharger la page précharge aussi sa coquille. */
+function inWorkspace(load: PageImport): PageImport {
+  return () => Promise.all([load(), layouts.workspace()]).then(([module]) => module);
 }
 
 /**
@@ -24,9 +40,11 @@ export const pages = {
   landing: () => import('@/pages/landing/LandingPage'),
 
   showcase: withTexts(() => import('@/pages/showcase/ShowcasePage'), 'showcase'),
-  project: () => import('@/pages/projects/ProjectPage'),
+  // Les textes des revues : la carte des pull requests du dépôt (RepositorySyncCard)
+  project: withTexts(() => import('@/pages/projects/ProjectPage'), 'reviews'),
   openings: withTexts(() => import('@/pages/openings/OpeningsPage'), 'openings'),
-  newOpening: () => import('@/pages/openings/NewOpeningPage'),
+  // Les champs d'un rôle sont ceux du formulaire de projet ; l'aperçu est une carte de la page des annonces
+  newOpening: withTexts(() => import('@/pages/openings/NewOpeningPage'), 'openings', 'projectForm'),
   hackathons: withTexts(() => import('@/pages/hackathons/HackathonsPage'), 'hackathons'),
   hackathon: withTexts(() => import('@/pages/hackathons/HackathonPage'), 'hackathons'),
   forum: withTexts(() => import('@/pages/forum/ForumPage'), 'forum'),
@@ -36,18 +54,18 @@ export const pages = {
   profile: withTexts(() => import('@/pages/profile/ProfilePage'), 'profile'),
   search: () => import('@/pages/search/SearchPage'),
 
-  // L'atelier montre le prochain hackathon de l'équipe (HackathonSpotlight)
-  dashboard: withTexts(() => import('@/pages/dashboard/DashboardPage'), 'hackathons'),
+  // L'atelier montre aussi le prochain hackathon de l'équipe (HackathonSpotlight) et des annonces (OpeningCard)
+  dashboard: withTexts(() => import('@/pages/dashboard/DashboardPage'), 'dashboard', 'hackathons', 'openings', 'reviews'),
   myProjects: () => import('@/pages/projects/MyProjectsPage'),
-  newProject: () => import('@/pages/projects/NewProjectPage'),
-  workspaceBoard: () => import('@/pages/workspace/WorkspaceBoardPage'),
-  workspaceReviews: () => import('@/pages/workspace/WorkspaceReviewsPage'),
-  workspaceDevlog: () => import('@/pages/workspace/WorkspaceDevlogPage'),
-  workspaceRoles: () => import('@/pages/workspace/WorkspaceRolesPage'),
-  workspaceSettings: () => import('@/pages/workspace/WorkspaceSettingsPage'),
-  review: () => import('@/pages/reviews/ReviewPage'),
-  reviews: () => import('@/pages/reviews/ReviewsPage'),
-  messages: () => import('@/pages/messages/MessagesPage'),
+  newProject: withTexts(() => import('@/pages/projects/NewProjectPage'), 'projectForm'),
+  workspaceBoard: inWorkspace(() => import('@/pages/workspace/WorkspaceBoardPage')),
+  workspaceReviews: inWorkspace(() => import('@/pages/workspace/WorkspaceReviewsPage')),
+  workspaceDevlog: inWorkspace(() => import('@/pages/workspace/WorkspaceDevlogPage')),
+  workspaceRoles: inWorkspace(() => import('@/pages/workspace/WorkspaceRolesPage')),
+  workspaceSettings: inWorkspace(() => import('@/pages/workspace/WorkspaceSettingsPage')),
+  review: withTexts(() => import('@/pages/reviews/ReviewPage'), 'reviews'),
+  reviews: withTexts(() => import('@/pages/reviews/ReviewsPage'), 'reviews'),
+  messages: withTexts(() => import('@/pages/messages/MessagesPage'), 'messages'),
   notifications: () => import('@/pages/notifications/NotificationsPage'),
   settings: () => import('@/pages/settings/SettingsPage'),
 

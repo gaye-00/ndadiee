@@ -24,6 +24,7 @@ import org.springframework.web.multipart.MultipartFile;
 import com.hautetech.ndadiee.dto.response.UploadResponse;
 import com.hautetech.ndadiee.exception.OperationNotAllowedException;
 import com.hautetech.ndadiee.exception.UploadRejectedException;
+import com.hautetech.ndadiee.model.media.UploadPurpose;
 import com.hautetech.ndadiee.service.user.UserService;
 import com.hautetech.ndadiee.storage.FileStorage;
 import com.hautetech.ndadiee.storage.StorageProperties;
@@ -31,16 +32,20 @@ import com.hautetech.ndadiee.storage.StorageProperties;
 import lombok.extern.slf4j.Slf4j;
 
 /**
- * Les images envoyées par les membres : celles qu'ils insèrent dans le forum (sujets, réponses, commentaires), et
- * leur photo de profil (AvatarService).
+ * Les images envoyées par les membres : celles qu'ils insèrent dans le forum (sujets, réponses, commentaires), les
+ * couvertures et captures de leurs projets, et leur photo de profil (AvatarService).
  *
  * <ul>
  * <li>Le format se lit dans les premiers octets du fichier, pas dans son nom ni dans le type annoncé : seuls JPEG,
  * PNG, WebP et GIF passent. Jamais de SVG (il peut contenir du script).</li>
- * <li>Le navigateur a déjà réduit et réencodé l'image (frontend : lib/imageUpload.ts), ce qui retire ses
- * métadonnées (position GPS d'une photo). Le serveur garde la limite de taille.</li>
+ * <li>Le navigateur a déjà réduit et réencodé l'image (frontend : lib/imageUpload.ts, lib/projectImages.ts), ce qui
+ * retire ses métadonnées (position GPS d'une photo). Le serveur garde la limite de taille.</li>
  * <li>Chaque fichier a une clé neuve et imprévisible, sous un dossier propre au membre : forum/{membre}/{année}/{mois}/,
- * avatars/{membre}/. Le préfixe du membre permet de retrouver ses fichiers (modération, suppression du compte).</li>
+ * projects/{membre}/{année}/{mois}/, avatars/{membre}/. Le préfixe du membre permet de retrouver ses fichiers
+ * (modération, suppression du compte).</li>
+ * <li>Les images du forum et des projets sont inscrites à l'inventaire (MediaUploadService), qui supprime les images de
+ * projet que plus rien ne montre. Une image de projet arrive avec sa miniature (640 px), sous la même clé suivie de
+ * « -640 » : un seul envoi.</li>
  * <li>Un nombre d'envois par membre et par heure, pour protéger le bucket. Compté en mémoire : par serveur.</li>
  * </ul>
  */
@@ -53,6 +58,7 @@ public class ImageUploadService {
 
     private final FileStorage storage;
     private final UserService userService;
+    private final MediaUploadService mediaUploadService;
     private final long maxBytes;
     private final int maxPerHour;
     private final Clock clock;
@@ -60,14 +66,17 @@ public class ImageUploadService {
     private final Map<Long, Deque<Instant>> recentUploads = new ConcurrentHashMap<>();
 
     @Autowired
-    public ImageUploadService(FileStorage storage, UserService userService, StorageProperties properties) {
-        this(storage, userService, properties, Clock.systemUTC());
+    public ImageUploadService(FileStorage storage, UserService userService, MediaUploadService mediaUploadService,
+            StorageProperties properties) {
+        this(storage, userService, mediaUploadService, properties, Clock.systemUTC());
     }
 
     // Pour les tests : une horloge arrêtée
-    ImageUploadService(FileStorage storage, UserService userService, StorageProperties properties, Clock clock) {
+    ImageUploadService(FileStorage storage, UserService userService, MediaUploadService mediaUploadService,
+            StorageProperties properties, Clock clock) {
         this.storage = storage;
         this.userService = userService;
+        this.mediaUploadService = mediaUploadService;
         this.maxBytes = properties.maxImageSize().toBytes();
         this.maxPerHour = properties.maxUploadsPerHour();
         this.clock = clock;
@@ -76,9 +85,33 @@ public class ImageUploadService {
     public UploadResponse uploadImage(Long userId, MultipartFile file) {
         // Un compte développeur seulement : c'est lui qui écrit dans le forum
         userService.getDeveloperOrThrow(userId);
-        StoredImage image = store(userId, file, "forum/%d/%s".formatted(userId, MONTH.format(clock.instant())),
-                ImageType.ALL, maxBytes);
+        StoredImage image = store(userId, file, folderOf(UploadPurpose.FORUM, userId), ImageType.ALL, maxBytes);
+        record(userId, UploadPurpose.FORUM, image);
         return UploadResponse.builder().url(image.url()).contentType(image.contentType()).size(image.size()).build();
+    }
+
+    /**
+     * Une couverture ou une capture de projet (1280 px de côté au plus) et sa miniature (640 px), vérifiées toutes deux
+     * avant d'être rangées : leurs adresses. Un seul envoi de l'heure. Elles restent à l'inventaire sans projet jusqu'à
+     * la publication (MediaUploadService). Jamais de GIF : une couverture est fixe.
+     */
+    public UploadResponse uploadProjectImage(Long userId, MultipartFile file, MultipartFile thumbnail) {
+        userService.getDeveloperOrThrow(userId);
+        CheckedImage full = check(file, ImageType.STILL, maxBytes);
+        CheckedImage small = check(thumbnail, ImageType.STILL, maxBytes);
+        reserveSlot(userId);
+
+        String name = "%s/%s".formatted(folderOf(UploadPurpose.PROJECT, userId), UUID.randomUUID());
+        StoredImage image = put(userId, name, full);
+        StoredImage miniature = put(userId, name + "-640", small);
+        record(userId, UploadPurpose.PROJECT, image);
+        record(userId, UploadPurpose.PROJECT, miniature);
+        return UploadResponse.builder()
+                .url(image.url())
+                .thumbnailUrl(miniature.url())
+                .contentType(image.contentType())
+                .size(image.size())
+                .build();
     }
 
     /**
@@ -90,6 +123,13 @@ public class ImageUploadService {
      * @param limit    poids maximal, en octets ; jamais plus que la limite de la configuration
      */
     StoredImage store(Long userId, MultipartFile file, String folder, Set<ImageType> accepted, long limit) {
+        CheckedImage image = check(file, accepted, limit);
+        reserveSlot(userId);
+        return put(userId, "%s/%s".formatted(folder, UUID.randomUUID()), image);
+    }
+
+    // Un fichier reçu, lu et reconnu : une image d'un format accepté ici, sous la limite de poids
+    private CheckedImage check(MultipartFile file, Set<ImageType> accepted, long limit) {
         if (file == null || file.isEmpty()) {
             throw new OperationNotAllowedException("Aucun fichier reçu");
         }
@@ -102,12 +142,24 @@ public class ImageUploadService {
         ImageType type = ImageType.detect(content)
                 .filter(accepted::contains)
                 .orElseThrow(() -> UploadRejectedException.unsupported(ImageType.describe(accepted)));
-        reserveSlot(userId);
+        return new CheckedImage(content, type);
+    }
 
-        String key = "%s/%s.%s".formatted(folder, UUID.randomUUID(), type.extension());
-        String url = storage.store(key, content, type.contentType());
-        log.info("[Upload] Membre {} : image {} ({} octets)", userId, key, content.length);
-        return new StoredImage(key, url, type.contentType(), content.length);
+    // Range l'image sous ce nom (son extension ajoutée)
+    private StoredImage put(Long userId, String name, CheckedImage image) {
+        String key = "%s.%s".formatted(name, image.type().extension());
+        String url = storage.store(key, image.content(), image.type().contentType());
+        log.info("[Upload] Membre {} : image {} ({} octets)", userId, key, image.content().length);
+        return new StoredImage(key, url, image.type().contentType(), image.content().length);
+    }
+
+    private void record(Long userId, UploadPurpose purpose, StoredImage image) {
+        mediaUploadService.record(userId, purpose, image.key(), image.url(), image.contentType(), image.size());
+    }
+
+    // {forum|projects}/{membre}/{année}/{mois}
+    private String folderOf(UploadPurpose purpose, Long userId) {
+        return "%s/%d/%s".formatted(purpose.keyPrefix(), userId, MONTH.format(clock.instant()));
     }
 
     // Une place dans la fenêtre d'une heure, ou le refus
@@ -135,6 +187,10 @@ public class ImageUploadService {
 
     /** Une image rangée dans le stockage : sa clé, son adresse publique, son format et son poids en octets. */
     record StoredImage(String key, String url, String contentType, long size) {
+    }
+
+    // Une image reçue et reconnue, pas encore rangée
+    private record CheckedImage(byte[] content, ImageType type) {
     }
 
     /** Les formats acceptés, reconnus à leur signature (les premiers octets du fichier). */

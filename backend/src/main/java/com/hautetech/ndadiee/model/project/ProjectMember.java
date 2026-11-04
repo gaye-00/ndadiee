@@ -1,5 +1,7 @@
 package com.hautetech.ndadiee.model.project;
 
+import java.time.Instant;
+
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
@@ -11,6 +13,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
 import jakarta.persistence.FetchType;
+import jakarta.persistence.Index;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import jakarta.persistence.UniqueConstraint;
@@ -30,15 +33,21 @@ import lombok.experimental.SuperBuilder;
 @Entity
 @Table(
     name = "project_members",
-    uniqueConstraints = @UniqueConstraint(name = "uk_project_members_project_user", columnNames = {"project_id", "user_id"})
+    uniqueConstraints = @UniqueConstraint(name = "uk_project_members_project_user", columnNames = {"project_id", "user_id"}),
+    indexes = {
+        @Index(name = "idx_project_members_user", columnList = "user_id"),
+        @Index(name = "idx_project_members_opening", columnList = "opening_id, status")
+    }
 )
 public class ProjectMember extends BaseEntity {
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @OnDelete(action = OnDeleteAction.CASCADE)
     @ToString.Exclude
     private Project project;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @OnDelete(action = OnDeleteAction.CASCADE)
     @ToString.Exclude
     private Developer user;
 
@@ -67,4 +76,7 @@ public class ProjectMember extends BaseEntity {
     // Le mot de sa candidature, pour le porteur et les mainteneurs
     @Column(length = 500)
     private String motivation;
+
+    // Dernier signe de vie dans l'espace d'équipe (WorkspaceService.pulse) : en ligne s'il est récent
+    private Instant lastSeenAt;
 }

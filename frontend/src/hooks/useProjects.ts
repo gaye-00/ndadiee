@@ -6,15 +6,17 @@ import {
   useQuery,
   useQueryClient,
 } from '@tanstack/react-query';
+import { openingService } from '@/services/opening.service';
 import { projectService } from '@/services/project.service';
 import type {
   FeedbackCall,
   FeedbackRequest,
   JoinProjectRequest,
   MemberDecisionRequest,
+  NewProjectRequest,
   ProjectFacetFilters,
   ProjectFilters,
-  ProjectRequest,
+  ProjectOpeningRequest,
 } from '@/types/project.types';
 
 /** Requête d'une liste de projets : partagée par les hooks et le préchargement (LandingPage). */
@@ -91,21 +93,37 @@ function useInvalidateProjects() {
     void qc.invalidateQueries({ queryKey: ['project'] });
     // Les annonces disent les candidatures reçues, et celle du membre connecté
     void qc.invalidateQueries({ queryKey: ['openings'] });
+    // L'atelier montre ses équipes, ses candidatures et celles qu'il doit étudier
+    void qc.invalidateQueries({ queryKey: ['dashboard'] });
+    // L'espace d'équipe compte ses membres et les candidatures à étudier
+    void qc.invalidateQueries({ queryKey: ['workspace'] });
     if (projectId !== undefined) {
       void qc.invalidateQueries({ queryKey: ['project-members', projectId] });
     }
   };
 }
 
+/** Publie un projet : sa page, reçue en retour, est déjà en cache quand on y arrive. */
 export function useCreateProject() {
   const qc = useQueryClient();
   const invalidate = useInvalidateProjects();
   return useMutation({
-    mutationFn: (body: ProjectRequest) => projectService.create(body),
-    onSuccess: () => {
+    mutationFn: (body: NewProjectRequest) => projectService.create(body),
+    onSuccess: (project) => {
       invalidate();
+      qc.setQueryData(['project', project.slug], project);
       void qc.invalidateQueries({ queryKey: ['feed'] });
     },
+    meta: { handlesError: true },
+  });
+}
+
+/** Publie un rôle pour un projet : les annonces, le projet et l'atelier se rechargent. */
+export function useCreateOpening() {
+  const invalidate = useInvalidateProjects();
+  return useMutation({
+    mutationFn: ({ projectId, body }: { projectId: number; body: ProjectOpeningRequest }) => openingService.create(projectId, body),
+    onSuccess: () => invalidate(),
     meta: { handlesError: true },
   });
 }
@@ -139,6 +157,19 @@ export function useProjectDevlog(projectId: number | undefined) {
     initialPageParam: 0,
     getNextPageParam: (last) => (last.last ? undefined : last.page + 1),
     enabled: projectId !== undefined,
+  });
+}
+
+/** Écrit dans le devlog : l'entrée arrive en tête du journal (page du projet, espace d'équipe, fil de l'atelier). */
+export function useAddDevlogEntry(projectId: number) {
+  const qc = useQueryClient();
+  return useMutation({
+    mutationFn: (body: { version?: string; body: string }) => projectService.addDevlogEntry(projectId, body),
+    onSuccess: () => {
+      void qc.invalidateQueries({ queryKey: ['project-devlog', projectId] });
+      void qc.invalidateQueries({ queryKey: ['dashboard'] });
+    },
+    meta: { handlesError: true },
   });
 }
 

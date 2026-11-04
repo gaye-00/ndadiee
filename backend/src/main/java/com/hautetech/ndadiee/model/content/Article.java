@@ -15,11 +15,13 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
 import jakarta.persistence.FetchType;
+import jakarta.persistence.Index;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
+import jakarta.persistence.UniqueConstraint;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -35,13 +37,20 @@ import lombok.experimental.SuperBuilder;
 @SuperBuilder
 @Entity
 @DynamicUpdate
-@Table(name = "articles")
+@Table(
+    name = "articles",
+    uniqueConstraints = @UniqueConstraint(name = "uk_articles_slug", columnNames = "slug"),
+    indexes = {
+        @Index(name = "idx_articles_author", columnList = "author_id"),
+        @Index(name = "idx_articles_status_published_at", columnList = "status, published_at DESC")
+    }
+)
 public class Article extends BaseEntity {
 
     @Column(nullable = false)
     private String title;
 
-    @Column(nullable = false, unique = true)
+    @Column(nullable = false)
     private String slug;
 
     // Markdown
@@ -63,7 +72,8 @@ public class Article extends BaseEntity {
     @JoinTable(
         name = "article_tags",
         joinColumns = @JoinColumn(name = "article_id"),
-        inverseJoinColumns = @JoinColumn(name = "tag_id")
+        inverseJoinColumns = @JoinColumn(name = "tag_id"),
+        indexes = @Index(name = "idx_article_tags_tag", columnList = "tag_id")
     )
     @ToString.Exclude
     @Builder.Default

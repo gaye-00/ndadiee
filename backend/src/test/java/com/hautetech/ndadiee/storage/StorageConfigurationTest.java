@@ -17,7 +17,7 @@ class StorageConfigurationTest {
     private final StorageConfiguration configuration = new StorageConfiguration();
 
     private static StorageProperties properties(Provider provider, R2 r2) {
-        return new StorageProperties(provider, "build/test-uploads", null, 0, r2);
+        return new StorageProperties(provider, "build/test-uploads", null, 0, null, r2);
     }
 
     @Test

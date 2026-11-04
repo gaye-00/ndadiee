@@ -1,5 +1,6 @@
 package com.hautetech.ndadiee.repository;
 
+import java.time.Instant;
 import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
@@ -7,12 +8,14 @@ import java.util.Optional;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
 import com.hautetech.ndadiee.model.project.MemberStatus;
 import com.hautetech.ndadiee.model.project.ProjectMember;
 import com.hautetech.ndadiee.model.project.ProjectRole;
+import com.hautetech.ndadiee.service.workspace.Revision;
 
 public interface ProjectMemberRepository extends JpaRepository<ProjectMember, Long> {
 
@@ -85,4 +88,37 @@ public interface ProjectMemberRepository extends JpaRepository<ProjectMember, Lo
               AND mine.status = :status AND other.status = :status AND p.hiddenAt IS NULL
             """)
     List<Object[]> findTeammates(@Param("userId") Long userId, @Param("status") MemberStatus status);
+
+    // ─── Espace d'équipe : présence ───
+
+    /**
+     * Le membre est passé par l'espace de son équipe. Noté au plus une fois par intervalle ({@code staleBefore}) : le
+     * pouls de chaque onglet ouvert n'écrit pas à chaque fois. La date de modification de la participation ne bouge pas.
+     */
+    @Modifying
+    @Query("""
+            UPDATE ProjectMember m SET m.lastSeenAt = :now
+            WHERE m.project.id = :projectId AND m.user.id = :userId AND m.status = :status
+              AND (m.lastSeenAt IS NULL OR m.lastSeenAt < :staleBefore)
+            """)
+    int touchPresence(@Param("projectId") Long projectId, @Param("userId") Long userId, @Param("status") MemberStatus status,
+            @Param("now") Instant now, @Param("staleBefore") Instant staleBefore);
+
+    /**
+     * Ce qui change dans l'équipe se voit ici : une arrivée, un départ, une candidature, un rôle qui change. La présence
+     * n'y compte pas (touchPresence ne touche pas à la date de modification).
+     */
+    @Query("""
+            SELECT new com.hautetech.ndadiee.service.workspace.Revision(COUNT(m), MAX(m.updatedAt))
+            FROM ProjectMember m WHERE m.project.id = :projectId
+            """)
+    Revision findRevision(@Param("projectId") Long projectId);
+
+    /** Les membres passés par l'espace depuis {@code since} : ceux qui sont en ligne. */
+    @Query("""
+            SELECT m.user.id FROM ProjectMember m
+            WHERE m.project.id = :projectId AND m.status = :status AND m.lastSeenAt >= :since
+            """)
+    List<Long> findPresentUserIds(@Param("projectId") Long projectId, @Param("status") MemberStatus status,
+            @Param("since") Instant since);
 }

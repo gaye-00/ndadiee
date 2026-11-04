@@ -11,6 +11,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
 import jakarta.persistence.FetchType;
+import jakarta.persistence.Index;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
@@ -31,7 +32,13 @@ import lombok.experimental.SuperBuilder;
 @NoArgsConstructor
 @SuperBuilder
 @Entity
-@Table(name = "admin_actions")
+@Table(
+    name = "admin_actions",
+    indexes = {
+        @Index(name = "idx_admin_actions_created_at", columnList = "created_at DESC"),
+        @Index(name = "idx_admin_actions_target", columnList = "target_type, target_id")
+    }
+)
 public class AdminAction extends BaseEntity {
 
     @ManyToOne(fetch = FetchType.LAZY)

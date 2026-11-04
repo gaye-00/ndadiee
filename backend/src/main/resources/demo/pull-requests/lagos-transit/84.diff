@@ -1,0 +1,131 @@
+diff --git a/docker-compose.yml b/docker-compose.yml
+index a43f085..9d12dfc 100644
+--- a/docker-compose.yml
++++ b/docker-compose.yml
+@@ -5,4 +5,13 @@ services:
+       - "8080:8080"
+     environment:
+       GTFS_URL: https://example.com/gtfs/brt.zip
++      REDIS_ADDR: redis:6379
++    depends_on:
++      - redis
++    restart: unless-stopped
++
++  redis:
++    image: redis:7-alpine
++    # A cache, not a database: nothing is written to disk
++    command: ["redis-server", "--save", "", "--appendonly", "no"]
+     restart: unless-stopped
+diff --git a/internal/schedule/cache.go b/internal/schedule/cache.go
+new file mode 100644
+index 0000000..665215d
+--- /dev/null
++++ b/internal/schedule/cache.go
+@@ -0,0 +1,39 @@
++package schedule
++
++import (
++	"context"
++	"fmt"
++	"time"
++
++	"github.com/redis/go-redis/v9"
++)
++
++// Cache keeps the next departures of each stop in Redis, in front of the GTFS source.
++type Cache struct {
++	rdb    *redis.Client
++	source Source
++}
++
++// Departures returns the next departures of a stop: from Redis when the key exists, from the source otherwise.
++func (c *Cache) Departures(ctx context.Context, stopID string) ([]Departure, error) {
++	key := fmt.Sprintf("departures:%s", stopID)
++	if cached, err := c.rdb.Get(ctx, key).Bytes(); err == nil {
++		return decode(cached)
++	}
++	deps, err := c.source.Departures(ctx, stopID)
++	c.rdb.Set(ctx, key, encode(deps), 0)
++	return deps, err
++}
++
++func NewCache(rdb *redis.Client, source Source) *Cache {
++	return &Cache{rdb: rdb, source: source}
++}
++
++// Warm loads the busiest stops at startup, so the first riders of the day do not wait.
++func (c *Cache) Warm(ctx context.Context, stops []string) {
++	ctx, cancel := context.WithTimeout(ctx, 5*time.Second)
++	defer cancel()
++	for _, stop := range stops {
++		_, _ = c.Departures(ctx, stop)
++	}
++}
+diff --git a/internal/schedule/cache_test.go b/internal/schedule/cache_test.go
+new file mode 100644
+index 0000000..1804dc8
+--- /dev/null
++++ b/internal/schedule/cache_test.go
+@@ -0,0 +1,31 @@
++package schedule
++
++import (
++	"context"
++	"testing"
++
++	"github.com/alicebob/miniredis/v2"
++	"github.com/redis/go-redis/v9"
++)
++
++type countingSource struct{ calls int }
++
++func (s *countingSource) Departures(ctx context.Context, stopID string) ([]Departure, error) {
++	s.calls++
++	return []Departure{{Route: "BRT Ikorodu–CMS", Platform: "2"}}, nil
++}
++
++func TestDeparturesAreCachedPerStop(t *testing.T) {
++	mr := miniredis.RunT(t)
++	source := &countingSource{}
++	cache := NewCache(redis.NewClient(&redis.Options{Addr: mr.Addr()}), source)
++
++	for i := 0; i < 3; i++ {
++		if _, err := cache.Departures(context.Background(), "ikeja"); err != nil {
++			t.Fatal(err)
++		}
++	}
++	if source.calls != 1 {
++		t.Fatalf("source called %d times, want 1", source.calls)
++	}
++}
+diff --git a/internal/schedule/handler.go b/internal/schedule/handler.go
+index 1f8dccf..dc0f1d7 100644
+--- a/internal/schedule/handler.go
++++ b/internal/schedule/handler.go
+@@ -7,20 +7,22 @@ import (
+ 
+ // Handler serves the next departures of a stop: GET /stops/{id}/departures
+ type Handler struct {
+-	source Source
++	cache *Cache
+ }
+ 
+-func NewHandler(source Source) *Handler {
+-	return &Handler{source: source}
++func NewHandler(cache *Cache) *Handler {
++	return &Handler{cache: cache}
+ }
+ 
+ func (h *Handler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
+ 	stopID := r.PathValue("id")
+-	deps, err := h.source.Departures(r.Context(), stopID)
++	deps, err := h.cache.Departures(r.Context(), stopID)
+ 	if err != nil {
+ 		http.Error(w, "departures unavailable", http.StatusBadGateway)
+ 		return
+ 	}
+ 	w.Header().Set("Content-Type", "application/json")
++	// Riders refresh often: let the phone keep the answer for 30 seconds
++	w.Header().Set("Cache-Control", "public, max-age=30")
+ 	json.NewEncoder(w).Encode(deps)
+ }

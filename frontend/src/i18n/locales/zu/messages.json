@@ -1,0 +1,92 @@
+{
+  "list": {
+    "title": "Imilayezo",
+    "search": "Sesha ezingxoxweni zakho",
+    "searchPlaceholder": "Sesha…",
+    "clearSearch": "Sula usesho",
+    "filter": "Hlunga izingxoxo",
+    "all": "Zonke",
+    "unread": "Ezingafundiwe",
+    "you": "Wena: {{text}}",
+    "deleted": "Umlayezo usuciwe",
+    "noMessage": "Ingxoxo entsha",
+    "unreadCount_one": "Umlayezo ongu-{{count}} ongafundiwe",
+    "unreadCount_other": "Imilayezo engu-{{count}} engafundiwe",
+    "emptyTitle": "Azikho izingxoxo okwamanje",
+    "emptyDescription": "Bhalela ilungu: umbuzo ngephrojekthi yalo, umqondo weqembu, noma usizo.",
+    "noMatch": "Ayikho ingxoxo efana no-“{{query}}”.",
+    "allRead": "Usufunde konke. Umsebenzi omuhle!",
+    "error": "Asikwazanga ukulayisha izingxoxo zakho."
+  },
+  "status": {
+    "live": "Bukhoma",
+    "connecting": "Iyaxhuma…",
+    "reconnecting": "Iphinda ixhume…",
+    "offline": "Awuxhunyiwe"
+  },
+  "thread": {
+    "label": "Ingxoxo no-{{name}}",
+    "back": "Buyela ezingxoxweni",
+    "online": "Uxhunyiwe",
+    "typing": "uyabhala…",
+    "typingLabel": "U-{{name}} uyabhala",
+    "profile": "Buka iphrofayela",
+    "start": "Lesi yisiqalo sengxoxo yakho no-{{name}}.",
+    "private": "Imilayezo eyimfihlo: nina nobabili kuphela eniyibonayo.",
+    "newMessages": "Imilayezo emisha",
+    "loadingOlder": "Ilayisha imilayezo yangaphambili…",
+    "loading": "Ilayisha ingxoxo…",
+    "jumpToLatest": "Iya emilayezweni yakamuva",
+    "unseen_one": "Umlayezo omusha ongu-{{count}}, yehlela phansi",
+    "unseen_other": "Imilayezo emisha engu-{{count}}, yehlela phansi",
+    "notFound": "Ingxoxo ayitholakalanga",
+    "notFoundHint": "Ayikho, noma awuyona ingxenye yayo.",
+    "error": "Asikwazanga ukulayisha imilayezo.",
+    "backToList": "Zonke izingxoxo"
+  },
+  "message": {
+    "you": "Wena",
+    "edited": "ihleliwe",
+    "deleted": "Umlayezo usuciwe",
+    "sending": "Iyathumela",
+    "sent": "Ithunyelwe",
+    "seen": "Ibonakele",
+    "failed": "Ayithunyelwanga",
+    "retry": "Zama futhi",
+    "discard": "Lahla",
+    "actions": "Izenzo zomlayezo",
+    "copy": "Kopisha umbhalo",
+    "copied": "Umbhalo ukopishiwe",
+    "edit": "Hlela",
+    "delete": "Susa",
+    "deleteTitle": "Susa lo mlayezo?",
+    "deleteDescription": "Uzonyamalala kini nobabili. Lokhu akunakuhlehliswa.",
+    "deleteConfirm": "Susa"
+  },
+  "composer": {
+    "label": "Umlayezo wakho",
+    "placeholder": "Bhalela u-{{name}}…",
+    "send": "Thumela",
+    "save": "Londoloza ushintsho",
+    "editing": "Uyahlela",
+    "cancelEdit": "Khansela ukuhlela",
+    "hint": "<k>Enter</k> ukuthumela · <k>Shift</k> + <k>Enter</k> umugqa omusha · <k>↑</k> ukuhlela umlayezo wakho wokugcina",
+    "editHint": "<k>Enter</k> ukulondoloza · <k>Esc</k> ukukhansela",
+    "remaining_one": "Kusele uhlamvu olu-{{count}}",
+    "remaining_other": "Kusele izinhlamvu ezingu-{{count}}"
+  },
+  "newConversation": {
+    "title": "Umlayezo omusha",
+    "description": "Bhalela ilungu lomphakathi.",
+    "search": "Igama noma igama lomsebenzisi lelungu",
+    "suggestions": "Amalungu omphakathi",
+    "results": "Imiphumela",
+    "empty": "Alikho ilungu elifana no-“{{query}}”.",
+    "error": "Usesho aluphumelelanga. Zama futhi emzuzwini."
+  },
+  "empty": {
+    "title": "Izingxoxo zakho",
+    "description": "Khetha ingxoxo, noma ubhalele ilungu lomphakathi: umbuzo, umqondo weqembu, noma usizo.",
+    "action": "Umlayezo omusha"
+  }
+}

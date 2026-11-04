@@ -245,24 +245,26 @@ public class HackathonSeeder {
         //  EN COURS
         // ═══════════════════════════════════════════════════════════════
 
-        // Commencé hier à 18 h, heure de Lagos : en cours quel que soit le jour du démarrage
+        // Commencé hier à 18 h, heure de Lagos : en cours quel que soit le jour du démarrage. Clos à minuit au
+        // bout de sept jours : il lui reste au moins une semaine, le temps de relire un déploiement.
         LocalDate mobilityKickoff = LocalDate.now(LAGOS).minusDays(1);
-        organize(admin, new Plan("Mobilité urbaine 72 h",
-                "Trois jours pour améliorer les trajets du quotidien, du danfo au sept-places.", """
-                72 heures pour améliorer les trajets de tous les jours : **danfo**, **BRT**, **matatu**, **sept-places**, et tous ceux qui les attendent au bord de la route.
+        LocalDate mobilityLastDay = mobilityKickoff.plusDays(8);
+        organize(admin, new Plan("Mobilité urbaine",
+                "Neuf jours pour améliorer les trajets du quotidien, du danfo au sept-places.", """
+                Neuf jours pour améliorer les trajets de tous les jours : **danfo**, **BRT**, **matatu**, **sept-places**, et tous ceux qui les attendent au bord de la route.
 
                 - Équipes de 2 à 5 personnes, en ligne et à Lagos
                 - Jeux de données ouverts : horaires, arrêts, temps de trajet relevés sur le terrain
                 - Les projets de la vitrine peuvent s'inscrire avec leur équipe
                 """,
                 "Lagos Open Data Collective", WorkMode.HYBRID, "NG", "Lagos", LAGOS, at(LAGOS, mobilityKickoff, 18),
-                at(LAGOS, mobilityKickoff.plusDays(3), 18), at(LAGOS, mobilityKickoff, 18), "4 000 000 NGN", 2, 5, 40,
+                at(LAGOS, mobilityLastDay.plusDays(1), 0), at(LAGOS, mobilityKickoff, 18), "4 000 000 NGN", 2, 5, 40,
                 List.of("Open Data", "Mobile", "GTFS"),
                 List.of(milestone(at(LAGOS, mobilityKickoff, 18), "Coup d'envoi, en ligne et à Lagos"),
-                        milestone(at(LAGOS, mobilityKickoff.plusDays(1), 10), "Atelier : données GTFS et OpenStreetMap"),
-                        milestone(at(LAGOS, mobilityKickoff.plusDays(2), 15), "Mentorat : produit et accessibilité"),
-                        milestone(at(LAGOS, mobilityKickoff.plusDays(3), 14), "Démos devant le jury"),
-                        milestone(at(LAGOS, mobilityKickoff.plusDays(3), 18), "Résultats")),
+                        milestone(at(LAGOS, mobilityKickoff.plusDays(2), 10), "Atelier : données GTFS et OpenStreetMap"),
+                        milestone(at(LAGOS, mobilityKickoff.plusDays(5), 15), "Mentorat : produit et accessibilité"),
+                        milestone(at(LAGOS, mobilityLastDay, 14), "Démos devant le jury"),
+                        milestone(at(LAGOS, mobilityLastDay, 18), "Résultats")),
                 List.of(prize("1er prix", "2 000 000 NGN et un an d'hébergement"),
                         prize("2e prix", "1 200 000 NGN"),
                         prize("3e prix", "800 000 NGN"),
