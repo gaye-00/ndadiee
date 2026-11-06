@@ -7,7 +7,6 @@ Ndadiée est une plateforme communautaire destinée aux développeurs : découve
 ## Documentation
 
 - [Index documentaire](docs/README.md)
-- [Suivi des phases du projet (PDF)](suivi-phases-projet.pdf)
 - [Présentation générale](docs/01-presentation/presentation-generale.md)
 - [Architecture](docs/02-architecture/diagrammes.md)
 - [Fonctionnalités](docs/03-fonctionnalites/README.md)

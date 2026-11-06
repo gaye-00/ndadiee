@@ -129,7 +129,6 @@ Aucun guide utilisateur détaillé n’est actuellement versionné dans `05-guid
 
 ### Documentation transverse
 - [suivi-phases-projet.md](suivi-phases-projet.md) — journal de reprise des phases, résultats vérifiés et actions restantes.
-- [suivi-phases-projet.pdf](../suivi-phases-projet.pdf) — PDF placé à la racine du dépôt pour le retrouver directement.
 - [glossaire.md](glossaire.md)
 - [faq.md](faq.md)
 - [decisions-architecture.md](decisions-architecture.md)
