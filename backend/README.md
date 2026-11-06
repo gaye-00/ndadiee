@@ -2,28 +2,42 @@
 
 Spring Boot 4, Java 21, PostgreSQL, JWT.
 
-**Schéma et données.** Pas de migrations : le schéma vient des entités JPA, que Hibernate crée au démarrage
-(`ddl-auto: create-drop` en local). Les entités portent tout ce que la base doit garantir : index (y compris les index
+**Schéma et données.** Flyway applique les migrations versionnées de `src/main/resources/db/migration` avant que
+Hibernate ne valide le schéma (`ddl-auto: validate` dans tous les profils). `V1__initial_schema.sql` définit le schéma
+initial complet. Une base neuve est créée automatiquement par cette migration. Pour une base historique sans table de
+version Flyway, sauvegarder et comparer le schéma à V1, puis faire une baseline explicite en version 1 ; ne pas
+configurer de baseline automatique. Les entités portent les index (y compris les index
 partiels, `@Index(options = "where …")`), contraintes uniques et `CHECK` nommées (`uk_…`, `ck_…`), suppressions en
-cascade (`@OnDelete`). Le seul index que JPA ne sait pas décrire (un index unique partiel : un sprint ouvert par
-projet) est créé par `initializer/DatabaseConstraints`, au début du démarrage. Les données de démonstration viennent
-ensuite des seeders, dans l'ordre d'`initializer/InitializerNdadiee`.
+cascade (`@OnDelete`). L'index unique partiel (un sprint ouvert par projet) est dans la migration et vérifié par
+`initializer/DatabaseConstraints`. Les données de démonstration viennent ensuite, seulement sur activation explicite
+des seeders, dans l'ordre d'`initializer/InitializerNdadiee`.
 
-Base attendue : le PostgreSQL local (`localhost:5432`, base, utilisateur et mot de passe `ndadiee`).
+Base locale attendue : PostgreSQL, généralement démarré par le Compose du dépôt sur le port `5434`. La clé `JWT_SECRET`
+est requise dans tous les profils et validée au démarrage.
 
 ```bash
-sudo -u postgres psql -c "CREATE ROLE ndadiee LOGIN PASSWORD 'ndadiee'" -c "CREATE DATABASE ndadiee OWNER ndadiee"
-mvn spring-boot:run      # http://localhost:8080/api, documentation : /api/swagger-ui.html
-mvn test                 # le test de démarrage a besoin de la base
+SPRING_PROFILES_ACTIVE=local JWT_SECRET="$(openssl rand -base64 48)" ./mvnw spring-boot:run
 ```
 
-Pour utiliser plutôt le conteneur (`docker compose up -d`, port 5434) :
-`SPRING_DATASOURCE_URL=jdbc:postgresql://localhost:5434/ndadiee mvn spring-boot:run`.
+Pour tester, fournir une base PostgreSQL jetable et isolée avant `./mvnw test`; la suite applique Flyway puis Hibernate
+valide le schéma. Ne jamais utiliser le volume de développement pour le profil de test.
+
+Sur une base historique sans `flyway_schema_history`, et uniquement après une sauvegarde vérifiée et une comparaison
+du schéma existant avec V1, définir `FLYWAY_URL`, `FLYWAY_USER` et `FLYWAY_PASSWORD`, puis exécuter depuis `backend/` :
+
+```bash
+FLYWAY_BASELINE_VERSION=1 ./mvnw flyway:baseline
+```
+
+Cette opération écrit la métadonnée de baseline ; elle ne crée pas ni ne modifie les tables métier. Le démarrage suivant
+exécute les migrations ultérieures puis `ddl-auto=validate`. Une divergence détectée par Hibernate doit bloquer le
+déploiement et être corrigée par une migration revue, jamais par `update`.
 
 ## Données de démonstration (init)
 
-Au démarrage, `initializer/InitializerNdadiee.java` synchronise les badges, puis, si `SEED_ENABLED`
-(vrai par défaut), remplit la base :
+Au démarrage, `initializer/InitializerNdadiee.java` synchronise les badges puis, uniquement si `SEED_ENABLED=true`,
+remplit la base. Les seeders sont désactivés par défaut. Leur activation exige les trois variables `SEED_ADMIN_PASSWORD`,
+`SEED_DEMO_PASSWORD` et `SEED_TEST_ACCOUNT_PASSWORD`; l’application échoue avant l’initialisation si l’une manque.
 
 1. `DemoDataSeeder` : la communauté (comptes, questions et réponses, articles, opportunités) ;
 2. `ShowcaseSeeder` : la vitrine (10 projets avec couverture et galerie, équipes où chacun a son rôle,
@@ -37,17 +51,9 @@ Au démarrage, `initializer/InitializerNdadiee.java` synchronise les badges, pui
    celle de Yassine ; tous deux suivent des tags (« Mon fil ») et ont déjà enregistré des sujets (liste de
    lecture). Créé une seule fois : si son premier sujet existe, rien n'est refait.
 
-| Compte d'essai | Identifiant | Mot de passe en développement |
-| --- | --- | --- |
-| Ada Nwosu | `ada@example.com` ou `ada` | `passer@123` (`SEED_TEST_ACCOUNT_PASSWORD`) |
-| Musa Diallo | `musa@example.com` ou `musa` | `passer@123` (`SEED_TEST_ACCOUNT_PASSWORD`) |
-
-Ce mot de passe est réservé au développement et peut être remplacé avec `SEED_TEST_ACCOUNT_PASSWORD`.
-Les autres comptes de démonstration utilisent `SEED_DEMO_PASSWORD` ; `admin` a le sien (`SEED_ADMIN_PASSWORD`).
-
-Les mots de passe ne sont jamais stockés en clair : hachés en BCrypt (`PasswordEncoder`), comme à
-l'inscription. Les valeurs par défaut de `application.yaml` servent au développement ; en production,
-`SEED_ENABLED=false` (aucun compte de démonstration), et sinon des mots de passe propres à l'environnement.
+Les comptes de démonstration ne sont créés que dans un environnement local dédié après opt-in et configuration
+explicite de mots de passe locaux. Ne pas utiliser ou publier des identifiants de démonstration en production.
+Les mots de passe sont stockés sous forme hachée BCrypt (`PasswordEncoder`), comme à l'inscription.
 
 Chaque section ne s'exécute que si sa table est vide, et les comptes existants sont retrouvés par leur
 identifiant (`DemoAccounts`) : une base remplie à moitié est complétée au démarrage suivant. Tout passe
@@ -55,14 +61,14 @@ par les services métier (réputation, badges et notifications cohérents). Comp
 (modératrice), `samuel_ngono`, `aminata_traore`… et `admin` ; mots de passe : `SEED_DEMO_PASSWORD`,
 `SEED_ADMIN_PASSWORD`.
 
-Pour repartir de zéro : supprimer le volume de la base (`docker compose down -v`), puis relancer.
+Ne pas supprimer le volume pour réinitialiser une base. Pour les essais destructifs, utiliser une base temporaire
+jetable, sans volume partagé.
 
 ## Administration (back-office)
 
 Un compte `Admin` (rôle `ADMIN`) ne participe pas à la communauté : à la connexion, le frontend l'envoie sur son
-back-office (`/admin`), un développeur sur son atelier (`/dashboard`). En développement, le compte est créé au
-démarrage : identifiant `admin` (ou `admin@example.com`), mot de passe `SEED_ADMIN_PASSWORD` (`Admin@Ndadiee2026`
-par défaut).
+back-office (`/admin`), un développeur sur son atelier (`/dashboard`). En local, le compte est créé seulement si les
+seeders sont activés explicitement et qu’un mot de passe local dédié est fourni.
 
 | Requête | Accès |
 | --- | --- |

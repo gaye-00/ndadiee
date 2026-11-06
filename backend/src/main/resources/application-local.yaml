@@ -1,0 +1,9 @@
+spring:
+  jpa:
+    hibernate:
+      ddl-auto: validate
+
+ndadiee:
+  seed:
+    # Aucun compte de démonstration sans opt-in et mots de passe configurés.
+    enabled: ${SEED_ENABLED:false}

@@ -2,6 +2,7 @@ package com.hautetech.ndadiee.security;
 
 import java.time.Duration;
 import java.time.Instant;
+import java.util.Base64;
 import java.util.Date;
 
 import javax.crypto.SecretKey;
@@ -13,7 +14,6 @@ import org.springframework.stereotype.Service;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.JwtException;
 import io.jsonwebtoken.Jwts;
-import io.jsonwebtoken.io.Decoders;
 import io.jsonwebtoken.security.Keys;
 
 /**
@@ -36,7 +36,19 @@ public class JwtService {
             @Value("${jwt.secret}") String secret,
             @Value("${jwt.access-token-expiration}") Duration accessTokenExpiration,
             @Value("${jwt.refresh-token-expiration}") Duration refreshTokenExpiration) {
-        this.key = Keys.hmacShaKeyFor(Decoders.BASE64.decode(secret));
+        if (secret == null || secret.isBlank()) {
+            throw new IllegalStateException("jwt.secret must be provided as Base64 with at least 256 bits.");
+        }
+        byte[] keyBytes;
+        try {
+            keyBytes = Base64.getDecoder().decode(secret);
+        } catch (IllegalArgumentException exception) {
+            throw new IllegalStateException("jwt.secret must be valid Base64 with at least 256 bits.", exception);
+        }
+        if (keyBytes.length < 32) {
+            throw new IllegalStateException("jwt.secret must contain at least 256 bits.");
+        }
+        this.key = Keys.hmacShaKeyFor(keyBytes);
         this.accessTokenExpiration = accessTokenExpiration;
         this.refreshTokenExpiration = refreshTokenExpiration;
     }

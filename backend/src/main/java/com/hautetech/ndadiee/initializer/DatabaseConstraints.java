@@ -7,10 +7,9 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
 /**
- * Les règles de la base que les entités ne savent pas décrire. Le schéma vient des entités (Hibernate) : tables, index,
- * index partiels (@Index(options = "where …")), contraintes uniques et CHECK. Un index unique partiel, lui, devient une
- * contrainte UNIQUE dans le CREATE TABLE, où PostgreSQL refuse la clause WHERE : il est créé ici, au démarrage, avant
- * les données (InitializerNdadiee). Chaque instruction peut être rejouée sans effet.
+ * Vérifie les règles complémentaires au modèle JPA. Flyway possède le schéma versionné ; l'index unique partiel des
+ * sprints ouverts est également inclus dans la migration initiale. La vérification idempotente conserve les bases
+ * préexistantes et ne supprime aucune donnée.
  */
 @Slf4j
 @Component

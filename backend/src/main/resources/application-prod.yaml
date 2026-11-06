@@ -1,8 +1,11 @@
 # =============================================================================
-# Production : SPRING_PROFILES_ACTIVE=prod. Ne contient que ce qui diffère du développement (application.yaml).
+# Production : SPRING_PROFILES_ACTIVE=prod. Ne contient que ce qui diffère de la configuration commune.
 # =============================================================================
 
 spring:
+  jpa:
+    hibernate:
+      ddl-auto: validate
   # Le serveur SMTP des e-mails de notification. Le mot de passe vient de l'environnement (MAIL_PASSWORD), jamais d'ici.
   mail:
     host: smtp.hostinger.com
@@ -24,5 +27,7 @@ spring:
           writetimeout: 10000
 
 ndadiee:
+  seed:
+    enabled: false
   mail:
     enabled: true
