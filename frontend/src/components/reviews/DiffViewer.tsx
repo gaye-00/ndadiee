@@ -296,9 +296,10 @@ function DiffFile({ detail, file, comments, collapsed, onCollapsedChange, viewed
               <ArrowRight aria-hidden className="size-3.5 shrink-0 text-faint-foreground" />
             </>
           )}
-          <span className="min-w-0 truncate">
-            <span className="text-muted-foreground">{folder}</span>
-            <span className="font-semibold text-foreground">{name}</span>
+          {/* Sur un écran étroit, le dossier se raccourcit d'abord : le nom du fichier reste lisible */}
+          <span title={file.path} className="flex min-w-0">
+            <span className="min-w-0 truncate text-muted-foreground">{folder}</span>
+            <span className="max-w-full shrink-0 truncate font-semibold text-foreground">{name}</span>
           </span>
           <button
             type="button"

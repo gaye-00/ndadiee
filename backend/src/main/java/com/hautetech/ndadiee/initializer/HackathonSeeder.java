@@ -111,6 +111,7 @@ public class HackathonSeeder {
         // ═══════════════════════════════════════════════════════════════
 
         Long kumasi = project(kwame, TeamRole.DATA, "Kumasi Builders",
+                DemoCover.of("kumasi-builders", "King Bangaba", "CC BY-SA 4.0", "A_cocoa_farm_in_Ghana.jpg"),
                 "Le prix du cacao payé au planteur, affiché en direct dans chaque coopérative.", """
                 Une équipe montée pour le hackathon **AgriTech 48h** d'Abidjan : afficher dans chaque coopérative le prix du cacao payé au planteur, et prévenir par SMS quand il change.
 
@@ -128,6 +129,7 @@ public class HackathonSeeder {
                 "Tableau des prix du cacao");
 
         Long tontine = project(aminata, TeamRole.FRONTEND, "Tontine Cloud",
+                DemoCover.of("tontine-cloud", "Mycmain", "CC BY-SA 4.0", "Microfinance_in_Malawi.jpg"),
                 "La tontine du quartier : la caisse partagée, les tours, et un rappel par SMS la veille.", """
                 Dans une tontine, chacun cotise et, à tour de rôle, chacun reçoit la caisse. **Tontine Cloud** tient les comptes à la place du cahier : qui a cotisé, à qui le tour, et un rappel par SMS la veille.
 
@@ -146,6 +148,7 @@ public class HackathonSeeder {
                 "L'écran « à qui le tour », compris en un coup d'œil, même par USSD.", 9, "Écran « à qui le tour »");
 
         Long matatu = project(wanjiru, TeamRole.MOBILE, "Matatu Live",
+                DemoCover.of("matatu-live", "Lebu Ayiga", "CC BY-SA 4.0", "KiXX_matatu_at_a_busy_Nairobi_intersection.jpg"),
                 "Nairobi's matatu routes, mapped by the people who ride them.", """
                 Nairobi runs on **matatus**, yet no map shows their routes. Matatu Live records them with passengers: every trip logged adds to the map, and the GTFS feed it produces is open to everyone.
 
@@ -498,11 +501,11 @@ public class HackathonSeeder {
                 .orElseThrow(() -> new IllegalStateException("Projet de démonstration introuvable : " + slug));
     }
 
-    // Projet monté pour un hackathon : pas encore de capture, et une équipe qui recrute
-    private Long project(Long ownerId, TeamRole ownerSpecialty, String name, String tagline, String description,
-            String... tags) {
+    // Projet monté pour un hackathon : une photo en couverture (pas encore de galerie), et une équipe qui recrute
+    private Long project(Long ownerId, TeamRole ownerSpecialty, String name, DemoCover cover, String tagline,
+            String description, String... tags) {
         String slug = slugService.toSlug(name);
-        Long id = projectService.create(ownerId, ProjectRequest.builder()
+        Long id = projectService.create(ownerId, cover.applyTo(ProjectRequest.builder())
                 .name(name)
                 .tagline(tagline)
                 .description(description.strip())

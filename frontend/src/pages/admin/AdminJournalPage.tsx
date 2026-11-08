@@ -23,49 +23,53 @@ export default function AdminJournalPage() {
   const actions = useAdminActions({ targetType: target === 'all' ? undefined : target, page });
 
   return (
-    <div className="mx-auto max-w-[60rem] px-4 pb-20 sm:px-6 lg:px-10">
-      <AdminPageHeader eyebrow={t('shell.brand')} title={t('journal.title')} lead={t('journal.lead')}>
-        {actions.data && (
-          <p className="font-mono text-xs text-muted-foreground lg:pb-1">
-            {t('journal.count', { count: actions.data.totalElements, formatted: formatNumber(actions.data.totalElements) })}
-          </p>
-        )}
-      </AdminPageHeader>
+    // Mêmes marges que les autres pages du back-office (le titre ne bouge pas d'un onglet à l'autre) ; le journal garde
+    // une largeur de lecture
+    <div className="mx-auto max-w-[82rem] px-4 pb-20 sm:px-6 lg:px-10">
+      <div className="max-w-[60rem]">
+        <AdminPageHeader eyebrow={t('shell.brand')} title={t('journal.title')} lead={t('journal.lead')}>
+          {actions.data && (
+            <p className="font-mono text-xs text-muted-foreground lg:pb-1">
+              {t('journal.count', { count: actions.data.totalElements, formatted: formatNumber(actions.data.totalElements) })}
+            </p>
+          )}
+        </AdminPageHeader>
 
-      <ChoiceChips
-        label={t('journal.filter')}
-        options={TARGETS.map((value) => ({ value, label: t(`journal.targets.${value}`) }))}
-        value={target}
-        onChange={(value) => update({ target: value === 'all' ? null : value, page: null })}
-        layoutId="admin-journal-target"
-      />
+        <ChoiceChips
+          label={t('journal.filter')}
+          options={TARGETS.map((value) => ({ value, label: t(`journal.targets.${value}`) }))}
+          value={target}
+          onChange={(value) => update({ target: value === 'all' ? null : value, page: null })}
+          layoutId="admin-journal-target"
+        />
 
-      <div className="mt-6">
-        {actions.isPending && <span role="status" aria-label={t('journal.loading')} className="block h-96 rounded-[1.375rem] skeleton-shimmer" />}
-        {actions.isError && <ErrorState title={t('journal.errorTitle')} description={t('shared.errorText')} onRetry={() => void actions.refetch()} />}
-        {actions.data &&
-          (actions.data.content.length === 0 ? (
-            <div className="glass flex flex-col items-start gap-2 rounded-2xl p-6">
-              <span aria-hidden className="mb-1 size-10 rounded-xl bg-kente-conic opacity-80" />
-              <p className="font-bold">{t('journal.empty.title')}</p>
-              <p className="text-[0.8125rem] text-muted-foreground">{t('journal.empty.text')}</p>
-            </div>
-          ) : (
-            <>
-              <div className={cn('glass rounded-[1.375rem] px-5 py-1.5 transition-opacity sm:px-6', actions.isPlaceholderData && 'opacity-60')}>
-                <ActionList actions={actions.data.content} />
+        <div className="mt-6">
+          {actions.isPending && <span role="status" aria-label={t('journal.loading')} className="block h-96 rounded-[1.375rem] skeleton-shimmer" />}
+          {actions.isError && <ErrorState title={t('journal.errorTitle')} description={t('shared.errorText')} onRetry={() => void actions.refetch()} />}
+          {actions.data &&
+            (actions.data.content.length === 0 ? (
+              <div className="glass flex flex-col items-start gap-2 rounded-2xl p-6">
+                <span aria-hidden className="mb-1 size-10 rounded-xl bg-kente-conic opacity-80" />
+                <p className="font-bold">{t('journal.empty.title')}</p>
+                <p className="text-[0.8125rem] text-muted-foreground">{t('journal.empty.text')}</p>
               </div>
-              <Pager
-                page={actions.data.page}
-                totalPages={actions.data.totalPages}
-                onChange={(next) => {
-                  update({ page: next === 0 ? null : String(next) });
-                  window.scrollTo({ top: 0, behavior: 'smooth' });
-                }}
-                className="mt-6"
-              />
-            </>
-          ))}
+            ) : (
+              <>
+                <div className={cn('glass rounded-[1.375rem] px-5 py-1.5 transition-opacity sm:px-6', actions.isPlaceholderData && 'opacity-60')}>
+                  <ActionList actions={actions.data.content} />
+                </div>
+                <Pager
+                  page={actions.data.page}
+                  totalPages={actions.data.totalPages}
+                  onChange={(next) => {
+                    update({ page: next === 0 ? null : String(next) });
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                  }}
+                  className="mt-6"
+                />
+              </>
+            ))}
+        </div>
       </div>
     </div>
   );

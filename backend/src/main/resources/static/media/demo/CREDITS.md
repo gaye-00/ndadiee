@@ -1,6 +1,8 @@
 # Crédits des images de démonstration
 
-Couvertures des projets de démonstration (`projects/`), créés par `initializer/ShowcaseSeeder.java`.
+Couvertures des projets de démonstration (`projects/`), créés par `initializer/ShowcaseSeeder.java`, puis
+`HackathonSeeder` (Kumasi Builders, Tontine Cloud, Matatu Live), `GithubDemoSeeder` (OpenMRS, Ushahidi) et
+`DashboardSeeder` (Paperweight). Chaque seeder pose sa couverture avec `initializer/DemoCover.java`.
 Toutes viennent de Wikimedia Commons. Elles ont été recadrées en 16:10, redimensionnées (1280 et 640 px)
 et converties en WebP ; ces versions sont partagées sous la même licence que l'original.
 Chaque projet affiche aussi son crédit (champs `coverCredit` et `coverSourceUrl`).
@@ -17,6 +19,13 @@ Chaque projet affiche aussi son crédit (champs `coverCredit` et `coverSourceUrl
 | `kawral` | [Garages extérieurs et voitures « sept-places » à Ndiandiaye](https://commons.wikimedia.org/wiki/File:Garages_ext%C3%A9rieurs_et_voitures_%22sept-places%22_%C3%A0_Ndiandiaye.jpg) | CelmaKoumba | [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/) |
 | `naija-k8s-starter` | [BalticServers data center](https://commons.wikimedia.org/wiki/File:BalticServers_data_center.jpg) | BalticServers.com | [CC BY-SA 3.0](https://creativecommons.org/licenses/by-sa/3.0/) |
 | `sunu-solar` | [Champ de Serigne Cheikh Demba à Niagues Niassène](https://commons.wikimedia.org/wiki/File:Champ_de_Serigne_Cheikh_Demba_%C3%A0_Niagues_Niass%C3%A8ne_12.jpg) | Yagamar | [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/) |
+| `kumasi-builders` | [A cocoa farm in Ghana](https://commons.wikimedia.org/wiki/File:A_cocoa_farm_in_Ghana.jpg) | King Bangaba | [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/) |
+| `tontine-cloud` | [Microfinance in Malawi](https://commons.wikimedia.org/wiki/File:Microfinance_in_Malawi.jpg) | Mycmain | [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/) |
+| `matatu-live` | [KiXX matatu at a busy Nairobi intersection](https://commons.wikimedia.org/wiki/File:KiXX_matatu_at_a_busy_Nairobi_intersection.jpg) | Lebu Ayiga | [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/) |
+| `paperweight` | [10 Technological Advantages of Masts for a Nation](https://commons.wikimedia.org/wiki/File:10_Technological_Advantages_of_Masts_for_a_Nation.jpg) | Director Mtonga Kenya | [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/) |
+| `openmrs-patient-chart` | [Hospital Rural de Nhamatanda, Sofala, Mozambique](https://commons.wikimedia.org/wiki/File:Hospital_Rural_de_Nhamatanda,_Sofala,_Mozambique,_VOA.jpg) | Francisco Júnior / VOA | Domaine public |
+| `openmrs-core` | [Hospital Central de Maputo](https://commons.wikimedia.org/wiki/File:Hospital_Central_de_Maputo_(503927723).jpg) | Mike Rosenberg | [CC BY 2.0](https://creativecommons.org/licenses/by/2.0/) |
+| `ushahidi-platform` | [Nairobi skyline](https://commons.wikimedia.org/wiki/File:Nairobi_skyline_P1000019.jpg) | Lmwangi | [CC BY-SA 3.0](https://creativecommons.org/licenses/by-sa/3.0/) |
 
 ## Galeries
 

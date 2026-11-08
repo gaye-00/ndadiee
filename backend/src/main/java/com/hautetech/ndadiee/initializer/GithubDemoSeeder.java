@@ -43,6 +43,8 @@ public class GithubDemoSeeder {
         log.info("[Init] Projets reliés à de vrais dépôts GitHub...");
 
         project(accounts.id("ada"), "OpenMRS Patient Chart", "https://github.com/openmrs/openmrs-esm-patient-chart", "MPL-2.0",
+                DemoCover.of("openmrs-patient-chart", "Francisco Júnior / VOA", "domaine public",
+                        "Hospital_Rural_de_Nhamatanda,_Sofala,_Mozambique,_VOA.jpg"),
                 "Le dossier patient d'OpenMRS 3 : constantes, ordonnances, résultats et notes de consultation.",
                 """
                 Le dossier patient d'**OpenMRS 3**, le dossier médical open source utilisé dans des centaines d'hôpitaux et de centres de santé, du Kenya au Mozambique.
@@ -54,6 +56,7 @@ public class GithubDemoSeeder {
                 """,
                 "React", "TypeScript", "Santé");
         project(accounts.id("musa"), "OpenMRS Core", "https://github.com/openmrs/openmrs-core", "MPL-2.0",
+                DemoCover.of("openmrs-core", "Mike Rosenberg", "CC BY 2.0", "Hospital_Central_de_Maputo_(503927723).jpg"),
                 "Le cœur d'OpenMRS : le modèle de données médical et l'API sur lesquels reposent tous ses modules.",
                 """
                 Le cœur d'**OpenMRS** : patients, visites, observations et concepts médicaux, et l'API Java sur laquelle reposent tous ses modules.
@@ -65,6 +68,7 @@ public class GithubDemoSeeder {
                 """,
                 "Java", "Spring", "Santé");
         project(accounts.id("wanjiru_kamau"), "Ushahidi Platform", "https://github.com/ushahidi/platform-client-mzima", null,
+                DemoCover.of("ushahidi-platform", "Lmwangi", "CC BY-SA 3.0", "Nairobi_skyline_P1000019.jpg"),
                 "Le client web d'Ushahidi : cartographier les témoignages pendant une crise ou une élection.",
                 """
                 **Ushahidi** (« témoignage » en swahili) est né à Nairobi en 2008 pour cartographier les violences post-électorales. Mzima est son nouveau client web.
@@ -78,9 +82,9 @@ public class GithubDemoSeeder {
         log.info("[Init] Projets reliés à GitHub créés : leurs pull requests arrivent à la première synchronisation");
     }
 
-    private void project(Long ownerId, String name, String repositoryUrl, String license, String tagline, String description,
-            String... tags) {
-        projectService.create(ownerId, ProjectRequest.builder()
+    private void project(Long ownerId, String name, String repositoryUrl, String license, DemoCover cover, String tagline,
+            String description, String... tags) {
+        projectService.create(ownerId, cover.applyTo(ProjectRequest.builder())
                 .name(name)
                 .tagline(tagline)
                 .description(description.strip())

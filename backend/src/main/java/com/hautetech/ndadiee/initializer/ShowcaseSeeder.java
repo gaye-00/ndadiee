@@ -59,8 +59,7 @@ import lombok.extern.slf4j.Slf4j;
 @RequiredArgsConstructor
 public class ShowcaseSeeder {
 
-    private static final String MEDIA = "media/demo/projects/";
-    private static final String COMMONS = "https://commons.wikimedia.org/wiki/File:";
+    private static final String MEDIA = DemoCover.MEDIA;
     // Captures de la galerie : 1280 × 800, et leur miniature de 640 px
     private static final int SHOT_WIDTH = 1280;
     private static final int SHOT_HEIGHT = 800;
@@ -522,32 +521,25 @@ public class ShowcaseSeeder {
 
     // ==================== PROJETS ====================
 
-    private record Cover(String slug, String credit, String sourceUrl) {
+    private static DemoCover cover(String slug, String author, String license, String commonsFile) {
+        return DemoCover.of(slug, author, license, commonsFile);
     }
 
-    private static Cover cover(String slug, String author, String license, String commonsFile) {
-        return new Cover(slug, author + " · " + license, COMMONS + commonsFile);
-    }
-
-    private Long project(Long ownerId, String name, String license, String tagline, String description, Cover cover,
+    private Long project(Long ownerId, String name, String license, String tagline, String description, DemoCover cover,
             String... tags) {
         return project(ownerId, name, license, tagline, description, cover, true, tags);
     }
 
-    private Long project(Long ownerId, String name, String license, String tagline, String description, Cover cover,
+    private Long project(Long ownerId, String name, String license, String tagline, String description, DemoCover cover,
             boolean lookingForContributors, String... tags) {
         String slug = slugService.toSlug(name);
-        return projectService.create(ownerId, ProjectRequest.builder()
+        return projectService.create(ownerId, cover.applyTo(ProjectRequest.builder())
                 .name(name)
                 .tagline(tagline)
                 .description(description.strip())
                 // Dépôts et démos fictifs : example.com est un domaine réservé à la documentation
                 .repositoryUrl("https://example.com/ndadiee-demo/" + slug)
                 .demoUrl("https://example.com/ndadiee-demo/" + slug + "/demo")
-                .coverUrl(MEDIA + cover.slug() + ".webp")
-                .coverThumbnailUrl(MEDIA + cover.slug() + "-640.webp")
-                .coverCredit(cover.credit())
-                .coverSourceUrl(cover.sourceUrl())
                 .license(license)
                 .lookingForContributors(lookingForContributors)
                 .tags(List.of(tags))

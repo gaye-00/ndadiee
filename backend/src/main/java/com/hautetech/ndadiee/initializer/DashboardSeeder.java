@@ -84,7 +84,9 @@ public class DashboardSeeder {
         //  ADA : SON PROJET, SON ÉQUIPE, SA CANDIDATURE
         // ═══════════════════════════════════════════════════════════════
 
-        Long paperweight = projectService.create(ada, ProjectRequest.builder()
+        DemoCover mast = DemoCover.of("paperweight", "Director Mtonga Kenya", "CC BY-SA 4.0",
+                "10_Technological_Advantages_of_Masts_for_a_Nation.jpg");
+        Long paperweight = projectService.create(ada, mast.applyTo(ProjectRequest.builder())
                 .name("Paperweight")
                 .tagline("Des pages web de moins de 100 ko : formulaires, listes et cartes qui s'affichent en 2G.")
                 .description("""
