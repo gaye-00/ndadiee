@@ -1,7 +1,9 @@
 .env
+.env.production
 
 # Projets de référence (dépôts privés, hors du projet)
 refs/
+notes/
 
 ### IDE ###
 .idea/

@@ -1,0 +1,88 @@
+# Production : docker compose -f docker-compose.prod.yml up -d --build (réglages dans .env).
+# Une seule porte d'entrée : le front (Nginx) publie APP_PORT et relaie /api vers le backend.
+# La base et l'API ne sont joignables que sur le réseau interne.
+name: ndadiee-prod
+
+services:
+  postgres:
+    image: postgres:17
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: ${DB_NAME:?DB_NAME manquant dans .env}
+      POSTGRES_USER: ${DB_USER:?DB_USER manquant dans .env}
+      POSTGRES_PASSWORD: ${DB_PASSWORD:?DB_PASSWORD manquant dans .env}
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${DB_USER} -d ${DB_NAME}"]
+      interval: 5s
+      timeout: 5s
+      retries: 12
+    mem_limit: 512m
+    networks:
+      - ndadiee
+
+  backend:
+    build: ./backend
+    image: ndadiee-backend:latest
+    restart: unless-stopped
+    depends_on:
+      postgres:
+        condition: service_healthy
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/${DB_NAME}
+      SPRING_DATASOURCE_USERNAME: ${DB_USER}
+      SPRING_DATASOURCE_PASSWORD: ${DB_PASSWORD}
+      # Le schéma vient des entités ; « update » le conserve d'un redémarrage à l'autre, avec les données
+      SPRING_JPA_HIBERNATE_DDL_AUTO: update
+      # Derrière Nginx : les adresses générées suivent l'hôte et le port publics
+      SERVER_FORWARD_HEADERS_STRATEGY: framework
+      FRONTEND_URL: ${FRONTEND_URL:?FRONTEND_URL manquant dans .env}
+      JWT_SECRET: ${JWT_SECRET:?JWT_SECRET manquant dans .env}
+      SEED_ENABLED: ${SEED_ENABLED:-true}
+      SEED_ADMIN_PASSWORD: ${SEED_ADMIN_PASSWORD:?SEED_ADMIN_PASSWORD manquant dans .env}
+      SEED_DEMO_PASSWORD: ${SEED_DEMO_PASSWORD:?SEED_DEMO_PASSWORD manquant dans .env}
+      SEED_TEST_ACCOUNT_PASSWORD: ${SEED_TEST_ACCOUNT_PASSWORD:?SEED_TEST_ACCOUNT_PASSWORD manquant dans .env}
+      STORAGE_PROVIDER: local
+      GITHUB_TOKEN: ${GITHUB_TOKEN:-}
+      SPRINGDOC_API_DOCS_ENABLED: "false"
+      SPRINGDOC_SWAGGER_UI_ENABLED: "false"
+    volumes:
+      - uploads_data:/app/uploads
+    healthcheck:
+      test: ["CMD", "curl", "-fsS", "-o", "/dev/null", "http://127.0.0.1:8080/api/v1/projects/facets"]
+      interval: 15s
+      timeout: 5s
+      retries: 5
+      start_period: 180s
+    mem_limit: 1g
+    networks:
+      - ndadiee
+
+  frontend:
+    build:
+      context: ./frontend
+      args:
+        VITE_BACKEND_URL: /api
+    image: ndadiee-frontend:latest
+    restart: unless-stopped
+    depends_on:
+      - backend
+    ports:
+      - "${APP_PORT:?APP_PORT manquant dans .env}:80"
+    healthcheck:
+      test: ["CMD", "wget", "-q", "--spider", "http://127.0.0.1/"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+    mem_limit: 128m
+    networks:
+      - ndadiee
+
+volumes:
+  postgres_data:
+  uploads_data:
+
+networks:
+  ndadiee:
+    driver: bridge
