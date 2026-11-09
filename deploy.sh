@@ -15,6 +15,7 @@ COMPOSE="docker compose -f docker-compose.prod.yml"
 cd "$(dirname "$0")"
 [ -f "$ENV_FILE" ] || { echo "Fichier $ENV_FILE introuvable" >&2; exit 1; }
 APP_PORT="$(grep -E '^APP_PORT=' "$ENV_FILE" | cut -d= -f2)"
+API_PORT="$(grep -E '^API_PORT=' "$ENV_FILE" | cut -d= -f2)"
 
 git fetch -q origin main
 if [ -n "$(git status --porcelain)" ] || [ "$(git rev-parse HEAD)" != "$(git rev-parse origin/main)" ]; then
@@ -26,11 +27,14 @@ echo "==> Vérification du serveur $SSH_TARGET"
 ssh "$SSH_TARGET" "
   set -e
   docker compose version >/dev/null
-  if ! docker ps --format '{{.Names}}' | grep -q '^ndadiee-prod-frontend' \
-     && ss -ltnH | awk '{print \$4}' | grep -q ':$APP_PORT\$'; then
-    echo 'Le port $APP_PORT est déjà utilisé sur ce serveur : changer APP_PORT et FRONTEND_URL dans $ENV_FILE' >&2
-    exit 1
-  fi
+  # Ports pris par une autre application (ceux de Ndadiee se libèrent au redémarrage de ses conteneurs)
+  for port in $APP_PORT $API_PORT; do
+    if ss -ltnpH 2>/dev/null | awk '{print \$4}' | grep -q \":\$port\$\" \
+       && ! docker ps --filter name=^ndadiee-prod- --format '{{.Ports}}' | grep -q \":\$port->\"; then
+      echo \"Le port \$port est déjà utilisé sur ce serveur : changer APP_PORT / API_PORT dans $ENV_FILE\" >&2
+      exit 1
+    fi
+  done
 "
 
 echo "==> Récupération du code (git pull)"
