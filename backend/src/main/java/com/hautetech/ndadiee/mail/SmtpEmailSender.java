@@ -1,6 +1,8 @@
 package com.hautetech.ndadiee.mail;
 
 import java.nio.charset.StandardCharsets;
+import java.util.Locale;
+import java.util.regex.Pattern;
 
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.mail.MailException;
@@ -26,8 +28,18 @@ public class SmtpEmailSender implements EmailSender {
     private final JavaMailSender mailSender;
     private final MailProperties properties;
 
+    // Domaines réservés (RFC 2606, RFC 6761) : aucun e-mail n'y arrive, et les comptes de démonstration s'en servent.
+    // Y envoyer ne produirait que des rebonds, qui nuisent à la réputation de l'expéditeur (et aux vrais codes)
+    private static final Pattern RESERVED_DOMAIN =
+            Pattern.compile("^(?:.+\\.)?(?:example\\.(?:com|net|org)|example|test|invalid|localhost)$");
+
     @Override
     public void send(EmailMessage message) {
+        if (undeliverable(message.to())) {
+            log.info("[Mail] {} non envoyé au membre {} : adresse de démonstration (domaine réservé)", message.tag(),
+                    message.recipientId());
+            return;
+        }
         try {
             MimeMessage mime = mailSender.createMimeMessage();
             MimeMessageHelper helper = new MimeMessageHelper(mime, MimeMessageHelper.MULTIPART_MODE_MIXED_RELATED,
@@ -43,5 +55,10 @@ public class SmtpEmailSender implements EmailSender {
         } catch (MessagingException | MailException e) {
             log.warn("[Mail] {} non envoyé au membre {} : {}", message.tag(), message.recipientId(), e.getMessage());
         }
+    }
+
+    static boolean undeliverable(String address) {
+        String domain = address == null ? "" : address.substring(address.lastIndexOf('@') + 1).strip().toLowerCase(Locale.ROOT);
+        return domain.isEmpty() || RESERVED_DOMAIN.matcher(domain).matches();
     }
 }

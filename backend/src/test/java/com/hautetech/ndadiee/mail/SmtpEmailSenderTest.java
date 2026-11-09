@@ -34,13 +34,13 @@ class SmtpEmailSenderTest {
 
     @BeforeEach
     void setUp() {
-        when(mailSender.createMimeMessage()).thenReturn(new MimeMessage(Session.getInstance(new Properties())));
+        org.mockito.Mockito.lenient().when(mailSender.createMimeMessage()).thenReturn(new MimeMessage(Session.getInstance(new Properties())));
         sender = new SmtpEmailSender(mailSender, new MailProperties(true, "Ndadiee <no-reply@hautetech.org>"));
     }
 
     @Test
     void anEmailCarriesItsTextItsHtmlAndSaysItIsAutomatic() throws Exception {
-        sender.send(new EmailMessage(1L, "ama@example.com", "[Lagos Transit] Chinedu a approuvé ta PR #84", "Texte", "<p>HTML</p>", "review.test"));
+        sender.send(new EmailMessage(1L, "ama@ndadiee.com", "[Lagos Transit] Chinedu a approuvé ta PR #84", "Texte", "<p>HTML</p>", "review.test"));
 
         ArgumentCaptor<MimeMessage> sent = ArgumentCaptor.forClass(MimeMessage.class);
         verify(mailSender).send(sent.capture());
@@ -48,7 +48,7 @@ class SmtpEmailSenderTest {
         mime.saveChanges();
         assertThat(((InternetAddress) mime.getFrom()[0]).getAddress()).isEqualTo("no-reply@hautetech.org");
         assertThat(((InternetAddress) mime.getFrom()[0]).getPersonal()).isEqualTo("Ndadiee");
-        assertThat(mime.getAllRecipients()).extracting(Object::toString).containsExactly("ama@example.com");
+        assertThat(mime.getAllRecipients()).extracting(Object::toString).containsExactly("ama@ndadiee.com");
         assertThat(mime.getSubject()).isEqualTo("[Lagos Transit] Chinedu a approuvé ta PR #84");
         assertThat(mime.getHeader("Auto-Submitted")).containsExactly("auto-generated");
         ByteArrayOutputStream raw = new ByteArrayOutputStream();
@@ -60,7 +60,18 @@ class SmtpEmailSenderTest {
     void anSmtpFailureIsLoggedNotThrown() {
         doThrow(new MailSendException("Connexion refusée")).when(mailSender).send(any(MimeMessage.class));
 
-        assertThatCode(() -> sender.send(new EmailMessage(1L, "ama@example.com", "Objet", "Texte", "<p>HTML</p>", "review.test")))
+        assertThatCode(() -> sender.send(new EmailMessage(1L, "ama@ndadiee.com", "Objet", "Texte", "<p>HTML</p>", "review.test")))
                 .doesNotThrowAnyException();
+    }
+
+    @Test
+    void demoAddressesOnReservedDomainsGetNothing() {
+        sender.send(new EmailMessage(2L, "chinedu@example.com", "Objet", "Texte", "<p>HTML</p>", "review.test"));
+
+        verify(mailSender, org.mockito.Mockito.never()).send(any(MimeMessage.class));
+        assertThat(SmtpEmailSender.undeliverable("a@mail.example.org")).isTrue();
+        assertThat(SmtpEmailSender.undeliverable("a@ndadiee.test")).isTrue();
+        assertThat(SmtpEmailSender.undeliverable("a@gmail.com")).isFalse();
+        assertThat(SmtpEmailSender.undeliverable("a@example.com.sn")).isFalse();
     }
 }
