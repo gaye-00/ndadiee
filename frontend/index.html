@@ -13,6 +13,28 @@
     />
 
     <!--
+      Aperçu d'un lien partagé (WhatsApp, Facebook, LinkedIn, X, Slack, Discord…). Les robots de ces sites
+      n'exécutent pas le JavaScript : ils ne lisent que ces balises, les mêmes pour toutes les pages.
+      Adresses absolues obligatoires. L'image (public/og-image.png) fait 1200 × 630 px et moins de 300 Ko pour WhatsApp.
+    -->
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Ndadiee" />
+    <meta property="og:locale" content="fr_FR" />
+    <meta property="og:url" content="https://ndadiee.com/" />
+    <meta property="og:title" content="Ndadiee — Trouve ton équipe. Livre ton projet." />
+    <meta
+      property="og:description"
+      content="La plateforme des devs du continent : une vitrine pour montrer ce que tu construis, des annonces avec les rôles recherchés et un espace d'équipe avec kanban et revues de code."
+    />
+    <meta property="og:image" content="https://ndadiee.com/og-image.png" />
+    <meta property="og:image:type" content="image/png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Ndadiee : Trouve ton équipe. Livre ton projet." />
+    <!-- X reprend le titre, la description et l'image d'Open Graph ; il ne lui faut que le format de la carte -->
+    <meta name="twitter:card" content="summary_large_image" />
+
+    <!--
       Réglages appliqués avant le premier rendu, pour qu'aucun flash ne soit visible :
       thème clair ou sombre, langue et sens d'écriture, mode économie de données.
       Mêmes clés et mêmes règles que src/utils/storage.ts, src/store/ et src/i18n/languages.ts.
