@@ -4,8 +4,11 @@ import { AnimatePresence, m, useAnimate } from 'motion/react';
 import { useEffect, useState, type FormEvent } from 'react';
 import { useForm, useWatch } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { useLogin } from '@/hooks/useAuth';
 import { useReducedMotion } from '@/hooks/useReducedMotion';
+import { rememberPendingVerification } from '@/lib/pendingVerification';
+import { paths } from '@/router/paths';
 import { useAuthLoomStore } from '@/store/useAuthLoomStore';
 import { applyServerErrors, getApiError, getApiErrorMessage } from '@/utils/apiError';
 import { loginSchema, type LoginFormValues } from '@/utils/validators';
@@ -27,6 +30,8 @@ export default function LoginForm() {
   const [failure, setFailure] = useState<string | null>(null);
   const [done, setDone] = useState(false);
   const [scope, animate] = useAnimate<HTMLFormElement>();
+  const navigate = useNavigate();
+  const location = useLocation();
   const {
     register,
     handleSubmit,
@@ -70,6 +75,12 @@ export default function LoginForm() {
     login.mutate(values, {
       onError: (error) => {
         const body = getApiError(error);
+        // Mot de passe juste, mais l'adresse attend encore son code : un nouveau vient de partir, la page du code s'ouvre
+        if (body?.errorCode === 'EMAIL_NOT_VERIFIED' && body.details?.email) {
+          rememberPendingVerification({ email: body.details.email, resendAvailableInSeconds: 60 });
+          void navigate(paths.verifyEmail, { state: location.state as unknown });
+          return;
+        }
         if (body?.status === 401) {
           refuse(t('auth.login.failed'));
           setFocus('password', { shouldSelect: true });

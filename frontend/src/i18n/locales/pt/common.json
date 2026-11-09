@@ -245,6 +245,7 @@
     "settings": "Definições",
     "login": "Entrar",
     "register": "Registo",
+    "verifyEmail": "Verificação do e-mail",
     "oauthCallback": "Entrar",
     "notFound": "Página não encontrada",
     "editTopic": "Editar o tópico",
@@ -657,7 +658,8 @@
     "errors": {
       "emailTaken": "Já existe uma conta com este e-mail. Entra antes.",
       "usernameTaken": "Este nome de utilizador acabou de ser ocupado.",
-      "usernameReserved": "Este nome de utilizador está reservado."
+      "usernameReserved": "Este nome de utilizador está reservado.",
+      "emailPending": "Já há uma inscrição à espera do código enviado para este endereço. Introduz o código, ou tenta de novo amanhã."
     },
     "loom": {
       "eyebrow": "O ateliê",
@@ -666,7 +668,27 @@
       "registerTitle": "Mais um fio no pano.",
       "registerText": "Cada dev é um fio. Aqui, as equipas tecem-se à volta dos projetos."
     },
-    "sessionBlocked": "A tua conta foi suspensa pela equipa Ndadiee: terminámos a tua sessão."
+    "sessionBlocked": "A tua conta foi suspensa pela equipa Ndadiee: terminámos a tua sessão.",
+    "verify": {
+      "eyebrow": "Verificação",
+      "title": "Verifica o teu e-mail.",
+      "text": "Enviámos um código de 6 dígitos para {{email}}. Introduz o código para abrir a tua conta.",
+      "code": "Código recebido por e-mail",
+      "hint": "Válido durante 15 minutos. Vê também na pasta de spam.",
+      "submit": "Confirmar",
+      "pending": "A verificar…",
+      "noCode": "Não recebeste?",
+      "resend": "Enviar novo código",
+      "resendIn": "Enviar de novo dentro de {{seconds}} s",
+      "resent": "Acabámos de enviar um novo código.",
+      "invalid_one": "Código incorreto. Resta-te {{count}} tentativa.",
+      "invalid_many": "Código incorreto. Restam-te {{count}} tentativas.",
+      "invalid_other": "Código incorreto. Restam-te {{count}} tentativas.",
+      "expired": "Este código expirou. Pede um novo.",
+      "tooMany": "Demasiadas tentativas para este código. Pede um novo.",
+      "wrongEmail": "Não é o teu endereço?",
+      "changeEmail": "Recomeçar a inscrição"
+    }
   },
   "project": {
     "recruiting_one": "recruta · {{count}} função",

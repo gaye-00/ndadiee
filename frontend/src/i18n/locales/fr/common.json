@@ -245,6 +245,7 @@
     "settings": "Réglages",
     "login": "Connexion",
     "register": "Inscription",
+    "verifyEmail": "Vérification de l'e-mail",
     "oauthCallback": "Connexion",
     "notFound": "Page introuvable",
     "editTopic": "Modifier le sujet",
@@ -657,7 +658,8 @@
     "errors": {
       "emailTaken": "Un compte utilise déjà cet e-mail. Connecte-toi plutôt.",
       "usernameTaken": "Ce nom d'utilisateur vient d'être pris.",
-      "usernameReserved": "Ce nom d'utilisateur est réservé."
+      "usernameReserved": "Ce nom d'utilisateur est réservé.",
+      "emailPending": "Une inscription attend déjà le code envoyé à cette adresse. Saisis-le, ou réessaie demain."
     },
     "loom": {
       "eyebrow": "L'atelier",
@@ -666,7 +668,27 @@
       "registerTitle": "Un fil de plus dans l'étoffe.",
       "registerText": "Chaque dev est un fil. Ici, les équipes se tissent autour des projets."
     },
-    "sessionBlocked": "Ton compte a été suspendu par l'équipe Ndadiee : tu as été déconnecté."
+    "sessionBlocked": "Ton compte a été suspendu par l'équipe Ndadiee : tu as été déconnecté.",
+    "verify": {
+      "eyebrow": "Vérification",
+      "title": "Vérifie ton e-mail.",
+      "text": "Nous avons envoyé un code à 6 chiffres à {{email}}. Saisis-le pour ouvrir ton compte.",
+      "code": "Code reçu par e-mail",
+      "hint": "Valable 15 minutes. Pense à regarder dans les spams.",
+      "submit": "Confirmer",
+      "pending": "Vérification…",
+      "noCode": "Pas reçu ?",
+      "resend": "Renvoyer le code",
+      "resendIn": "Renvoyer dans {{seconds}} s",
+      "resent": "Un nouveau code vient de partir.",
+      "invalid_one": "Code incorrect. Il te reste {{count}} essai.",
+      "invalid_many": "Code incorrect. Il te reste {{count}} essais.",
+      "invalid_other": "Code incorrect. Il te reste {{count}} essais.",
+      "expired": "Ce code a expiré. Demande-en un nouveau.",
+      "tooMany": "Trop d'essais pour ce code. Demande-en un nouveau.",
+      "wrongEmail": "Ce n'est pas ton adresse ?",
+      "changeEmail": "Recommencer l'inscription"
+    }
   },
   "project": {
     "recruiting_one": "recrute · {{count}} rôle",

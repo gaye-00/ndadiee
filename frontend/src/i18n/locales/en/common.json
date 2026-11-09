@@ -238,6 +238,7 @@
     "settings": "Settings",
     "login": "Log in",
     "register": "Sign up",
+    "verifyEmail": "Email verification",
     "oauthCallback": "Log in",
     "notFound": "Page not found",
     "editTopic": "Edit topic",
@@ -630,7 +631,8 @@
     "errors": {
       "emailTaken": "An account already uses this email. Sign in instead.",
       "usernameTaken": "This username was just taken.",
-      "usernameReserved": "This username is reserved."
+      "usernameReserved": "This username is reserved.",
+      "emailPending": "A sign-up is already waiting for the code sent to this address. Enter it, or try again tomorrow."
     },
     "loom": {
       "eyebrow": "The workshop",
@@ -639,7 +641,26 @@
       "registerTitle": "One more thread in the cloth.",
       "registerText": "Every developer is a thread. Here, teams are woven around projects."
     },
-    "sessionBlocked": "Your account has been suspended by the Ndadiee team: you have been signed out."
+    "sessionBlocked": "Your account has been suspended by the Ndadiee team: you have been signed out.",
+    "verify": {
+      "eyebrow": "Verification",
+      "title": "Check your email.",
+      "text": "We sent a 6-digit code to {{email}}. Enter it to open your account.",
+      "code": "Code from the email",
+      "hint": "Valid for 15 minutes. Remember to check your spam folder.",
+      "submit": "Confirm",
+      "pending": "Checking…",
+      "noCode": "Didn't get it?",
+      "resend": "Send a new code",
+      "resendIn": "Send again in {{seconds}}s",
+      "resent": "A new code is on its way.",
+      "invalid_one": "Wrong code. You have {{count}} try left.",
+      "invalid_other": "Wrong code. You have {{count}} tries left.",
+      "expired": "This code has expired. Ask for a new one.",
+      "tooMany": "Too many tries for this code. Ask for a new one.",
+      "wrongEmail": "Not your address?",
+      "changeEmail": "Start over"
+    }
   },
   "project": {
     "recruiting_one": "hiring · {{count}} role",

@@ -5,9 +5,10 @@ import { AnimatePresence, m, useAnimate } from 'motion/react';
 import { useEffect, useRef, useState, type ChangeEvent, type FormEvent } from 'react';
 import { useForm, useWatch } from 'react-hook-form';
 import { Trans, useTranslation } from 'react-i18next';
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useRegister, useUsernameAvailability } from '@/hooks/useAuth';
 import { useReducedMotion } from '@/hooks/useReducedMotion';
+import { rememberPendingVerification } from '@/lib/pendingVerification';
 import { paths } from '@/router/paths';
 import { useAuthLoomStore } from '@/store/useAuthLoomStore';
 import { applyServerErrors, getApiError, getApiErrorMessage } from '@/utils/apiError';
@@ -17,7 +18,6 @@ import AuthSubmit from './AuthSubmit';
 import OAuthButtons from './OAuthButtons';
 import PasswordField from './PasswordField';
 import UsernameField from './UsernameField';
-import { firstNameOf, WELCOME_PAUSE } from './welcome';
 
 // Les conditions et la confidentialité s'ouvrent dans un nouvel onglet : le formulaire reste rempli
 const legalLink = 'font-medium text-soft-foreground underline decoration-gold/60 underline-offset-2 hover:text-foreground';
@@ -54,9 +54,9 @@ export default function RegisterForm() {
   const queryClient = useQueryClient();
   const reduced = useReducedMotion();
   const setProgress = useAuthLoomStore((s) => s.setProgress);
-  const setWelcome = useAuthLoomStore((s) => s.setWelcome);
+  const navigate = useNavigate();
+  const location = useLocation();
   const [failure, setFailure] = useState<string | null>(null);
-  const [done, setDone] = useState(false);
   const [scope, animate] = useAnimate<HTMLFormElement>();
   // Le membre a écrit son nom d'utilisateur lui-même : le nom complet ne le propose plus
   const handPicked = useRef(false);
@@ -82,13 +82,7 @@ export default function RegisterForm() {
   const usernameFree = availability?.available === true;
   const emailValid = registerSchema.shape.email.safeParse(email).success;
 
-  const signup = useRegister({
-    welcome: async (session) => {
-      setDone(true);
-      setWelcome(firstNameOf(session.user));
-      await new Promise((resolve) => window.setTimeout(resolve, reduced ? WELCOME_PAUSE.reduced : WELCOME_PAUSE.full));
-    },
-  });
+  const signup = useRegister();
 
   // Le nom complet propose le nom d'utilisateur, tant que le membre ne l'a pas écrit lui-même
   useEffect(() => {
@@ -154,12 +148,22 @@ export default function RegisterForm() {
         preferredLanguage: i18n.resolvedLanguage === 'en' ? 'EN' : 'FR',
       },
       {
+        // Le compte attend le code envoyé par e-mail : la page du code prend le relais (avec la page visée, s'il y en a une)
+        onSuccess: (pending) => {
+          rememberPendingVerification(pending);
+          void navigate(paths.verifyEmail, { state: location.state as unknown });
+        },
         onError: (error) => {
           const body = getApiError(error);
           const field = Object.keys(body?.validationErrors ?? {})[0];
           // Le serveur dit quel champ ne va pas : e-mail déjà inscrit, nom pris entre-temps ou réservé
           if (field === 'email' && body?.errorCode === 'DUPLICATE_RESOURCE') {
             setError('email', { type: 'server', message: t('auth.errors.emailTaken') }, { shouldFocus: true });
+            return;
+          }
+          // Une inscription attend déjà son code à cette adresse, avec un autre mot de passe
+          if (field === 'email' && body?.errorCode === 'OPERATION_NOT_ALLOWED') {
+            setError('email', { type: 'server', message: t('auth.errors.emailPending') }, { shouldFocus: true });
             return;
           }
           if (field === 'username') {
@@ -252,7 +256,7 @@ export default function RegisterForm() {
             label={t('auth.register.submit')}
             pendingLabel={t('auth.register.pending')}
             doneLabel={t('auth.welcomeButton')}
-            state={done ? 'done' : signup.isPending ? 'pending' : 'idle'}
+            state={signup.isPending || signup.isSuccess ? 'pending' : 'idle'}
           />
         </div>
 

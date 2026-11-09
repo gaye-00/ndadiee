@@ -25,11 +25,26 @@ public class AuthenticationController extends BaseController {
 
     private final AuthenticationService authenticationService;
 
-    @Operation(summary = "Créer un compte développeur")
+    @Operation(summary = "Créer un compte développeur : un code part par e-mail, le compte s'ouvre avec lui")
     @PostMapping("/register")
-    public ResponseEntity<ApiResponse<AuthenticationResponse>> register(@Valid @RequestBody RegisterRequest request) {
+    public ResponseEntity<ApiResponse<PendingVerificationResponse>> register(@Valid @RequestBody RegisterRequest request) {
         return ResponseEntity.status(HttpStatus.CREATED).body(ApiResponse.success(
-                authenticationService.register(request), "Inscription réussie"));
+                authenticationService.register(request), "Inscription enregistrée : confirme ton adresse avec le code reçu"));
+    }
+
+    @Operation(summary = "Confirmer son adresse avec le code reçu par e-mail, et ouvrir sa session")
+    @PostMapping("/verify-email")
+    public ResponseEntity<ApiResponse<AuthenticationResponse>> verifyEmail(@Valid @RequestBody VerifyEmailRequest request) {
+        return ResponseEntity.ok(ApiResponse.success(
+                authenticationService.verifyEmail(request), "Adresse confirmée"));
+    }
+
+    @Operation(summary = "Recevoir un nouveau code pour une inscription en attente")
+    @PostMapping("/verify-email/resend")
+    public ResponseEntity<ApiResponse<PendingVerificationResponse>> resendVerification(
+            @Valid @RequestBody ResendVerificationRequest request) {
+        return ResponseEntity.ok(ApiResponse.success(
+                authenticationService.resendVerification(request), "Si une inscription attend son code, un nouveau est parti"));
     }
 
     @Operation(summary = "Se connecter avec son email ou son nom d'utilisateur")

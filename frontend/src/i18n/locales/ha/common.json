@@ -238,6 +238,7 @@
     "settings": "Saituna",
     "login": "Shiga",
     "register": "Rajista",
+    "verifyEmail": "Tabbatar da imel",
     "oauthCallback": "Shiga",
     "notFound": "Ba a sami shafin ba",
     "editTopic": "Gyara batu",
@@ -630,7 +631,8 @@
     "errors": {
       "emailTaken": "Akwai asusu da ke amfani da wannan imel. Ka shiga maimakon haka.",
       "usernameTaken": "An ɗauki wannan sunan mai amfani yanzu.",
-      "usernameReserved": "An keɓe wannan sunan mai amfani."
+      "usernameReserved": "An keɓe wannan sunan mai amfani.",
+      "emailPending": "Akwai rajista da ke jiran lambar da aka aika zuwa wannan adireshi. Shigar da ita, ko sake gwadawa gobe."
     },
     "loom": {
       "eyebrow": "Wurin aiki",
@@ -639,7 +641,26 @@
       "registerTitle": "Ƙarin zare ɗaya a cikin zane.",
       "registerText": "Kowane mai haɓakawa zare ne. A nan, ana saƙa ƙungiyoyi a kewayen shirye-shirye."
     },
-    "sessionBlocked": "Ƙungiyar Ndadiee ta dakatar da asusunka: an fitar da kai."
+    "sessionBlocked": "Ƙungiyar Ndadiee ta dakatar da asusunka: an fitar da kai.",
+    "verify": {
+      "eyebrow": "Tabbatarwa",
+      "title": "Duba imel ɗinka.",
+      "text": "Mun aika lamba mai lambobi 6 zuwa {{email}}. Shigar da ita don buɗe asusunka.",
+      "code": "Lambar da ka karɓa ta imel",
+      "hint": "Tana aiki na mintuna 15. Ka duba akwatin spam ma.",
+      "submit": "Tabbatar",
+      "pending": "Ana tabbatarwa…",
+      "noCode": "Ba ka karɓa ba?",
+      "resend": "Aika sabuwar lamba",
+      "resendIn": "Sake aikawa bayan daƙiƙa {{seconds}}",
+      "resent": "An aika sabuwar lamba yanzu.",
+      "invalid_one": "Lambar ba daidai ba ce. Saura maka gwaji {{count}}.",
+      "invalid_other": "Lambar ba daidai ba ce. Saura maka gwaje-gwaje {{count}}.",
+      "expired": "Wannan lambar ta ƙare. Nemi sabuwa.",
+      "tooMany": "Gwaje-gwaje sun yi yawa da wannan lambar. Nemi sabuwa.",
+      "wrongEmail": "Ba adireshinka ba ne?",
+      "changeEmail": "Sake fara rajista"
+    }
   },
   "project": {
     "recruiting_one": "yana neman · gurbi {{count}}",

@@ -58,14 +58,31 @@ export function useLogin({ welcome }: SessionOptions = {}) {
   });
 }
 
-export function useRegister({ welcome }: SessionOptions = {}) {
-  const startSession = useSessionStarter();
+/** Inscription : le compte attend le code envoyé par e-mail, pas encore de session (voir useVerifyEmail). */
+export function useRegister() {
   return useMutation({
     mutationFn: authService.register,
+    meta: { handlesError: true },
+  });
+}
+
+/** Le code reçu par e-mail : l'adresse est confirmée, la session s'ouvre (avec l'accueil du métier). */
+export function useVerifyEmail({ welcome }: SessionOptions = {}) {
+  const startSession = useSessionStarter();
+  return useMutation({
+    mutationFn: authService.verifyEmail,
     onSuccess: async (session) => {
       await welcome?.(session);
       startSession(session);
     },
+    meta: { handlesError: true },
+  });
+}
+
+/** Un nouveau code pour une inscription en attente. */
+export function useResendVerification() {
+  return useMutation({
+    mutationFn: authService.resendVerification,
     meta: { handlesError: true },
   });
 }

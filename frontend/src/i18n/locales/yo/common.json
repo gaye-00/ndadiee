@@ -238,6 +238,7 @@
     "settings": "Ètò",
     "login": "Wọlé",
     "register": "Forúkọsílẹ̀",
+    "verifyEmail": "Ìfìdímúlẹ̀ ímeèlì",
     "oauthCallback": "Wọlé",
     "notFound": "A kò rí ojú-ìwé náà",
     "editTopic": "Ṣàtúnṣe kókó",
@@ -630,7 +631,8 @@
     "errors": {
       "emailTaken": "Àkọọ́lẹ̀ kan ti ń lo ímeèlì yìí. Wọlé dípò rẹ̀.",
       "usernameTaken": "Wọ́n ṣẹ̀ṣẹ̀ mú orúkọ olùmúlò yìí.",
-      "usernameReserved": "Wọ́n ti fi orúkọ olùmúlò yìí pamọ́."
+      "usernameReserved": "Wọ́n ti fi orúkọ olùmúlò yìí pamọ́.",
+      "emailPending": "Ìforúkọsílẹ̀ kan ti ń dúró de kóòdù tí a fi ránṣẹ́ sí àdírẹ́sì yìí. Tẹ̀ ẹ́ wọlé, tàbí gbìyànjú lọ́la."
     },
     "loom": {
       "eyebrow": "Ibi iṣẹ́",
@@ -639,7 +641,26 @@
       "registerTitle": "Òwú kan sí i nínú aṣọ náà.",
       "registerText": "Gbogbo olùgbéejáde jẹ́ òwú kan. Níbí, àwọn ẹgbẹ́ ń hun ara wọn yí iṣẹ́ àkànṣe ká."
     },
-    "sessionBlocked": "Ẹgbẹ́ Ndadiee ti dá àkọọ́lẹ̀ rẹ dúró: a ti mú ọ jáde."
+    "sessionBlocked": "Ẹgbẹ́ Ndadiee ti dá àkọọ́lẹ̀ rẹ dúró: a ti mú ọ jáde.",
+    "verify": {
+      "eyebrow": "Ìfìdímúlẹ̀",
+      "title": "Ṣàyẹ̀wò ímeèlì rẹ.",
+      "text": "A ti fi kóòdù oní-nọ́ńbà 6 ránṣẹ́ sí {{email}}. Tẹ̀ ẹ́ wọlé láti ṣí àkọọ́lẹ̀ rẹ.",
+      "code": "Kóòdù láti inú ímeèlì",
+      "hint": "Ó wúlò fún ìṣẹ́jú 15. Wo inú fódà spam pẹ̀lú.",
+      "submit": "Fìdí rẹ̀ múlẹ̀",
+      "pending": "À ń ṣàyẹ̀wò…",
+      "noCode": "O kò rí i gbà?",
+      "resend": "Fi kóòdù tuntun ránṣẹ́",
+      "resendIn": "Tún fi ránṣẹ́ lẹ́yìn ìṣẹ́jú-àáyá {{seconds}}",
+      "resent": "A ti fi kóòdù tuntun ránṣẹ́.",
+      "invalid_one": "Kóòdù kò tọ́. Ìgbìyànjú {{count}} ló kù fún ọ.",
+      "invalid_other": "Kóòdù kò tọ́. Ìgbìyànjú {{count}} ló kù fún ọ.",
+      "expired": "Kóòdù yìí ti parí. Béèrè fún tuntun.",
+      "tooMany": "Ìgbìyànjú ti pọ̀ jù fún kóòdù yìí. Béèrè fún tuntun.",
+      "wrongEmail": "Kì í ṣe àdírẹ́sì rẹ?",
+      "changeEmail": "Bẹ̀rẹ̀ ìforúkọsílẹ̀ lẹ́ẹ̀kan sí i"
+    }
   },
   "project": {
     "recruiting_one": "ń wá · ipa {{count}}",

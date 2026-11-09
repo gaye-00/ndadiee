@@ -62,6 +62,7 @@ const router = createBrowserRouter([
                 children: [
                   { path: paths.login, ...page('login') },
                   { path: paths.register, ...page('register') },
+                  { path: paths.verifyEmail, ...page('verifyEmail') },
                 ],
               },
             ],

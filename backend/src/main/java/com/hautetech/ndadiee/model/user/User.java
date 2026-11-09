@@ -9,6 +9,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import com.hautetech.ndadiee.common.BaseEntity;
 import com.hautetech.ndadiee.model.Language;
 
+import org.hibernate.annotations.ColumnDefault;
 import org.hibernate.annotations.DynamicUpdate;
 
 import jakarta.persistence.CheckConstraint;
@@ -104,6 +105,16 @@ public abstract class User extends BaseEntity implements UserDetails {
 
     // Dernière connexion réussie (back-office : membres actifs)
     private Instant lastLoginAt;
+
+    /**
+     * L'adresse e-mail est-elle prouvée ? Faux seulement pour un compte créé par le formulaire et dont le code reçu
+     * par e-mail n'a pas encore été saisi : il ne peut pas encore se connecter. Vrai pour les comptes GitHub et Google
+     * (le fournisseur a vérifié l'adresse) et pour ceux d'avant la vérification (la colonne arrive à vrai).
+     */
+    @Builder.Default
+    @ColumnDefault("true")
+    @Column(nullable = false)
+    private boolean emailVerified = true;
 
     /**
      * Suspendu par l'administration : ni connexion, ni renouvellement de session, ni requête authentifiée.

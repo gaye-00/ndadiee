@@ -238,6 +238,7 @@
     "settings": "Izilungiselelo",
     "login": "Ngena",
     "register": "Bhalisa",
+    "verifyEmail": "Ukuqinisekisa i-imeyili",
     "oauthCallback": "Ngena",
     "notFound": "Ikhasi alitholakali",
     "editTopic": "Hlela isihloko",
@@ -630,7 +631,8 @@
     "errors": {
       "emailTaken": "Kukhona i-akhawunti esebenzisa le imeyili. Ngena kunalokho.",
       "usernameTaken": "Leli gama lomsebenzisi lisanda kuthathwa.",
-      "usernameReserved": "Leli gama lomsebenzisi ligodliwe."
+      "usernameReserved": "Leli gama lomsebenzisi ligodliwe.",
+      "emailPending": "Ukubhalisa sekulinde ikhodi ethunyelwe kuleli kheli. Yifake, noma uzame futhi kusasa."
     },
     "loom": {
       "eyebrow": "Indawo yokusebenza",
@@ -639,7 +641,26 @@
       "registerTitle": "Intambo eyodwa engeziwe endwangwini.",
       "registerText": "Wonke umthuthukisi uyintambo. Lapha, amathimba alukwa ezungeze amaphrojekthi."
     },
-    "sessionBlocked": "I-akhawunti yakho imiswe yithimba le-Ndadiee: ukhishiwe."
+    "sessionBlocked": "I-akhawunti yakho imiswe yithimba le-Ndadiee: ukhishiwe.",
+    "verify": {
+      "eyebrow": "Ukuqinisekisa",
+      "title": "Hlola i-imeyili yakho.",
+      "text": "Sithumele ikhodi enezinombolo ezi-6 ku-{{email}}. Yifake ukuze uvule i-akhawunti yakho.",
+      "code": "Ikhodi evela ku-imeyili",
+      "hint": "Isebenza imizuzu engu-15. Bheka nakufolda ye-spam.",
+      "submit": "Qinisekisa",
+      "pending": "Iyaqinisekisa…",
+      "noCode": "Awuyitholanga?",
+      "resend": "Thumela ikhodi entsha",
+      "resendIn": "Thumela futhi emva kwemizuzwana engu-{{seconds}}",
+      "resent": "Ikhodi entsha isithunyelwe.",
+      "invalid_one": "Ikhodi ayilungile. Usele nomzamo o-{{count}}.",
+      "invalid_other": "Ikhodi ayilungile. Usele nemizamo engu-{{count}}.",
+      "expired": "Le khodi iphelelwe yisikhathi. Cela entsha.",
+      "tooMany": "Imizamo eminingi kakhulu ngale khodi. Cela entsha.",
+      "wrongEmail": "Akulona ikheli lakho?",
+      "changeEmail": "Qala ukubhalisa kabusha"
+    }
   },
   "project": {
     "recruiting_one": "ifuna · indima engu-{{count}}",

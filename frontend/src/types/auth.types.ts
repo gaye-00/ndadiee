@@ -17,6 +17,19 @@ export interface RegisterRequest {
   preferredLanguage?: Language;
 }
 
+/** L'inscription attend le code envoyé par e-mail (PendingVerificationResponse.java) : pas encore de session */
+export interface PendingVerification {
+  email: string;
+  /** Dans combien de secondes un nouveau code peut être demandé */
+  resendAvailableInSeconds: number;
+}
+
+/** Le code reçu par e-mail (VerifyEmailRequest.java) */
+export interface VerifyEmailRequest {
+  email: string;
+  code: string;
+}
+
 /** Les fournisseurs de connexion gérés par le backend (OAuthProvider.java) */
 export type OAuthProviderId = 'github' | 'google';
 

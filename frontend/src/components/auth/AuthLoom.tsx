@@ -44,7 +44,8 @@ export default function AuthLoom({ className }: { className?: string }) {
   const cloth = useRef(0);
   // Part que l'étoffe peut prendre avant l'accueil : sous le texte du haut, selon la hauteur de l'écran
   const room = useRef(CLOTH_FORM);
-  const register = pathname === paths.register;
+  // Le code reçu par e-mail termine une inscription : même accueil que l'inscription
+  const register = pathname === paths.register || pathname === paths.verifyEmail;
 
   // Pose la part tissée : l'étoffe sur le canvas, la ligne de tissage et sa navette dans la page
   const lay = useCallback((fraction: number) => {

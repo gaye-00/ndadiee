@@ -238,6 +238,7 @@
     "settings": "Mipangilio",
     "login": "Ingia",
     "register": "Jisajili",
+    "verifyEmail": "Uthibitishaji wa barua pepe",
     "oauthCallback": "Ingia",
     "notFound": "Ukurasa haupatikani",
     "editTopic": "Hariri mada",
@@ -630,7 +631,8 @@
     "errors": {
       "emailTaken": "Akaunti tayari inatumia barua pepe hii. Ingia badala yake.",
       "usernameTaken": "Jina hili la mtumiaji limechukuliwa sasa hivi.",
-      "usernameReserved": "Jina hili la mtumiaji limehifadhiwa."
+      "usernameReserved": "Jina hili la mtumiaji limehifadhiwa.",
+      "emailPending": "Usajili tayari unasubiri msimbo uliotumwa kwa anwani hii. Uweke, au jaribu tena kesho."
     },
     "loom": {
       "eyebrow": "Karakana",
@@ -639,7 +641,26 @@
       "registerTitle": "Uzi mmoja zaidi kitambaani.",
       "registerText": "Kila msanidi ni uzi. Hapa, timu hufumwa kuzunguka miradi."
     },
-    "sessionBlocked": "Akaunti yako imesimamishwa na timu ya Ndadiee: umetolewa."
+    "sessionBlocked": "Akaunti yako imesimamishwa na timu ya Ndadiee: umetolewa.",
+    "verify": {
+      "eyebrow": "Uthibitishaji",
+      "title": "Angalia barua pepe yako.",
+      "text": "Tumetuma msimbo wa tarakimu 6 kwa {{email}}. Uweke ili kufungua akaunti yako.",
+      "code": "Msimbo kutoka barua pepe",
+      "hint": "Unafanya kazi kwa dakika 15. Angalia pia folda ya barua taka.",
+      "submit": "Thibitisha",
+      "pending": "Inathibitisha…",
+      "noCode": "Hukuupata?",
+      "resend": "Tuma msimbo mpya",
+      "resendIn": "Tuma tena baada ya sekunde {{seconds}}",
+      "resent": "Msimbo mpya umetumwa.",
+      "invalid_one": "Msimbo si sahihi. Umebakiwa na jaribio {{count}}.",
+      "invalid_other": "Msimbo si sahihi. Umebakiwa na majaribio {{count}}.",
+      "expired": "Msimbo huu umeisha muda. Omba mpya.",
+      "tooMany": "Majaribio mengi mno kwa msimbo huu. Omba mpya.",
+      "wrongEmail": "Si anwani yako?",
+      "changeEmail": "Anza usajili upya"
+    }
   },
   "project": {
     "recruiting_one": "inatafuta · nafasi {{count}}",

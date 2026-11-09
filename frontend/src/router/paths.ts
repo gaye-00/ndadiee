@@ -64,6 +64,8 @@ export const paths = {
   // ── Compte ──
   login: '/login',
   register: '/register',
+  /** Le code reçu par e-mail après l'inscription */
+  verifyEmail: '/verify-email',
   // ── Textes légaux (liés depuis l'écran de connexion Google) ──
   privacy: '/privacy',
   terms: '/terms',

@@ -68,6 +68,9 @@ public class SecurityConfiguration {
                     "/v1/auth/register",
                     "/v1/auth/login",
                     "/v1/auth/refresh",
+                    // Le code reçu par e-mail à l'inscription
+                    "/v1/auth/verify-email",
+                    "/v1/auth/verify-email/resend",
                     // Connexion avec GitHub ou Google : départ chez le fournisseur, puis retour avec son code
                     "/v1/auth/oauth/*/authorization",
                     "/v1/auth/oauth/*/login"

@@ -238,6 +238,7 @@
     "settings": "ቅንብሮች",
     "login": "ግባ",
     "register": "ተመዝገብ",
+    "verifyEmail": "ኢሜይል ማረጋገጫ",
     "oauthCallback": "ግባ",
     "notFound": "ገጹ አልተገኘም",
     "editTopic": "ርዕሱን አስተካክል",
@@ -630,7 +631,8 @@
     "errors": {
       "emailTaken": "ይህን ኢሜይል የሚጠቀም መለያ አለ። በምትኩ ግባ።",
       "usernameTaken": "ይህ የተጠቃሚ ስም አሁን ተይዟል።",
-      "usernameReserved": "ይህ የተጠቃሚ ስም የተጠበቀ ነው።"
+      "usernameReserved": "ይህ የተጠቃሚ ስም የተጠበቀ ነው።",
+      "emailPending": "ወደዚህ አድራሻ የተላከውን ኮድ የሚጠብቅ ምዝገባ አለ። ኮዱን አስገባ፣ ወይም ነገ እንደገና ሞክር።"
     },
     "loom": {
       "eyebrow": "የሥራ ቦታው",
@@ -639,7 +641,26 @@
       "registerTitle": "በልብሱ ላይ አንድ ተጨማሪ ክር።",
       "registerText": "እያንዳንዱ ገንቢ ክር ነው። እዚህ ቡድኖች በፕሮጀክቶች ዙሪያ ይሸመናሉ።"
     },
-    "sessionBlocked": "መለያህ በNdadiee ቡድን ታግዷል፦ ከክፍለ ጊዜህ ወጥተሃል።"
+    "sessionBlocked": "መለያህ በNdadiee ቡድን ታግዷል፦ ከክፍለ ጊዜህ ወጥተሃል።",
+    "verify": {
+      "eyebrow": "ማረጋገጫ",
+      "title": "ኢሜይልህን ተመልከት።",
+      "text": "ወደ {{email}} ባለ 6 አሃዝ ኮድ ልከናል። መለያህን ለመክፈት አስገባው።",
+      "code": "በኢሜይል የደረሰው ኮድ",
+      "hint": "ለ15 ደቂቃ ያገለግላል። የአይፈለጌ መልእክት ማህደሩንም ተመልከት።",
+      "submit": "አረጋግጥ",
+      "pending": "በማረጋገጥ ላይ…",
+      "noCode": "አልደረሰህም?",
+      "resend": "አዲስ ኮድ ላክ",
+      "resendIn": "ከ{{seconds}} ሰከንድ በኋላ እንደገና ላክ",
+      "resent": "አዲስ ኮድ ተልኳል።",
+      "invalid_one": "ኮዱ ትክክል አይደለም። {{count}} ሙከራ ቀርቶሃል።",
+      "invalid_other": "ኮዱ ትክክል አይደለም። {{count}} ሙከራዎች ቀርተውሃል።",
+      "expired": "ይህ ኮድ ጊዜው አልፎበታል። አዲስ ጠይቅ።",
+      "tooMany": "ለዚህ ኮድ ብዙ ሙከራዎች ተደርገዋል። አዲስ ጠይቅ።",
+      "wrongEmail": "አድራሻህ አይደለም?",
+      "changeEmail": "ምዝገባውን እንደገና ጀምር"
+    }
   },
   "project": {
     "recruiting_one": "እየፈለገ ነው · {{count}} ሚና",

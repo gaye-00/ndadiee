@@ -77,6 +77,7 @@ export const pages = {
 
   login: () => import('@/pages/auth/LoginPage'),
   register: () => import('@/pages/auth/RegisterPage'),
+  verifyEmail: () => import('@/pages/auth/VerifyEmailPage'),
   oauthCallback: () => import('@/pages/auth/OAuthCallbackPage'),
   privacy: () => import('@/pages/legal/PrivacyPage'),
   terms: () => import('@/pages/legal/TermsPage'),

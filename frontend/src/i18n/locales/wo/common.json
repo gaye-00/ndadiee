@@ -238,6 +238,7 @@
     "settings": "Tànneef yi",
     "login": "Duggu",
     "register": "Bindu",
+    "verifyEmail": "Wóoral email bi",
     "oauthCallback": "Duggu",
     "notFound": "Xët wi amul",
     "editTopic": "Soppi waxtaan wi",
@@ -630,7 +631,8 @@
     "errors": {
       "emailTaken": "Am na kontu bu jëfandikoo email bii. Duggal rekk.",
       "usernameTaken": "Tur bii jël nañu ko léegi.",
-      "usernameReserved": "Tur bii dañu ko denc."
+      "usernameReserved": "Tur bii dañu ko denc.",
+      "emailPending": "Am na bindu buy xaar code bi ñu yónnee ci adrees bii. Duggalal ko, walla jéemaatal ëllëg."
     },
     "loom": {
       "eyebrow": "Liggéeyukaay bi",
@@ -639,7 +641,26 @@
       "registerTitle": "Beneen wëñ ci sër bi.",
       "registerText": "Dev bu nekk ab wëñ la. Fii, ekip yi dañuy ràbbu ci wetu projet yi."
     },
-    "sessionBlocked": "Ekipu Ndadiee taxawal na sa kont : génne nañu la."
+    "sessionBlocked": "Ekipu Ndadiee taxawal na sa kont : génne nañu la.",
+    "verify": {
+      "eyebrow": "Wóoral",
+      "title": "Seetal sa email.",
+      "text": "Yónnee nanu code bu am 6 siifar ci {{email}}. Duggalal ko ngir ubbi sa kont.",
+      "code": "Code bi nga jot ci email",
+      "hint": "Mi ngi dox diirub 15 simili. Seetal itam ci spam yi.",
+      "submit": "Wóoral",
+      "pending": "Mi ngi wóoral…",
+      "noCode": "Joto ko?",
+      "resend": "Yónneel code bu bees",
+      "resendIn": "Yónneewaat ci {{seconds}} saa",
+      "resent": "Code bu bees dem na.",
+      "invalid_one": "Code bi baaxul. Des na la {{count}} jéem.",
+      "invalid_other": "Code bi baaxul. Des na la {{count}} jéem.",
+      "expired": "Code bii jeex na. Laajal beneen.",
+      "tooMany": "Jéem yi bari nañu ci code bii. Laajal beneen.",
+      "wrongEmail": "Du sa adrees?",
+      "changeEmail": "Tambaliwaat bindu bi"
+    }
   },
   "project": {
     "recruiting_one": "mu ngi seet · {{count}} palaas",

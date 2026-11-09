@@ -10,6 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.hautetech.ndadiee.authentication.AuthenticationResponse;
 import com.hautetech.ndadiee.authentication.AuthenticationService;
+import com.hautetech.ndadiee.authentication.verification.EmailVerificationService;
 import com.hautetech.ndadiee.exception.OAuthException;
 import com.hautetech.ndadiee.model.Language;
 import com.hautetech.ndadiee.model.user.Developer;
@@ -42,6 +43,7 @@ public class OAuthAccountService {
     private final UserIdentityRepository identityRepository;
     private final AuthenticationService authenticationService;
     private final PasswordEncoder passwordEncoder;
+    private final EmailVerificationService emailVerificationService;
 
     /**
      * Ouvre une session sur le compte du membre décrit par le fournisseur, créé au besoin.
@@ -89,6 +91,15 @@ public class OAuthAccountService {
         }
         if (identityRepository.existsByUserIdAndProvider(developer.getId(), profile.provider())) {
             throw OAuthException.alreadyLinked(profile.provider());
+        }
+        // Inscription jamais confirmée par le code : n'importe qui a pu la lancer avec cette adresse. Le fournisseur
+        // prouve que l'adresse est à ce membre ; le mot de passe choisi par l'inconnu ne sert plus à rien
+        if (!developer.isEmailVerified()) {
+            developer.setEmailVerified(true);
+            developer.setPassword(passwordEncoder.encode(randomSecret()));
+            emailVerificationService.discard(developer);
+            log.info("[Auth] Inscription en attente confirmée par {} (mot de passe remplacé) - ID: {}",
+                    profile.provider().displayName(), developer.getId());
         }
         // Seulement ce que le membre n'a pas encore renseigné
         if (developer.getAvatarUrl() == null) {

@@ -5,17 +5,28 @@ import type {
   OAuthAuthorizationRequest,
   OAuthLoginRequest,
   OAuthProviderId,
+  PendingVerification,
   RegisterRequest,
   UserResponse,
   UsernameAvailability,
+  VerifyEmailRequest,
 } from '@/types/auth.types';
 import type { ApiResponse } from '@/types/common.types';
 
 const BASE = '/v1/auth';
 
 export const authService = {
+  /** Crée le compte ; il ne s'ouvre qu'avec le code envoyé par e-mail (verifyEmail) */
   register: (body: RegisterRequest) =>
-    api.post<ApiResponse<AuthResponse>>(`${BASE}/register`, body).then((r) => r.data.data),
+    api.post<ApiResponse<PendingVerification>>(`${BASE}/register`, body).then((r) => r.data.data),
+
+  /** Le code reçu par e-mail : l'adresse est confirmée, la session s'ouvre */
+  verifyEmail: (body: VerifyEmailRequest) =>
+    api.post<ApiResponse<AuthResponse>>(`${BASE}/verify-email`, body).then((r) => r.data.data),
+
+  /** Un nouveau code pour une inscription en attente */
+  resendVerification: (email: string) =>
+    api.post<ApiResponse<PendingVerification>>(`${BASE}/verify-email/resend`, { email }).then((r) => r.data.data),
 
   login: (body: LoginRequest) =>
     api.post<ApiResponse<AuthResponse>>(`${BASE}/login`, body).then((r) => r.data.data),

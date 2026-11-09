@@ -56,6 +56,11 @@ services:
       GITHUB_CLIENT_SECRET: ${GITHUB_CLIENT_SECRET:-}
       GOOGLE_CLIENT_ID: ${GOOGLE_CLIENT_ID:-}
       GOOGLE_CLIENT_SECRET: ${GOOGLE_CLIENT_SECRET:-}
+      # Profil prod : les e-mails partent par SMTP (codes de vérification de l'inscription, notifications des revues).
+      # Sans eux, personne ne pourrait confirmer son inscription : le mot de passe est obligatoire
+      SPRING_PROFILES_ACTIVE: prod
+      MAIL_USERNAME: ${MAIL_USERNAME:-no-reply@hautetech.org}
+      MAIL_PASSWORD: ${MAIL_PASSWORD:?MAIL_PASSWORD manquant dans .env}
       SPRINGDOC_API_DOCS_ENABLED: "false"
       SPRINGDOC_SWAGGER_UI_ENABLED: "false"
     ports:

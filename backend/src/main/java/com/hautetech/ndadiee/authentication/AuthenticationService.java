@@ -17,8 +17,10 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.hautetech.ndadiee.authentication.UsernameAvailabilityResponse.Reason;
+import com.hautetech.ndadiee.authentication.verification.EmailVerificationService;
 import com.hautetech.ndadiee.exception.AccountBlockedException;
 import com.hautetech.ndadiee.exception.DuplicateResourceException;
+import com.hautetech.ndadiee.exception.EmailVerificationException;
 import com.hautetech.ndadiee.exception.OperationNotAllowedException;
 import com.hautetech.ndadiee.exception.ResourceNotFoundException;
 import com.hautetech.ndadiee.exception.UnauthorizedException;
@@ -53,8 +55,17 @@ public class AuthenticationService {
     private final AuthenticationManager authenticationManager;
     private final JwtService jwtService;
     private final UserMapper userMapper;
+    private final EmailVerificationService emailVerificationService;
 
-    public AuthenticationResponse register(RegisterRequest request) {
+    /**
+     * Inscription avec une adresse e-mail et un mot de passe : le compte est créé, mais ne s'ouvre qu'avec le code
+     * envoyé à cette adresse ({@link #verifyEmail}). Pas de session ici.
+     *
+     * <p>Une inscription déjà en attente pour cette adresse est reprise si le mot de passe est le même (un nouveau code
+     * part) ; sinon l'adresse est refusée, comme une adresse prise : personne ne peut changer le mot de passe d'une
+     * inscription qu'il n'a pas faite.
+     */
+    public PendingVerificationResponse register(RegisterRequest request) {
         String username = normalize(request.getUsername());
         String email = normalize(request.getEmail());
 
@@ -62,11 +73,20 @@ public class AuthenticationService {
         if (RESERVED_USERNAMES.contains(username)) {
             throw new OperationNotAllowedException("Ce nom d'utilisateur est réservé", "username");
         }
+        User existing = userRepository.findByEmail(email).orElse(null);
+        if (existing != null) {
+            if (!existing.isEmailVerified() && passwordEncoder.matches(request.getPassword(), existing.getPassword())) {
+                log.info("[Auth] Inscription en attente reprise - ID: {}", existing.getId());
+                return new PendingVerificationResponse(email, emailVerificationService.send(existing));
+            }
+            if (!existing.isEmailVerified()) {
+                throw new OperationNotAllowedException(
+                        "Une inscription attend déjà le code envoyé à cette adresse : saisis-le, ou réessaie demain", "email");
+            }
+            throw new DuplicateResourceException("Utilisateur", "email", email, "email");
+        }
         if (userRepository.existsByUsername(username)) {
             throw new DuplicateResourceException("Utilisateur", "nom d'utilisateur", username, "username");
-        }
-        if (userRepository.existsByEmail(email)) {
-            throw new DuplicateResourceException("Utilisateur", "email", email, "email");
         }
 
         Developer developer = Developer.builder()
@@ -77,20 +97,50 @@ public class AuthenticationService {
                 .country(request.getCountry() == null ? null : request.getCountry().toUpperCase())
                 .preferredLanguage(request.getPreferredLanguage() == null ? Language.FR : request.getPreferredLanguage())
                 .role(Role.USER)
+                .emailVerified(false)
                 .build();
 
         Developer saved = userRepository.save(developer);
-        log.info("[Auth] Inscription - ID: {} - username: {}", saved.getId(), saved.getUsername());
-        return buildResponse(saved);
+        log.info("[Auth] Inscription en attente du code - ID: {} - username: {}", saved.getId(), saved.getUsername());
+        return new PendingVerificationResponse(email, emailVerificationService.send(saved));
     }
 
+    /** Le code reçu par e-mail : l'adresse est prouvée, la session s'ouvre (comme une connexion). */
+    @Transactional(noRollbackFor = EmailVerificationException.class)
+    public AuthenticationResponse verifyEmail(VerifyEmailRequest request) {
+        User user = emailVerificationService.verify(normalize(request.getEmail()), request.getCode().trim());
+        AuthenticationResponse session = openSession(user);
+        log.info("[Auth] Connexion après confirmation de l'adresse - ID: {} - username: {}", user.getId(), user.getUsername());
+        return session;
+    }
+
+    /**
+     * Un nouveau code pour une inscription en attente. La réponse est la même pour une adresse inconnue ou déjà
+     * confirmée : elle ne dit pas quelles adresses ont un compte.
+     */
+    public PendingVerificationResponse resendVerification(ResendVerificationRequest request) {
+        String email = normalize(request.getEmail());
+        long wait = userRepository.findByEmail(email)
+                .filter(user -> !user.isEmailVerified())
+                .map(emailVerificationService::send)
+                .orElse(EmailVerificationService.RESEND_DELAY.toSeconds());
+        return new PendingVerificationResponse(email, wait);
+    }
+
+    // Le refus « adresse pas encore confirmée » garde le code qui vient de partir : pas d'annulation pour lui
+    @Transactional(noRollbackFor = EmailVerificationException.class)
     public AuthenticationResponse login(AuthenticationRequest request) {
         // Lève BadCredentialsException (→ 401) si l'identifiant ou le mot de passe est faux
         Authentication authentication = authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(normalize(request.getIdentifier()), request.getPassword()));
 
         User user = (User) authentication.getPrincipal();
-        // Après le mot de passe : seul le titulaire du compte apprend qu'il est suspendu
+        // Après le mot de passe : seul le titulaire du compte apprend qu'il est suspendu, ou que son adresse attend son code
+        requireActive(user);
+        if (!user.isEmailVerified()) {
+            emailVerificationService.send(user);
+            throw EmailVerificationException.notVerified(user.getEmail());
+        }
         AuthenticationResponse session = openSession(user);
         log.info("[Auth] Connexion - ID: {} - username: {}", user.getId(), user.getUsername());
         return session;

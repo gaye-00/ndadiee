@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="{{lang}}" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light">
+  <meta name="supported-color-schemes" content="light">
+  <title>{{subject}}</title>
+</head>
+<body style="margin:0;padding:0;background-color:#f5f5f2;-webkit-text-size-adjust:100%;">
+  <!-- Le début du message, que la boîte de réception montre sous l'objet -->
+  <div style="display:none;max-height:0;overflow:hidden;opacity:0;color:#f5f5f2;font-size:1px;line-height:1px;">{{preheader}}</div>
+  <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="background-color:#f5f5f2;">
+    <tr>
+      <td align="center" style="padding:32px 16px;">
+        <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="max-width:520px;">
+          <!-- La marque -->
+          <tr>
+            <td style="padding:0 4px 16px 4px;font-family:'Segoe UI',Helvetica,Arial,sans-serif;font-size:15px;font-weight:800;letter-spacing:-0.01em;color:#0d0f16;">
+              <span style="display:inline-block;width:12px;height:12px;border-radius:4px;background-color:#ffb547;vertical-align:-1px;"></span>&nbsp;Ndadiee
+            </td>
+          </tr>
+          <tr>
+            <td style="background-color:#ffffff;border:1px solid #e6e6e1;border-radius:18px;overflow:hidden;">
+              <!-- Le fil du kente : or, rouge, vert -->
+              <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0">
+                <tr>
+                  <td width="34%" height="4" style="height:4px;line-height:4px;font-size:0;background-color:#ffb547;">&nbsp;</td>
+                  <td width="33%" height="4" style="height:4px;line-height:4px;font-size:0;background-color:#ff5a4e;">&nbsp;</td>
+                  <td width="33%" height="4" style="height:4px;line-height:4px;font-size:0;background-color:#22d3a6;">&nbsp;</td>
+                </tr>
+              </table>
+              <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0">
+                <tr>
+                  <td style="padding:28px 28px 8px 28px;font-family:'Segoe UI',Helvetica,Arial,sans-serif;">
+                    <p style="margin:0 0 14px 0;font-size:14px;color:#3b4050;">{{greeting}}</p>
+                    <h1 style="margin:0 0 10px 0;font-size:21px;line-height:1.3;font-weight:800;color:#0d0f16;">{{headline}}</h1>
+                    <p style="margin:0;font-size:14px;line-height:1.6;color:#5b6070;">{{intro}}</p>
+                  </td>
+                </tr>
+                <tr>
+                  <td align="center" style="padding:22px 28px 6px 28px;">
+                    <!-- Le code : gros, espacé, facile à recopier -->
+                    <table role="presentation" cellpadding="0" cellspacing="0" border="0">
+                      <tr>
+                        <td align="center" style="padding:14px 26px;border-radius:14px;background-color:#fff6e8;border:1px solid #ffd79a;font-family:Menlo,Consolas,'Courier New',monospace;font-size:32px;font-weight:700;letter-spacing:0.32em;color:#0d0f16;">{{code}}</td>
+                      </tr>
+                    </table>
+                  </td>
+                </tr>
+                <tr>
+                  <td align="center" style="padding:10px 28px 28px 28px;font-family:'Segoe UI',Helvetica,Arial,sans-serif;font-size:13px;line-height:1.5;color:#6e7384;">
+                    {{validity}}
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+          <tr>
+            <td style="padding:18px 8px 0 8px;font-family:'Segoe UI',Helvetica,Arial,sans-serif;font-size:12px;line-height:1.6;color:#6e7384;">
+              <p style="margin:0 0 6px 0;">{{ignore}}</p>
+              <p style="margin:0;color:#a3a7b5;">{{brand}}</p>
+            </td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+  </table>
+</body>
+</html>

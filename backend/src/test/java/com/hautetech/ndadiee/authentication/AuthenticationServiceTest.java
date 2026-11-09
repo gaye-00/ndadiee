@@ -21,8 +21,10 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 import com.hautetech.ndadiee.authentication.UsernameAvailabilityResponse.Reason;
+import com.hautetech.ndadiee.authentication.verification.EmailVerificationService;
 import com.hautetech.ndadiee.exception.AccountBlockedException;
 import com.hautetech.ndadiee.exception.BusinessException;
+import com.hautetech.ndadiee.exception.EmailVerificationException;
 import com.hautetech.ndadiee.mapper.UserMapper;
 import com.hautetech.ndadiee.model.user.Developer;
 import com.hautetech.ndadiee.model.user.Role;
@@ -50,6 +52,9 @@ class AuthenticationServiceTest {
 
     @Mock
     private UserMapper userMapper;
+
+    @Mock
+    private EmailVerificationService emailVerificationService;
 
     @InjectMocks
     private AuthenticationService authenticationService;
@@ -108,8 +113,7 @@ class AuthenticationServiceTest {
 
     @Test
     void registeringWithATakenEmailPointsAtTheEmailField() {
-        when(userRepository.existsByUsername("awa")).thenReturn(false);
-        when(userRepository.existsByEmail("awa@example.com")).thenReturn(true);
+        when(userRepository.findByEmail("awa@example.com")).thenReturn(Optional.of(Developer.builder().username("awa").build()));
 
         assertThatThrownBy(() -> authenticationService.register(request("awa", "Awa@Example.com")))
                 .isInstanceOf(BusinessException.class)
@@ -204,5 +208,88 @@ class AuthenticationServiceTest {
 
         assertThatThrownBy(() -> authenticationService.openSession(developer)).isInstanceOf(AccountBlockedException.class);
         verify(userRepository, never()).save(any());
+    }
+
+    // ==================== CODE REÇU PAR E-MAIL ====================
+
+    @Test
+    void registeringCreatesAnUnconfirmedAccountAndSendsACodeWithoutOpeningASession() {
+        when(userRepository.findByEmail("awa@example.com")).thenReturn(Optional.empty());
+        when(userRepository.existsByUsername("awa")).thenReturn(false);
+        when(passwordEncoder.encode("tisse-ton-kente")).thenReturn("{bcrypt}");
+        when(userRepository.save(any(Developer.class))).thenAnswer(invocation -> invocation.getArgument(0));
+        when(emailVerificationService.send(any())).thenReturn(60L);
+
+        PendingVerificationResponse pending = authenticationService.register(request("Awa", "Awa@Example.com"));
+
+        assertThat(pending.email()).isEqualTo("awa@example.com");
+        assertThat(pending.resendAvailableInSeconds()).isEqualTo(60L);
+        org.mockito.ArgumentCaptor<Developer> saved = org.mockito.ArgumentCaptor.forClass(Developer.class);
+        verify(userRepository).save(saved.capture());
+        assertThat(saved.getValue().isEmailVerified()).isFalse();
+        verify(emailVerificationService).send(saved.getValue());
+        verify(jwtService, never()).generateAccessToken(any());
+    }
+
+    @Test
+    void registeringAgainWithTheSamePasswordSendsANewCode() {
+        Developer pending = Developer.builder().username("awa").email("awa@example.com").password("{bcrypt}").emailVerified(false).build();
+        when(userRepository.findByEmail("awa@example.com")).thenReturn(Optional.of(pending));
+        when(passwordEncoder.matches("tisse-ton-kente", "{bcrypt}")).thenReturn(true);
+        when(emailVerificationService.send(pending)).thenReturn(60L);
+
+        assertThat(authenticationService.register(request("awa", "awa@example.com")).email()).isEqualTo("awa@example.com");
+        verify(userRepository, never()).save(any());
+    }
+
+    @Test
+    void nobodyCanTakeOverAnUnconfirmedRegistrationWithAnotherPassword() {
+        Developer pending = Developer.builder().username("awa").email("awa@example.com").password("{bcrypt}").emailVerified(false).build();
+        when(userRepository.findByEmail("awa@example.com")).thenReturn(Optional.of(pending));
+        when(passwordEncoder.matches("tisse-ton-kente", "{bcrypt}")).thenReturn(false);
+
+        assertThatThrownBy(() -> authenticationService.register(request("intrus", "awa@example.com")))
+                .isInstanceOf(BusinessException.class)
+                .extracting(error -> ((BusinessException) error).getField())
+                .isEqualTo("email");
+        verify(emailVerificationService, never()).send(any());
+        verify(userRepository, never()).save(any());
+    }
+
+    @Test
+    void anUnconfirmedAccountGetsANewCodeInsteadOfASession() {
+        Developer awa = member(null);
+        awa.setEmail("awa@example.com");
+        awa.setEmailVerified(false);
+        passwordAccepted(awa);
+
+        assertThatThrownBy(() -> authenticationService.login(new AuthenticationRequest("awa", "tisse-ton-kente")))
+                .isInstanceOf(EmailVerificationException.class)
+                .extracting(error -> ((EmailVerificationException) error).getDetails().get("email"))
+                .isEqualTo("awa@example.com");
+        verify(emailVerificationService).send(awa);
+        verify(jwtService, never()).generateAccessToken(any());
+    }
+
+    @Test
+    void theRightCodeOpensTheSession() {
+        Developer awa = member(null);
+        when(emailVerificationService.verify("awa@example.com", "042917")).thenReturn(awa);
+        when(jwtService.generateAccessToken(awa)).thenReturn("jwt");
+
+        AuthenticationResponse session = authenticationService.verifyEmail(new VerifyEmailRequest(" Awa@Example.com ", "042917"));
+
+        assertThat(session.getAccessToken()).isEqualTo("jwt");
+        assertThat(awa.getLastLoginAt()).isNotNull();
+    }
+
+    @Test
+    void resendingSaysNothingAboutUnknownAddresses() {
+        when(userRepository.findByEmail("inconnu@example.com")).thenReturn(Optional.empty());
+
+        PendingVerificationResponse response = authenticationService.resendVerification(new ResendVerificationRequest("inconnu@example.com"));
+
+        assertThat(response.resendAvailableInSeconds()).isPositive();
+        verify(emailVerificationService, never()).send(any());
     }
 }

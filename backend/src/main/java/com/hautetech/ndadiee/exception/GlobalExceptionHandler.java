@@ -58,6 +58,18 @@ public class GlobalExceptionHandler {
         return ResponseEntity.status(ex.getStatus()).body(response);
     }
 
+    // Vérification de l'adresse e-mail : l'adresse à confirmer, les essais restants accompagnent le refus
+    @ExceptionHandler(EmailVerificationException.class)
+    public ResponseEntity<ErrorResponse> handleEmailVerification(EmailVerificationException ex) {
+        ErrorResponse response = ErrorResponse.builder()
+                .status(ex.getStatus().value())
+                .errorCode(ex.getErrorCode())
+                .message(ex.getMessage())
+                .details(ex.getDetails().isEmpty() ? null : ex.getDetails())
+                .build();
+        return ResponseEntity.status(ex.getStatus()).body(response);
+    }
+
     // ==================== Validation ====================
 
     @ExceptionHandler(MethodArgumentNotValidException.class)

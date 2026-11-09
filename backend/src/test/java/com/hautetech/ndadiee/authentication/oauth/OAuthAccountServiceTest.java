@@ -20,6 +20,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 
 import com.hautetech.ndadiee.authentication.AuthenticationResponse;
 import com.hautetech.ndadiee.authentication.AuthenticationService;
+import com.hautetech.ndadiee.authentication.verification.EmailVerificationService;
 import com.hautetech.ndadiee.exception.OAuthException;
 import com.hautetech.ndadiee.model.Language;
 import com.hautetech.ndadiee.model.user.Admin;
@@ -49,6 +50,9 @@ class OAuthAccountServiceTest {
 
     @Mock
     private PasswordEncoder passwordEncoder;
+
+    @Mock
+    private EmailVerificationService emailVerificationService;
 
     @InjectMocks
     private OAuthAccountService accounts;
@@ -180,5 +184,23 @@ class OAuthAccountServiceTest {
                 .isInstanceOf(OAuthException.class)
                 .extracting("errorCode").isEqualTo("OAUTH_ACCOUNT_CONFLICT");
         verify(identityRepository, never()).save(any());
+    }
+
+    @Test
+    void anUnconfirmedRegistrationWithThisAddressIsConfirmedAndItsUnknownPasswordReplaced() {
+        Developer pending = developer(7L, "awa@example.com");
+        pending.setPassword("{mot de passe choisi par un inconnu}");
+        pending.setEmailVerified(false);
+        when(identityRepository.findByProviderAndSubject(OAuthProvider.GITHUB, "583231")).thenReturn(Optional.empty());
+        when(userRepository.findByEmail("awa@example.com")).thenReturn(Optional.of(pending));
+        when(identityRepository.existsByUserIdAndProvider(7L, OAuthProvider.GITHUB)).thenReturn(false);
+        when(passwordEncoder.encode(anyString())).thenReturn("{secret aléatoire}");
+
+        accounts.signIn(github("awa@example.com"), Language.FR);
+
+        assertThat(pending.isEmailVerified()).isTrue();
+        assertThat(pending.getPassword()).isEqualTo("{secret aléatoire}");
+        verify(emailVerificationService).discard(pending);
+        verify(identityRepository).save(any(UserIdentity.class));
     }
 }
