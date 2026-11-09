@@ -35,8 +35,20 @@ const router = createBrowserRouter([
       // ── Accueil du visiteur : barre flottante et pied de page (design 3A) ──
       {
         element: <PublicLayout />,
-        children: [{ errorElement: <RouteErrorBoundary />, children: [{ index: true, ...page('landing') }] }],
+        children: [
+          {
+            errorElement: <RouteErrorBoundary />,
+            children: [
+              { index: true, ...page('landing') },
+              { path: paths.privacy, ...page('privacy') },
+              { path: paths.terms, ...page('terms') },
+            ],
+          },
+        ],
       },
+
+      // ── Retour de GitHub ou Google : hors des pages de visiteurs, la session s'y ouvre puis la page s'en va ──
+      { errorElement: <RouteErrorBoundary standalone />, children: [{ path: paths.oauthCallback(':provider'), ...page('oauthCallback') }] },
 
       // ── Connexion et inscription, réservées aux visiteurs ──
       {

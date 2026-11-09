@@ -238,12 +238,15 @@
     "settings": "Settings",
     "login": "Log in",
     "register": "Sign up",
+    "oauthCallback": "Log in",
     "notFound": "Page not found",
     "editTopic": "Edit topic",
     "admin": "Back office",
     "adminUsers": "Back office · Members",
     "adminContent": "Back office · Content",
-    "adminJournal": "Back office · Log"
+    "adminJournal": "Back office · Log",
+    "privacy": "Privacy",
+    "terms": "Terms of use"
   },
   "enums": {
     "experienceLevel": {
@@ -570,7 +573,8 @@
       "submit": "Create my account",
       "pending": "Creating your account…",
       "hasAccount": "Already a member?",
-      "toLogin": "Sign in"
+      "toLogin": "Sign in",
+      "legal": "By signing up, you accept the <terms>terms of use</terms> and the <privacy>privacy policy</privacy>."
     },
     "welcomeButton": "Welcome!",
     "welcomeLabel": "Welcome to the workshop",
@@ -614,7 +618,14 @@
       "continueWith": "Continue with {{provider}}",
       "soon": "soon",
       "unavailable": "Signing in with {{provider}} is coming soon. Meanwhile, continue with your email.",
-      "or": "or with your email"
+      "or": "or with your email",
+      "redirecting": "Redirecting to {{provider}}…",
+      "connecting": "Signing in with {{provider}}…",
+      "failed": "Signing in with {{provider}} didn't work. Try again, or continue with your email.",
+      "cancelled": "You cancelled signing in with {{provider}}.",
+      "emailRequired": "Your {{provider}} account has no verified email address. Verify it on {{provider}}, or continue with your email.",
+      "adminAccount": "Administration accounts sign in with their password.",
+      "conflict": "Your Ndadiee account is already linked to another {{provider}} account."
     },
     "errors": {
       "emailTaken": "An account already uses this email. Sign in instead.",
@@ -867,5 +878,9 @@
       "PROJECT": "This project has been hidden by the Ndadiee team: the public can no longer see it."
     },
     "reason": "Reason: {{reason}}"
+  },
+  "legal": {
+    "updated": "Last updated: {{date}}",
+    "languageNote": "This text is only available in French and English."
   }
 }

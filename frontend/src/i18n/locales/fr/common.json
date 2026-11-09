@@ -245,12 +245,15 @@
     "settings": "Réglages",
     "login": "Connexion",
     "register": "Inscription",
+    "oauthCallback": "Connexion",
     "notFound": "Page introuvable",
     "editTopic": "Modifier le sujet",
     "admin": "Back-office",
     "adminUsers": "Back-office · Membres",
     "adminContent": "Back-office · Contenus",
-    "adminJournal": "Back-office · Journal"
+    "adminJournal": "Back-office · Journal",
+    "privacy": "Confidentialité",
+    "terms": "Conditions d'utilisation"
   },
   "enums": {
     "experienceLevel": {
@@ -597,7 +600,8 @@
       "submit": "Créer mon compte",
       "pending": "Création du compte…",
       "hasAccount": "Déjà membre ?",
-      "toLogin": "Se connecter"
+      "toLogin": "Se connecter",
+      "legal": "En t'inscrivant, tu acceptes les <terms>conditions d'utilisation</terms> et les <privacy>règles de confidentialité</privacy>."
     },
     "welcomeButton": "Bienvenue !",
     "welcomeLabel": "Bienvenue à l'atelier",
@@ -641,7 +645,14 @@
       "continueWith": "Continuer avec {{provider}}",
       "soon": "bientôt",
       "unavailable": "La connexion avec {{provider}} arrive bientôt. En attendant, continue avec ton e-mail.",
-      "or": "ou avec ton e-mail"
+      "or": "ou avec ton e-mail",
+      "redirecting": "Redirection vers {{provider}}…",
+      "connecting": "Connexion avec {{provider}}…",
+      "failed": "La connexion avec {{provider}} n'a pas abouti. Réessaie, ou continue avec ton e-mail.",
+      "cancelled": "Tu as annulé la connexion avec {{provider}}.",
+      "emailRequired": "Ton compte {{provider}} n'a pas d'adresse e-mail vérifiée. Vérifie-la chez {{provider}}, ou continue avec ton e-mail.",
+      "adminAccount": "Les comptes d'administration se connectent avec leur mot de passe.",
+      "conflict": "Ton compte Ndadiee est déjà relié à un autre compte {{provider}}."
     },
     "errors": {
       "emailTaken": "Un compte utilise déjà cet e-mail. Connecte-toi plutôt.",
@@ -915,5 +926,9 @@
       "PROJECT": "Ce projet a été masqué par l'équipe Ndadiee : le public ne le voit plus."
     },
     "reason": "Motif : {{reason}}"
+  },
+  "legal": {
+    "updated": "Dernière mise à jour : {{date}}",
+    "languageNote": "Ce texte n'est disponible qu'en français et en anglais."
   }
 }

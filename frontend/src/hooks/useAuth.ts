@@ -70,6 +70,25 @@ export function useRegister({ welcome }: SessionOptions = {}) {
   });
 }
 
+/** De retour de GitHub ou Google : leur code contre une session, ouverte aussitôt. */
+export function useOAuthLogin() {
+  const startSession = useSessionStarter();
+  return useMutation({
+    mutationFn: authService.oauthLogin,
+    onSuccess: startSession,
+    meta: { handlesError: true },
+  });
+}
+
+/** Les fournisseurs de connexion configurés sur le serveur : leurs boutons sont actifs, les autres disent « bientôt ». */
+export function useOAuthProviders() {
+  return useQuery({
+    queryKey: ['oauth-providers'],
+    queryFn: authService.oauthProviders,
+    staleTime: Infinity,
+  });
+}
+
 /**
  * Le nom d'utilisateur est-il libre ? Vérifié quand on marque une pause en le tapant, et seulement s'il
  * respecte la règle. Les réponses restent en cache : revenir à un nom déjà vérifié ne coûte rien.

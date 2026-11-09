@@ -112,6 +112,12 @@ export default function Footer() {
           <div className="flex flex-wrap items-center gap-x-5 gap-y-2">
             <p>{t('footer.copyright', { year: YEAR, name: site.name })}</p>
             <p className="text-faint-foreground">{t('footer.woven')}</p>
+            <Link to={paths.privacy} viewTransition className={cn('rounded-sm transition-colors hover:text-foreground', focusRing, coarse)}>
+              {t('pages.privacy')}
+            </Link>
+            <Link to={paths.terms} viewTransition className={cn('rounded-sm transition-colors hover:text-foreground', focusRing, coarse)}>
+              {t('pages.terms')}
+            </Link>
             <ApiStatus />
           </div>
           <BackToTop />

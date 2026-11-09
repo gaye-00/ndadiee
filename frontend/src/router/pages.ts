@@ -77,5 +77,8 @@ export const pages = {
 
   login: () => import('@/pages/auth/LoginPage'),
   register: () => import('@/pages/auth/RegisterPage'),
+  oauthCallback: () => import('@/pages/auth/OAuthCallbackPage'),
+  privacy: () => import('@/pages/legal/PrivacyPage'),
+  terms: () => import('@/pages/legal/TermsPage'),
   notFound: () => import('@/pages/NotFoundPage'),
 } satisfies Record<PageName, PageImport>;

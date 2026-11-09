@@ -17,6 +17,25 @@ export interface RegisterRequest {
   preferredLanguage?: Language;
 }
 
+/** Les fournisseurs de connexion gérés par le backend (OAuthProvider.java) */
+export type OAuthProviderId = 'github' | 'google';
+
+/** Partir chez le fournisseur (OAuthAuthorizationRequest.java) : l'état et l'empreinte PKCE tirés par le navigateur */
+export interface OAuthAuthorizationRequest {
+  redirectUri: string;
+  state: string;
+  codeChallenge: string;
+}
+
+/** De retour du fournisseur (OAuthLoginRequest.java) */
+export interface OAuthLoginRequest {
+  code: string;
+  redirectUri: string;
+  codeVerifier: string;
+  /** Pour un compte créé à cette occasion */
+  preferredLanguage?: Language;
+}
+
 /** Un nom d'utilisateur est-il libre ? (UsernameAvailabilityResponse.java) */
 export interface UsernameAvailability {
   /** Tel qu'il serait enregistré : en minuscules */

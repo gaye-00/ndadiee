@@ -4,7 +4,7 @@ import RegisterForm from '@/components/auth/RegisterForm';
 import { pages } from '@/router/pages';
 import { paths } from '@/router/paths';
 
-/** Inscription : avec GitHub, Google ou GitLab (bientôt), ou par formulaire. */
+/** Inscription : avec GitHub ou Google (GitLab bientôt), ou par formulaire. */
 export default function RegisterPage() {
   const { t } = useTranslation();
 

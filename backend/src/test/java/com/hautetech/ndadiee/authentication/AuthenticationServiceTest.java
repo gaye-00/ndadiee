@@ -171,4 +171,38 @@ class AuthenticationServiceTest {
                 .isInstanceOf(AccountBlockedException.class);
         verify(jwtService, never()).generateAccessToken(any());
     }
+
+    // ==================== NOM D'UTILISATEUR TIRÉ DE GITHUB OU GOOGLE ====================
+
+    @Test
+    void aGithubLoginOrAnEmailBecomesAUsernameThatFollowsTheRule() {
+        when(userRepository.existsByUsername(anyString())).thenReturn(false);
+
+        assertThat(authenticationService.freeUsername("Awa-Diop")).isEqualTo("awa_diop");
+        assertThat(authenticationService.freeUsername("aïssatou.ndiaye")).isEqualTo("aissatou_ndiaye");
+        assertThat(authenticationService.freeUsername("--Kofi--")).isEqualTo("kofi");
+        assertThat(authenticationService.freeUsername("ab")).isEqualTo("ab_dev");
+        assertThat(authenticationService.freeUsername("李")).isEqualTo("dev");
+        assertThat(authenticationService.freeUsername("a-very-long-github-login-that-goes-on-and-on"))
+                .hasSizeLessThanOrEqualTo(30)
+                .matches("^[a-z0-9_]{3,30}$")
+                .doesNotEndWith("_");
+    }
+
+    @Test
+    void aTakenOrReservedHintGetsAFreeVariant() {
+        when(userRepository.existsByUsername(anyString())).thenReturn(false);
+        when(userRepository.existsByUsername("awa")).thenReturn(true);
+
+        assertThat(authenticationService.freeUsername("awa")).startsWith("awa").isNotEqualTo("awa").matches("^[a-z0-9_]{3,30}$");
+        assertThat(authenticationService.freeUsername("Admin")).startsWith("admin").isNotEqualTo("admin");
+    }
+
+    @Test
+    void openingASessionIsRefusedToASuspendedAccount() {
+        Developer developer = Developer.builder().username("awa").role(Role.USER).blockedAt(Instant.now()).build();
+
+        assertThatThrownBy(() -> authenticationService.openSession(developer)).isInstanceOf(AccountBlockedException.class);
+        verify(userRepository, never()).save(any());
+    }
 }

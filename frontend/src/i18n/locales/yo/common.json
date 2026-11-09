@@ -238,12 +238,15 @@
     "settings": "Ètò",
     "login": "Wọlé",
     "register": "Forúkọsílẹ̀",
+    "oauthCallback": "Wọlé",
     "notFound": "A kò rí ojú-ìwé náà",
     "editTopic": "Ṣàtúnṣe kókó",
     "admin": "Ìṣàkóso",
     "adminUsers": "Ìṣàkóso · Àwọn ọmọ ẹgbẹ́",
     "adminContent": "Ìṣàkóso · Àwọn àkóónú",
-    "adminJournal": "Ìṣàkóso · Àkọsílẹ̀"
+    "adminJournal": "Ìṣàkóso · Àkọsílẹ̀",
+    "privacy": "Àṣírí",
+    "terms": "Àwọn ìlànà lílò"
   },
   "enums": {
     "experienceLevel": {
@@ -570,7 +573,8 @@
       "submit": "Ṣẹ̀dá àkọọ́lẹ̀ mi",
       "pending": "Ó ń ṣẹ̀dá àkọọ́lẹ̀…",
       "hasAccount": "Ṣé ọmọ ẹgbẹ́ ni ọ́ tẹ́lẹ̀?",
-      "toLogin": "Wọlé"
+      "toLogin": "Wọlé",
+      "legal": "Nípa fíforúkọsílẹ̀, o gbà <terms>àwọn ìlànà lílò</terms> àti <privacy>ìlànà àṣírí</privacy>."
     },
     "welcomeButton": "Ẹ káàbọ̀!",
     "welcomeLabel": "Ẹ káàbọ̀ sí ibi iṣẹ́",
@@ -614,7 +618,14 @@
       "continueWith": "Tẹ̀síwájú pẹ̀lú {{provider}}",
       "soon": "láìpẹ́",
       "unavailable": "Wíwọlé pẹ̀lú {{provider}} ń bọ̀ láìpẹ́. Ní báyìí, tẹ̀síwájú pẹ̀lú ímeèlì rẹ.",
-      "or": "tàbí pẹ̀lú ímeèlì rẹ"
+      "or": "tàbí pẹ̀lú ímeèlì rẹ",
+      "redirecting": "À ń darí rẹ sí {{provider}}…",
+      "connecting": "À ń wọlé pẹ̀lú {{provider}}…",
+      "failed": "Wíwọlé pẹ̀lú {{provider}} kò ṣeé ṣe. Gbìyànjú lẹ́ẹ̀kan sí i, tàbí tẹ̀síwájú pẹ̀lú ímeèlì rẹ.",
+      "cancelled": "O fagilé wíwọlé pẹ̀lú {{provider}}.",
+      "emailRequired": "Àkọọ́lẹ̀ {{provider}} rẹ kò ní ímeèlì tí a ti fìdí rẹ̀ múlẹ̀. Fìdí rẹ̀ múlẹ̀ lórí {{provider}}, tàbí tẹ̀síwájú pẹ̀lú ímeèlì rẹ.",
+      "adminAccount": "Àwọn àkọọ́lẹ̀ alákòóso ń wọlé pẹ̀lú ọ̀rọ̀ aṣínà wọn.",
+      "conflict": "Àkọọ́lẹ̀ Ndadiee rẹ ti so mọ́ àkọọ́lẹ̀ {{provider}} mìíràn tẹ́lẹ̀."
     },
     "errors": {
       "emailTaken": "Àkọọ́lẹ̀ kan ti ń lo ímeèlì yìí. Wọlé dípò rẹ̀.",
@@ -867,5 +878,9 @@
       "PROJECT": "Ẹgbẹ́ Ndadiee ti fi iṣẹ́ àkànṣe yìí pamọ́: gbogbo ènìyàn kò rí i mọ́."
     },
     "reason": "Ìdí: {{reason}}"
+  },
+  "legal": {
+    "updated": "Àtúnṣe tó kẹ́yìn: {{date}}",
+    "languageNote": "Ọ̀rọ̀ yìí wà ní èdè Faransé àti Gẹ̀ẹ́sì nìkan."
   }
 }

@@ -245,12 +245,15 @@
     "settings": "Definições",
     "login": "Entrar",
     "register": "Registo",
+    "oauthCallback": "Entrar",
     "notFound": "Página não encontrada",
     "editTopic": "Editar o tópico",
     "admin": "Back-office",
     "adminUsers": "Back-office · Membros",
     "adminContent": "Back-office · Conteúdos",
-    "adminJournal": "Back-office · Registo"
+    "adminJournal": "Back-office · Registo",
+    "privacy": "Privacidade",
+    "terms": "Termos de utilização"
   },
   "enums": {
     "experienceLevel": {
@@ -597,7 +600,8 @@
       "submit": "Criar a minha conta",
       "pending": "A criar a conta…",
       "hasAccount": "Já és membro?",
-      "toLogin": "Entrar"
+      "toLogin": "Entrar",
+      "legal": "Ao inscreveres-te, aceitas os <terms>termos de utilização</terms> e a <privacy>política de privacidade</privacy>."
     },
     "welcomeButton": "Bem-vindo!",
     "welcomeLabel": "Bem-vindo ao ateliê",
@@ -641,7 +645,14 @@
       "continueWith": "Continuar com {{provider}}",
       "soon": "em breve",
       "unavailable": "A entrada com {{provider}} chega em breve. Entretanto, continua com o teu e-mail.",
-      "or": "ou com o teu e-mail"
+      "or": "ou com o teu e-mail",
+      "redirecting": "A redirecionar para {{provider}}…",
+      "connecting": "A entrar com {{provider}}…",
+      "failed": "A entrada com {{provider}} não resultou. Tenta de novo, ou continua com o teu e-mail.",
+      "cancelled": "Cancelaste a entrada com {{provider}}.",
+      "emailRequired": "A tua conta {{provider}} não tem um endereço de e-mail verificado. Verifica-o em {{provider}}, ou continua com o teu e-mail.",
+      "adminAccount": "As contas de administração entram com a sua palavra-passe.",
+      "conflict": "A tua conta Ndadiee já está ligada a outra conta {{provider}}."
     },
     "errors": {
       "emailTaken": "Já existe uma conta com este e-mail. Entra antes.",
@@ -915,5 +926,9 @@
       "PROJECT": "Este projeto foi ocultado pela equipa Ndadiee: o público já não o vê."
     },
     "reason": "Motivo: {{reason}}"
+  },
+  "legal": {
+    "updated": "Última atualização: {{date}}",
+    "languageNote": "Este texto só está disponível em francês e inglês."
   }
 }

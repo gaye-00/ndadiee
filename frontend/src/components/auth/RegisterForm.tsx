@@ -4,9 +4,11 @@ import { AlertCircle, Mail, UserRound } from 'lucide-react';
 import { AnimatePresence, m, useAnimate } from 'motion/react';
 import { useEffect, useRef, useState, type ChangeEvent, type FormEvent } from 'react';
 import { useForm, useWatch } from 'react-hook-form';
-import { useTranslation } from 'react-i18next';
+import { Trans, useTranslation } from 'react-i18next';
+import { Link } from 'react-router-dom';
 import { useRegister, useUsernameAvailability } from '@/hooks/useAuth';
 import { useReducedMotion } from '@/hooks/useReducedMotion';
+import { paths } from '@/router/paths';
 import { useAuthLoomStore } from '@/store/useAuthLoomStore';
 import { applyServerErrors, getApiError, getApiErrorMessage } from '@/utils/apiError';
 import { registerSchema, type RegisterFormValues } from '@/utils/validators';
@@ -16,6 +18,9 @@ import OAuthButtons from './OAuthButtons';
 import PasswordField from './PasswordField';
 import UsernameField from './UsernameField';
 import { firstNameOf, WELCOME_PAUSE } from './welcome';
+
+// Les conditions et la confidentialité s'ouvrent dans un nouvel onglet : le formulaire reste rempli
+const legalLink = 'font-medium text-soft-foreground underline decoration-gold/60 underline-offset-2 hover:text-foreground';
 
 /**
  * Ce qu'un nom d'utilisateur peut contenir (comme le backend) : minuscules sans accents, chiffres et « _ »
@@ -250,6 +255,18 @@ export default function RegisterForm() {
             state={done ? 'done' : signup.isPending ? 'pending' : 'idle'}
           />
         </div>
+
+        {/* Vaut aussi pour l'inscription avec GitHub ou Google, plus haut */}
+        <p className="text-center text-xs leading-relaxed text-muted-foreground">
+          <Trans
+            t={t}
+            i18nKey="auth.register.legal"
+            components={{
+              terms: <Link to={paths.terms} target="_blank" className={legalLink} />,
+              privacy: <Link to={paths.privacy} target="_blank" className={legalLink} />,
+            }}
+          />
+        </p>
       </form>
     </div>
   );

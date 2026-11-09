@@ -51,6 +51,11 @@ services:
       R2_BUCKET: ${R2_BUCKET:?R2_BUCKET manquant dans .env}
       R2_PUBLIC_URL: ${R2_PUBLIC_URL:?R2_PUBLIC_URL manquant dans .env}
       GITHUB_TOKEN: ${GITHUB_TOKEN:-}
+      # Connexion avec GitHub et Google : sans ces réglages, leurs boutons restent « bientôt »
+      GITHUB_CLIENT_ID: ${GITHUB_CLIENT_ID:-}
+      GITHUB_CLIENT_SECRET: ${GITHUB_CLIENT_SECRET:-}
+      GOOGLE_CLIENT_ID: ${GOOGLE_CLIENT_ID:-}
+      GOOGLE_CLIENT_SECRET: ${GOOGLE_CLIENT_SECRET:-}
       SPRINGDOC_API_DOCS_ENABLED: "false"
       SPRINGDOC_SWAGGER_UI_ENABLED: "false"
     ports:

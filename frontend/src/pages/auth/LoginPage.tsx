@@ -4,7 +4,7 @@ import LoginForm from '@/components/auth/LoginForm';
 import { pages } from '@/router/pages';
 import { paths } from '@/router/paths';
 
-/** Connexion : avec GitHub, Google ou GitLab (bientôt), ou avec son e-mail ou son nom d'utilisateur. */
+/** Connexion : avec GitHub ou Google (GitLab bientôt), ou avec son e-mail ou son nom d'utilisateur. */
 export default function LoginPage() {
   const { t } = useTranslation();
 

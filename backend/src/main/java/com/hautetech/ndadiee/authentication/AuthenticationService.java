@@ -1,8 +1,10 @@
 package com.hautetech.ndadiee.authentication;
 
+import java.text.Normalizer;
 import java.time.Instant;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 import java.util.Set;
 import java.util.concurrent.ThreadLocalRandom;
 import java.util.regex.Pattern;
@@ -89,11 +91,53 @@ public class AuthenticationService {
 
         User user = (User) authentication.getPrincipal();
         // Après le mot de passe : seul le titulaire du compte apprend qu'il est suspendu
+        AuthenticationResponse session = openSession(user);
+        log.info("[Auth] Connexion - ID: {} - username: {}", user.getId(), user.getUsername());
+        return session;
+    }
+
+    /**
+     * Ouvre une session sur un compte dont l'identité est établie (mot de passe vérifié, ou compte GitHub ou Google
+     * relié) : refusée si le compte est suspendu.
+     */
+    public AuthenticationResponse openSession(User user) {
         requireActive(user);
         user.setLastLoginAt(Instant.now());
         userRepository.save(user);
-        log.info("[Auth] Connexion - ID: {} - username: {}", user.getId(), user.getUsername());
         return buildResponse(user);
+    }
+
+    /**
+     * Un nom d'utilisateur libre, tiré d'un nom proposé (le pseudo GitHub, le début d'une adresse e-mail) : ramené à
+     * la règle des noms (minuscules, chiffres et _, de 3 à 30 caractères), puis décliné s'il est réservé ou pris.
+     */
+    public String freeUsername(String hint) {
+        String base = Normalizer.normalize(hint == null ? "" : hint, Normalizer.Form.NFD)
+                .replaceAll("\\p{M}", "")
+                .toLowerCase(Locale.ROOT)
+                .replaceAll("[^a-z0-9_]+", "_")
+                .replaceAll("_+", "_")
+                .replaceAll("^_|_$", "");
+        if (base.length() > 30) {
+            base = base.substring(0, 30).replaceAll("_$", "");
+        }
+        if (base.length() < 3) {
+            base = base.isEmpty() ? "dev" : base + "_dev";
+        }
+        if (!RESERVED_USERNAMES.contains(base) && !userRepository.existsByUsername(base)) {
+            return base;
+        }
+        List<String> variants = freeVariants(base);
+        if (!variants.isEmpty()) {
+            return variants.getFirst();
+        }
+        // Toutes les variantes courtes sont prises : un suffixe plus long finit toujours par être libre
+        String stem = base.length() > 23 ? base.substring(0, 23) : base;
+        String candidate;
+        do {
+            candidate = stem + "_" + ThreadLocalRandom.current().nextInt(100_000, 1_000_000);
+        } while (userRepository.existsByUsername(candidate));
+        return candidate;
     }
 
     /** Échange un refresh token valide contre une nouvelle paire de jetons. */

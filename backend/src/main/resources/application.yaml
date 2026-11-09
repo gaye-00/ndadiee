@@ -71,6 +71,20 @@ ndadiee:
       # Seulement si l'API n'est pas https://<compte>.r2.cloudflarestorage.com (juridiction UE : .eu.r2…)
       endpoint: ${R2_ENDPOINT:}
 
+  oauth:
+    # « Continuer avec GitHub / Google ». Un fournisseur sans son identifiant et son secret reste « bientôt » sur la
+    # page de connexion. Adresse de retour à déclarer chez le fournisseur : <FRONTEND_URL>/auth/callback/github
+    # (GitHub accepte aussi <FRONTEND_URL>/auth/callback, qui couvre les sous-chemins) et <FRONTEND_URL>/auth/callback/google.
+    github:
+      # GitHub > Settings > Developer settings > OAuth Apps (une application par adresse : production, développement)
+      client-id: ${GITHUB_CLIENT_ID:}
+      client-secret: ${GITHUB_CLIENT_SECRET:}
+    google:
+      # Google Cloud > API et services > Identifiants > ID client OAuth « Application Web »
+      client-id: ${GOOGLE_CLIENT_ID:}
+      client-secret: ${GOOGLE_CLIENT_SECRET:}
+    timeout: 10s
+
   mail:
     # E-mails de notification des revues de code (un commentaire, un verdict, une revue jugée utile). Coupés ici :
     # seul le profil prod les envoie (application-prod.yaml, serveur SMTP). Hors production, chaque e-mail qui serait

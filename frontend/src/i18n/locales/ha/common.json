@@ -238,12 +238,15 @@
     "settings": "Saituna",
     "login": "Shiga",
     "register": "Rajista",
+    "oauthCallback": "Shiga",
     "notFound": "Ba a sami shafin ba",
     "editTopic": "Gyara batu",
     "admin": "Gudanarwa",
     "adminUsers": "Gudanarwa · Membobi",
     "adminContent": "Gudanarwa · Abubuwa",
-    "adminJournal": "Gudanarwa · Rajista"
+    "adminJournal": "Gudanarwa · Rajista",
+    "privacy": "Sirri",
+    "terms": "Sharuɗɗan amfani"
   },
   "enums": {
     "experienceLevel": {
@@ -570,7 +573,8 @@
       "submit": "Ƙirƙiri asusuna",
       "pending": "Ana ƙirƙirar asusu…",
       "hasAccount": "Kai mamba ne tuni?",
-      "toLogin": "Shiga"
+      "toLogin": "Shiga",
+      "legal": "Ta yin rajista, ka amince da <terms>sharuɗɗan amfani</terms> da <privacy>manufar sirri</privacy>."
     },
     "welcomeButton": "Barka da zuwa!",
     "welcomeLabel": "Barka da zuwa wurin aiki",
@@ -614,7 +618,14 @@
       "continueWith": "Ci gaba da {{provider}}",
       "soon": "nan gaba",
       "unavailable": "Shiga da {{provider}} na zuwa nan gaba. Kafin nan, ci gaba da imel ɗinka.",
-      "or": "ko da imel ɗinka"
+      "or": "ko da imel ɗinka",
+      "redirecting": "Ana kai ka zuwa {{provider}}…",
+      "connecting": "Ana shiga da {{provider}}…",
+      "failed": "Shiga da {{provider}} bai yi nasara ba. Sake gwadawa, ko ci gaba da imel ɗinka.",
+      "cancelled": "Ka soke shiga da {{provider}}.",
+      "emailRequired": "Asusunka na {{provider}} ba shi da tabbataccen adireshin imel. Ka tabbatar da shi a {{provider}}, ko ci gaba da imel ɗinka.",
+      "adminAccount": "Asusun gudanarwa suna shiga da kalmar sirrinsu.",
+      "conflict": "An riga an haɗa asusunka na Ndadiee da wani asusun {{provider}}."
     },
     "errors": {
       "emailTaken": "Akwai asusu da ke amfani da wannan imel. Ka shiga maimakon haka.",
@@ -867,5 +878,9 @@
       "PROJECT": "Ƙungiyar Ndadiee ta ɓoye wannan shiri: jama'a ba sa ganinsa yanzu."
     },
     "reason": "Dalili: {{reason}}"
+  },
+  "legal": {
+    "updated": "Sabuntawa ta ƙarshe: {{date}}",
+    "languageNote": "Wannan rubutu yana samuwa da Faransanci da Turanci kawai."
   }
 }

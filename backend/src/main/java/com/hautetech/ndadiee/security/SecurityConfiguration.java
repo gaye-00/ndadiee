@@ -67,9 +67,12 @@ public class SecurityConfiguration {
                 .requestMatchers(HttpMethod.POST,
                     "/v1/auth/register",
                     "/v1/auth/login",
-                    "/v1/auth/refresh"
+                    "/v1/auth/refresh",
+                    // Connexion avec GitHub ou Google : départ chez le fournisseur, puis retour avec son code
+                    "/v1/auth/oauth/*/authorization",
+                    "/v1/auth/oauth/*/login"
                 ).permitAll()
-                .requestMatchers(HttpMethod.GET, "/v1/auth/username-availability").permitAll()
+                .requestMatchers(HttpMethod.GET, "/v1/auth/username-availability", "/v1/auth/oauth/providers").permitAll()
 
                 // Médias servis par l'API (couvertures des projets de démonstration, images des membres sans R2)
                 .requestMatchers(HttpMethod.GET, "/media/**", "/uploads/**").permitAll()

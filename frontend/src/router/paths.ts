@@ -64,4 +64,10 @@ export const paths = {
   // ── Compte ──
   login: '/login',
   register: '/register',
+  // ── Textes légaux (liés depuis l'écran de connexion Google) ──
+  privacy: '/privacy',
+  terms: '/terms',
+
+  /** Retour de GitHub ou Google avec leur code : l'adresse déclarée chez chaque fournisseur */
+  oauthCallback: (provider: string) => `/auth/callback/${provider}`,
 } as const;

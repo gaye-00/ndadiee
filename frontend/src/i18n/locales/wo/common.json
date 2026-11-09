@@ -238,12 +238,15 @@
     "settings": "Tànneef yi",
     "login": "Duggu",
     "register": "Bindu",
+    "oauthCallback": "Duggu",
     "notFound": "Xët wi amul",
     "editTopic": "Soppi waxtaan wi",
     "admin": "Saytu",
     "adminUsers": "Saytu · Way-bokk yi",
     "adminContent": "Saytu · Li ñu siiwal",
-    "adminJournal": "Saytu · Téere bi"
+    "adminJournal": "Saytu · Téere bi",
+    "privacy": "Sutura",
+    "terms": "Sàrti jëfandikoo"
   },
   "enums": {
     "experienceLevel": {
@@ -570,7 +573,8 @@
       "submit": "Sos sama kontu",
       "pending": "Mi ngi sos kontu bi…",
       "hasAccount": "Bokk nga ba noppi ?",
-      "toLogin": "Dugg"
+      "toLogin": "Dugg",
+      "legal": "Bu nga bindoo, nangu nga <terms>sàrti jëfandikoo yi</terms> ak <privacy>politig sutura gi</privacy>."
     },
     "welcomeButton": "Dalal ak jàmm !",
     "welcomeLabel": "Dalal ak jàmm ci liggéeyukaay bi",
@@ -614,7 +618,14 @@
       "continueWith": "Kontine ak {{provider}}",
       "soon": "ci kanam",
       "unavailable": "Dugg ak {{provider}} dina ñëw ci kanam. Ba ci kanam, kontineel ak sa email.",
-      "or": "walla ak sa email"
+      "or": "walla ak sa email",
+      "redirecting": "Ñu ngi lay yónnee ci {{provider}}…",
+      "connecting": "Mi ngi dugg ak {{provider}}…",
+      "failed": "Dugg ak {{provider}} antuwul. Jéemaatal, walla kontineel ak sa email.",
+      "cancelled": "Neenal nga dugg ak {{provider}}.",
+      "emailRequired": "Sa kont {{provider}} amul email bu ñu wóoral. Wóoral ko ci {{provider}}, walla kontineel ak sa email.",
+      "adminAccount": "Kont yu jiite yi, seen baatu jàll lañuy dugge.",
+      "conflict": "Sa kont Ndadiee jokkoo na ba noppi ak beneen kont {{provider}}."
     },
     "errors": {
       "emailTaken": "Am na kontu bu jëfandikoo email bii. Duggal rekk.",
@@ -867,5 +878,9 @@
       "PROJECT": "Ekipu Ndadiee nëbb na projet bii : nit ñi gisatuñu ko."
     },
     "reason": "Lay : {{reason}}"
+  },
+  "legal": {
+    "updated": "Yeesal gu mujj: {{date}}",
+    "languageNote": "Mbind mii, ci farañse ak àngale rekk la am."
   }
 }
