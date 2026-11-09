@@ -1,6 +1,6 @@
 # Production : docker compose -f docker-compose.prod.yml up -d --build (réglages dans .env).
-# Une seule porte d'entrée : le front (Nginx) publie APP_PORT et relaie /api vers le backend.
-# La base et l'API ne sont joignables que sur le réseau interne.
+# Le front (APP_PORT) et l'API (API_PORT) ne sont publiés que sur la machine : le Nginx de l'hôte les expose
+# en HTTPS sur leurs domaines. La base n'est joignable que sur le réseau interne.
 name: ndadiee-prod
 
 services:
@@ -43,12 +43,18 @@ services:
       SEED_ADMIN_PASSWORD: ${SEED_ADMIN_PASSWORD:?SEED_ADMIN_PASSWORD manquant dans .env}
       SEED_DEMO_PASSWORD: ${SEED_DEMO_PASSWORD:?SEED_DEMO_PASSWORD manquant dans .env}
       SEED_TEST_ACCOUNT_PASSWORD: ${SEED_TEST_ACCOUNT_PASSWORD:?SEED_TEST_ACCOUNT_PASSWORD manquant dans .env}
-      STORAGE_PROVIDER: local
+      # Les images des membres vont dans le bucket : l'application refuse de démarrer sans ces réglages
+      STORAGE_PROVIDER: r2
+      R2_ACCOUNT_ID: ${R2_ACCOUNT_ID:?R2_ACCOUNT_ID manquant dans .env}
+      R2_ACCESS_KEY_ID: ${R2_ACCESS_KEY_ID:?R2_ACCESS_KEY_ID manquant dans .env}
+      R2_SECRET_ACCESS_KEY: ${R2_SECRET_ACCESS_KEY:?R2_SECRET_ACCESS_KEY manquant dans .env}
+      R2_BUCKET: ${R2_BUCKET:?R2_BUCKET manquant dans .env}
+      R2_PUBLIC_URL: ${R2_PUBLIC_URL:?R2_PUBLIC_URL manquant dans .env}
       GITHUB_TOKEN: ${GITHUB_TOKEN:-}
       SPRINGDOC_API_DOCS_ENABLED: "false"
       SPRINGDOC_SWAGGER_UI_ENABLED: "false"
-    volumes:
-      - uploads_data:/app/uploads
+    ports:
+      - "127.0.0.1:${API_PORT:?API_PORT manquant dans .env}:8080"
     healthcheck:
       test: ["CMD", "curl", "-fsS", "-o", "/dev/null", "http://127.0.0.1:8080/api/v1/projects/facets"]
       interval: 15s
@@ -63,13 +69,14 @@ services:
     build:
       context: ./frontend
       args:
-        VITE_BACKEND_URL: /api
+        # Fixée à la compilation : l'adresse publique de l'API, contexte /api compris
+        VITE_BACKEND_URL: ${VITE_BACKEND_URL:?VITE_BACKEND_URL manquant dans .env}
     image: ndadiee-frontend:latest
     restart: unless-stopped
     depends_on:
       - backend
     ports:
-      - "${APP_PORT:?APP_PORT manquant dans .env}:80"
+      - "127.0.0.1:${APP_PORT:?APP_PORT manquant dans .env}:80"
     healthcheck:
       test: ["CMD", "wget", "-q", "--spider", "http://127.0.0.1/"]
       interval: 30s
@@ -81,7 +88,6 @@ services:
 
 volumes:
   postgres_data:
-  uploads_data:
 
 networks:
   ndadiee:
