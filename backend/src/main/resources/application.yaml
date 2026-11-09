@@ -73,10 +73,10 @@ ndadiee:
 
   oauth:
     # « Continuer avec GitHub / Google ». Un fournisseur sans son identifiant et son secret reste « bientôt » sur la
-    # page de connexion. Adresse de retour à déclarer chez le fournisseur : <FRONTEND_URL>/auth/callback/github
-    # (GitHub accepte aussi <FRONTEND_URL>/auth/callback, qui couvre les sous-chemins) et <FRONTEND_URL>/auth/callback/google.
+    # page de connexion. Adresses de retour à déclarer chez le fournisseur, à l'identique (sans « wildcard ») :
+    # <FRONTEND_URL>/auth/callback/github et <FRONTEND_URL>/auth/callback/google (plus http://localhost:5173/... en développement).
     github:
-      # GitHub > Settings > Developer settings > OAuth Apps (une application par adresse : production, développement)
+      # GitHub > Settings > Developer settings > OAuth Apps (jusqu'à 10 adresses de retour par application)
       client-id: ${GITHUB_CLIENT_ID:}
       client-secret: ${GITHUB_CLIENT_SECRET:}
     google:
