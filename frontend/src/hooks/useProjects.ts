@@ -78,6 +78,27 @@ export function useProject(slug: string | undefined) {
   });
 }
 
+/** Le code d'un projet, lu dans Ndadiee (page « Code source ») : GitHub le garde une demi-heure côté serveur. */
+export function useProjectCode(slug: string | undefined) {
+  return useQuery({
+    queryKey: ['project-code', slug],
+    queryFn: () => projectService.getCode(slug!),
+    enabled: !!slug,
+    staleTime: 5 * 60_000,
+  });
+}
+
+/** Un fichier du code d'un projet ; le précédent reste affiché pendant que le suivant arrive. */
+export function useProjectCodeFile(slug: string | undefined, path: string | null) {
+  return useQuery({
+    queryKey: ['project-code-file', slug, path],
+    queryFn: () => projectService.getCodeFile(slug!, path!),
+    enabled: !!slug && !!path,
+    staleTime: 10 * 60_000,
+    placeholderData: keepPreviousData,
+  });
+}
+
 export function useProjectMembers(projectId: number | undefined) {
   return useQuery({
     queryKey: ['project-members', projectId],

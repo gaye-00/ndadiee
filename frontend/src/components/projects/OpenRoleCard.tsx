@@ -11,6 +11,7 @@ import { cn } from '@/lib/utils';
 import { paths } from '@/router/paths';
 import type { Project, ProjectOpening } from '@/types/project.types';
 import { isolate } from '@/utils/formatters';
+import { starterIssueUrl } from '@/utils/repository';
 
 /** Qui regarde la carte : le porteur gère les candidatures, un membre ne postule plus */
 export type RoleViewer = 'owner' | 'member' | 'visitor';
@@ -43,10 +44,8 @@ export default function OpenRoleCard({ opening, project, index, best, highlight,
   const [scope, animate] = useAnimate<HTMLLIElement>();
   const action = useRef<HTMLButtonElement>(null);
   const seen = useInView(scope, { once: true, margin: '0px 0px -60px 0px' });
-  const issueUrl =
-    opening.starterIssueNumber && project.repositoryUrl
-      ? `${project.repositoryUrl.replace(/\/+$/, '')}/issues/${opening.starterIssueNumber}`
-      : null;
+  // Pas de lien vers l'issue d'un dépôt fictif (projets de démonstration) : il ne mènerait nulle part
+  const issueUrl = starterIssueUrl(project.repositoryUrl, opening.starterIssueNumber);
 
   // « Rejoindre l'équipe », ou l'arrivée par un lien vers ce rôle : la carte s'éclaire et son bouton prend le
   // focus. Pas avant qu'elle soit à l'écran : la page est peut-être encore en train de descendre jusqu'à elle.

@@ -1,0 +1,321 @@
+==> README.md <==
+# Paperweight
+
+Des composants React pour les sites qui doivent s'ouvrir **avec un forfait de 500 Mo** : chaque page pèse moins de 100 ko, images comprises.
+
+- Formulaires qui gardent la saisie hors-ligne
+- Listes virtuelles qui tiennent des milliers de lignes sur un téléphone d'entrée de gamme (en revue : #12)
+- Un budget de poids vérifié à chaque pull request
+
+## Installation
+
+```bash
+npm install @paperweight/react
+```
+
+```tsx
+import { OfflineForm } from '@paperweight/react';
+
+<OfflineForm id="inscription" onSubmit={send}>
+  <input name="nom" required />
+</OfflineForm>
+```
+
+## Le budget de poids
+
+`npm run size` vérifie le poids de chaque composant (`.size-limit.json`). Une pull request qui dépasse le budget ne passe pas la CI.
+
+| Composant | Budget |
+| --- | --- |
+| Cœur | 10 ko |
+| Formulaires | 4 ko |
+
+==> package.json <==
+{
+  "name": "@paperweight/react",
+  "version": "0.1.0",
+  "type": "module",
+  "license": "MIT",
+  "sideEffects": false,
+  "exports": {
+    ".": "./dist/index.js",
+    "./forms": "./dist/forms.js"
+  },
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "test": "vitest run",
+    "size": "size-limit"
+  },
+  "peerDependencies": {
+    "react": ">=18"
+  },
+  "devDependencies": {
+    "@size-limit/preset-small-lib": "^11.1.6",
+    "@testing-library/react": "^16.1.0",
+    "size-limit": "^11.1.6",
+    "typescript": "^5.7.2",
+    "vite": "^6.0.3",
+    "vitest": "^2.1.8"
+  }
+}
+
+==> .size-limit.json <==
+[
+  {
+    "name": "core",
+    "path": "dist/index.js",
+    "limit": "10 kB"
+  },
+  {
+    "name": "forms",
+    "path": "dist/forms.js",
+    "limit": "4 kB"
+  }
+]
+
+==> src/index.ts <==
+export { OfflineForm } from './components/OfflineForm/OfflineForm';
+export { useDraft } from './components/OfflineForm/useDraft';
+export { SearchField } from './components/SearchField';
+
+==> src/components/OfflineForm/OfflineForm.tsx <==
+import { useRef, type FormEvent, type ReactNode } from 'react';
+import { useDraft } from './useDraft';
+
+interface OfflineFormProps {
+  /** Identifie le brouillon : deux formulaires, deux brouillons */
+  id: string;
+  onSubmit: (values: Record<string, string>) => Promise<void>;
+  children: ReactNode;
+}
+
+/**
+ * Un formulaire qui garde la saisie quand le réseau tombe ou que l'onglet se ferme : chaque champ est recopié dans le
+ * brouillon, et le brouillon revient au prochain chargement. Il s'efface une fois l'envoi réussi.
+ */
+export function OfflineForm({ id, onSubmit, children }: OfflineFormProps) {
+  const form = useRef<HTMLFormElement>(null);
+  const draft = useDraft(id, form);
+
+  async function submit(event: FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+    const values = Object.fromEntries(new FormData(event.currentTarget)) as Record<string, string>;
+    try {
+      await onSubmit(values);
+      draft.clear();
+    } catch {
+      // Hors-ligne : le brouillon reste, l'envoi repartira quand on réessaiera
+    }
+  }
+
+  return (
+    <form ref={form} onSubmit={submit} onInput={draft.save} data-offline-form={id}>
+      {children}
+    </form>
+  );
+}
+
+==> src/components/OfflineForm/useDraft.ts <==
+import { useCallback, useEffect, type RefObject } from 'react';
+
+const PREFIX = 'paperweight:draft:';
+
+/** Le brouillon d'un formulaire, dans le localStorage : rien ne part sur le réseau. */
+export function useDraft(id: string, form: RefObject<HTMLFormElement | null>) {
+  const key = PREFIX + id;
+
+  // Au chargement : chaque champ reprend sa valeur du brouillon
+  useEffect(() => {
+    const saved = read(key);
+    if (!saved || !form.current) {
+      return;
+    }
+    for (const [name, value] of Object.entries(saved)) {
+      const field = form.current.elements.namedItem(name);
+      if (field instanceof HTMLInputElement || field instanceof HTMLTextAreaElement || field instanceof HTMLSelectElement) {
+        field.value = value;
+      }
+    }
+  }, [key, form]);
+
+  const save = useCallback(() => {
+    if (form.current) {
+      write(key, Object.fromEntries(new FormData(form.current)) as Record<string, string>);
+    }
+  }, [key, form]);
+
+  const clear = useCallback(() => {
+    try {
+      localStorage.removeItem(key);
+    } catch {
+      // Stockage bloqué (navigation privée) : rien à effacer
+    }
+  }, [key]);
+
+  return { save, clear };
+}
+
+function read(key: string): Record<string, string> | null {
+  try {
+    const raw = localStorage.getItem(key);
+    return raw ? (JSON.parse(raw) as Record<string, string>) : null;
+  } catch {
+    return null;
+  }
+}
+
+function write(key: string, values: Record<string, string>) {
+  try {
+    localStorage.setItem(key, JSON.stringify(values));
+  } catch {
+    // Stockage plein ou bloqué : le formulaire marche quand même, sans brouillon
+  }
+}
+
+==> src/components/SearchField.tsx <==
+import { useId } from 'react';
+
+interface SearchFieldProps {
+  value: string;
+  onChange: (value: string) => void;
+  label: string;
+}
+
+/** Un champ de recherche accessible, sans icône en image : 0,4 ko. */
+export function SearchField({ value, onChange, label }: SearchFieldProps) {
+  const id = useId();
+  return (
+    <div className="pw-search">
+      <label htmlFor={id} className="pw-visually-hidden">
+        {label}
+      </label>
+      <input id={id} type="search" value={value} placeholder={label} onChange={(event) => onChange(event.target.value)} />
+    </div>
+  );
+}
+
+==> src/pages/Inventory.tsx <==
+import { useMemo, useState } from 'react';
+import { SearchField } from '../components/SearchField';
+import { useInventory } from '../data/useInventory';
+import { formatPrice } from '../lib/format';
+import './Inventory.css';
+
+export default function Inventory() {
+  const { items, isLoading } = useInventory();
+  const [query, setQuery] = useState('');
+  const filtered = useMemo(() => {
+    const needle = query.trim().toLowerCase();
+    return needle ? items.filter((item) => item.name.toLowerCase().includes(needle)) : items;
+  }, [items, query]);
+
+  if (isLoading) {
+    return <p className="inventory__loading">Chargement…</p>;
+  }
+
+  return (
+    <section className="inventory">
+      <header className="inventory__header">
+        <h1>Inventaire</h1>
+        {/* La recherche filtre sans recharger : tout l'inventaire est déjà là */}
+        <SearchField value={query} onChange={setQuery} label="Rechercher un article" />
+      </header>
+      <p className="inventory__count">{filtered.length} articles</p>
+      <ul className="inventory__list">
+        {filtered.map((item) => (
+          <li key={item.sku} className="inventory__row">
+            <span className="inventory__name">{item.name}</span>
+            <span className="inventory__stock">{item.stock}</span>
+            <span className="inventory__price">{formatPrice(item.price)}</span>
+          </li>
+        ))}
+      </ul>
+    </section>
+  );
+}
+
+==> src/pages/Inventory.css <==
+.inventory__list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.inventory__row {
+  display: grid;
+  grid-template-columns: 1fr 4rem 6rem;
+  align-items: center;
+  height: 48px;
+  padding: 0 1rem;
+  border-bottom: 1px solid #e7e2d8;
+}
+
+.inventory__stock,
+.inventory__price {
+  text-align: end;
+  font-variant-numeric: tabular-nums;
+}
+
+==> src/data/useInventory.ts <==
+import { useEffect, useState } from 'react';
+
+export interface Item {
+  sku: string;
+  name: string;
+  stock: number;
+  /** En francs CFA */
+  price: number;
+}
+
+/** L'inventaire de la boutique : 5 000 articles d'un coup, compressés, 38 ko sur le réseau. */
+export function useInventory() {
+  const [items, setItems] = useState<Item[]>([]);
+  const [isLoading, setLoading] = useState(true);
+
+  useEffect(() => {
+    let cancelled = false;
+    fetch('/api/inventory')
+      .then((response) => response.json() as Promise<Item[]>)
+      .then((next) => {
+        if (!cancelled) {
+          setItems(next);
+          setLoading(false);
+        }
+      });
+    return () => {
+      cancelled = true;
+    };
+  }, []);
+
+  return { items, isLoading };
+}
+
+==> src/lib/format.ts <==
+const cfa = new Intl.NumberFormat('fr-SN', { style: 'currency', currency: 'XOF', maximumFractionDigits: 0 });
+
+/** 12500 → « 12 500 F CFA » */
+export function formatPrice(price: number): string {
+  return cfa.format(price);
+}
+
+==> .github/workflows/size.yml <==
+name: Budget de poids
+
+on:
+  pull_request:
+
+jobs:
+  size:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: npm run build
+      - run: npm test
+      # Échoue si un composant dépasse son budget (.size-limit.json)
+      - run: npm run size

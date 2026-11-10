@@ -214,6 +214,8 @@
     "landing": "Home",
     "showcase": "Showcase",
     "project": "Project",
+    "projectCode": "Source code",
+    "projectDemo": "Live demo",
     "openings": "Openings",
     "newOpening": "Post a role",
     "hackathons": "Hackathons",

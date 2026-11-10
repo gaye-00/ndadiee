@@ -1,0 +1,189 @@
+==> README.md <==
+# AgriData
+
+Une API ouverte des **prix des marchés agricoles** en Afrique de l'Est, mise à jour chaque jour à partir de relevés de terrain.
+
+Les agriculteurs vendent souvent sans connaître le prix pratiqué au marché voisin. AgriData rend cette information accessible par API et par SMS.
+
+## L'API
+
+```bash
+curl https://api.agridata.example/v1/prices?market=kigali&product=maize
+```
+
+```json
+[{ "market": "kigali", "product": "maize", "unit": "kg", "price": 410, "currency": "RWF", "observedOn": "2026-11-09" }]
+```
+
+## Démarrer
+
+```bash
+docker compose up -d db
+go run ./cmd/agridata
+```
+
+## Contribuer
+
+- Collecteurs de données : ajoutez un marché (#27)
+- Front-end : un tableau de bord des prix (#31)
+- Go : la passerelle SMS « PRIX MAIS KIGALI » (#34)
+
+Licence AGPL-3.0 : un service qui utilise AGPL doit publier ses modifications.
+
+==> go.mod <==
+module github.com/agridata/agridata
+
+go 1.23
+
+require github.com/jackc/pgx/v5 v5.7.1
+
+==> cmd/agridata/main.go <==
+package main
+
+import (
+	"context"
+	"log/slog"
+	"net/http"
+	"os"
+
+	"github.com/agridata/agridata/internal/prices"
+	"github.com/jackc/pgx/v5/pgxpool"
+)
+
+func main() {
+	ctx := context.Background()
+	pool, err := pgxpool.New(ctx, os.Getenv("DATABASE_URL"))
+	if err != nil {
+		slog.Error("database unavailable", "err", err)
+		os.Exit(1)
+	}
+	defer pool.Close()
+
+	store := prices.NewStore(pool)
+	mux := http.NewServeMux()
+	mux.Handle("GET /v1/prices", prices.ListHandler(store))
+	mux.Handle("POST /v1/observations", prices.ObserveHandler(store))
+
+	slog.Info("agridata listening", "addr", ":8080")
+	if err := http.ListenAndServe(":8080", mux); err != nil {
+		slog.Error("server stopped", "err", err)
+		os.Exit(1)
+	}
+}
+
+==> internal/prices/store.go <==
+package prices
+
+import (
+	"context"
+	"time"
+
+	"github.com/jackc/pgx/v5/pgxpool"
+)
+
+// Price is the median of the observations of a product, on a market, on a day.
+type Price struct {
+	Market     string    `json:"market"`
+	Product    string    `json:"product"`
+	Unit       string    `json:"unit"`
+	Price      int       `json:"price"`
+	Currency   string    `json:"currency"`
+	ObservedOn time.Time `json:"observedOn"`
+}
+
+type Store struct {
+	pool *pgxpool.Pool
+}
+
+func NewStore(pool *pgxpool.Pool) *Store {
+	return &Store{pool: pool}
+}
+
+// Latest returns the most recent price of each product on a market; the median resists a mistyped observation.
+func (s *Store) Latest(ctx context.Context, market, product string) ([]Price, error) {
+	rows, err := s.pool.Query(ctx, `
+		SELECT market, product, unit,
+		       percentile_cont(0.5) WITHIN GROUP (ORDER BY price)::int AS price,
+		       currency, observed_on
+		FROM observations
+		WHERE market = $1 AND ($2 = '' OR product = $2)
+		  AND observed_on = (SELECT max(observed_on) FROM observations WHERE market = $1)
+		GROUP BY market, product, unit, currency, observed_on
+		ORDER BY product`, market, product)
+	if err != nil {
+		return nil, err
+	}
+	defer rows.Close()
+	var prices []Price
+	for rows.Next() {
+		var p Price
+		if err := rows.Scan(&p.Market, &p.Product, &p.Unit, &p.Price, &p.Currency, &p.ObservedOn); err != nil {
+			return nil, err
+		}
+		prices = append(prices, p)
+	}
+	return prices, rows.Err()
+}
+
+==> internal/prices/handlers.go <==
+package prices
+
+import (
+	"encoding/json"
+	"net/http"
+	"strings"
+)
+
+// ListHandler serves GET /v1/prices?market=kigali&product=maize
+func ListHandler(store *Store) http.Handler {
+	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		market := strings.ToLower(r.URL.Query().Get("market"))
+		if market == "" {
+			http.Error(w, "market is required", http.StatusBadRequest)
+			return
+		}
+		prices, err := store.Latest(r.Context(), market, strings.ToLower(r.URL.Query().Get("product")))
+		if err != nil {
+			http.Error(w, "prices unavailable", http.StatusInternalServerError)
+			return
+		}
+		w.Header().Set("Content-Type", "application/json")
+		// Prices change once a day: caches and phones can keep them an hour
+		w.Header().Set("Cache-Control", "public, max-age=3600")
+		_ = json.NewEncoder(w).Encode(prices)
+	})
+}
+
+==> migrations/001_observations.sql <==
+CREATE TABLE observations (
+    id           bigserial PRIMARY KEY,
+    market       text        NOT NULL,
+    product      text        NOT NULL,
+    unit         text        NOT NULL DEFAULT 'kg',
+    price        integer     NOT NULL CHECK (price > 0),
+    currency     char(3)     NOT NULL,
+    observed_on  date        NOT NULL,
+    collector    text        NOT NULL,
+    created_at   timestamptz NOT NULL DEFAULT now()
+);
+
+CREATE INDEX observations_market_day ON observations (market, observed_on DESC);
+
+==> data/markets.csv <==
+slug,name,country,currency,latitude,longitude
+kigali,Kimironko Market,RW,RWF,-1.9497,30.1263
+nairobi,Wakulima Market,KE,KES,-1.2864,36.8296
+kampala,Owino Market,UG,UGX,0.3117,32.5759
+arusha,Arusha Central Market,TZ,TZS,-3.3700,36.6830
+
+==> docker-compose.yml <==
+services:
+  db:
+    image: postgres:17-alpine
+    environment:
+      POSTGRES_DB: agridata
+      POSTGRES_PASSWORD: agridata
+    ports:
+      - "5432:5432"
+    volumes:
+      - ./migrations:/docker-entrypoint-initdb.d:ro

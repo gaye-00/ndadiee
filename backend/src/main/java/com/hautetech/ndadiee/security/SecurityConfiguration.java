@@ -105,6 +105,8 @@ public class SecurityConfiguration {
                     "/v1/projects",
                     "/v1/projects/facets",
                     "/v1/projects/{slug}",
+                    "/v1/projects/{slug}/code",
+                    "/v1/projects/{slug}/code/file",
                     "/v1/projects/{id}/members",
                     "/v1/projects/{projectId}/devlog",
                     "/v1/projects/{projectId}/feedback-calls",

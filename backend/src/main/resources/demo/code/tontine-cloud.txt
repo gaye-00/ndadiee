@@ -1,0 +1,144 @@
+==> README.md <==
+# Tontine Cloud
+
+Dans une tontine, chacun cotise et, à tour de rôle, chacun reçoit la caisse. **Tontine Cloud** tient les comptes à la place du cahier : qui a cotisé, à qui le tour, et un rappel par SMS la veille.
+
+- Cotisations par Wave et Orange Money
+- Un historique que tous les membres peuvent lire
+- Aussi par USSD, sans smartphone : `*880*12#`
+
+## Démarrer
+
+```bash
+npm install
+npm run dev        # API sur :3000, appli web sur :5173
+```
+
+## Le menu USSD
+
+```
+1. Ma cotisation
+2. À qui le tour ?
+3. Historique
+```
+
+Nous préparons le hackathon **FinTech Afrique 2026** : il nous manque quelqu'un pour les paiements (#7).
+
+==> package.json <==
+{
+  "name": "tontine-cloud",
+  "private": true,
+  "type": "module",
+  "workspaces": ["api", "web"],
+  "scripts": {
+    "dev": "npm run dev --workspaces --if-present",
+    "test": "npm test --workspaces --if-present"
+  }
+}
+
+==> api/src/rotation.ts <==
+export interface Member {
+  id: string;
+  name: string;
+  phone: string;
+  /** Sa place dans l'ordre de passage, de 1 à n */
+  turn: number;
+}
+
+/**
+ * À qui le tour : chaque cycle dure autant de périodes qu'il y a de membres, et la caisse revient au membre dont
+ * c'est la place. `period` commence à 0 au premier versement.
+ */
+export function beneficiary(members: Member[], period: number): Member {
+  if (members.length === 0) {
+    throw new Error('Une tontine sans membre');
+  }
+  const ordered = [...members].sort((a, b) => a.turn - b.turn);
+  return ordered[period % ordered.length];
+}
+
+/** Le montant de la caisse : la cotisation de chacun, sauf celle du bénéficiaire qui la reçoit. */
+export function pot(members: Member[], contribution: number): number {
+  return contribution * (members.length - 1);
+}
+
+==> api/src/rotation.test.ts <==
+import { describe, expect, it } from 'vitest';
+import { beneficiary, pot, type Member } from './rotation';
+
+const members: Member[] = [
+  { id: 'a', name: 'Awa', phone: '221770000001', turn: 2 },
+  { id: 'b', name: 'Binta', phone: '221770000002', turn: 1 },
+  { id: 'c', name: 'Coumba', phone: '221770000003', turn: 3 },
+];
+
+describe('rotation', () => {
+  it('follows the order of turns, then starts again', () => {
+    expect([0, 1, 2, 3].map((period) => beneficiary(members, period).name)).toEqual(['Binta', 'Awa', 'Coumba', 'Binta']);
+  });
+
+  it('collects everyone but the beneficiary', () => {
+    expect(pot(members, 10_000)).toBe(20_000);
+  });
+});
+
+==> api/src/ussd.ts <==
+import type { Request, Response } from 'express';
+import { beneficiary } from './rotation';
+import { findTontineByPhone } from './store';
+
+/**
+ * Le menu USSD (*880*12#) : la passerelle de l'opérateur envoie le texte saisi jusqu'ici (« 2 », « 1*3 »…), on
+ * répond « CON » pour continuer le menu, « END » pour le fermer.
+ */
+export async function ussd(req: Request, res: Response) {
+  const { phoneNumber, text } = req.body as { phoneNumber: string; text: string };
+  const tontine = await findTontineByPhone(phoneNumber);
+  res.type('text/plain');
+
+  if (!tontine) {
+    return res.send('END Ce numéro ne fait partie d’aucune tontine.');
+  }
+  switch (text) {
+    case '':
+      return res.send(`CON ${tontine.name}\n1. Ma cotisation\n2. À qui le tour ?\n3. Historique`);
+    case '1':
+      return res.send(`END Cotisation : ${tontine.contribution} F CFA, avant le ${tontine.nextDueDate}.`);
+    case '2':
+      return res.send(`END Ce mois-ci, la caisse va à ${beneficiary(tontine.members, tontine.period).name}.`);
+    default:
+      return res.send('END Choix inconnu.');
+  }
+}
+
+==> api/src/reminders.ts <==
+import cron from 'node-cron';
+import { sendSms } from './sms';
+import { tontinesDueTomorrow } from './store';
+
+// La veille de chaque échéance, à 18 h (heure de Dakar) : un rappel par SMS à chaque membre
+cron.schedule(
+  '0 18 * * *',
+  async () => {
+    for (const tontine of await tontinesDueTomorrow()) {
+      for (const member of tontine.members) {
+        await sendSms(member.phone, `${tontine.name} : cotisation de ${tontine.contribution} F CFA demain. Merci !`);
+      }
+    }
+  },
+  { timezone: 'Africa/Dakar' },
+);
+
+==> web/src/WhoseTurn.tsx <==
+import type { Member } from '../../api/src/rotation';
+
+/** L'écran « à qui le tour », compris en un coup d'œil (maquette en cours : #9). */
+export function WhoseTurn({ member, pot }: { member: Member; pot: number }) {
+  return (
+    <section className="whose-turn" aria-live="polite">
+      <p className="whose-turn__label">Ce mois-ci, la caisse va à</p>
+      <p className="whose-turn__name">{member.name}</p>
+      <p className="whose-turn__pot">{pot.toLocaleString('fr-SN')} F CFA</p>
+    </section>
+  );
+}

@@ -12,6 +12,10 @@ export const paths = {
    * retour de la connexion) : la page y descend, et le rôle s'éclaire
    */
   projectRoles: (slug: string, openingId?: number) => `/projects/${slug}#${openingId === undefined ? 'roles' : `role-${openingId}`}`,
+  /** Le code source d'un projet, lu dans Ndadiee (dépôt GitHub public ou de démonstration) ; `file` : le fichier ouvert */
+  projectCode: (slug: string, file?: string) => `/projects/${slug}/code${file ? `?path=${encodeURIComponent(file)}` : ''}`,
+  /** La démo d'un projet qui n'est pas encore en ligne : une page d'attente plutôt qu'un lien mort */
+  projectDemo: (slug: string) => `/projects/${slug}/demo`,
   /** Annonces : rôles recherchés par les équipes */
   openings: '/openings',
   hackathons: '/hackathons',

@@ -1,0 +1,330 @@
+==> README.md <==
+# momo-sdk
+
+Une seule interface Java et Kotlin pour les API de paiement **Mobile Money** : Orange Money, Wave et MTN MoMo.
+
+```java
+MobileMoney momo = MobileMoney.wave(System.getenv("WAVE_API_KEY"));
+
+Payment payment = momo.request(PaymentRequest.of("221771234567", 5_000, "XOF")
+        .reference("commande-2026-118")
+        .callbackUrl("https://boutique.example/webhooks/momo"));
+
+PaymentStatus status = momo.status(payment.id()); // PENDING, SUCCEEDED, FAILED, EXPIRED
+```
+
+## Modules
+
+| Module | Rôle |
+| --- | --- |
+| `momo-core` | L'interface commune, les modèles, la vérification des webhooks |
+| `momo-orange` | Orange Money Web Payment (Sénégal, Côte d'Ivoire, Mali) |
+| `momo-wave` | Wave Checkout |
+| `momo-mtn` | MTN MoMo Collections |
+| `momo-spring-boot-starter` | Configuration automatique pour Spring Boot |
+
+## Environnement de test
+
+`MobileMoney.sandbox()` simule les trois opérateurs, sans compte marchand : les numéros qui finissent par `0` échouent, les autres réussissent après deux secondes.
+
+## Feuille de route
+
+- [ ] Client Kotlin pour Wave (#12)
+- [ ] Audit de la vérification HMAC (#18)
+- [ ] Guide : premier paiement Orange Money (#21)
+
+==> pom.xml <==
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>africa.momo</groupId>
+  <artifactId>momo-sdk</artifactId>
+  <version>1.2.0</version>
+  <packaging>pom</packaging>
+
+  <modules>
+    <module>momo-core</module>
+    <module>momo-orange</module>
+    <module>momo-wave</module>
+    <module>momo-mtn</module>
+    <module>momo-spring-boot-starter</module>
+  </modules>
+
+  <properties>
+    <maven.compiler.release>17</maven.compiler.release>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+  </properties>
+</project>
+
+==> momo-core/src/main/java/africa/momo/MobileMoney.java <==
+package africa.momo;
+
+import africa.momo.sandbox.SandboxMobileMoney;
+
+/**
+ * Un opérateur de Mobile Money. Le même code initie un paiement et suit son statut, quel que soit l'opérateur.
+ */
+public interface MobileMoney {
+
+    /** Demande un paiement au client : il le confirme sur son téléphone (code, USSD ou appli). */
+    Payment request(PaymentRequest request);
+
+    /** Le statut d'un paiement, tel que l'opérateur le connaît maintenant. */
+    PaymentStatus status(String paymentId);
+
+    /** Rembourse un paiement réussi, en totalité. */
+    Refund refund(String paymentId, String reason);
+
+    static MobileMoney sandbox() {
+        return new SandboxMobileMoney();
+    }
+}
+
+==> momo-core/src/main/java/africa/momo/PaymentRequest.java <==
+package africa.momo;
+
+import java.util.Objects;
+
+/**
+ * Une demande de paiement.
+ *
+ * @param msisdn   le numéro du client, au format international sans « + » : 221771234567
+ * @param amount   en unités de la devise (pas de centimes : le franc CFA n'en a pas)
+ * @param currency XOF, XAF, GHS, UGX…
+ */
+public record PaymentRequest(String msisdn, long amount, String currency, String reference, String callbackUrl) {
+
+    public PaymentRequest {
+        Objects.requireNonNull(msisdn, "msisdn");
+        if (!msisdn.matches("\\d{8,15}")) {
+            throw new IllegalArgumentException("Numéro invalide : " + msisdn);
+        }
+        if (amount <= 0) {
+            throw new IllegalArgumentException("Le montant doit être positif");
+        }
+    }
+
+    public static PaymentRequest of(String msisdn, long amount, String currency) {
+        return new PaymentRequest(msisdn, amount, currency, null, null);
+    }
+
+    public PaymentRequest reference(String reference) {
+        return new PaymentRequest(msisdn, amount, currency, reference, callbackUrl);
+    }
+
+    public PaymentRequest callbackUrl(String callbackUrl) {
+        return new PaymentRequest(msisdn, amount, currency, reference, callbackUrl);
+    }
+}
+
+==> momo-core/src/main/java/africa/momo/PaymentStatus.java <==
+package africa.momo;
+
+/** Le statut d'un paiement, le même pour tous les opérateurs. */
+public enum PaymentStatus {
+    /** Le client n'a pas encore confirmé */
+    PENDING,
+    SUCCEEDED,
+    FAILED,
+    /** Le client n'a pas confirmé à temps (souvent 5 minutes) */
+    EXPIRED;
+
+    public boolean isFinal() {
+        return this != PENDING;
+    }
+}
+
+==> momo-core/src/main/java/africa/momo/webhook/WebhookVerifier.java <==
+package africa.momo.webhook;
+
+import java.nio.charset.StandardCharsets;
+import java.security.InvalidKeyException;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+import java.time.Clock;
+import java.time.Duration;
+import java.time.Instant;
+import java.util.HexFormat;
+
+import javax.crypto.Mac;
+import javax.crypto.spec.SecretKeySpec;
+
+/**
+ * Vérifie qu'un webhook vient bien de l'opérateur : signature HMAC-SHA256 du corps et de l'horodatage, et un
+ * horodatage récent (5 minutes) contre le rejeu.
+ */
+public final class WebhookVerifier {
+
+    private static final Duration TOLERANCE = Duration.ofMinutes(5);
+
+    private final byte[] secret;
+    private final Clock clock;
+
+    public WebhookVerifier(String secret) {
+        this(secret, Clock.systemUTC());
+    }
+
+    WebhookVerifier(String secret, Clock clock) {
+        this.secret = secret.getBytes(StandardCharsets.UTF_8);
+        this.clock = clock;
+    }
+
+    public boolean verify(String body, long timestamp, String signature) {
+        Instant sentAt = Instant.ofEpochSecond(timestamp);
+        if (Duration.between(sentAt, clock.instant()).abs().compareTo(TOLERANCE) > 0) {
+            return false;
+        }
+        byte[] expected = sign(timestamp + "." + body);
+        byte[] received;
+        try {
+            received = HexFormat.of().parseHex(signature);
+        } catch (IllegalArgumentException e) {
+            return false;
+        }
+        // Comparaison en temps constant : la durée ne dit rien de la signature attendue
+        return MessageDigest.isEqual(expected, received);
+    }
+
+    private byte[] sign(String payload) {
+        try {
+            Mac mac = Mac.getInstance("HmacSHA256");
+            mac.init(new SecretKeySpec(secret, "HmacSHA256"));
+            return mac.doFinal(payload.getBytes(StandardCharsets.UTF_8));
+        } catch (NoSuchAlgorithmException | InvalidKeyException e) {
+            throw new IllegalStateException("HMAC-SHA256 indisponible", e);
+        }
+    }
+}
+
+==> momo-core/src/test/java/africa/momo/webhook/WebhookVerifierTest.java <==
+package africa.momo.webhook;
+
+import static org.assertj.core.api.Assertions.assertThat;
+
+import java.time.Clock;
+import java.time.Instant;
+import java.time.ZoneOffset;
+
+import org.junit.jupiter.api.Test;
+
+class WebhookVerifierTest {
+
+    private static final Instant NOW = Instant.parse("2026-11-02T10:00:00Z");
+    private final WebhookVerifier verifier = new WebhookVerifier("whsec_test", Clock.fixed(NOW, ZoneOffset.UTC));
+
+    @Test
+    void rejectsAnOldTimestamp() {
+        long tenMinutesAgo = NOW.minusSeconds(600).getEpochSecond();
+        assertThat(verifier.verify("{}", tenMinutesAgo, "00")).isFalse();
+    }
+
+    @Test
+    void rejectsASignatureThatIsNotHex() {
+        assertThat(verifier.verify("{}", NOW.getEpochSecond(), "not-hex")).isFalse();
+    }
+}
+
+==> momo-wave/src/main/java/africa/momo/wave/WaveMobileMoney.java <==
+package africa.momo.wave;
+
+import java.net.URI;
+import java.net.http.HttpClient;
+import java.net.http.HttpRequest;
+import java.net.http.HttpResponse;
+
+import africa.momo.MobileMoney;
+import africa.momo.Payment;
+import africa.momo.PaymentRequest;
+import africa.momo.PaymentStatus;
+import africa.momo.Refund;
+
+/** Wave Checkout : le client paie depuis l'appli Wave, en scannant ou en suivant le lien. */
+public final class WaveMobileMoney implements MobileMoney {
+
+    private static final URI API = URI.create("https://api.wave.com/v1/");
+
+    private final HttpClient http = HttpClient.newHttpClient();
+    private final String apiKey;
+
+    public WaveMobileMoney(String apiKey) {
+        this.apiKey = apiKey;
+    }
+
+    @Override
+    public Payment request(PaymentRequest request) {
+        String body = WaveJson.checkoutSession(request);
+        HttpResponse<String> response = send(HttpRequest.newBuilder(API.resolve("checkout/sessions"))
+                .header("Content-Type", "application/json")
+                .POST(HttpRequest.BodyPublishers.ofString(body)));
+        return WaveJson.payment(response.body());
+    }
+
+    @Override
+    public PaymentStatus status(String paymentId) {
+        HttpResponse<String> response = send(HttpRequest.newBuilder(API.resolve("checkout/sessions/" + paymentId)).GET());
+        return switch (WaveJson.paymentStatus(response.body())) {
+            case "succeeded" -> PaymentStatus.SUCCEEDED;
+            case "cancelled", "failed" -> PaymentStatus.FAILED;
+            case "expired" -> PaymentStatus.EXPIRED;
+            default -> PaymentStatus.PENDING;
+        };
+    }
+
+    @Override
+    public Refund refund(String paymentId, String reason) {
+        HttpResponse<String> response = send(HttpRequest.newBuilder(API.resolve("checkout/sessions/" + paymentId + "/refund"))
+                .POST(HttpRequest.BodyPublishers.noBody()));
+        return WaveJson.refund(response.body());
+    }
+
+    private HttpResponse<String> send(HttpRequest.Builder request) {
+        try {
+            HttpResponse<String> response = http.send(request.header("Authorization", "Bearer " + apiKey).build(),
+                    HttpResponse.BodyHandlers.ofString());
+            if (response.statusCode() >= 400) {
+                throw new MobileMoneyException("Wave a répondu " + response.statusCode() + " : " + response.body());
+            }
+            return response;
+        } catch (java.io.IOException e) {
+            throw new MobileMoneyException("Wave injoignable", e);
+        } catch (InterruptedException e) {
+            Thread.currentThread().interrupt();
+            throw new MobileMoneyException("Requête interrompue", e);
+        }
+    }
+}
+
+==> momo-spring-boot-starter/src/main/java/africa/momo/spring/MomoAutoConfiguration.java <==
+package africa.momo.spring;
+
+import org.springframework.boot.autoconfigure.AutoConfiguration;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
+import org.springframework.boot.context.properties.EnableConfigurationProperties;
+import org.springframework.context.annotation.Bean;
+
+import africa.momo.MobileMoney;
+import africa.momo.wave.WaveMobileMoney;
+import africa.momo.webhook.WebhookVerifier;
+
+/** momo.provider=wave et momo.api-key=… suffisent ; momo.provider=sandbox pour développer sans compte. */
+@AutoConfiguration
+@EnableConfigurationProperties(MomoProperties.class)
+public class MomoAutoConfiguration {
+
+    @Bean
+    @ConditionalOnMissingBean
+    MobileMoney mobileMoney(MomoProperties properties) {
+        return switch (properties.provider()) {
+            case WAVE -> new WaveMobileMoney(properties.apiKey());
+            case SANDBOX -> MobileMoney.sandbox();
+            default -> throw new IllegalStateException("Opérateur pas encore pris en charge par le starter : " + properties.provider());
+        };
+    }
+
+    @Bean
+    @ConditionalOnProperty("momo.webhook-secret")
+    WebhookVerifier webhookVerifier(MomoProperties properties) {
+        return new WebhookVerifier(properties.webhookSecret());
+    }
+}

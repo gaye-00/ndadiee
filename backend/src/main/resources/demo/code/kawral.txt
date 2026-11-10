@@ -1,0 +1,195 @@
+==> README.md <==
+# Kawral
+
+Entre Dakar et Saint-Louis, on attend souvent des heures à la gare routière que le **sept-places** soit plein. Kawral permet de réserver sa place et de savoir quand la voiture part.
+
+- Réservation d'une place, départ annoncé quand la voiture est pleine
+- Paiement Wave ou Orange Money, remboursé si le départ est annulé
+- Pensé avec les chauffeurs, pas seulement pour les passagers
+
+## Lancer l'appli
+
+```bash
+flutter pub get
+flutterfire configure   # votre propre projet Firebase
+flutter run
+```
+
+## Modèle de données (Firestore)
+
+```
+departures/{id}        trajet, chauffeur, places (7), heure prévue, statut
+departures/{id}/seats  une réservation par place : passager, paiement, statut
+```
+
+Un départ passe de `filling` à `full` à la septième place, puis à `left` quand le chauffeur démarre.
+
+==> pubspec.yaml <==
+name: kawral
+description: Réserver sa place dans un sept-places.
+version: 0.5.0+5
+publish_to: none
+
+environment:
+  sdk: ">=3.5.0 <4.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  firebase_core: ^3.6.0
+  cloud_firestore: ^5.4.4
+  firebase_auth: ^5.3.1
+  intl: ^0.19.0
+
+==> lib/main.dart <==
+import 'package:firebase_core/firebase_core.dart';
+import 'package:flutter/material.dart';
+
+import 'departures/departure_list_screen.dart';
+import 'firebase_options.dart';
+
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
+  runApp(const KawralApp());
+}
+
+class KawralApp extends StatelessWidget {
+  const KawralApp({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: 'Kawral',
+      theme: ThemeData(colorSchemeSeed: const Color(0xFFE8A317), useMaterial3: true),
+      home: const DepartureListScreen(),
+    );
+  }
+}
+
+==> lib/departures/departure.dart <==
+import 'package:cloud_firestore/cloud_firestore.dart';
+
+enum DepartureStatus { filling, full, left, cancelled }
+
+/// Un sept-places : un trajet, un chauffeur, sept places, et le moment où il part.
+class Departure {
+  const Departure({
+    required this.id,
+    required this.from,
+    required this.to,
+    required this.driverName,
+    required this.seatsTaken,
+    required this.status,
+    required this.plannedAt,
+    required this.price,
+  });
+
+  static const seats = 7;
+
+  final String id;
+  final String from;
+  final String to;
+  final String driverName;
+  final int seatsTaken;
+  final DepartureStatus status;
+  final DateTime plannedAt;
+
+  /// En francs CFA, par place
+  final int price;
+
+  int get seatsLeft => seats - seatsTaken;
+
+  factory Departure.fromFirestore(DocumentSnapshot<Map<String, dynamic>> doc) {
+    final data = doc.data()!;
+    return Departure(
+      id: doc.id,
+      from: data['from'] as String,
+      to: data['to'] as String,
+      driverName: data['driverName'] as String,
+      seatsTaken: data['seatsTaken'] as int,
+      status: DepartureStatus.values.byName(data['status'] as String),
+      plannedAt: (data['plannedAt'] as Timestamp).toDate(),
+      price: data['price'] as int,
+    );
+  }
+}
+
+==> lib/departures/booking_service.dart <==
+import 'package:cloud_firestore/cloud_firestore.dart';
+
+import 'departure.dart';
+
+class SeatUnavailable implements Exception {}
+
+/// Réserver une place : une transaction, pour que deux passagers ne prennent jamais la même.
+class BookingService {
+  BookingService(this._db);
+
+  final FirebaseFirestore _db;
+
+  Future<String> book(String departureId, String passengerId) {
+    final departure = _db.collection('departures').doc(departureId);
+    return _db.runTransaction((tx) async {
+      final snapshot = await tx.get(departure);
+      final taken = snapshot.get('seatsTaken') as int;
+      if (snapshot.get('status') != 'filling' || taken >= Departure.seats) {
+        throw SeatUnavailable();
+      }
+      final seat = departure.collection('seats').doc();
+      tx.set(seat, {
+        'passengerId': passengerId,
+        'payment': 'pending',
+        'bookedAt': FieldValue.serverTimestamp(),
+      });
+      tx.update(departure, {
+        'seatsTaken': taken + 1,
+        // La septième place remplit la voiture : le chauffeur est prévenu qu'il peut partir
+        if (taken + 1 == Departure.seats) 'status': 'full',
+      });
+      return seat.id;
+    });
+  }
+}
+
+==> functions/src/refunds.ts <==
+import { onDocumentUpdated } from 'firebase-functions/v2/firestore';
+import { getFirestore } from 'firebase-admin/firestore';
+import { refundPayment } from './payments';
+
+/**
+ * Un départ annulé : chaque place payée est remboursée, par le même moyen (Wave ou Orange Money).
+ * Issue #8 : remboursement automatique.
+ */
+export const refundCancelledDeparture = onDocumentUpdated('departures/{departureId}', async (event) => {
+  const before = event.data?.before.data();
+  const after = event.data?.after.data();
+  if (!before || !after || before.status === 'cancelled' || after.status !== 'cancelled') {
+    return;
+  }
+  const seats = await getFirestore().collection(`departures/${event.params.departureId}/seats`).where('payment', '==', 'paid').get();
+  await Promise.all(
+    seats.docs.map(async (seat) => {
+      await refundPayment(seat.get('paymentId'), 'Départ annulé');
+      await seat.ref.update({ payment: 'refunded' });
+    }),
+  );
+});
+
+==> firestore.rules <==
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    match /departures/{departureId} {
+      allow read: if true;
+      // Seul le chauffeur du départ le modifie ; les places passent par BookingService (transaction)
+      allow update: if request.auth != null && request.auth.uid == resource.data.driverId;
+
+      match /seats/{seatId} {
+        allow read: if request.auth != null
+          && (request.auth.uid == resource.data.passengerId
+              || request.auth.uid == get(/databases/$(database)/documents/departures/$(departureId)).data.driverId);
+      }
+    }
+  }
+}

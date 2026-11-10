@@ -147,9 +147,10 @@ interface HastNode {
 
 /**
  * Colore un bout de code d'un seul tenant, puis le découpe en lignes : un commentaire ou une chaîne sur plusieurs
- * lignes garde sa couleur d'une ligne à l'autre. Chaque ligne est une suite de morceaux à classes plates.
+ * lignes garde sa couleur d'une ligne à l'autre. Chaque ligne est une suite de morceaux à classes plates. Sert aussi
+ * à l'explorateur de code d'un projet (projects/code).
  */
-function highlightLines(code: string, language: string): CodeToken[][] {
+export function highlightLines(code: string, language: string): CodeToken[][] {
   const lines: CodeToken[][] = [[]];
   const walk = (node: HastNode, classes: string[]) => {
     if (node.type === 'text') {
@@ -198,22 +199,23 @@ export function highlightHunks(hunks: DiffHunk[], language: string | null): Diff
 
 // ==================== L'ARBRE DES FICHIERS ====================
 
-export interface FileTreeFolder {
+// Les fichiers d'une revue, ou ceux d'un dépôt (explorateur de code) : tout ce qui a un chemin
+export interface FileTreeFolder<F extends { path: string } = PullRequestFile> {
   kind: 'folder';
   /** Un dossier seul dans son parent est fusionné avec lui : « src/components/VirtualList » */
   name: string;
   path: string;
-  children: FileTreeNode[];
+  children: FileTreeNode<F>[];
 }
 
-export interface FileTreeLeaf {
+export interface FileTreeLeaf<F extends { path: string } = PullRequestFile> {
   kind: 'file';
   name: string;
   path: string;
-  file: PullRequestFile;
+  file: F;
 }
 
-export type FileTreeNode = FileTreeFolder | FileTreeLeaf;
+export type FileTreeNode<F extends { path: string } = PullRequestFile> = FileTreeFolder<F> | FileTreeLeaf<F>;
 
 const collator = new Intl.Collator(undefined, { numeric: true, sensitivity: 'base' });
 
@@ -221,14 +223,14 @@ const collator = new Intl.Collator(undefined, { numeric: true, sensitivity: 'bas
  * L'arbre des fichiers modifiés : les dossiers d'abord, puis les fichiers, par ordre alphabétique. Une suite de
  * dossiers qui ne contiennent chacun qu'un dossier n'en fait qu'un (« src/components/VirtualList »).
  */
-export function buildFileTree(files: PullRequestFile[]): FileTreeNode[] {
-  const root: FileTreeFolder = { kind: 'folder', name: '', path: '', children: [] };
+export function buildFileTree<F extends { path: string } = PullRequestFile>(files: F[]): FileTreeNode<F>[] {
+  const root: FileTreeFolder<F> = { kind: 'folder', name: '', path: '', children: [] };
   for (const file of files) {
     const parts = file.path.split('/');
     let folder = root;
     parts.slice(0, -1).forEach((part, index) => {
       const path = parts.slice(0, index + 1).join('/');
-      let next = folder.children.find((child): child is FileTreeFolder => child.kind === 'folder' && child.path === path);
+      let next = folder.children.find((child): child is FileTreeFolder<F> => child.kind === 'folder' && child.path === path);
       if (!next) {
         next = { kind: 'folder', name: part, path, children: [] };
         folder.children.push(next);
@@ -238,7 +240,7 @@ export function buildFileTree(files: PullRequestFile[]): FileTreeNode[] {
     folder.children.push({ kind: 'file', name: parts.at(-1) ?? file.path, path: file.path, file });
   }
 
-  const tidy = (nodes: FileTreeNode[]): FileTreeNode[] =>
+  const tidy = (nodes: FileTreeNode<F>[]): FileTreeNode<F>[] =>
     nodes
       .map((node) => {
         if (node.kind === 'file') {
@@ -258,7 +260,7 @@ export function buildFileTree(files: PullRequestFile[]): FileTreeNode[] {
 }
 
 /** Les fichiers dans l'ordre de l'arbre : le diff se lit dans le même ordre que la liste des fichiers. */
-export function filesInTreeOrder(tree: FileTreeNode[]): PullRequestFile[] {
+export function filesInTreeOrder<F extends { path: string } = PullRequestFile>(tree: FileTreeNode<F>[]): F[] {
   return tree.flatMap((node) => (node.kind === 'file' ? [node.file] : filesInTreeOrder(node.children)));
 }
 

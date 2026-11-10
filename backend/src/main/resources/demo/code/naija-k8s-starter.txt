@@ -1,0 +1,185 @@
+==> README.md <==
+# naija-k8s-starter
+
+A **Kubernetes** starter for small teams: one command to get a cluster with ingress, TLS, monitoring and backups, sized for a tight budget (under $50 a month).
+
+```bash
+cp terraform.tfvars.example terraform.tfvars   # your provider token and region
+terraform init && terraform apply
+./scripts/bootstrap.sh                          # ingress, cert-manager, monitoring
+```
+
+## What you get
+
+| Component | Why |
+| --- | --- |
+| 3 small nodes (2 vCPU, 4 GB) | Enough for a dozen services |
+| ingress-nginx | One load balancer for everything |
+| cert-manager | Let's Encrypt certificates, renewed automatically |
+| kube-prometheus-stack | Metrics and alerts, with sane retention (7 days) |
+| Velero | Nightly backups to object storage |
+
+## Defaults that matter
+
+- A default-deny network policy per namespace (#26)
+- Resource requests and limits on every chart
+- A runbook for the first incident: `docs/runbook.md`
+
+==> main.tf <==
+terraform {
+  required_version = ">= 1.6"
+  required_providers {
+    digitalocean = {
+      source  = "digitalocean/digitalocean"
+      version = "~> 2.43"
+    }
+  }
+}
+
+provider "digitalocean" {
+  token = var.do_token
+}
+
+module "cluster" {
+  source     = "./modules/cluster"
+  name       = var.name
+  region     = var.region
+  node_size  = var.node_size
+  node_count = 3
+}
+
+output "kubeconfig" {
+  value     = module.cluster.kubeconfig
+  sensitive = true
+}
+
+==> variables.tf <==
+variable "do_token" {
+  type      = string
+  sensitive = true
+}
+
+variable "name" {
+  type    = string
+  default = "starter"
+}
+
+variable "region" {
+  description = "Closest region to your users. Lagos and Johannesburg modules are in progress (#23)."
+  type        = string
+  default     = "fra1"
+}
+
+variable "node_size" {
+  description = "2 vCPU / 4 GB keeps the cluster under $50 a month"
+  type        = string
+  default     = "s-2vcpu-4gb"
+}
+
+==> modules/cluster/main.tf <==
+resource "digitalocean_kubernetes_cluster" "this" {
+  name    = var.name
+  region  = var.region
+  version = data.digitalocean_kubernetes_versions.stable.latest_version
+
+  # Patch versions are applied on Sunday night, when traffic is lowest
+  auto_upgrade = true
+  maintenance_policy {
+    day        = "sunday"
+    start_time = "02:00"
+  }
+
+  node_pool {
+    name       = "default"
+    size       = var.node_size
+    node_count = var.node_count
+  }
+}
+
+data "digitalocean_kubernetes_versions" "stable" {}
+
+output "kubeconfig" {
+  value     = digitalocean_kubernetes_cluster.this.kube_config[0].raw_config
+  sensitive = true
+}
+
+==> k8s/network-policies/default-deny.yaml <==
+# Nothing gets in unless a policy allows it. Applied to every namespace created by bootstrap.sh.
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: default-deny-ingress
+spec:
+  podSelector: {}
+  policyTypes:
+    - Ingress
+---
+# The ingress controller may still reach the pods it routes to
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: allow-from-ingress
+spec:
+  podSelector: {}
+  ingress:
+    - from:
+        - namespaceSelector:
+            matchLabels:
+              kubernetes.io/metadata.name: ingress-nginx
+
+==> k8s/cert-manager/cluster-issuer.yaml <==
+apiVersion: cert-manager.io/v1
+kind: ClusterIssuer
+metadata:
+  name: letsencrypt
+spec:
+  acme:
+    server: https://acme-v02.api.letsencrypt.org/directory
+    email: ops@example.com
+    privateKeySecretRef:
+      name: letsencrypt-account
+    solvers:
+      - http01:
+          ingress:
+            ingressClassName: nginx
+
+==> scripts/bootstrap.sh <==
+#!/usr/bin/env bash
+# Installs what every cluster needs, in order. Safe to run twice.
+set -euo pipefail
+
+helm repo add ingress-nginx https://kubernetes.github.io/ingress-nginx
+helm repo add jetstack https://charts.jetstack.io
+helm repo add prometheus-community https://prometheus-community.github.io/helm-charts
+helm repo update
+
+helm upgrade --install ingress-nginx ingress-nginx/ingress-nginx -n ingress-nginx --create-namespace \
+  --set controller.resources.requests.cpu=100m --set controller.resources.requests.memory=128Mi
+
+helm upgrade --install cert-manager jetstack/cert-manager -n cert-manager --create-namespace --set crds.enabled=true
+kubectl apply -f k8s/cert-manager/cluster-issuer.yaml
+
+# Seven days of metrics: enough to see a trend, small enough for a 20 GB volume
+helm upgrade --install monitoring prometheus-community/kube-prometheus-stack -n monitoring --create-namespace \
+  --set prometheus.prometheusSpec.retention=7d
+
+echo "Cluster ready. Next: docs/runbook.md"
+
+==> docs/runbook.md <==
+# Runbook: the first incident
+
+Written for people who are not full-time SREs. Breathe, then go down the list.
+
+## The site is down
+
+1. `kubectl get pods -A | grep -v Running` — anything crashing?
+2. `kubectl describe pod <pod>` — look at *Events* at the bottom: OOMKilled, ImagePullBackOff, failed probes.
+3. `kubectl logs <pod> --previous` — the logs of the container that just died.
+
+## A certificate expired
+
+`kubectl get certificate -A` — a `False` in READY means cert-manager could not renew. `kubectl describe certificate <name>` says why (often: DNS no longer points at the load balancer).
+
+## Disk full on Prometheus
+
+Lower `retention` in `scripts/bootstrap.sh`, run it again.

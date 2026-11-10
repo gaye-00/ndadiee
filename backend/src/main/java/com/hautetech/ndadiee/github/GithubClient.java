@@ -1,7 +1,9 @@
 package com.hautetech.ndadiee.github;
 
 import java.io.IOException;
+import java.net.URI;
 import java.net.http.HttpClient;
+import java.nio.charset.StandardCharsets;
 import java.time.Instant;
 import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
@@ -22,6 +24,7 @@ import org.springframework.http.client.ClientHttpResponse;
 import org.springframework.http.client.JdkClientHttpRequestFactory;
 import org.springframework.web.client.RestClient;
 import org.springframework.web.client.RestClientException;
+import org.springframework.web.util.UriUtils;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -33,8 +36,8 @@ import tools.jackson.databind.JsonNode;
 import tools.jackson.databind.json.JsonMapper;
 
 /**
- * Lecture de l'API publique de GitHub : un dépôt, ses langages, son README, les dépôts d'un compte, les fichiers
- * modifiés d'une pull request et leur diff (REST) ; les pull requests d'un dépôt, les vérifications d'une PR et les
+ * Lecture de l'API publique de GitHub : un dépôt, ses langages, son README, les dépôts d'un compte, l'arbre de ses
+ * fichiers et le contenu de l'un d'eux, les fichiers modifiés d'une pull request et leur diff (REST) ; les pull requests d'un dépôt, les vérifications d'une PR et les
  * issues qu'elle ferme (GraphQL, avec jeton). Rien d'autre : ni écriture, ni dépôt privé. Les erreurs de GitHub
  * deviennent des GithubException (introuvable, quota atteint, injoignable), que le formulaire sait expliquer.
  */
@@ -93,6 +96,8 @@ public class GithubClient {
               }
             }
             """;
+    // Le contenu brut des fichiers : servi par GitHub hors du quota de l'API (60 requêtes par heure sans jeton)
+    private static final String RAW_CONTENT = "https://raw.githubusercontent.com";
     // Fichiers modifiés lus par page de l'API REST (le maximum qu'elle accepte)
     private static final int FILES_PER_PAGE = 100;
     private static final JsonMapper MAPPER = JsonMapper.builder().build();
@@ -168,6 +173,37 @@ public class GithubClient {
                 .body(new ParameterizedTypeReference<List<Repository>>() {
                 }));
         return repositories == null ? List.of() : repositories;
+    }
+
+    /** La branche par défaut d'un dépôt public, et ses noms exacts ; GithubException.notFound s'il n'existe pas. */
+    public CodeRepository codeRepository(String owner, String name) {
+        return call(() -> client.get().uri("/repos/{owner}/{name}", owner, name).retrieve().body(CodeRepository.class));
+    }
+
+    /**
+     * Tous les fichiers et dossiers d'une branche, en une requête. Au-delà de 100 000 entrées (ou 7 Mo), GitHub
+     * coupe la liste et le dit (truncated).
+     */
+    public Tree tree(String owner, String name, String branch) {
+        Tree tree = call(() -> client.get()
+                .uri("/repos/{owner}/{name}/git/trees/{branch}?recursive=1", owner, name, branch)
+                .retrieve()
+                .body(Tree.class));
+        return tree == null ? new Tree(List.of(), false) : tree;
+    }
+
+    /** Le contenu brut d'un fichier d'une branche, tel quel (texte ou binaire) ; GithubException.notFound s'il n'existe pas. */
+    public byte[] rawFile(String owner, String name, String branch, String path) {
+        URI uri = URI.create(rawUrl(owner, name, branch, path));
+        byte[] content = call(() -> client.get().uri(uri).retrieve().body(byte[].class));
+        return content == null ? new byte[0] : content;
+    }
+
+    /** L'adresse du contenu brut d'un fichier : une image s'affiche directement depuis GitHub. */
+    public static String rawUrl(String owner, String name, String branch, String path) {
+        return RAW_CONTENT + "/" + UriUtils.encodePathSegment(owner, StandardCharsets.UTF_8) + "/"
+                + UriUtils.encodePathSegment(name, StandardCharsets.UTF_8) + "/" + UriUtils.encodePath(branch, StandardCharsets.UTF_8)
+                + "/" + UriUtils.encodePath(path, StandardCharsets.UTF_8);
     }
 
     /**
@@ -408,6 +444,36 @@ public class GithubClient {
 
     @JsonIgnoreProperties(ignoreUnknown = true)
     public record Owner(String login, @JsonProperty("avatar_url") String avatarUrl) {
+    }
+
+    // ==================== LE CODE D'UN DÉPÔT ====================
+
+    /** Un dépôt, vu pour parcourir son code : ses noms exacts et sa branche par défaut. */
+    @JsonIgnoreProperties(ignoreUnknown = true)
+    public record CodeRepository(
+            String name,
+            @JsonProperty("html_url") String htmlUrl,
+            @JsonProperty("default_branch") String defaultBranch,
+            Owner owner) {
+    }
+
+    /** L'arbre d'une branche : toutes ses entrées, et s'il a été coupé par GitHub */
+    @JsonIgnoreProperties(ignoreUnknown = true)
+    public record Tree(List<TreeEntry> tree, boolean truncated) {
+
+        public Tree {
+            tree = tree == null ? List.of() : tree;
+        }
+    }
+
+    /**
+     * Une entrée de l'arbre.
+     *
+     * @param type blob (un fichier), tree (un dossier) ou commit (un sous-module)
+     * @param size la taille d'un fichier en octets ; null pour un dossier
+     */
+    @JsonIgnoreProperties(ignoreUnknown = true)
+    public record TreeEntry(String path, String type, Long size) {
     }
 
     // ==================== PULL REQUESTS (GraphQL) ====================

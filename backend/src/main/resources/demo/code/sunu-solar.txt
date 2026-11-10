@@ -1,0 +1,145 @@
+==> README.md <==
+# Sunu Solar
+
+Des capteurs à base d'**ESP32** mesurent la production et la consommation des mini-réseaux solaires de village, et transmettent par **LoRa** jusqu'à une passerelle, même là où il n'y a pas de 4G.
+
+Objectif : détecter une batterie fatiguée ou un panneau encrassé avant la panne. Premier site pilote à Niague, dans la région de Dakar.
+
+## Matériel d'un capteur (≈ 18 000 F CFA)
+
+- ESP32 avec module LoRa SX1276 (868 MHz)
+- Capteur de courant INA219, diviseur de tension pour la batterie
+- Boîtier IP65, alimenté par le mini-réseau lui-même
+
+## Flasher un capteur
+
+```bash
+pip install esptool mpremote
+esptool.py --chip esp32 write_flash -z 0x1000 micropython-esp32.bin
+mpremote cp -r firmware/ :
+```
+
+## Ce que la passerelle reçoit
+
+Une trame toutes les 5 minutes : `site;capteur;tension_mV;courant_mA;temp_dC` (22 octets).
+
+==> firmware/main.py <==
+"""Capteur Sunu Solar : mesure, envoie par LoRa, dort. Une trame toutes les 5 minutes."""
+
+import machine
+import time
+
+from config import SITE, SENSOR_ID, INTERVAL_S
+from lora import LoRa
+from sensors import PowerSensor
+
+sensor = PowerSensor(machine.I2C(0, scl=machine.Pin(22), sda=machine.Pin(21)))
+radio = LoRa(spi=machine.SPI(1, baudrate=5_000_000), cs=machine.Pin(18), reset=machine.Pin(14))
+
+
+def frame() -> bytes:
+    reading = sensor.read()
+    # Du texte plutôt que du binaire : lisible au débogage, et 22 octets restent sous la limite LoRa
+    return "{};{};{};{};{}".format(SITE, SENSOR_ID, reading.millivolts, reading.milliamps, reading.decicelsius).encode()
+
+
+while True:
+    try:
+        radio.send(frame())
+    except OSError as error:
+        print("envoi impossible :", error)
+    # Sommeil profond : le capteur consomme moins de 1 mA entre deux mesures
+    machine.deepsleep(INTERVAL_S * 1000)
+
+==> firmware/config.py <==
+SITE = "niague"
+SENSOR_ID = 1
+INTERVAL_S = 300
+
+# Seuils d'alerte de la batterie 24 V (plomb-acide)
+BATTERY_LOW_MV = 23_400
+BATTERY_CRITICAL_MV = 22_800
+
+==> firmware/sensors.py <==
+"""Lecture du capteur de courant INA219 et de la tension de la batterie."""
+
+from collections import namedtuple
+
+Reading = namedtuple("Reading", ("millivolts", "milliamps", "decicelsius"))
+
+_ADDRESS = 0x40
+_BUS_VOLTAGE = 0x02
+_CURRENT = 0x04
+# Un INA219 mesure jusqu'à 26 V : le diviseur ramène la batterie 24 V (jusqu'à 28,8 V en charge) dans la plage
+_DIVIDER = 1.5
+
+
+class PowerSensor:
+    def __init__(self, i2c):
+        self.i2c = i2c
+
+    def _register(self, register: int) -> int:
+        raw = self.i2c.readfrom_mem(_ADDRESS, register, 2)
+        value = (raw[0] << 8) | raw[1]
+        return value - 0x10000 if value & 0x8000 else value
+
+    def read(self) -> Reading:
+        bus = (self._register(_BUS_VOLTAGE) >> 3) * 4  # 4 mV par pas
+        return Reading(
+            millivolts=int(bus * _DIVIDER),
+            milliamps=self._register(_CURRENT),
+            decicelsius=0,  # Sonde de température : issue #15
+        )
+
+==> gateway/receiver.py <==
+"""Passerelle : reçoit les trames LoRa et les range dans InfluxDB quand le réseau le permet."""
+
+import logging
+import queue
+import threading
+
+from influxdb_client import InfluxDBClient, Point
+
+log = logging.getLogger("sunu.gateway")
+# Sans réseau, les mesures attendent ici (une journée de 20 capteurs tient largement)
+pending: "queue.Queue[Point]" = queue.Queue(maxsize=10_000)
+
+
+def parse(frame: bytes) -> Point:
+    site, sensor, millivolts, milliamps, decicelsius = frame.decode().split(";")
+    return (
+        Point("power")
+        .tag("site", site)
+        .tag("sensor", sensor)
+        .field("battery_v", int(millivolts) / 1000)
+        .field("current_a", int(milliamps) / 1000)
+        .field("temperature_c", int(decicelsius) / 10)
+    )
+
+
+def on_frame(frame: bytes) -> None:
+    try:
+        pending.put_nowait(parse(frame))
+    except ValueError:
+        log.warning("trame illisible : %r", frame)
+    except queue.Full:
+        log.error("file pleine : mesure perdue")
+
+
+def uploader(client: InfluxDBClient) -> None:
+    write = client.write_api()
+    while True:
+        point = pending.get()
+        try:
+            write.write(bucket="sunu", record=point)
+        except Exception:  # Réseau coupé : on remet la mesure et on réessaie plus tard
+            pending.put(point)
+            threading.Event().wait(60)
+
+==> docs/protocole-niague.md <==
+# Protocole de test à Niague
+
+1. Installer deux capteurs : sortie des panneaux, et batterie.
+2. Vérifier chaque jour pendant une semaine que la passerelle reçoit une trame toutes les 5 minutes.
+3. Comparer la tension mesurée au multimètre, matin et soir.
+4. Noter les coupures de courant du village : elles doivent apparaître dans les mesures.

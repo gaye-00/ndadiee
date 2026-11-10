@@ -1337,3 +1337,13 @@
 :root[data-saver]::view-transition-new(*) {
   animation: none !important;
 }
+
+/* ── Barre de progression sans fin (page « Démo live ») : un fil kente qui traverse sa piste ── */
+@keyframes demo-progress {
+  from {
+    translate: -100% 0;
+  }
+  to {
+    translate: 250% 0;
+  }
+}

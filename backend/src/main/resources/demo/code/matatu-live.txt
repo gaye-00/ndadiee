@@ -1,0 +1,124 @@
+==> README.md <==
+# Matatu Live
+
+Nairobi runs on **matatus**, yet no map shows their routes. Matatu Live records them with passengers: every trip logged adds to the map, and the GTFS feed it produces is open to everyone.
+
+- Trips recorded from the phone, even offline
+- A map of routes and informal stops (OpenStreetMap)
+- A GTFS feed published every week
+
+## How a trip is recorded
+
+1. The rider picks the route number painted on the matatu.
+2. The app records a GPS point every 10 seconds, and a stop each time the rider taps *Stopped*.
+3. Back online, the trip is uploaded; similar stops from many riders are merged into one (#5).
+
+==> pubspec.yaml <==
+name: matatu_live
+description: Nairobi's matatu routes, mapped by the people who ride them.
+version: 0.3.0+3
+publish_to: none
+
+environment:
+  sdk: ">=3.5.0 <4.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  flutter_map: ^7.0.2
+  latlong2: ^0.9.1
+  geolocator: ^13.0.1
+  hive: ^2.2.3
+
+==> lib/recording/trip_recorder.dart <==
+import 'dart:async';
+
+import 'package:geolocator/geolocator.dart';
+
+import 'trip.dart';
+
+/// Records a trip: a GPS point every 10 seconds, and the stops the rider taps.
+class TripRecorder {
+  TripRecorder(this.route);
+
+  final String route;
+  final _points = <TripPoint>[];
+  final _stops = <TripPoint>[];
+  StreamSubscription<Position>? _positions;
+
+  void start() {
+    _positions = Geolocator.getPositionStream(
+      // 20 m is plenty for a route map and spares the battery
+      locationSettings: const LocationSettings(accuracy: LocationAccuracy.medium, distanceFilter: 20),
+    ).listen((position) => _points.add(TripPoint.from(position)));
+  }
+
+  Future<void> markStop() async {
+    final position = await Geolocator.getCurrentPosition();
+    _stops.add(TripPoint.from(position));
+  }
+
+  Trip stop() {
+    _positions?.cancel();
+    return Trip(route: route, points: List.of(_points), stops: List.of(_stops), recordedAt: DateTime.now());
+  }
+}
+
+==> lib/recording/trip.dart <==
+import 'package:geolocator/geolocator.dart';
+
+class TripPoint {
+  const TripPoint(this.latitude, this.longitude, this.at);
+
+  factory TripPoint.from(Position position) => TripPoint(position.latitude, position.longitude, position.timestamp);
+
+  final double latitude;
+  final double longitude;
+  final DateTime at;
+
+  Map<String, Object> toJson() => {'lat': latitude, 'lon': longitude, 'at': at.toUtc().toIso8601String()};
+}
+
+/// A trip as recorded by one rider, kept on the phone until it is uploaded.
+class Trip {
+  const Trip({required this.route, required this.points, required this.stops, required this.recordedAt});
+
+  /// The route number painted on the matatu: « 46 », « 111 »…
+  final String route;
+  final List<TripPoint> points;
+  final List<TripPoint> stops;
+  final DateTime recordedAt;
+}
+
+==> tools/merge_stops.py <==
+"""Merge the stops tapped by many riders into one GTFS stop when they are close enough (#5)."""
+
+import math
+
+# Two taps within 40 m on the same route are the same stop
+MERGE_RADIUS_M = 40
+
+
+def distance_m(a: tuple[float, float], b: tuple[float, float]) -> float:
+    lat1, lon1, lat2, lon2 = map(math.radians, (*a, *b))
+    h = math.sin((lat2 - lat1) / 2) ** 2 + math.cos(lat1) * math.cos(lat2) * math.sin((lon2 - lon1) / 2) ** 2
+    return 2 * 6_371_000 * math.asin(math.sqrt(h))
+
+
+def merge(taps: list[tuple[float, float]]) -> list[tuple[float, float]]:
+    """Clusters of taps, each replaced by its centre."""
+    clusters: list[list[tuple[float, float]]] = []
+    for tap in taps:
+        for cluster in clusters:
+            if distance_m(tap, cluster[0]) <= MERGE_RADIUS_M:
+                cluster.append(tap)
+                break
+        else:
+            clusters.append([tap])
+    return [(sum(p[0] for p in c) / len(c), sum(p[1] for p in c) / len(c)) for c in clusters]
+
+==> feed/stops.txt <==
+stop_id,stop_name,stop_lat,stop_lon
+kencom,Kencom,-1.28572,36.82485
+odeon,Odeon,-1.28245,36.82634
+ngara,Ngara,-1.27325,36.82471

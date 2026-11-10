@@ -13,7 +13,7 @@ export type PageImport = () => Promise<{ default: ComponentType }>;
  */
 function withTexts(
   load: PageImport,
-  ...namespaces: Array<'admin' | 'dashboard' | 'forum' | 'hackathons' | 'messages' | 'openings' | 'profile' | 'projectForm' | 'reviews' | 'showcase' | 'workspace'>
+  ...namespaces: Array<'admin' | 'dashboard' | 'forum' | 'hackathons' | 'messages' | 'openings' | 'profile' | 'projectCode' | 'projectForm' | 'reviews' | 'showcase' | 'workspace'>
 ): PageImport {
   return () => Promise.all([load(), i18n.loadNamespaces(namespaces)]).then(([module]) => module);
 }
@@ -42,6 +42,9 @@ export const pages = {
   showcase: withTexts(() => import('@/pages/showcase/ShowcasePage'), 'showcase'),
   // Les textes des revues : la carte des pull requests du dépôt (RepositorySyncCard)
   project: withTexts(() => import('@/pages/projects/ProjectPage'), 'reviews'),
+  // Le code source et la page d'attente de la démo : leurs textes ensemble (espace de noms projectCode)
+  projectCode: withTexts(() => import('@/pages/projects/ProjectCodePage'), 'projectCode'),
+  projectDemo: withTexts(() => import('@/pages/projects/ProjectDemoPage'), 'projectCode'),
   openings: withTexts(() => import('@/pages/openings/OpeningsPage'), 'openings'),
   // Les champs d'un rôle sont ceux du formulaire de projet ; l'aperçu est une carte de la page des annonces
   newOpening: withTexts(() => import('@/pages/openings/NewOpeningPage'), 'openings', 'projectForm'),

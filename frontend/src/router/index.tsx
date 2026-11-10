@@ -101,6 +101,8 @@ const router = createBrowserRouter([
               // Ouvert à tous
               { path: paths.showcase, ...page('showcase') },
               { path: paths.project(':slug'), ...page('project') },
+              { path: paths.projectCode(':slug'), ...page('projectCode') },
+              { path: paths.projectDemo(':slug'), ...page('projectDemo') },
               { path: paths.openings, ...page('openings') },
               { path: paths.hackathons, ...page('hackathons') },
               { path: paths.hackathon(':slug'), ...page('hackathon') },

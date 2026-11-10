@@ -1,4 +1,5 @@
 import { api } from './api';
+import type { ProjectCode, ProjectCodeFile } from '@/types/code.types';
 import type { ApiResponse, PageResponse, PaginationParams } from '@/types/common.types';
 import type {
   DevlogEntry,
@@ -28,6 +29,13 @@ export const projectService = {
     api.get<ApiResponse<ProjectFacets>>(`${BASE}/facets`, { params }).then((r) => r.data.data),
 
   getBySlug: (slug: string) => api.get<ApiResponse<Project>>(`${BASE}/${slug}`).then((r) => r.data.data),
+
+  /** Le code du projet : sa source (GitHub ou dépôt de démonstration), sa branche et l'arbre de ses fichiers. */
+  getCode: (slug: string) => api.get<ApiResponse<ProjectCode>>(`${BASE}/${slug}/code`).then((r) => r.data.data),
+
+  /** Un fichier du code du projet, pris dans son arbre. */
+  getCodeFile: (slug: string, path: string) =>
+    api.get<ApiResponse<ProjectCodeFile>>(`${BASE}/${slug}/code/file`, { params: { path } }).then((r) => r.data.data),
 
   /** Publie un projet, avec sa galerie et ses rôles recherchés : la page du projet en retour */
   create: (body: NewProjectRequest) => api.post<ApiResponse<Project>>(BASE, body).then((r) => r.data.data),

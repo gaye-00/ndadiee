@@ -1,0 +1,217 @@
+==> README.md <==
+# EduOffline
+
+A Flutter app that lets students **download course content once and study without a connection**.
+
+Lessons, quizzes and progress are stored on the device and synchronised when a network is available. Built for schools where connectivity is shared and intermittent.
+
+## Run it
+
+```bash
+flutter pub get
+flutter run
+```
+
+## How offline works
+
+1. A course is downloaded as a single compressed pack (`CoursePack`), resumable if the connection drops.
+2. Progress is written to a local queue first (`ProgressQueue`).
+3. When a network shows up, the queue is sent in order and emptied.
+
+## Help wanted
+
+- Right-to-left support, starting with the lesson player (#52)
+- A test plan for Android Go devices with 1 GB of RAM (#58)
+- Resume interrupted downloads (#61)
+
+==> pubspec.yaml <==
+name: edu_offline
+description: Lessons that work without a connection.
+version: 2.1.0+21
+publish_to: none
+
+environment:
+  sdk: ">=3.5.0 <4.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  flutter_localizations:
+    sdk: flutter
+  connectivity_plus: ^6.1.0
+  path_provider: ^2.1.4
+  sqflite: ^2.4.0
+  http: ^1.2.2
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^5.0.0
+
+==> lib/main.dart <==
+import 'package:flutter/material.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
+
+import 'courses/course_list_screen.dart';
+import 'sync/progress_sync.dart';
+
+void main() {
+  WidgetsFlutterBinding.ensureInitialized();
+  // Send queued progress whenever the phone gets a network back
+  ProgressSync.instance.start();
+  runApp(const EduOfflineApp());
+}
+
+class EduOfflineApp extends StatelessWidget {
+  const EduOfflineApp({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: 'EduOffline',
+      theme: ThemeData(colorSchemeSeed: const Color(0xFF0B7A5A), useMaterial3: true),
+      localizationsDelegates: GlobalMaterialLocalizations.delegates,
+      supportedLocales: const [Locale('en'), Locale('fr'), Locale('sw'), Locale('ar')],
+      home: const CourseListScreen(),
+    );
+  }
+}
+
+==> lib/courses/course_pack.dart <==
+import 'dart:io';
+
+import 'package:http/http.dart' as http;
+import 'package:path_provider/path_provider.dart';
+
+/// A course downloaded as one file: lessons, images and quizzes, read without a network.
+class CoursePack {
+  CoursePack(this.courseId, this.url);
+
+  final String courseId;
+  final Uri url;
+
+  Future<File> get _file async {
+    final dir = await getApplicationSupportDirectory();
+    return File('${dir.path}/packs/$courseId.pack');
+  }
+
+  Future<bool> get isDownloaded async => (await _file).exists();
+
+  /// Downloads the pack, reporting progress from 0 to 1.
+  Stream<double> download() async* {
+    final file = await _file;
+    await file.parent.create(recursive: true);
+    final response = await http.Client().send(http.Request('GET', url));
+    final total = response.contentLength ?? 0;
+    var received = 0;
+    final sink = file.openWrite();
+    try {
+      await for (final chunk in response.stream) {
+        sink.add(chunk);
+        received += chunk.length;
+        if (total > 0) yield received / total;
+      }
+    } finally {
+      await sink.close();
+    }
+  }
+}
+
+==> lib/sync/progress_queue.dart <==
+import 'package:sqflite/sqflite.dart';
+
+/// Progress events waiting to be sent: written locally first, so nothing is lost offline.
+class ProgressQueue {
+  ProgressQueue(this._db);
+
+  final Database _db;
+
+  static Future<ProgressQueue> open() async {
+    final db = await openDatabase('progress.db', version: 1, onCreate: (db, _) {
+      return db.execute('''
+        CREATE TABLE queue (
+          id INTEGER PRIMARY KEY AUTOINCREMENT,
+          lesson_id TEXT NOT NULL,
+          score INTEGER,
+          completed_at TEXT NOT NULL
+        )''');
+    });
+    return ProgressQueue(db);
+  }
+
+  Future<void> add(String lessonId, {int? score}) => _db.insert('queue', {
+        'lesson_id': lessonId,
+        'score': score,
+        'completed_at': DateTime.now().toUtc().toIso8601String(),
+      });
+
+  /// The oldest events first: the server sees progress in the order it happened.
+  Future<List<Map<String, Object?>>> pending({int limit = 50}) =>
+      _db.query('queue', orderBy: 'id', limit: limit);
+
+  Future<void> remove(List<int> ids) =>
+      _db.delete('queue', where: 'id IN (${List.filled(ids.length, '?').join(',')})', whereArgs: ids);
+}
+
+==> lib/sync/progress_sync.dart <==
+import 'dart:async';
+import 'dart:convert';
+
+import 'package:connectivity_plus/connectivity_plus.dart';
+import 'package:http/http.dart' as http;
+
+import 'progress_queue.dart';
+
+/// Sends queued progress as soon as a network is available, in batches of 50.
+class ProgressSync {
+  ProgressSync._();
+
+  static final instance = ProgressSync._();
+  static final _endpoint = Uri.parse('https://api.eduoffline.example/v2/progress');
+
+  StreamSubscription<List<ConnectivityResult>>? _subscription;
+  bool _running = false;
+
+  void start() {
+    _subscription ??= Connectivity().onConnectivityChanged.listen((results) {
+      if (!results.contains(ConnectivityResult.none)) unawaited(flush());
+    });
+  }
+
+  Future<void> flush() async {
+    if (_running) return;
+    _running = true;
+    try {
+      final queue = await ProgressQueue.open();
+      while (true) {
+        final batch = await queue.pending();
+        if (batch.isEmpty) break;
+        final response = await http.post(_endpoint,
+            headers: {'Content-Type': 'application/json'}, body: jsonEncode(batch));
+        if (response.statusCode >= 300) break; // Try again on the next network change
+        await queue.remove([for (final row in batch) row['id'] as int]);
+      }
+    } finally {
+      _running = false;
+    }
+  }
+}
+
+==> test/progress_queue_test.dart <==
+import 'package:flutter_test/flutter_test.dart';
+import 'package:sqflite_common_ffi/sqflite_ffi.dart';
+
+import 'package:edu_offline/sync/progress_queue.dart';
+
+void main() {
+  sqfliteFfiInit();
+  databaseFactory = databaseFactoryFfi;
+
+  test('pending events come back in the order they were added', () async {
+    final queue = await ProgressQueue.open();
+    await queue.add('lesson-1');
+    await queue.add('lesson-2', score: 8);
+    final pending = await queue.pending();
+    expect(pending.map((row) => row['lesson_id']), ['lesson-1', 'lesson-2']);
+  });
+}

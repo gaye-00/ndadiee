@@ -1,0 +1,123 @@
+==> README.md <==
+# Kumasi Builders
+
+Une équipe montée pour le hackathon **AgriTech 48h** d'Abidjan : afficher dans chaque coopérative le prix du cacao payé au planteur, et prévenir par SMS quand il change.
+
+- Relevés des prix bord-champ, saisis par les coopératives
+- Un tableau lisible sur un téléphone d'entrée de gamme
+- Une alerte SMS quand le prix bouge
+
+## Démarrer
+
+```bash
+cd api && pip install -r requirements.txt && uvicorn app.main:app --reload
+cd web && npm install && npm run dev
+```
+
+Il nous manque un ou une dev front-end pour le tableau des prix (#12).
+
+==> api/requirements.txt <==
+fastapi==0.115.4
+uvicorn[standard]==0.32.0
+psycopg[binary]==3.2.3
+pydantic==2.9.2
+
+==> api/app/main.py <==
+from datetime import date
+
+from fastapi import FastAPI, HTTPException
+from pydantic import BaseModel, Field
+
+from .db import connection
+
+app = FastAPI(title="Kumasi Builders")
+
+
+class Price(BaseModel):
+    cooperative: str
+    # Prix bord-champ, en francs CFA par kilo
+    price_per_kg: int = Field(gt=0)
+    observed_on: date
+
+
+@app.get("/cooperatives/{slug}/prices", response_model=list[Price])
+def prices(slug: str, days: int = 30):
+    with connection() as conn:
+        rows = conn.execute(
+            "SELECT cooperative, price_per_kg, observed_on FROM prices "
+            "WHERE cooperative = %s AND observed_on > current_date - %s::int ORDER BY observed_on",
+            (slug, days),
+        ).fetchall()
+    if not rows:
+        raise HTTPException(404, "Coopérative inconnue")
+    return [Price(cooperative=r[0], price_per_kg=r[1], observed_on=r[2]) for r in rows]
+
+
+@app.post("/cooperatives/{slug}/prices", status_code=201)
+def record(slug: str, price: Price):
+    with connection() as conn:
+        previous = conn.execute(
+            "SELECT price_per_kg FROM prices WHERE cooperative = %s ORDER BY observed_on DESC LIMIT 1", (slug,)
+        ).fetchone()
+        conn.execute(
+            "INSERT INTO prices (cooperative, price_per_kg, observed_on) VALUES (%s, %s, %s)",
+            (slug, price.price_per_kg, price.observed_on),
+        )
+    if previous and previous[0] != price.price_per_kg:
+        from .sms import notify_price_change
+
+        notify_price_change(slug, previous[0], price.price_per_kg)
+
+==> api/app/db.py <==
+import os
+from contextlib import contextmanager
+
+import psycopg
+
+
+@contextmanager
+def connection():
+    with psycopg.connect(os.environ.get("DATABASE_URL", "postgresql://localhost/kumasi")) as conn:
+        yield conn
+
+==> api/app/sms.py <==
+"""Alerte SMS aux planteurs quand le prix bord-champ change."""
+
+import logging
+
+log = logging.getLogger(__name__)
+
+
+def notify_price_change(cooperative: str, before: int, after: int) -> None:
+    direction = "monte" if after > before else "baisse"
+    message = f"Cacao {cooperative} : le prix {direction}, {after} F/kg (avant {before} F/kg)."
+    # Hackathon : journalisé seulement, la passerelle SMS de l'opérateur arrive après
+    log.info("SMS : %s", message)
+
+==> web/src/PriceBoard.tsx <==
+import { useEffect, useState } from 'react';
+
+interface Price {
+  cooperative: string;
+  price_per_kg: number;
+  observed_on: string;
+}
+
+// À reprendre : c'est l'issue #12, le tableau des prix pour les coopératives
+export function PriceBoard({ cooperative }: { cooperative: string }) {
+  const [prices, setPrices] = useState<Price[]>([]);
+
+  useEffect(() => {
+    fetch(`/api/cooperatives/${cooperative}/prices`)
+      .then((response) => response.json())
+      .then(setPrices);
+  }, [cooperative]);
+
+  const today = prices.at(-1);
+  return (
+    <main>
+      <h1>Prix du cacao · {cooperative}</h1>
+      {today && <p className="today">{today.price_per_kg} F CFA / kg</p>}
+    </main>
+  );
+}

@@ -1,0 +1,549 @@
+==> README.md <==
+# lagos-transit
+
+Les horaires des **danfo** et du **BRT** de Lagos, en données ouvertes : une API GraphQL et une appli mobile pensée pour les petits forfaits.
+
+- Prochains passages à chaque arrêt, mis à jour par la communauté
+- Mode hors-ligne : les 20 derniers arrêts consultés restent disponibles
+- Flux GTFS publié chaque semaine, réutilisable par d'autres applications
+
+## Démarrer
+
+```bash
+docker compose up --build
+curl localhost:8080/stops/ikeja/departures
+```
+
+L'API lit le flux GTFS indiqué par `GTFS_URL` au démarrage, puis toutes les heures.
+
+## Organisation du dépôt
+
+| Dossier | Contenu |
+| --- | --- |
+| `cmd/api` | Le serveur HTTP et GraphQL |
+| `internal/gtfs` | Lecture du flux GTFS (arrêts, lignes, horaires) |
+| `internal/schedule` | Calcul des prochains passages |
+| `internal/graphql` | Le schéma GraphQL |
+| `web` | Le tableau des départs, pour les écrans en gare |
+| `mobile` | L'appli React Native |
+
+## Contribuer
+
+Les issues étiquetées `good first issue` sont faites pour commencer. Le cache Redis des horaires est en revue (#84) : il fait passer la page d'un arrêt de 1,8 s à 120 ms.
+
+==> LICENSE <==
+MIT License
+
+Copyright (c) 2026 Chinedu Okafor and lagos-transit contributors
+
+Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated
+documentation files (the "Software"), to deal in the Software without restriction, including without limitation
+the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND.
+
+==> go.mod <==
+module github.com/lagos-transit/lagos-transit
+
+go 1.23
+
+require (
+	github.com/99designs/gqlgen v0.17.55
+	github.com/jamespfennell/gtfs v0.1.24
+)
+
+==> cmd/api/main.go <==
+package main
+
+import (
+	"context"
+	"log/slog"
+	"net/http"
+	"os"
+	"os/signal"
+	"time"
+
+	"github.com/lagos-transit/lagos-transit/internal/gtfs"
+	"github.com/lagos-transit/lagos-transit/internal/schedule"
+)
+
+func main() {
+	ctx, stop := signal.NotifyContext(context.Background(), os.Interrupt)
+	defer stop()
+
+	feed, err := gtfs.Load(ctx, env("GTFS_URL", "https://example.com/gtfs/brt.zip"))
+	if err != nil {
+		slog.Error("gtfs feed unavailable", "err", err)
+		os.Exit(1)
+	}
+	// The feed changes every week: reload it every hour, riders never wait for it
+	go feed.RefreshEvery(ctx, time.Hour)
+
+	mux := http.NewServeMux()
+	mux.Handle("GET /stops/{id}/departures", schedule.NewHandler(schedule.FromFeed(feed)))
+	mux.HandleFunc("GET /healthz", func(w http.ResponseWriter, _ *http.Request) { w.WriteHeader(http.StatusNoContent) })
+
+	server := &http.Server{Addr: ":8080", Handler: mux, ReadHeaderTimeout: 5 * time.Second}
+	go func() {
+		<-ctx.Done()
+		shutdown, cancel := context.WithTimeout(context.Background(), 10*time.Second)
+		defer cancel()
+		_ = server.Shutdown(shutdown)
+	}()
+
+	slog.Info("lagos-transit api listening", "addr", server.Addr)
+	if err := server.ListenAndServe(); err != nil && err != http.ErrServerClosed {
+		slog.Error("server stopped", "err", err)
+		os.Exit(1)
+	}
+}
+
+func env(key, fallback string) string {
+	if value := os.Getenv(key); value != "" {
+		return value
+	}
+	return fallback
+}
+
+==> internal/gtfs/feed.go <==
+package gtfs
+
+import (
+	"context"
+	"fmt"
+	"io"
+	"log/slog"
+	"net/http"
+	"sync"
+	"time"
+
+	"github.com/jamespfennell/gtfs"
+)
+
+// Feed is the static GTFS timetable of the BRT and of the danfo routes collected by riders.
+type Feed struct {
+	url string
+	mu  sync.RWMutex
+	gtfs.Static
+}
+
+// Load downloads and parses the feed once.
+func Load(ctx context.Context, url string) (*Feed, error) {
+	feed := &Feed{url: url}
+	if err := feed.refresh(ctx); err != nil {
+		return nil, err
+	}
+	return feed, nil
+}
+
+// RefreshEvery reloads the feed until the context ends; a failed reload keeps the previous timetable.
+func (f *Feed) RefreshEvery(ctx context.Context, every time.Duration) {
+	ticker := time.NewTicker(every)
+	defer ticker.Stop()
+	for {
+		select {
+		case <-ctx.Done():
+			return
+		case <-ticker.C:
+			if err := f.refresh(ctx); err != nil {
+				slog.Warn("gtfs refresh failed, keeping the previous feed", "err", err)
+			}
+		}
+	}
+}
+
+// StopTimes returns the scheduled times of a stop, in the order of the day.
+func (f *Feed) StopTimes(stopID string) []gtfs.ScheduledStopTime {
+	f.mu.RLock()
+	defer f.mu.RUnlock()
+	var times []gtfs.ScheduledStopTime
+	for _, trip := range f.Trips {
+		for _, stopTime := range trip.StopTimes {
+			if stopTime.Stop.Id == stopID {
+				times = append(times, stopTime)
+			}
+		}
+	}
+	return times
+}
+
+func (f *Feed) refresh(ctx context.Context) error {
+	req, err := http.NewRequestWithContext(ctx, http.MethodGet, f.url, nil)
+	if err != nil {
+		return err
+	}
+	resp, err := http.DefaultClient.Do(req)
+	if err != nil {
+		return err
+	}
+	defer resp.Body.Close()
+	if resp.StatusCode != http.StatusOK {
+		return fmt.Errorf("gtfs feed: %s", resp.Status)
+	}
+	body, err := io.ReadAll(resp.Body)
+	if err != nil {
+		return err
+	}
+	static, err := gtfs.ParseStatic(body, gtfs.ParseStaticOptions{})
+	if err != nil {
+		return err
+	}
+	f.mu.Lock()
+	f.Static = *static
+	f.mu.Unlock()
+	return nil
+}
+
+==> internal/schedule/source.go <==
+package schedule
+
+import (
+	"context"
+	"sort"
+	"time"
+
+	"github.com/lagos-transit/lagos-transit/internal/gtfs"
+)
+
+// Departure is the next bus at a stop, as a rider reads it on the board.
+type Departure struct {
+	Route    string `json:"route"`
+	Platform string `json:"platform"`
+	Minutes  int    `json:"minutes"`
+}
+
+// Source gives the next departures of a stop.
+type Source interface {
+	Departures(ctx context.Context, stopID string) ([]Departure, error)
+}
+
+type feedSource struct {
+	feed *gtfs.Feed
+	now  func() time.Time
+}
+
+// FromFeed computes departures from the static timetable.
+func FromFeed(feed *gtfs.Feed) Source {
+	return feedSource{feed: feed, now: time.Now}
+}
+
+// Lagos does not observe daylight saving time: WAT is UTC+1 all year round
+var lagos = time.FixedZone("WAT", 60*60)
+
+func (s feedSource) Departures(_ context.Context, stopID string) ([]Departure, error) {
+	now := s.now().In(lagos)
+	midnight := time.Date(now.Year(), now.Month(), now.Day(), 0, 0, 0, 0, lagos)
+	var next []Departure
+	for _, stopTime := range s.feed.StopTimes(stopID) {
+		at := midnight.Add(stopTime.DepartureTime)
+		if at.Before(now) || at.Sub(now) > 2*time.Hour {
+			continue
+		}
+		next = append(next, Departure{
+			Route:    stopTime.Trip.Route.ShortName,
+			Platform: stopTime.Stop.PlatformCode,
+			Minutes:  int(at.Sub(now).Minutes()),
+		})
+	}
+	sort.Slice(next, func(i, j int) bool { return next[i].Minutes < next[j].Minutes })
+	if len(next) > 12 {
+		next = next[:12]
+	}
+	return next, nil
+}
+
+==> internal/schedule/handler.go <==
+package schedule
+
+import (
+	"encoding/json"
+	"net/http"
+)
+
+// Handler serves the next departures of a stop: GET /stops/{id}/departures
+type Handler struct {
+	source Source
+}
+
+func NewHandler(source Source) *Handler {
+	return &Handler{source: source}
+}
+
+func (h *Handler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
+	stopID := r.PathValue("id")
+	deps, err := h.source.Departures(r.Context(), stopID)
+	if err != nil {
+		http.Error(w, "departures unavailable", http.StatusBadGateway)
+		return
+	}
+	w.Header().Set("Content-Type", "application/json")
+	json.NewEncoder(w).Encode(deps)
+}
+
+==> internal/schedule/source_test.go <==
+package schedule
+
+import (
+	"testing"
+	"time"
+)
+
+func TestLagosIsAlwaysUTCPlusOne(t *testing.T) {
+	for _, month := range []time.Month{time.January, time.July} {
+		at := time.Date(2026, month, 1, 12, 0, 0, 0, time.UTC).In(lagos)
+		if at.Hour() != 13 {
+			t.Fatalf("%s: got %d h, want 13 h", month, at.Hour())
+		}
+	}
+}
+
+==> internal/graphql/schema.graphql <==
+"An official BRT stop or a danfo stop mapped by riders."
+type Stop {
+  id: ID!
+  name: String!
+  latitude: Float!
+  longitude: Float!
+  "The next departures, at most two hours ahead."
+  departures(limit: Int = 6): [Departure!]!
+}
+
+type Departure {
+  route: String!
+  platform: String
+  "Minutes until the bus leaves the stop."
+  minutes: Int!
+}
+
+type Query {
+  stop(id: ID!): Stop
+  "Stops within `radius` metres, the closest first."
+  stopsNear(latitude: Float!, longitude: Float!, radius: Int = 500): [Stop!]!
+}
+
+==> docker-compose.yml <==
+services:
+  api:
+    build: .
+    ports:
+      - "8080:8080"
+    environment:
+      GTFS_URL: https://example.com/gtfs/brt.zip
+    restart: unless-stopped
+
+==> Dockerfile <==
+FROM golang:1.23-alpine AS build
+WORKDIR /src
+COPY go.mod go.sum ./
+RUN go mod download
+COPY . .
+RUN CGO_ENABLED=0 go build -trimpath -ldflags="-s -w" -o /api ./cmd/api
+
+# 18 MB image: just the binary and the CA certificates to download the feed
+FROM gcr.io/distroless/static-debian12
+COPY --from=build /api /api
+EXPOSE 8080
+ENTRYPOINT ["/api"]
+
+==> web/src/api/trips.ts <==
+export interface Trip {
+  id: string;
+  route: string;
+  minutes: number;
+  platform: string;
+}
+
+const API_URL = import.meta.env.VITE_API_URL ?? 'http://localhost:8080';
+
+/** The next departures of a stop, as the board shows them. */
+export async function fetchTrips(stopId: string): Promise<Trip[]> {
+  const response = await fetch(`${API_URL}/stops/${encodeURIComponent(stopId)}/departures`);
+  if (!response.ok) {
+    throw new Error(`departures unavailable (${response.status})`);
+  }
+  const departures: Omit<Trip, 'id'>[] = await response.json();
+  return departures.map((departure, index) => ({ ...departure, id: `${departure.route}-${departure.minutes}-${index}` }));
+}
+
+==> web/src/trips/TripList.tsx <==
+import { useEffect, useState } from 'react';
+import { fetchTrips, type Trip } from '../api/trips';
+import { TripRow } from './TripRow';
+import './TripList.css';
+
+const REFRESH_MS = 30_000;
+
+interface TripListProps {
+  stopId: string;
+}
+
+export function TripList({ stopId }: TripListProps) {
+  const [trips, setTrips] = useState<Trip[]>([]);
+
+  useEffect(() => {
+    let cancelled = false;
+    const load = () =>
+      fetchTrips(stopId).then((next) => {
+        if (!cancelled) setTrips(next);
+      });
+    load();
+    const timer = setInterval(load, REFRESH_MS);
+    return () => {
+      cancelled = true;
+      clearInterval(timer);
+    };
+  }, [stopId]);
+
+  return (
+    <div className="trips">
+      <ol>
+        {trips.map((trip) => (
+          <TripRow key={trip.id} trip={trip} />
+        ))}
+      </ol>
+    </div>
+  );
+}
+
+==> web/src/trips/TripRow.tsx <==
+import type { Trip } from '../api/trips';
+
+export function TripRow({ trip }: { trip: Trip }) {
+  return (
+    <li className="trip">
+      <span className="trip__route">{trip.route}</span>
+      <span className="trip__time">{trip.minutes} min</span>
+      <span className="trip__platform">Quai {trip.platform}</span>
+    </li>
+  );
+}
+
+==> web/src/trips/TripList.css <==
+.trips ol {
+  display: grid;
+  gap: 0.5rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.trip {
+  display: grid;
+  grid-template-columns: 1fr auto auto;
+  gap: 1rem;
+  align-items: center;
+  padding: 0.75rem 1rem;
+  border-radius: 0.75rem;
+  background: #fff8e1;
+  font-size: 1.25rem;
+}
+
+.trip__time {
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+}
+
+==> mobile/src/offline/recentStops.ts <==
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import type { Departure } from '../api/types';
+
+const KEY = 'recent-stops';
+// What a 500 MB plan can afford: the last 20 stops, with their last known departures
+const MAX_STOPS = 20;
+
+export interface RecentStop {
+  id: string;
+  name: string;
+  departures: Departure[];
+  savedAt: number;
+}
+
+export async function recentStops(): Promise<RecentStop[]> {
+  const raw = await AsyncStorage.getItem(KEY);
+  return raw ? (JSON.parse(raw) as RecentStop[]) : [];
+}
+
+/** Keeps a stop for offline use; the most recent first, the oldest dropped beyond 20. */
+export async function rememberStop(stop: Omit<RecentStop, 'savedAt'>): Promise<void> {
+  const others = (await recentStops()).filter((recent) => recent.id !== stop.id);
+  const next = [{ ...stop, savedAt: Date.now() }, ...others].slice(0, MAX_STOPS);
+  await AsyncStorage.setItem(KEY, JSON.stringify(next));
+}
+
+==> mobile/src/screens/StopScreen.tsx <==
+import { useEffect, useState } from 'react';
+import { FlatList, RefreshControl, Text, View } from 'react-native';
+import { fetchDepartures } from '../api/departures';
+import type { Departure } from '../api/types';
+import { recentStops, rememberStop } from '../offline/recentStops';
+import { styles } from './StopScreen.styles';
+
+export function StopScreen({ stopId, stopName }: { stopId: string; stopName: string }) {
+  const [departures, setDepartures] = useState<Departure[]>([]);
+  const [offline, setOffline] = useState(false);
+  const [refreshing, setRefreshing] = useState(false);
+
+  async function load() {
+    setRefreshing(true);
+    try {
+      const next = await fetchDepartures(stopId);
+      setDepartures(next);
+      setOffline(false);
+      await rememberStop({ id: stopId, name: stopName, departures: next });
+    } catch {
+      // No network: show what we saw last time at this stop
+      const saved = (await recentStops()).find((stop) => stop.id === stopId);
+      setDepartures(saved?.departures ?? []);
+      setOffline(true);
+    } finally {
+      setRefreshing(false);
+    }
+  }
+
+  useEffect(() => {
+    void load();
+  }, [stopId]);
+
+  return (
+    <View style={styles.screen}>
+      <Text style={styles.title}>{stopName}</Text>
+      {offline && <Text style={styles.offline}>Hors-ligne · derniers horaires connus</Text>}
+      <FlatList
+        data={departures}
+        keyExtractor={(item, index) => `${item.route}-${index}`}
+        refreshControl={<RefreshControl refreshing={refreshing} onRefresh={load} />}
+        renderItem={({ item }) => (
+          <View style={styles.row}>
+            <Text style={styles.route}>{item.route}</Text>
+            <Text style={styles.minutes}>{item.minutes} min</Text>
+          </View>
+        )}
+      />
+    </View>
+  );
+}
+
+==> .github/workflows/ci.yml <==
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  api:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-go@v5
+        with:
+          go-version: "1.23"
+      - run: go test ./...
+      - uses: golangci/golangci-lint-action@v6
+
+  image:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: docker build -t lagos-transit .

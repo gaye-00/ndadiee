@@ -221,6 +221,8 @@
     "landing": "Accueil",
     "showcase": "Vitrine",
     "project": "Projet",
+    "projectCode": "Code source",
+    "projectDemo": "Démo live",
     "openings": "Annonces",
     "newOpening": "Publier un rôle",
     "hackathons": "Hackathons",

@@ -19,6 +19,7 @@ import { cn } from '@/lib/utils';
 import { paths } from '@/router/paths';
 import type { HackathonBrief, Project } from '@/types/project.types';
 import { formatCount, formatRelativeTime, isolate } from '@/utils/formatters';
+import { codeSourceOf, isPlaceholderUrl } from '@/utils/repository';
 
 // Les éléments de l'en-tête arrivent l'un après l'autre
 const stagger: Variants = { hidden: {}, shown: { transition: { staggerChildren: 0.07, delayChildren: 0.05 } } };
@@ -136,14 +137,8 @@ export default function ProjectHero({ project }: { project: Project }) {
 
       <m.div variants={rise} className="mt-1.5 flex flex-wrap items-center gap-2">
         <PrimaryAction project={project} />
-        {project.demoUrl && (
-          <a href={project.demoUrl} target="_blank" rel="noreferrer" className={cn(OUTLINE, 'group/demo')}>
-            <Play aria-hidden className="size-3.5 fill-current transition-transform duration-300 group-hover/demo:scale-110" />
-            {t('project.demo')}
-            <ExternalLink aria-hidden className="size-3.5 text-faint-foreground" />
-          </a>
-        )}
-        {project.repositoryUrl && <RepositoryLink url={project.repositoryUrl} />}
+        {project.demoUrl && <DemoLink slug={project.slug} url={project.demoUrl} />}
+        {project.repositoryUrl && <RepositoryLink slug={project.slug} url={project.repositoryUrl} />}
         {/* L'étoile et le partage vont ensemble, à la ligne s'il le faut */}
         <span className="flex items-center gap-1">
           <StarButton project={project} />
@@ -286,22 +281,59 @@ function GradientLink({ to, icon, children }: { to: string; icon: ReactNode; chi
   );
 }
 
-/** Le code source, avec le logo de GitHub quand il y est ; l'adresse du dépôt en bulle. */
-function RepositoryLink({ url }: { url: string }) {
+/**
+ * La démo : son adresse dans un nouvel onglet ; une démo de démonstration (adresse en example.com, qui ne mène nulle
+ * part) ouvre la page d'attente du projet.
+ */
+function DemoLink({ slug, url }: { slug: string; url: string }) {
   const { t } = useTranslation();
-  let github = false;
+  const icon = <Play aria-hidden className="size-3.5 fill-current transition-transform duration-300 group-hover/demo:scale-110" />;
+
+  if (isPlaceholderUrl(url)) {
+    return (
+      <Link to={paths.projectDemo(slug)} viewTransition className={cn(OUTLINE, 'group/demo')}>
+        {icon}
+        {t('project.demo')}
+      </Link>
+    );
+  }
+  return (
+    <a href={url} target="_blank" rel="noreferrer" className={cn(OUTLINE, 'group/demo')}>
+      {icon}
+      {t('project.demo')}
+      <ExternalLink aria-hidden className="size-3.5 text-faint-foreground" />
+    </a>
+  );
+}
+
+/**
+ * Le code source, avec le logo de GitHub quand il y est ; l'adresse du dépôt en bulle. Un dépôt GitHub public, ou de
+ * démonstration, se lit dans Ndadiee (page « Code source ») ; un dépôt ailleurs s'ouvre dans un nouvel onglet.
+ */
+function RepositoryLink({ slug, url }: { slug: string; url: string }) {
+  const { t } = useTranslation();
+  const source = codeSourceOf(url);
   let label = url;
   try {
     const parsed = new URL(url);
-    github = parsed.hostname === 'github.com' || parsed.hostname.endsWith('.github.com');
     label = `${parsed.hostname}${parsed.pathname.replace(/\/+$/, '')}`;
   } catch {
     // Adresse mal formée : affichée telle quelle dans la bulle
   }
+  const icon = source === 'github' ? <GithubMark className="size-4 shrink-0" /> : <Code2 aria-hidden className="size-4 shrink-0" />;
 
+  // Un dépôt fictif sans code fourni mène aussi à la page, qui l'explique : jamais de lien mort
+  if (source || isPlaceholderUrl(url)) {
+    return (
+      <Link to={paths.projectCode(slug)} viewTransition title={source === 'demo' ? undefined : label} className={cn(OUTLINE, 'group/repo')}>
+        {icon}
+        {t('project.source')}
+      </Link>
+    );
+  }
   return (
     <a href={url} target="_blank" rel="noreferrer" title={label} className={cn(OUTLINE, 'group/repo')}>
-      {github ? <GithubMark className="size-4 shrink-0" /> : <Code2 aria-hidden className="size-4 shrink-0" />}
+      {icon}
       {t('project.source')}
       <ExternalLink aria-hidden className="size-3.5 text-faint-foreground" />
     </a>

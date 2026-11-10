@@ -13,6 +13,7 @@ import type { Project, ProjectOpening } from '@/types/project.types';
 import type { UserSummary } from '@/types/user.types';
 import { getApiError, getApiErrorMessage } from '@/utils/apiError';
 import { isolate } from '@/utils/formatters';
+import { starterIssueUrl } from '@/utils/repository';
 
 // Longueur du mot pour l'équipe (JoinProjectRequest.java)
 const MAX_MOTIVATION = 500;
@@ -61,10 +62,8 @@ function ApplyContent({ project, opening }: { project: ApplyProject; opening: Pr
   const [sent, setSent] = useState(false);
   const fieldId = useId();
   const role = roleOf(opening.role);
-  const issueUrl =
-    opening.starterIssueNumber && project.repositoryUrl
-      ? `${project.repositoryUrl.replace(/\/+$/, '')}/issues/${opening.starterIssueNumber}`
-      : null;
+  // Pas de lien vers l'issue d'un dépôt fictif (projets de démonstration) : il ne mènerait nulle part
+  const issueUrl = starterIssueUrl(project.repositoryUrl, opening.starterIssueNumber);
   const owner = project.owner.fullName.split(/\s+/)[0] ?? project.owner.fullName;
 
   function submit(event: FormEvent<HTMLFormElement>) {

@@ -25,6 +25,9 @@ function crumbsOf(page: PageName | undefined, params: Params, t: TFunction): Cru
       return [];
     case 'project':
       return [section(t('nav.showcase'), paths.showcase), { label: slug }];
+    case 'projectCode':
+    case 'projectDemo':
+      return [section(t('nav.showcase'), paths.showcase), project, section(t(`pages.${page}`))];
     case 'workspaceBoard':
     case 'workspaceReviews':
     case 'workspaceDevlog':

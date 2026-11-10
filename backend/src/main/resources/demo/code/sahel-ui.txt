@@ -1,0 +1,168 @@
+==> README.md <==
+# Sahel UI
+
+A React component library designed for **slow networks and low-end phones**: small bundles, no layout shift, and full keyboard accessibility.
+
+```tsx
+import { Button, Dialog, Skeleton } from 'sahel-ui';
+import 'sahel-ui/styles.css';
+```
+
+| Component | Gzipped |
+| --- | --- |
+| Button | 0.6 kB |
+| Dialog | 1.9 kB |
+| Skeleton | 0.4 kB |
+| Tabs | 1.2 kB |
+
+Used in production by three products. The API is stable; the project is in **maintenance mode** and not currently looking for new contributors. Security fixes are still released.
+
+==> package.json <==
+{
+  "name": "sahel-ui",
+  "version": "3.2.1",
+  "type": "module",
+  "license": "MIT",
+  "sideEffects": ["*.css"],
+  "exports": {
+    ".": "./dist/index.js",
+    "./styles.css": "./dist/styles.css"
+  },
+  "peerDependencies": {
+    "react": ">=18",
+    "react-dom": ">=18"
+  }
+}
+
+==> src/index.ts <==
+export { Button, type ButtonProps } from './button/Button';
+export { Dialog } from './dialog/Dialog';
+export { Skeleton } from './skeleton/Skeleton';
+
+==> src/button/Button.tsx <==
+import { forwardRef, type ButtonHTMLAttributes } from 'react';
+
+export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
+  variant?: 'primary' | 'secondary' | 'ghost';
+  /** Shows a spinner and blocks double submissions on slow networks */
+  loading?: boolean;
+}
+
+export const Button = forwardRef<HTMLButtonElement, ButtonProps>(function Button(
+  { variant = 'primary', loading = false, disabled, children, className, ...props },
+  ref,
+) {
+  return (
+    <button
+      ref={ref}
+      // aria-disabled rather than disabled: the button keeps its focus while the request runs
+      aria-disabled={disabled || loading || undefined}
+      aria-busy={loading || undefined}
+      className={['sahel-button', `sahel-button--${variant}`, className].filter(Boolean).join(' ')}
+      {...props}
+      onClick={disabled || loading ? (event) => event.preventDefault() : props.onClick}
+    >
+      {loading && <span className="sahel-button__spinner" aria-hidden />}
+      {children}
+    </button>
+  );
+});
+
+==> src/skeleton/Skeleton.tsx <==
+import type { CSSProperties } from 'react';
+
+interface SkeletonProps {
+  /** Reserve the exact size of what is coming: no layout shift when it arrives */
+  width: CSSProperties['width'];
+  height: CSSProperties['height'];
+  radius?: CSSProperties['borderRadius'];
+}
+
+export function Skeleton({ width, height, radius = '0.5rem' }: SkeletonProps) {
+  return <span className="sahel-skeleton" style={{ width, height, borderRadius: radius }} aria-hidden />;
+}
+
+==> src/dialog/Dialog.tsx <==
+import { useEffect, useRef, type ReactNode } from 'react';
+
+interface DialogProps {
+  open: boolean;
+  onClose: () => void;
+  title: string;
+  children: ReactNode;
+}
+
+/** The native <dialog> element: focus trap, Escape and backdrop for free, 1.9 kB. */
+export function Dialog({ open, onClose, title, children }: DialogProps) {
+  const dialog = useRef<HTMLDialogElement>(null);
+
+  useEffect(() => {
+    const element = dialog.current;
+    if (!element) return;
+    if (open && !element.open) element.showModal();
+    if (!open && element.open) element.close();
+  }, [open]);
+
+  return (
+    <dialog ref={dialog} className="sahel-dialog" aria-labelledby="sahel-dialog-title" onClose={onClose}>
+      <h2 id="sahel-dialog-title">{title}</h2>
+      {children}
+    </dialog>
+  );
+}
+
+==> src/styles.css <==
+.sahel-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  min-height: 2.75rem; /* 44 px: a thumb, not a mouse */
+  padding: 0 1rem;
+  border-radius: 0.75rem;
+  font: inherit;
+  font-weight: 600;
+}
+
+.sahel-button--primary {
+  background: #b5452b;
+  color: #fff;
+}
+
+.sahel-button[aria-disabled='true'] {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.sahel-skeleton {
+  display: inline-block;
+  background: linear-gradient(90deg, #eee 25%, #f6f6f6 50%, #eee 75%);
+  background-size: 200% 100%;
+  animation: sahel-shimmer 1.4s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .sahel-skeleton {
+    animation: none;
+  }
+}
+
+@keyframes sahel-shimmer {
+  to {
+    background-position: -200% 0;
+  }
+}
+
+==> CHANGELOG.md <==
+# Changelog
+
+## 3.2.1
+
+- Dialog: restore focus to the trigger on close in Safari 17
+
+## 3.2.0
+
+- Button: `loading` keeps the focus (aria-disabled instead of disabled)
+
+## 3.0.0
+
+- Breaking: CSS custom properties renamed `--sahel-*`

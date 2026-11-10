@@ -162,3 +162,14 @@ export function plainText(markdown: string | null | undefined): string {
     .replace(/\s+/g, ' ')
     .trim();
 }
+
+/** 12 700 → « 12,4 ko » : la taille d'un fichier, dans l'unité qui lui va */
+export function formatBytes(bytes: number): string {
+  const [value, unit] = bytes < 1024 ? [bytes, 'byte'] : bytes < 1024 * 1024 ? [bytes / 1024, 'kilobyte'] : [bytes / (1024 * 1024), 'megabyte'];
+  return new Intl.NumberFormat([...currentLanguage().intl], {
+    style: 'unit',
+    unit,
+    unitDisplay: 'short',
+    maximumFractionDigits: unit === 'byte' ? 0 : 1,
+  }).format(value);
+}

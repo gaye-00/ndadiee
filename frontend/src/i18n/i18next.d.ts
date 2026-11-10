@@ -6,6 +6,7 @@ import type hackathons from './locales/fr/hackathons.json';
 import type messages from './locales/fr/messages.json';
 import type openings from './locales/fr/openings.json';
 import type profile from './locales/fr/profile.json';
+import type projectCode from './locales/fr/projectCode.json';
 import type projectForm from './locales/fr/projectForm.json';
 import type reviews from './locales/fr/reviews.json';
 import type showcase from './locales/fr/showcase.json';
@@ -26,6 +27,7 @@ declare module 'i18next' {
       messages: typeof messages;
       openings: typeof openings;
       profile: typeof profile;
+      projectCode: typeof projectCode;
       projectForm: typeof projectForm;
       reviews: typeof reviews;
       showcase: typeof showcase;

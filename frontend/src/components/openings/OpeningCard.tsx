@@ -19,6 +19,7 @@ import { useDataSaverStore } from '@/store/useDataSaverStore';
 import type { ProjectBrief, ProjectOpening } from '@/types/project.types';
 import type { Tag } from '@/types/tag.types';
 import { countryFlag, formatRelativeTime, isolate } from '@/utils/formatters';
+import { starterIssueUrl } from '@/utils/repository';
 
 // Couleur lisible (texte, bordure) et couleur de marque (fils de la lisière) de chaque fil du kente
 const ACCENTS: Record<KenteThread, string> = {
@@ -255,7 +256,8 @@ function StarterIssue({ opening, project }: { opening: ProjectOpening; project: 
     );
   }
 
-  const issueUrl = project.repositoryUrl ? `${project.repositoryUrl.replace(/\/+$/, '')}/issues/${opening.starterIssueNumber}` : null;
+  // Pas de lien vers l'issue d'un dépôt fictif (projets de démonstration) : il ne mènerait nulle part
+  const issueUrl = starterIssueUrl(project.repositoryUrl, opening.starterIssueNumber);
   const body = (
     <>
       <span aria-hidden className="grid size-6 shrink-0 place-items-center rounded-full bg-kente-gold font-mono text-[0.6875rem] font-bold text-kente-night">

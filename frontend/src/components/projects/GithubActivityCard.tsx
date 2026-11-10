@@ -1,10 +1,13 @@
 import { ArrowUpRight, GitFork, Star, Users } from 'lucide-react';
 import { m } from 'motion/react';
 import { useTranslation } from 'react-i18next';
+import { Link } from 'react-router-dom';
 import GithubMark from '@/components/shared/GithubMark';
 import { cn } from '@/lib/utils';
+import { paths } from '@/router/paths';
 import type { GithubActivity, Project } from '@/types/project.types';
 import { formatCount, formatDate, formatRelativeTime } from '@/utils/formatters';
+import { codeSourceOf, isPlaceholderUrl } from '@/utils/repository';
 
 const WEEK = 7 * 86_400_000;
 
@@ -26,7 +29,7 @@ export default function GithubActivityCard({ project }: { project: Project }) {
           {t('project.github.title')}
         </h2>
         <p>{t('project.github.notSynced')}</p>
-        <RepositoryLink url={project.repositoryUrl} />
+        <RepositoryLink slug={project.slug} url={project.repositoryUrl} />
       </section>
     ) : null;
   }
@@ -78,7 +81,7 @@ export default function GithubActivityCard({ project }: { project: Project }) {
           {t('project.github.contributors', { count: github.contributors })}
         </span>
       </div>
-      {project.repositoryUrl && <RepositoryLink url={project.repositoryUrl} />}
+      {project.repositoryUrl && <RepositoryLink slug={project.slug} url={project.repositoryUrl} />}
     </section>
   );
 }
@@ -123,17 +126,25 @@ function CommitWeeks({ github }: { github: GithubActivity }) {
   );
 }
 
-function RepositoryLink({ url }: { url: string }) {
+/** Le dépôt : lu dans Ndadiee s'il est sur GitHub ou de démonstration (page « Code source »), sinon dans un onglet. */
+function RepositoryLink({ slug, url }: { slug: string; url: string }) {
   const { t } = useTranslation();
+  const className =
+    'group/repo mt-3 inline-flex items-center gap-1 rounded-md text-xs font-bold text-soft-foreground outline-none transition-colors hover:text-foreground focus-visible:ring-2 focus-visible:ring-ring/70';
+  const arrow = <ArrowUpRight aria-hidden className="size-3.5 transition-transform group-hover/repo:-translate-y-0.5 group-hover/repo:translate-x-0.5 rtl:-scale-x-100" />;
+
+  if (codeSourceOf(url) || isPlaceholderUrl(url)) {
+    return (
+      <Link to={paths.projectCode(slug)} viewTransition className={className}>
+        {t('project.github.open')}
+        {arrow}
+      </Link>
+    );
+  }
   return (
-    <a
-      href={url}
-      target="_blank"
-      rel="noreferrer"
-      className="group/repo mt-3 inline-flex items-center gap-1 rounded-md text-xs font-bold text-soft-foreground outline-none transition-colors hover:text-foreground focus-visible:ring-2 focus-visible:ring-ring/70"
-    >
+    <a href={url} target="_blank" rel="noreferrer" className={className}>
       {t('project.github.open')}
-      <ArrowUpRight aria-hidden className="size-3.5 transition-transform group-hover/repo:-translate-y-0.5 group-hover/repo:translate-x-0.5 rtl:-scale-x-100" />
+      {arrow}
     </a>
   );
 }

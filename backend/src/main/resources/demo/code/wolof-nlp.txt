@@ -1,0 +1,183 @@
+==> README.md <==
+# wolof-nlp
+
+Des briques libres pour traiter le **wolof** : un tokenizer qui respecte l'orthographe officielle (CLAD), un normaliseur pour les écritures du quotidien (SMS, réseaux sociaux) et un corpus annoté.
+
+```python
+from wolof_nlp import normalize, tokenize
+
+tokenize(normalize("Mangi dem ca marse ba ndax jënd jen"))
+# ['Maa', 'ngi', 'dem', 'ca', 'màrse', 'ba', 'ndax', 'jënd', 'jën']
+```
+
+## Installation
+
+```bash
+pip install wolof-nlp
+```
+
+## Le corpus
+
+`corpus/` contient 4 800 phrases relues par des locuteurs, au format CoNLL-U. Chaque phrase est relue deux fois : c'est là que les contributions comptent le plus. Voir `CONTRIBUTING.md`.
+
+## Citer
+
+Ndiaye, M. D. et contributeurs (2026). *wolof-nlp : outils libres pour le traitement du wolof.*
+
+==> pyproject.toml <==
+[project]
+name = "wolof-nlp"
+version = "0.4.0"
+description = "Tokenizer, normaliseur et corpus annoté pour le wolof"
+readme = "README.md"
+license = { text = "MIT" }
+requires-python = ">=3.10"
+dependencies = ["regex>=2024.9"]
+
+[project.optional-dependencies]
+dev = ["pytest>=8", "ruff>=0.7"]
+
+[tool.ruff]
+line-length = 110
+
+==> wolof_nlp/__init__.py <==
+"""Outils libres pour le traitement automatique du wolof."""
+
+from .normalize import normalize
+from .tokenize import tokenize
+
+__all__ = ["normalize", "tokenize"]
+__version__ = "0.4.0"
+
+==> wolof_nlp/tokenize.py <==
+"""Découpe un texte wolof en mots, selon l'orthographe officielle."""
+
+import regex
+
+# Les pronoms de focalisation s'écrivent attachés au verbe à l'oral, séparés dans l'orthographe officielle
+_FOCUS = regex.compile(r"^(maa|yaa|moo|noo|yeena|ñoo)(ngi|y|di)$", regex.IGNORECASE)
+# Un mot : des lettres (avec les voyelles accentuées à, é, ë, ó…), l'apostrophe des emprunts incluse
+_WORD = regex.compile(r"\p{L}+(?:['’]\p{L}+)*|\p{N}+|[^\s\p{L}\p{N}]")
+
+
+def tokenize(text: str) -> list[str]:
+    """Les mots d'un texte, la ponctuation à part ; « maangi » devient « maa », « ngi »."""
+    tokens: list[str] = []
+    for match in _WORD.finditer(text):
+        word = match.group()
+        focus = _FOCUS.match(word)
+        if focus:
+            tokens.extend([focus.group(1), focus.group(2)])
+        else:
+            tokens.append(word)
+    return tokens
+
+==> wolof_nlp/normalize.py <==
+"""Ramène les écritures du quotidien vers l'orthographe officielle."""
+
+import unicodedata
+
+import regex
+
+from .lexicon import SPELLINGS
+
+# Les écritures « à la française » les plus courantes : ou → u, ch → c, gn → ñ
+_RULES = [
+    (regex.compile(r"ou"), "u"),
+    (regex.compile(r"ch"), "c"),
+    (regex.compile(r"gn"), "ñ"),
+    (regex.compile(r"(?<=\p{L})ee(?=\p{L})"), "ée"),
+]
+
+
+def normalize(text: str) -> str:
+    """Un texte de SMS ou de réseau social, réécrit dans l'orthographe officielle autant que possible."""
+    text = unicodedata.normalize("NFC", text)
+    words = []
+    for word in text.split():
+        lower = word.lower()
+        if lower in SPELLINGS:
+            words.append(_same_case(SPELLINGS[lower], word))
+            continue
+        for pattern, replacement in _RULES:
+            lower = pattern.sub(replacement, lower)
+        words.append(_same_case(lower, word))
+    return " ".join(words)
+
+
+def _same_case(word: str, model: str) -> str:
+    return word.capitalize() if model[:1].isupper() else word
+
+==> wolof_nlp/lexicon.py <==
+"""Les mots dont l'écriture courante est trop loin de l'officielle pour une règle."""
+
+SPELLINGS: dict[str, str] = {
+    "mangi": "maangi",
+    "dieuredieuf": "jërëjëf",
+    "jerejef": "jërëjëf",
+    "marse": "màrse",
+    "nanga": "nanga",
+    "def": "def",
+    "jen": "jën",
+    "yow": "yow",
+    "wakh": "wax",
+    "khamul": "xamul",
+}
+
+==> tests/test_tokenize.py <==
+from wolof_nlp import normalize, tokenize
+
+
+def test_focus_pronoun_is_split():
+    assert tokenize("Maangi dem") == ["maa", "ngi", "dem"]
+
+
+def test_punctuation_is_its_own_token():
+    assert tokenize("Jërëjëf, waaw!") == ["Jërëjëf", ",", "waaw", "!"]
+
+
+def test_everyday_spelling_is_normalized():
+    assert normalize("Dieuredieuf") == "Jërëjëf"
+    assert normalize("wakh") == "wax"
+
+==> corpus/README.md <==
+# Corpus annoté
+
+Chaque fichier `.conllu` regroupe des phrases d'une même source : contes, actualités radio, conversations de marché.
+
+| Fichier | Phrases | Relues deux fois |
+| --- | --- | --- |
+| `contes.conllu` | 1 200 | 1 200 |
+| `radio.conllu` | 2 100 | 1 640 |
+| `marche.conllu` | 1 500 | 610 |
+
+Pour relire : prends une issue « Relire 200 phrases », corrige dans le fichier, ouvre une pull request.
+
+==> corpus/marche.conllu <==
+# sent_id = marche-0001
+# text = Ñaata la jën wi?
+1	Ñaata	ñaata	ADV	_	_	3	advmod	_	_
+2	la	la	AUX	_	_	3	cop	_	_
+3	jën	jën	NOUN	_	_	0	root	_	_
+4	wi	wi	DET	_	_	3	det	_	SpaceAfter=No
+5	?	?	PUNCT	_	_	3	punct	_	_
+
+# sent_id = marche-0002
+# text = Dama bëgg ñetti kilo soble.
+1	Dama	dama	AUX	_	_	2	aux	_	_
+2	bëgg	bëgg	VERB	_	_	0	root	_	_
+3	ñetti	ñett	NUM	_	_	4	nummod	_	_
+4	kilo	kilo	NOUN	_	_	2	obj	_	_
+5	soble	soble	NOUN	_	_	4	nmod	_	SpaceAfter=No
+6	.	.	PUNCT	_	_	2	punct	_	_
+
+==> CONTRIBUTING.md <==
+# Contribuer
+
+Merci ! Trois façons d'aider, de la plus simple à la plus technique :
+
+1. **Relire des phrases du corpus** : il suffit de parler wolof. Choisis une issue « Relire 200 phrases ».
+2. **Ajouter des mots au lexique** (`wolof_nlp/lexicon.py`) : une écriture courante et son orthographe officielle.
+3. **Améliorer le code** : `pip install -e ".[dev]"`, puis `pytest` et `ruff check` avant d'ouvrir une pull request.
+
+Le guide existe en français ; sa traduction en wolof est en cours (#9).
