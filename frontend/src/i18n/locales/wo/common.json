@@ -189,7 +189,53 @@
     "modeSystem": "Doxandéem ak réglages sa aparey.",
     "languageTitle": "Làkk",
     "languageDescription": "Tànnal làkk bi nga bëgg jëfandikoo ci Ndadiee.",
-    "languageError": "Mënul yeb làkk bii. Jéemaat."
+    "languageError": "Mënul yeb làkk bii. Jéemaat.",
+    "security": {
+      "passwordTitle": "Baatu jàll",
+      "passwordDescription": "Soppi ko saa yu la neexee : say jàngoroy duggu yeneen dinañu tëj.",
+      "passwordlessDescription": "Sa kont dafay ubbiku ak GitHub walla Google. Tànnal baatu jàll ngir mën a dugg itam ak sa email.",
+      "current": "Baatu jàll bi nga am léegi",
+      "new": "Baatu jàll bu bees",
+      "newHint": "Lu mu néew néew 8 araf ; 12 walla lu ko ëpp moo gën.",
+      "confirm": "Wóoral baatu jàll bu bees bi",
+      "submit": "Soppi baatu jàll bi",
+      "saving": "Mi ngi denc baatu jàll bi…",
+      "changed": "Baatu jàll bi soppiku na. Say jàngoroy duggu yeneen tëj nañu.",
+      "forgot": "Fàtte nga sa baatu jàll?",
+      "codeIntro": "Code bu am 6 siifar dina dem ci {{email}} : ak moom ngay tànn sa baatu jàll.",
+      "sendCode": "Jot code",
+      "codeSent": "Code bu am 6 siifar dem na léegi ci {{email}}. Seetal itam ci spam yi.",
+      "choose": "Denc baatu jàll bii",
+      "chosen": "Baatu jàll bi denc nañu ko. Léegi mën nga dugg itam ak sa email.",
+      "backToCurrent": "Xam naa sama baatu jàll",
+      "errors": {
+        "incorrect": "Loolu du sa baatu jàll bu léegi.",
+        "unchanged": "Tànnal baatu jàll bu wuute ak bi nga am."
+      }
+    },
+    "deletion": {
+      "title": "Far sama kont",
+      "description_one": "Sa kont ak say xibaar yu bopp dinañu far. Am nga {{count}} fan ngir soppi sa xalaat.",
+      "description_other": "Sa kont ak say xibaar yu bopp dinañu far. Am nga {{count}} fan ngir soppi sa xalaat.",
+      "erased": "Sa tur, sa email, sa nataal, sa profil ak say kontu GitHub walla Google yu ñu lënkaale dinañu far.",
+      "kept": "Say mbir, say tontu, say bind ak say seetlu dinañu des, ñu siñe leen « Kont bu ñu far » : waxtaanu ñeneen yi duñu ñàkk seen solo.",
+      "projects": "Say naal yu am ekip dinañu dem ci kenn ci ñiy toppatoo, walla ci cér bi gën a yàgg ; yeneen yi dinañu far.",
+      "grace_one": "Ci biir {{count}} fan, nga dellu dugg rekk doy na ngir neenal lépp. Ginnaaw loolu, dafay jeex.",
+      "grace_other": "Ci biir {{count}} fan, nga dellu dugg rekk doy na ngir neenal lépp. Ginnaaw loolu, dafay jeex.",
+      "open": "Far sama kont…",
+      "dialogTitle": "Ndax danga bëgg far sa kont?",
+      "dialogText_one": "Say jàngoroy duggu dinañu tëj léegi. Sa kont dinañu ko far ginnaaw {{count}} fan, su fekkee dellusiwoo dugg balaa jamono jooju.",
+      "dialogText_other": "Say jàngoroy duggu dinañu tëj léegi. Sa kont dinañu ko far ginnaaw {{count}} fan, su fekkee dellusiwoo dugg balaa jamono jooju.",
+      "projectsTitle": "Say naal",
+      "handedOver": "dina dem ci {{name}}",
+      "deletedWithAccount": "dinañu ko far",
+      "password": "Wóoral ko ak sa baatu jàll",
+      "noPassword": "Amoo baatu jàll? Jot code ci email",
+      "codeIntro": "Code bu am 6 siifar dina dem ci {{email}} ngir wóoral far gi.",
+      "keep": "Denc sama kont",
+      "confirm": "Far sama kont",
+      "scheduled": "Sa kont dinañu ko far ci {{date}}. Dellu dugg balaa jamono jooju ngir neenal ko."
+    }
   },
   "validation": {
     "required": "Bindal fii.",
@@ -202,7 +248,9 @@
     "minItems_one": "Yokkal minimum {{count}}.",
     "minItems_other": "Yokkal minimum {{count}}.",
     "maxItems_one": "Maximum {{count}}.",
-    "maxItems_other": "Maximum {{count}}."
+    "maxItems_other": "Maximum {{count}}.",
+    "passwordMismatch": "Ñaari baatu jàll yi yemuñu.",
+    "code": "Code bi am na 6 siifar."
   },
   "a11y": {
     "skipToContent": "Dem ci li ci biir",
@@ -241,9 +289,12 @@
     "login": "Duggu",
     "register": "Bindu",
     "verifyEmail": "Wóoral email bi",
+    "forgotPassword": "Baatu jàll bu ñu fàtte",
+    "resetPassword": "Baatu jàll bu bees",
     "oauthCallback": "Duggu",
     "notFound": "Xët wi amul",
     "editTopic": "Soppi waxtaan wi",
+    "editProject": "Soppi naal bi",
     "admin": "Saytu",
     "adminUsers": "Saytu · Way-bokk yi",
     "adminContent": "Saytu · Li ñu siiwal",
@@ -567,7 +618,8 @@
       "noAccount": "Amoo kontu ba tey ?",
       "toRegister": "Sos ab kontu",
       "blocked": "Ekipu Ndadiee taxawal na kont bii.",
-      "blockedReason": "Lay : {{reason}}"
+      "blockedReason": "Lay : {{reason}}",
+      "forgot": "Fàtte nga sa baatu jàll?"
     },
     "register": {
       "eyebrow": "Bindu",
@@ -662,6 +714,28 @@
       "tooMany": "Jéem yi bari nañu ci code bii. Laajal beneen.",
       "wrongEmail": "Du sa adrees?",
       "changeEmail": "Tambaliwaat bindu bi"
+    },
+    "deletionCancelled": "Dalal ak jàmm ci sa dellusiku! Far sa kont bi, neenal nañu ko.",
+    "forgot": {
+      "eyebrow": "Baatu jàll bu ñu fàtte",
+      "title": "Dinañu la yónnee caabi bu bees.",
+      "text": "Duggalal adreesu email bu sa kont : code bu am 6 siifar dina fa dem ngir nga tànn baatu jàll bu bees.",
+      "hint": "Seetal itam ci spam yi.",
+      "submit": "Jot code",
+      "pending": "Mi ngi yónnee code bi…",
+      "remembered": "Fàttaliku nga ko?",
+      "toLogin": "Dugg"
+    },
+    "reset": {
+      "eyebrow": "Baatu jàll bu bees",
+      "title": "Tànnal sa baatu jàll bu bees.",
+      "text": "Su am kont buy jëfandikoo {{email}}, code bu am 6 siifar dem na fa léegi. Duggalal ko ak sa baatu jàll bu bees.",
+      "password": "Baatu jàll bu bees",
+      "confirm": "Wóoral baatu jàll bi",
+      "submit": "Soppi baatu jàll bi",
+      "pending": "Mi ngi denc…",
+      "blocked": "Sa baatu jàll soppiku na, waaye ekipu Ndadiee taxawal na kont bii.",
+      "changeEmail": "Jëfandikoo beneen adrees"
     }
   },
   "project": {
@@ -804,6 +878,12 @@
       "week_other": "{{count}} commit, ayu-bésu {{date}}",
       "notSynced": "Yeesalaguñu dépôt bi.",
       "open": "Xool dépôt bi"
+    },
+    "owner": {
+      "yours": "Sa naal la.",
+      "moderation": "Mën nga soppi naal bii ni ku ciy toppatoo.",
+      "edit": "Soppi naal bi",
+      "editNamed": "Soppi {{name}}"
     }
   },
   "shell": {

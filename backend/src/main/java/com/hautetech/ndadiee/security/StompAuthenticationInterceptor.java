@@ -62,10 +62,12 @@ public class StompAuthenticationInterceptor implements ChannelInterceptor {
             throw new MessageDeliveryException("UNAUTHORIZED");
         }
         try {
-            String username = jwtService.extractUsernameFromAccessToken(header.substring(PREFIX.length()));
-            // Un compte Admin n'a pas de messagerie ; un compte suspendu n'ouvre plus rien
-            Developer developer = developerRepository.findByUsername(username)
-                    .filter(account -> !account.isBlocked())
+            JwtService.TokenClaims claims = jwtService.parseAccessToken(header.substring(PREFIX.length()));
+            // Un compte Admin n'a pas de messagerie ; un compte suspendu ou supprimé n'ouvre plus rien, ni un jeton
+            // émis avant un changement de mot de passe
+            Developer developer = developerRepository.findByUsername(claims.username())
+                    .filter(account -> !account.isBlocked() && !account.isDeleted()
+                            && account.acceptsTokenIssuedAt(claims.issuedAt()))
                     .orElseThrow(() -> new MessageDeliveryException("UNAUTHORIZED"));
             return new ChatPrincipal(developer.getId());
         } catch (JwtException | IllegalArgumentException e) {

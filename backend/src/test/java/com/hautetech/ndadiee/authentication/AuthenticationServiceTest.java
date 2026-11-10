@@ -25,6 +25,7 @@ import com.hautetech.ndadiee.authentication.verification.EmailVerificationServic
 import com.hautetech.ndadiee.exception.AccountBlockedException;
 import com.hautetech.ndadiee.exception.BusinessException;
 import com.hautetech.ndadiee.exception.EmailVerificationException;
+import com.hautetech.ndadiee.exception.UnauthorizedException;
 import com.hautetech.ndadiee.mapper.UserMapper;
 import com.hautetech.ndadiee.model.user.Developer;
 import com.hautetech.ndadiee.model.user.Role;
@@ -168,12 +169,60 @@ class AuthenticationServiceTest {
 
     @Test
     void aSuspendedAccountCannotRenewItsSession() {
-        when(jwtService.extractUsernameFromRefreshToken("refresh")).thenReturn("awa");
+        when(jwtService.parseRefreshToken("refresh")).thenReturn(new JwtService.TokenClaims("awa", Instant.now()));
         when(userRepository.findByUsername("awa")).thenReturn(Optional.of(member(Instant.now())));
 
         assertThatThrownBy(() -> authenticationService.refreshToken(new RefreshTokenRequest("refresh")))
                 .isInstanceOf(AccountBlockedException.class);
         verify(jwtService, never()).generateAccessToken(any());
+    }
+
+    @Test
+    void aSessionOpenedBeforeAPasswordChangeCannotBeRenewed() {
+        Developer awa = member(null);
+        awa.setCredentialsChangedAt(Instant.parse("2026-11-10T10:00:00Z"));
+        when(jwtService.parseRefreshToken("refresh"))
+                .thenReturn(new JwtService.TokenClaims("awa", Instant.parse("2026-11-10T09:59:59Z")));
+        when(userRepository.findByUsername("awa")).thenReturn(Optional.of(awa));
+
+        assertThatThrownBy(() -> authenticationService.refreshToken(new RefreshTokenRequest("refresh")))
+                .isInstanceOf(UnauthorizedException.class);
+        verify(jwtService, never()).generateAccessToken(any());
+    }
+
+    @Test
+    void aSessionOpenedAfterThePasswordChangeIsRenewed() {
+        Developer awa = member(null);
+        awa.setCredentialsChangedAt(Instant.parse("2026-11-10T10:00:00Z"));
+        when(jwtService.parseRefreshToken("refresh"))
+                .thenReturn(new JwtService.TokenClaims("awa", Instant.parse("2026-11-10T10:00:00Z")));
+        when(userRepository.findByUsername("awa")).thenReturn(Optional.of(awa));
+
+        authenticationService.refreshToken(new RefreshTokenRequest("refresh"));
+
+        verify(jwtService).generateAccessToken(awa);
+    }
+
+    @Test
+    void signingInAgainCancelsAScheduledDeletion() {
+        Developer awa = member(null);
+        awa.setDeletionScheduledAt(Instant.now().plusSeconds(3600));
+        passwordAccepted(awa);
+
+        AuthenticationResponse session = authenticationService.login(new AuthenticationRequest("awa", "tisse-ton-kente"));
+
+        assertThat(session.isDeletionCancelled()).isTrue();
+        assertThat(awa.getDeletionScheduledAt()).isNull();
+        verify(userRepository).save(awa);
+    }
+
+    @Test
+    void aDeletedAccountCannotOpenASession() {
+        Developer gone = member(null);
+        gone.setDeletedAt(Instant.now());
+
+        assertThatThrownBy(() -> authenticationService.openSession(gone)).isInstanceOf(UnauthorizedException.class);
+        verify(userRepository, never()).save(any());
     }
 
     // ==================== NOM D'UTILISATEUR TIRÉ DE GITHUB OU GOOGLE ====================

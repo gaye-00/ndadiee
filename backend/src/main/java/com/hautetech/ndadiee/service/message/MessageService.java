@@ -97,9 +97,9 @@ public class MessageService {
         Developer me = developerRepository.findById(userId)
                 .orElseThrow(() -> new ForbiddenException("Seuls les membres de la communauté échangent des messages"));
         String wanted = username.trim().toLowerCase();
-        // Un compte suspendu ne reçoit plus de messages : il est introuvable, comme son profil
+        // Un compte suspendu ou supprimé ne reçoit plus de messages : il est introuvable, comme son profil
         Developer other = developerRepository.findByUsername(wanted)
-                .filter(developer -> !developer.isBlocked())
+                .filter(developer -> !developer.isBlocked() && !developer.isDeleted())
                 .orElseThrow(() -> new ResourceNotFoundException("Membre", "username", wanted));
         if (other.getId().equals(userId)) {
             throw new OperationNotAllowedException("Tu ne peux pas t'écrire à toi-même", "username");

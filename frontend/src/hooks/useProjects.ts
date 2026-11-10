@@ -17,6 +17,7 @@ import type {
   ProjectFacetFilters,
   ProjectFilters,
   ProjectOpeningRequest,
+  ProjectUpdateRequest,
 } from '@/types/project.types';
 
 /** Requête d'une liste de projets : partagée par les hooks et le préchargement (LandingPage). */
@@ -132,6 +133,24 @@ export function useCreateProject() {
     mutationFn: (body: NewProjectRequest) => projectService.create(body),
     onSuccess: (project) => {
       invalidate();
+      qc.setQueryData(['project', project.slug], project);
+      void qc.invalidateQueries({ queryKey: ['feed'] });
+    },
+    meta: { handlesError: true },
+  });
+}
+
+/**
+ * Modifie un projet (et sa galerie) : sa page, reçue en retour, remplace celle en cache ; les listes qui le montrent
+ * se rechargent.
+ */
+export function useUpdateProject() {
+  const qc = useQueryClient();
+  const invalidate = useInvalidateProjects();
+  return useMutation({
+    mutationFn: ({ id, body }: { id: number; body: ProjectUpdateRequest }) => projectService.update(id, body),
+    onSuccess: (project) => {
+      invalidate(project.id);
       qc.setQueryData(['project', project.slug], project);
       void qc.invalidateQueries({ queryKey: ['feed'] });
     },

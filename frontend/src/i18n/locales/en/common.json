@@ -189,7 +189,53 @@
     "modeSystem": "Follow your device settings.",
     "languageTitle": "Language",
     "languageDescription": "Choose the language you prefer to use on Ndadiee.",
-    "languageError": "This language couldn't be loaded. Please try again."
+    "languageError": "This language couldn't be loaded. Please try again.",
+    "security": {
+      "passwordTitle": "Password",
+      "passwordDescription": "Change it whenever you like: your other sessions will be signed out.",
+      "passwordlessDescription": "Your account opens with GitHub or Google. Choose a password to also sign in with your email.",
+      "current": "Current password",
+      "new": "New password",
+      "newHint": "8 characters minimum; 12 or more is better.",
+      "confirm": "Confirm the new password",
+      "submit": "Change password",
+      "saving": "Saving the password…",
+      "changed": "Password changed. Your other sessions have been signed out.",
+      "forgot": "Forgot password?",
+      "codeIntro": "A 6-digit code will be sent to {{email}}: with it, you choose your password.",
+      "sendCode": "Get a code",
+      "codeSent": "A 6-digit code has just been sent to {{email}}. Remember to check your spam folder too.",
+      "choose": "Save this password",
+      "chosen": "Password saved. You can now also sign in with your email.",
+      "backToCurrent": "I know my password",
+      "errors": {
+        "incorrect": "That's not your current password.",
+        "unchanged": "Choose a password different from the current one."
+      }
+    },
+    "deletion": {
+      "title": "Delete my account",
+      "description_one": "Your account and your personal data will be erased. You have {{count}} day to change your mind.",
+      "description_other": "Your account and your personal data will be erased. You have {{count}} days to change your mind.",
+      "erased": "Your name, email, photo, profile and linked GitHub or Google accounts are erased.",
+      "kept": "Your topics, answers, articles and reviews remain, signed “Deleted account”: other people's discussions keep their meaning.",
+      "projects": "Your projects with a team go to a maintainer, or else to the longest-standing member; the others are deleted.",
+      "grace_one": "For {{count}} day, simply signing in again cancels everything. After that, it's final.",
+      "grace_other": "For {{count}} days, simply signing in again cancels everything. After that, it's final.",
+      "open": "Delete my account…",
+      "dialogTitle": "Delete your account?",
+      "dialogText_one": "Your sessions will be signed out right away. Your account will be erased in {{count}} day, unless you sign in again before then.",
+      "dialogText_other": "Your sessions will be signed out right away. Your account will be erased in {{count}} days, unless you sign in again before then.",
+      "projectsTitle": "Your projects",
+      "handedOver": "goes to {{name}}",
+      "deletedWithAccount": "will be deleted",
+      "password": "Confirm with your password",
+      "noPassword": "No password? Get a code by email",
+      "codeIntro": "A 6-digit code will be sent to {{email}} to confirm the deletion.",
+      "keep": "Keep my account",
+      "confirm": "Delete my account",
+      "scheduled": "Your account will be deleted on {{date}}. Sign in again before then to cancel."
+    }
   },
   "validation": {
     "required": "This field is required.",
@@ -202,7 +248,9 @@
     "minItems_one": "Add at least {{count}} item.",
     "minItems_other": "Add at least {{count}} items.",
     "maxItems_one": "At most {{count}} item.",
-    "maxItems_other": "At most {{count}} items."
+    "maxItems_other": "At most {{count}} items.",
+    "passwordMismatch": "The two passwords don't match.",
+    "code": "The code has 6 digits."
   },
   "a11y": {
     "skipToContent": "Skip to content",
@@ -241,9 +289,12 @@
     "login": "Log in",
     "register": "Sign up",
     "verifyEmail": "Email verification",
+    "forgotPassword": "Forgot password",
+    "resetPassword": "New password",
     "oauthCallback": "Log in",
     "notFound": "Page not found",
     "editTopic": "Edit topic",
+    "editProject": "Edit project",
     "admin": "Back office",
     "adminUsers": "Back office · Members",
     "adminContent": "Back office · Content",
@@ -567,7 +618,8 @@
       "noAccount": "No account yet?",
       "toRegister": "Create an account",
       "blocked": "This account has been suspended by the Ndadiee team.",
-      "blockedReason": "Reason: {{reason}}"
+      "blockedReason": "Reason: {{reason}}",
+      "forgot": "Forgot password?"
     },
     "register": {
       "eyebrow": "Sign up",
@@ -662,6 +714,28 @@
       "tooMany": "Too many tries for this code. Ask for a new one.",
       "wrongEmail": "Not your address?",
       "changeEmail": "Start over"
+    },
+    "deletionCancelled": "Welcome back! The deletion of your account has been cancelled.",
+    "forgot": {
+      "eyebrow": "Forgot password",
+      "title": "We'll send you a new key.",
+      "text": "Enter your account's email address: a 6-digit code will be sent there so you can choose a new password.",
+      "hint": "Remember to check your spam folder too.",
+      "submit": "Get a code",
+      "pending": "Sending the code…",
+      "remembered": "Remembered it?",
+      "toLogin": "Sign in"
+    },
+    "reset": {
+      "eyebrow": "New password",
+      "title": "Choose your new password.",
+      "text": "If an account uses {{email}}, a 6-digit code has just been sent there. Enter it with your new password.",
+      "password": "New password",
+      "confirm": "Confirm the password",
+      "submit": "Change password",
+      "pending": "Saving…",
+      "blocked": "Your password has been changed, but this account has been suspended by the Ndadiee team.",
+      "changeEmail": "Use another address"
     }
   },
   "project": {
@@ -804,6 +878,12 @@
       "week_other": "{{count}} commits, week of {{date}}",
       "notSynced": "The repository has not been synced yet.",
       "open": "View the repository"
+    },
+    "owner": {
+      "yours": "This is your project.",
+      "moderation": "You can edit this project as a moderator.",
+      "edit": "Edit project",
+      "editNamed": "Edit {{name}}"
     }
   },
   "shell": {

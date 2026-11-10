@@ -192,7 +192,56 @@
     "modeSystem": "Suit les réglages de ton appareil.",
     "languageTitle": "Langue",
     "languageDescription": "Choisis la langue dans laquelle tu préfères parcourir Ndadiee.",
-    "languageError": "Cette langue n'a pas pu être chargée. Réessaie."
+    "languageError": "Cette langue n'a pas pu être chargée. Réessaie.",
+    "security": {
+      "passwordTitle": "Mot de passe",
+      "passwordDescription": "Change-le quand tu veux : tes autres sessions se fermeront.",
+      "passwordlessDescription": "Ton compte s'ouvre avec GitHub ou Google. Choisis un mot de passe pour aussi te connecter avec ton e-mail.",
+      "current": "Mot de passe actuel",
+      "new": "Nouveau mot de passe",
+      "newHint": "8 caractères minimum ; 12 ou plus, c'est mieux.",
+      "confirm": "Confirme le nouveau mot de passe",
+      "submit": "Changer le mot de passe",
+      "saving": "Enregistrement du mot de passe…",
+      "changed": "Mot de passe changé. Tes autres sessions ont été fermées.",
+      "forgot": "Mot de passe oublié ?",
+      "codeIntro": "Un code à 6 chiffres va partir à {{email}} : avec lui, tu choisis ton mot de passe.",
+      "sendCode": "Recevoir un code",
+      "codeSent": "Un code à 6 chiffres vient de partir à {{email}}. Pense à regarder aussi dans les spams.",
+      "choose": "Enregistrer ce mot de passe",
+      "chosen": "Mot de passe enregistré. Tu peux aussi te connecter avec ton e-mail.",
+      "backToCurrent": "Je connais mon mot de passe",
+      "errors": {
+        "incorrect": "Ce n'est pas ton mot de passe actuel.",
+        "unchanged": "Choisis un mot de passe différent de l'actuel."
+      }
+    },
+    "deletion": {
+      "title": "Supprimer mon compte",
+      "description_one": "Ton compte et tes données personnelles seront effacés. Tu as {{count}} jour pour changer d'avis.",
+      "description_many": "Ton compte et tes données personnelles seront effacés. Tu as {{count}} jours pour changer d'avis.",
+      "description_other": "Ton compte et tes données personnelles seront effacés. Tu as {{count}} jours pour changer d'avis.",
+      "erased": "Ton nom, ton e-mail, ta photo, ton profil et tes comptes GitHub ou Google reliés sont effacés.",
+      "kept": "Tes sujets, réponses, articles et revues restent, signés « Compte supprimé » : les discussions des autres gardent leur sens.",
+      "projects": "Tes projets avec une équipe passent à un mainteneur, sinon au plus ancien membre ; les autres sont supprimés.",
+      "grace_one": "Pendant {{count}} jour, il suffit de te reconnecter pour tout annuler. Ensuite, c'est définitif.",
+      "grace_many": "Pendant {{count}} jours, il suffit de te reconnecter pour tout annuler. Ensuite, c'est définitif.",
+      "grace_other": "Pendant {{count}} jours, il suffit de te reconnecter pour tout annuler. Ensuite, c'est définitif.",
+      "open": "Supprimer mon compte…",
+      "dialogTitle": "Supprimer ton compte ?",
+      "dialogText_one": "Tes sessions se fermeront tout de suite. Ton compte sera effacé dans {{count}} jour, sauf si tu te reconnectes d'ici là.",
+      "dialogText_many": "Tes sessions se fermeront tout de suite. Ton compte sera effacé dans {{count}} jours, sauf si tu te reconnectes d'ici là.",
+      "dialogText_other": "Tes sessions se fermeront tout de suite. Ton compte sera effacé dans {{count}} jours, sauf si tu te reconnectes d'ici là.",
+      "projectsTitle": "Tes projets",
+      "handedOver": "passe à {{name}}",
+      "deletedWithAccount": "sera supprimé",
+      "password": "Confirme avec ton mot de passe",
+      "noPassword": "Pas de mot de passe ? Recevoir un code par e-mail",
+      "codeIntro": "Un code à 6 chiffres va partir à {{email}} pour confirmer la suppression.",
+      "keep": "Garder mon compte",
+      "confirm": "Supprimer mon compte",
+      "scheduled": "Ton compte sera supprimé le {{date}}. Reconnecte-toi d'ici là pour annuler."
+    }
   },
   "validation": {
     "required": "Ce champ est obligatoire.",
@@ -209,7 +258,9 @@
     "minItems_other": "Ajoute au moins {{count}} éléments.",
     "maxItems_one": "{{count}} élément maximum.",
     "maxItems_many": "{{count}} éléments maximum.",
-    "maxItems_other": "{{count}} éléments maximum."
+    "maxItems_other": "{{count}} éléments maximum.",
+    "passwordMismatch": "Les deux mots de passe ne sont pas identiques.",
+    "code": "Le code compte 6 chiffres."
   },
   "a11y": {
     "skipToContent": "Aller au contenu",
@@ -248,9 +299,12 @@
     "login": "Connexion",
     "register": "Inscription",
     "verifyEmail": "Vérification de l'e-mail",
+    "forgotPassword": "Mot de passe oublié",
+    "resetPassword": "Nouveau mot de passe",
     "oauthCallback": "Connexion",
     "notFound": "Page introuvable",
     "editTopic": "Modifier le sujet",
+    "editProject": "Modifier le projet",
     "admin": "Back-office",
     "adminUsers": "Back-office · Membres",
     "adminContent": "Back-office · Contenus",
@@ -594,7 +648,8 @@
       "noAccount": "Pas encore de compte ?",
       "toRegister": "Créer un compte",
       "blocked": "Ce compte a été suspendu par l'équipe Ndadiee.",
-      "blockedReason": "Motif : {{reason}}"
+      "blockedReason": "Motif : {{reason}}",
+      "forgot": "Mot de passe oublié ?"
     },
     "register": {
       "eyebrow": "Inscription",
@@ -690,6 +745,28 @@
       "tooMany": "Trop d'essais pour ce code. Demande-en un nouveau.",
       "wrongEmail": "Ce n'est pas ton adresse ?",
       "changeEmail": "Recommencer l'inscription"
+    },
+    "deletionCancelled": "Bon retour ! La suppression de ton compte est annulée.",
+    "forgot": {
+      "eyebrow": "Mot de passe oublié",
+      "title": "On te renvoie une clé.",
+      "text": "Saisis l'adresse e-mail de ton compte : un code à 6 chiffres y part pour choisir un nouveau mot de passe.",
+      "hint": "Pense à regarder aussi dans les spams.",
+      "submit": "Recevoir un code",
+      "pending": "Envoi du code…",
+      "remembered": "Il te revient ?",
+      "toLogin": "Se connecter"
+    },
+    "reset": {
+      "eyebrow": "Nouveau mot de passe",
+      "title": "Choisis ton nouveau mot de passe.",
+      "text": "Si un compte utilise {{email}}, un code à 6 chiffres vient d'y partir. Saisis-le avec ton nouveau mot de passe.",
+      "password": "Nouveau mot de passe",
+      "confirm": "Confirme le mot de passe",
+      "submit": "Changer de mot de passe",
+      "pending": "Enregistrement…",
+      "blocked": "Ton mot de passe a bien changé, mais ce compte a été suspendu par l'équipe Ndadiee.",
+      "changeEmail": "Changer d'adresse"
     }
   },
   "project": {
@@ -846,6 +923,12 @@
       "week_other": "{{count}} commits, semaine du {{date}}",
       "notSynced": "Le dépôt n'a pas encore été synchronisé.",
       "open": "Voir le dépôt"
+    },
+    "owner": {
+      "yours": "C'est ton projet.",
+      "moderation": "Tu peux modifier ce projet en tant que modérateur.",
+      "edit": "Modifier le projet",
+      "editNamed": "Modifier {{name}}"
     }
   },
   "shell": {

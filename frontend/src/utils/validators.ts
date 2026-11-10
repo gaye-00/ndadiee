@@ -54,6 +54,38 @@ export const registerSchema = z.object({
 });
 export type RegisterFormValues = z.infer<typeof registerSchema>;
 
+// Un nouveau mot de passe : mêmes règles qu'à l'inscription, et tapé deux fois à l'identique
+const newPassword = z.string().min(8).max(72);
+const sameTwice = <T extends { confirm: string }>(password: (values: T) => string) => ({
+  check: (values: T) => password(values) === values.confirm,
+  params: { path: ['confirm'], error: () => i18n.t('validation.passwordMismatch') },
+});
+
+export const forgotPasswordSchema = z.object({
+  email: z.email(),
+});
+export type ForgotPasswordFormValues = z.infer<typeof forgotPasswordSchema>;
+
+const resetMatch = sameTwice<{ password: string; confirm: string }>((values) => values.password);
+export const resetPasswordSchema = z
+  .object({
+    code: z.string().regex(/^\d{6}$/, { error: () => i18n.t('validation.code') }),
+    password: newPassword,
+    confirm: z.string().min(1),
+  })
+  .refine(resetMatch.check, resetMatch.params);
+export type ResetPasswordFormValues = z.infer<typeof resetPasswordSchema>;
+
+const changeMatch = sameTwice<{ newPassword: string; confirm: string }>((values) => values.newPassword);
+export const changePasswordSchema = z
+  .object({
+    currentPassword: z.string().min(1),
+    newPassword,
+    confirm: z.string().min(1),
+  })
+  .refine(changeMatch.check, changeMatch.params);
+export type ChangePasswordFormValues = z.infer<typeof changePasswordSchema>;
+
 // Un sujet du forum est une « question » côté backend (QuestionRequest.java)
 export const MAX_QUESTION_TAGS = 5;
 

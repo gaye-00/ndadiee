@@ -1,5 +1,7 @@
 import { useEffect } from 'react';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
+import { useTranslation } from 'react-i18next';
+import { toast } from 'sonner';
 import { paths } from '@/router/paths';
 import { authService } from '@/services/auth.service';
 import { useAuthStore } from '@/store/useAuthStore';
@@ -27,14 +29,19 @@ export function useAuth() {
 }
 
 // Ouvre la session, puis fait recharger les données déjà affichées : connecté, les réponses
-// de l'API portent en plus les champs propres à l'utilisateur (son vote, « suivi par moi »...)
+// de l'API portent en plus les champs propres à l'utilisateur (son vote, « suivi par moi »...). Un compte dont la
+// suppression était programmée revient : la connexion l'a annulée, on le lui dit.
 function useSessionStarter() {
+  const { t } = useTranslation();
   const queryClient = useQueryClient();
   const setAuth = useAuthStore((s) => s.setAuth);
 
   return (session: AuthResponse) => {
     setAuth(session.user, session.accessToken, session.refreshToken);
     void queryClient.invalidateQueries();
+    if (session.deletionCancelled) {
+      toast.success(t('auth.deletionCancelled'), { duration: 8000 });
+    }
   };
 }
 
@@ -83,6 +90,27 @@ export function useVerifyEmail({ welcome }: SessionOptions = {}) {
 export function useResendVerification() {
   return useMutation({
     mutationFn: authService.resendVerification,
+    meta: { handlesError: true },
+  });
+}
+
+/** Mot de passe oublié : un code part à l'adresse (la réponse est la même pour une adresse inconnue). */
+export function useForgotPassword() {
+  return useMutation({
+    mutationFn: authService.forgotPassword,
+    meta: { handlesError: true },
+  });
+}
+
+/** Le code reçu et le nouveau mot de passe : la session s'ouvre (avec l'accueil du métier). */
+export function useResetPassword({ welcome }: SessionOptions = {}) {
+  const startSession = useSessionStarter();
+  return useMutation({
+    mutationFn: authService.resetPassword,
+    onSuccess: async (session) => {
+      await welcome?.(session);
+      startSession(session);
+    },
     meta: { handlesError: true },
   });
 }

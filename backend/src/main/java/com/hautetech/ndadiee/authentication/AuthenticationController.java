@@ -9,6 +9,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.hautetech.ndadiee.authentication.password.ForgotPasswordRequest;
+import com.hautetech.ndadiee.authentication.password.PasswordService;
+import com.hautetech.ndadiee.authentication.password.ResetPasswordRequest;
 import com.hautetech.ndadiee.common.ApiResponse;
 import com.hautetech.ndadiee.controller.BaseController;
 
@@ -24,6 +27,7 @@ import lombok.RequiredArgsConstructor;
 public class AuthenticationController extends BaseController {
 
     private final AuthenticationService authenticationService;
+    private final PasswordService passwordService;
 
     @Operation(summary = "Créer un compte développeur : un code part par e-mail, le compte s'ouvre avec lui")
     @PostMapping("/register")
@@ -52,6 +56,20 @@ public class AuthenticationController extends BaseController {
     public ResponseEntity<ApiResponse<AuthenticationResponse>> login(@Valid @RequestBody AuthenticationRequest request) {
         return ResponseEntity.ok(ApiResponse.success(
                 authenticationService.login(request), "Connexion réussie"));
+    }
+
+    @Operation(summary = "Mot de passe oublié : un code part à l'adresse du compte (même réponse pour une adresse inconnue)")
+    @PostMapping("/password/forgot")
+    public ResponseEntity<ApiResponse<PendingVerificationResponse>> forgotPassword(@Valid @RequestBody ForgotPasswordRequest request) {
+        return ResponseEntity.ok(ApiResponse.success(
+                passwordService.forgot(request), "Si un compte utilise cette adresse, un code vient de partir"));
+    }
+
+    @Operation(summary = "Choisir un nouveau mot de passe avec le code reçu par e-mail, et ouvrir sa session")
+    @PostMapping("/password/reset")
+    public ResponseEntity<ApiResponse<AuthenticationResponse>> resetPassword(@Valid @RequestBody ResetPasswordRequest request) {
+        return ResponseEntity.ok(ApiResponse.success(
+                passwordService.reset(request), "Mot de passe changé"));
     }
 
     @Operation(summary = "Obtenir une nouvelle paire de jetons à partir du refresh token")

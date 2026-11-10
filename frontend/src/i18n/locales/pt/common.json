@@ -192,7 +192,56 @@
     "modeSystem": "Segue as definições do teu dispositivo.",
     "languageTitle": "Idioma",
     "languageDescription": "Escolhe o idioma que preferes usar no Ndadiee.",
-    "languageError": "Não foi possível carregar este idioma. Tenta novamente."
+    "languageError": "Não foi possível carregar este idioma. Tenta novamente.",
+    "security": {
+      "passwordTitle": "Palavra-passe",
+      "passwordDescription": "Muda-a quando quiseres: as tuas outras sessões serão terminadas.",
+      "passwordlessDescription": "A tua conta abre com o GitHub ou o Google. Escolhe uma palavra-passe para também entrares com o teu e-mail.",
+      "current": "Palavra-passe atual",
+      "new": "Nova palavra-passe",
+      "newHint": "Mínimo de 8 caracteres; 12 ou mais é melhor.",
+      "confirm": "Confirma a nova palavra-passe",
+      "submit": "Mudar a palavra-passe",
+      "saving": "A guardar a palavra-passe…",
+      "changed": "Palavra-passe alterada. As tuas outras sessões foram terminadas.",
+      "forgot": "Esqueceste-te da palavra-passe?",
+      "codeIntro": "Vamos enviar um código de 6 algarismos para {{email}}: com ele, escolhes a tua palavra-passe.",
+      "sendCode": "Receber um código",
+      "codeSent": "Acabámos de enviar um código de 6 algarismos para {{email}}. Vê também na pasta de spam.",
+      "choose": "Guardar esta palavra-passe",
+      "chosen": "Palavra-passe guardada. Agora também podes entrar com o teu e-mail.",
+      "backToCurrent": "Sei a minha palavra-passe",
+      "errors": {
+        "incorrect": "Essa não é a tua palavra-passe atual.",
+        "unchanged": "Escolhe uma palavra-passe diferente da atual."
+      }
+    },
+    "deletion": {
+      "title": "Eliminar a minha conta",
+      "description_one": "A tua conta e os teus dados pessoais serão apagados. Tens {{count}} dia para mudar de ideias.",
+      "description_many": "A tua conta e os teus dados pessoais serão apagados. Tens {{count}} dias para mudar de ideias.",
+      "description_other": "A tua conta e os teus dados pessoais serão apagados. Tens {{count}} dias para mudar de ideias.",
+      "erased": "O teu nome, e-mail, foto, perfil e contas GitHub ou Google ligadas são apagados.",
+      "kept": "Os teus tópicos, respostas, artigos e revisões ficam, assinados «Conta eliminada»: as discussões dos outros mantêm o sentido.",
+      "projects": "Os teus projetos com equipa passam para um mantenedor, ou para o membro mais antigo; os outros são eliminados.",
+      "grace_one": "Durante {{count}} dia, basta voltares a entrar para cancelar tudo. Depois, é definitivo.",
+      "grace_many": "Durante {{count}} dias, basta voltares a entrar para cancelar tudo. Depois, é definitivo.",
+      "grace_other": "Durante {{count}} dias, basta voltares a entrar para cancelar tudo. Depois, é definitivo.",
+      "open": "Eliminar a minha conta…",
+      "dialogTitle": "Eliminar a tua conta?",
+      "dialogText_one": "As tuas sessões terminam já. A tua conta será apagada daqui a {{count}} dia, a não ser que voltes a entrar até lá.",
+      "dialogText_many": "As tuas sessões terminam já. A tua conta será apagada daqui a {{count}} dias, a não ser que voltes a entrar até lá.",
+      "dialogText_other": "As tuas sessões terminam já. A tua conta será apagada daqui a {{count}} dias, a não ser que voltes a entrar até lá.",
+      "projectsTitle": "Os teus projetos",
+      "handedOver": "passa para {{name}}",
+      "deletedWithAccount": "será eliminado",
+      "password": "Confirma com a tua palavra-passe",
+      "noPassword": "Sem palavra-passe? Receber um código por e-mail",
+      "codeIntro": "Vamos enviar um código de 6 algarismos para {{email}} para confirmar a eliminação.",
+      "keep": "Manter a minha conta",
+      "confirm": "Eliminar a minha conta",
+      "scheduled": "A tua conta será eliminada a {{date}}. Volta a entrar até lá para cancelar."
+    }
   },
   "validation": {
     "required": "Este campo é obrigatório.",
@@ -209,7 +258,9 @@
     "minItems_other": "Adiciona pelo menos {{count}} elementos.",
     "maxItems_one": "No máximo {{count}} elemento.",
     "maxItems_many": "No máximo {{count}} elementos.",
-    "maxItems_other": "No máximo {{count}} elementos."
+    "maxItems_other": "No máximo {{count}} elementos.",
+    "passwordMismatch": "As duas palavras-passe não são iguais.",
+    "code": "O código tem 6 algarismos."
   },
   "a11y": {
     "skipToContent": "Saltar para o conteúdo",
@@ -248,9 +299,12 @@
     "login": "Entrar",
     "register": "Registo",
     "verifyEmail": "Verificação do e-mail",
+    "forgotPassword": "Palavra-passe esquecida",
+    "resetPassword": "Nova palavra-passe",
     "oauthCallback": "Entrar",
     "notFound": "Página não encontrada",
     "editTopic": "Editar o tópico",
+    "editProject": "Editar o projeto",
     "admin": "Back-office",
     "adminUsers": "Back-office · Membros",
     "adminContent": "Back-office · Conteúdos",
@@ -594,7 +648,8 @@
       "noAccount": "Ainda não tens conta?",
       "toRegister": "Criar uma conta",
       "blocked": "Esta conta foi suspensa pela equipa Ndadiee.",
-      "blockedReason": "Motivo: {{reason}}"
+      "blockedReason": "Motivo: {{reason}}",
+      "forgot": "Esqueceste-te da palavra-passe?"
     },
     "register": {
       "eyebrow": "Registo",
@@ -690,6 +745,28 @@
       "tooMany": "Demasiadas tentativas para este código. Pede um novo.",
       "wrongEmail": "Não é o teu endereço?",
       "changeEmail": "Recomeçar a inscrição"
+    },
+    "deletionCancelled": "Bem-vindo de volta! A eliminação da tua conta foi cancelada.",
+    "forgot": {
+      "eyebrow": "Palavra-passe esquecida",
+      "title": "Enviamos-te uma nova chave.",
+      "text": "Indica o endereço de e-mail da tua conta: enviamos para lá um código de 6 algarismos para escolheres uma nova palavra-passe.",
+      "hint": "Vê também na pasta de spam.",
+      "submit": "Receber um código",
+      "pending": "A enviar o código…",
+      "remembered": "Lembraste-te?",
+      "toLogin": "Entrar"
+    },
+    "reset": {
+      "eyebrow": "Nova palavra-passe",
+      "title": "Escolhe a tua nova palavra-passe.",
+      "text": "Se uma conta usa {{email}}, acabou de ser enviado para lá um código de 6 algarismos. Introdu-lo com a tua nova palavra-passe.",
+      "password": "Nova palavra-passe",
+      "confirm": "Confirma a palavra-passe",
+      "submit": "Mudar a palavra-passe",
+      "pending": "A guardar…",
+      "blocked": "A tua palavra-passe foi alterada, mas esta conta foi suspensa pela equipa Ndadiee.",
+      "changeEmail": "Usar outro endereço"
     }
   },
   "project": {
@@ -846,6 +923,12 @@
       "week_other": "{{count}} commits, semana de {{date}}",
       "notSynced": "O repositório ainda não foi sincronizado.",
       "open": "Ver o repositório"
+    },
+    "owner": {
+      "yours": "Este é o teu projeto.",
+      "moderation": "Podes editar este projeto como moderador.",
+      "edit": "Editar o projeto",
+      "editNamed": "Editar {{name}}"
     }
   },
   "shell": {

@@ -18,7 +18,25 @@
     "discardConfirm": "Futa rasimu",
     "publish": "Chapisha mradi",
     "publishing": "Mradi unachapishwa",
-    "published": "{{name}} iko hewani: karibu kwenye onyesho!"
+    "published": "{{name}} iko hewani: karibu kwenye onyesho!",
+    "editTitle": "Hariri mradi",
+    "backToProject": "Rudi kwenye mradi",
+    "saved": "{{name}} umesasishwa.",
+    "save": "Hifadhi",
+    "saving": "Inahifadhi mradi",
+    "unsaved": "Mabadiliko hayajahifadhiwa",
+    "upToDate": "Kila kitu kimehifadhiwa",
+    "discardChanges": "Tupa mabadiliko",
+    "discardChangesTitle": "Utupe mabadiliko yako?",
+    "discardChangesText": "Fomu inarudi kwenye kile mradi unaonyesha sasa.",
+    "discardChangesConfirm": "Tupa mabadiliko",
+    "teamRecruiting_one": "Mradi unatafuta wachangiaji: nafasi {{count}} iko wazi. Nafasi na maombi husimamiwa katika eneo la timu.",
+    "teamRecruiting_other": "Mradi unatafuta wachangiaji: nafasi {{count}} ziko wazi. Nafasi na maombi husimamiwa katika eneo la timu.",
+    "teamRecruitingEmpty": "Mradi unatafuta wachangiaji, lakini bado hauna nafasi iliyo wazi: zichapishe katika eneo la timu.",
+    "teamNotRecruiting": "Mradi hautafuti wachangiaji kwa sasa. Uajiri na nafasi huwekwa katika eneo la timu.",
+    "manageRoles": "Simamia nafasi",
+    "notOwnerTitle": "Mradi huu si wako",
+    "notOwnerText": "Mmiliki wake pekee, {{owner}}, anaweza kuuhariri."
   },
   "section": {
     "complete": "hatua imekamilika",
@@ -40,7 +58,8 @@
     },
     "team": {
       "title": "Timu",
-      "text": "Unatafuta wachangiaji? Kila jukumu linakuwa tangazo, linaloonekana kwa wasifu unaolingana nalo."
+      "text": "Unatafuta wachangiaji? Kila jukumu linakuwa tangazo, linaloonekana kwa wasifu unaolingana nalo.",
+      "editText": "Nafasi zinazotafutwa ziko katika eneo la timu, pamoja na maombi."
     }
   },
   "field": {

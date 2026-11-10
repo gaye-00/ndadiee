@@ -18,7 +18,25 @@
     "discardConfirm": "Pa àkọsílẹ̀ rẹ́",
     "publish": "Ṣe àtẹ̀jáde iṣẹ́ àkànṣe",
     "publishing": "A ń ṣe àtẹ̀jáde iṣẹ́ àkànṣe",
-    "published": "{{name}} ti jáde: ẹ kú àbọ̀ sí àfihàn!"
+    "published": "{{name}} ti jáde: ẹ kú àbọ̀ sí àfihàn!",
+    "editTitle": "Ṣàtúnṣe iṣẹ́ àkànṣe",
+    "backToProject": "Padà sí iṣẹ́ àkànṣe",
+    "saved": "A ti ṣe àfikún tuntun sí {{name}}.",
+    "save": "Fi pamọ́",
+    "saving": "À ń fi iṣẹ́ àkànṣe pamọ́",
+    "unsaved": "Àwọn àyípadà tí a kò tíì fi pamọ́",
+    "upToDate": "A ti fi gbogbo rẹ̀ pamọ́",
+    "discardChanges": "Jù àwọn àyípadà sílẹ̀",
+    "discardChangesTitle": "Ṣé kí o jù àwọn àyípadà rẹ sílẹ̀?",
+    "discardChangesText": "Fọ́ọ̀mù náà yóò padà sí ohun tí iṣẹ́ àkànṣe náà ń fihàn báyìí.",
+    "discardChangesConfirm": "Jù àwọn àyípadà sílẹ̀",
+    "teamRecruiting_one": "Iṣẹ́ àkànṣe náà ń wá olùkópa: ipa {{count}} ló ṣí sílẹ̀. A ń ṣàkóso àwọn ipa àti ìbéèrè ní àyè ẹgbẹ́.",
+    "teamRecruiting_other": "Iṣẹ́ àkànṣe náà ń wá olùkópa: ipa {{count}} ló ṣí sílẹ̀. A ń ṣàkóso àwọn ipa àti ìbéèrè ní àyè ẹgbẹ́.",
+    "teamRecruitingEmpty": "Iṣẹ́ àkànṣe náà ń wá olùkópa, ṣùgbọ́n kò tíì ní ipa kankan tó ṣí sílẹ̀: tẹ̀ wọ́n jáde ní àyè ẹgbẹ́.",
+    "teamNotRecruiting": "Iṣẹ́ àkànṣe náà kò wá olùkópa lọ́wọ́lọ́wọ́. A ń ṣètò ìgbanisíṣẹ́ àti àwọn ipa ní àyè ẹgbẹ́.",
+    "manageRoles": "Ṣàkóso àwọn ipa",
+    "notOwnerTitle": "Iṣẹ́ àkànṣe yìí kì í ṣe tìrẹ",
+    "notOwnerText": "Olùdásílẹ̀ rẹ̀ nìkan, {{owner}}, ló lè ṣàtúnṣe rẹ̀."
   },
   "section": {
     "complete": "ìgbésẹ̀ ti parí",
@@ -40,7 +58,8 @@
     },
     "team": {
       "title": "Ẹgbẹ́",
-      "text": "Ṣé o ń wá àwọn olùkópa? Ipa kọ̀ọ̀kan di ìkéde, tí àwọn profaili tó bá a mu yóò rí."
+      "text": "Ṣé o ń wá àwọn olùkópa? Ipa kọ̀ọ̀kan di ìkéde, tí àwọn profaili tó bá a mu yóò rí.",
+      "editText": "Àwọn ipa tí a ń wá wà ní àyè ẹgbẹ́, pẹ̀lú àwọn ìbéèrè."
     }
   },
   "field": {

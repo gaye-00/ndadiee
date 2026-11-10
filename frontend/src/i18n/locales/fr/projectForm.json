@@ -19,7 +19,26 @@
     "discardConfirm": "Effacer le brouillon",
     "publish": "Publier le projet",
     "publishing": "Publication du projet",
-    "published": "{{name}} est en ligne : bienvenue dans la vitrine !"
+    "published": "{{name}} est en ligne : bienvenue dans la vitrine !",
+    "editTitle": "Modifier le projet",
+    "backToProject": "Retour au projet",
+    "saved": "{{name}} est à jour.",
+    "save": "Enregistrer",
+    "saving": "Enregistrement du projet",
+    "unsaved": "Modifications non enregistrées",
+    "upToDate": "Tout est enregistré",
+    "discardChanges": "Annuler les modifications",
+    "discardChangesTitle": "Annuler tes modifications ?",
+    "discardChangesText": "Le formulaire reprend ce que le projet montre en ce moment.",
+    "discardChangesConfirm": "Annuler les modifications",
+    "teamRecruiting_one": "Le projet recrute : {{count}} rôle ouvert. Les rôles et les candidatures se gèrent dans l'espace d'équipe.",
+    "teamRecruiting_many": "Le projet recrute : {{count}} rôles ouverts. Les rôles et les candidatures se gèrent dans l'espace d'équipe.",
+    "teamRecruiting_other": "Le projet recrute : {{count}} rôles ouverts. Les rôles et les candidatures se gèrent dans l'espace d'équipe.",
+    "teamRecruitingEmpty": "Le projet recrute, mais n'a encore aucun rôle ouvert : publie-les dans l'espace d'équipe.",
+    "teamNotRecruiting": "Le projet ne recrute pas en ce moment. Le recrutement et les rôles se règlent dans l'espace d'équipe.",
+    "manageRoles": "Gérer les rôles",
+    "notOwnerTitle": "Ce projet n'est pas le tien",
+    "notOwnerText": "Seul son porteur, {{owner}}, peut le modifier."
   },
   "section": {
     "complete": "étape complète",
@@ -41,7 +60,8 @@
     },
     "team": {
       "title": "L'équipe",
-      "text": "Cherches-tu des contributeurs ? Chaque rôle devient une annonce, visible des profils qui lui correspondent."
+      "text": "Cherches-tu des contributeurs ? Chaque rôle devient une annonce, visible des profils qui lui correspondent.",
+      "editText": "Les rôles recherchés vivent dans l'espace d'équipe, avec les candidatures."
     }
   },
   "field": {

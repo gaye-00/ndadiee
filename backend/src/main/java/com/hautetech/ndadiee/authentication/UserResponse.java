@@ -31,6 +31,8 @@ public class UserResponse {
     private Language preferredLanguage;
     // Reçoit les e-mails des revues de code
     private boolean reviewEmails;
+    // Connaît son mot de passe : faux pour un compte ouvert avec GitHub ou Google, qui n'en a pas encore choisi
+    private boolean passwordSet;
     private Instant createdAt;
 
     // Profil développeur : null pour un compte Admin

@@ -19,7 +19,26 @@
     "discardConfirm": "Apagar o rascunho",
     "publish": "Publicar o projeto",
     "publishing": "A publicar o projeto",
-    "published": "{{name}} está online: bem-vindo à montra!"
+    "published": "{{name}} está online: bem-vindo à montra!",
+    "editTitle": "Editar o projeto",
+    "backToProject": "Voltar ao projeto",
+    "saved": "{{name}} está atualizado.",
+    "save": "Guardar",
+    "saving": "A guardar o projeto",
+    "unsaved": "Alterações por guardar",
+    "upToDate": "Está tudo guardado",
+    "discardChanges": "Descartar alterações",
+    "discardChangesTitle": "Descartar as tuas alterações?",
+    "discardChangesText": "O formulário volta ao que o projeto mostra neste momento.",
+    "discardChangesConfirm": "Descartar alterações",
+    "teamRecruiting_one": "O projeto está a recrutar: {{count}} função em aberto. As funções e as candidaturas gerem-se no espaço da equipa.",
+    "teamRecruiting_many": "O projeto está a recrutar: {{count}} funções em aberto. As funções e as candidaturas gerem-se no espaço da equipa.",
+    "teamRecruiting_other": "O projeto está a recrutar: {{count}} funções em aberto. As funções e as candidaturas gerem-se no espaço da equipa.",
+    "teamRecruitingEmpty": "O projeto está a recrutar, mas ainda não tem nenhuma função em aberto: publica-as no espaço da equipa.",
+    "teamNotRecruiting": "O projeto não está a recrutar de momento. O recrutamento e as funções definem-se no espaço da equipa.",
+    "manageRoles": "Gerir as funções",
+    "notOwnerTitle": "Este projeto não é teu",
+    "notOwnerText": "Só o seu responsável, {{owner}}, o pode editar."
   },
   "section": {
     "complete": "etapa concluída",
@@ -41,7 +60,8 @@
     },
     "team": {
       "title": "A equipa",
-      "text": "Procuras contribuidores? Cada papel torna-se um anúncio, visível para os perfis que lhe correspondem."
+      "text": "Procuras contribuidores? Cada papel torna-se um anúncio, visível para os perfis que lhe correspondem.",
+      "editText": "As funções procuradas vivem no espaço da equipa, com as candidaturas."
     }
   },
   "field": {

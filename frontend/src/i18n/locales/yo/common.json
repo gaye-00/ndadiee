@@ -189,7 +189,53 @@
     "modeSystem": "Tẹ̀lé ètò ẹ̀rọ rẹ.",
     "languageTitle": "Èdè",
     "languageDescription": "Yan èdè tí o fẹ́ lò lórí Ndadiee.",
-    "languageError": "A kò lè ṣí èdè yìí. Jọ̀wọ́ tún gbìyànjú."
+    "languageError": "A kò lè ṣí èdè yìí. Jọ̀wọ́ tún gbìyànjú.",
+    "security": {
+      "passwordTitle": "Ọ̀rọ̀ aṣínà",
+      "passwordDescription": "Yí i padà nígbàkúùgbà: a ó pa àwọn ìgbà ìwọlé rẹ mìíràn.",
+      "passwordlessDescription": "Àkọọ́lẹ̀ rẹ ń ṣí pẹ̀lú GitHub tàbí Google. Yan ọ̀rọ̀ aṣínà kí o lè wọlé pẹ̀lú ímeèlì rẹ pẹ̀lú.",
+      "current": "Ọ̀rọ̀ aṣínà lọ́wọ́lọ́wọ́",
+      "new": "Ọ̀rọ̀ aṣínà tuntun",
+      "newHint": "Ó kéré tán lẹ́tà 8; 12 tàbí jù bẹ́ẹ̀ lọ dára jù.",
+      "confirm": "Fìdí ọ̀rọ̀ aṣínà tuntun múlẹ̀",
+      "submit": "Yí ọ̀rọ̀ aṣínà padà",
+      "saving": "À ń fi ọ̀rọ̀ aṣínà pamọ́…",
+      "changed": "A ti yí ọ̀rọ̀ aṣínà padà. A ti pa àwọn ìgbà ìwọlé rẹ mìíràn.",
+      "forgot": "Ṣé o gbàgbé ọ̀rọ̀ aṣínà?",
+      "codeIntro": "A ó fi kóòdù oní-nọ́ńbà 6 ránṣẹ́ sí {{email}}: pẹ̀lú rẹ̀ ni o ó yan ọ̀rọ̀ aṣínà rẹ.",
+      "sendCode": "Gba kóòdù",
+      "codeSent": "A ṣẹ̀ṣẹ̀ fi kóòdù oní-nọ́ńbà 6 ránṣẹ́ sí {{email}}. Wo inú fódà spam pẹ̀lú.",
+      "choose": "Fi ọ̀rọ̀ aṣínà yìí pamọ́",
+      "chosen": "A ti fi ọ̀rọ̀ aṣínà pamọ́. O lè wọlé pẹ̀lú ímeèlì rẹ báyìí pẹ̀lú.",
+      "backToCurrent": "Mo mọ ọ̀rọ̀ aṣínà mi",
+      "errors": {
+        "incorrect": "Ìyẹn kì í ṣe ọ̀rọ̀ aṣínà rẹ lọ́wọ́lọ́wọ́.",
+        "unchanged": "Yan ọ̀rọ̀ aṣínà tí ó yàtọ̀ sí èyí tó wà."
+      }
+    },
+    "deletion": {
+      "title": "Pa àkọọ́lẹ̀ mi rẹ́",
+      "description_one": "A ó pa àkọọ́lẹ̀ rẹ àti àwọn dátà ara ẹni rẹ rẹ́. O ní ọjọ́ {{count}} láti yí ọkàn rẹ padà.",
+      "description_other": "A ó pa àkọọ́lẹ̀ rẹ àti àwọn dátà ara ẹni rẹ rẹ́. O ní ọjọ́ {{count}} láti yí ọkàn rẹ padà.",
+      "erased": "A ó pa orúkọ rẹ, ímeèlì, fọ́tò, àkọọ́lẹ̀ àti àwọn àkọọ́lẹ̀ GitHub tàbí Google tí o so pọ̀ rẹ́.",
+      "kept": "Àwọn kókó ọ̀rọ̀, ìdáhùn, àpilẹ̀kọ àti àtúnyẹ̀wò rẹ yóò wà, pẹ̀lú àmì «Àkọọ́lẹ̀ tí a pa rẹ́»: ìjíròrò àwọn ẹlòmíràn kò ní pàdánù ìtumọ̀.",
+      "projects": "Àwọn iṣẹ́ àkànṣe rẹ tó ní ẹgbẹ́ yóò lọ sọ́dọ̀ olùtọ́jú kan, tàbí ọmọ ẹgbẹ́ tó pẹ́ jù; a ó pa àwọn yòókù rẹ́.",
+      "grace_one": "Fún ọjọ́ {{count}}, wíwọlé padà nìkan yóò fagilé gbogbo rẹ̀. Lẹ́yìn náà, ó di àṣepé.",
+      "grace_other": "Fún ọjọ́ {{count}}, wíwọlé padà nìkan yóò fagilé gbogbo rẹ̀. Lẹ́yìn náà, ó di àṣepé.",
+      "open": "Pa àkọọ́lẹ̀ mi rẹ́…",
+      "dialogTitle": "Ṣé kí a pa àkọọ́lẹ̀ rẹ rẹ́?",
+      "dialogText_one": "A ó pa àwọn ìgbà ìwọlé rẹ lẹ́sẹ̀kẹsẹ̀. A ó pa àkọọ́lẹ̀ rẹ rẹ́ lẹ́yìn ọjọ́ {{count}}, àfi tí o bá wọlé padà ṣáájú ìgbà náà.",
+      "dialogText_other": "A ó pa àwọn ìgbà ìwọlé rẹ lẹ́sẹ̀kẹsẹ̀. A ó pa àkọọ́lẹ̀ rẹ rẹ́ lẹ́yìn ọjọ́ {{count}}, àfi tí o bá wọlé padà ṣáájú ìgbà náà.",
+      "projectsTitle": "Àwọn iṣẹ́ àkànṣe rẹ",
+      "handedOver": "yóò lọ sọ́dọ̀ {{name}}",
+      "deletedWithAccount": "a ó pa á rẹ́",
+      "password": "Fìdí rẹ̀ múlẹ̀ pẹ̀lú ọ̀rọ̀ aṣínà rẹ",
+      "noPassword": "Kò sí ọ̀rọ̀ aṣínà? Gba kóòdù nípasẹ̀ ímeèlì",
+      "codeIntro": "A ó fi kóòdù oní-nọ́ńbà 6 ránṣẹ́ sí {{email}} láti fìdí píparẹ́ náà múlẹ̀.",
+      "keep": "Pa àkọọ́lẹ̀ mi mọ́",
+      "confirm": "Pa àkọọ́lẹ̀ mi rẹ́",
+      "scheduled": "A ó pa àkọọ́lẹ̀ rẹ rẹ́ ní {{date}}. Wọlé padà ṣáájú ìgbà náà láti fagilé."
+    }
   },
   "validation": {
     "required": "A nílò àyè yìí.",
@@ -202,7 +248,9 @@
     "minItems_one": "Ṣàfikún ó kéré tán nǹkan {{count}}.",
     "minItems_other": "Ṣàfikún ó kéré tán nǹkan {{count}}.",
     "maxItems_one": "Kò ju nǹkan {{count}} lọ.",
-    "maxItems_other": "Kò ju nǹkan {{count}} lọ."
+    "maxItems_other": "Kò ju nǹkan {{count}} lọ.",
+    "passwordMismatch": "Ọ̀rọ̀ aṣínà méjèèjì kò bára mu.",
+    "code": "Kóòdù náà ní nọ́ńbà 6."
   },
   "a11y": {
     "skipToContent": "Fò sí àkóónú",
@@ -241,9 +289,12 @@
     "login": "Wọlé",
     "register": "Forúkọsílẹ̀",
     "verifyEmail": "Ìfìdímúlẹ̀ ímeèlì",
+    "forgotPassword": "Ọ̀rọ̀ aṣínà tí o gbàgbé",
+    "resetPassword": "Ọ̀rọ̀ aṣínà tuntun",
     "oauthCallback": "Wọlé",
     "notFound": "A kò rí ojú-ìwé náà",
     "editTopic": "Ṣàtúnṣe kókó",
+    "editProject": "Ṣàtúnṣe iṣẹ́ àkànṣe",
     "admin": "Ìṣàkóso",
     "adminUsers": "Ìṣàkóso · Àwọn ọmọ ẹgbẹ́",
     "adminContent": "Ìṣàkóso · Àwọn àkóónú",
@@ -567,7 +618,8 @@
       "noAccount": "O kò tíì ní àkọọ́lẹ̀?",
       "toRegister": "Ṣẹ̀dá àkọọ́lẹ̀",
       "blocked": "Ẹgbẹ́ Ndadiee ti dá àkọọ́lẹ̀ yìí dúró.",
-      "blockedReason": "Ìdí: {{reason}}"
+      "blockedReason": "Ìdí: {{reason}}",
+      "forgot": "Ṣé o gbàgbé ọ̀rọ̀ aṣínà?"
     },
     "register": {
       "eyebrow": "Forúkọsílẹ̀",
@@ -662,6 +714,28 @@
       "tooMany": "Ìgbìyànjú ti pọ̀ jù fún kóòdù yìí. Béèrè fún tuntun.",
       "wrongEmail": "Kì í ṣe àdírẹ́sì rẹ?",
       "changeEmail": "Bẹ̀rẹ̀ ìforúkọsílẹ̀ lẹ́ẹ̀kan sí i"
+    },
+    "deletionCancelled": "Káàbọ̀ padà! A ti fagilé píparẹ́ àkọọ́lẹ̀ rẹ.",
+    "forgot": {
+      "eyebrow": "Ọ̀rọ̀ aṣínà tí o gbàgbé",
+      "title": "A ó fi kọ́kọ́rọ́ tuntun ránṣẹ́ sí ọ.",
+      "text": "Tẹ àdírẹ́sì ímeèlì àkọọ́lẹ̀ rẹ: a ó fi kóòdù oní-nọ́ńbà 6 ránṣẹ́ síbẹ̀ kí o lè yan ọ̀rọ̀ aṣínà tuntun.",
+      "hint": "Wo inú fódà spam pẹ̀lú.",
+      "submit": "Gba kóòdù",
+      "pending": "À ń fi kóòdù ránṣẹ́…",
+      "remembered": "Ṣé o rántí rẹ̀?",
+      "toLogin": "Wọlé"
+    },
+    "reset": {
+      "eyebrow": "Ọ̀rọ̀ aṣínà tuntun",
+      "title": "Yan ọ̀rọ̀ aṣínà tuntun rẹ.",
+      "text": "Tí àkọọ́lẹ̀ kan bá ń lo {{email}}, a ṣẹ̀ṣẹ̀ fi kóòdù oní-nọ́ńbà 6 ránṣẹ́ síbẹ̀. Tẹ̀ ẹ́ pẹ̀lú ọ̀rọ̀ aṣínà tuntun rẹ.",
+      "password": "Ọ̀rọ̀ aṣínà tuntun",
+      "confirm": "Fìdí ọ̀rọ̀ aṣínà múlẹ̀",
+      "submit": "Yí ọ̀rọ̀ aṣínà padà",
+      "pending": "À ń fi pamọ́…",
+      "blocked": "A ti yí ọ̀rọ̀ aṣínà rẹ padà, ṣùgbọ́n ẹgbẹ́ Ndadiee ti dá àkọọ́lẹ̀ yìí dúró.",
+      "changeEmail": "Lo àdírẹ́sì mìíràn"
     }
   },
   "project": {
@@ -804,6 +878,12 @@
       "week_other": "commit {{count}}, ọ̀sẹ̀ {{date}}",
       "notSynced": "A kò tíì mú ibi ìpamọ́ náà dọ́gba.",
       "open": "Wo ibi ìpamọ́ náà"
+    },
+    "owner": {
+      "yours": "Iṣẹ́ àkànṣe rẹ nìyí.",
+      "moderation": "O lè ṣàtúnṣe iṣẹ́ àkànṣe yìí gẹ́gẹ́ bí alábòójútó.",
+      "edit": "Ṣàtúnṣe iṣẹ́ àkànṣe",
+      "editNamed": "Ṣàtúnṣe {{name}}"
     }
   },
   "shell": {

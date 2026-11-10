@@ -117,6 +117,37 @@ public abstract class User extends BaseEntity implements UserDetails {
     private boolean emailVerified = true;
 
     /**
+     * Le titulaire connaît-il son mot de passe ? Faux pour un compte ouvert avec GitHub ou Google : son mot de passe
+     * est un secret aléatoire, jusqu'à ce qu'il en choisisse un (mot de passe oublié). Dit quelle preuve demander avant
+     * un geste sensible : le mot de passe, ou un code envoyé par e-mail.
+     */
+    @Builder.Default
+    @ColumnDefault("true")
+    @Column(nullable = false)
+    private boolean passwordSet = true;
+
+    /**
+     * Dernier changement de mot de passe, ou demande de suppression : les jetons émis avant ne valent plus rien, les
+     * sessions ouvertes ailleurs se ferment. À la seconde près, comme la date d'émission des jetons.
+     */
+    private Instant credentialsChangedAt;
+
+    // Suppression demandée par le titulaire : le compte sera effacé à cette date, sauf s'il se reconnecte d'ici là
+    private Instant deletionScheduledAt;
+
+    // Compte supprimé : ses données personnelles sont effacées, ses contributions restent, signées « Compte supprimé »
+    private Instant deletedAt;
+
+    public boolean isDeleted() {
+        return deletedAt != null;
+    }
+
+    /** Un jeton émis à cet instant vaut-il encore ? Non s'il date d'avant le dernier changement de mot de passe. */
+    public boolean acceptsTokenIssuedAt(Instant issuedAt) {
+        return credentialsChangedAt == null || (issuedAt != null && !issuedAt.isBefore(credentialsChangedAt));
+    }
+
+    /**
      * Suspendu par l'administration : ni connexion, ni renouvellement de session, ni requête authentifiée.
      * Volontairement distinct de {@link #isAccountNonLocked()} : Spring vérifie ce dernier avant le mot de
      * passe, et dirait à n'importe qui qu'un compte existe et qu'il est suspendu.

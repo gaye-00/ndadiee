@@ -22,6 +22,8 @@ public final class DeveloperSpecifications {
             ExperienceLevel level, Boolean openToWork) {
         return (root, query, cb) -> {
             List<Predicate> predicates = new ArrayList<>();
+            // Un compte supprimé ne figure plus dans l'annuaire ni dans la recherche
+            predicates.add(cb.isNull(root.get("deletedAt")));
             if (hasText(q)) {
                 predicates.add(cb.or(
                         contains(cb, root.get("username"), q),

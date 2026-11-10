@@ -270,6 +270,14 @@ export interface NewProjectRequest extends ProjectRequest {
   openings?: ProjectOpeningRequest[];
 }
 
+/**
+ * Un projet modifié depuis son formulaire (ProjectUpdateRequest.java) : sa galerie telle qu'elle doit être, dans
+ * l'ordre (les images déjà là se reconnaissent à leur adresse) ; sans galerie, elle ne change pas.
+ */
+export interface ProjectUpdateRequest extends ProjectRequest {
+  gallery?: ProjectMediaRequest[];
+}
+
 export interface ProjectOpeningRequest {
   role: TeamRole;
   title: string;

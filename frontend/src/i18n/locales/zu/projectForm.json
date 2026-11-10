@@ -18,7 +18,25 @@
     "discardConfirm": "Sula okusalungiswa",
     "publish": "Shicilela iphrojekthi",
     "publishing": "Iphrojekthi iyashicilelwa",
-    "published": "I-{{name}} isiku-inthanethi: wamukelekile embukisweni!"
+    "published": "I-{{name}} isiku-inthanethi: wamukelekile embukisweni!",
+    "editTitle": "Hlela iphrojekthi",
+    "backToProject": "Buyela kuphrojekthi",
+    "saved": "I-{{name}} isibuyekeziwe.",
+    "save": "Gcina",
+    "saving": "Igcina iphrojekthi",
+    "unsaved": "Izinguquko ezingagcinwanga",
+    "upToDate": "Konke kugciniwe",
+    "discardChanges": "Lahla izinguquko",
+    "discardChangesTitle": "Ulahle izinguquko zakho?",
+    "discardChangesText": "Ifomu libuyela kulokho okukhonjiswa yiphrojekthi manje.",
+    "discardChangesConfirm": "Lahla izinguquko",
+    "teamRecruiting_one": "Iphrojekthi ifuna abanikeli: indima e-{{count}} ivulekile. Izindima nezicelo kuphathwa endaweni yethimba.",
+    "teamRecruiting_other": "Iphrojekthi ifuna abanikeli: izindima ezingu-{{count}} zivulekile. Izindima nezicelo kuphathwa endaweni yethimba.",
+    "teamRecruitingEmpty": "Iphrojekthi ifuna abanikeli, kodwa ayikabi nayo indima evulekile: zishicilele endaweni yethimba.",
+    "teamNotRecruiting": "Iphrojekthi ayifuni banikeli okwamanje. Ukuqasha nezindima kusethwa endaweni yethimba.",
+    "manageRoles": "Phatha izindima",
+    "notOwnerTitle": "Le phrojekthi akuyona eyakho",
+    "notOwnerText": "Umnikazi wayo kuphela, u-{{owner}}, ongayihlela."
   },
   "section": {
     "complete": "isinyathelo siphelile",
@@ -40,7 +58,8 @@
     },
     "team": {
       "title": "Ithimba",
-      "text": "Ufuna abanikeli? Indima ngayinye iba isikhangiso, esibonwa amaphrofayela afanelekile."
+      "text": "Ufuna abanikeli? Indima ngayinye iba isikhangiso, esibonwa amaphrofayela afanelekile.",
+      "editText": "Izindima ezifunwayo zihlala endaweni yethimba, kanye nezicelo."
     }
   },
   "field": {

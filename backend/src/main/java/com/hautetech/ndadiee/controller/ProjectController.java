@@ -25,7 +25,7 @@ import com.hautetech.ndadiee.dto.request.MemberDecisionRequest;
 import com.hautetech.ndadiee.dto.request.MemberSpecialtyRequest;
 import com.hautetech.ndadiee.dto.request.NewProjectRequest;
 import com.hautetech.ndadiee.dto.request.ProjectMediaRequest;
-import com.hautetech.ndadiee.dto.request.ProjectRequest;
+import com.hautetech.ndadiee.dto.request.ProjectUpdateRequest;
 import com.hautetech.ndadiee.dto.request.ProjectSettingsRequest;
 import com.hautetech.ndadiee.dto.response.PageResponse;
 import com.hautetech.ndadiee.dto.response.ProjectFacetsResponse;
@@ -108,12 +108,12 @@ public class ProjectController extends BaseController {
                 publishingService.publish(getAuthenticatedUserId(), request), "Projet publié avec succès"));
     }
 
-    @Operation(summary = "Modifier un projet (propriétaire ou modérateur)")
+    @Operation(summary = "Modifier un projet, et s'il le faut sa galerie, ensemble ou rien (propriétaire ou modérateur)")
     @PutMapping("/{id}")
     public ResponseEntity<ApiResponse<ProjectResponse>> update(
-            @PathVariable Long id, @Valid @RequestBody ProjectRequest request) {
+            @PathVariable Long id, @Valid @RequestBody ProjectUpdateRequest request) {
         return ResponseEntity.ok(ApiResponse.success(
-                projectService.update(getAuthenticatedUserId(), id, request), "Projet mis à jour avec succès"));
+                publishingService.update(getAuthenticatedUserId(), id, request), "Projet mis à jour avec succès"));
     }
 
     @Operation(summary = "Supprimer un projet (propriétaire ou modérateur)")

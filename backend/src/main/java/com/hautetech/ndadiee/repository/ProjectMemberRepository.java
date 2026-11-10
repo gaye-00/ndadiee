@@ -21,6 +21,9 @@ public interface ProjectMemberRepository extends JpaRepository<ProjectMember, Lo
 
     Optional<ProjectMember> findByProjectIdAndUserId(Long projectId, Long userId);
 
+    // Toutes les participations d'un membre, acceptées ou non (suppression de son compte)
+    List<ProjectMember> findByUserId(Long userId);
+
     List<ProjectMember> findByProjectIdOrderByCreatedAtAsc(Long projectId);
 
     List<ProjectMember> findByProjectIdAndStatusOrderByCreatedAtAsc(Long projectId, MemberStatus status);

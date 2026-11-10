@@ -46,13 +46,18 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
 
         final String jwtToken = authenticationHeader.substring(PREFIX.length());
         try {
-            String username = jwtService.extractUsernameFromAccessToken(jwtToken);
+            JwtService.TokenClaims claims = jwtService.parseAccessToken(jwtToken);
+            String username = claims.username();
             if (username != null && SecurityContextHolder.getContext().getAuthentication() == null) {
                 UserDetails userDetails = userDetailsService.loadUserByUsername(username);
                 // Compte suspendu : ses jetons encore valides n'ouvrent plus rien. La requête continue en
                 // visiteur ; sur un endpoint protégé, le 401 fait tenter un refresh, que AuthenticationService
                 // refuse (ACCOUNT_BLOCKED) : le client ferme alors la session.
-                if (!(userDetails instanceof User user && user.isBlocked())) {
+                // De même pour un jeton émis avant un changement de mot de passe ou une demande de suppression : les
+                // sessions ouvertes ailleurs se ferment.
+                boolean refused = userDetails instanceof User user
+                        && (user.isBlocked() || !user.acceptsTokenIssuedAt(claims.issuedAt()));
+                if (!refused) {
                     UsernamePasswordAuthenticationToken authentication =
                             new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities());
                     authentication.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));

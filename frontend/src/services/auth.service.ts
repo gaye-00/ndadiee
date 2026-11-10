@@ -7,6 +7,7 @@ import type {
   OAuthProviderId,
   PendingVerification,
   RegisterRequest,
+  ResetPasswordRequest,
   UserResponse,
   UsernameAvailability,
   VerifyEmailRequest,
@@ -27,6 +28,14 @@ export const authService = {
   /** Un nouveau code pour une inscription en attente */
   resendVerification: (email: string) =>
     api.post<ApiResponse<PendingVerification>>(`${BASE}/verify-email/resend`, { email }).then((r) => r.data.data),
+
+  /** Mot de passe oublié : un code part à l'adresse, si un compte l'utilise (même réponse sinon) */
+  forgotPassword: (email: string) =>
+    api.post<ApiResponse<PendingVerification>>(`${BASE}/password/forgot`, { email }).then((r) => r.data.data),
+
+  /** Le code reçu et le nouveau mot de passe : la session s'ouvre */
+  resetPassword: (body: ResetPasswordRequest) =>
+    api.post<ApiResponse<AuthResponse>>(`${BASE}/password/reset`, body).then((r) => r.data.data),
 
   login: (body: LoginRequest) =>
     api.post<ApiResponse<AuthResponse>>(`${BASE}/login`, body).then((r) => r.data.data),

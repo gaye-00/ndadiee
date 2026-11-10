@@ -18,7 +18,25 @@
     "discardConfirm": "Goge daftarin",
     "publish": "Wallafa aikin",
     "publishing": "Ana wallafa aikin",
-    "published": "{{name}} ya fito: barka da zuwa baje koli!"
+    "published": "{{name}} ya fito: barka da zuwa baje koli!",
+    "editTitle": "Gyara aikin",
+    "backToProject": "Koma ga aikin",
+    "saved": "An sabunta {{name}}.",
+    "save": "Adana",
+    "saving": "Ana adana aikin",
+    "unsaved": "Canje-canjen da ba a adana ba",
+    "upToDate": "An adana komai",
+    "discardChanges": "Watsar da canje-canje",
+    "discardChangesTitle": "Watsar da canje-canjenka?",
+    "discardChangesText": "Fom ɗin yana komawa ga abin da aikin yake nunawa yanzu.",
+    "discardChangesConfirm": "Watsar da canje-canje",
+    "teamRecruiting_one": "Aikin yana neman masu ba da gudummawa: matsayi {{count}} a buɗe. Ana sarrafa matsayi da buƙatu a filin ƙungiya.",
+    "teamRecruiting_other": "Aikin yana neman masu ba da gudummawa: matsayi {{count}} a buɗe. Ana sarrafa matsayi da buƙatu a filin ƙungiya.",
+    "teamRecruitingEmpty": "Aikin yana neman masu ba da gudummawa, amma har yanzu babu matsayi a buɗe: wallafa su a filin ƙungiya.",
+    "teamNotRecruiting": "Aikin ba ya neman masu ba da gudummawa yanzu. Ana saita ɗaukar ma’aikata da matsayi a filin ƙungiya.",
+    "manageRoles": "Sarrafa matsayi",
+    "notOwnerTitle": "Wannan aikin ba naka ba ne",
+    "notOwnerText": "Mai shi kaɗai, {{owner}}, zai iya gyara shi."
   },
   "section": {
     "complete": "an kammala mataki",
@@ -40,7 +58,8 @@
     },
     "team": {
       "title": "Ƙungiya",
-      "text": "Kana neman masu ba da gudummawa? Kowane matsayi ya zama sanarwa, da bayanan martaba masu dacewa ke gani."
+      "text": "Kana neman masu ba da gudummawa? Kowane matsayi ya zama sanarwa, da bayanan martaba masu dacewa ke gani.",
+      "editText": "Matsayin da ake nema suna cikin filin ƙungiya, tare da buƙatu."
     }
   },
   "field": {

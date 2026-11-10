@@ -4,10 +4,12 @@ import { AnimatePresence, m, useAnimate } from 'motion/react';
 import { useEffect, useState, type FormEvent } from 'react';
 import { useForm, useWatch } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useLogin } from '@/hooks/useAuth';
 import { useReducedMotion } from '@/hooks/useReducedMotion';
 import { rememberPendingVerification } from '@/lib/pendingVerification';
+import { prefetch } from '@/lib/prefetch';
+import { pages } from '@/router/pages';
 import { paths } from '@/router/paths';
 import { useAuthLoomStore } from '@/store/useAuthLoomStore';
 import { applyServerErrors, getApiError, getApiErrorMessage } from '@/utils/apiError';
@@ -140,6 +142,19 @@ export default function LoginForm() {
         />
         <PasswordField
           label={t('auth.fields.password')}
+          aside={
+            // L'adresse déjà tapée suit (pas un nom d'utilisateur : le code part à une adresse), avec la page visée
+            <Link
+              to={paths.forgotPassword}
+              state={{ ...(location.state as object | null), email: identifier.includes('@') ? identifier.trim() : undefined }}
+              viewTransition
+              onPointerEnter={() => prefetch(pages.forgotPassword)}
+              onFocus={() => prefetch(pages.forgotPassword)}
+              className="rounded-sm font-semibold text-gold underline-offset-4 outline-none hover:underline focus-visible:ring-2 focus-visible:ring-ring/70"
+            >
+              {t('auth.login.forgot')}
+            </Link>
+          }
           autoComplete="current-password"
           error={errors.password?.message}
           {...register('password')}

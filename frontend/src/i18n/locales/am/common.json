@@ -189,7 +189,53 @@
     "modeSystem": "የመሣሪያዎን ቅንብር ይከተላል።",
     "languageTitle": "ቋንቋ",
     "languageDescription": "በNdadiee ላይ መጠቀም የሚፈልጉትን ቋንቋ ይምረጡ።",
-    "languageError": "ይህን ቋንቋ መጫን አልተቻለም። እንደገና ይሞክሩ።"
+    "languageError": "ይህን ቋንቋ መጫን አልተቻለም። እንደገና ይሞክሩ።",
+    "security": {
+      "passwordTitle": "የይለፍ ቃል",
+      "passwordDescription": "በፈለግህ ጊዜ ቀይረው፦ ሌሎች ክፍለ ጊዜዎችህ ይዘጋሉ።",
+      "passwordlessDescription": "መለያህ በGitHub ወይም በGoogle ይከፈታል። በኢሜይልህም ለመግባት የይለፍ ቃል ምረጥ።",
+      "current": "የአሁኑ የይለፍ ቃል",
+      "new": "አዲስ የይለፍ ቃል",
+      "newHint": "ቢያንስ 8 ቁምፊዎች፤ 12 ወይም ከዚያ በላይ የተሻለ ነው።",
+      "confirm": "አዲሱን የይለፍ ቃል አረጋግጥ",
+      "submit": "የይለፍ ቃል ቀይር",
+      "saving": "የይለፍ ቃሉን በማስቀመጥ ላይ…",
+      "changed": "የይለፍ ቃል ተቀይሯል። ሌሎች ክፍለ ጊዜዎችህ ተዘግተዋል።",
+      "forgot": "የይለፍ ቃልህን ረሳህ?",
+      "codeIntro": "ባለ 6 አሃዝ ኮድ ወደ {{email}} ይላካል፦ በእሱ የይለፍ ቃልህን ትመርጣለህ።",
+      "sendCode": "ኮድ ተቀበል",
+      "codeSent": "ባለ 6 አሃዝ ኮድ አሁን ወደ {{email}} ተልኳል። የአይፈለጌ መልእክት ማህደሩንም ተመልከት።",
+      "choose": "ይህን የይለፍ ቃል አስቀምጥ",
+      "chosen": "የይለፍ ቃል ተቀምጧል። አሁን በኢሜይልህም መግባት ትችላለህ።",
+      "backToCurrent": "የይለፍ ቃሌን አውቃለሁ",
+      "errors": {
+        "incorrect": "ይህ የአሁኑ የይለፍ ቃልህ አይደለም።",
+        "unchanged": "ከአሁኑ የተለየ የይለፍ ቃል ምረጥ።"
+      }
+    },
+    "deletion": {
+      "title": "መለያዬን ሰርዝ",
+      "description_one": "መለያህና የግል መረጃህ ይሰረዛሉ። ሃሳብህን ለመቀየር {{count}} ቀን አለህ።",
+      "description_other": "መለያህና የግል መረጃህ ይሰረዛሉ። ሃሳብህን ለመቀየር {{count}} ቀናት አሉህ።",
+      "erased": "ስምህ፣ ኢሜይልህ፣ ፎቶህ፣ መገለጫህና የተገናኙ የGitHub ወይም የGoogle መለያዎችህ ይሰረዛሉ።",
+      "kept": "ርዕሶችህ፣ መልሶችህ፣ ጽሑፎችህና ግምገማዎችህ «የተሰረዘ መለያ» ተብለው ይቀራሉ፦ የሌሎች ውይይቶች ትርጉማቸውን ይይዛሉ።",
+      "projects": "ቡድን ያላቸው ፕሮጀክቶችህ ለአንድ ጠባቂ፣ ካልሆነም ለረጅም ጊዜ አባል ይተላለፋሉ፤ ሌሎቹ ይሰረዛሉ።",
+      "grace_one": "ለ{{count}} ቀን፣ እንደገና መግባት ብቻ ሁሉንም ይሰርዛል። ከዚያ በኋላ የመጨረሻ ነው።",
+      "grace_other": "ለ{{count}} ቀናት፣ እንደገና መግባት ብቻ ሁሉንም ይሰርዛል። ከዚያ በኋላ የመጨረሻ ነው።",
+      "open": "መለያዬን ሰርዝ…",
+      "dialogTitle": "መለያህን ልትሰርዝ ነው?",
+      "dialogText_one": "ክፍለ ጊዜዎችህ ወዲያውኑ ይዘጋሉ። ከዚያ በፊት እንደገና ካልገባህ መለያህ ከ{{count}} ቀን በኋላ ይሰረዛል።",
+      "dialogText_other": "ክፍለ ጊዜዎችህ ወዲያውኑ ይዘጋሉ። ከዚያ በፊት እንደገና ካልገባህ መለያህ ከ{{count}} ቀናት በኋላ ይሰረዛል።",
+      "projectsTitle": "ፕሮጀክቶችህ",
+      "handedOver": "ለ{{name}} ይተላለፋል",
+      "deletedWithAccount": "ይሰረዛል",
+      "password": "በየይለፍ ቃልህ አረጋግጥ",
+      "noPassword": "የይለፍ ቃል የለህም? በኢሜይል ኮድ ተቀበል",
+      "codeIntro": "መሰረዙን ለማረጋገጥ ባለ 6 አሃዝ ኮድ ወደ {{email}} ይላካል።",
+      "keep": "መለያዬን አቆይ",
+      "confirm": "መለያዬን ሰርዝ",
+      "scheduled": "መለያህ በ{{date}} ይሰረዛል። ለመሰረዝ ከዚያ በፊት እንደገና ግባ።"
+    }
   },
   "validation": {
     "required": "ይህ መስክ ያስፈልጋል።",
@@ -202,7 +248,9 @@
     "minItems_one": "ቢያንስ {{count}} ንጥል ጨምር።",
     "minItems_other": "ቢያንስ {{count}} ንጥሎች ጨምር።",
     "maxItems_one": "ቢበዛ {{count}} ንጥል።",
-    "maxItems_other": "ቢበዛ {{count}} ንጥሎች።"
+    "maxItems_other": "ቢበዛ {{count}} ንጥሎች።",
+    "passwordMismatch": "ሁለቱ የይለፍ ቃሎች አይመሳሰሉም።",
+    "code": "ኮዱ 6 አሃዞች አሉት።"
   },
   "a11y": {
     "skipToContent": "ወደ ይዘቱ ዝለል",
@@ -241,9 +289,12 @@
     "login": "ግባ",
     "register": "ተመዝገብ",
     "verifyEmail": "ኢሜይል ማረጋገጫ",
+    "forgotPassword": "የተረሳ የይለፍ ቃል",
+    "resetPassword": "አዲስ የይለፍ ቃል",
     "oauthCallback": "ግባ",
     "notFound": "ገጹ አልተገኘም",
     "editTopic": "ርዕሱን አስተካክል",
+    "editProject": "ፕሮጀክቱን አስተካክል",
     "admin": "የአስተዳደር ገጽ",
     "adminUsers": "የአስተዳደር ገጽ · አባላት",
     "adminContent": "የአስተዳደር ገጽ · ይዘቶች",
@@ -567,7 +618,8 @@
       "noAccount": "እስካሁን መለያ የለህም?",
       "toRegister": "መለያ ፍጠር",
       "blocked": "ይህ መለያ በNdadiee ቡድን ታግዷል።",
-      "blockedReason": "ምክንያት፦ {{reason}}"
+      "blockedReason": "ምክንያት፦ {{reason}}",
+      "forgot": "የይለፍ ቃልህን ረሳህ?"
     },
     "register": {
       "eyebrow": "ምዝገባ",
@@ -662,6 +714,28 @@
       "tooMany": "ለዚህ ኮድ ብዙ ሙከራዎች ተደርገዋል። አዲስ ጠይቅ።",
       "wrongEmail": "አድራሻህ አይደለም?",
       "changeEmail": "ምዝገባውን እንደገና ጀምር"
+    },
+    "deletionCancelled": "እንኳን ደህና መጣህ! የመለያህ መሰረዝ ተሰርዟል።",
+    "forgot": {
+      "eyebrow": "የተረሳ የይለፍ ቃል",
+      "title": "አዲስ ቁልፍ እንልክልሃለን።",
+      "text": "የመለያህን ኢሜይል አድራሻ አስገባ፦ አዲስ የይለፍ ቃል እንድትመርጥ ባለ 6 አሃዝ ኮድ ወደዚያ ይላካል።",
+      "hint": "የአይፈለጌ መልእክት ማህደሩንም ተመልከት።",
+      "submit": "ኮድ ተቀበል",
+      "pending": "ኮዱን በመላክ ላይ…",
+      "remembered": "አስታወስከው?",
+      "toLogin": "ግባ"
+    },
+    "reset": {
+      "eyebrow": "አዲስ የይለፍ ቃል",
+      "title": "አዲሱን የይለፍ ቃልህን ምረጥ።",
+      "text": "{{email}}ን የሚጠቀም መለያ ካለ፣ ባለ 6 አሃዝ ኮድ አሁን ወደዚያ ተልኳል። ከአዲሱ የይለፍ ቃልህ ጋር አስገባው።",
+      "password": "አዲስ የይለፍ ቃል",
+      "confirm": "የይለፍ ቃሉን አረጋግጥ",
+      "submit": "የይለፍ ቃል ቀይር",
+      "pending": "በማስቀመጥ ላይ…",
+      "blocked": "የይለፍ ቃልህ ተቀይሯል፣ ነገር ግን ይህ መለያ በNdadiee ቡድን ታግዷል።",
+      "changeEmail": "ሌላ አድራሻ ተጠቀም"
     }
   },
   "project": {
@@ -804,6 +878,12 @@
       "week_other": "{{count}} ኮሚቶች፣ የ{{date}} ሳምንት",
       "notSynced": "ማከማቻው እስካሁን አልተመሳሰለም።",
       "open": "ማከማቻውን እይ"
+    },
+    "owner": {
+      "yours": "ይህ ፕሮጀክትህ ነው።",
+      "moderation": "ይህን ፕሮጀክት እንደ አወያይ ማስተካከል ትችላለህ።",
+      "edit": "ፕሮጀክቱን አስተካክል",
+      "editNamed": "{{name}}ን አስተካክል"
     }
   },
   "shell": {

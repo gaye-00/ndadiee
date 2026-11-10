@@ -46,6 +46,8 @@ export const paths = {
   /** Publier un rôle pour un projet, déjà choisi dans le formulaire */
   newOpeningFor: (slug: string) => `/openings/new?project=${encodeURIComponent(slug)}`,
   newTopic: '/forum/new',
+  /** Modifier un projet (son porteur, un modérateur) */
+  editProject: (slug: string) => `/projects/${slug}/edit`,
   /** Modifier un sujet (son auteur, un modérateur) */
   editTopic: (slug: string) => `/forum/${slug}/edit`,
   /** Une réponse d'un sujet : la page y descend et l'éclaire */
@@ -70,6 +72,10 @@ export const paths = {
   register: '/register',
   /** Le code reçu par e-mail après l'inscription */
   verifyEmail: '/verify-email',
+  /** Mot de passe oublié : l'adresse où part le code */
+  forgotPassword: '/forgot-password',
+  /** Le code reçu et le nouveau mot de passe (même adresse dans les e-mails : AccountNoticeComposer.java) */
+  resetPassword: '/reset-password',
   // ── Textes légaux (liés depuis l'écran de connexion Google) ──
   privacy: '/privacy',
   terms: '/terms',

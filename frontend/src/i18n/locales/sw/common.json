@@ -189,7 +189,53 @@
     "modeSystem": "Fuata mipangilio ya kifaa chako.",
     "languageTitle": "Lugha",
     "languageDescription": "Chagua lugha unayopendelea kutumia kwenye Ndadiee.",
-    "languageError": "Lugha hii haikuweza kupakiwa. Jaribu tena."
+    "languageError": "Lugha hii haikuweza kupakiwa. Jaribu tena.",
+    "security": {
+      "passwordTitle": "Nenosiri",
+      "passwordDescription": "Libadilishe wakati wowote: vipindi vyako vingine vitafungwa.",
+      "passwordlessDescription": "Akaunti yako hufunguliwa kwa GitHub au Google. Chagua nenosiri ili pia uingie kwa barua pepe yako.",
+      "current": "Nenosiri la sasa",
+      "new": "Nenosiri jipya",
+      "newHint": "Angalau herufi 8; 12 au zaidi ni bora.",
+      "confirm": "Thibitisha nenosiri jipya",
+      "submit": "Badilisha nenosiri",
+      "saving": "Inahifadhi nenosiri…",
+      "changed": "Nenosiri limebadilishwa. Vipindi vyako vingine vimefungwa.",
+      "forgot": "Umesahau nenosiri?",
+      "codeIntro": "Msimbo wa tarakimu 6 utatumwa kwa {{email}}: kwa msimbo huo, unachagua nenosiri lako.",
+      "sendCode": "Pokea msimbo",
+      "codeSent": "Msimbo wa tarakimu 6 umetumwa kwa {{email}} sasa hivi. Angalia pia folda ya barua taka.",
+      "choose": "Hifadhi nenosiri hili",
+      "chosen": "Nenosiri limehifadhiwa. Sasa unaweza pia kuingia kwa barua pepe yako.",
+      "backToCurrent": "Ninajua nenosiri langu",
+      "errors": {
+        "incorrect": "Hilo si nenosiri lako la sasa.",
+        "unchanged": "Chagua nenosiri tofauti na la sasa."
+      }
+    },
+    "deletion": {
+      "title": "Futa akaunti yangu",
+      "description_one": "Akaunti yako na data zako binafsi zitafutwa. Una siku {{count}} ya kubadili nia.",
+      "description_other": "Akaunti yako na data zako binafsi zitafutwa. Una siku {{count}} za kubadili nia.",
+      "erased": "Jina lako, barua pepe, picha, wasifu na akaunti za GitHub au Google zilizounganishwa zinafutwa.",
+      "kept": "Mada, majibu, makala na mapitio yako yanabaki, yakiwa yametiwa sahihi «Akaunti iliyofutwa»: mijadala ya wengine inabaki na maana.",
+      "projects": "Miradi yako yenye timu inakabidhiwa kwa msimamizi, au kwa mwanachama wa muda mrefu zaidi; mingine inafutwa.",
+      "grace_one": "Kwa siku {{count}}, kuingia tena tu kunaghairi kila kitu. Baada ya hapo, ni ya mwisho.",
+      "grace_other": "Kwa siku {{count}}, kuingia tena tu kunaghairi kila kitu. Baada ya hapo, ni ya mwisho.",
+      "open": "Futa akaunti yangu…",
+      "dialogTitle": "Ufute akaunti yako?",
+      "dialogText_one": "Vipindi vyako vitafungwa mara moja. Akaunti yako itafutwa baada ya siku {{count}}, isipokuwa uingie tena kabla ya hapo.",
+      "dialogText_other": "Vipindi vyako vitafungwa mara moja. Akaunti yako itafutwa baada ya siku {{count}}, isipokuwa uingie tena kabla ya hapo.",
+      "projectsTitle": "Miradi yako",
+      "handedOver": "inakabidhiwa kwa {{name}}",
+      "deletedWithAccount": "itafutwa",
+      "password": "Thibitisha kwa nenosiri lako",
+      "noPassword": "Huna nenosiri? Pokea msimbo kwa barua pepe",
+      "codeIntro": "Msimbo wa tarakimu 6 utatumwa kwa {{email}} ili kuthibitisha ufutaji.",
+      "keep": "Baki na akaunti yangu",
+      "confirm": "Futa akaunti yangu",
+      "scheduled": "Akaunti yako itafutwa tarehe {{date}}. Ingia tena kabla ya hapo ili kughairi."
+    }
   },
   "validation": {
     "required": "Sehemu hii inahitajika.",
@@ -202,7 +248,9 @@
     "minItems_one": "Ongeza angalau kipengele {{count}}.",
     "minItems_other": "Ongeza angalau vipengele {{count}}.",
     "maxItems_one": "Si zaidi ya kipengele {{count}}.",
-    "maxItems_other": "Si zaidi ya vipengele {{count}}."
+    "maxItems_other": "Si zaidi ya vipengele {{count}}.",
+    "passwordMismatch": "Manenosiri mawili hayalingani.",
+    "code": "Msimbo una tarakimu 6."
   },
   "a11y": {
     "skipToContent": "Ruka hadi maudhui",
@@ -241,9 +289,12 @@
     "login": "Ingia",
     "register": "Jisajili",
     "verifyEmail": "Uthibitishaji wa barua pepe",
+    "forgotPassword": "Umesahau nenosiri",
+    "resetPassword": "Nenosiri jipya",
     "oauthCallback": "Ingia",
     "notFound": "Ukurasa haupatikani",
     "editTopic": "Hariri mada",
+    "editProject": "Hariri mradi",
     "admin": "Usimamizi",
     "adminUsers": "Usimamizi · Wanachama",
     "adminContent": "Usimamizi · Maudhui",
@@ -567,7 +618,8 @@
       "noAccount": "Bado huna akaunti?",
       "toRegister": "Fungua akaunti",
       "blocked": "Akaunti hii imesimamishwa na timu ya Ndadiee.",
-      "blockedReason": "Sababu: {{reason}}"
+      "blockedReason": "Sababu: {{reason}}",
+      "forgot": "Umesahau nenosiri?"
     },
     "register": {
       "eyebrow": "Jisajili",
@@ -662,6 +714,28 @@
       "tooMany": "Majaribio mengi mno kwa msimbo huu. Omba mpya.",
       "wrongEmail": "Si anwani yako?",
       "changeEmail": "Anza usajili upya"
+    },
+    "deletionCancelled": "Karibu tena! Kufutwa kwa akaunti yako kumeghairiwa.",
+    "forgot": {
+      "eyebrow": "Umesahau nenosiri",
+      "title": "Tutakutumia ufunguo mpya.",
+      "text": "Weka anwani ya barua pepe ya akaunti yako: msimbo wa tarakimu 6 utatumwa huko ili uchague nenosiri jipya.",
+      "hint": "Angalia pia folda ya barua taka.",
+      "submit": "Pokea msimbo",
+      "pending": "Inatuma msimbo…",
+      "remembered": "Umelikumbuka?",
+      "toLogin": "Ingia"
+    },
+    "reset": {
+      "eyebrow": "Nenosiri jipya",
+      "title": "Chagua nenosiri lako jipya.",
+      "text": "Ikiwa akaunti inatumia {{email}}, msimbo wa tarakimu 6 umetumwa huko sasa hivi. Uweke pamoja na nenosiri lako jipya.",
+      "password": "Nenosiri jipya",
+      "confirm": "Thibitisha nenosiri",
+      "submit": "Badilisha nenosiri",
+      "pending": "Inahifadhi…",
+      "blocked": "Nenosiri lako limebadilishwa, lakini akaunti hii imesimamishwa na timu ya Ndadiee.",
+      "changeEmail": "Tumia anwani nyingine"
     }
   },
   "project": {
@@ -804,6 +878,12 @@
       "week_other": "commit {{count}}, wiki ya {{date}}",
       "notSynced": "Hazina bado haijasawazishwa.",
       "open": "Tazama hazina"
+    },
+    "owner": {
+      "yours": "Huu ni mradi wako.",
+      "moderation": "Unaweza kuhariri mradi huu kama msimamizi.",
+      "edit": "Hariri mradi",
+      "editNamed": "Hariri {{name}}"
     }
   },
   "shell": {

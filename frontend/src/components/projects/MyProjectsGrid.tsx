@@ -1,4 +1,4 @@
-import { ArrowRight, Plus } from 'lucide-react';
+import { ArrowRight, PenLine, Plus } from 'lucide-react';
 import { m } from 'motion/react';
 import type { CSSProperties, ReactNode } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -171,6 +171,20 @@ function ProjectCard({ project, thread, index }: { project: DashboardProject; th
         ) : (
           // Sur une carte étroite, le nom du projet passe avant
           place && <span className="max-w-[45%] shrink-0 truncate font-mono text-[0.6875rem] text-faint-foreground @max-[15rem]/card:hidden">{place}</span>
+        )}
+        {/* Son porteur le modifie d'ici : au-dessus du lien qui couvre la carte */}
+        {project.myRole === 'OWNER' && !pending && (
+          <Link
+            to={paths.editProject(project.slug)}
+            viewTransition
+            aria-label={tc('project.owner.editNamed', { name: project.name })}
+            title={tc('project.owner.edit')}
+            onPointerEnter={() => prefetch(pages.editProject)}
+            onFocus={() => prefetch(pages.editProject)}
+            className="relative z-10 -me-1.5 grid size-7 shrink-0 place-items-center rounded-lg text-faint-foreground outline-none transition-colors hover:bg-foreground/8 hover:text-foreground focus-visible:ring-2 focus-visible:ring-ring/70"
+          >
+            <PenLine aria-hidden className="size-3.5" />
+          </Link>
         )}
       </div>
 

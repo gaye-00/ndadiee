@@ -43,7 +43,7 @@ public class AdminOverviewService {
     public AdminOverviewResponse overview() {
         Instant recent = Instant.now().minus(RECENT_DAYS, ChronoUnit.DAYS);
         return AdminOverviewResponse.builder()
-                .members(developerRepository.count())
+                .members(developerRepository.countByDeletedAtIsNull())
                 .moderators(userRepository.countByRole(Role.MODERATOR))
                 .blockedMembers(userRepository.countByBlockedAtIsNotNull())
                 .newMembers(developerRepository.countByCreatedAtGreaterThanEqual(recent))

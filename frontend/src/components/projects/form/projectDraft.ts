@@ -1,7 +1,7 @@
 import { z } from 'zod';
 import i18n from '@/i18n';
 import type { UserResponse } from '@/types/auth.types';
-import type { MediaKind, NewProjectRequest, Project, ProjectOpeningRequest, TeamRole } from '@/types/project.types';
+import type { MediaKind, NewProjectRequest, Project, ProjectOpeningRequest, ProjectUpdateRequest, TeamRole } from '@/types/project.types';
 import { tagSlug } from '@/utils/tags';
 // Les messages d'erreur des schémas, dans la langue de l'interface (z.config)
 import '@/utils/validators';
@@ -231,6 +231,63 @@ export function toProjectRequest(draft: ProjectDraft): NewProjectRequest {
     })),
     openings: draft.recruiting ? draft.roles.map(toOpeningRequest) : [],
   };
+}
+
+// Les dimensions d'une couverture que la page du projet ne renvoie pas : celles du recadrage (16:9, 1280 px)
+const COVER_SIZE = { width: 1280, height: 720 } as const;
+
+/** Un projet publié, tel que son formulaire de modification le reprend */
+export function draftOf(project: Project): ProjectDraft {
+  return {
+    name: project.name,
+    tagline: project.tagline ?? '',
+    tags: project.tags.map((tag) => tag.name),
+    description: project.description ?? '',
+    repositoryUrl: project.repositoryUrl ?? '',
+    demoUrl: project.demoUrl ?? '',
+    license: project.license ?? '',
+    cover: project.coverUrl ? { url: project.coverUrl, thumbnailUrl: project.coverThumbnailUrl ?? project.coverUrl, ...COVER_SIZE } : null,
+    coverCredit: project.coverCredit ?? '',
+    coverSourceUrl: project.coverSourceUrl ?? '',
+    gallery: (project.gallery ?? []).map((shot) => ({
+      id: `media-${shot.id}`,
+      kind: shot.kind,
+      url: shot.url,
+      thumbnailUrl: shot.thumbnailUrl ?? shot.url,
+      width: shot.width ?? COVER_SIZE.width,
+      height: shot.height ?? COVER_SIZE.height,
+      caption: shot.caption ?? '',
+      credit: shot.credit ?? '',
+      sourceUrl: shot.sourceUrl ?? '',
+    })),
+    recruiting: project.lookingForContributors,
+    // Les rôles ouverts, pour l'aperçu et « prêt à x % » : ils ne se modifient pas ici
+    roles: project.openings
+      .filter((opening) => opening.open)
+      .map((opening) => ({
+        id: `opening-${opening.id}`,
+        role: opening.role,
+        title: opening.title,
+        description: opening.description ?? '',
+        seats: opening.seats,
+        starterIssueNumber: opening.starterIssueNumber === null ? '' : String(opening.starterIssueNumber),
+        starterIssueTitle: opening.starterIssueTitle ?? '',
+      })),
+  };
+}
+
+/**
+ * Le brouillon d'un projet publié, tel que le backend le modifie (PUT /v1/projects/{id}) : sa galerie entière, dans
+ * l'ordre ; le recrutement ne change pas ici (il se règle dans l'espace d'équipe, avec les rôles).
+ */
+export function toProjectUpdateRequest(draft: ProjectDraft): ProjectUpdateRequest {
+  const { openings: _openings, ...request } = toProjectRequest(draft);
+  return request;
+}
+
+/** Le brouillon a-t-il changé depuis le projet publié ? */
+export function isDraftChanged(draft: ProjectDraft, original: ProjectDraft): boolean {
+  return JSON.stringify(toProjectUpdateRequest(draft)) !== JSON.stringify(toProjectUpdateRequest(original));
 }
 
 /** Les étapes d'un projet complet, dans l'ordre du formulaire ; chacune mène à son champ */

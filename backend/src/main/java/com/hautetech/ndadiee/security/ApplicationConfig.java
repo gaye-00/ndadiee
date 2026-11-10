@@ -24,7 +24,9 @@ public class ApplicationConfig {
     // L'identifiant est un email ou un nom d'utilisateur (tous deux stockés en minuscules)
     @Bean
     public UserDetailsService userDetailsService() {
+        // Un compte supprimé n'existe plus pour la connexion ni pour ses anciens jetons
         return identifier -> userRepository.findByEmailOrUsername(identifier, identifier)
+                .filter(user -> !user.isDeleted())
                 .orElseThrow(() -> new UsernameNotFoundException("Utilisateur introuvable"));
     }
 

@@ -194,7 +194,9 @@ public class UserService {
     }
 
     public Developer findDeveloperByUsernameOrThrow(String username) {
+        // Un compte supprimé n'a plus de profil : on ne le suit pas, on ne lui écrit pas
         return developerRepository.findByUsername(username.trim().toLowerCase())
+                .filter(developer -> !developer.isDeleted())
                 .orElseThrow(() -> new ResourceNotFoundException("Utilisateur", "nom d'utilisateur", username));
     }
 

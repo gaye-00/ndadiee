@@ -18,7 +18,25 @@
     "discardConfirm": "Far brouillon bi",
     "publish": "Siiwal projet bi",
     "publishing": "Ñu ngi siiwal projet bi",
-    "published": "{{name}} génn na : dalal jàmm ci vitrine bi !"
+    "published": "{{name}} génn na : dalal jàmm ci vitrine bi !",
+    "editTitle": "Soppi naal bi",
+    "backToProject": "Dellu ci naal bi",
+    "saved": "{{name}} yeesal nañu ko.",
+    "save": "Denc",
+    "saving": "Mi ngi denc naal bi",
+    "unsaved": "Coppite yu ñu dencul",
+    "upToDate": "Lépp denc nañu ko",
+    "discardChanges": "Bàyyi coppite yi",
+    "discardChangesTitle": "Ndax danga bëgg bàyyi say coppite?",
+    "discardChangesText": "Formileer bi dina dellu ci li naal bi di wone léegi.",
+    "discardChangesConfirm": "Bàyyi coppite yi",
+    "teamRecruiting_one": "Naal bi dafay wut ñu koy dimbali : {{count}} wàll ubbeeku na. Wàll yi ak laaj yi ci barabu ekip bi lañuy toppatoo.",
+    "teamRecruiting_other": "Naal bi dafay wut ñu koy dimbali : {{count}} wàll ubbeeku nañu. Wàll yi ak laaj yi ci barabu ekip bi lañuy toppatoo.",
+    "teamRecruitingEmpty": "Naal bi dafay wut ñu koy dimbali, waaye amagul benn wàll bu ubbeeku : siiwal leen ci barabu ekip bi.",
+    "teamNotRecruiting": "Naal bi wutul ñu koy dimbali léegi. Wut ñu koy dimbali ak wàll yi ci barabu ekip bi lañuy defare.",
+    "manageRoles": "Toppatoo wàll yi",
+    "notOwnerTitle": "Naal bii du sa bos",
+    "notOwnerText": "Boroom bi rekk, {{owner}}, moo ko mën a soppi."
   },
   "section": {
     "complete": "jëf ji mat na",
@@ -40,7 +58,8 @@
     },
     "team": {
       "title": "Ekip bi",
-      "text": "Yaa ngi wut ay naatalkat ? Wàll wu nekk dina nekk benn yégle, ñi ko méngoo dinañu ko gis."
+      "text": "Yaa ngi wut ay naatalkat ? Wàll wu nekk dina nekk benn yégle, ñi ko méngoo dinañu ko gis.",
+      "editText": "Wàll yi ñuy wut ñu ngi ci barabu ekip bi, ak laaj yi."
     }
   },
   "field": {

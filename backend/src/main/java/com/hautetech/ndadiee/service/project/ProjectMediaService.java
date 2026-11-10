@@ -1,7 +1,11 @@
 package com.hautetech.ndadiee.service.project;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.Objects;
 
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -63,6 +67,49 @@ public class ProjectMediaService {
         mediaUploadService.attach(projectId, imagesOf(saved));
         log.info("[Media] Image {} ajoutée au projet {} par {}", saved.getId(), projectId, userId);
         return projectMapper.toMediaResponse(saved);
+    }
+
+    /**
+     * La galerie telle qu'elle doit être, dans l'ordre : une image déjà là (même adresse) est gardée, avec sa nouvelle
+     * légende et son nouveau rang ; les absentes sont retirées, les nouvelles ajoutées.
+     */
+    public void replaceGallery(Long userId, Long projectId, List<ProjectMediaRequest> wanted) {
+        Project project = projectService.findProjectOrThrow(projectId);
+        requireManager(project, userId);
+        if (wanted.size() > MAX_MEDIA) {
+            throw new OperationNotAllowedException("La galerie compte au plus " + MAX_MEDIA + " images", "gallery");
+        }
+
+        Map<String, ProjectMedia> current = new HashMap<>();
+        mediaRepository.findByProjectIdOrderByPositionAscIdAsc(projectId).forEach(media -> current.putIfAbsent(media.getUrl(), media));
+        List<String> kept = new ArrayList<>();
+        for (int position = 0; position < wanted.size(); position++) {
+            ProjectMediaRequest request = wanted.get(position);
+            String url = request.getUrl().trim();
+            ProjectMedia media = current.remove(url);
+            if (media == null) {
+                media = ProjectMedia.builder().project(project).url(url)
+                        .thumbnailUrl(blankToNull(request.getThumbnailUrl()))
+                        .width(request.getWidth())
+                        .height(request.getHeight())
+                        .build();
+            }
+            media.setPosition(position);
+            media.setKind(request.getKind());
+            media.setCaption(blankToNull(request.getCaption()));
+            media.setCredit(blankToNull(request.getCredit()));
+            media.setSourceUrl(blankToNull(request.getSourceUrl()));
+            mediaRepository.save(media);
+            kept.addAll(imagesOf(media).stream().filter(Objects::nonNull).toList());
+        }
+        // Celles qui ne sont plus dans la galerie : leurs fichiers seront supprimés s'ils ne servent plus ailleurs
+        current.values().forEach(media -> {
+            mediaRepository.delete(media);
+            mediaUploadService.release(projectId, imagesOf(media));
+        });
+        mediaUploadService.attach(projectId, kept);
+        log.info("[Media] Galerie du projet {} mise à jour par {} : {} image(s), {} retirée(s)", projectId, userId,
+                wanted.size(), current.size());
     }
 
     public void delete(Long userId, Long projectId, Long mediaId) {

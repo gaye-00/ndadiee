@@ -224,14 +224,53 @@ public class ProjectService {
     public void delete(Long userId, Long projectId) {
         Project project = findProjectOrThrow(projectId);
         requireOwnerOrModerator(project, userId, "Vous ne pouvez supprimer que vos propres projets");
+        remove(project);
+        log.info("[Project] ID: {} supprimé par {}", projectId, userId);
+    }
 
+    /**
+     * Le compte du porteur est supprimé. Le projet a une équipe : il passe au plus ancien mainteneur, sinon au plus
+     * ancien membre, et ses tâches attendent un nouveau preneur. Il n'en a pas : il part avec le compte.
+     *
+     * @return le nouveau porteur, ou vide si le projet est supprimé
+     */
+    public Optional<Developer> handOverOrDelete(Project project) {
+        Long ownerId = project.getOwner().getId();
+        Optional<ProjectMember> successor = successorOf(project);
+        if (successor.isEmpty()) {
+            remove(project);
+            log.info("[Project] ID: {} supprimé avec le compte de son porteur {}", project.getId(), ownerId);
+            return Optional.empty();
+        }
+        ProjectMember heir = successor.get();
+        heir.setRole(ProjectRole.OWNER);
+        project.setOwner(heir.getUser());
+        // Par la liste du projet (orphanRemoval) : une suppression directe serait rejouée par sa cascade
+        project.getMembers().removeIf(member -> member.getUser().getId().equals(ownerId));
+        projectRepository.save(project);
+        eventPublisher.publishEvent(new ProjectMemberLeftEvent(project.getId(), ownerId));
+        log.info("[Project] ID: {} transmis à {} (compte du porteur {} supprimé)", project.getId(), heir.getUser().getId(), ownerId);
+        return Optional.of(heir.getUser());
+    }
+
+    /** Qui reprendrait ce projet si son porteur partait : le plus ancien mainteneur, sinon le plus ancien membre. */
+    public Optional<ProjectMember> successorOf(Project project) {
+        Long ownerId = project.getOwner().getId();
+        List<ProjectMember> team = projectMemberRepository
+                .findByProjectIdAndStatusOrderByCreatedAtAsc(project.getId(), MemberStatus.ACCEPTED).stream()
+                .filter(member -> !member.getUser().getId().equals(ownerId) && !member.getUser().isDeleted())
+                .toList();
+        return team.stream().filter(member -> member.getRole() == ProjectRole.MAINTAINER).findFirst()
+                .or(() -> team.stream().findFirst());
+    }
+
+    private void remove(Project project) {
+        Long projectId = project.getId();
         // Votes et commentaires n'ont pas de clé étrangère vers leur cible : nettoyage manuel
         voteRepository.deleteByTargets(ContentType.PROJECT, List.of(projectId));
         commentRepository.deleteByTargets(ContentType.PROJECT, List.of(projectId));
         tagService.releaseTags(project.getTags());
-
         projectRepository.delete(project);
-        log.info("[Project] ID: {} supprimé par {}", projectId, userId);
     }
 
     // ==================== MEMBRES ====================

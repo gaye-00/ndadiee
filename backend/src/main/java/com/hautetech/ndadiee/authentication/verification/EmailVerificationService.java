@@ -1,6 +1,5 @@
 package com.hautetech.ndadiee.authentication.verification;
 
-import java.security.SecureRandom;
 import java.time.Duration;
 import java.time.Instant;
 import java.util.List;
@@ -11,8 +10,6 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.transaction.support.TransactionSynchronization;
-import org.springframework.transaction.support.TransactionSynchronizationManager;
 
 import com.hautetech.ndadiee.exception.EmailVerificationException;
 import com.hautetech.ndadiee.mail.EmailMessage;
@@ -37,13 +34,11 @@ import lombok.extern.slf4j.Slf4j;
 @RequiredArgsConstructor
 public class EmailVerificationService {
 
-    static final Duration VALIDITY = Duration.ofMinutes(15);
-    public static final Duration RESEND_DELAY = Duration.ofSeconds(60);
-    static final int MAX_ATTEMPTS = 5;
-    static final int MAX_SENDS_PER_DAY = 10;
+    static final Duration VALIDITY = OneTimeCodes.VALIDITY;
+    public static final Duration RESEND_DELAY = OneTimeCodes.RESEND_DELAY;
+    static final int MAX_ATTEMPTS = OneTimeCodes.MAX_ATTEMPTS;
+    static final int MAX_SENDS_PER_DAY = OneTimeCodes.MAX_SENDS_PER_DAY;
     static final Duration UNCONFIRMED_RETENTION = Duration.ofDays(1);
-    private static final Duration DAY = Duration.ofDays(1);
-    private static final SecureRandom RANDOM = new SecureRandom();
 
     private final EmailVerificationRepository verifications;
     private final UserRepository users;
@@ -59,38 +54,22 @@ public class EmailVerificationService {
      * @return le nombre de secondes avant qu'un nouveau code puisse partir
      */
     public long send(User user) {
-        Instant now = Instant.now();
-        EmailVerification verification = verifications.findByUserId(user.getId()).orElse(null);
-        if (verification == null) {
-            verification = EmailVerification.builder().user(user).windowStartedAt(now).build();
-        } else {
-            Instant nextSend = verification.getSentAt().plus(RESEND_DELAY);
-            if (now.isBefore(nextSend)) {
-                return secondsBetween(now, nextSend);
-            }
-            if (!now.isBefore(verification.getWindowStartedAt().plus(DAY))) {
-                verification.setWindowStartedAt(now);
-                verification.setSendCount(0);
-            }
-            if (verification.getSendCount() >= MAX_SENDS_PER_DAY) {
+        EmailVerification verification = verifications.findByUserId(user.getId())
+                .orElseGet(() -> EmailVerification.builder().user(user).build());
+        OneTimeCodes.Issued issued = OneTimeCodes.issue(verification, passwordEncoder);
+        if (!issued.sent()) {
+            if (issued.capped()) {
                 log.warn("[Auth] Plafond de codes du jour atteint - ID: {}", user.getId());
-                return secondsBetween(now, verification.getWindowStartedAt().plus(DAY));
             }
+            return issued.waitSeconds();
         }
-
-        String code = "%06d".formatted(RANDOM.nextInt(1_000_000));
-        verification.setCodeHash(passwordEncoder.encode(code));
-        verification.setExpiresAt(now.plus(VALIDITY));
-        verification.setAttempts(0);
-        verification.setSentAt(now);
-        verification.setSendCount(verification.getSendCount() + 1);
         verifications.save(verification);
 
-        EmailMessage message = composer.compose(user, code, VALIDITY);
+        EmailMessage message = composer.compose(user, issued.code(), VALIDITY);
         // Une fois l'inscription enregistrée : pas d'e-mail pour un compte que la transaction n'a finalement pas créé
-        afterCommit(() -> mailQueue.submit(() -> emailSender.send(message)));
+        OneTimeCodes.afterCommit(() -> mailQueue.submit(() -> emailSender.send(message)));
         log.info("[Auth] Code de vérification envoyé - ID: {}", user.getId());
-        return RESEND_DELAY.toSeconds();
+        return issued.waitSeconds();
     }
 
     /**
@@ -107,19 +86,11 @@ public class EmailVerificationService {
                 .orElseThrow(() -> EmailVerificationException.invalidCode(MAX_ATTEMPTS));
         EmailVerification verification = verifications.findByUserId(user.getId())
                 .orElseThrow(() -> EmailVerificationException.invalidCode(MAX_ATTEMPTS));
-        if (verification.getAttempts() >= MAX_ATTEMPTS) {
-            throw EmailVerificationException.tooManyAttempts();
-        }
-        if (Instant.now().isAfter(verification.getExpiresAt())) {
-            throw EmailVerificationException.expired();
-        }
-        if (!passwordEncoder.matches(code, verification.getCodeHash())) {
-            verification.setAttempts(verification.getAttempts() + 1);
-            verifications.save(verification);
-            int remaining = MAX_ATTEMPTS - verification.getAttempts();
-            log.info("[Auth] Code de vérification faux - ID: {} - essais restants : {}", user.getId(), remaining);
-            throw remaining <= 0 ? EmailVerificationException.tooManyAttempts() : EmailVerificationException.invalidCode(remaining);
-        }
+        OneTimeCodes.check(verification, code, passwordEncoder, wrong -> {
+            verifications.save(wrong);
+            log.info("[Auth] Code de vérification faux - ID: {} - essais restants : {}", user.getId(),
+                    OneTimeCodes.remainingAttempts(wrong));
+        });
         user.setEmailVerified(true);
         users.save(user);
         verifications.delete(verification);
@@ -150,23 +121,6 @@ public class EmailVerificationService {
             } catch (DataIntegrityViolationException e) {
                 log.warn("[Auth] Inscription jamais confirmée gardée (encore référencée) - ID: {}", id);
             }
-        }
-    }
-
-    private static long secondsBetween(Instant from, Instant to) {
-        return Math.max(1, (Duration.between(from, to).toMillis() + 999) / 1000);
-    }
-
-    private static void afterCommit(Runnable action) {
-        if (TransactionSynchronizationManager.isSynchronizationActive()) {
-            TransactionSynchronizationManager.registerSynchronization(new TransactionSynchronization() {
-                @Override
-                public void afterCommit() {
-                    action.run();
-                }
-            });
-        } else {
-            action.run();
         }
     }
 }

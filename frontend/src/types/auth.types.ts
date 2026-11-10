@@ -64,6 +64,43 @@ export interface AuthResponse {
   accessToken: string;
   refreshToken: string;
   user: UserResponse;
+  /** Le compte devait être supprimé : cette connexion a annulé la suppression */
+  deletionCancelled?: boolean;
+}
+
+/** Le code reçu par e-mail et le nouveau mot de passe qu'il permet de choisir (ResetPasswordRequest.java) */
+export interface ResetPasswordRequest {
+  email: string;
+  code: string;
+  password: string;
+}
+
+/** Changer de mot de passe depuis ses réglages (ChangePasswordRequest.java) */
+export interface ChangePasswordRequest {
+  currentPassword: string;
+  newPassword: string;
+}
+
+/** Ce que la suppression du compte ferait (AccountDeletionPreview.java) */
+export interface AccountDeletionPreview {
+  /** Jours avant l'effacement, pendant lesquels une connexion annule tout */
+  gracePeriodDays: number;
+  /** Vrai : se confirme par le mot de passe ; faux : par un code envoyé par e-mail (compte GitHub ou Google) */
+  passwordRequired: boolean;
+  email: string;
+  projects: Array<{
+    id: number;
+    name: string;
+    slug: string;
+    /** Qui reprendrait le projet ; null : il part avec le compte */
+    successor: { id: number; username: string; fullName: string; avatarUrl: string | null } | null;
+  }>;
+}
+
+/** La suppression, confirmée par le mot de passe ou par le code reçu (AccountDeletionRequest.java) */
+export interface AccountDeletionRequest {
+  password?: string;
+  code?: string;
 }
 
 /** Compte de l'utilisateur connecté (UserResponse.java). */
@@ -78,6 +115,8 @@ export interface UserResponse {
   preferredLanguage: Language;
   /** Reçoit les e-mails des revues de code : un commentaire sur sa PR, un verdict, sa revue jugée utile */
   reviewEmails: boolean;
+  /** Connaît son mot de passe : faux pour un compte ouvert avec GitHub ou Google qui n'en a pas encore choisi */
+  passwordSet: boolean;
   createdAt: string;
 
   // Profil développeur : null pour un compte Admin

@@ -3,6 +3,7 @@ import { AnimatePresence, m, useAnimate } from 'motion/react';
 import { useEffect, useState, type ChangeEvent, type FormEvent } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useResendVerification, useVerifyEmail } from '@/hooks/useAuth';
+import { useCountdown } from '@/hooks/useCountdown';
 import { useReducedMotion } from '@/hooks/useReducedMotion';
 import { forgetPendingVerification, rememberPendingVerification, type StoredVerification } from '@/lib/pendingVerification';
 import { useAuthLoomStore } from '@/store/useAuthLoomStore';
@@ -12,19 +13,6 @@ import AuthSubmit from './AuthSubmit';
 import { firstNameOf, WELCOME_PAUSE } from './welcome';
 
 const CODE_LENGTH = 6;
-
-/** Les secondes qui restent avant de pouvoir demander un nouveau code, à la seconde près */
-function useCountdown(until: number) {
-  const [now, setNow] = useState(() => Date.now());
-  useEffect(() => {
-    if (until <= Date.now()) {
-      return;
-    }
-    const timer = window.setInterval(() => setNow(Date.now()), 1000);
-    return () => window.clearInterval(timer);
-  }, [until]);
-  return Math.max(0, Math.ceil((until - now) / 1000));
-}
 
 /**
  * Le code à 6 chiffres reçu par e-mail. Chaque chiffre fait monter l'étoffe du métier ; le sixième envoie le code.

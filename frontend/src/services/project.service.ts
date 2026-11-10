@@ -13,7 +13,7 @@ import type {
   ProjectFacets,
   ProjectFilters,
   ProjectMember,
-  ProjectRequest,
+  ProjectUpdateRequest,
   ProjectSettingsRequest,
   TeamRole,
 } from '@/types/project.types';
@@ -40,7 +40,8 @@ export const projectService = {
   /** Publie un projet, avec sa galerie et ses rôles recherchés : la page du projet en retour */
   create: (body: NewProjectRequest) => api.post<ApiResponse<Project>>(BASE, body).then((r) => r.data.data),
 
-  update: (id: number, body: ProjectRequest) =>
+  /** Modifie le projet et, si elle est envoyée, sa galerie (ensemble ou rien) : la page du projet en retour */
+  update: (id: number, body: ProjectUpdateRequest) =>
     api.put<ApiResponse<Project>>(`${BASE}/${id}`, body).then((r) => r.data.data),
 
   delete: (id: number) => api.delete<ApiResponse<void>>(`${BASE}/${id}`).then((r) => r.data),

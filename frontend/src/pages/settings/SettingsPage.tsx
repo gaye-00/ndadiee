@@ -6,8 +6,10 @@ import { useTranslation } from 'react-i18next';
 import { useLocation } from 'react-router-dom';
 import AccountSettings from '@/components/settings/AccountSettings';
 import AppearanceSettings from '@/components/settings/AppearanceSettings';
+import DeleteAccountSettings from '@/components/settings/DeleteAccountSettings';
 import EmailSettings from '@/components/settings/EmailSettings';
 import LanguageSettings from '@/components/settings/LanguageSettings';
+import PasswordSettings from '@/components/settings/PasswordSettings';
 import { useLanguage } from '@/hooks/useLanguage';
 import { useReducedMotion } from '@/hooks/useReducedMotion';
 import { useTheme } from '@/hooks/useTheme';
@@ -22,9 +24,9 @@ const SECTIONS = [
 
 type SectionId = (typeof SECTIONS)[number]['id'];
 
-// Les champs qu'un lien peut viser (/settings#skills depuis l'atelier, #review-emails depuis un e-mail), et l'onglet
+// Les champs qu'un lien peut viser (/settings#skills depuis l'atelier, #review-emails depuis un e-mail, #password-form), et l'onglet
 // qui les contient
-const ANCHORS: Record<string, SectionId> = { skills: 'account', 'review-emails': 'account' };
+const ANCHORS: Record<string, SectionId> = { skills: 'account', 'review-emails': 'account', 'password-form': 'account', 'delete-account-anchor': 'account' };
 
 /** L'onglet demandé par l'adresse (?tab=appearance, ou un champ visé : #skills) ; « Mon compte » par défaut */
 const tabOf = ({ search, hash }: { search: string; hash: string }): SectionId => {
@@ -224,6 +226,8 @@ export default function SettingsPage() {
         <div className="flex flex-col gap-6">
           <AccountSettings onDirtyChange={setAccountDirty} />
           <EmailSettings />
+          <PasswordSettings />
+          <DeleteAccountSettings />
         </div>
       ),
       appearance: <AppearanceSettings />,

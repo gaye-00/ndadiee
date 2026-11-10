@@ -19,10 +19,16 @@ public interface DeveloperRepository extends JpaRepository<Developer, Long>, Jpa
 
     Optional<Developer> findByUsername(String username);
 
-    // Membres actifs : les comptes suspendus par l'administration ne comptent plus dans la communauté
-    long countByBlockedAtIsNull();
+    // Membres actifs : les comptes suspendus par l'administration, ou supprimés, ne comptent plus dans la communauté
+    long countByBlockedAtIsNullAndDeletedAtIsNull();
+
+    // Les comptes dont la suppression programmée est arrivée à échéance (AccountDeletionService)
+    @Query("SELECT d.id FROM Developer d WHERE d.deletionScheduledAt IS NOT NULL AND d.deletionScheduledAt <= :now AND d.deletedAt IS NULL")
+    List<Long> findIdsOfDeletionDueBefore(@Param("now") Instant now);
 
     // ─── Back-office ───
+
+    long countByDeletedAtIsNull();
 
     long countByCreatedAtGreaterThanEqual(Instant since);
 

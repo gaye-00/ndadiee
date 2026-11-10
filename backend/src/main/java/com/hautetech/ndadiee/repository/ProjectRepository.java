@@ -21,6 +21,9 @@ public interface ProjectRepository extends JpaRepository<Project, Long>, JpaSpec
 
     Optional<Project> findBySlug(String slug);
 
+    // Les projets d'un porteur, du plus ancien au plus récent (suppression de son compte)
+    List<Project> findByOwnerIdOrderByCreatedAtAsc(Long ownerId);
+
     /**
      * Le projet, verrouillé jusqu'à la fin de la transaction : les gestes de son équipe qui numérotent ou rangent (une
      * tâche créée, déplacée ; un sprint ouvert, clos) passent l'un après l'autre.

@@ -189,7 +189,53 @@
     "modeSystem": "Yana bin saitunan na'urarka.",
     "languageTitle": "Harshe",
     "languageDescription": "Zaɓi harshen da ka fi so a Ndadiee.",
-    "languageError": "Ba a iya loda wannan harshe ba. Sake gwadawa."
+    "languageError": "Ba a iya loda wannan harshe ba. Sake gwadawa.",
+    "security": {
+      "passwordTitle": "Kalmar sirri",
+      "passwordDescription": "Canza ta duk lokacin da kake so: sauran zamanka za a rufe su.",
+      "passwordlessDescription": "Asusunka yana buɗewa da GitHub ko Google. Zaɓi kalmar sirri don ka iya shiga da imel ɗinka ma.",
+      "current": "Kalmar sirri ta yanzu",
+      "new": "Sabuwar kalmar sirri",
+      "newHint": "Aƙalla haruffa 8; 12 ko fiye ya fi kyau.",
+      "confirm": "Tabbatar da sabuwar kalmar sirri",
+      "submit": "Canza kalmar sirri",
+      "saving": "Ana adana kalmar sirri…",
+      "changed": "An canza kalmar sirri. An rufe sauran zamanka.",
+      "forgot": "Ka manta kalmar sirri?",
+      "codeIntro": "Za a aika lamba mai lambobi 6 zuwa {{email}}: da ita za ka zaɓi kalmar sirrinka.",
+      "sendCode": "Karɓi lamba",
+      "codeSent": "An aika lamba mai lambobi 6 zuwa {{email}} yanzu. Ka duba akwatin spam ma.",
+      "choose": "Adana wannan kalmar sirri",
+      "chosen": "An adana kalmar sirri. Yanzu za ka iya shiga da imel ɗinka ma.",
+      "backToCurrent": "Na san kalmar sirrina",
+      "errors": {
+        "incorrect": "Wannan ba kalmar sirrinka ta yanzu ba ce.",
+        "unchanged": "Zaɓi kalmar sirri da ta bambanta da ta yanzu."
+      }
+    },
+    "deletion": {
+      "title": "Goge asusuna",
+      "description_one": "Za a goge asusunka da bayananka na sirri. Kana da kwana {{count}} don ka canza ra’ayi.",
+      "description_other": "Za a goge asusunka da bayananka na sirri. Kana da kwanaki {{count}} don ka canza ra’ayi.",
+      "erased": "Ana goge sunanka, imel, hoto, bayanan martaba da asusun GitHub ko Google da aka haɗa.",
+      "kept": "Batutuwanka, amsoshi, maƙaloli da bita suna nan, da sa hannun «Asusun da aka goge»: tattaunawar wasu tana riƙe ma’anarta.",
+      "projects": "Ayyukanka masu ƙungiya suna komawa ga mai kula, ko ga memba mafi daɗewa; sauran ana goge su.",
+      "grace_one": "Na tsawon kwana {{count}}, sake shiga kawai yana soke komai. Bayan haka, ya tabbata.",
+      "grace_other": "Na tsawon kwanaki {{count}}, sake shiga kawai yana soke komai. Bayan haka, ya tabbata.",
+      "open": "Goge asusuna…",
+      "dialogTitle": "Goge asusunka?",
+      "dialogText_one": "Za a rufe zamanka nan take. Za a goge asusunka bayan kwana {{count}}, sai dai idan ka sake shiga kafin lokacin.",
+      "dialogText_other": "Za a rufe zamanka nan take. Za a goge asusunka bayan kwanaki {{count}}, sai dai idan ka sake shiga kafin lokacin.",
+      "projectsTitle": "Ayyukanka",
+      "handedOver": "zai koma ga {{name}}",
+      "deletedWithAccount": "za a goge shi",
+      "password": "Tabbatar da kalmar sirrinka",
+      "noPassword": "Ba ka da kalmar sirri? Karɓi lamba ta imel",
+      "codeIntro": "Za a aika lamba mai lambobi 6 zuwa {{email}} don tabbatar da gogewar.",
+      "keep": "Ajiye asusuna",
+      "confirm": "Goge asusuna",
+      "scheduled": "Za a goge asusunka a ranar {{date}}. Sake shiga kafin lokacin don soke."
+    }
   },
   "validation": {
     "required": "Ana buƙatar wannan fili.",
@@ -202,7 +248,9 @@
     "minItems_one": "Ƙara aƙalla abu {{count}}.",
     "minItems_other": "Ƙara aƙalla abubuwa {{count}}.",
     "maxItems_one": "Bai wuce abu {{count}} ba.",
-    "maxItems_other": "Bai wuce abubuwa {{count}} ba."
+    "maxItems_other": "Bai wuce abubuwa {{count}} ba.",
+    "passwordMismatch": "Kalmomin sirrin biyu ba iri ɗaya ba ne.",
+    "code": "Lambar tana da lambobi 6."
   },
   "a11y": {
     "skipToContent": "Tsallaka zuwa abun ciki",
@@ -241,9 +289,12 @@
     "login": "Shiga",
     "register": "Rajista",
     "verifyEmail": "Tabbatar da imel",
+    "forgotPassword": "Kalmar sirri da aka manta",
+    "resetPassword": "Sabuwar kalmar sirri",
     "oauthCallback": "Shiga",
     "notFound": "Ba a sami shafin ba",
     "editTopic": "Gyara batu",
+    "editProject": "Gyara aikin",
     "admin": "Gudanarwa",
     "adminUsers": "Gudanarwa · Membobi",
     "adminContent": "Gudanarwa · Abubuwa",
@@ -567,7 +618,8 @@
       "noAccount": "Ba ka da asusu tukuna?",
       "toRegister": "Ƙirƙiri asusu",
       "blocked": "Ƙungiyar Ndadiee ta dakatar da wannan asusu.",
-      "blockedReason": "Dalili: {{reason}}"
+      "blockedReason": "Dalili: {{reason}}",
+      "forgot": "Ka manta kalmar sirri?"
     },
     "register": {
       "eyebrow": "Rajista",
@@ -662,6 +714,28 @@
       "tooMany": "Gwaje-gwaje sun yi yawa da wannan lambar. Nemi sabuwa.",
       "wrongEmail": "Ba adireshinka ba ne?",
       "changeEmail": "Sake fara rajista"
+    },
+    "deletionCancelled": "Barka da dawowa! An soke goge asusunka.",
+    "forgot": {
+      "eyebrow": "Kalmar sirri da aka manta",
+      "title": "Za mu aiko maka sabon maɓalli.",
+      "text": "Shigar da adireshin imel na asusunka: za a aika lamba mai lambobi 6 zuwa can don ka zaɓi sabuwar kalmar sirri.",
+      "hint": "Ka duba akwatin spam ma.",
+      "submit": "Karɓi lamba",
+      "pending": "Ana aika lambar…",
+      "remembered": "Ka tuna da ita?",
+      "toLogin": "Shiga"
+    },
+    "reset": {
+      "eyebrow": "Sabuwar kalmar sirri",
+      "title": "Zaɓi sabuwar kalmar sirrinka.",
+      "text": "Idan wani asusu yana amfani da {{email}}, an aika lamba mai lambobi 6 zuwa can yanzu. Shigar da ita tare da sabuwar kalmar sirrinka.",
+      "password": "Sabuwar kalmar sirri",
+      "confirm": "Tabbatar da kalmar sirri",
+      "submit": "Canza kalmar sirri",
+      "pending": "Ana adanawa…",
+      "blocked": "An canza kalmar sirrinka, amma ƙungiyar Ndadiee ta dakatar da wannan asusu.",
+      "changeEmail": "Yi amfani da wani adireshi"
     }
   },
   "project": {
@@ -804,6 +878,12 @@
       "week_other": "commit {{count}}, makon {{date}}",
       "notSynced": "Ba a daidaita ma’ajiyar ba tukuna.",
       "open": "Duba ma’ajiyar"
+    },
+    "owner": {
+      "yours": "Wannan aikinka ne.",
+      "moderation": "Za ka iya gyara wannan aiki a matsayinka na mai kula.",
+      "edit": "Gyara aikin",
+      "editNamed": "Gyara {{name}}"
     }
   },
   "shell": {

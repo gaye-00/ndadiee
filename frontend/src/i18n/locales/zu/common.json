@@ -189,7 +189,53 @@
     "modeSystem": "Landela izilungiselelo zedivayisi yakho.",
     "languageTitle": "Ulimi",
     "languageDescription": "Khetha ulimi othanda ukulusebenzisa ku-Ndadiee.",
-    "languageError": "Lolu limi alukwazanga ukulayishwa. Zama futhi."
+    "languageError": "Lolu limi alukwazanga ukulayishwa. Zama futhi.",
+    "security": {
+      "passwordTitle": "Iphasiwedi",
+      "passwordDescription": "Yishintshe noma nini: amaseshini akho amanye azovalwa.",
+      "passwordlessDescription": "I-akhawunti yakho ivulwa nge-GitHub noma i-Google. Khetha iphasiwedi ukuze ungene nange-imeyili yakho.",
+      "current": "Iphasiwedi yamanje",
+      "new": "Iphasiwedi entsha",
+      "newHint": "Okungenani izinhlamvu ezi-8; ezi-12 noma ngaphezulu kungcono.",
+      "confirm": "Qinisekisa iphasiwedi entsha",
+      "submit": "Shintsha iphasiwedi",
+      "saving": "Igcina iphasiwedi…",
+      "changed": "Iphasiwedi ishintshiwe. Amaseshini akho amanye avaliwe.",
+      "forgot": "Ukhohlwe iphasiwedi?",
+      "codeIntro": "Ikhodi enezinombolo ezi-6 izothunyelwa ku-{{email}}: ngayo, ukhetha iphasiwedi yakho.",
+      "sendCode": "Thola ikhodi",
+      "codeSent": "Ikhodi enezinombolo ezi-6 isanda kuthunyelwa ku-{{email}}. Bheka nakufolda ye-spam.",
+      "choose": "Gcina le phasiwedi",
+      "chosen": "Iphasiwedi igciniwe. Manje ungangena nange-imeyili yakho.",
+      "backToCurrent": "Ngiyayazi iphasiwedi yami",
+      "errors": {
+        "incorrect": "Leyo akuyona iphasiwedi yakho yamanje.",
+        "unchanged": "Khetha iphasiwedi ehlukile kweyamanje."
+      }
+    },
+    "deletion": {
+      "title": "Susa i-akhawunti yami",
+      "description_one": "I-akhawunti yakho nedatha yakho yomuntu siqu kuzosulwa. Unosuku olu-{{count}} lokushintsha umqondo.",
+      "description_other": "I-akhawunti yakho nedatha yakho yomuntu siqu kuzosulwa. Unezinsuku ezingu-{{count}} zokushintsha umqondo.",
+      "erased": "Igama lakho, i-imeyili, isithombe, iphrofayela nama-akhawunti e-GitHub noma e-Google axhunyiwe kuyasulwa.",
+      "kept": "Izihloko zakho, izimpendulo, izindatshana nokubuyekeza kuyasala, kusayinwe «I-akhawunti esusiwe»: izingxoxo zabanye zigcina incazelo yazo.",
+      "projects": "Amaphrojekthi akho anethimba adluliselwa kumphathi, noma kulungu elidala kunawo wonke; amanye ayasuswa.",
+      "grace_one": "Usuku olu-{{count}}, ukungena futhi nje kukhansela konke. Ngemuva kwalokho, kuyaphela.",
+      "grace_other": "Izinsuku ezingu-{{count}}, ukungena futhi nje kukhansela konke. Ngemuva kwalokho, kuyaphela.",
+      "open": "Susa i-akhawunti yami…",
+      "dialogTitle": "Ususe i-akhawunti yakho?",
+      "dialogText_one": "Amaseshini akho azovalwa khona manjalo. I-akhawunti yakho izosulwa ngemuva kosuku olu-{{count}}, ngaphandle uma ungena futhi ngaphambi kwalokho.",
+      "dialogText_other": "Amaseshini akho azovalwa khona manjalo. I-akhawunti yakho izosulwa ngemuva kwezinsuku ezingu-{{count}}, ngaphandle uma ungena futhi ngaphambi kwalokho.",
+      "projectsTitle": "Amaphrojekthi akho",
+      "handedOver": "idluliselwa ku-{{name}}",
+      "deletedWithAccount": "izosuswa",
+      "password": "Qinisekisa ngephasiwedi yakho",
+      "noPassword": "Awunayo iphasiwedi? Thola ikhodi nge-imeyili",
+      "codeIntro": "Ikhodi enezinombolo ezi-6 izothunyelwa ku-{{email}} ukuze kuqinisekiswe ukususwa.",
+      "keep": "Gcina i-akhawunti yami",
+      "confirm": "Susa i-akhawunti yami",
+      "scheduled": "I-akhawunti yakho izosuswa ngo-{{date}}. Ngena futhi ngaphambi kwalokho ukuze ukhansele."
+    }
   },
   "validation": {
     "required": "Le nkambu iyadingeka.",
@@ -202,7 +248,9 @@
     "minItems_one": "Engeza okungenani into eyi-{{count}}.",
     "minItems_other": "Engeza okungenani izinto ezingu-{{count}}.",
     "maxItems_one": "Okuningi into eyi-{{count}}.",
-    "maxItems_other": "Okuningi izinto ezingu-{{count}}."
+    "maxItems_other": "Okuningi izinto ezingu-{{count}}.",
+    "passwordMismatch": "Amaphasiwedi womabili awafani.",
+    "code": "Ikhodi inezinombolo ezi-6."
   },
   "a11y": {
     "skipToContent": "Yeqela kokuqukethwe",
@@ -241,9 +289,12 @@
     "login": "Ngena",
     "register": "Bhalisa",
     "verifyEmail": "Ukuqinisekisa i-imeyili",
+    "forgotPassword": "Iphasiwedi ekhohliwe",
+    "resetPassword": "Iphasiwedi entsha",
     "oauthCallback": "Ngena",
     "notFound": "Ikhasi alitholakali",
     "editTopic": "Hlela isihloko",
+    "editProject": "Hlela iphrojekthi",
     "admin": "Ukuphatha",
     "adminUsers": "Ukuphatha · Amalungu",
     "adminContent": "Ukuphatha · Okuqukethwe",
@@ -567,7 +618,8 @@
       "noAccount": "Awunayo i-akhawunti okwamanje?",
       "toRegister": "Dala i-akhawunti",
       "blocked": "Le akhawunti imiswe yithimba le-Ndadiee.",
-      "blockedReason": "Isizathu: {{reason}}"
+      "blockedReason": "Isizathu: {{reason}}",
+      "forgot": "Ukhohlwe iphasiwedi?"
     },
     "register": {
       "eyebrow": "Bhalisa",
@@ -662,6 +714,28 @@
       "tooMany": "Imizamo eminingi kakhulu ngale khodi. Cela entsha.",
       "wrongEmail": "Akulona ikheli lakho?",
       "changeEmail": "Qala ukubhalisa kabusha"
+    },
+    "deletionCancelled": "Siyakwamukela futhi! Ukususwa kwe-akhawunti yakho kukhanseliwe.",
+    "forgot": {
+      "eyebrow": "Iphasiwedi ekhohliwe",
+      "title": "Sizokuthumelela ukhiye omusha.",
+      "text": "Faka ikheli le-imeyili le-akhawunti yakho: ikhodi enezinombolo ezi-6 izothunyelwa lapho ukuze ukhethe iphasiwedi entsha.",
+      "hint": "Bheka nakufolda ye-spam.",
+      "submit": "Thola ikhodi",
+      "pending": "Ithumela ikhodi…",
+      "remembered": "Uyikhumbulile?",
+      "toLogin": "Ngena"
+    },
+    "reset": {
+      "eyebrow": "Iphasiwedi entsha",
+      "title": "Khetha iphasiwedi yakho entsha.",
+      "text": "Uma i-akhawunti isebenzisa u-{{email}}, ikhodi enezinombolo ezi-6 isanda kuthunyelwa lapho. Yifake kanye nephasiwedi yakho entsha.",
+      "password": "Iphasiwedi entsha",
+      "confirm": "Qinisekisa iphasiwedi",
+      "submit": "Shintsha iphasiwedi",
+      "pending": "Iyagcina…",
+      "blocked": "Iphasiwedi yakho ishintshiwe, kodwa le akhawunti imiswe yithimba le-Ndadiee.",
+      "changeEmail": "Sebenzisa elinye ikheli"
     }
   },
   "project": {
@@ -804,6 +878,12 @@
       "week_other": "ama-commit angu-{{count}}, isonto lika-{{date}}",
       "notSynced": "Inqolobane ayikavumelaniswa.",
       "open": "Buka inqolobane"
+    },
+    "owner": {
+      "yours": "Le yiphrojekthi yakho.",
+      "moderation": "Ungahlela le phrojekthi njengomlawuli.",
+      "edit": "Hlela iphrojekthi",
+      "editNamed": "Hlela i-{{name}}"
     }
   },
   "shell": {

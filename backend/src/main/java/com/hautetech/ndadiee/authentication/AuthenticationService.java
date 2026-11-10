@@ -147,14 +147,22 @@ public class AuthenticationService {
     }
 
     /**
-     * Ouvre une session sur un compte dont l'identité est établie (mot de passe vérifié, ou compte GitHub ou Google
-     * relié) : refusée si le compte est suspendu.
+     * Ouvre une session sur un compte dont l'identité est établie (mot de passe vérifié, code reçu par e-mail, ou
+     * compte GitHub ou Google relié) : refusée si le compte est suspendu. Un compte dont la suppression était
+     * programmée revient : se reconnecter l'annule.
      */
     public AuthenticationResponse openSession(User user) {
         requireActive(user);
+        boolean deletionCancelled = user.getDeletionScheduledAt() != null;
+        if (deletionCancelled) {
+            user.setDeletionScheduledAt(null);
+            log.info("[Auth] Suppression du compte annulée par une connexion - ID: {}", user.getId());
+        }
         user.setLastLoginAt(Instant.now());
         userRepository.save(user);
-        return buildResponse(user);
+        AuthenticationResponse response = buildResponse(user);
+        response.setDeletionCancelled(deletionCancelled);
+        return response;
     }
 
     /**
@@ -192,14 +200,16 @@ public class AuthenticationService {
 
     /** Échange un refresh token valide contre une nouvelle paire de jetons. */
     public AuthenticationResponse refreshToken(RefreshTokenRequest request) {
-        String username;
+        JwtService.TokenClaims claims;
         try {
-            username = jwtService.extractUsernameFromRefreshToken(request.getRefreshToken());
+            claims = jwtService.parseRefreshToken(request.getRefreshToken());
         } catch (JwtException | IllegalArgumentException e) {
             throw new UnauthorizedException("Refresh token invalide ou expiré");
         }
 
-        User user = userRepository.findByUsername(username)
+        // Compte supprimé, ou jeton émis avant un changement de mot de passe : la session est close
+        User user = userRepository.findByUsername(claims.username())
+                .filter(found -> !found.isDeleted() && found.acceptsTokenIssuedAt(claims.issuedAt()))
                 .orElseThrow(() -> new UnauthorizedException("Refresh token invalide ou expiré"));
         // Suspendu depuis la connexion : la session ne se renouvelle plus
         requireActive(user);
@@ -235,13 +245,17 @@ public class AuthenticationService {
     // ==================== HELPERS ====================
 
     private void requireActive(User user) {
+        if (user.isDeleted()) {
+            throw new UnauthorizedException("Ce compte n'existe plus");
+        }
         if (user.isBlocked()) {
             log.info("[Auth] Compte suspendu, session refusée - ID: {}", user.getId());
             throw new AccountBlockedException(user.getBlockedReason());
         }
     }
 
-    private AuthenticationResponse buildResponse(User user) {
+    /** Une nouvelle paire de jetons pour une session déjà établie (après un changement de mot de passe). */
+    public AuthenticationResponse buildResponse(User user) {
         return AuthenticationResponse.builder()
                 .accessToken(jwtService.generateAccessToken(user))
                 .refreshToken(jwtService.generateRefreshToken(user))

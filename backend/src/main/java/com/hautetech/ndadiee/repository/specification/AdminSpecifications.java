@@ -35,6 +35,8 @@ public final class AdminSpecifications {
     public static Specification<User> users(String q, Role role, AccountStatus status) {
         return (root, query, cb) -> {
             List<Predicate> predicates = new ArrayList<>();
+            // Un compte supprimé n'est plus personne : rien à y administrer
+            predicates.add(cb.isNull(root.get("deletedAt")));
             if (hasText(q)) {
                 terms(q).forEach(term -> predicates.add(cb.or(
                         contains(cb, root.get("username"), term),

@@ -1,5 +1,5 @@
-import { ArrowLeft, CircleCheck, Eye, PenLine, RotateCcw, Rocket } from 'lucide-react';
-import { useCallback, useId, useLayoutEffect, useRef, useState, type FormEvent } from 'react';
+import { ArrowLeft, ArrowUpRight, CircleCheck, Eye, PenLine, RotateCcw, Rocket, Save } from 'lucide-react';
+import { useCallback, useId, useLayoutEffect, useMemo, useRef, useState, type FormEvent } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Link, useNavigate } from 'react-router-dom';
 import { toast } from 'sonner';
@@ -15,16 +15,19 @@ import {
   checklistOf,
   completeDraft,
   draftErrorsOf,
+  draftOf,
   EMPTY_DRAFT,
   GOOD_STACK,
   GOOD_STORY,
   GOOD_TAGLINE,
+  isDraftChanged,
   isDraftEmpty,
   isWebUrl,
   LIMITS,
   previewProjectOf,
   progressOf,
   toProjectRequest,
+  toProjectUpdateRequest,
   validateDraft,
   withScheme,
   type ChecklistItem,
@@ -40,12 +43,13 @@ import MarkdownEditor from '@/components/shared/MarkdownEditor';
 import { WovenThreads } from '@/components/shared/WovenMotif';
 import { useAuth } from '@/hooks/useAuth';
 import { useDraft } from '@/hooks/useDraft';
-import { useCreateProject } from '@/hooks/useProjects';
+import { useCreateProject, useUpdateProject } from '@/hooks/useProjects';
 import { useReducedMotion } from '@/hooks/useReducedMotion';
 import { isApple } from '@/lib/platform';
 import { cn } from '@/lib/utils';
 import { paths } from '@/router/paths';
 import type { GithubRepository } from '@/types/github.types';
+import type { Project } from '@/types/project.types';
 import { getApiError, getApiErrorMessage } from '@/utils/apiError';
 
 // L'ordre des champs dans le formulaire : la première erreur reçoit le focus
@@ -65,8 +69,12 @@ const DESCRIPTION_FORMATS = ['bold', 'code', 'list'] as const;
  * Le projet est gardé en brouillon sur l'appareil à chaque pause dans la frappe, images comprises (elles sont déjà
  * envoyées) : il revient à la prochaine visite. Les erreurs (les règles du backend) s'affichent à la publication,
  * puis à chaque correction ; projet, galerie et rôles sont publiés ensemble, ou pas du tout.
+ *
+ * Avec un projet déjà publié, le même formulaire le modifie : il part de ce que le projet montre, sans brouillon ni
+ * import, et enregistre textes, images et liens ensemble. Les rôles recherchés et le recrutement se gèrent dans
+ * l'espace d'équipe : l'étape 5 y mène.
  */
-export default function ProjectForm() {
+export default function ProjectForm({ project }: { project?: Project }) {
   const { t } = useTranslation('projectForm');
   const navigate = useNavigate();
   const { user } = useAuth();
@@ -85,8 +93,15 @@ export default function ProjectForm() {
     team: `${base}-team`,
   };
 
+  // Un nouveau projet s'écrit dans le brouillon de l'appareil ; un projet publié, dans l'état de la page
   const draft = useDraft<ProjectDraft>('project', EMPTY_DRAFT, isDraftEmpty);
-  const values = completeDraft(draft.value);
+  const original = useMemo(() => (project ? draftOf(project) : null), [project]);
+  const [edited, setEdited] = useState<ProjectDraft | null>(null);
+  const editing = original !== null;
+  const values = original ? (edited ?? original) : completeDraft(draft.value);
+  const dirty = original ? isDraftChanged(values, original) : !isDraftEmpty(values);
+  const setValues = (apply: (current: ProjectDraft) => ProjectDraft) =>
+    original ? setEdited((current) => apply(current ?? original)) : draft.setValue((current) => apply(completeDraft(current)));
   const [mode, setMode] = useState<'write' | 'preview'>('write');
   // Après une première tentative, les erreurs suivent la frappe ; celles du serveur partent au changement suivant
   const [submitted, setSubmitted] = useState(false);
@@ -95,6 +110,7 @@ export default function ProjectForm() {
   const [confirmReset, setConfirmReset] = useState(false);
   const images = useLocalImages();
   const create = useCreateProject();
+  const update = useUpdateProject();
 
   // ── Les envois d'images en cours : la publication les attend ──
   const [uploading, setUploading] = useState(0);
@@ -109,7 +125,7 @@ export default function ProjectForm() {
 
   function change(next: Partial<ProjectDraft>) {
     // Sur le dernier état : une image qui arrive pendant qu'on écrit n'efface pas la frappe
-    draft.setValue((current) => ({ ...completeDraft(current), ...next }));
+    setValues((current) => ({ ...current, ...next }));
     if (Object.keys(serverErrors).length > 0) {
       setServerErrors({});
     }
@@ -151,7 +167,7 @@ export default function ProjectForm() {
 
   function undoImport() {
     if (imported) {
-      draft.setValue(imported.before);
+      setValues(() => imported.before);
       setServerErrors({});
       setImported(null);
       setImportCount((count) => count + 1);
@@ -214,7 +230,7 @@ export default function ProjectForm() {
   // ── Publier ──
   function submit(event?: FormEvent) {
     event?.preventDefault();
-    if (create.isPending) {
+    if (create.isPending || update.isPending) {
       return;
     }
     if (uploading > 0) {
@@ -228,28 +244,47 @@ export default function ProjectForm() {
       focusFirstError(found);
       return;
     }
+    const onError = (failure: unknown) => {
+      const fields = getApiError(failure)?.validationErrors;
+      if (fields) {
+        const mapped = draftErrorsOf(fields);
+        setServerErrors(mapped);
+        focusFirstError(mapped);
+      } else {
+        setServerErrors({ form: getApiErrorMessage(failure) });
+      }
+    };
+    if (project) {
+      update.mutate(
+        { id: project.id, body: toProjectUpdateRequest(values) },
+        {
+          onSuccess: (saved) => {
+            setEdited(null);
+            toast.success(t('form.saved', { name: saved.name }));
+            void navigate(paths.project(saved.slug), { replace: true, viewTransition: true });
+          },
+          onError,
+        },
+      );
+      return;
+    }
     create.mutate(toProjectRequest(values), {
-      onSuccess: (project) => {
+      onSuccess: (created) => {
         draft.clear();
-        toast.success(t('form.published', { name: project.name }));
-        void navigate(paths.project(project.slug), { replace: true, viewTransition: true });
+        toast.success(t('form.published', { name: created.name }));
+        void navigate(paths.project(created.slug), { replace: true, viewTransition: true });
       },
-      onError: (failure) => {
-        const fields = getApiError(failure)?.validationErrors;
-        if (fields) {
-          const mapped = draftErrorsOf(fields);
-          setServerErrors(mapped);
-          focusFirstError(mapped);
-        } else {
-          setServerErrors({ form: getApiErrorMessage(failure) });
-        }
-      },
+      onError,
     });
   }
 
   function reset() {
-    draft.clear();
-    draft.setValue(EMPTY_DRAFT);
+    if (editing) {
+      setEdited(null);
+    } else {
+      draft.clear();
+      draft.setValue(EMPTY_DRAFT);
+    }
     setServerErrors({});
     setSubmitted(false);
     setImported(null);
@@ -268,7 +303,7 @@ export default function ProjectForm() {
     links: isWebUrl(values.repositoryUrl) || isWebUrl(values.demoUrl),
     team: values.recruiting && values.roles.some((role) => role.title.trim()),
   };
-  const pending = create.isPending;
+  const pending = create.isPending || update.isPending;
 
   return (
     <div className="relative isolate overflow-x-clip">
@@ -281,14 +316,14 @@ export default function ProjectForm() {
         {/* ── En-tête : retour, titre, écrire ou voir ── */}
         <div className="flex flex-wrap items-center gap-x-6 gap-y-3">
           <Link
-            to={paths.myProjects}
+            to={project ? paths.project(project.slug) : paths.myProjects}
             viewTransition
             className="group/back inline-flex items-center gap-2 rounded-full text-sm font-semibold text-muted-foreground outline-none transition-colors hover:text-foreground focus-visible:ring-2 focus-visible:ring-ring/70"
           >
             <ArrowLeft aria-hidden className="size-4 transition-transform group-hover/back:-translate-x-0.5 rtl:-scale-x-100" />
-            {t('form.back')}
+            {t(project ? 'form.backToProject' : 'form.back')}
           </Link>
-          <h1 className="font-display text-h4">{t('form.title')}</h1>
+          <h1 className="font-display text-h4">{t(project ? 'form.editTitle' : 'form.title')}</h1>
           <div role="tablist" aria-label={t('form.mode')} className="ms-auto flex gap-0.5 rounded-xl bg-foreground/5 p-1">
             {(['write', 'preview'] as const).map((tab) => (
               <button
@@ -332,7 +367,7 @@ export default function ProjectForm() {
             ) : (
               <div className="grid items-start gap-6 lg:grid-cols-[minmax(0,1fr)_20rem] xl:grid-cols-[minmax(0,1fr)_22rem] xl:gap-8">
                 <div className="flex min-w-0 flex-col gap-6">
-                  {draft.restored && (
+                  {!editing && draft.restored && (
                     <p className="flex flex-wrap items-center gap-x-3 gap-y-1 rounded-2xl border border-jade/25 bg-jade/8 px-4 py-2.5 text-sm text-soft-foreground">
                       <CircleCheck aria-hidden className="size-4 text-jade" />
                       {t('form.draftRestored')}
@@ -347,7 +382,7 @@ export default function ProjectForm() {
                     </p>
                   )}
 
-                  <GithubRepoImport onImport={applyImport} onUndo={undoImport} />
+                  {!editing && <GithubRepoImport onImport={applyImport} onUndo={undoImport} />}
 
                   {/* ── 1. L'essentiel ── */}
                   <FormSection id={`${base}-essentials`} index={1} title={t('section.essentials.title')} description={t('section.essentials.text')} complete={sectionDone.essentials}>
@@ -358,7 +393,7 @@ export default function ProjectForm() {
                         onChange={(name) => change({ name })}
                         invalid={errors.name !== undefined}
                         placeholder={t('fields.namePlaceholder')}
-                        autoFocus={!draft.restored}
+                        autoFocus={!editing && !draft.restored}
                       />
                     </FormField>
                     <FormField id={ids.tagline} label={t('fields.tagline')} error={errors.tagline} hint={t('fields.taglineHint')} count={[values.tagline.length, LIMITS.tagline]}>
@@ -469,15 +504,25 @@ export default function ProjectForm() {
                   </FormSection>
 
                   {/* ── 5. L'équipe ── */}
-                  <FormSection id={`${base}-team-section`} index={5} title={t('section.team.title')} description={t('section.team.text')} complete={sectionDone.team}>
-                    <RolesEditor
-                      id={ids.team}
-                      recruiting={values.recruiting}
-                      roles={values.roles}
-                      repositoryUrl={values.repositoryUrl}
-                      onChange={change}
-                      errors={errors}
-                    />
+                  <FormSection
+                    id={`${base}-team-section`}
+                    index={5}
+                    title={t('section.team.title')}
+                    description={t(project ? 'section.team.editText' : 'section.team.text')}
+                    complete={sectionDone.team}
+                  >
+                    {project ? (
+                      <TeamElsewhere id={ids.team} project={project} roles={values.roles.length} />
+                    ) : (
+                      <RolesEditor
+                        id={ids.team}
+                        recruiting={values.recruiting}
+                        roles={values.roles}
+                        repositoryUrl={values.repositoryUrl}
+                        onChange={change}
+                        errors={errors}
+                      />
+                    )}
                   </FormSection>
                 </div>
 
@@ -508,6 +553,11 @@ export default function ProjectForm() {
                     <PulsatingDots size="sm" />
                     {t('form.uploading', { count: uploading })}
                   </>
+                ) : editing ? (
+                  <>
+                    <span aria-hidden className={cn('size-1.5 rounded-full', dirty ? 'animate-pulse bg-gold' : 'bg-jade')} />
+                    {t(dirty ? 'form.unsaved' : 'form.upToDate')}
+                  </>
                 ) : (
                   draft.savedAt && (
                     <>
@@ -518,18 +568,18 @@ export default function ProjectForm() {
                 )}
               </p>
               <span className="flex-1" />
-              {!isDraftEmpty(values) && (
+              {dirty && (
                 <button
                   type="button"
                   onClick={() => setConfirmReset(true)}
                   className="h-10 rounded-xl px-3 text-sm font-semibold text-muted-foreground outline-none transition-colors hover:bg-foreground/6 hover:text-foreground focus-visible:ring-2 focus-visible:ring-ring/70"
                 >
-                  {t('form.discard')}
+                  {t(editing ? 'form.discardChanges' : 'form.discard')}
                 </button>
               )}
               <button
                 type="submit"
-                disabled={pending || uploading > 0}
+                disabled={pending || uploading > 0 || (editing && !dirty)}
                 className={cn(
                   'group/publish inline-flex h-11 min-w-40 items-center justify-center gap-2 rounded-[0.875rem] bg-kente-warm px-5 text-sm font-bold text-kente-night',
                   'shadow-[0_12px_28px_-14px_var(--kente-coral)] transition-[translate,box-shadow,opacity] duration-300 enabled:hover:-translate-y-px disabled:opacity-60',
@@ -537,7 +587,12 @@ export default function ProjectForm() {
                 )}
               >
                 {pending ? (
-                  <PulsatingDots size="sm" tone="current" label={t('form.publishing')} />
+                  <PulsatingDots size="sm" tone="current" label={t(editing ? 'form.saving' : 'form.publishing')} />
+                ) : editing ? (
+                  <>
+                    <Save aria-hidden className="size-4" />
+                    {t('form.save')}
+                  </>
                 ) : (
                   <>
                     <Rocket aria-hidden className="size-4 transition-transform duration-500 ease-out-expo group-enabled/publish:group-hover/publish:-translate-y-0.5 group-enabled/publish:group-hover/publish:translate-x-0.5" />
@@ -553,12 +608,43 @@ export default function ProjectForm() {
       <ConfirmDialog
         open={confirmReset}
         onOpenChange={setConfirmReset}
-        title={t('form.discardTitle')}
-        description={t('form.discardText')}
-        confirmLabel={t('form.discardConfirm')}
+        title={t(editing ? 'form.discardChangesTitle' : 'form.discardTitle')}
+        description={t(editing ? 'form.discardChangesText' : 'form.discardText')}
+        confirmLabel={t(editing ? 'form.discardChangesConfirm' : 'form.discardConfirm')}
         destructive
         onConfirm={reset}
       />
+    </div>
+  );
+}
+
+/**
+ * L'étape 5 d'un projet publié : ses rôles recherchés et son recrutement se gèrent dans l'espace d'équipe, avec les
+ * candidatures. Le lien n'y mène que pour l'équipe (un modérateur n'y entre pas).
+ */
+function TeamElsewhere({ id, project, roles }: { id: string; project: Project; roles: number }) {
+  const { t } = useTranslation('projectForm');
+  const inTeam = project.myMembershipStatus === 'ACCEPTED';
+
+  return (
+    <div id={id} tabIndex={-1} className="flex flex-col gap-4 rounded-2xl border border-border-subtle p-4 outline-none sm:flex-row sm:items-center sm:p-5">
+      <p className="min-w-0 flex-1 text-sm leading-relaxed text-soft-foreground">
+        {!project.lookingForContributors
+          ? t('form.teamNotRecruiting')
+          : roles > 0
+            ? t('form.teamRecruiting', { count: roles })
+            : t('form.teamRecruitingEmpty')}
+      </p>
+      {inTeam && (
+        <Link
+          to={paths.workspaceRoles(project.slug)}
+          viewTransition
+          className="inline-flex h-10 shrink-0 items-center justify-center gap-1.5 rounded-xl border border-border-strong px-4 text-sm font-bold outline-none transition-colors hover:bg-foreground/5 focus-visible:ring-2 focus-visible:ring-ring/70"
+        >
+          {t('form.manageRoles')}
+          <ArrowUpRight aria-hidden className="size-4 rtl:-scale-x-100" />
+        </Link>
+      )}
     </div>
   );
 }

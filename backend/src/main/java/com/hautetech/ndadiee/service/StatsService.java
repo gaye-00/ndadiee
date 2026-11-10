@@ -25,7 +25,7 @@ public class StatsService {
 
     public CommunityStatsResponse community() {
         return CommunityStatsResponse.builder()
-                .developers(developerRepository.countByBlockedAtIsNull())
+                .developers(developerRepository.countByBlockedAtIsNullAndDeletedAtIsNull())
                 .countries(developerRepository.countCountries())
                 .projects(projectRepository.countByHiddenAtIsNull())
                 .openings(openingRepository.countOpen())

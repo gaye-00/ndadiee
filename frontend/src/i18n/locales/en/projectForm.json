@@ -18,7 +18,25 @@
     "discardConfirm": "Clear the draft",
     "publish": "Publish the project",
     "publishing": "Publishing the project",
-    "published": "{{name}} is live: welcome to the showcase!"
+    "published": "{{name}} is live: welcome to the showcase!",
+    "editTitle": "Edit project",
+    "backToProject": "Back to the project",
+    "saved": "{{name}} is up to date.",
+    "save": "Save",
+    "saving": "Saving the project",
+    "unsaved": "Unsaved changes",
+    "upToDate": "Everything is saved",
+    "discardChanges": "Discard changes",
+    "discardChangesTitle": "Discard your changes?",
+    "discardChangesText": "The form goes back to what the project shows right now.",
+    "discardChangesConfirm": "Discard changes",
+    "teamRecruiting_one": "The project is recruiting: {{count}} open role. Roles and applications are managed in the team space.",
+    "teamRecruiting_other": "The project is recruiting: {{count}} open roles. Roles and applications are managed in the team space.",
+    "teamRecruitingEmpty": "The project is recruiting but has no open role yet: publish them in the team space.",
+    "teamNotRecruiting": "The project isn't recruiting right now. Recruiting and roles are set in the team space.",
+    "manageRoles": "Manage roles",
+    "notOwnerTitle": "This project isn't yours",
+    "notOwnerText": "Only its owner, {{owner}}, can edit it."
   },
   "section": {
     "complete": "step complete",
@@ -40,7 +58,8 @@
     },
     "team": {
       "title": "The team",
-      "text": "Looking for contributors? Each role becomes an opening, shown to the profiles that match it."
+      "text": "Looking for contributors? Each role becomes an opening, shown to the profiles that match it.",
+      "editText": "Open roles live in the team space, with the applications."
     }
   },
   "field": {

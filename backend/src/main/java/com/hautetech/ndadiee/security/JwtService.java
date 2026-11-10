@@ -49,6 +49,24 @@ public class JwtService {
         return buildToken(userDetails, REFRESH, refreshTokenExpiration);
     }
 
+    /** Ce que porte un jeton vérifié : son titulaire, et quand il a été émis (à la seconde) */
+    public record TokenClaims(String username, Instant issuedAt) {
+    }
+
+    /**
+     * @throws JwtException si le jeton est expiré, falsifié, mal formé, ou n'est pas un access token
+     */
+    public TokenClaims parseAccessToken(String token) {
+        return parse(token, ACCESS);
+    }
+
+    /**
+     * @throws JwtException si le jeton est expiré, falsifié, mal formé, ou n'est pas un refresh token
+     */
+    public TokenClaims parseRefreshToken(String token) {
+        return parse(token, REFRESH);
+    }
+
     /**
      * @return le nom d'utilisateur porté par l'access token
      * @throws JwtException si le jeton est expiré, falsifié, mal formé, ou n'est pas un access token
@@ -66,6 +84,10 @@ public class JwtService {
     }
 
     private String extractUsername(String token, String expectedType) {
+        return parse(token, expectedType).username();
+    }
+
+    private TokenClaims parse(String token, String expectedType) {
         // parseSignedClaims vérifie la signature et la date d'expiration
         Claims claims = Jwts.parser()
                 .verifyWith(key)
@@ -75,7 +97,7 @@ public class JwtService {
         if (!expectedType.equals(claims.get(TYPE_CLAIM, String.class))) {
             throw new JwtException("Type de jeton inattendu");
         }
-        return claims.getSubject();
+        return new TokenClaims(claims.getSubject(), claims.getIssuedAt() == null ? null : claims.getIssuedAt().toInstant());
     }
 
     private String buildToken(UserDetails userDetails, String type, Duration validity) {

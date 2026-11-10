@@ -63,6 +63,8 @@ const router = createBrowserRouter([
                   { path: paths.login, ...page('login') },
                   { path: paths.register, ...page('register') },
                   { path: paths.verifyEmail, ...page('verifyEmail') },
+                  { path: paths.forgotPassword, ...page('forgotPassword') },
+                  { path: paths.resetPassword, ...page('resetPassword') },
                 ],
               },
             ],
@@ -111,10 +113,13 @@ const router = createBrowserRouter([
               { path: paths.profile(':username'), ...page('profile') },
               { path: paths.search, ...page('search') },
 
-              // Ouvert aux membres connectés et aux admins (modération d'un sujet)
+              // Ouvert aux membres connectés et aux admins (modération d'un sujet, d'un projet)
               {
                 element: <ProtectedRoute allowAdmin />,
-                children: [{ path: paths.editTopic(':slug'), ...page('editTopic') }],
+                children: [
+                  { path: paths.editTopic(':slug'), ...page('editTopic') },
+                  { path: paths.editProject(':slug'), ...page('editProject') },
+                ],
               },
 
               // Réservé aux membres connectés : sinon, direction /login puis retour ici ; un admin, lui, retourne

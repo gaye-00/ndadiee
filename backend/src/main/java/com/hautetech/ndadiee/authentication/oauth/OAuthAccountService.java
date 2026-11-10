@@ -97,6 +97,7 @@ public class OAuthAccountService {
         if (!developer.isEmailVerified()) {
             developer.setEmailVerified(true);
             developer.setPassword(passwordEncoder.encode(randomSecret()));
+            developer.setPasswordSet(false);
             emailVerificationService.discard(developer);
             log.info("[Auth] Inscription en attente confirmée par {} (mot de passe remplacé) - ID: {}",
                     profile.provider().displayName(), developer.getId());
@@ -122,6 +123,7 @@ public class OAuthAccountService {
                 .email(email)
                 // Le compte s'ouvre avec le fournisseur : son mot de passe est un secret aléatoire, que personne ne connaît
                 .password(passwordEncoder.encode(randomSecret()))
+                .passwordSet(false)
                 .fullName(fullName.length() > NAME_MAX ? fullName.substring(0, NAME_MAX) : fullName)
                 .avatarUrl(url(profile.avatarUrl()))
                 .githubUrl(profile.provider() == OAuthProvider.GITHUB ? url(profile.profileUrl()) : null)
