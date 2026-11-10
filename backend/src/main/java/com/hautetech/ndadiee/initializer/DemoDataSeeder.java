@@ -650,7 +650,7 @@ public class DemoDataSeeder {
                 .country(country)
                 .city(city)
                 .salaryRange(salaryRange)
-                .applyUrl("https://example.com/ndadiee-demo/candidature")
+                // Pas de lien de candidature : une offre de démonstration n'existe nulle part ailleurs, on écrit à son auteur
                 .deadline(LocalDate.now().plusDays(deadlineInDays))
                 .tags(List.of(tags))
                 .build());

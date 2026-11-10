@@ -2,13 +2,14 @@ package com.hautetech.ndadiee.mail;
 
 import java.nio.charset.StandardCharsets;
 import java.util.Locale;
-import java.util.regex.Pattern;
 
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.mail.MailException;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Component;
+
+import com.hautetech.ndadiee.common.ReservedDomains;
 
 import jakarta.mail.MessagingException;
 import jakarta.mail.internet.MimeMessage;
@@ -27,11 +28,6 @@ public class SmtpEmailSender implements EmailSender {
 
     private final JavaMailSender mailSender;
     private final MailProperties properties;
-
-    // Domaines réservés (RFC 2606, RFC 6761) : aucun e-mail n'y arrive, et les comptes de démonstration s'en servent.
-    // Y envoyer ne produirait que des rebonds, qui nuisent à la réputation de l'expéditeur (et aux vrais codes)
-    private static final Pattern RESERVED_DOMAIN =
-            Pattern.compile("^(?:.+\\.)?(?:example\\.(?:com|net|org)|example|test|invalid|localhost)$");
 
     @Override
     public void send(EmailMessage message) {
@@ -57,8 +53,10 @@ public class SmtpEmailSender implements EmailSender {
         }
     }
 
+    // Domaine réservé (ReservedDomains) : aucun e-mail n'y arrive, et les comptes de démonstration s'en servent. Y envoyer
+    // ne produirait que des rebonds, qui nuisent à la réputation de l'expéditeur (et à l'arrivée des vrais codes)
     static boolean undeliverable(String address) {
         String domain = address == null ? "" : address.substring(address.lastIndexOf('@') + 1).strip().toLowerCase(Locale.ROOT);
-        return domain.isEmpty() || RESERVED_DOMAIN.matcher(domain).matches();
+        return domain.isEmpty() || ReservedDomains.isReserved(domain);
     }
 }
