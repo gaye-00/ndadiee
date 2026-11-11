@@ -2,7 +2,7 @@
 
 ## Cadre transmis
 
-Les informations ci-dessous reprennent le cadre fourni dans la demande. Elles ne constituent pas une vérification indépendante du règlement ou d’une communication officielle de l’organisateur.
+Les informations ci-dessous reprennent le cadre communiqué par l’équipe. Le 11 novembre 2026, l’équipe a confirmé qu’il correspond aux conditions reçues pour le concours. Le document complet émis par l’organisateur n’est pas annexé ici.
 
 | Élément | Information communiquée |
 |---|---|
@@ -10,6 +10,8 @@ Les informations ci-dessous reprennent le cadre fourni dans la demande. Elles ne
 | Période | Du 29 septembre au 15 novembre 2026 |
 | Taille d’équipe | 2 à 5 membres |
 | Livrables | Dépôt Git, démonstration en ligne, projet utilisable et hébergé en ligne |
+
+L’équipe confirme compter deux membres inscrits officiellement : **Abdoulaye GAYE** et **Aliou DIOP**. Une preuve d’inscription n’est pas jointe à ce dossier.
 
 ## Ce que Ndadiée doit démontrer
 

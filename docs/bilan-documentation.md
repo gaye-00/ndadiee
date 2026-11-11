@@ -32,13 +32,21 @@ L’audit opérationnel et la phase de durcissement du 6 novembre 2026 ont actua
 - `docs/07-deploiement/` et `docs/08-qualite-securite/` : audit opérationnel, résultats de tests et état réel de préparation à la production.
 - `docs/09-conformite-cadev/` : statuts et réserves concernant l’équipe, l’IA, les licences et le déploiement.
 
+### Mise à jour des 10 et 11 novembre 2026
+
+L’équipe a confirmé les informations désormais intégrées aux documents CADEV et de déploiement : deux membres inscrits (Abdoulaye GAYE et Aliou DIOP), utilisation de Claude par Abdoulaye pour des composants backend, utilisation de ChatGPT et GitHub Copilot pendant la recherche et le développement pour améliorer la documentation, et relecture des résultats par les deux membres avec une vérification supplémentaire d’Aliou. Les membres indiquent tous deux avoir participé aux tests ; Aliou a contribué à l’audit fonctionnel et suggéré le parcours « mot de passe oublié », qu’Abdoulaye déclare avoir ajouté.
+
+L’équipe confirme également que [https://ndadiee.com/](https://ndadiee.com/) est accessible depuis l’extérieur avec un certificat HTTPS valide et que la version en ligne, l’API, la base et les principaux parcours fonctionnent. Une vidéo doit le démontrer ; le lien n’a pas encore été communiqué. Les captures Systalink/Datacloud et informations sur le service ont également été enregistrées. L’équipe confirme que le cadre de concours résumé dans le dossier correspond aux conditions reçues.
+
+Ces éléments sont des confirmations de l’équipe et des informations fournies ; elles ne sont pas des vérifications techniques indépendantes. Le parcours de récupération du mot de passe n’a pas été retrouvé dans le code examiné. Le lien vidéo, les détails de cette contribution et tout justificatif officiel éventuellement demandé restent à fournir. Le partage 50/50 du prix en cas de victoire reste une intention déclarée à confirmer par les membres et au regard du règlement.
+
 ## Corrections principales
 
 1. README racine : version alignée sur Spring Boot 4.1.1 déclarée dans `backend/pom.xml`; liens documentaires remplacés par des chemins présents.
 2. `docs/faq.md` : lien vers `docs/04-api/README.md` corrigé ; le test global n’est plus présenté comme exécuté.
 3. Architecture DB/intégrations : service Docker nommé `postgres`, et non `db`.
 4. Structure du projet : entités sous `model/`, et non un répertoire `entity/` inexistant.
-5. Matrice fonctionnelle : intégration GitHub indiquée partiellement implémentée, et déclarations IA comme non vérifiables.
+5. Matrice fonctionnelle : intégration GitHub indiquée partiellement implémentée. Les usages IA et contributions déclarés par les membres sont maintenant consignés, avec les limites non vérifiées explicitées.
 6. Matrice CADEV : l’incohérence de version et les liens racine déjà corrigés sont signalés comme tels, non comme défauts encore ouverts.
 7. Index documentaire : références vers les guides utilisateur absents signalées au lieu de renvoyer vers des fichiers fictifs.
 
@@ -56,7 +64,7 @@ L’audit opérationnel et la phase de durcissement du 6 novembre 2026 ont actua
 
 - `docs/05-guides-utilisateur/` ne contient aucun fichier. Les guides utilisateur détaillés attendus précédemment restent à produire ; les pages fonctionnelles ne sont pas un substitut à des procédures simplifiées.
 - Aucun rapport d’audit transitif des licences n’est présent.
-- Aucune preuve d’utilisation historique d’IA, de roster de l’équipe, de contributions par membre ou d’URL publique n’est disponible dans le dépôt.
+- Les noms des deux membres, les usages d’IA, l’URL publique, l’accès HTTPS et le bon fonctionnement des principaux composants sont confirmés par l’équipe. Le lien vidéo annoncé et la vérification indépendante des parcours restent à obtenir. Le parcours « mot de passe oublié » déclaré ajouté par Abdoulaye est absent du code examiné.
 - Le dossier de conformité repose sur le cadre communiqué dans la demande ; il ne valide pas de façon indépendante le règlement ou ses éventuels avenants.
 - La cohérence de toutes les descriptions d’endpoints avec chaque contrôleur n’a pas été entièrement re-auditée dans cette revue finale.
 
@@ -75,12 +83,12 @@ L’audit opérationnel et la phase de durcissement du 6 novembre 2026 ont actua
 
 ### Non établi
 
-- Disponibilité du produit sur Internet, hébergement Datacloud ou qualité de service.
-- Composition de l’équipe et contribution individuelle.
-- Usage historique d’outils d’IA par l’équipe.
+- Vérification indépendante de l’accessibilité et du fonctionnement du produit ; lien de la vidéo de démonstration annoncé mais non reçu.
+- Détails des contributions individuelles et preuve du parcours « mot de passe oublié » déclaré ajouté, absent du code examiné.
+- Exhaustivité des usages IA (autres usages éventuels pour tests ou médias) et conformité au format officiel de déclaration, s’il est imposé.
 - conformité légale complète des licences transitives.
 - exécution des parcours métier end-to-end, mesure de couverture ou test de charge.
 
 ## Priorités
 
-Avant le 15 novembre 2026, traiter d’abord : comparer V1 à une sauvegarde de la base cible et effectuer une baseline contrôlée si elle correspond ; vérifier variables et données de l’environnement cible ; fournir la preuve d’une URL publique et exécuter les parcours externes ; confirmer les exigences et l’équipe ; établir l’inventaire licences/IA ; enfin produire les guides utilisateur et répéter le scénario. Voir [le plan d’actions](./plan-actions-restantes.md).
+Avant le 15 novembre 2026, traiter d’abord : comparer V1 à une sauvegarde de la base cible et effectuer une baseline contrôlée si elle correspond ; vérifier variables et données de l’environnement cible ; récupérer la vidéo promise et les preuves des parcours ; localiser/vérifier la récupération de mot de passe déclarée ; finaliser l’inventaire licences/IA ; enfin produire les guides utilisateur et répéter le scénario. Voir [le plan d’actions](./plan-actions-restantes.md).

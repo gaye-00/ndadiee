@@ -3,6 +3,10 @@
 **Date :** 6 novembre 2026
 **Périmètre :** code frontend et backend présent dans le dépôt. Aucun parcours n'a été exécuté dans cette phase et aucune donnée n'a été créée ou modifiée.
 
+**Mise à jour déclarative :** le 11 novembre 2026, l’équipe a indiqué qu’Abdoulaye GAYE avait ajouté un parcours « mot de passe oublié » à la suite d’une suggestion d’Aliou DIOP. Une recherche dans le frontend et le backend présents dans la copie du dépôt examinée n’a retrouvé aucun écran, route, endpoint ou service correspondant. Le résultat de l’audit de code ci-dessous reste donc applicable à cette copie ; la fonctionnalité est déclarée par l’équipe mais non vérifiable tant que son code ou sa version déployée n’est pas localisé et testé.
+
+L’équipe indique également que les deux membres ont testé les fonctionnalités et confirme le fonctionnement de la version en ligne, de l’API, de la base de données et des parcours principaux. Le lien de la vidéo de démonstration annoncée reste à fournir. Ces déclarations complètent le contexte de l’audit, mais ne changent pas le fait qu’aucun parcours de bout en bout n’a été exécuté par l’auditeur dans le cadre de cette revue.
+
 ## 1. Synthèse
 
 Le dépôt contient une application fonctionnelle étendue : authentification par identifiants, profils de développeurs, projets et candidatures, communauté, hackathons, espace d'équipe, revues de code, messagerie, notifications, intégration GitHub et back-office. Les routes frontend et plusieurs appels REST sont reliés aux contrôleurs backend et aux services de domaine. Des tests unitaires ciblent plusieurs services.

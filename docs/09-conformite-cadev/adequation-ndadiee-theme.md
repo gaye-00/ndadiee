@@ -10,7 +10,7 @@ Ndadiée est un projet cohérent avec le thème au niveau de son intention et de
 | Pour les développeurs | Workspace, tâches/sprints, revues de PR, intégration GitHub, profils | Partiellement conforme | Tester les scénarios réels et identifier les limites ou dépendances externes |
 | Par les développeurs | Création de projets, équipes, discussions et contenus dans le produit | Partiellement conforme | Documenter les personnes qui ont conçu/développé et la gouvernance réelle |
 | Dimension africaine | Positionnement déclaré, interface multilingue et options d’économie de données dans le code | Partiellement conforme | Confirmer les langues et choix de localisation effectivement testés, et apporter des preuves d’usage/retours |
-| Projet utilisable en ligne | Aucun endpoint ou URL publique de production fourni dans le dépôt | Non vérifiable | URL publique, tests externes et captures |
+| Projet utilisable en ligne | L’équipe déclare le site public `https://ndadiee.com/` et un hébergement Systalink/Datacloud | Partiellement documenté | Tester l’accès externe, HTTPS et les parcours ; relier une preuve de version au déploiement |
 
 ## Sources de code
 

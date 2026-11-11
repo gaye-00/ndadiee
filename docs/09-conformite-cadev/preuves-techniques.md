@@ -9,7 +9,7 @@
 | Base | [docker-compose.yml](../../docker-compose.yml), [application.yaml](../../backend/src/main/resources/application.yaml) | PostgreSQL local attendu et configuration de connexion | Résilience/backup de production |
 | Sécurité | [SecurityConfiguration.java](../../backend/src/main/java/com/hautetech/ndadiee/security/SecurityConfiguration.java), [JwtService.java](../../backend/src/main/java/com/hautetech/ndadiee/security/JwtService.java) | Contrôles JWT/permissions déclarés dans le code | Configuration effective et sécurité d’un hôte distant |
 | Tests ciblés | Tests backend sélectionnés, lint et contrôle i18n exécutés | Ces commandes particulières ont réussi dans l’environnement d’audit | Suite complète, couverture, charge ou CI |
-| Déploiement | Aucun Dockerfile ou manifeste d’hébergement repéré | Manifeste manquant dans l’arborescence inspectée | Absence de déploiement manuel hors dépôt |
+| Déploiement | L’équipe déclare le site `https://ndadiee.com/` et a transmis des captures Systalink/Datacloud | L’existence d’un déploiement est déclarée et un serveur est configuré selon les captures | Disponibilité externe, version en ligne et fonctionnement applicatif non testés ici ; aucun manifeste cloud n’est présent dans l’arborescence inspectée |
 
 ## Résultats de commandes disponibles
 

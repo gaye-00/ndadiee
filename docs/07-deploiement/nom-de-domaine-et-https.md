@@ -1,6 +1,6 @@
 # Nom de domaine et HTTPS
 
-Le dépôt ne contient aucun élément de configuration TLS, de certificat ou de nom de domaine public. La configuration de domaine doit donc être adaptée au contexte réel d’hébergement, sans supposer un domaine existant.
+L’équipe déclare avoir acheté le domaine `ndadiee.com` et indique que le site est accessible à [https://ndadiee.com/](https://ndadiee.com/). Le dépôt ne contient toutefois pas de configuration TLS ou de preuve de certificat ; il faut vérifier l’accès et le certificat depuis un navigateur externe avant d’affirmer que HTTPS fonctionne.
 
 ## 1. Paramètres observés
 
@@ -20,7 +20,7 @@ export const API_BASE_URL = import.meta.env.VITE_BACKEND_URL ?? 'http://localhos
 
 Pour une production sécurisée :
 
-- utiliser un domaine public (ex. `app.example.com`),
+- utiliser le domaine déclaré `ndadiee.com` ou des sous-domaines documentés pour l’API,
 - rediriger le trafic HTTP vers HTTPS,
 - utiliser un certificat TLS valide,
 - configurer le front et l’API derrière le même nom de domaine ou via sous-domaines séparés,
@@ -37,7 +37,7 @@ Pour une production sécurisée :
 
 ```mermaid
 flowchart LR
-    U[Utilisateur] --> D[https://app.example.com]
+    U[Utilisateur] --> D[https://ndadiee.com]
     D --> RP[Reverse Proxy / TLS]
     RP --> FE[Frontend]
     RP --> BE[Backend /api]
@@ -50,6 +50,8 @@ flowchart LR
 - redirection HTTP → HTTPS,
 - absence d’avertissement de sécurité navigateur,
 - test sur navigateur réel avec la vraie URL.
+
+URL déclarée par l’équipe : [https://ndadiee.com/](https://ndadiee.com/). Les contrôles de certificat, de redirection et d’accès réseau restent à exécuter et à dater.
 
 ## Sources
 

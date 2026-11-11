@@ -1,18 +1,24 @@
 # Déclaration d’usage de l’intelligence artificielle
 
-## État de l’information
+## Usages déclarés et confirmés par l’équipe
 
-Le dépôt ne fournit pas un historique exhaustif des outils d’IA employés pendant le développement, des membres qui les ont utilisés, ni des contributions exactes. Il n’est donc pas possible d’établir une déclaration complète à partir des sources seules.
+L’équipe confirme que **ChatGPT** et **GitHub Copilot** ont été utilisés pendant les phases de recherche et de développement, notamment pour améliorer la documentation au fil de ses différentes phases : rédaction, reformulation, organisation et cohérence. L’identité de la personne ayant utilisé chaque outil et la répartition précise des tâches ne sont pas détaillées.
 
-La rédaction de documents dans le cadre de cette session a été assistée par un assistant d’IA. Cela ne permet pas de déduire ni de déclarer l’usage historique d’IA par l’équipe dans le développement du logiciel.
+L’équipe confirme qu’**Abdoulaye GAYE a utilisé Claude** pendant les phases de recherche et de développement comme aide à la réalisation d’éléments de base du backend — modèles, services, repositories et contrôleurs — afin de gagner du temps. Les deux membres indiquent avoir relu les résultats et qu’**Aliou DIOP a effectué une relecture et une vérification supplémentaires**.
 
-## Déclaration à faire confirmer par l’équipe
+Ces informations décrivent l’usage déclaré par l’équipe. Elles ne constituent pas une vérification indépendante des contributions du code et ne constituent pas encore un inventaire exhaustif de tout usage éventuel de l’IA pour les tests, les images ou d’autres livrables.
 
-| Outil | Période | Partie concernée | Type d’assistance | Contributions humaines et vérification |
+| Outil | Utilisateur(s) déclaré(s) | Période | Partie concernée et type d’assistance | Relecture et limites |
 |---|---|---|---|---|
-| À renseigner par chaque membre | À confirmer | À confirmer | À confirmer | À documenter par les développeurs |
+| ChatGPT (OpenAI) | Équipe ; personne exacte non précisée | Recherche et développement | Aide à l’amélioration de la documentation : rédaction, reformulation, organisation et cohérence | L’équipe indique avoir revu la documentation ; les contributions exactes et usages éventuels hors documentation ne sont pas détaillés |
+| GitHub Copilot | Équipe ; personne exacte non précisée | Recherche et développement | Aide à l’amélioration de la documentation : rédaction, reformulation, organisation et cohérence | L’équipe indique avoir revu la documentation ; les contributions exactes et usages éventuels hors documentation ne sont pas détaillés |
+| Claude (Anthropic) | Abdoulaye GAYE | Recherche et développement | Aide à la réalisation d’éléments de base des modèles, services, repositories et contrôleurs backend | Les deux membres indiquent avoir relu les résultats ; Aliou DIOP a effectué une relecture et vérification supplémentaires. Les détails des contributions et tests restent à documenter |
 
-Si aucun outil n’a été utilisé pour le développement applicatif, l’équipe doit le confirmer explicitement, plutôt que de laisser la case vide ou de le supposer.
+## Informations encore à confirmer
+
+- si des outils d’IA ont aussi été utilisés pour les tests, les images ou d’autres livrables ;
+- la description des contributions humaines précises et, si nécessaire, les fichiers ou parties concernés ;
+- les exigences de format de déclaration de l’organisateur.
 
 ## Informations à collecter
 
@@ -25,4 +31,4 @@ Si aucun outil n’a été utilisé pour le développement applicatif, l’équi
 
 ## Précaution
 
-Ne pas attribuer à l’équipe entière un usage observé dans une session de documentation. La déclaration finale doit être relue et validée par l’équipe et suivre le formulaire officiel du concours, si fourni.
+Cette déclaration repose sur les confirmations de l’équipe. Elle ne doit pas être présentée comme un inventaire exhaustif au-delà des usages indiqués. Elle doit être adaptée au formulaire officiel du concours, si fourni.

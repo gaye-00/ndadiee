@@ -13,7 +13,9 @@ Le cadre et la liste ci-dessous sont ceux transmis par l’équipe. Chaque case 
 
 ## Démonstration en ligne
 
-- [ ] URL publique HTTPS indiquée.
+- [x] URL publique déclarée par l’équipe : [https://ndadiee.com/](https://ndadiee.com/).
+- [x] L’équipe confirme l’accessibilité depuis l’extérieur et la validité du certificat HTTPS ; preuve indépendante/vidéo annoncée encore attendue.
+- [ ] Accessibilité HTTPS vérifiée depuis un réseau externe et résultat daté archivé.
 - [ ] Tests d’accès réalisés depuis un réseau externe.
 - [ ] Frontend et API répondent sur leur domaine public.
 - [ ] Inscription/connexion et parcours métier testés.
@@ -22,8 +24,8 @@ Le cadre et la liste ci-dessous sont ceux transmis par l’équipe. Chaque case 
 
 ## Projet hébergé et utilisable
 
-- [ ] Hébergeur réel et environnement identifié.
-- [ ] Datacloud confirmé par une preuve si requis par le cadre complet.
+- [x] Hébergeur et environnement déclarés : Systalink/Datacloud ; captures du récapitulatif serveur reçues.
+- [ ] Association du serveur au site et fonctionnement vérifiés ; preuve Datacloud expurgée conservée si requise par le cadre complet.
 - [ ] Base persistante, sauvegardes et procédure de restauration vérifiées.
 - [ ] Secrets injectés de façon sécurisée.
 - [ ] Domaine, TLS, CORS et accès réseau contrôlés.
@@ -31,9 +33,10 @@ Le cadre et la liste ci-dessous sont ceux transmis par l’équipe. Chaque case 
 
 ## Déclarations et conformité
 
-- [ ] Composition de l’équipe confirmée (2 à 5 selon le cadre transmis).
-- [ ] Contributions individuelles validées par chaque membre.
-- [ ] Déclaration d’utilisation de l’IA confirmée par tous les membres.
+- [x] Deux membres d’équipe déclarés : Abdoulaye GAYE et Aliou DIOP (dans la fourchette de 2 à 5 du cadre transmis).
+- [x] Inscription officielle des deux membres et rôles/contributions confirmés par l’équipe ; éléments de preuve détaillés encore à archiver.
+- [x] L’équipe confirme les tests par les deux membres, l’audit fonctionnel par Aliou et le développement backend par Abdoulaye ; le parcours « mot de passe oublié » déclaré ajouté par Abdoulaye n’a pas été trouvé dans le code examiné.
+- [x] Usages IA déclarés et relecture par les deux membres confirmée ; vérifier s’il y a d’autres usages à ajouter et suivre le format officiel s’il est imposé.
 - [ ] Inventaire de licences directes et transitives terminé.
 - [ ] Dépendances et éléments médias vérifiés selon les règles effectives du concours.
 

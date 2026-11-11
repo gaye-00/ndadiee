@@ -1,6 +1,6 @@
 # Déploiement et exploitation Ndadiée
 
-Ce dossier documente le déploiement attendu du projet, à partir des éléments réellement présents dans le dépôt et sans affirmer de mise en ligne effective sur Datacloud ou ailleurs.
+Ce dossier distingue les configurations visibles dans le dépôt des informations déclarées par l’équipe au sujet de son déploiement.
 
 ## État de la preuve
 
@@ -16,10 +16,10 @@ Les éléments non vérifiés :
 
 - aucun fichier Dockerfile n’est présent dans le dépôt,
 - aucune configuration de production Docker Compose / Traefik / Nginx / TLS n’est documentée,
-- aucune preuve d’hébergement Datacloud ou URL publique n’est présente dans le dépôt,
+- l’équipe déclare le site `https://ndadiee.com/` et un hébergement Systalink/Datacloud, avec des captures de récapitulatif ; l’accès public, l’état de l’instance et le lien entre le serveur et le site ne sont pas vérifiés indépendamment,
 - aucune procédure de déploiement automatisé n’est fournie.
 
-L’[audit opérationnel](./etat-preparation-production.md), actualisé le 6 novembre 2026, confirme la réussite des contrôles frontend et des 313 tests backend sur PostgreSQL temporaire. JWT, seeders et mode JPA ont été durcis ; la migration initiale Flyway V1 et sa procédure de baseline ont été testées. La compatibilité avec la base cible, les parcours métier sur staging et les preuves de déploiement restent à établir ; aucun déploiement n’a été effectué.
+L’[audit opérationnel](./etat-preparation-production.md), actualisé le 6 novembre 2026, confirme la réussite des contrôles frontend et des 313 tests backend sur PostgreSQL temporaire. JWT, seeders et mode JPA ont été durcis ; la migration initiale Flyway V1 et sa procédure de baseline ont été testées. Les 10 et 11 novembre, l’équipe a déclaré l’URL, l’hébergement Systalink/Datacloud, l’accès HTTPS et le bon fonctionnement des principaux composants et parcours. La vidéo annoncée reste à fournir ; la vérification indépendante et la compatibilité de la base réelle ne sont pas établies ici.
 
 ## Architecture cible recommandée
 
@@ -77,4 +77,4 @@ Une architecture réaliste pour une mise en production est la suivante :
 
 ## Limites de preuve
 
-Aucune preuve d’hébergement réel n’étant présente dans le dépôt, ce document constitue une architecture de recommandation et de préparation de production, pas une attestation de déploiement existant.
+Les éléments sur le service Systalink/Datacloud et l’URL sont déclarés par l’équipe. Ce document décrit l’architecture recommandée ; il ne certifie pas la configuration ou le fonctionnement de l’hébergement réel.

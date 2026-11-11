@@ -4,13 +4,13 @@
 
 | Sujet | État | Preuve manquante | Prochaine action |
 |---|---|---|---|
-| Démonstration en ligne | Non vérifiable | URL et test d’accès externe | Publier ou fournir une URL et une preuve datée |
-| Hébergement Datacloud | Non vérifiable | Attestation/URL ou preuve de plateforme | Confirmer l’exigence et collecter la preuve |
-| Disponibilité fonctionnelle en ligne | Non vérifiable | Parcours testés sur l’instance publique | Exécuter les scénarios de démonstration |
-| Équipe de 2 à 5 personnes | Non vérifiable | Roster ou inscription officielle | Faire confirmer les membres |
-| Contributions individuelles | Non vérifiable | Répartition validée par l’équipe | Préparer une cartographie honnête des contributions |
+| Démonstration en ligne | Confirmée par l’équipe, preuve vidéo attendue | L’équipe confirme l’accès extérieur à `https://ndadiee.com/` et un certificat HTTPS valide ; la vidéo annoncée n’a pas encore été transmise et aucun contrôle indépendant n’a été exécuté dans cette revue | Fournir le lien de la vidéo et archiver les preuves datées |
+| Hébergement Datacloud | Partiellement documenté | Achat déclaré ; captures de configuration et tarif Systalink/Datacloud transmises. L’association effective au site et l’état du serveur restent à vérifier | Conserver une preuve de souscription expurgée et vérifier l’instance |
+| Disponibilité fonctionnelle en ligne | Confirmée par l’équipe, preuve détaillée attendue | L’équipe confirme le fonctionnement de la version en ligne, de l’API, de la base et des parcours principaux ; lien vidéo à fournir | Transmettre la vidéo et lister les parcours montrés |
+| Équipe de 2 à 5 personnes | Confirmée par l’équipe | Abdoulaye GAYE et Aliou DIOP confirment leur inscription officielle ; justificatif non joint au dossier | Joindre une preuve d’inscription si le jury la demande |
+| Contributions individuelles | Partiellement documentées | L’équipe confirme tests par les deux membres, audit fonctionnel et suggestions par Aliou, ajout du parcours mot de passe oublié par Abdoulaye ; cette dernière fonction n’a pas été trouvée dans le code présent | Vérifier que le changement est dans la version du dépôt ou le présenter comme contribution en attente de preuve |
 | Respect du calendrier | Non vérifiable | Historique complet et règle officielle de période | Vérifier les dates et conserver les preuves |
-| Usage de l’IA | Non vérifiable | Déclaration collective complète | Interroger chaque membre et consolider |
+| Usage de l’IA | Partiellement documenté | ChatGPT et GitHub Copilot utilisés pendant la recherche et le développement pour la documentation ; Claude utilisé par Abdoulaye pour le backend ; relecture par les deux, vérification supplémentaire par Aliou, selon l’équipe | Confirmer l’existence d’autres usages et suivre le format officiel s’il est imposé |
 | Licences transitives | Non vérifiable | Rapport reproductible et revue | Exécuter l’inventaire complet |
 | Tests d’interface | Partiellement conforme | Pas de suite de tests frontend repérée | Ajouter/collecter les tests des parcours essentiels |
 | Production et exploitation | Non vérifiable | Manifests, TLS, backups, logs et runbooks réellement actifs | Fournir les éléments d’exploitation |

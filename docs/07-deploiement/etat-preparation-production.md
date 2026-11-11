@@ -64,6 +64,16 @@ Les termes « bloquant » et « non prêt » désignent les exigences à satisfa
 - [ ] Sauvegarde puis restauration effectivement testées.
 - [ ] Logs, métriques, alertes et procédure de retour arrière opérationnels.
 - [ ] Parcours métier testés sur staging avec données synthétiques.
-- [ ] URL publique, hébergeur et preuve Datacloud collectés si exigés.
+- [ ] URL publique déclarée `https://ndadiee.com/` et hébergement Systalink/Datacloud vérifiés depuis un réseau externe ; preuves Datacloud expurgées archivées si exigées.
 
 Ne cocher ces éléments qu’avec une preuve reproductible et datée. Pour le détail des risques et des tests, voir l’[audit opérationnel](../08-qualite-securite/audit-operationnel.md) et la [procédure de mise en production](./procedure-de-mise-en-production.md).
+
+## Mise à jour déclarative du 10 novembre 2026
+
+Depuis l’évaluation du 6 novembre, l’équipe indique que Ndadiée est déployé à [https://ndadiee.com/](https://ndadiee.com/) et que le domaine et l’hébergement ont été achetés auprès de Systalink via Datacloud. Les captures transmises affichent un serveur Ubuntu Server 24.04 LTS à Frankfurt 1 (DE-FRA1), 1 vCPU et 30 Go de stockage ; le récapitulatif indique une période du 10 novembre au 1er décembre 2026 et 4 248 FCFA à payer pour cette période après remise CADEV26.
+
+Cette information met à jour le constat « aucune URL publique fournie » de l’évaluation du 6 novembre : une URL est maintenant déclarée et des captures de souscription/configuration ont été communiquées. À la date de cette mise à jour du 10 novembre, l’accès et le fonctionnement n’avaient pas encore été confirmés par l’équipe. Les tests locaux antérieurs restent inchangés.
+
+## Confirmation de l’équipe du 11 novembre 2026
+
+L’équipe confirme que le site est accessible depuis un réseau extérieur avec un certificat HTTPS valide et que la version en ligne, l’API, la base de données et les parcours principaux fonctionnent. Les deux membres disent avoir participé aux tests. Une vidéo de démonstration destinée à montrer ces éléments est annoncée ; son lien n’a pas encore été fourni. Ces confirmations sont déclaratives et n’ont pas été revérifiées indépendamment dans cet audit. Les points restant à vérifier avant de considérer la production validée sont donc l’inspection de la vidéo, l’association technique du serveur avec le domaine et, si nécessaire, les contrôles d’exploitation et de persistance.
