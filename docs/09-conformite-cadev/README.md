@@ -31,6 +31,8 @@ Le thème, le calendrier, les équipes de 2 à 5 personnes et les livrables pré
 - [Préparation du jury](./preparation-jury.md)
 - [Démonstration finale](./demonstration-finale.md)
 
+La [checklist des conditions et éléments restants](./checklist-livrables.md) distingue les confirmations de l’équipe des preuves encore à transmettre.
+
 ## Règle de preuve
 
 Les quatre états utilisés sont définis dans [matrice-exigences.md](./matrice-exigences.md). Une fonctionnalité présente dans le code ne prouve pas qu’elle est déployée, opérationnelle à distance ou présentée au jury. Les responsables restent « à confirmer » tant que l’équipe ne les a pas nommés.
