@@ -10,9 +10,11 @@ Le thème, le calendrier, les équipes de 2 à 5 personnes et les livrables pré
 
 - **Adéquation au thème : partiellement conforme.** Le code contient des fonctions de projets, forum, collaboration, profils et communauté pertinentes pour les développeurs. Leur disponibilité sur une plateforme en ligne n’est pas démontrée.
 - **Dépôt Git : partiellement conforme.** Le dépôt local et un remote GitHub configuré sont observables ; son accessibilité au jury et son état de publication ne sont pas confirmés ici.
-- **Déploiement : confirmé par l’équipe, vidéo attendue.** L’équipe confirme l’accès extérieur à [https://ndadiee.com/](https://ndadiee.com/) avec HTTPS, ainsi que le fonctionnement de la version en ligne, de l’API, de la base et des parcours principaux. Le lien vidéo annoncé reste à fournir ; ces éléments n’ont pas été revérifiés indépendamment dans cette revue.
+- **Déploiement et démonstration : site et vidéo fournis.** Le site [https://ndadiee.com/](https://ndadiee.com/) répond HTTP 200 en HTTPS depuis le contrôle du 13 novembre 2026 ; l’équipe confirme API, base et parcours principaux fonctionnels. La vidéo [Ndadiée](https://youtu.be/Xv030XysB88) est publiée et ses métadonnées sont accessibles, mais le lecteur de l’audit n’a pas décodé son contenu.
 - **Équipe : deux membres inscrits, selon leur confirmation.** Abdoulaye GAYE et Aliou DIOP confirment leur inscription officielle. Ils déclarent tous deux avoir participé aux tests ; Aliou a contribué à l’audit fonctionnel et Abdoulaye au développement backend et à l’ajout déclaré du parcours de récupération de mot de passe. Ce dernier parcours n’a pas été retrouvé dans le code examiné.
 - **Usage de l’IA : documenté selon les confirmations de l’équipe.** ChatGPT et GitHub Copilot ont été utilisés pendant la recherche et le développement pour l’amélioration de la documentation ; Claude a aidé Abdoulaye GAYE pour des éléments backend. Les deux membres disent avoir relu les résultats, avec une vérification supplémentaire d’Aliou. **Audit de licences : non vérifiable** sans inventaire transitif complet.
+
+La checklist à jour est [ici](./checklist-livrables.md). Les confirmations de l’équipe et les contrôles techniques indépendants sont différenciés dans la [matrice](./matrice-exigences.md).
 
 ## Documents du dossier
 

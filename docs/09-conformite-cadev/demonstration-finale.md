@@ -1,14 +1,17 @@
 # Démonstration finale
 
-Ce document est un scénario de préparation, pas une preuve que l’environnement de démonstration est déjà en ligne. Remplacer les références locales par l’URL de production vérifiée avant le concours.
+Site communiqué par l’équipe : [https://ndadiee.com/](https://ndadiee.com/). Vidéo de démonstration fournie : [Ndadiée : la plateforme de collaboration des développeurs africains](https://youtu.be/Xv030XysB88).
+
+Le site a répondu HTTP 200 en HTTPS le 13 novembre 2026. YouTube expose le titre et les métadonnées de la vidéo, mais le navigateur de l’audit n’a pas décodé le flux. L’équipe doit confirmer que le contenu vidéo montre les parcours prévus et la version qui sera présentée.
 
 ## Avant la démonstration
 
-- [ ] Tester l’URL publique depuis un réseau extérieur.
-- [ ] Vérifier HTTPS, connexion API et WebSocket.
+- [x] Tester l’URL publique depuis un réseau extérieur : HTTP 200 le 13 novembre 2026.
+- [x] Vérifier l’établissement HTTPS au niveau HTTP/TLS ; vérifier séparément les flux API/WebSocket si utilisés dans la démonstration.
 - [ ] Utiliser un compte de démonstration non privilégié et des données préparées sans données personnelles.
 - [ ] Vérifier que les services externes nécessaires sont disponibles.
-- [ ] Préparer captures ou vidéo de secours et noter le commit déployé.
+- [x] Vidéo de secours disponible à l’adresse YouTube ci-dessus.
+- [ ] Noter le commit correspondant à la version démontrée après validation humaine de la vidéo.
 - [ ] Ne pas afficher secrets, tokens, logs personnels ou console contenant des données sensibles.
 
 ## Parcours possible (à valider sur l’instance)
@@ -30,4 +33,4 @@ Ce document est un scénario de préparation, pas une preuve que l’environneme
 
 ## Après la répétition
 
-Consigner la date, le navigateur, l’URL, le commit testé, les scénarios réussis/échoués et les corrections nécessaires. Toute URL de production reste à fournir et à vérifier par l’équipe.
+Consigner la date, le navigateur, l’URL, le commit testé, les scénarios réussis/échoués et les corrections nécessaires. L’équipe confirme les principaux parcours ; aucun parcours complet n’a été rejoué par l’audit présent.

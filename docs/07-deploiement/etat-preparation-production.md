@@ -25,7 +25,7 @@ Le projet n’a pas été déployé par cet audit. Le volume PostgreSQL local pr
 | GitHub | **Non vérifiable** | À valider / **Moyenne** | Client et synchronisation présents ; configuration externe et quota non vérifiés. Tester droits minimaux et synchronisation. |
 | Logs / monitoring | **Vérifié** | Incomplet / **Moyenne** | Logs applicatifs standards ; aucune configuration de centralisation, métriques ou alertes trouvée. Mettre en place disponibilité, erreurs, ressources et alertes. |
 | Sauvegardes / restauration | **Vérifié** | Bloquant / **Élevée** | Aucune procédure automatisée ni preuve de restauration observée. Produire et réussir un exercice de restauration documenté. |
-| Datacloud / URL publique | **Non vérifiable** | Bloquant pour la preuve CADEV / **Élevée** | Aucun manifeste ou URL publique fourni ; aucun test externe effectué. Collecter URL et preuves datées, dont l’hébergeur exigé par le règlement applicable. |
+| Datacloud / URL publique | **Partiellement vérifié** | Partiel / **Élevée** | L’équipe confirme l’hébergement et `https://ndadiee.com/` ; une requête externe du 13 novembre reçoit HTTP 200 avec TLS validé. La version d’application, les parcours métier, la base distante et les opérations restent à confirmer indépendamment. |
 
 Les termes « bloquant » et « non prêt » désignent les exigences à satisfaire avant lancement ; ils ne signifient pas qu’un service actuellement exposé a été compromis.
 
@@ -48,7 +48,7 @@ Les termes « bloquant » et « non prêt » désignent les exigences à satisfa
 - configuration d’un stockage objet réellement opérationnel.
 - stratégie de sauvegarde, restauration, supervision et alerting exécutée.
 - injection/rotation des secrets sur une infrastructure.
-- service accessible publiquement, URL Datacloud et preuves de fonctionnement.
+- manifestes de déploiement ; l’équipe fournit l’URL, les captures d’hébergement et une vidéo, mais la reproductibilité, les parcours et la base distante ne sont pas validés indépendamment.
 
 ## Porte de sortie avant production
 
@@ -64,7 +64,8 @@ Les termes « bloquant » et « non prêt » désignent les exigences à satisfa
 - [ ] Sauvegarde puis restauration effectivement testées.
 - [ ] Logs, métriques, alertes et procédure de retour arrière opérationnels.
 - [ ] Parcours métier testés sur staging avec données synthétiques.
-- [ ] URL publique déclarée `https://ndadiee.com/` et hébergement Systalink/Datacloud vérifiés depuis un réseau externe ; preuves Datacloud expurgées archivées si exigées.
+- [x] Site `https://ndadiee.com/` répond HTTP 200 en HTTPS au contrôle externe du 13 novembre 2026 ; l’équipe confirme l’hébergement Systalink/Datacloud.
+- [ ] Parcours vidéo, API, base distante, sauvegarde/restauration et version associée au commit de remise vérifiés indépendamment.
 
 Ne cocher ces éléments qu’avec une preuve reproductible et datée. Pour le détail des risques et des tests, voir l’[audit opérationnel](../08-qualite-securite/audit-operationnel.md) et la [procédure de mise en production](./procedure-de-mise-en-production.md).
 
@@ -76,4 +77,6 @@ Cette information met à jour le constat « aucune URL publique fournie » de l�
 
 ## Confirmation de l’équipe du 11 novembre 2026
 
-L’équipe confirme que le site est accessible depuis un réseau extérieur avec un certificat HTTPS valide et que la version en ligne, l’API, la base de données et les parcours principaux fonctionnent. Les deux membres disent avoir participé aux tests. Une vidéo de démonstration destinée à montrer ces éléments est annoncée ; son lien n’a pas encore été fourni. Ces confirmations sont déclaratives et n’ont pas été revérifiées indépendamment dans cet audit. Les points restant à vérifier avant de considérer la production validée sont donc l’inspection de la vidéo, l’association technique du serveur avec le domaine et, si nécessaire, les contrôles d’exploitation et de persistance.
+L’équipe confirme que le site est accessible depuis un réseau extérieur avec un certificat HTTPS valide et que la version en ligne, l’API, la base de données et les parcours principaux fonctionnent. Les deux membres disent avoir participé aux tests.
+
+Le 13 novembre, `https://ndadiee.com/` a été interrogé depuis l’extérieur : réponse HTTP 200 et négociation TLS réussie avec validation standard de `curl`. La vidéo [Ndadiée : la plateforme de collaboration des développeurs africains](https://youtu.be/Xv030XysB88) est publiée et ses métadonnées sont accessibles ; le navigateur d’audit n’a pas décodé son flux, donc son contenu n’a pas été inspecté intégralement. Le contrôle HTTP prouve la disponibilité de la page, pas le fonctionnement complet de l’API, de la base ou des parcours. La version exacte présentée, la persistance, les sauvegardes et les opérations de production restent à valider avant de conclure à une préparation opérationnelle complète.

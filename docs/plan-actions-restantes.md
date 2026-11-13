@@ -2,9 +2,10 @@
 
 Échéance de référence : **15 novembre 2026**, selon le calendrier transmis par l’équipe. Le règlement et toute prolongation doivent être confirmés auprès de l’organisateur. Le plan ci-dessous n’affirme pas que les actions sont réalisées.
 
-## Informations confirmées par l’équipe les 10 et 11 novembre 2026
+## Informations confirmées et preuves ajoutées au 13 novembre 2026
 
-- L’équipe confirme que [https://ndadiee.com/](https://ndadiee.com/) est accessible depuis l’extérieur avec HTTPS, et que la version en ligne, l’API, la base et les principaux parcours fonctionnent. Une vidéo doit le démontrer ; le lien reste à fournir. Aucun contrôle indépendant n’a été réalisé dans cette mise à jour.
+- L’équipe confirme que [https://ndadiee.com/](https://ndadiee.com/) est accessible depuis l’extérieur avec HTTPS, et que la version en ligne, l’API, la base et les principaux parcours fonctionnent. Le 13 novembre, une requête externe a reçu HTTP 200 avec TLS validé ; le détail et les limites sont consignés dans l’[état de préparation production](07-deploiement/etat-preparation-production.md).
+- Vidéo transmise : [Ndadiée : la plateforme de collaboration des développeurs africains](https://youtu.be/Xv030XysB88). YouTube fournit ses métadonnées et son titre ; le navigateur d’audit n’a pas décodé la lecture, donc son contenu reste à examiner par l’équipe. Le dépôt contient aussi une copie locale de 181 499 229 octets, non poussée car supérieure à la limite ordinaire de 100 MiB par fichier GitHub.
 - L’équipe confirme son inscription à deux membres : **Abdoulaye GAYE et Aliou DIOP**. Elle indique que les deux ont participé aux tests, qu’Aliou a contribué à l’audit fonctionnel et suggéré le parcours mot de passe oublié, puis qu’Abdoulaye l’a ajouté. Cette fonctionnalité n’a pas été retrouvée dans le code examiné et doit être localisée/validée avant d’être présentée comme disponible.
 - ChatGPT et GitHub Copilot ont été utilisés pendant la recherche et le développement pour améliorer la documentation. Claude a aidé Abdoulaye pour des éléments backend ; les deux membres ont relu les résultats et Aliou a effectué une vérification supplémentaire, selon leur confirmation.
 - Aliou DIOP indique un accord envisagé de partage du prix à parts égales en cas de victoire ; les deux membres doivent le confirmer et vérifier les règles applicables.
@@ -31,11 +32,11 @@ Le conteneur PostgreSQL temporaire a été supprimé après la suite. Le volume 
 | Exécuter les parcours métier en staging avec données synthétiques | Authentification, profils, projets, forum, collaboration, revue, messages, notifications et administration vérifiés selon le périmètre de démo | Résultats par parcours, date, commit et environnement | Équipe |
 | Confirmer la persistance des données et des médias | Sauvegarde puis restauration effectivement réussies | Procès-verbal de reprise, sans données sensibles | Opérateur à désigner |
 | Archiver le document officiel des conditions CADEV reçu par l’équipe | Copie datée des conditions consultable pour référence du jury | Règlement/communication officielle | Équipe |
-| Archiver la démonstration de `https://ndadiee.com/` et vérifier la version publiée | Vidéo consultable des parcours ; version en ligne identifiée ; détails du serveur liés au domaine établis si nécessaire | Lien vidéo, date, capture d’accès et preuve de souscription expurgée | Équipe |
+| Confirmer que la vidéo montre les parcours prévus et identifier la version présentée | Revue humaine de la vidéo effectuée ; commit de remise noté | Lien vidéo, commit remis et notes de revue | Équipe |
 | Contrôler domaine, HTTPS, CORS, SMTP, GitHub et stockage | Valeurs non-développement injectées de manière sûre et intégrations testées | Checklist vérifiée, sans révéler de secret | À désigner |
 | Tester la restauration, la supervision et la procédure de retour arrière | Reprise et surveillance démontrées en environnement contrôlé | Procès-verbal et métriques expurgés | À désigner |
 
-Résultats au 6 novembre 2026 : [audit opérationnel](08-qualite-securite/audit-operationnel.md) et [état de préparation à la production](07-deploiement/etat-preparation-production.md). Les contrôles frontend et la suite backend passent localement ; aucun parcours métier complet n’a été exécuté dans le cadre de ces audits. L’équipe confirme le déploiement et les parcours le 11 novembre ; la vidéo promise et les vérifications indépendantes restent à fournir.
+Résultats au 6 novembre 2026 : [audit opérationnel](08-qualite-securite/audit-operationnel.md) et [état de préparation à la production](07-deploiement/etat-preparation-production.md). Les contrôles frontend et la suite backend passent localement ; aucun parcours métier complet n’a été exécuté dans le cadre de ces audits. Depuis, le site a répondu HTTP 200 en HTTPS et la vidéo a été fournie ; le contenu vidéo et les parcours métier complets restent à examiner.
 
 ## Avant la répétition jury
 
@@ -45,7 +46,7 @@ Résultats au 6 novembre 2026 : [audit opérationnel](08-qualite-securite/audit-
 | Finaliser les preuves de contribution de chaque membre | Rôles et apports confirmés ; fonctionnalité mot de passe oublié localisée et vérifiée avant démonstration | PR/commits, tâches, vidéo ou livrables vérifiables | Chaque membre |
 | Compléter la déclaration IA selon les règles | Usages déclarés et relus par l’équipe ; autres usages éventuels et format officiel vérifiés | Déclaration à jour, période et relecture confirmées | Chaque membre |
 | Auditer les licences directes et transitives | Liste complète avec rapports datés et revue des cas inconnus | Rapports Maven/npm et décision de conformité | Responsable technique/licences à désigner |
-| Répéter le scénario de démonstration | Parcours fluide, fonctionnel et reproductible | Compte rendu, captures sans données sensibles | Équipe |
+| Revoir la vidéo et répéter le scénario en direct | Parcours montrés identifiés, fonctionnement en direct reproduit | Compte rendu, captures sans données sensibles | Équipe |
 | Préparer un mode dégradé | Démonstration de secours identifiée comme préenregistrée | Vidéo/captures, sans prétendre qu’elles prouvent la disponibilité en direct | À désigner |
 
 ## Compléments de documentation
@@ -56,12 +57,12 @@ Résultats au 6 novembre 2026 : [audit opérationnel](08-qualite-securite/audit-
 4. Ajouter les résultats CI complets, la couverture si mesurée et les limites de chaque contrôle.
 5. Rapprocher l’index racine et les index de section des fichiers réellement disponibles.
 
-## Ordre suggéré sur neuf jours
+## Dernières étapes suggérées avant le 15 novembre
 
-- **6–8 novembre** : confirmer règlement, équipe, hébergement et secrets ; décider du périmètre démontrable.
-- **9–11 novembre** : exécuter les tests externes, régler les blocages, établir licences et déclaration IA.
-- **12–13 novembre** : répéter la démonstration et préparer les preuves.
-- **14 novembre** : gel du contenu remis, vérification des liens et répétition finale.
-- **15 novembre** : remise/démonstration, sous réserve de confirmation du calendrier officiel.
+- Revoir la vidéo et confirmer les parcours qu’elle montre.
+- Faire le dernier push documentaire, puis noter le commit exact remis au jury.
+- Vérifier l’absence de secrets dans les fichiers soumis et relire la checklist de remise.
+- Présenter les fonctions non retrouvées dans le code comme limites/non vérifiées, notamment le parcours mot de passe oublié.
+- Conserver les preuves d’hébergement et d’inscription expurgées, et ne finaliser les points de licences que si requis ou avant toute déclaration de conformité.
 
 Ce calendrier est un plan de travail recommandé, pas une prolongation ou un calendrier officiel.

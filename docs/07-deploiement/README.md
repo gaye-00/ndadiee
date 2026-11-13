@@ -19,7 +19,7 @@ Les éléments non vérifiés :
 - l’équipe déclare le site `https://ndadiee.com/` et un hébergement Systalink/Datacloud, avec des captures de récapitulatif ; l’accès public, l’état de l’instance et le lien entre le serveur et le site ne sont pas vérifiés indépendamment,
 - aucune procédure de déploiement automatisé n’est fournie.
 
-L’[audit opérationnel](./etat-preparation-production.md), actualisé le 6 novembre 2026, confirme la réussite des contrôles frontend et des 313 tests backend sur PostgreSQL temporaire. JWT, seeders et mode JPA ont été durcis ; la migration initiale Flyway V1 et sa procédure de baseline ont été testées. Les 10 et 11 novembre, l’équipe a déclaré l’URL, l’hébergement Systalink/Datacloud, l’accès HTTPS et le bon fonctionnement des principaux composants et parcours. La vidéo annoncée reste à fournir ; la vérification indépendante et la compatibilité de la base réelle ne sont pas établies ici.
+L’[audit opérationnel](./etat-preparation-production.md), actualisé le 6 novembre 2026, confirme la réussite des contrôles frontend et des 313 tests backend sur PostgreSQL temporaire. JWT, seeders et mode JPA ont été durcis ; la migration initiale Flyway V1 et sa procédure de baseline ont été testées. L’équipe a fourni le site, les informations d’hébergement et une [vidéo de démonstration](https://youtu.be/Xv030XysB88). Le 13 novembre, le site a répondu HTTP 200 en HTTPS. Le contenu vidéo n’a pas pu être lu dans le navigateur d’audit ; l’API, la base réelle, les parcours, les sauvegardes et la compatibilité avec la base cible restent à vérifier.
 
 ## Architecture cible recommandée
 

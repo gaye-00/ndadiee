@@ -36,9 +36,9 @@ L’audit opérationnel et la phase de durcissement du 6 novembre 2026 ont actua
 
 L’équipe a confirmé les informations désormais intégrées aux documents CADEV et de déploiement : deux membres inscrits (Abdoulaye GAYE et Aliou DIOP), utilisation de Claude par Abdoulaye pour des composants backend, utilisation de ChatGPT et GitHub Copilot pendant la recherche et le développement pour améliorer la documentation, et relecture des résultats par les deux membres avec une vérification supplémentaire d’Aliou. Les membres indiquent tous deux avoir participé aux tests ; Aliou a contribué à l’audit fonctionnel et suggéré le parcours « mot de passe oublié », qu’Abdoulaye déclare avoir ajouté.
 
-L’équipe confirme également que [https://ndadiee.com/](https://ndadiee.com/) est accessible depuis l’extérieur avec un certificat HTTPS valide et que la version en ligne, l’API, la base et les principaux parcours fonctionnent. Une vidéo doit le démontrer ; le lien n’a pas encore été communiqué. Les captures Systalink/Datacloud et informations sur le service ont également été enregistrées. L’équipe confirme que le cadre de concours résumé dans le dossier correspond aux conditions reçues.
+L’équipe confirme également que [https://ndadiee.com/](https://ndadiee.com/) est accessible depuis l’extérieur avec un certificat HTTPS valide et que la version en ligne, l’API, la base et les principaux parcours fonctionnent. Une requête externe du 13 novembre a reçu HTTP 200 et TLS a été validé par `curl`. La vidéo [Ndadiée](https://youtu.be/Xv030XysB88) a été fournie ; YouTube expose son titre et ses métadonnées, mais le navigateur d’audit n’a pas décodé le flux. Les captures Systalink/Datacloud et informations sur le service ont également été enregistrées. L’équipe confirme que le cadre de concours résumé dans le dossier correspond aux conditions reçues.
 
-Ces éléments sont des confirmations de l’équipe et des informations fournies ; elles ne sont pas des vérifications techniques indépendantes. Le parcours de récupération du mot de passe n’a pas été retrouvé dans le code examiné. Le lien vidéo, les détails de cette contribution et tout justificatif officiel éventuellement demandé restent à fournir. Le partage 50/50 du prix en cas de victoire reste une intention déclarée à confirmer par les membres et au regard du règlement.
+Le chargement HTTPS du site est vérifié indépendamment ; les affirmations concernant l’API, la base et les parcours restent des confirmations de l’équipe, puisque le navigateur n’a pas pu lire la vidéo et que ces parcours n’ont pas été rejoués. Le parcours de récupération du mot de passe n’a pas été retrouvé dans le code examiné. Le lien vidéo est fourni, mais son contenu doit être revu par l’équipe. Le partage 50/50 du prix en cas de victoire reste une intention déclarée à confirmer par les membres et au regard du règlement.
 
 ## Corrections principales
 
@@ -64,7 +64,7 @@ Ces éléments sont des confirmations de l’équipe et des informations fournie
 
 - `docs/05-guides-utilisateur/` ne contient aucun fichier. Les guides utilisateur détaillés attendus précédemment restent à produire ; les pages fonctionnelles ne sont pas un substitut à des procédures simplifiées.
 - Aucun rapport d’audit transitif des licences n’est présent.
-- Les noms des deux membres, les usages d’IA, l’URL publique, l’accès HTTPS et le bon fonctionnement des principaux composants sont confirmés par l’équipe. Le lien vidéo annoncé et la vérification indépendante des parcours restent à obtenir. Le parcours « mot de passe oublié » déclaré ajouté par Abdoulaye est absent du code examiné.
+- Les noms des deux membres, les usages d’IA, l’URL publique et le bon fonctionnement des principaux composants sont confirmés par l’équipe. Le site répond HTTP 200 en HTTPS et le lien vidéo est fourni, mais son contenu n’a pas été décodé par le navigateur d’audit. Le parcours « mot de passe oublié » déclaré ajouté par Abdoulaye est absent du code examiné.
 - Le dossier de conformité repose sur le cadre communiqué dans la demande ; il ne valide pas de façon indépendante le règlement ou ses éventuels avenants.
 - La cohérence de toutes les descriptions d’endpoints avec chaque contrôleur n’a pas été entièrement re-auditée dans cette revue finale.
 
@@ -83,7 +83,7 @@ Ces éléments sont des confirmations de l’équipe et des informations fournie
 
 ### Non établi
 
-- Vérification indépendante de l’accessibilité et du fonctionnement du produit ; lien de la vidéo de démonstration annoncé mais non reçu.
+- Relecture humaine du contenu de la vidéo ; les parcours API et base ne sont pas indépendamment validés par ce contrôle de page.
 - Détails des contributions individuelles et preuve du parcours « mot de passe oublié » déclaré ajouté, absent du code examiné.
 - Exhaustivité des usages IA (autres usages éventuels pour tests ou médias) et conformité au format officiel de déclaration, s’il est imposé.
 - conformité légale complète des licences transitives.
@@ -91,4 +91,4 @@ Ces éléments sont des confirmations de l’équipe et des informations fournie
 
 ## Priorités
 
-Avant le 15 novembre 2026, traiter d’abord : comparer V1 à une sauvegarde de la base cible et effectuer une baseline contrôlée si elle correspond ; vérifier variables et données de l’environnement cible ; récupérer la vidéo promise et les preuves des parcours ; localiser/vérifier la récupération de mot de passe déclarée ; finaliser l’inventaire licences/IA ; enfin produire les guides utilisateur et répéter le scénario. Voir [le plan d’actions](./plan-actions-restantes.md).
+Avant le 15 novembre 2026, traiter d’abord : comparer V1 à une sauvegarde de la base cible et effectuer une baseline contrôlée si elle correspond ; vérifier variables et données de l’environnement cible ; revoir la vidéo et relier les parcours montrés au commit remis ; localiser/vérifier la récupération de mot de passe déclarée ; finaliser l’inventaire licences/IA si exigé ; enfin produire les guides utilisateur et répéter le scénario. Voir [le plan d’actions](./plan-actions-restantes.md).
