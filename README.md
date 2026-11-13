@@ -87,6 +87,9 @@ cd frontend && npm run i18n:check
 
 La suite backend complète a besoin de PostgreSQL pour le test de démarrage. Aucun script de tests frontend n’est déclaré dans [frontend/package.json](frontend/package.json). Les résultats de vérification connus sont consignés dans [la stratégie de tests](docs/08-qualite-securite/strategie-de-tests.md).
 
+## LICENCE
+[La licence du projet Ndadiee ndadiee](LICENSE.md)
+
 ## Limites importantes avant production
 
 - Flyway applique les migrations versionnées ; Hibernate utilise `validate` dans tous les profils. Une base historique exige une baseline explicite après sauvegarde et comparaison à V1 avant usage.
