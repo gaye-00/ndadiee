@@ -409,7 +409,7 @@ public class DemoDataSeeder {
 
                 ## 3. Le schéma appartient aux migrations
 
-                `ddl-auto: update` est pratique une semaine. Ensuite, utilise Flyway et passe Hibernate en `validate` : chaque changement de schéma est relu, versionné et rejouable.
+                Le schéma de Ndadiée est appliqué par Flyway (`V1__initial_schema.sql`) puis vérifié par Hibernate en mode `validate`. Pour chaque évolution, ajoute une migration SQL versionnée ; ne modifie pas une version déjà appliquée.
 
                 ## 4. Paginer dès le début
 

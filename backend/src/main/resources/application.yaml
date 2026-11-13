@@ -5,11 +5,12 @@ spring:
     url: ${SPRING_DATASOURCE_URL:jdbc:postgresql://localhost:5434/ndadiee}
     username: ${SPRING_DATASOURCE_USERNAME:ndadiee}
     password: ${SPRING_DATASOURCE_PASSWORD:ndadiee}
+  flyway:
+    enabled: true
   jpa:
     hibernate:
-      # Le schéma vient des entités (index, contraintes et cascades compris) ; les données, des seeders
-      # (initializer/InitializerNdadiee). En local, il est recréé à chaque démarrage.
-      ddl-auto: ${SPRING_JPA_HIBERNATE_DDL_AUTO:create-drop}
+      # Flyway gère le schéma ; Hibernate ne le modifie dans aucun profil.
+      ddl-auto: validate
     open-in-view: false
     show-sql: false
     properties:
@@ -36,20 +37,19 @@ frontend:
   url: ${FRONTEND_URL:http://localhost:5173}
 
 jwt:
-  # Valeur de développement uniquement : définir JWT_SECRET (Base64, 256 bits minimum) en production.
-  secret: ${JWT_SECRET:bGFrYS1kZXYtb25seS1zZWNyZXQtY2hhbmdlLW1lLWluLXByb2R1Y3Rpb24tMDEyMzQ1Njc4OQ==}
+  # Obligatoire dans chaque environnement ; JwtService valide le format et la taille au démarrage.
+  secret: ${JWT_SECRET:}
   access-token-expiration: ${JWT_ACCESS_TOKEN_EXPIRATION:30m}
   refresh-token-expiration: ${JWT_REFRESH_TOKEN_EXPIRATION:30d}
 
 ndadiee:
   seed:
-    # Données de démonstration, créées au démarrage si la base est vide.
-    enabled: ${SEED_ENABLED:true}
-    # Mot de passe des comptes de démonstration : à changer avant toute mise en ligne.
-    admin-password: ${SEED_ADMIN_PASSWORD:Admin@Ndadiee2026}
-    demo-password: ${SEED_DEMO_PASSWORD:Ndadiee@2026}
-    # Mot de passe des comptes d'essai Ada et Musa, réservé au développement.
-    test-account-password: ${SEED_TEST_ACCOUNT_PASSWORD:passer@123}
+    # Désactivé par défaut dans tous les profils ; l'activation doit être explicite.
+    enabled: ${SEED_ENABLED:false}
+    # Les mots de passe ne possèdent aucun défaut ; requis seulement si les seeders sont activés.
+    admin-password: ${SEED_ADMIN_PASSWORD:}
+    demo-password: ${SEED_DEMO_PASSWORD:}
+    test-account-password: ${SEED_TEST_ACCOUNT_PASSWORD:}
   storage:
     # Images du forum et des projets. auto : Cloudflare R2 dès que ses réglages ci-dessous sont complets, le disque sinon
     # (développement, servi sous /api/uploads) ; local ; r2 (l'application refuse de démarrer sans ses réglages).

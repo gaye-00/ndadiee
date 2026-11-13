@@ -31,10 +31,24 @@ public class InitializerNdadiee implements CommandLineRunner {
     @Value("${ndadiee.seed.enabled}")
     private boolean seedEnabled;
 
+    @Value("${ndadiee.seed.admin-password}")
+    private String adminPassword;
+
+    @Value("${ndadiee.seed.demo-password}")
+    private String demoPassword;
+
+    @Value("${ndadiee.seed.test-account-password}")
+    private String testAccountPassword;
+
     @Override
     public void run(String... args) {
-        // Ce que les entités ne savent pas décrire, avant toute donnée ; puis les données de référence, nécessaires dans
-        // tous les environnements
+        if (seedEnabled) {
+            requireSeedPassword("SEED_ADMIN_PASSWORD", adminPassword);
+            requireSeedPassword("SEED_DEMO_PASSWORD", demoPassword);
+            requireSeedPassword("SEED_TEST_ACCOUNT_PASSWORD", testAccountPassword);
+        }
+
+        // Flyway applique le schéma avant ce runner ; cette vérification reste idempotente et non destructive.
         databaseConstraints.apply();
         badgeService.syncCatalog();
 
@@ -63,6 +77,12 @@ public class InitializerNdadiee implements CommandLineRunner {
             messageSeeder.seed();
         } else {
             log.info("[Init] Données de démonstration désactivées (ndadiee.seed.enabled=false)");
+        }
+    }
+
+    private static void requireSeedPassword(String variable, String password) {
+        if (password == null || password.isBlank()) {
+            throw new IllegalStateException(variable + " must be set when SEED_ENABLED=true.");
         }
     }
 }
