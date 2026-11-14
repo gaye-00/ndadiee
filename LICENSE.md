@@ -14,11 +14,16 @@ Toute reproduction, modification, distribution, publication, adaptation ou explo
 
 Les bibliothèques, frameworks, dépendances, polices, icônes et autres composants appartenant à des tiers ne sont pas couverts par la présente mention. Ils restent soumis à leurs licences et conditions d'utilisation respectives.
 
+
 ## Participation au concours CADEV
 
-La présente mention ne modifie ni ne remplace les droits et obligations découlant du règlement officiel du concours CADEV organisé par Systalink Sénégal, ni les dispositions d'un éventuel acte distinct de cession des droits signé par les membres de l'équipe.
+Les droits d'auteur et droits patrimoniaux relatifs aux contributions originales du projet Ndadiee restent soumis aux dispositions légales applicables et aux droits de leurs titulaires.
 
-Les droits relatifs aux contributions originales de chaque membre restent soumis aux règles de propriété intellectuelle applicables.
+La présente mention « Tous droits réservés » s'applique sous réserve des droits expressément concédés à Systalink Sénégal dans le cadre du règlement officiel du concours CADEV.
+
+En particulier, pour un projet non lauréat, les droits des participants restent préservés, sous réserve de la licence non exclusive, gratuite et limitée accordée à l'Organisateur aux fins prévues par l'article 10 du règlement.
+
+En cas de victoire, toute cession éventuelle des droits patrimoniaux sera régie par les conditions de l'article 8 du règlement et par un acte écrit distinct signé par les membres concernés de l'équipe.
 
 ---
 
